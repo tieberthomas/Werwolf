@@ -20,6 +20,7 @@ import root.Spieler;
 import root.mechanics.Liebespaar;
 import root.mechanics.Opfer;
 import root.mechanics.Torte;
+import sun.security.provider.ConfigFile;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -151,6 +152,8 @@ public class Nacht extends Thread
             Opfer chosenOpfer = null;
             Spieler chosenPlayer;
             boolean wölfinKilled = false;
+            ArrayList<Spieler> schönlinge = new ArrayList<>();
+            Spieler beschworenerSpieler = null;
 
             Fraktion fraktion;
 
@@ -277,6 +280,18 @@ public class Nacht extends Thread
                                     showListOnBothScreens(statement, hauptrollenImSpiel);
                                 }
                                 break;
+
+                            case BESCHWÖRER:
+                                if(feedback!=null) {
+                                    beschworenerSpieler = Spieler.findSpieler(feedback);
+                                }
+                                break;
+
+                            case FRISÖR:
+                                if(feedback!=null) {
+                                    schönlinge.add(Spieler.findSpieler(feedback));
+                                }
+                                break;
                         }
 
                         feedback = null;
@@ -311,6 +326,8 @@ public class Nacht extends Thread
 
                                     if (erzählerFrame.chosenOption1.equals(NACHTSCHUTZ)) {
                                         chosenPlayer.geschützt = true;
+                                    } else {
+                                        schönlinge.add(chosenPlayer);
                                     }
                                 }
                                 break;
@@ -545,6 +562,15 @@ public class Nacht extends Thread
                 if (freibier) {
                     break;
                 }
+            }
+
+            //TODO remove testprintfs
+            if(beschworenerSpieler!=null) {
+                System.out.println(beschworenerSpieler.name);
+            }
+
+            for(Spieler spieler : schönlinge) {
+                System.out.println(spieler.name);
             }
         }
 

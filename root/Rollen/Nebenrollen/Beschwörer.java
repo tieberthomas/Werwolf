@@ -22,8 +22,9 @@ public class Beschwörer extends Nebenrolle
     @Override
     public String aktion(String chosenOption) {
         Spieler chosenPlayer = Spieler.findSpieler(chosenOption);
-        if(chosenPlayer!=null) {
+        if(chosenPlayer != null) {
             besucht = chosenPlayer;
+            return chosenPlayer.name;
         }
 
         return null;

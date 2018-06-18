@@ -24,6 +24,7 @@ public class Frisör extends Nebenrolle
         Spieler chosenPlayer = Spieler.findSpieler(chosenOption);
         if(chosenPlayer != null) {
             besucht = chosenPlayer;
+            return chosenPlayer.name;
         }
 
         return null;
