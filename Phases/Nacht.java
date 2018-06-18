@@ -517,8 +517,8 @@ public class Nacht extends Thread
 
                                 for (Opfer currentOpfer : Opfer.deadVictims) {
                                     if(!opferDerNacht.contains(currentOpfer.opfer.name)) {
-                                        Rolle.mitte.add(currentOpfer.opfer.hauptrolle);
-                                        Rolle.mitte.add(currentOpfer.opfer.nebenrolle);
+                                        Rolle.mitteHauptrollen.add(currentOpfer.opfer.hauptrolle);
+                                        Rolle.mitteNebenrollen.add(currentOpfer.opfer.nebenrolle);
                                         opferDerNacht.add(currentOpfer.opfer.name);
                                     }
                                 }

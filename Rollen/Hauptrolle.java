@@ -106,6 +106,16 @@ public class Hauptrolle extends Rolle
         return names;
     }
 
+    public static ArrayList<String> getPossibleInGameMainRoleNames() {
+        ArrayList<String> mainRolesInGame = getMainRoleInGameNames();
+
+        for(Hauptrolle hauptrolle : Rolle.mitteHauptrollen) {
+            mainRolesInGame.remove(hauptrolle.getName());
+        }
+
+        return  mainRolesInGame;
+    }
+
     public static Hauptrolle findHauptrolle(String wantedName)
     {
         for(Hauptrolle hauptrolle : mainRoles) {

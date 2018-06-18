@@ -78,9 +78,23 @@ public class SpielerPageFactory {
         return endScreenPage;
     }
 
-    /*public Page generateDayPage(ArrayList<String> hauptrollen, ArrayList<String> nebenrollen){
+    public Page generateDayPage(ArrayList<String> hauptrollen, ArrayList<String> nebenrollen){
+        int titleSpace = 80;
+        int clockSpace = 150;
+        Page listPage = generateDoubleListPage(hauptrollen, nebenrollen, titleSpace, clockSpace-30);
 
-    }*/
+        PageElement title1Element = pageElementFactory.generateColumnTitleLabel("Hauptrollen", 2,0,titleSpace);
+        PageElement title2Element = pageElementFactory.generateColumnTitleLabel("Nebenrollen", 2,1,titleSpace);
+
+        spielerFrame.clockLabel = new JLabel("00:00:00");
+        PageElement counterLabel = pageElementFactory.generateClockLabel(spielerFrame.clockLabel, clockSpace);
+
+        listPage.add(title1Element);
+        listPage.add(title2Element);
+        listPage.add(counterLabel);
+
+        return listPage;
+    }
 
     public Page generateDropdownPage(String title, int numberOfDropdowns) {
         spielerFrame.title = title;
@@ -96,9 +110,9 @@ public class SpielerPageFactory {
         PageElement centeredLabel2;
         PageElement centeredLabel3;
 
-        int frameOffset = 50;
+        int frameOffset = MyFrame.yOffset;
         int titleHeight = titleLabel.height;
-        int stringHeight = 50;
+        int stringHeight = pageElementFactory.getJLabelHeight();
         int spaceToUse = spielerFrame.PANEL_HEIGHT - frameOffset - titleHeight - stringHeight;
         int spacePerString;
         int startpoint;
@@ -242,16 +256,29 @@ public class SpielerPageFactory {
         return generateTitlePage(spielerFrame.title);
     }
 
-    public Page generateDoubleListPage(ArrayList<String> stringsToDisplay1, ArrayList<String> stringsToDisplay2){
+    public Page generateDoubleListPage(ArrayList<String> stringsToDisplay1, ArrayList<String> stringsToDisplay2, String title1, String title2){
+        int titleSpace = 80;
+        Page listPage = generateDoubleListPage(stringsToDisplay1, stringsToDisplay2, titleSpace, 0);
+
+        PageElement title1Element = pageElementFactory.generateColumnTitleLabel(title1, 2,0,titleSpace);
+        PageElement title2Element = pageElementFactory.generateColumnTitleLabel(title2, 2,1,titleSpace);
+
+        listPage.add(title1Element);
+        listPage.add(title2Element);
+
+        return listPage;
+    }
+
+    public Page generateDoubleListPage(ArrayList<String> stringsToDisplay1, ArrayList<String> stringsToDisplay2, int offsetAbove, int offsetBelow){
         ArrayList<String> realStringsToDisplay1 = new ArrayList<String>(stringsToDisplay1);
         realStringsToDisplay1.remove("");
         ArrayList<String> realStringsToDisplay2 = new ArrayList<String>(stringsToDisplay2);
         realStringsToDisplay2.remove("");
 
         if(realStringsToDisplay1.size()<13 && realStringsToDisplay2.size()<13) {
-            return generateListPage(realStringsToDisplay1, realStringsToDisplay2, 1);
+            return generateListPage(realStringsToDisplay1, realStringsToDisplay2, 1, offsetAbove, offsetBelow);
         } else {
-            return generateListPage(realStringsToDisplay1, realStringsToDisplay2, 2);
+            return generateListPage(realStringsToDisplay1, realStringsToDisplay2, 2, offsetAbove, offsetBelow);
         }
     }
 
@@ -297,7 +324,7 @@ public class SpielerPageFactory {
         int textSize = 36;
 
         if(numberOfColumnsPerList>1) {
-            textSize = 24;
+            textSize = 30;
         }
 
         for(int i=0; i<numberOfColumnsPerList; i++) {

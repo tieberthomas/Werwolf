@@ -12,6 +12,9 @@ import root.Spieler;
 
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class SpielerFrame extends MyFrame{
     public SpielerPageFactory pageFactory;
@@ -20,6 +23,8 @@ public class SpielerFrame extends MyFrame{
     public JLabel comboBox1Label;
     public JLabel comboBox2Label;
     public JLabel comboBox3Label;
+
+    public JLabel clockLabel;
 
     public Page blankPage;
     public Page deactivatedPage;
@@ -31,6 +36,9 @@ public class SpielerFrame extends MyFrame{
     public int mode = SpielerFrameMode.blank;
     public String title = "";
 
+    public static String timestring = "00:00:00";
+    public static int time = 0;
+
     public SpielerFrame(){
         WINDOW_TITLE = "Spieler Fenster";
 
@@ -40,12 +48,15 @@ public class SpielerFrame extends MyFrame{
         comboBox1Label = new JLabel();
         comboBox2Label = new JLabel();
         comboBox3Label = new JLabel();
+        clockLabel = new JLabel();
 
         generateAllPages();
 
         this.setLocation(ErzählerFrame.PANEL_WIDTH + 20,0);
 
         showFrame();
+
+        startTimeUpdateThread();
     }
 
     public void generateAllPages() {
@@ -89,13 +100,11 @@ public class SpielerFrame extends MyFrame{
 
     public void refreshSecondarySpecifySetupPage(){
         ArrayList<String> mainRoles = new ArrayList<>();
-        mainRoles.add("Hauptrollen:");
         mainRoles.addAll(Hauptrolle.getMainRoleInGameNames());
 
         ArrayList<String> secondaryRoles = new ArrayList<>();
-        secondaryRoles.add("Nebenrollen:");
         secondaryRoles.addAll(Nebenrolle.getSecondaryRoleInGameNames());
-        buildScreenFromPage(pageFactory.generateDoubleListPage(mainRoles, secondaryRoles));
+        buildScreenFromPage(pageFactory.generateDoubleListPage(mainRoles, secondaryRoles, "Hauptrollen", "Nebenrollen"));
     }
 
     public void generateDayPage() {
@@ -104,8 +113,10 @@ public class SpielerFrame extends MyFrame{
             mode = SpielerFrameMode.freibierPage;
             this.bierPage();
         } else {
-            dropDownPage = pageFactory.generateDropdownPage(title, 1);
-            buildScreenFromPage(dropDownPage);
+            //dropDownPage = pageFactory.generateDropdownPage(title, 1);
+            //buildScreenFromPage(dropDownPage);
+            buildScreenFromPage(pageFactory.generateDayPage(Hauptrolle.getPossibleInGameMainRoleNames(), Nebenrolle.getPossibleInGameMainRoleNames()));
+            //TODO dropdownmirrorn implementieren
         }
     }
 
@@ -123,5 +134,48 @@ public class SpielerFrame extends MyFrame{
 
     public void deactivatedPage() {
         buildScreenFromPage(deactivatedPage);
+    }
+
+    public void startTimeUpdateThread() {
+        ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
+
+        Runnable periodicTask = new Runnable() {
+            public void run() {
+                time++;
+                SpielerFrame.generateTimeString();
+                clockLabel.setText(timestring);
+            }
+        };
+
+        executor.scheduleAtFixedRate(periodicTask, 0, 1, TimeUnit.SECONDS);
+    }
+
+    public static void generateTimeString(){
+        int tmpTime = time;
+        int firstDigit = 0;
+        int secondDigit = 0;
+        int thirdDigit = 0;
+        int fourthDigit = 0;
+        int fifthDigit = 0;
+        int sixthDigit = 0;
+
+        firstDigit = tmpTime%10;
+        tmpTime-=firstDigit;
+        tmpTime = tmpTime/10;
+        secondDigit = tmpTime%6;
+        tmpTime-=secondDigit;
+        tmpTime = tmpTime/6;
+        thirdDigit = tmpTime%10;
+        tmpTime-=thirdDigit;
+        tmpTime = tmpTime/10;
+        fourthDigit = tmpTime%6;
+        tmpTime-=fourthDigit;
+        tmpTime = tmpTime/6;
+        fifthDigit = tmpTime%10;
+        tmpTime-=fifthDigit;
+        tmpTime = tmpTime/10;
+        sixthDigit = tmpTime;
+
+        timestring = "" + sixthDigit + "" + fifthDigit + ":" + fourthDigit + "" + thirdDigit + ":" + secondDigit + "" + firstDigit;
     }
 }

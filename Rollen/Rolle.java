@@ -8,7 +8,8 @@ import java.util.ArrayList;
 
 public class Rolle
 {
-    public static ArrayList<Rolle> mitte = new ArrayList<>();
+    public static ArrayList<Hauptrolle> mitteHauptrollen = new ArrayList<>();
+    public static ArrayList<Nebenrolle> mitteNebenrollen = new ArrayList<>();
     public Spieler besucht;
     public Spieler besuchtLetzteNacht;
     public int abilityCharges = 1;
@@ -67,7 +68,13 @@ public class Rolle
 
     public static boolean rolleInNachtEnthalten(String rolle) {
         if(Hauptrolle.getMainRoleInGameNames().contains(rolle) || Nebenrolle.getSecondaryRoleInGameNames().contains(rolle)) {
-            for(Rolle currentRolle : Rolle.mitte){
+            for(Rolle currentRolle : Rolle.mitteHauptrollen){
+                if(currentRolle.getName().equals(rolle)) {
+                    return false;
+                }
+            }
+
+            for(Rolle currentRolle : Rolle.mitteNebenrollen){
                 if(currentRolle.getName().equals(rolle)) {
                     return false;
                 }

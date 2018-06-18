@@ -154,7 +154,8 @@ public class SpielerPageElementFactory {
 
         PageElement centeredLabel = new PageElement(label, imageJLabelWidth, imageJLabelHeight, null, predecessorY, 0, spaceToPredecessorY);
 
-        int spacePerColumn = spielerFrame.PANEL_WIDTH/numberOfColumns;
+        int sideFrameWidth = 8;
+        int spacePerColumn = (spielerFrame.PANEL_WIDTH-sideFrameWidth*2)/numberOfColumns;
         int xCoord = (int)(spacePerColumn*(indexOfColumn+0.5)-(imageJLabelWidth/2));
 
         centeredLabel.setCoordX(xCoord);
@@ -163,15 +164,43 @@ public class SpielerPageElementFactory {
     }
 
     public PageElement generateTitleLabel(String titel) {
+        return generateColumnTitleLabel(titel, 1,0);
+    }
+
+    public PageElement generateColumnTitleLabel(String titel, int numberOfColumns, int indexOfColumn) {
+        return generateColumnTitleLabel(titel, numberOfColumns, indexOfColumn, defaultTitleSize);
+    }
+
+    public PageElement generateColumnTitleLabel(String titel, int numberOfColumns, int indexOfColumn, int spaceToUse) {
         JLabel titleJLabel = generateTitleJLabel(titel);
 
-        int sideFrameWidth = 8;
-        int numberOfPlayersLabelWidth = spielerFrame.PANEL_WIDTH - sideFrameWidth*2;
-        int numberOfPlayersLabelHeight = 60;
+        int numberOfPlayersLabelWidth = (int)titleJLabel.getPreferredSize().getWidth();
+        int numberOfPlayersLabelHeight = spaceToUse;
 
         PageElement titleLabel = new PageElement(titleJLabel, numberOfPlayersLabelWidth, numberOfPlayersLabelHeight, null, null);
 
+        int sideFrameWidth = 8;
+        int spacePerColumn = (spielerFrame.PANEL_WIDTH-sideFrameWidth*2)/numberOfColumns;
+        int xCoord = (int)(spacePerColumn*(indexOfColumn+0.5)-(numberOfPlayersLabelWidth/2));
+
+        titleLabel.setCoordX(xCoord);
+
         return titleLabel;
+    }
+
+    public PageElement generateClockLabel(JLabel label, int spaceToUse){
+        JLabel clockJLabel = formatLabel(label, 100);
+
+        int sideFrameWidth = 8;
+        int clockLabelWidth = (spielerFrame.PANEL_WIDTH-sideFrameWidth*2);
+        int clockLabelHeight = spaceToUse;
+
+        PageElement clockLabel = new PageElement(clockJLabel, clockLabelWidth, clockLabelHeight, null, null);
+
+        int yCoord = spielerFrame.PANEL_HEIGHT-spaceToUse;
+        clockLabel.setCoordY(yCoord);
+
+        return clockLabel;
     }
 
     public JLabel formatLabel(JLabel label, int size) {

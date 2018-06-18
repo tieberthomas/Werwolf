@@ -45,6 +45,7 @@ public class Tag extends Thread {
             erzählerFrame.buildScreenFromPage(dayPage);
 
             spielerFrame.generateDayPage();
+            spielerFrame.time = 0;
 
             waitForAnswer();
 
@@ -98,8 +99,8 @@ public class Tag extends Thread {
                 }
             }
 
-            Rolle.mitte.add(spieler.hauptrolle);
-            Rolle.mitte.add(spieler.nebenrolle);
+            Rolle.mitteHauptrollen.add(spieler.hauptrolle);
+            Rolle.mitteNebenrollen.add(spieler.nebenrolle);
 
             Page dayPage = spielerFrame.pageFactory.generateTwoImagePage(spieler.name, spieler.hauptrolle.getImagePath(), spieler.nebenrolle.getImagePath());
             spielerFrame.buildScreenFromPage(dayPage);
