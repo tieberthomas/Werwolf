@@ -339,12 +339,13 @@ public class Nacht extends Thread
                             case NEUER_WERWOLF:
                                 chosenPlayer = Spieler.findSpieler(feedback);
                                 feedback = null;
+                                ArrayList<String> neuer = new ArrayList<>();
                                 if (chosenPlayer != null) {
-                                    ArrayList<String> neuer = new ArrayList<>();
                                     neuer.add(chosenPlayer.name);
-
-                                    showListShowTitle(statement, neuer);
                                 }
+
+                                showListShowTitle(statement, neuer);
+
                                 break;
 
                             case GUTE_HEXE_WIEDERBELEBEN:
@@ -467,20 +468,7 @@ public class Nacht extends Thread
                             break;
 
                         case SCHATTENPRIESTER:
-                            ArrayList<String> erweckbareOrNon = new ArrayList<>();
-
-                            for (Opfer currentOpfer : Opfer.deadVictims) {
-                                String fraktionOpfer = currentOpfer.opfer.hauptrolle.getFraktion().getName();
-                                if (currentOpfer.opfer.nebenrolle.getName().equals(Schattenkutte.name) ||
-                                        (currentOpfer.opfer.ressurectable && !fraktionOpfer.equals(Schattenpriester_Fraktion.name))) {
-                                    Rolle täter = currentOpfer.täter.hauptrolle;
-                                    if(!erweckbareOrNon.contains(currentOpfer.opfer.name) && !täter.getName().equals(Riese.name)) {
-                                        erweckbareOrNon.add(currentOpfer.opfer.name);
-                                    }
-                                }
-                            }
-
-                            erweckbareOrNon.add("");
+                            ArrayList<String> erweckbareOrNon = Schattenpriester_Fraktion.getRessurectableVictimsOrNone();
 
                             showDropdownListPage(statement, erweckbareOrNon);
 
@@ -488,16 +476,17 @@ public class Nacht extends Thread
                             break;
 
                         case NEUER_SCHATTENPRIESTER:
+                            ArrayList<String> neuer = new ArrayList<>();
+                            String imagePath = "";
                             if (chosenOpfer != null) {
                                 if(chosenOpfer.opfer.nebenrolle.getName().equals(Schattenkutte.name)){
-                                    System.out.println("SCHATTENKUTTE erweckt"); //TODO hier code einfügen damit schattenkutte karte im erzählerfenster und spielerfenster angezeigt wird
+                                     imagePath = Schattenkutte.imagePath;
                                 }
                                 Schattenpriester_Fraktion.wiederbeleben(chosenOpfer);
-                                ArrayList<String> neuer = new ArrayList<>();
-                                neuer.add(chosenOpfer.opfer.name);
 
-                                showListShowTitle(statement, neuer);
+                                neuer.add(chosenOpfer.opfer.name);
                             }
+                            showListShowTitle(statement, neuer, imagePath);
                             break;
 
                         case PROGRAMM_OPFER:
@@ -798,7 +787,11 @@ public class Nacht extends Thread
     }
 
     public void showListShowTitle(Statement statement, ArrayList<String> strings) {
-        Page nightPage = erzählerFrame.pageFactory.generateListPage(statement, strings);
+        showListShowTitle(statement, strings, "");
+    }
+
+    public void showListShowTitle(Statement statement, ArrayList<String> strings, String imagePath) {
+        Page nightPage = erzählerFrame.pageFactory.generateListPage(statement, strings, imagePath);
         erzählerFrame.buildScreenFromPage(nightPage);
         nightPage = spielerFrame.pageFactory.generateTitlePage(statement.titel);
         spielerFrame.buildScreenFromPage(nightPage);
