@@ -447,12 +447,15 @@ public class Nacht extends Thread
                             case WÖLFIN_BONUSROLLE:
                                 if(wölfinKilled) {
                                     Spieler wölfin = Spieler.findSpielerPerRolle(rolle.getName());
-                                    String imagePath = wölfin.nebenrolle.getImagePath();
-                                    if(wölfin.nebenrolle.getName().equals(Tarnumhang.name)) {
-                                        imagePath = ResourcePath.TARNUMHANG;
-                                        statement.titel = TARNUMHANG_TITEL;
+                                    if(wölfin!=null) {
+                                        //TODO michael fragen was passieren soll wenn wölfin stirbt/geschattenpriestert wird in der nacht wo sie tötet
+                                        String imagePath = wölfin.nebenrolle.getImagePath();
+                                        if (wölfin.nebenrolle.getName().equals(Tarnumhang.name)) {
+                                            imagePath = ResourcePath.TARNUMHANG;
+                                            statement.titel = TARNUMHANG_TITEL;
+                                        }
+                                        showImageOnBothScreens(statement, imagePath);
                                     }
-                                    showImageOnBothScreens(statement, imagePath);
                                 }
                                 break;
 
