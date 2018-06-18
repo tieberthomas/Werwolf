@@ -6,7 +6,6 @@ import root.Frontend.Page.Page;
 import root.Frontend.Frame.SpielerFrame;
 import root.ResourceManagement.ResourcePath;
 import root.Rollen.*;
-import root.Rollen.Fraktionen.Bürger;
 import root.Rollen.Fraktionen.Schattenpriester_Fraktion;
 import root.Rollen.Fraktionen.Vampire;
 import root.Rollen.Fraktionen.Werwölfe;
@@ -20,10 +19,8 @@ import root.Spieler;
 import root.mechanics.Liebespaar;
 import root.mechanics.Opfer;
 import root.mechanics.Torte;
-import sun.security.provider.ConfigFile;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class Nacht extends Thread
 {
@@ -143,7 +140,6 @@ public class Nacht extends Thread
 
         lock = new Object();
         synchronized (lock) {
-            Page nightPage;
             FrontendControl dropdownOtions;
             String feedback = null;
 
@@ -460,10 +456,8 @@ public class Nacht extends Thread
                                 break;
 
                             default:
-                                nightPage = erzählerFrame.pageFactory.generateDefaultNightPage(statement);
-                                erzählerFrame.buildScreenFromPage(nightPage);
-                                nightPage = spielerFrame.pageFactory.generateTitlePage(statement.titel);
-                                spielerFrame.buildScreenFromPage(nightPage);
+                                erzählerDefaultNightPage(statement);
+                                spielerTitlePage(statement.titel);
 
                                 waitForAnswer();
                                 break;
@@ -515,10 +509,8 @@ public class Nacht extends Thread
 
                         case OPFER:
                             if (Torte.torte) {
-                                erzählerFrame.tortenPage = erzählerFrame.pageFactory.generateTortenPage();
-                                erzählerFrame.buildScreenFromPage(erzählerFrame.tortenPage);
-                                nightPage = spielerFrame.pageFactory.generateStaticImagePage(TORTE_TITEL, ResourcePath.TORTE, true);
-                                spielerFrame.buildScreenFromPage(nightPage);
+                                erzählerTortenPage();
+                                spielerIconPicturePage(TORTE_TITEL, ResourcePath.TORTE);
 
                                 waitForAnswer();
                             } else {
@@ -543,19 +535,14 @@ public class Nacht extends Thread
                             String victory = Spieler.checkVictory();
 
                             if(victory != null) {
-                                spielerFrame.buildScreenFromPage(spielerFrame.pageFactory.generateEndScreenPage(victory));
-                                erzählerFrame.buildScreenFromPage(spielerFrame.pageFactory.generateEndScreenPage(victory));
-
-                                waitForAnswer();
+                                showEndScreenPage(victory);
                             }
 
                             break;
 
                         default:
-                            nightPage = erzählerFrame.pageFactory.generateDefaultNightPage(statement);
-                            erzählerFrame.buildScreenFromPage(nightPage);
-                            nightPage = spielerFrame.pageFactory.generateTitlePage(statement.titel);
-                            spielerFrame.buildScreenFromPage(nightPage);
+                            erzählerDefaultNightPage(statement);
+                            spielerTitlePage(statement.titel);
 
                             waitForAnswer();
                             break;
@@ -747,37 +734,26 @@ public class Nacht extends Thread
     }
 
     public void displayCard(Statement statement, String imagePath) {
-        Page nightPage;
-
         switch (statement.getState())
         {
             case Statement.NORMAL:
-                nightPage = erzählerFrame.pageFactory.generateCardPicturePage(statement, imagePath);
-                erzählerFrame.buildScreenFromPage(nightPage);
-                nightPage = spielerFrame.pageFactory.generateStaticImagePage(statement.titel, imagePath);
-                spielerFrame.buildScreenFromPage(nightPage);
+                erzählerCardPicturePage(statement, imagePath);
+                spielerCardPicturePage(statement.titel, imagePath);
                 break;
 
             case Statement.DEAKTIV:
-                nightPage = erzählerFrame.pageFactory.generateListPage(statement, getEmptyStringList(), ResourcePath.DEAKTIVIERT);
-                erzählerFrame.buildScreenFromPage(nightPage);
-
+                erzählerIconPicturePage(statement, ResourcePath.DEAKTIVIERT);
                 spielerFrame.deactivatedPage();
                 break;
 
             case Statement.DEAD:
-                nightPage = erzählerFrame.pageFactory.generateListPage(statement, getEmptyStringList(), ResourcePath.TOT);
-                erzählerFrame.buildScreenFromPage(nightPage);
-
+                erzählerIconPicturePage(statement, ResourcePath.TOT);
                 spielerFrame.deadPage();
                 break;
 
             case Statement.NOT_IN_GAME:
-                nightPage = erzählerFrame.pageFactory.generateListPage(statement, getEmptyStringList(), ResourcePath.AUS_DEM_SPIEL);
-                erzählerFrame.buildScreenFromPage(nightPage);
-
-                nightPage = spielerFrame.pageFactory.generateStaticImagePage(statement.titel, "");
-                spielerFrame.buildScreenFromPage(nightPage);
+                erzählerIconPicturePage(statement, ResourcePath.AUS_DEM_SPIEL);
+                spielerCardPicturePage(statement.titel, "");
                 break;
         }
 
@@ -788,8 +764,7 @@ public class Nacht extends Thread
         Statement tot = new StatementIndie(statement.beschreibung, TOT_TITEL, true);
 
         //TODO generateDeadPage()
-        Page nightPage = erzählerFrame.pageFactory.generateIconPicturePage(tot, ResourcePath.TOT);
-        erzählerFrame.buildScreenFromPage(nightPage);
+        erzählerIconPicturePage(tot, ResourcePath.TOT);
         spielerFrame.deadPage();
 
         waitForAnswer();
@@ -820,46 +795,33 @@ public class Nacht extends Thread
     }
 
     public void showListShowTitle(Statement statement, ArrayList<String> strings, String imagePath) {
-        Page nightPage = erzählerFrame.pageFactory.generateListPage(statement, strings, imagePath);
-        erzählerFrame.buildScreenFromPage(nightPage);
-        nightPage = spielerFrame.pageFactory.generateTitlePage(statement.titel);
-        spielerFrame.buildScreenFromPage(nightPage);
+        erzählerListPage(statement, strings, imagePath);
+        spielerTitlePage(statement.titel);
 
         waitForAnswer();
     }
 
     public void showListOnBothScreens(Statement statement, ArrayList<String> strings) {
-        Page nightPage;
-
         switch (statement.getState())
         {
             case Statement.NORMAL:
-                nightPage = erzählerFrame.pageFactory.generateListPage(statement, strings);
-                erzählerFrame.buildScreenFromPage(nightPage);
-                nightPage = spielerFrame.pageFactory.generateListPage(statement.titel, strings);
-                spielerFrame.buildScreenFromPage(nightPage);
+                erzählerListPage(statement, strings);
+                spielerListPage(statement.titel, strings);
                 break;
 
             case Statement.DEAKTIV:
-                nightPage = erzählerFrame.pageFactory.generateListPage(statement, getEmptyStringList(), ResourcePath.DEAKTIVIERT);
-                erzählerFrame.buildScreenFromPage(nightPage);
-
+                erzählerListPage(statement, getEmptyStringList(), ResourcePath.DEAKTIVIERT);
                 spielerFrame.deactivatedPage();
                 break;
 
             case Statement.DEAD:
-                nightPage = erzählerFrame.pageFactory.generateListPage(statement, getEmptyStringList(), ResourcePath.TOT);
-                erzählerFrame.buildScreenFromPage(nightPage);
-
+                erzählerListPage(statement, getEmptyStringList(), ResourcePath.TOT);
                 spielerFrame.deadPage();
                 break;
 
             case Statement.NOT_IN_GAME:
-                nightPage = erzählerFrame.pageFactory.generateListPage(statement, getEmptyStringList(), ResourcePath.AUS_DEM_SPIEL);
-                erzählerFrame.buildScreenFromPage(nightPage);
-
-                spielerFrame.dropDownPage = spielerFrame.pageFactory.generateDropdownPage(statement.titel, 1);
-                spielerFrame.buildScreenFromPage(spielerFrame.dropDownPage);
+                erzählerListPage(statement, getEmptyStringList(), ResourcePath.AUS_DEM_SPIEL);
+                spielerListPage(statement.titel, getEmptyStringList());
                 break;
         }
 
@@ -867,10 +829,15 @@ public class Nacht extends Thread
     }
 
     public void showImageOnBothScreens(Statement statement, String imagePath) {
-        Page nightPage = erzählerFrame.pageFactory.generateIconPicturePage(statement, imagePath);
-        erzählerFrame.buildScreenFromPage(nightPage);
-        nightPage = spielerFrame.pageFactory.generateStaticImagePage(statement.titel, imagePath, true);
-        spielerFrame.buildScreenFromPage(nightPage);
+        erzählerIconPicturePage(statement, imagePath);
+        spielerIconPicturePage(statement.titel, imagePath);
+
+        waitForAnswer();
+    }
+
+    public void showEndScreenPage(String victory) {
+        erzählerEndScreenPage(victory);
+        spielerEndScreenPage(victory);
 
         waitForAnswer();
     }
@@ -899,170 +866,124 @@ public class Nacht extends Thread
         return erzählerFrame.chosenOption1;
     }
 
-    public void showDropdownPage(Statement statement, ArrayList<String> strings) {
-        FrontendControl frontendControl = new FrontendControl(FrontendControl.LIST_WITHOUT_DISPLAY, strings);
+    public void showDropdownPage(Statement statement, ArrayList<String> dropdownOptions) {
+        FrontendControl frontendControl = new FrontendControl(FrontendControl.LIST_WITHOUT_DISPLAY, dropdownOptions);
         showDropdownPage(statement, frontendControl);
     }
 
-    public void showDropdownListPage(Statement statement, ArrayList<String> strings) {
-        FrontendControl frontendControl = new FrontendControl(FrontendControl.LIST_DISPLAY_AS_TEXT, strings);
+    public void showDropdownListPage(Statement statement, ArrayList<String> dropdownOptions) {
+        FrontendControl frontendControl = new FrontendControl(FrontendControl.LIST_DISPLAY_AS_TEXT, dropdownOptions);
         showDropdownPage(statement, frontendControl);
     }
 
     public void showDropdownPage(Statement statement, FrontendControl frontendControl) {
-        Page nightPage;
-
         switch (statement.getState())
         {
             case Statement.NORMAL:
-                nightPage = erzählerFrame.pageFactory.generateDropdownPage(statement, frontendControl.content);
-                erzählerFrame.buildScreenFromPage(nightPage);
+                erzählerDropdownPage(statement, frontendControl.content);
 
                 switch (frontendControl.typeOfContent)
                 {
                     case FrontendControl.LIST_WITHOUT_DISPLAY:
-                        spielerFrame.dropDownPage = spielerFrame.pageFactory.generateDropdownPage(statement.titel, 1);
-                        spielerFrame.buildScreenFromPage(spielerFrame.dropDownPage);
+                        spielerDropdownPage(statement.titel, 1);
                         break;
 
                     case FrontendControl.LIST_DISPLAY_AS_TEXT:
-                        spielerFrame.dropDownPage = spielerFrame.pageFactory.generateListMirrorPage(statement.titel, frontendControl.content);
-                        spielerFrame.buildScreenFromPage(spielerFrame.dropDownPage);
+                        spielerListMirrorPage(statement.titel, frontendControl.content);
                         break;
                 }
                 break;
 
             case Statement.DEAKTIV:
-                nightPage = erzählerFrame.pageFactory.generateDropdownPage(statement, getEmptyStringList(), ResourcePath.DEAKTIVIERT);
-                erzählerFrame.buildScreenFromPage(nightPage);
-
+                erzählerDropdownPage(statement, getEmptyStringList(), ResourcePath.DEAKTIVIERT);
                 spielerFrame.deactivatedPage();
                 break;
 
             case Statement.DEAD:
-                nightPage = erzählerFrame.pageFactory.generateDropdownPage(statement, getEmptyStringList(), ResourcePath.TOT);
-                erzählerFrame.buildScreenFromPage(nightPage);
-
+                erzählerDropdownPage(statement, getEmptyStringList(), ResourcePath.TOT);
                 spielerFrame.deadPage();
                 break;
 
             case Statement.NOT_IN_GAME:
-                nightPage = erzählerFrame.pageFactory.generateDropdownPage(statement, getEmptyStringList(), ResourcePath.AUS_DEM_SPIEL);
-                erzählerFrame.buildScreenFromPage(nightPage);
-
-                spielerFrame.dropDownPage = spielerFrame.pageFactory.generateDropdownPage(statement.titel, 1);
-                spielerFrame.buildScreenFromPage(spielerFrame.dropDownPage);
+                erzählerDropdownPage(statement, getEmptyStringList(), ResourcePath.AUS_DEM_SPIEL);
+                spielerDropdownPage(statement.titel,1);
                 break;
         }
 
         waitForAnswer();
     }
 
-    public void showDropdownPage(Statement statement, ArrayList<String> strings1, ArrayList<String> strings2) {
-        Page nightPage;
-
+    public void showDropdownPage(Statement statement, ArrayList<String> dropdownOptions1, ArrayList<String> dropdownOptions2) {
         switch (statement.getState())
         {
             case Statement.NORMAL:
-                nightPage = erzählerFrame.pageFactory.generateDropdownPage(statement, strings1, strings2);
-                erzählerFrame.buildScreenFromPage(nightPage);
-
-                spielerFrame.dropDownPage = spielerFrame.pageFactory.generateDropdownPage(statement.titel, 2);
-                spielerFrame.buildScreenFromPage(spielerFrame.dropDownPage);
+                erzählerDropdownPage(statement, dropdownOptions1, dropdownOptions2);
+                spielerDropdownPage(statement.titel, 2);
                 break;
 
             case Statement.DEAKTIV:
-                nightPage = erzählerFrame.pageFactory.generateDropdownPage(statement, getEmptyStringList(), getEmptyStringList(), ResourcePath.DEAKTIVIERT);
-                erzählerFrame.buildScreenFromPage(nightPage);
-
+                erzählerDropdownPage(statement, getEmptyStringList(), getEmptyStringList(), ResourcePath.DEAKTIVIERT);
                 spielerFrame.deactivatedPage();
                 break;
 
             case Statement.DEAD:
-                nightPage = erzählerFrame.pageFactory.generateDropdownPage(statement, getEmptyStringList(), getEmptyStringList(), ResourcePath.TOT);
-                erzählerFrame.buildScreenFromPage(nightPage);
-
+                erzählerDropdownPage(statement, getEmptyStringList(), getEmptyStringList(), ResourcePath.TOT);
                 spielerFrame.deadPage();
                 break;
 
             case Statement.NOT_IN_GAME:
-                nightPage = erzählerFrame.pageFactory.generateDropdownPage(statement, getEmptyStringList(), getEmptyStringList(), ResourcePath.AUS_DEM_SPIEL);
-                erzählerFrame.buildScreenFromPage(nightPage);
-
-                spielerFrame.dropDownPage = spielerFrame.pageFactory.generateDropdownPage(statement.titel, 2);
-                spielerFrame.buildScreenFromPage(spielerFrame.dropDownPage);
+                erzählerDropdownPage(statement, getEmptyStringList(), getEmptyStringList(), ResourcePath.AUS_DEM_SPIEL);
+                spielerDropdownPage(statement.titel, 2);
                 break;
         }
 
         waitForAnswer();
     }
 
-    public void showAfterDeathDropdownListPage(Statement statement, ArrayList<String> strings) {
-        Page nightPage;
-
+    public void showAfterDeathDropdownListPage(Statement statement, ArrayList<String> dropdownOptions) {
         if (statement.isLebend()) {
             if (statement.isAktiv()) {
-                nightPage = erzählerFrame.pageFactory.generateDropdownPage(statement, strings);
-                erzählerFrame.buildScreenFromPage(nightPage);
-
-                spielerFrame.dropDownPage = spielerFrame.pageFactory.generateListMirrorPage(statement.titel, strings);
-                spielerFrame.buildScreenFromPage(spielerFrame.dropDownPage);
+                erzählerDropdownPage(statement, dropdownOptions);
+                spielerListMirrorPage(statement.titel, dropdownOptions);
             } else {
-                nightPage = erzählerFrame.pageFactory.generateDropdownPage(statement, getEmptyStringList(), ResourcePath.DEAKTIVIERT);
-                erzählerFrame.buildScreenFromPage(nightPage);
-
+                erzählerDropdownPage(statement, getEmptyStringList(), ResourcePath.DEAKTIVIERT);
                 spielerFrame.deactivatedPage();
             }
         } else {
-            nightPage = erzählerFrame.pageFactory.generateDropdownPage(statement, getEmptyStringList(), ResourcePath.AUS_DEM_SPIEL);
-            erzählerFrame.buildScreenFromPage(nightPage);
-
-            spielerFrame.dropDownPage = spielerFrame.pageFactory.generateDropdownPage(statement.titel, 1);
-            spielerFrame.buildScreenFromPage(spielerFrame.dropDownPage);
+            erzählerDropdownPage(statement, getEmptyStringList(), ResourcePath.AUS_DEM_SPIEL);
+            spielerDropdownPage(statement.titel, 1);
         }
 
         waitForAnswer();
     }
 
     public void showKonditorDropdownPage(Statement statement, FrontendControl frontendControl) {
-        Page nightPage;
-
         if (Rolle.rolleLebend(Konditor.name) || Rolle.rolleLebend(Konditorlehrling.name)) {
             if (!Opfer.isOpferPerRolle(Konditor.name) || !Opfer.isOpferPerRolle(Konditorlehrling.name)) {
                 if (Rolle.rolleAktiv(Konditor.name) || Rolle.rolleAktiv(Konditorlehrling.name)) {
-                    nightPage = erzählerFrame.pageFactory.generateDropdownPage(statement, frontendControl.content);
-                    erzählerFrame.buildScreenFromPage(nightPage);
+                    erzählerDropdownPage(statement, frontendControl.content);
 
                     switch (frontendControl.typeOfContent)
                     {
                         case FrontendControl.LIST_WITHOUT_DISPLAY:
-                            spielerFrame.dropDownPage = spielerFrame.pageFactory.generateDropdownPage(statement.titel, 1);
-                            spielerFrame.buildScreenFromPage(spielerFrame.dropDownPage);
+                            spielerDropdownPage(statement.titel, 1);
                             break;
 
                         case FrontendControl.LIST_DISPLAY_AS_TEXT:
-                            spielerFrame.dropDownPage = spielerFrame.pageFactory.generateListMirrorPage(statement.titel, frontendControl.content);
-                            spielerFrame.buildScreenFromPage(spielerFrame.dropDownPage);
+                            spielerListMirrorPage(statement.titel, frontendControl.content);
                             break;
                     }
                 } else {
-                    nightPage = erzählerFrame.pageFactory.generateDropdownPage(statement, getEmptyStringList(), ResourcePath.DEAKTIVIERT);
-                    erzählerFrame.buildScreenFromPage(nightPage);
-
+                    erzählerDropdownPage(statement, getEmptyStringList(), ResourcePath.DEAKTIVIERT);
                     spielerFrame.deactivatedPage();
                 }
             } else {
-                nightPage = erzählerFrame.pageFactory.generateDropdownPage(statement, getEmptyStringList(), ResourcePath.TOT);
-                erzählerFrame.buildScreenFromPage(nightPage);
-
+                erzählerDropdownPage(statement, getEmptyStringList(), ResourcePath.TOT);
                 spielerFrame.deadPage();
             }
         } else {
-            nightPage = erzählerFrame.pageFactory.generateDropdownPage(statement, getEmptyStringList(), ResourcePath.AUS_DEM_SPIEL);
-            erzählerFrame.buildScreenFromPage(nightPage);
-
-            spielerFrame.dropDownPage = spielerFrame.pageFactory.generateDropdownPage(statement.titel, 1);
-            spielerFrame.buildScreenFromPage(spielerFrame.dropDownPage);
+            erzählerDropdownPage(statement, getEmptyStringList(), ResourcePath.AUS_DEM_SPIEL);
+            spielerDropdownPage(statement.titel, 1);
         }
 
         waitForAnswer();
@@ -1072,6 +993,97 @@ public class Nacht extends Thread
         ArrayList<String> emptyContent = new ArrayList<>();
         emptyContent.add("");
         return emptyContent;
+    }
+
+    public void erzählerDefaultNightPage(Statement statement) {
+        Page nightPage;
+        nightPage = erzählerFrame.pageFactory.generateDefaultNightPage(statement);
+        erzählerFrame.buildScreenFromPage(nightPage);
+    }
+
+    public void erzählerDropdownPage(Statement statement, ArrayList<String> dropdownOptions) {
+        Page nightPage = erzählerFrame.pageFactory.generateDropdownPage(statement, dropdownOptions);
+        erzählerFrame.buildScreenFromPage(nightPage);
+    }
+
+    public void erzählerDropdownPage(Statement statement, ArrayList<String> dropdownOptions1, ArrayList<String> dropdownOptions2) {
+        Page nightPage = erzählerFrame.pageFactory.generateDropdownPage(statement, dropdownOptions1, dropdownOptions2);
+        erzählerFrame.buildScreenFromPage(nightPage);
+    }
+
+    public void erzählerDropdownPage(Statement statement, ArrayList<String> dropdownOptions, String imagePath) {
+        Page nightPage = erzählerFrame.pageFactory.generateDropdownPage(statement, dropdownOptions, imagePath);
+        erzählerFrame.buildScreenFromPage(nightPage);
+    }
+
+    public void erzählerDropdownPage(Statement statement, ArrayList<String> dropdownOptions1, ArrayList<String> dropdownOptions2, String imagePath) {
+        Page nightPage = erzählerFrame.pageFactory.generateDropdownPage(statement, dropdownOptions1, dropdownOptions2, imagePath);
+        erzählerFrame.buildScreenFromPage(nightPage);
+    }
+
+    public void spielerDropdownPage(String titel, int numberOfDropdowns) {
+        spielerFrame.dropDownPage = spielerFrame.pageFactory.generateDropdownPage(titel, numberOfDropdowns);
+        spielerFrame.buildScreenFromPage(spielerFrame.dropDownPage);
+    }
+
+    public void spielerListMirrorPage(String titel, ArrayList<String> dropdownOptions) {
+        spielerFrame.dropDownPage = spielerFrame.pageFactory.generateListMirrorPage(titel, dropdownOptions);
+        spielerFrame.buildScreenFromPage(spielerFrame.dropDownPage);
+    }
+
+    public void erzählerListPage(Statement statement, ArrayList<String> strings) {
+        Page nightPage = erzählerFrame.pageFactory.generateListPage(statement, strings);
+        erzählerFrame.buildScreenFromPage(nightPage);
+    }
+
+    public void erzählerListPage(Statement statement, ArrayList<String> strings, String imagePath) {
+        Page nightPage = erzählerFrame.pageFactory.generateListPage(statement, strings, imagePath);
+        erzählerFrame.buildScreenFromPage(nightPage);
+    }
+
+    public void spielerListPage(String titel, ArrayList<String> strings) {
+        Page nightPage = spielerFrame.pageFactory.generateListPage(titel, strings);
+        spielerFrame.buildScreenFromPage(nightPage);
+    }
+
+    public void erzählerIconPicturePage(Statement statement, String imagePath) {
+        Page nightPage = erzählerFrame.pageFactory.generateIconPicturePage(statement, imagePath);
+        erzählerFrame.buildScreenFromPage(nightPage);
+    }
+
+    public void spielerIconPicturePage(String titel, String imagePath) {
+        Page nightPage = spielerFrame.pageFactory.generateStaticImagePage(titel, imagePath, true);
+        spielerFrame.buildScreenFromPage(nightPage);
+    }
+
+    public void erzählerCardPicturePage(Statement statement, String imagePath) {
+        Page nightPage = erzählerFrame.pageFactory.generateCardPicturePage(statement, imagePath);
+        erzählerFrame.buildScreenFromPage(nightPage);
+    }
+
+    public void spielerCardPicturePage(String titel, String imagePath) {
+        Page nightPage = spielerFrame.pageFactory.generateStaticImagePage(titel, imagePath, false);
+        spielerFrame.buildScreenFromPage(nightPage);
+    }
+
+    public void spielerTitlePage(String titel) {
+        Page nightPage = spielerFrame.pageFactory.generateTitlePage(titel);
+        spielerFrame.buildScreenFromPage(nightPage);
+    }
+
+    public void erzählerTortenPage() {
+        erzählerFrame.tortenPage = erzählerFrame.pageFactory.generateTortenPage();
+        erzählerFrame.buildScreenFromPage(erzählerFrame.tortenPage);
+    }
+
+    public void erzählerEndScreenPage(String victory) {
+        Page nightPage = spielerFrame.pageFactory.generateEndScreenPage(victory);
+        erzählerFrame.buildScreenFromPage(nightPage);
+    }
+
+    public void spielerEndScreenPage(String victory) {
+        Page nightPage = spielerFrame.pageFactory.generateEndScreenPage(victory);
+        spielerFrame.buildScreenFromPage(nightPage);
     }
 
     public void waitForAnswer() {
