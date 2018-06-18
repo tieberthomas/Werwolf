@@ -13,6 +13,7 @@ import static java.awt.Color.WHITE;
 public class MyFrame extends JFrame {
     public static int PANEL_WIDTH = 900;
     public static int PANEL_HEIGHT = 675;
+    public static final int yOffset = 38;
 
     public static Color DEFAULT_BACKGROUND_COLOR = WHITE;
     public static Color BACKGROUND_COLOR = DEFAULT_BACKGROUND_COLOR;

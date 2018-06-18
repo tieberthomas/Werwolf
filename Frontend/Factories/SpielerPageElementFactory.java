@@ -13,6 +13,8 @@ public class SpielerPageElementFactory {
     {
         this.spielerFrame = spielerFrame;
     }
+    public static final int defaultTextSize = 36;
+    public static final int defaultTitleSize = 48;
 
     public PageElement generateBierLabel() {
         JLabel bierJLabel = new JLabel();
@@ -140,20 +142,20 @@ public class SpielerPageElementFactory {
         return centeredLabel;
     }
 
-    public PageElement generateCenteredLabel(JLabel label, Predecessor predecessorY, int spaceToPredecessorY, boolean left) {
-        label = generateBigJLabel(label);
+    public PageElement generateColumnCenteredLabel(JLabel label, Predecessor predecessorY, int spaceToPredecessorY, int numberOfColumns, int indexOfColumn) {
+        return generateColumnCenteredLabel(label, predecessorY, spaceToPredecessorY, numberOfColumns, indexOfColumn, defaultTextSize);
+    }
 
-        int imageJLabelWidth = 500;
-        int imageJLabelHeight = 50;
+    public PageElement generateColumnCenteredLabel(JLabel label, Predecessor predecessorY, int spaceToPredecessorY, int numberOfColumns, int indexOfColumn, int size) {
+        label = formatLabel(label, size);
+
+        int imageJLabelWidth = (int)label.getPreferredSize().getWidth();
+        int imageJLabelHeight = (int)label.getPreferredSize().getHeight();
 
         PageElement centeredLabel = new PageElement(label, imageJLabelWidth, imageJLabelHeight, null, predecessorY, 0, spaceToPredecessorY);
 
-        int xCoord;
-
-        if(left)
-            xCoord = spielerFrame.PANEL_WIDTH/3-(imageJLabelWidth/2);
-        else
-            xCoord = (spielerFrame.PANEL_WIDTH/3)*2-(imageJLabelWidth/2);
+        int spacePerColumn = spielerFrame.PANEL_WIDTH/numberOfColumns;
+        int xCoord = (int)(spacePerColumn*(indexOfColumn+0.5)-(imageJLabelWidth/2));
 
         centeredLabel.setCoordX(xCoord);
 
@@ -172,33 +174,44 @@ public class SpielerPageElementFactory {
         return titleLabel;
     }
 
-    public JLabel generateBigJLabel(String text) {
-        JLabel label = new JLabel(text);
+    public JLabel formatLabel(JLabel label, int size) {
         label.setHorizontalAlignment(SwingConstants.CENTER);
-        label.setFont(new Font("Arial",Font.PLAIN, 36));
+        label.setFont(new Font("Arial",Font.PLAIN, size));
 
         return label;
     }
 
-    public JLabel generateBigJLabel(JLabel label) {
-        label.setHorizontalAlignment(SwingConstants.CENTER);
-        label.setFont(new Font("Arial",Font.PLAIN, 36));
+    public JLabel generateBigJLabel(String text) {
+        JLabel label = new JLabel(text);
 
-        return label;
+        return formatLabel(label, defaultTextSize);
+    }
+
+    public JLabel generateBigJLabel(JLabel label) {
+        return formatLabel(label, defaultTextSize);
     }
 
     public JLabel generateTitleJLabel(String text) {
         JLabel label = new JLabel(text);
-        label.setHorizontalAlignment(SwingConstants.CENTER);
-        label.setFont(new Font("Arial",Font.PLAIN, 48));
 
-        return label;
+        return formatLabel(label, defaultTitleSize);
     }
 
     public JLabel generateTitleJLabel(JLabel label) {
-        label.setHorizontalAlignment(SwingConstants.CENTER);
-        label.setFont(new Font("Arial",Font.PLAIN, 48));
+        return formatLabel(label, defaultTitleSize);
+    }
 
-        return label;
+    public int getJLabelHeight(){
+        JLabel jLabel = new JLabel("test");
+        jLabel = generateBigJLabel(jLabel);
+
+        return (int)jLabel.getPreferredSize().getHeight();
+    }
+
+    public int getJLabelHeight(int size){
+        JLabel jLabel = new JLabel("test");
+        jLabel = formatLabel(jLabel, size);
+
+        return (int)jLabel.getPreferredSize().getHeight();
     }
 }

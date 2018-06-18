@@ -1,12 +1,11 @@
 package root.Frontend.Factories;
 
+import root.Frontend.Frame.MyFrame;
 import root.Frontend.Frame.SpielerFrameMode;
 import root.Frontend.Page.Page;
 import root.Frontend.Page.PageElement;
 import root.Frontend.Frame.SpielerFrame;
-import root.ResourceManagement.ResourcePath;
 import root.Rollen.Fraktion;
-import root.Rollen.Fraktionen.Werwölfe;
 import root.mechanics.Liebespaar;
 
 import javax.swing.*;
@@ -78,6 +77,10 @@ public class SpielerPageFactory {
 
         return endScreenPage;
     }
+
+    /*public Page generateDayPage(ArrayList<String> hauptrollen, ArrayList<String> nebenrollen){
+
+    }*/
 
     public Page generateDropdownPage(String title, int numberOfDropdowns) {
         spielerFrame.title = title;
@@ -190,9 +193,9 @@ public class SpielerPageFactory {
         realStringsToDisplay.remove("");
 
         if(realStringsToDisplay.size() > 0) {
-            int frameOffset = 50;
+            int frameOffset = MyFrame.yOffset;
             int titleHeight = titleLabel.height;
-            int stringHeight = 50;
+            int stringHeight = pageElementFactory.getJLabelHeight();
             int spaceToUse = spielerFrame.PANEL_HEIGHT - frameOffset - titleHeight - stringHeight;
             int spacePerString = spaceToUse / realStringsToDisplay.size();
             int spacingBetweenStrings = spacePerString - stringHeight;
@@ -240,79 +243,118 @@ public class SpielerPageFactory {
     }
 
     public Page generateDoubleListPage(ArrayList<String> stringsToDisplay1, ArrayList<String> stringsToDisplay2){
-        Page listPage = new Page(0,10);
-        ArrayList<String> realStringsToDisplay = new ArrayList<String>(stringsToDisplay1);
-        realStringsToDisplay.remove("");
+        ArrayList<String> realStringsToDisplay1 = new ArrayList<String>(stringsToDisplay1);
+        realStringsToDisplay1.remove("");
+        ArrayList<String> realStringsToDisplay2 = new ArrayList<String>(stringsToDisplay2);
+        realStringsToDisplay2.remove("");
 
-        listPage = generateListPage(stringsToDisplay1, true);
-        Page listPage2 = generateListPage(stringsToDisplay2, false);
-        for(PageElement element : listPage2.pageElements){
-            listPage.add(element);
+        if(realStringsToDisplay1.size()<13 && realStringsToDisplay2.size()<13) {
+            return generateListPage(realStringsToDisplay1, realStringsToDisplay2, 1);
+        } else {
+            return generateListPage(realStringsToDisplay1, realStringsToDisplay2, 2);
         }
-
-        return listPage;
     }
 
-    public Page generateListPage(ArrayList<String> stringsToDisplay){
-        Page listPage = new Page(0,10);
+    public Page generateListPage(ArrayList<String> stringsToDisplay) {
         ArrayList<String> realStringsToDisplay = new ArrayList<String>(stringsToDisplay);
         realStringsToDisplay.remove("");
 
-        if(realStringsToDisplay.size() > 0) {
-            if(realStringsToDisplay.size() < 10) {
-                int frameOffset = 50;
-                int stringHeight = 50;
-                int spaceToUse = spielerFrame.PANEL_HEIGHT - frameOffset;
-                int spacePerString = spaceToUse / realStringsToDisplay.size();
-                int spacingBetweenStrings = spacePerString - stringHeight;
-                int startpoint = ((spacePerString / 2) - (stringHeight / 2));
+        if(realStringsToDisplay.size()<8) {
+            return generateListPage(realStringsToDisplay, 1);
+        } else if(stringsToDisplay.size()<16){
+            return generateListPage(realStringsToDisplay, 2);
+        } else {
+            return generateListPage(realStringsToDisplay, 3);
+        }
+    }
 
-                PageElement label = pageElementFactory.generateCenteredLabel(new JLabel(realStringsToDisplay.get(0)), null, startpoint);
-                listPage.add(label);
+    public Page generateListPage(ArrayList<String> stringsToDisplay, int numberOfColumns) {
+        Page listPage = new Page(0,10);
+        float dividingPoint = ((float)stringsToDisplay.size())/numberOfColumns;
 
-                int i = 0;
-                for (String string : realStringsToDisplay) {
-                    if (i != 0) {
-                        label = pageElementFactory.generateCenteredLabel(new JLabel(string), label, spacingBetweenStrings);
-                        listPage.add(label);
-                    }
+        for(int i=0; i<numberOfColumns; i++) {
+            int start = Math.round(dividingPoint*i);
+            int end = Math.round(dividingPoint*(i+1));
 
-                    i++;
-                }
-            } else {
-                int halfpoint = realStringsToDisplay.size()/2;
-                listPage = generateListPage(new ArrayList<String>(stringsToDisplay.subList(0,halfpoint)), true);
-                Page listPage2 = generateListPage(new ArrayList<String>(stringsToDisplay.subList(halfpoint, stringsToDisplay.size())), false);
-                for(PageElement element : listPage2.pageElements){
-                    listPage.add(element);
-                }
+            Page pageToAdd = generateListPage(new ArrayList<>(stringsToDisplay.subList(start,end)), numberOfColumns,i);
+
+            for(PageElement element : pageToAdd.pageElements){
+                listPage.add(element);
             }
         }
 
         return listPage;
     }
 
-    public Page generateListPage(ArrayList<String> stringsToDisplay, boolean left){
+    public Page generateListPage(ArrayList<String> stringsToDisplay, ArrayList<String> stringsToDisplay2, int numberOfColumnsPerList) {
+        return generateListPage(stringsToDisplay, stringsToDisplay2, numberOfColumnsPerList, 0,0);
+    }
+
+    public Page generateListPage(ArrayList<String> stringsToDisplay, ArrayList<String> stringsToDisplay2, int numberOfColumnsPerList, int offsetAbove, int offsetBelow) {
+        Page listPage = new Page(0,10);
+        float dividingPoint1 = ((float)stringsToDisplay.size())/numberOfColumnsPerList;
+        float dividingPoint2 = ((float)stringsToDisplay2.size())/numberOfColumnsPerList;
+        int textSize = 36;
+
+        if(numberOfColumnsPerList>1) {
+            textSize = 24;
+        }
+
+        for(int i=0; i<numberOfColumnsPerList; i++) {
+            int start1 = Math.round(dividingPoint1*i);
+            int end1 = Math.round(dividingPoint1*(i+1));
+
+            int start2 = Math.round(dividingPoint2*i);
+            int end2 = Math.round(dividingPoint2*(i+1));
+
+            Page pageToAdd = generateListPage(new ArrayList<>(stringsToDisplay.subList(start1,end1)), numberOfColumnsPerList*2,i, offsetAbove, offsetBelow, textSize);
+            Page pageToAdd2 = generateListPage(new ArrayList<>(stringsToDisplay2.subList(start2,end2)), numberOfColumnsPerList*2,i+numberOfColumnsPerList, offsetAbove, offsetBelow, textSize);
+
+            for(PageElement element : pageToAdd.pageElements){
+                listPage.add(element);
+            }
+
+            for(PageElement element : pageToAdd2.pageElements){
+                listPage.add(element);
+            }
+        }
+
+        return listPage;
+    }
+
+    public Page generateListPage(ArrayList<String> stringsToDisplay, int numberOfColumns, int indexOfColumn) {
+        return generateListPage(stringsToDisplay, numberOfColumns, indexOfColumn,0, 0, pageElementFactory.defaultTextSize);
+    }
+
+    public Page generateListPage(ArrayList<String> stringsToDisplay, int numberOfColumns, int indexOfColumn, int textSize) {
+        return generateListPage(stringsToDisplay, numberOfColumns, indexOfColumn, 0, 0, textSize);
+    }
+
+    public Page generateListPage(ArrayList<String> stringsToDisplay, int numberOfColumns, int indexOfColumn, int offsetAbove, int offsetBelow, int textSize){
         Page listPage = new Page(0,10);
         ArrayList<String> realStringsToDisplay = new ArrayList<String>(stringsToDisplay);
         realStringsToDisplay.remove("");
 
         if(realStringsToDisplay.size() > 0) {
-            int frameOffset = 50;
-            int stringHeight = 50;
-            int spaceToUse = spielerFrame.PANEL_HEIGHT - frameOffset;
+            int frameOffset = 38;
+            int stringHeight = pageElementFactory.getJLabelHeight(textSize);
+            int spaceToUse = spielerFrame.PANEL_HEIGHT - frameOffset - offsetAbove - offsetBelow;
             int spacePerString = spaceToUse / realStringsToDisplay.size();
             int spacingBetweenStrings = spacePerString - stringHeight;
-            int startpoint = ((spacePerString / 2) - (stringHeight / 2));
+            int startpoint = ((spacePerString / 2) - (stringHeight / 2)) + offsetAbove;
+
+            if(numberOfColumns<=0) {
+                numberOfColumns = 1;
+            }
 
             PageElement label;
-            label = pageElementFactory.generateCenteredLabel(new JLabel(realStringsToDisplay.get(0)), null, startpoint, left);
+            label = pageElementFactory.generateColumnCenteredLabel(new JLabel(realStringsToDisplay.get(0)), null, startpoint, numberOfColumns, indexOfColumn, textSize);
             listPage.add(label);
 
             int i = 0;
             for (String string : realStringsToDisplay) {
                 if (i != 0) {
-                    label = pageElementFactory.generateCenteredLabel(new JLabel(string), label, spacingBetweenStrings, left);
+                    label = pageElementFactory.generateColumnCenteredLabel(new JLabel(string), label, spacingBetweenStrings, numberOfColumns, indexOfColumn, textSize);
                     listPage.add(label);
                 }
 
