@@ -4,7 +4,7 @@ public class ResourcePath {
     public static String IMAGE_FILE_EXTENSION = ".png";
     public static String SAVE_FILE_EXTENSION = ".txt";
     public static String SAVE_FILE_PATH = System.getenv("APPDATA") + "\\Werwolf\\";
-    public static String PICTURE_PATH = "pictures\\";
+    public static String PICTURE_PATH = "src\\pictures\\";
     public static String ICON_PATH = PICTURE_PATH + "Icons\\";
     public static String CARD_PATH = PICTURE_PATH + "Karten\\";
     public static String SECONDARY_ROLE_PATH = CARD_PATH + "Bonusrollen\\";
