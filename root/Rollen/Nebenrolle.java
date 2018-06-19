@@ -27,7 +27,7 @@ public class Nebenrolle extends Rolle
         secondaryRoles.add(new Gefängniswärter());
         //Imitator
         secondaryRoles.add(new Konditor());
-        secondaryRoles.add(new Konditorlehrling()); //nachtroutinen statement ändern
+        secondaryRoles.add(new Konditorlehrling());
         secondaryRoles.add(new Lamm());
         //Nachbar
         secondaryRoles.add(new Prostituierte());
@@ -39,7 +39,7 @@ public class Nebenrolle extends Rolle
         secondaryRoles.add(new Totengräber()); //ungetested
         secondaryRoles.add(new Vampirumhang());
         //Wachhund
-        //Wahrsager
+        secondaryRoles.add(new Wahrsager());
         secondaryRoles.add(new Wolfspelz());
     }
 
