@@ -30,8 +30,8 @@ public class ErsteNacht extends Thread {
     public static final String VAMPIRUMHANG = "Träger des Vampirumhangs erwacht und tauscht ggf. seine Karte aus";
     public static final String WOLFSPELZ = "Träger des Wolfspelzes erwacht und tauscht ggf. seine Karte aus";
     public static final String IMITATOR = "Imitator erwacht und entscheidet welche Rolle er imitieren möchte";
-    public static final String VAMPIR_ICON = "Alle Spieler mit Vampir-Icon erwachen und sehen einander";
-    public static final String WOLFS_ICON = "Alle Spieler mit Wolfs-Icon erwachen und sehen einander";
+    public static final String VAMPIRE = "Die Vampire erwachen und sehen einander";
+    public static final String WERWÖLFE = "Die Werwölfe erwachen und sehen einander";
     public static final String ALPHAWOLF = "Alpha Wolf erwacht und erfährt die Rollen der Wolfsfraktion";
     public static final String SCHATTENPRIESTER = "Die Schattenpriester erwachen und sehen einander";
     public static final String BRÜDER = "Brüder erwachen und sehen einander";
@@ -47,8 +47,8 @@ public class ErsteNacht extends Thread {
     public static final String VAMPIRUMHANG_TITEL = "neue Karte";
     public static final String WOLFSPELZ_TITEL = "neue Karte";
     public static final String IMITATOR_TITEL = "Imitieren";
-    public static final String VAMPIR_ICON_TITEL = "Vampire";
-    public static final String WOLFS_ICON_TITEL = "Werwölfe";
+    public static final String VAMPIRE_TITEL = "Vampire";
+    public static final String WERWÖLFE_TITEL = "Werwölfe";
     public static final String ALPHAWOLF_TITEL = "Werwölfe";
     public static final String SCHATTENPRIESTER_TITEL = "Schattenpriester";
     public static final String BRÜDER_TITEL = "Brüder";
@@ -359,8 +359,8 @@ public class ErsteNacht extends Thread {
 
         //addStatementRolle(IMITATOR, IMITATOR_TITEL, Imitator.name);
 
-        addStatementFraktion(VAMPIR_ICON, VAMPIR_ICON_TITEL, Vampire.name);
-        addStatementFraktion(WOLFS_ICON, WOLFS_ICON_TITEL, Werwölfe.name);
+        addStatementFraktion(VAMPIRE, VAMPIRE_TITEL, Vampire.name);
+        addStatementFraktion(WERWÖLFE, WERWÖLFE_TITEL, Werwölfe.name);
         addStatementRolle(ALPHAWOLF, ALPHAWOLF_TITEL, Alphawolf.name);
         addStatementFraktion(SCHATTENPRIESTER, SCHATTENPRIESTER_TITEL, Schattenpriester_Fraktion.name);
         addStatementRolle(BRÜDER, BRÜDER_TITEL, Bruder.name);
