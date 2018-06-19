@@ -32,9 +32,11 @@ Archivar
 Beschwörer
 Frisör
 Gefängniswärter
+Imitator
 Konditor
 Konditorlehrling
 Lamm
+Nachbar
 Prostituierte
 Reine Seele
 Reines Licht
@@ -45,4 +47,5 @@ Spion
 Tarnumhang
 Totengräber
 Vampirumhang
+Wahrsager
 Wolfspelz
