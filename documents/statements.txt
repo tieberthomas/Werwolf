@@ -28,8 +28,8 @@ Gute Hexe erwacht und entscheidet ob sie einen Spieler schützen will
 Lady Aleera erwacht und sieht alle geschützten Spieler
 Prostituierte legt sich zu einem Mitspieler ins Bett
 Riese erwacht und entscheidet sich ob einen Mitspieler töten möchte
-Alle Spieler mit Vampir-Icon erwachen und wählen  ein Opfer aus
-Alle Spieler mit Wolfs-Icon erwachen, die Wölfe wählen ein Opfer aus
+Die Vampire erwachen und wählen ein Opfer aus
+Die Werwölfe erwachen und wählen ein Opfer aus
 Wölfin erwacht und wählt ein Opfer aus
 Böse Hexe erwacht und entscheidet ob sie diese Nacht einen Mitspieler töten möchte
 Die Schattenpriester erwachen und entscheiden ob sie einen der Verstorbenen dieser Nacht wiederbeleben und zum Kult hinzufügen möchten

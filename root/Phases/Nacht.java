@@ -39,8 +39,8 @@ public class Nacht extends Thread
     public static final String LADY_ALEERA = "Lady Aleera erwacht und sieht alle geschützten Spieler";
     public static final String PROSTITUIERTE = "Prostituierte legt sich zu einem Mitspieler ins Bett";
     public static final String RIESE = "Riese erwacht und entscheidet sich ob einen Mitspieler töten möchte";
-    public static final String VAMPIR_ICON = "Alle Spieler mit Vampir-Icon erwachen und wählen  ein Opfer aus";
-    public static final String WOLFS_ICON = "Alle Spieler mit Wolfs-Icon erwachen, die Wölfe wählen ein Opfer aus";
+    public static final String VAMPIRE = "Die Vampire erwachen und wählen ein Opfer aus";
+    public static final String WERWÖLFE = "Die Werwölfe erwachen und wählen ein Opfer aus";
     public static final String WÖLFIN = "Wölfin erwacht und wählt ein Opfer aus";
     public static final String BÖSE_HEXE = "Böse Hexe erwacht und entscheidet ob sie diese Nacht einen Mitspieler töten möchte";
     public static final String SCHATTENPRIESTER = "Die Schattenpriester erwachen und entscheiden ob sie einen der Verstorbenen dieser Nacht wiederbeleben und zum Kult hinzufügen möchten";
@@ -82,8 +82,8 @@ public class Nacht extends Thread
     public static final String LADY_ALEERA_TITEL = "Geschützte Spieler";
     public static final String PROSTITUIERTE_TITEL = "Bett legen";
     public static final String RIESE_TITEL = "Mitspieler töten";
-    public static final String VAMPIR_ICON_TITEL = "Opfer wählen";
-    public static final String WOLFS_ICON_TITEL = "Opfer wählen";
+    public static final String VAMPIRE_TITEL = "Opfer wählen";
+    public static final String WERWÖLFE_TITEL = "Opfer wählen";
     public static final String WÖLFIN_TITEL = "Opfer wählen";
     public static final String BÖSE_HEXE_TITEL = "Mitspieler töten";
     public static final String SCHATTENPRIESTER_TITEL = "Opfer wiederbeleben";
@@ -463,12 +463,12 @@ public class Nacht extends Thread
                             setSchütze();
                             break;
 
-                        case VAMPIR_ICON:
+                        case VAMPIRE:
                             chosenOption = choosePlayerOrNon(statement);
                             Vampire.kill(chosenOption);
                             break;
 
-                        case WOLFS_ICON:
+                        case WERWÖLFE:
                             chosenOption = choosePlayerOrNon(statement);
                             Werwölfe werwölfe = (Werwölfe)Fraktion.findFraktion(((StatementFraktion)statement).fraktion);
                             werwölfe.kill(chosenOption);
@@ -1139,8 +1139,8 @@ public class Nacht extends Thread
         addStatementRolle(PROSTITUIERTE, PROSTITUIERTE_TITEL, Prostituierte.name);
 
         addStatementRolle(RIESE, RIESE_TITEL, Riese.name);
-        addStatementFraktion(VAMPIR_ICON, VAMPIR_ICON_TITEL, Vampire.name);
-        addStatementFraktion(WOLFS_ICON, WOLFS_ICON_TITEL, Werwölfe.name);
+        addStatementFraktion(VAMPIRE, VAMPIRE_TITEL, Vampire.name);
+        addStatementFraktion(WERWÖLFE, WERWÖLFE_TITEL, Werwölfe.name);
         if(Wölfin.modus == Wölfin.TÖTEND) {
             addStatementRolle(WÖLFIN, WÖLFIN_TITEL, Wölfin.name);
         }
