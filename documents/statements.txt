@@ -7,8 +7,8 @@ Lamm erwacht und tauscht ggf. seine Karte aus
 Träger des Vampirumhangs erwacht und tauscht ggf. seine Karte aus
 Träger des Wolfspelzes erwacht und tauscht ggf. seine Karte aus
 Imitator erwacht und entscheidet welche Rolle er imitieren möchte
-Alle Spieler mit Vampir-Icon erwachen und sehen einander
-Alle Spieler mit Wolfs-Icon erwachen und sehen einander
+Die Vampire erwachen und sehen einander
+Die Werwölfe erwachen und sehen einander
 Alpha Wolf erwacht und erfährt die Rollen der Wolfsfraktion
 Die Schattenpriester erwachen und sehen einander
 Brüder erwachen und sehen einander
