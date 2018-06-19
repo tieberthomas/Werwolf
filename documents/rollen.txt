@@ -1,0 +1,48 @@
+Bestienmeister
+Bruder
+Buchhalter
+Dorfbewohner
+Gute Hexe
+Holde Maid
+Orakel
+Riese
+Sammler
+Seherin
+Späher
+Wirt
+
+Alphawolf
+Blutwolf
+Böse Hexe
+Chemiker
+Werwolf
+Wölfin
+
+Graf Vladimir
+Lady Aleera
+Miss Verona
+
+Schattenpriester
+
+Überläufer
+
+Analytiker
+Anästhesist
+Archivar
+Beschwörer
+Frisör
+Gefängniswärter
+Konditor
+Konditorlehrling
+Lamm
+Prostituierte
+Reine Seele
+Reines Licht
+Schatten
+Schattenkutte
+Schwarze Seele
+Spion
+Tarnumhang
+Totengräber
+Vampirumhang
+Wolfspelz
