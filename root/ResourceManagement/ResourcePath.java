@@ -77,7 +77,6 @@ public class ResourcePath {
     public static String DETEKTIV_KARTE = SECONDARY_ROLE_PATH + "Detektiv" + IMAGE_FILE_EXTENSION;
     public static String FRISÖR_KARTE = SECONDARY_ROLE_PATH + "Frisör" + IMAGE_FILE_EXTENSION;
     public static String GEFÄNGNISWÄRTER_KARTE = SECONDARY_ROLE_PATH + "Gefängniswärter" + IMAGE_FILE_EXTENSION;
-    public static String GUTE_FEE_KARTE = SECONDARY_ROLE_PATH + "Gute_Fee" + IMAGE_FILE_EXTENSION;
     public static String IMITATOR_KARTE = SECONDARY_ROLE_PATH + "Imitator" + IMAGE_FILE_EXTENSION;
     public static String KONDITOR_KARTE = SECONDARY_ROLE_PATH + "Konditor" + IMAGE_FILE_EXTENSION;
     public static String KONDITORLEHRLING_KARTE = SECONDARY_ROLE_PATH + "Konditorlehrling" + IMAGE_FILE_EXTENSION;
@@ -86,7 +85,7 @@ public class ResourcePath {
     public static String PROSTITUIERTE_KARTE = SECONDARY_ROLE_PATH + "Prostituierte" + IMAGE_FILE_EXTENSION;
     public static String REINE_SEELE_KARTE = SECONDARY_ROLE_PATH + "Reine_Seele" + IMAGE_FILE_EXTENSION;
     public static String REINES_LICHT_KARTE = SECONDARY_ROLE_PATH + "Reines_Licht" + IMAGE_FILE_EXTENSION;
-     public static String SCHATTEN_KARTE = SECONDARY_ROLE_PATH + "Schatten" + IMAGE_FILE_EXTENSION;
+    public static String SCHATTEN_KARTE = SECONDARY_ROLE_PATH + "Schatten" + IMAGE_FILE_EXTENSION;
     public static String SCHATTENKUTTE_KARTE = SECONDARY_ROLE_PATH + "Schattenkutte" + IMAGE_FILE_EXTENSION;
     public static String SCHWARZE_SEELE_KARTE = SECONDARY_ROLE_PATH + "Schwarze_Seele" + IMAGE_FILE_EXTENSION;
     public static String SPION_KARTE = SECONDARY_ROLE_PATH + "Spion" + IMAGE_FILE_EXTENSION;
