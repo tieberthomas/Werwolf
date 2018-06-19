@@ -259,7 +259,7 @@ public class ErsteNacht extends Thread {
         }
     }
 
-    public void showBonusRolle(Statement statement, Spieler spieler) {
+    public void showNebenrolle(Statement statement, Spieler spieler) {
         if (spieler != null) {
             statement.titel = spieler.name;
 

@@ -7,7 +7,7 @@ public class ResourcePath {
     public static String PICTURE_PATH = "src\\pictures\\";
     public static String ICON_PATH = PICTURE_PATH + "Icons\\";
     public static String CARD_PATH = PICTURE_PATH + "Karten\\";
-    public static String SECONDARY_ROLE_PATH = CARD_PATH + "Bonusrollen\\";
+    public static String SECONDARY_ROLE_PATH = CARD_PATH + "Nebenrollen\\";
     public static String OPEN_SECONDARY_ROLE_PATH = SECONDARY_ROLE_PATH + "Augensymbolkarten\\";
 
     public static String LAST_GAME_FILE_FILE = SAVE_FILE_PATH + "lastGame" + SAVE_FILE_EXTENSION;
