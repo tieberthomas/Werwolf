@@ -25,7 +25,6 @@ public class Nebenrolle extends Rolle
         secondaryRoles.add(new Beschwörer());
         secondaryRoles.add(new Frisör());
         secondaryRoles.add(new Gefängniswärter());
-        secondaryRoles.add(new GuteFee());
         //Imitator
         secondaryRoles.add(new Konditor());
         secondaryRoles.add(new Konditorlehrling()); //nachtroutinen statement ändern

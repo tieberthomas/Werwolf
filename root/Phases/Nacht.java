@@ -36,8 +36,6 @@ public class Nacht extends Thread
     public static final String WACHHUND = "Wachhund erwacht und entscheidet welchen Mitspieler er schützen möchte";
     public static final String HOLDE_MAID = "Holde Maid erwacht und offenbart sich einem Mitspieler";
     public static final String GUTE_HEXE_SCHÜTZEN = "Gute Hexe erwacht und entscheidet ob sie einen Spieler schützen will";
-    public static final String GUTE_FEE = "Gute Fee erwacht und erfüllt einem Mitspieler einen Wunsch";
-    public static final String AUSGEWÄHLTER_SPIELER = "Der ausgewählte Spieler erwacht und entscheidet sich für Tag- oder Nachtschutz";
     public static final String LADY_ALEERA = "Lady Aleera erwacht und sieht alle geschützten Spieler";
     public static final String PROSTITUIERTE = "Prostituierte legt sich zu einem Mitspieler ins Bett";
     public static final String RIESE = "Riese erwacht und entscheidet sich ob einen Mitspieler töten möchte";
@@ -80,8 +78,6 @@ public class Nacht extends Thread
     public static final String ÜBERLÄUFER_TITEL = "Karte tauschen";
     public static final String HOLDE_MAID_TITEL = "Mitspieler offenbaren";
     public static final String GUTE_HEXE_SCHÜTZEN_TITEL = "Spieler schützen";
-    public static final String GUTE_FEE_TITEL = "Wunsch erfüllen";
-    public static final String AUSGEWÄHLTER_SPIELER_TITEL = "Tag- oder Nachtschutz";
     public static final String LADY_ALEERA_TITEL = "Geschützte Spieler";
     public static final String PROSTITUIERTE_TITEL = "Bett legen";
     public static final String RIESE_TITEL = "Mitspieler töten";
@@ -305,30 +301,6 @@ public class Nacht extends Thread
                                     }
                                 } else {
                                     showAufgebrauchtPages(statement);
-                                }
-                                break;
-
-                            case GUTE_FEE:
-                                dropdownOtions = rolle.getDropdownOtions();
-                                showDropdownPage(statement, dropdownOtions);
-                                feedback = rolle.aktion(erzählerFrame.chosenOption1);
-                                break;
-
-                            case AUSGEWÄHLTER_SPIELER:
-                                chosenPlayer = Spieler.findSpieler(feedback);
-                                feedback = null;
-                                if(chosenPlayer != null) {
-                                    optionen = new ArrayList<>();
-                                    optionen.add(TAGSCHUTZ);
-                                    optionen.add(NACHTSCHUTZ);
-
-                                    showDropdownPage(statement, optionen);
-
-                                    if (erzählerFrame.chosenOption1.equals(NACHTSCHUTZ)) {
-                                        chosenPlayer.geschützt = true;
-                                    } else {
-                                        schönlinge.add(chosenPlayer);
-                                    }
                                 }
                                 break;
 
@@ -1138,8 +1110,6 @@ public class Nacht extends Thread
         addStatementRolle(ÜBERLÄUFER, ÜBERLÄUFER_TITEL, Überläufer.name);
         addStatementRolle(HOLDE_MAID, HOLDE_MAID_TITEL, HoldeMaid.name);
         addStatementRolle(GUTE_HEXE_SCHÜTZEN, GUTE_HEXE_SCHÜTZEN_TITEL, GuteHexe.name);
-        addStatementRolle(GUTE_FEE, GUTE_FEE_TITEL, GuteFee.name);
-        addStatementRolle(AUSGEWÄHLTER_SPIELER, AUSGEWÄHLTER_SPIELER_TITEL, GuteFee.name);
 
         addInvisibleStatement(PROGRAMM_SCHÜTZE);
 
@@ -1188,7 +1158,7 @@ public class Nacht extends Thread
         if(Rolle.rolleExists(Beschwörer.name)) {
             addStatement(VERSTUMMT, VERSTUMMT_TITEL);
         }
-        if(Rolle.rolleExists(Frisör.name) || Rolle.rolleExists(GuteFee.name) /*|| Rolle.rolleExists(Hellseher.name)*/) {
+        if(Rolle.rolleExists(Frisör.name) /*|| Rolle.rolleExists(Hellseher.name)*/) {
             addStatement(SCHÖNLINGE, SCHÖNLINGE_TITEL);
         }
     }
