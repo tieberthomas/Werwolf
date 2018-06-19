@@ -62,7 +62,9 @@ public class Nacht extends Thread
     public static final String FRISÖR = "Frisör erwacht und wählt einen Mitspieler den er verschönert";
     public static final String KONDITOR = "Falls es in dieser Nacht keine Opfer gab, wacht der Konditor auf und entscheidet sich ob es eine gute oder schlechte Torte gibt";
     public static final String KONDITOR_LEHRLING = "Falls es in dieser Nacht keine Opfer gab, wacht der Konditor und Konditorlehrling auf und entscheidet sich ob es eine gute oder schlechte Torte gibt";
-    public static final String OPFER = "Alle Opfer inklusive Liebespaaropfer werden verlautbart";
+    public static final String OPFER = "Alle Opfer inklusive Liebespaaropfer werden bekannt gegeben";
+    public static final String VERSTUMMT = "Der verstummte Spieler wird bekannt gegeben";
+    public static final String SCHÖNLINGE = "Die Schönlinge werden bekannt gegeben";
     public static final String WÖLFIN_BONUSROLLE = "Das Dorf erfährt die Bonusrolle der Wölfin";
 
     public static final String PROGRAMM_SCHÜTZE = "[Programm] Schütze";
@@ -105,6 +107,8 @@ public class Nacht extends Thread
     public static final String KONDITOR_TITEL = "Torte";
     public static final String KONDITOR_LEHRLING_TITEL = KONDITOR_TITEL;
     public static final String OPFER_TITEL = "Opfer der Nacht";
+    public static final String VERSTUMMT_TITEL = "Verstummt";
+    public static final String SCHÖNLINGE_TITEL = "Schönlinge";
     public static final String WÖLFIN_BONUSROLLE_TITEL = "Wölfin";
 
     public static final String TORTE_TITEL = "";
@@ -538,6 +542,35 @@ public class Nacht extends Thread
                                 showEndScreenPage(victory);
                             }
 
+                            break;
+
+                        case VERSTUMMT:
+                            if(beschworenerSpieler!=null) {
+                                ArrayList<String> beschworenerSpielerList = new ArrayList<>();
+                                beschworenerSpielerList.add(beschworenerSpieler.name);
+                                erzählerListPage(statement, beschworenerSpielerList);
+                                spielerIconPicturePage(beschworenerSpieler.name, ResourcePath.VERSTUMMT);
+                                waitForAnswer();
+                            }
+                            break;
+
+                        case SCHÖNLINGE:
+                            if(schönlinge!=null) {
+                                if(schönlinge.size()==1) {
+                                    Spieler schönling = schönlinge.get(0);
+                                    ArrayList<String> schönlingeStringList = new ArrayList<>();
+                                    schönlingeStringList.add(schönling.name);
+                                    erzählerListPage(statement, schönlingeStringList);
+                                    spielerIconPicturePage(schönling.name, ResourcePath.SCHÖNLING);
+                                    waitForAnswer();
+                                } else if(schönlinge.size()>1){
+                                    ArrayList<String> schönlingeStringList = new ArrayList<>();
+                                    for(Spieler schönling : schönlinge) {
+                                        schönlingeStringList.add(schönling.name);
+                                    }
+                                    showListOnBothScreens(statement, schönlingeStringList);
+                                }
+                            }
                             break;
 
                         default:
@@ -1099,7 +1132,6 @@ public class Nacht extends Thread
 
         addStatement(ALLE_SCHLAFEN_EIN, ALLE_SCHLAFEN_EIN_TITEL);
 
-        //Wirt wird nur geadded wenn er noch funktion hat, da das dorf sowieso weiß wann er freibier gibt hat es keinen sinn mehr den schein zu wahren
         if(Wirt.freibierCharges > 0) {
             addStatementRolle(WIRT, WIRT_TITEL, Wirt.name);
         }
@@ -1155,6 +1187,12 @@ public class Nacht extends Thread
         addStatement(OPFER, OPFER_TITEL);
         if(Wölfin.modus == Wölfin.TÖTEND) {
             addStatementRolle(WÖLFIN_BONUSROLLE, WÖLFIN_BONUSROLLE_TITEL, Wölfin.name);
+        }
+        if(Rolle.rolleExists(Beschwörer.name)) {
+            addStatement(VERSTUMMT, VERSTUMMT_TITEL);
+        }
+        if(Rolle.rolleExists(Frisör.name) || Rolle.rolleExists(GuteFee.name) /*|| Rolle.rolleExists(Hellseher.name)*/) {
+            addStatement(SCHÖNLINGE, SCHÖNLINGE_TITEL);
         }
     }
 

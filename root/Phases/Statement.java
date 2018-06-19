@@ -50,7 +50,7 @@ public class Statement
     }
 
     public boolean isLebend() {
-        return false;
+        return true;
     }
 
     public boolean isOpfer() {
@@ -58,6 +58,6 @@ public class Statement
     }
 
     public boolean isAktiv() {
-        return false;
+        return true;
     }
 }
