@@ -148,6 +148,7 @@ public class Nacht extends Thread
             Opfer chosenOpfer = null;
             Spieler chosenPlayer;
             boolean wölfinKilled = false;
+            Spieler wölfinSpieler = null;
             ArrayList<Spieler> schönlinge = new ArrayList<>();
             Spieler beschworenerSpieler = null;
 
@@ -340,6 +341,7 @@ public class Nacht extends Thread
                                 feedback = rolle.aktion(erzählerFrame.chosenOption1);
                                 if(feedback.equals(Wölfin.KILL)) {
                                     wölfinKilled = true;
+                                    wölfinSpieler = Spieler.findSpielerPerRolle(Wölfin.name);
                                 }
                                 break;
 
@@ -442,11 +444,9 @@ public class Nacht extends Thread
 
                             case WÖLFIN_BONUSROLLE:
                                 if(wölfinKilled) {
-                                    Spieler wölfin = Spieler.findSpielerPerRolle(rolle.getName());
-                                    if(wölfin!=null) {
-                                        //TODO michael fragen was passieren soll wenn wölfin stirbt/geschattenpriestert wird in der nacht wo sie tötet
-                                        String imagePath = wölfin.nebenrolle.getImagePath();
-                                        if (wölfin.nebenrolle.getName().equals(Tarnumhang.name)) {
+                                    if(wölfinSpieler!=null) {
+                                        String imagePath = wölfinSpieler.nebenrolle.getImagePath();
+                                        if (wölfinSpieler.nebenrolle.getName().equals(Tarnumhang.name)) {
                                             imagePath = ResourcePath.TARNUMHANG;
                                             statement.titel = TARNUMHANG_TITEL;
                                         }
