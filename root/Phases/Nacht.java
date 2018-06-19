@@ -122,8 +122,6 @@ public class Nacht extends Thread
     public static final String NEIN = "Nein";
     public static final String GUT = "Gut";
     public static final String SCHLECHT = "Schlecht";
-    public static final String TAGSCHUTZ = "Tagschutz";
-    public static final String NACHTSCHUTZ = "Nachtschutz";
 
     ErzählerFrame erzählerFrame;
     public static SpielerFrame spielerFrame;
@@ -1161,6 +1159,8 @@ public class Nacht extends Thread
         if(Rolle.rolleExists(Frisör.name) /*|| Rolle.rolleExists(Hellseher.name)*/) {
             addStatement(SCHÖNLINGE, SCHÖNLINGE_TITEL);
         }
+
+        //TODO Torte als letzes
     }
 
     public void addStatement(String statement, String titel) {
