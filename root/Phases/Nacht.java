@@ -281,16 +281,15 @@ public class Nacht extends Thread
                                 Spieler wahrsagerSpieler = Spieler.findSpielerPerRolle(rolle.getName());
                                 if(wahrsagerSpieler!=null) {
                                     Wahrsager wahrsager = (Wahrsager) wahrsagerSpieler.nebenrolle;
-                                    if(wahrsager.firstNightOver) {
-                                        if((wahrsager.tipp == null && wahrsager.opferFraktion == null) ||
-                                                (wahrsager.tipp!=null && wahrsager.opferFraktion != null) &&
-                                                        wahrsager.tipp.getName().equals(wahrsager.opferFraktion.getName()))
+                                    if(Wahrsager.firstNightOver) {
+                                        if((wahrsager.tipp == null && Wahrsager.opferFraktion == null) ||
+                                                (wahrsager.tipp!=null && Wahrsager.opferFraktion != null) &&
+                                                        wahrsager.tipp.getName().equals(Wahrsager.opferFraktion.getName()))
                                         {
                                             schönlinge.add(wahrsagerSpieler);
                                         }
-
                                     } else {
-                                        wahrsager.firstNightOver = true;
+                                        Wahrsager.firstNightOver = true;
                                     }
                                     wahrsager.tipp = Fraktion.findFraktion(feedback);
                                 }

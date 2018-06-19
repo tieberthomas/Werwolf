@@ -25,13 +25,7 @@ public class Wahrsager extends Nebenrolle
 
     @Override
     public String aktion(String chosenOption) {
-        Spieler chosenPlayer = Spieler.findSpieler(chosenOption);
-        if(chosenPlayer != null) {
-            besucht = chosenPlayer;
-            return chosenPlayer.name;
-        }
-
-        return null;
+        return chosenOption;
     }
 
     @Override
