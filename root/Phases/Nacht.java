@@ -189,9 +189,8 @@ public class Nacht extends Thread
                                 if (fraktion != null) {
                                     statement.titel = fraktion.getName();
 
-                                    ArrayList<String> answer = new ArrayList<>();
                                     int fraktionAnzahl = fraktion.getFraktionsMembers().size();
-                                    answer.add(Integer.toString(fraktionAnzahl));
+                                    String answer = Integer.toString(fraktionAnzahl);
 
                                     showListOnBothScreens(statement, answer);
 
@@ -408,8 +407,7 @@ public class Nacht extends Thread
                                         statement.titel = TARNUMHANG_TITEL;
                                         showImageOnBothScreens(statement, imagePath);
                                     } else {
-                                        ArrayList<String> answer = new ArrayList<>();
-                                        answer.add(((Analytiker)rolle).analysiere(chosenSpieler1, chosenSpieler2));
+                                        String answer = ((Analytiker)rolle).analysiere(chosenSpieler1, chosenSpieler2);
                                         showListOnBothScreens(statement, answer);
                                     }
                                 }
@@ -546,9 +544,7 @@ public class Nacht extends Thread
 
                         case VERSTUMMT:
                             if(beschworenerSpieler!=null) {
-                                ArrayList<String> beschworenerSpielerList = new ArrayList<>();
-                                beschworenerSpielerList.add(beschworenerSpieler.name);
-                                erzählerListPage(statement, beschworenerSpielerList);
+                                erzählerListPage(statement, beschworenerSpieler.name);
                                 spielerIconPicturePage(beschworenerSpieler.name, ResourcePath.VERSTUMMT);
                                 waitForAnswer();
                             }
@@ -558,9 +554,7 @@ public class Nacht extends Thread
                             if(schönlinge!=null) {
                                 if(schönlinge.size()==1) {
                                     Spieler schönling = schönlinge.get(0);
-                                    ArrayList<String> schönlingeStringList = new ArrayList<>();
-                                    schönlingeStringList.add(schönling.name);
-                                    erzählerListPage(statement, schönlingeStringList);
+                                    erzählerListPage(statement, schönling.name);
                                     spielerIconPicturePage(schönling.name, ResourcePath.SCHÖNLING);
                                     waitForAnswer();
                                 } else if(schönlinge.size()>1){
@@ -585,15 +579,6 @@ public class Nacht extends Thread
                 if (freibier) {
                     break;
                 }
-            }
-
-            //TODO remove testprintfs
-            if(beschworenerSpieler!=null) {
-                System.out.println(beschworenerSpieler.name);
-            }
-
-            for(Spieler spieler : schönlinge) {
-                System.out.println(spieler.name);
             }
         }
 
@@ -834,6 +819,12 @@ public class Nacht extends Thread
         waitForAnswer();
     }
 
+    public void showListOnBothScreens(Statement statement, String string) {
+        ArrayList<String> list = new ArrayList<>();
+        list.add(string);
+        showListOnBothScreens(statement, list);
+    }
+
     public void showListOnBothScreens(Statement statement, ArrayList<String> strings) {
         switch (statement.getState())
         {
@@ -1062,6 +1053,12 @@ public class Nacht extends Thread
     public void spielerListMirrorPage(String titel, ArrayList<String> dropdownOptions) {
         spielerFrame.dropDownPage = spielerFrame.pageFactory.generateListMirrorPage(titel, dropdownOptions);
         spielerFrame.buildScreenFromPage(spielerFrame.dropDownPage);
+    }
+
+    public void erzählerListPage(Statement statement, String string) {
+        ArrayList<String> list = new ArrayList<>();
+        list.add(string);
+        erzählerListPage(statement, list);
     }
 
     public void erzählerListPage(Statement statement, ArrayList<String> strings) {
