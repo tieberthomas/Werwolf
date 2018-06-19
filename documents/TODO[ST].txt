@@ -1,0 +1,13 @@
+ST:
+schlechte torte - koplett deaktiv
+	neue Karte - Titel
+	booleans?
+	besucht?
+	deaktiviert und verbraucht - deaktiviert anzeigen
+
+
+TH:
+Englisch-Deutsch-Gemisch
+
+Analytiker beide besuchen?
+nicht gelistete Satements, einfach invisible und nicht lebend
