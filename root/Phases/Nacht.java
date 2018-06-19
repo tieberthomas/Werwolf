@@ -56,6 +56,7 @@ public class Nacht extends Thread
     public static final String ORAKEL = "Orakel erwacht und lässt sich vom Erzähler die Bonusrollenkarte eines zufälligen Bürgers zeigen";
     public static final String SPÄHER = "Späher erwacht und lässt sich Auskunft über einen Mitspieler geben";
     public static final String BUCHHALTER = "Buchhalter erwacht und entscheidet ob er die verbleibenden Rollen erfahren möchte";
+    public static final String WAHRSAGER = "Wahrsager erwacht und gibt seinen Tipp ab welche Fraktion bei der Dorfabstimmung sterben wird";
     public static final String BESCHWÖRER = "Beschwörer erwacht und wählt einen Mitspieler der verstummt";
     public static final String FRISÖR = "Frisör erwacht und wählt einen Mitspieler den er verschönert";
     public static final String KONDITOR = "Falls es in dieser Nacht keine Opfer gab, wacht der Konditor auf und entscheidet sich ob es eine gute oder schlechte Torte gibt";
@@ -91,13 +92,14 @@ public class Nacht extends Thread
     public static final String NEUER_WERWOLF_TITEL = "Neuer Werwolf";
     public static final String GUTE_HEXE_WIEDERBELEBEN_TITEL = "Opfer wiederbeleben";
     public static final String MISS_VERONA_TITEL = "Angegriffene Opfer";
+    public static final String SPION_TITEL = "Fraktion wählen";
+    public static final String ANALYTIKER_TITEL = "Spieler wählen";
+    public static final String ARCHIVAR_TITEL = "Spieler wählen";
     public static final String SEHERIN_TITEL = "Spieler wählen";
     public static final String ORAKEL_TITEL = "Bonusrolle";
     public static final String SPÄHER_TITEL = "Spieler wählen";
     public static final String BUCHHALTER_TITEL = "Fähigkeit verbrauchen";
-    public static final String ANALYTIKER_TITEL = "Spieler wählen";
-    public static final String ARCHIVAR_TITEL = "Spieler wählen";
-    public static final String SPION_TITEL = "Fraktion wählen";
+    public static final String WAHRSAGER_TITEL = "Fraktion wählen";
     public static final String BESCHWÖRER_TITEL = "Mitspieler verstummen";
     public static final String FRISÖR_TITEL = "Mitspieler verschönern";
     public static final String KONDITOR_TITEL = "Torte";
@@ -272,6 +274,25 @@ public class Nacht extends Thread
                                 if (feedback != null && feedback.equals(JA)) {
                                     ArrayList<String> hauptrollenImSpiel = Hauptrolle.getMainRolesAlive();
                                     showListOnBothScreens(statement, hauptrollenImSpiel);
+                                }
+                                break;
+
+                            case WAHRSAGER:
+                                Spieler wahrsagerSpieler = Spieler.findSpielerPerRolle(rolle.getName());
+                                if(wahrsagerSpieler!=null) {
+                                    Wahrsager wahrsager = (Wahrsager) wahrsagerSpieler.nebenrolle;
+                                    if(wahrsager.firstNightOver) {
+                                        if((wahrsager.tipp == null && wahrsager.opferFraktion == null) ||
+                                                (wahrsager.tipp!=null && wahrsager.opferFraktion != null) &&
+                                                        wahrsager.tipp.getName().equals(wahrsager.opferFraktion.getName()))
+                                        {
+                                            schönlinge.add(wahrsagerSpieler);
+                                        }
+
+                                    } else {
+                                        wahrsager.firstNightOver = true;
+                                    }
+                                    wahrsager.tipp = Fraktion.findFraktion(feedback);
                                 }
                                 break;
 
@@ -522,16 +543,19 @@ public class Nacht extends Thread
 
                         case SCHÖNLINGE:
                             if(schönlinge!=null) {
+                                ArrayList<String> schönlingeStringList = new ArrayList<>();
+                                for(Spieler spieler : schönlinge) {
+                                    if(!schönlingeStringList.contains(spieler.name)){
+                                        schönlingeStringList.add(spieler.name);
+                                    }
+                                }
+
                                 if(schönlinge.size()==1) {
                                     Spieler schönling = schönlinge.get(0);
                                     erzählerListPage(statement, schönling.name);
                                     spielerIconPicturePage(schönling.name, ResourcePath.SCHÖNLING);
                                     waitForAnswer();
                                 } else if(schönlinge.size()>1){
-                                    ArrayList<String> schönlingeStringList = new ArrayList<>();
-                                    for(Spieler schönling : schönlinge) {
-                                        schönlingeStringList.add(schönling.name);
-                                    }
                                     showListOnBothScreens(statement, schönlingeStringList);
                                 }
                             }
@@ -1133,6 +1157,7 @@ public class Nacht extends Thread
         addStatementRolle(ORAKEL, ORAKEL_TITEL, Orakel.name);
         addStatementRolle(SPÄHER, SPÄHER_TITEL, Späher.name);
         addStatementRolle(BUCHHALTER, BUCHHALTER_TITEL, Buchhalter.name);
+        addStatementRolle(WAHRSAGER, WAHRSAGER_TITEL, Wahrsager.name);
         addStatementRolle(ANALYTIKER, ANALYTIKER_TITEL, Analytiker.name);
         addStatementRolle(ARCHIVAR, ARCHIVAR_TITEL, Archivar.name);
         addStatementRolle(SPION, SPION_TITEL, Spion.name);
@@ -1156,7 +1181,7 @@ public class Nacht extends Thread
         if(Rolle.rolleExists(Beschwörer.name)) {
             addStatement(VERSTUMMT, VERSTUMMT_TITEL);
         }
-        if(Rolle.rolleExists(Frisör.name) /*|| Rolle.rolleExists(Hellseher.name)*/) {
+        if(Rolle.rolleExists(Frisör.name) || Rolle.rolleExists(Wahrsager.name)) {
             addStatement(SCHÖNLINGE, SCHÖNLINGE_TITEL);
         }
 

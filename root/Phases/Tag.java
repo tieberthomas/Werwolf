@@ -10,6 +10,7 @@ import root.Rollen.Hauptrollen.Werwölfe.Wölfin;
 import root.Rollen.Nebenrollen.ReineSeele;
 import root.Rollen.Nebenrollen.ReinesLicht;
 import root.Rollen.Nebenrollen.Schatten;
+import root.Rollen.Nebenrollen.Wahrsager;
 import root.Rollen.Rolle;
 import root.Spieler;
 import root.mechanics.Liebespaar;
@@ -68,7 +69,10 @@ public class Tag extends Thread {
                 }
                 else {
                     killSpielerCheckLiebespaar(chosenSpieler);
+                    Wahrsager.opferFraktion = chosenSpieler.hauptrolle.getFraktion();
                 }
+            } else {
+                Wahrsager.opferFraktion = null;
             }
 
             while(umbringenButton) {
