@@ -524,6 +524,9 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                 playerSpecifiyPage = pageFactory.generatePlayerSpecifiyPage();
             }
 
+            if(übersichtsFrame!=null) {
+                übersichtsFrame.refreshÜbersichtsPage();
+            }
             nextPage();
         } else if(goBackButtons.contains(ae.getSource())){
             if(mode == ErzählerFrameMode.nachzüglerSetup){

@@ -130,6 +130,8 @@ public class Nacht extends Thread
     public static ArrayList<Statement> statements;
     public static Object lock;
 
+    ArrayList<Spieler> schönlinge = new ArrayList<>();
+
     public Nacht(ErzählerFrame erzählerFrame, SpielerFrame spielerFrame) {
         this.erzählerFrame = erzählerFrame;
         this.spielerFrame = spielerFrame;
@@ -149,7 +151,7 @@ public class Nacht extends Thread
             Spieler chosenPlayer;
             boolean wölfinKilled = false;
             Spieler wölfinSpieler = null;
-            ArrayList<Spieler> schönlinge = new ArrayList<>();
+            schönlinge = new ArrayList<>();
             Spieler beschworenerSpieler = null;
 
             Fraktion fraktion;
@@ -281,16 +283,14 @@ public class Nacht extends Thread
                                 Spieler wahrsagerSpieler = Spieler.findSpielerPerRolle(rolle.getName());
                                 if(wahrsagerSpieler!=null) {
                                     Wahrsager wahrsager = (Wahrsager) wahrsagerSpieler.nebenrolle;
-                                    if(Wahrsager.firstNightOver) {
-                                        if((wahrsager.tipp == null && Wahrsager.opferFraktion == null) ||
-                                                (wahrsager.tipp!=null && Wahrsager.opferFraktion != null) &&
-                                                        wahrsager.tipp.getName().equals(Wahrsager.opferFraktion.getName()))
-                                        {
+                                    if(Wahrsager.allowedToTakeGuesses) {
+                                        if(wahrsager.guessedRight()) {
                                             schönlinge.add(wahrsagerSpieler);
                                         }
                                     } else {
-                                        Wahrsager.firstNightOver = true;
+                                        Wahrsager.allowedToTakeGuesses = true;
                                     }
+
                                     wahrsager.tipp = Fraktion.findFraktion(feedback);
                                 }
                                 break;
@@ -1156,7 +1156,20 @@ public class Nacht extends Thread
         addStatementRolle(ORAKEL, ORAKEL_TITEL, Orakel.name);
         addStatementRolle(SPÄHER, SPÄHER_TITEL, Späher.name);
         addStatementRolle(BUCHHALTER, BUCHHALTER_TITEL, Buchhalter.name);
-        addStatementRolle(WAHRSAGER, WAHRSAGER_TITEL, Wahrsager.name);
+        if(Spieler.getLivigPlayer().size()>4) {
+            addStatementRolle(WAHRSAGER, WAHRSAGER_TITEL, Wahrsager.name);
+        } else {
+            if(Wahrsager.allowedToTakeGuesses) {
+                Spieler wahrsagerSpieler = Spieler.findSpielerPerRolle(Wahrsager.name);
+                if(wahrsagerSpieler!=null) {
+                    Wahrsager wahrsager = (Wahrsager) wahrsagerSpieler.nebenrolle;
+                    if(wahrsager.guessedRight()) {
+                        schönlinge.add(wahrsagerSpieler);
+                    }
+                }
+            }
+            Wahrsager.allowedToTakeGuesses = false;
+        }
         addStatementRolle(ANALYTIKER, ANALYTIKER_TITEL, Analytiker.name);
         addStatementRolle(ARCHIVAR, ARCHIVAR_TITEL, Archivar.name);
         addStatementRolle(SPION, SPION_TITEL, Spion.name);
