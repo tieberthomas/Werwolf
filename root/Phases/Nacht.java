@@ -68,6 +68,7 @@ public class Nacht extends Thread
 
     public static final String PROGRAMM_SCHÜTZE = "[Programm] Schütze";
     public static final String PROGRAMM_OPFER = "[Programm] Opfer";
+    public static final String PROGRAMM_TORTE = "[Programm] Torte";
 
     public static final String ALLE_SCHLAFEN_EIN_TITEL = "Alle schlafen ein";
     public static final String ALLE_WACHEN_AUF_TITEL = "Alle wachen auf";
@@ -500,24 +501,17 @@ public class Nacht extends Thread
                             break;
 
                         case OPFER:
-                            if (Torte.torte) {
-                                erzählerTortenPage();
-                                spielerIconPicturePage(TORTE_TITEL, ResourcePath.TORTE);
+                            ArrayList<String> opferDerNacht = new ArrayList<>();
 
-                                waitForAnswer();
-                            } else {
-                                ArrayList<String> opferDerNacht = new ArrayList<>();
-
-                                for (Opfer currentOpfer : Opfer.deadVictims) {
-                                    if(!opferDerNacht.contains(currentOpfer.opfer.name)) {
-                                        Rolle.mitteHauptrollen.add(currentOpfer.opfer.hauptrolle);
-                                        Rolle.mitteNebenrollen.add(currentOpfer.opfer.nebenrolle);
-                                        opferDerNacht.add(currentOpfer.opfer.name);
-                                    }
+                            for (Opfer currentOpfer : Opfer.deadVictims) {
+                                if(!opferDerNacht.contains(currentOpfer.opfer.name)) {
+                                    Rolle.mitteHauptrollen.add(currentOpfer.opfer.hauptrolle);
+                                    Rolle.mitteNebenrollen.add(currentOpfer.opfer.nebenrolle);
+                                    opferDerNacht.add(currentOpfer.opfer.name);
                                 }
-
-                                showListOnBothScreens(statement, opferDerNacht);
                             }
+
+                            showListOnBothScreens(statement, opferDerNacht);
 
                             if(Rolle.rolleLebend(GuteHexe.name))
                             {
@@ -557,6 +551,15 @@ public class Nacht extends Thread
                                 } else if(schönlinge.size()>1){
                                     showListOnBothScreens(statement, schönlingeStringList);
                                 }
+                            }
+                            break;
+
+                        case PROGRAMM_TORTE:
+                            if (Torte.torte) {
+                                erzählerTortenPage();
+                                spielerIconPicturePage(TORTE_TITEL, ResourcePath.TORTE);
+
+                                waitForAnswer();
                             }
                             break;
 
@@ -1197,7 +1200,7 @@ public class Nacht extends Thread
             addStatement(SCHÖNLINGE, SCHÖNLINGE_TITEL);
         }
 
-        //TODO Torte als letzes
+        addInvisibleStatement(PROGRAMM_TORTE);
     }
 
     public void addStatement(String statement, String titel) {
