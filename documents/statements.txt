@@ -48,6 +48,7 @@ Buchhalter erwacht und entscheidet ob er die verbleibenden Rollen erfahren möch
 Wahrsager erwacht und gibt seinen Tipp ab welche Fraktion bei der Dorfabstimmung sterben wird
 Beschwörer erwacht und wählt einen Mitspieler der verstummt
 Frisör erwacht und wählt einen Mitspieler den er verschönert
+Nachbar erwacht und erfährt wer die Besucher seines gewählten Spielers waren
 Falls es in dieser Nacht keine Opfer gab, wacht der Konditor (und Konditorlehrling) auf und entscheidet sich ob es eine gute oder schlechte Torte gibt
 Alle wachen auf
 Alle Opfer inklusive Liebespaaropfer werden bekannt gegeben

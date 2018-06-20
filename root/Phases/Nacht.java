@@ -59,6 +59,7 @@ public class Nacht extends Thread
     public static final String WAHRSAGER = "Wahrsager erwacht und gibt seinen Tipp ab welche Fraktion bei der Dorfabstimmung sterben wird";
     public static final String BESCHWÖRER = "Beschwörer erwacht und wählt einen Mitspieler der verstummt";
     public static final String FRISÖR = "Frisör erwacht und wählt einen Mitspieler den er verschönert";
+    public static final String NACHBAR_INFORMATION = "Nachbar erwacht und erfährt wer die Besucher seines gewählten Spielers waren";
     public static final String KONDITOR = "Falls es in dieser Nacht keine Opfer gab, wacht der Konditor auf und entscheidet sich ob es eine gute oder schlechte Torte gibt";
     public static final String KONDITOR_LEHRLING = "Falls es in dieser Nacht keine Opfer gab, wacht der Konditor und Konditorlehrling auf und entscheidet sich ob es eine gute oder schlechte Torte gibt";
     public static final String OPFER = "Alle Opfer inklusive Liebespaaropfer werden bekannt gegeben";
@@ -78,6 +79,7 @@ public class Nacht extends Thread
     public static final String ANÄSTHESIST_TITEL = "Mitspieler deaktivieren";
     public static final String GEFÄNGNISWÄRTER_TITEL = "Schutzhaft";
     public static final String ÜBERLÄUFER_TITEL = "Karte tauschen";
+    public static final String NACHBAR_TITEL = "Spieler beobachten";
     public static final String HOLDE_MAID_TITEL = "Mitspieler offenbaren";
     public static final String GUTE_HEXE_SCHÜTZEN_TITEL = "Spieler schützen";
     public static final String LADY_ALEERA_TITEL = "Geschützte Spieler";
@@ -104,6 +106,7 @@ public class Nacht extends Thread
     public static final String WAHRSAGER_TITEL = "Fraktion wählen";
     public static final String BESCHWÖRER_TITEL = "Mitspieler verstummen";
     public static final String FRISÖR_TITEL = "Mitspieler verschönern";
+    public static final String NACHBAR_INFORMATION_TITEL = "Besucher";
     public static final String KONDITOR_TITEL = "Torte";
     public static final String KONDITOR_LEHRLING_TITEL = KONDITOR_TITEL;
     public static final String OPFER_TITEL = "Opfer der Nacht";
@@ -313,6 +316,12 @@ public class Nacht extends Thread
                         feedback = null;
                     } else {
                         switch (statement.beschreibung) {
+                            case NACHBAR:
+                                dropdownOtions = rolle.getDropdownOtions();
+                                showDropdownPage(statement, dropdownOtions);
+                                rolle.aktion(erzählerFrame.chosenOption1);
+                                break;
+
                             case GUTE_HEXE_SCHÜTZEN:
                                 if(((GuteHexe)rolle).schutzCharges > 0) {
                                     chosenOption = choosePlayerOrNonCheckSpammable(statement, rolle);
@@ -419,6 +428,13 @@ public class Nacht extends Thread
                                 } else {
                                     displayCard(statement, "");
                                 }
+                                break;
+
+                            case NACHBAR_INFORMATION:
+                                Spieler nachbarSpieler = Spieler.findSpielerPerRolle(rolle.getName());
+                                Nachbar nachbar = (Nachbar)nachbarSpieler.nebenrolle;
+                                ArrayList<String> besucher = nachbar.getBesucherStrings();
+                                showListShowTitle(statement, besucher);
                                 break;
 
                             case KONDITOR:
@@ -1134,6 +1150,7 @@ public class Nacht extends Thread
         addStatementRolle(ANÄSTHESIST, ANÄSTHESIST_TITEL, Anästhesist.name);
         addStatementRolle(GEFÄNGNISWÄRTER, GEFÄNGNISWÄRTER_TITEL, Gefängniswärter.name);
         addStatementRolle(ÜBERLÄUFER, ÜBERLÄUFER_TITEL, Überläufer.name);
+        addStatementRolle(NACHBAR, NACHBAR_TITEL, Nachbar.name);
         addStatementRolle(HOLDE_MAID, HOLDE_MAID_TITEL, HoldeMaid.name);
         addStatementRolle(GUTE_HEXE_SCHÜTZEN, GUTE_HEXE_SCHÜTZEN_TITEL, GuteHexe.name);
 
@@ -1181,6 +1198,7 @@ public class Nacht extends Thread
 
         addStatementRolle(BESCHWÖRER, BESCHWÖRER_TITEL, Beschwörer.name);
         addStatementRolle(FRISÖR, FRISÖR_TITEL, Frisör.name);
+        addStatementRolle(NACHBAR_INFORMATION, NACHBAR_INFORMATION_TITEL, Nachbar.name);
         if (Rolle.rolleInNachtEnthalten(Konditorlehrling.name)) {
             addStatementRolle(KONDITOR_LEHRLING, KONDITOR_LEHRLING_TITEL, Konditorlehrling.name);
         } else {

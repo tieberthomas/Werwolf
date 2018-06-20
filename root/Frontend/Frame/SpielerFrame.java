@@ -113,10 +113,7 @@ public class SpielerFrame extends MyFrame{
             mode = SpielerFrameMode.freibierPage;
             this.bierPage();
         } else {
-            //dropDownPage = pageFactory.generateDropdownPage(title, 1);
-            //buildScreenFromPage(dropDownPage);
             buildScreenFromPage(pageFactory.generateDayPage(Hauptrolle.getPossibleInGameMainRoleNames(), Nebenrolle.getPossibleInGameMainRoleNames()));
-            //TODO dropdownmirrorn implementieren
         }
     }
 

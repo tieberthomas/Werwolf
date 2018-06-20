@@ -29,7 +29,7 @@ public class Nebenrolle extends Rolle
         secondaryRoles.add(new Konditor());
         secondaryRoles.add(new Konditorlehrling());
         secondaryRoles.add(new Lamm());
-        //Nachbar
+        secondaryRoles.add(new Nachbar());
         secondaryRoles.add(new Prostituierte());
         secondaryRoles.add(new ReinesLicht());
         secondaryRoles.add(new Schatten());
