@@ -20,7 +20,7 @@ public class Orakel extends Hauptrolle {
     public static boolean unique = true;
     public static boolean spammable = true;
 
-    public ArrayList<String> geseheneNebenrollen = new ArrayList<>();
+    public static ArrayList<String> geseheneNebenrollen = new ArrayList<>();
 
     public Nebenrolle generateRandomNebenrolle() {
         ArrayList<Spieler> bürger = fraktion.getFraktionsMembers();

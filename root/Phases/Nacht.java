@@ -97,6 +97,7 @@ public class Nacht extends Thread
     public static final String ARCHIVAR_TITEL = "Spieler wählen";
     public static final String SEHERIN_TITEL = "Spieler wählen";
     public static final String ORAKEL_TITEL = "Bonusrolle";
+    public static final String ORAKEL_VERBRAUCHT_TITEL = "Bonusrollen";
     public static final String SPÄHER_TITEL = "Spieler wählen";
     public static final String BUCHHALTER_TITEL = "Fähigkeit verbrauchen";
     public static final String WAHRSAGER_TITEL = "Fraktion wählen";
@@ -404,14 +405,15 @@ public class Nacht extends Thread
                                 break;
 
                             case ORAKEL:
-                                Nebenrolle chosenNebenrolle;
+                                Nebenrolle randemNebenrolle;
 
                                 if(statement.getState() == Statement.NORMAL) {
-                                    chosenNebenrolle = ((Orakel) rolle).generateRandomNebenrolle();
-                                    if (chosenNebenrolle != null) {
-                                        displayCard(statement, chosenNebenrolle.getImagePath());
+                                    randemNebenrolle = ((Orakel) rolle).generateRandomNebenrolle();
+                                    if (randemNebenrolle != null) {
+                                        displayCard(statement, randemNebenrolle.getImagePath());
                                     } else {
-                                        showAufgebrauchtPages(statement);
+                                        statement.titel = ORAKEL_VERBRAUCHT_TITEL;
+                                        showListOnBothScreens(statement, Orakel.geseheneNebenrollen);
                                     }
                                 } else {
                                     displayCard(statement, "");
