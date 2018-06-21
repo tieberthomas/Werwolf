@@ -53,7 +53,7 @@ public class Seherin extends Hauptrolle {
 
     @Override
     public FrontendControl getDropdownOtions() {
-        return Spieler.getMitspielerFrontendControl(this);
+        return Spieler.getMitspielerCheckSpammableFrontendControl(this);
     }
 
     @Override

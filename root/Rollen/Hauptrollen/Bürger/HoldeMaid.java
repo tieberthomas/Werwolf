@@ -8,8 +8,6 @@ import root.Rollen.Hauptrolle;
 import root.Rollen.RoleType;
 import root.Spieler;
 
-import java.util.ArrayList;
-
 public class HoldeMaid extends Hauptrolle
 {
     public static final String name = "Holde Maid";
@@ -31,7 +29,7 @@ public class HoldeMaid extends Hauptrolle
 
     @Override
     public FrontendControl getDropdownOtions() {
-        return Spieler.getLivigPlayerOrNoneFrontendControl(this);
+        return Spieler.getPlayerCheckSpammableFrontendControl(this);
     }
 
     @Override

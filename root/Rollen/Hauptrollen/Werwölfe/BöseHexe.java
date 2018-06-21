@@ -9,8 +9,6 @@ import root.Rollen.RoleType;
 import root.Spieler;
 import root.mechanics.Opfer;
 
-import java.util.ArrayList;
-
 /**
  * Created by Steve on 12.11.2017.
  */
@@ -40,7 +38,7 @@ public class BöseHexe extends Hauptrolle
 
     @Override
     public FrontendControl getDropdownOtions() {
-        return Spieler.getLivigPlayerOrNoneFrontendControl(this);
+        return Spieler.getPlayerCheckSpammableFrontendControl(this);
     }
 
     @Override

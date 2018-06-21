@@ -125,6 +125,7 @@ public class Nacht extends Thread
     public static final String TÖTEND_TITEL = "Tötend";
     public static final String NICHT_TÖTEND_TITEL = "Nicht Tötend";
 
+    //TODO delete
     public static final String JA = "Ja";
     public static final String NEIN = "Nein";
     public static final String GUT = "Gut";
@@ -148,18 +149,21 @@ public class Nacht extends Thread
         lock = new Object();
         synchronized (lock) {
             FrontendControl dropdownOtions;
-            String feedback = null;
+            String feedback;
+            String feedbackLastStatement = null;
 
-            ArrayList<String> optionen;
+            Rolle rolle = null;
+            Fraktion fraktion;
+
+            String imagePath;
+
             String chosenOption;
-            Opfer chosenOpfer = null;
+            Opfer chosenOpfer;
             Spieler chosenPlayer;
             boolean wölfinKilled = false;
             Spieler wölfinSpieler = null;
             schönlinge = new ArrayList<>();
             Spieler beschworenerSpieler = null;
-
-            Fraktion fraktion;
 
             ArrayList<String> spielerOrNon = Spieler.getLivigPlayerOrNoneStrings();
 
@@ -168,427 +172,391 @@ public class Nacht extends Thread
             normaleNachtBuildStatements();
 
             for (Statement statement : statements) {
-                if(statement.getClass() == StatementRolle.class) {
-                    Rolle rolle = ((StatementRolle)statement).getRolle();
+                feedback = null;
 
-                    if (rolle.getRoleType() == RoleType.CHOOSE_ONE) {
+                switch (statement.type) {
+                    case Statement.SHOW_TITLE:
+                        erzählerDefaultNightPage(statement);
+                        spielerTitlePage(statement.titel);
+
+                        waitForAnswer();
+                        break;
+
+                    case Statement.ROLLE_CHOOSE_ONE:
+                        rolle = ((StatementRolle)statement).getRolle();
+
                         if (rolle.abilityCharges > 0) {
                             dropdownOtions = rolle.getDropdownOtions();
                             showDropdownPage(statement, dropdownOtions);
                             feedback = rolle.aktion(erzählerFrame.chosenOption1);
                         } else {
+                            showAufgebrauchtPages(statement); //TODO deaktiv/tot beachten
+                        }
+                        break;
+
+                    case Statement.ROLLE_SPECAL:
+                        rolle = ((StatementRolle)statement).getRolle();
+                        break;
+
+                    case Statement.FRAKTION_CHOOSE_ONE:
+                        fraktion = ((StatementFraktion)statement).getFraktion();
+
+                        dropdownOtions = fraktion.getDropdownOtions();
+                        showDropdownPage(statement, dropdownOtions);
+                        feedback = fraktion.aktion(erzählerFrame.chosenOption1);
+                        break;
+                }
+
+                switch (statement.beschreibung) {
+                    case WIRT:
+                        if (feedback != null && feedback.equals(JA)) {
+                            freibier = true;
+                        }
+                        break;
+
+                    case GUTE_HEXE_SCHÜTZEN:
+                        if(((GuteHexe)rolle).schutzCharges > 0) {
+                            chosenOption = choosePlayerOrNonCheckSpammable(statement, rolle);
+                            if (chosenOption != null) {
+                                ((GuteHexe) rolle).schützen(chosenOption);
+                            }
+                        } else {
                             showAufgebrauchtPages(statement);
                         }
+                        break;
 
-                        switch (statement.beschreibung) {
-                            case WIRT:
-                                if (feedback != null && feedback.equals(JA)) {
-                                    freibier = true;
-                                }
-                                break;
+                    case PROGRAMM_SCHÜTZE:
+                        setSchütze();
+                        break;
 
-                            case SPION:
-                                fraktion = Fraktion.findFraktion(feedback);
-                                if (fraktion != null) {
-                                    statement.titel = fraktion.getName();
+                    case LADY_ALEERA:
+                        ArrayList<String> geschützte = ((LadyAleera)rolle).findGeschützeSpieler();
 
-                                    int fraktionAnzahl = fraktion.getFraktionsMembers().size();
-                                    String answer = Integer.toString(fraktionAnzahl);
+                        showListOnBothScreens(statement, geschützte);
+                        break;
 
-                                    showListOnBothScreens(statement, answer);
+                    case WÖLFIN:
+                        if(feedback.equals(Wölfin.KILL)) {
+                            wölfinKilled = true;
+                            wölfinSpieler = Spieler.findSpielerPerRolle(Wölfin.name);
+                        }
+                        break;
 
-                                    statement.titel = SPION_TITEL;
-                                }
-                                break;
+                    case NEUER_SCHATTENPRIESTER:
+                        chosenPlayer = Spieler.findSpieler(feedbackLastStatement);
+                        String neuerSchattenpriester = "";
+                        imagePath = "";
+                        if (chosenPlayer != null) {
+                            neuerSchattenpriester = chosenPlayer.name;
 
-                            case ARCHIVAR:
-                                if(feedback!=null) {
-                                    String imagePath = "";
-                                    switch(feedback) {
-                                        case Nebenrolle.AKTIV:
-                                            statement.titel = AKTIV_TITEL;
-                                            imagePath =  ResourcePath.AKTIV;
-                                            break;
+                            if(chosenPlayer.nebenrolle.getName().equals(Schattenkutte.name)) {
+                                imagePath = Schattenkutte.imagePath;
+                            }
+                        }
+                        showListShowTitle(statement, neuerSchattenpriester, imagePath);
+                        break;
 
-                                        case Nebenrolle.PASSIV:
-                                            statement.titel = PASSIV_TITEL;
-                                            imagePath =  ResourcePath.PASSIV;
-                                            break;
-
-                                        case Nebenrolle.INFORMATIV:
-                                            statement.titel = INFORMATIV_TITEL;
-                                            imagePath =  ResourcePath.INFORMATIV;
-                                            break;
-
-                                        case Nebenrolle.TARNUMHANG:
-                                            statement.titel = TARNUMHANG_TITEL;
-                                            imagePath =  ResourcePath.TARNUMHANG;
-                                            break;
-                                    }
-
-                                    showImageOnBothScreens(statement, imagePath);
-
-                                    statement.titel = ARCHIVAR_TITEL;
-                                }
-                                break;
-
-                            case SEHERIN:
-                                fraktion = Fraktion.findFraktion(feedback);
-                                if (fraktion!=null || feedback!=null && feedback.equals(Nebenrolle.TARNUMHANG)) {
-                                    String imagePath;
-
-                                    if(feedback.equals(Nebenrolle.TARNUMHANG)) {
-                                        imagePath = ResourcePath.TARNUMHANG;
-                                        statement.titel = TARNUMHANG_TITEL;
-                                    } else {
-                                        imagePath = fraktion.getImagePath();
-                                        statement.titel = erzählerFrame.chosenOption1;
-                                    }
-
-                                    showImageOnBothScreens(statement, imagePath);
-
-                                    statement.titel = SEHERIN_TITEL;
-                                }
-                                break;
-
-                            case SPÄHER:
-                                if (feedback != null) {
-                                    String imagePath = "";
-                                    switch(feedback){
-                                        case Späher.TÖTEND:
-                                            imagePath  = ResourcePath.TÖTEND;
-                                            statement.titel = TÖTEND_TITEL;
-                                            break;
-
-                                        case Späher.NICHT_TÖTEND:
-                                            imagePath  = ResourcePath.NICHT_TÖTEND;
-                                            statement.titel = NICHT_TÖTEND_TITEL;
-                                            break;
-
-                                        case Späher.TARNUMHANG:
-                                            imagePath  = ResourcePath.TARNUMHANG;
-                                            statement.titel = TARNUMHANG_TITEL;
-                                            break;
-                                    }
-
-                                    showImageOnBothScreens(statement, imagePath);
-
-                                    statement.titel = SPÄHER_TITEL;
-                                }
-                                break;
-
-                            case BUCHHALTER:
-                                if (feedback != null && feedback.equals(JA)) {
-                                    ArrayList<String> hauptrollenImSpiel = Hauptrolle.getMainRolesAlive();
-                                    showListOnBothScreens(statement, hauptrollenImSpiel);
-                                }
-                                break;
-
-                            case WAHRSAGER:
-                                Spieler wahrsagerSpieler = Spieler.findSpielerPerRolle(rolle.getName());
-                                if(wahrsagerSpieler!=null) {
-                                    Wahrsager wahrsager = (Wahrsager) wahrsagerSpieler.nebenrolle;
-                                    if(Wahrsager.allowedToTakeGuesses) {
-                                        if(wahrsager.guessedRight()) {
-                                            schönlinge.add(wahrsagerSpieler);
-                                        }
-                                    } else {
-                                        Wahrsager.allowedToTakeGuesses = true;
-                                    }
-
-                                    wahrsager.tipp = Fraktion.findFraktion(feedback);
-                                }
-                                break;
-
-                            case BESCHWÖRER:
-                                if(feedback!=null) {
-                                    beschworenerSpieler = Spieler.findSpieler(feedback);
-                                }
-                                break;
-
-                            case FRISÖR:
-                                if(feedback!=null) {
-                                    schönlinge.add(Spieler.findSpieler(feedback));
-                                }
-                                break;
+                    case NEUER_WERWOLF:
+                        chosenPlayer = Spieler.findSpieler(feedbackLastStatement);
+                        String neuerWerwolf = "";
+                        if (chosenPlayer != null) {
+                            neuerWerwolf = chosenPlayer.name;
                         }
 
-                        feedback = null;
-                    } else {
-                        switch (statement.beschreibung) {
-                            case NACHBAR:
-                                dropdownOtions = rolle.getDropdownOtions();
-                                showDropdownPage(statement, dropdownOtions);
-                                rolle.aktion(erzählerFrame.chosenOption1);
-                                break;
+                        showListShowTitle(statement, neuerWerwolf);
 
-                            case GUTE_HEXE_SCHÜTZEN:
-                                if(((GuteHexe)rolle).schutzCharges > 0) {
-                                    chosenOption = choosePlayerOrNonCheckSpammable(statement, rolle);
-                                    if (chosenOption != null) {
-                                        ((GuteHexe) rolle).schützen(chosenOption);
-                                    }
-                                } else {
-                                    showAufgebrauchtPages(statement);
-                                }
-                                break;
+                        break;
 
-                            case LADY_ALEERA:
-                                ArrayList<String> geschützte = ((LadyAleera)rolle).findGeschützeSpieler();
+                    case GUTE_HEXE_WIEDERBELEBEN:
+                        if (rolle.abilityCharges > 0) {
+                            ArrayList<String> erweckbareOpferOrNon = Opfer.getErweckbareStringsOrNon();
 
-                                showListOnBothScreens(statement, geschützte);
-                                break;
-
-                            case WÖLFIN:
-                                dropdownOtions = rolle.getDropdownOtions();
-                                showDropdownPage(statement, dropdownOtions);
-                                feedback = rolle.aktion(erzählerFrame.chosenOption1);
-                                if(feedback.equals(Wölfin.KILL)) {
-                                    wölfinKilled = true;
-                                    wölfinSpieler = Spieler.findSpielerPerRolle(Wölfin.name);
-                                }
-                                break;
-
-                            case CHEMIKER:
-                                dropdownOtions = rolle.getDropdownOtions();
-                                showDropdownPage(statement, dropdownOtions);
-                                feedback = rolle.aktion(erzählerFrame.chosenOption1);
-                                break;
-
-                            case NEUER_WERWOLF:
-                                chosenPlayer = Spieler.findSpieler(feedback);
-                                feedback = null;
-                                ArrayList<String> neuer = new ArrayList<>();
-                                if (chosenPlayer != null) {
-                                    neuer.add(chosenPlayer.name);
-                                }
-
-                                showListShowTitle(statement, neuer);
-
-                                break;
-
-                            case GUTE_HEXE_WIEDERBELEBEN:
-                                if (rolle.abilityCharges > 0) {
-                                    ArrayList<String> erweckbareOpferOrNon = Opfer.getErweckbareStringsOrNon();
-
-                                    showAfterDeathDropdownListPage(statement, erweckbareOpferOrNon);
-
-                                    chosenOpfer = Opfer.findOpfer(erzählerFrame.chosenOption1);
-
-                                    if (chosenOpfer != null) {
-                                        ((GuteHexe) rolle).wiederbeleben(chosenOpfer);
-                                    }
-                                } else {
-                                    showAufgebrauchtPages(statement);
-                                }
-                                break;
-
-                            case MISS_VERONA:
-                                ArrayList<String> untote = ((MissVerona)rolle).findUntote();
-
-                                showListOnBothScreens(statement, untote);
-                                break;
-
-                            case ANALYTIKER:
-                                if(Rolle.rolleLebend(Analytiker.name)) {
-                                    Spieler analytikerSpieler = Spieler.findSpielerPerRolle(rolle.getName());
-                                    spielerOrNon.remove(analytikerSpieler.name);
-                                    showDropdownPage(statement, spielerOrNon, spielerOrNon);
-                                    spielerOrNon.add(analytikerSpieler.name);
-                                } else {
-                                    showDropdownPage(statement, spielerOrNon, spielerOrNon);
-                                }
-
-                                Spieler chosenSpieler1 = Spieler.findSpieler(erzählerFrame.chosenOption1);
-                                Spieler chosenSpieler2 = Spieler.findSpieler(erzählerFrame.chosenOption2);
-
-                                if (chosenSpieler1 != null && chosenSpieler2 != null) {
-                                    if(((Analytiker)rolle).showTarnumhang(chosenSpieler1, chosenSpieler2)) {
-                                        String imagePath = ResourcePath.TARNUMHANG;
-                                        statement.titel = TARNUMHANG_TITEL;
-                                        showImageOnBothScreens(statement, imagePath);
-                                    } else {
-                                        String answer = ((Analytiker)rolle).analysiere(chosenSpieler1, chosenSpieler2);
-                                        showListOnBothScreens(statement, answer);
-                                    }
-                                }
-                                break;
-
-                            case ORAKEL:
-                                Nebenrolle randemNebenrolle;
-
-                                if(statement.getState() == Statement.NORMAL) {
-                                    randemNebenrolle = ((Orakel) rolle).generateRandomNebenrolle();
-                                    if (randemNebenrolle != null) {
-                                        displayCard(statement, randemNebenrolle.getImagePath());
-                                    } else {
-                                        statement.titel = ORAKEL_VERBRAUCHT_TITEL;
-                                        showListOnBothScreens(statement, Orakel.geseheneNebenrollen);
-                                    }
-                                } else {
-                                    displayCard(statement, "");
-                                }
-                                break;
-
-                            case NACHBAR_INFORMATION:
-                                Spieler nachbarSpieler = Spieler.findSpielerPerRolle(rolle.getName());
-                                Nachbar nachbar = (Nachbar)nachbarSpieler.nebenrolle;
-                                ArrayList<String> besucher = nachbar.getBesucherStrings();
-                                showListShowTitle(statement, besucher);
-                                break;
-
-                            case KONDITOR:
-                            case KONDITOR_LEHRLING:
-                                if (Opfer.deadVictims.size() == 0) {
-                                    if(Rolle.rolleLebend(Konditor.name) && Rolle.rolleAktiv(Konditor.name) || Rolle.rolleLebend(Konditorlehrling.name) && Rolle.rolleAktiv(Konditorlehrling.name)) {
-                                        Torte.torte = true;
-                                    }
-
-                                    dropdownOtions = rolle.getDropdownOtions();
-                                    showKonditorDropdownPage(statement, dropdownOtions);
-                                    feedback = rolle.aktion(erzählerFrame.chosenOption1);
-
-                                    Torte.gut = feedback.equals(GUT);
-                                    feedback = null;
-                                }
-                                break;
-
-                            case WÖLFIN_BONUSROLLE:
-                                if(wölfinKilled) {
-                                    if(wölfinSpieler!=null) {
-                                        String imagePath = wölfinSpieler.nebenrolle.getImagePath();
-                                        if (wölfinSpieler.nebenrolle.getName().equals(Tarnumhang.name)) {
-                                            imagePath = ResourcePath.TARNUMHANG;
-                                            statement.titel = TARNUMHANG_TITEL;
-                                        }
-                                        showImageOnBothScreens(statement, imagePath);
-                                    }
-                                }
-                                break;
-
-                            default:
-                                erzählerDefaultNightPage(statement);
-                                spielerTitlePage(statement.titel);
-
-                                waitForAnswer();
-                                break;
-                        }
-
-                    }
-                } else {
-                    switch (statement.beschreibung) {
-                        case PROGRAMM_SCHÜTZE:
-                            setSchütze();
-                            break;
-
-                        case VAMPIRE:
-                            chosenOption = choosePlayerOrNon(statement);
-                            Vampire.kill(chosenOption);
-                            break;
-
-                        case WERWÖLFE:
-                            chosenOption = choosePlayerOrNon(statement);
-                            Werwölfe werwölfe = (Werwölfe)Fraktion.findFraktion(((StatementFraktion)statement).fraktion);
-                            werwölfe.kill(chosenOption);
-                            break;
-
-                        case SCHATTENPRIESTER:
-                            ArrayList<String> erweckbareOrNon = Schattenpriester_Fraktion.getRessurectableVictimsOrNone();
-
-                            showDropdownListPage(statement, erweckbareOrNon);
+                            showAfterDeathDropdownListPage(statement, erweckbareOpferOrNon);
 
                             chosenOpfer = Opfer.findOpfer(erzählerFrame.chosenOption1);
-                            break;
 
-                        case NEUER_SCHATTENPRIESTER:
-                            ArrayList<String> neuer = new ArrayList<>();
-                            String imagePath = "";
                             if (chosenOpfer != null) {
-                                if(chosenOpfer.opfer.nebenrolle.getName().equals(Schattenkutte.name)){
-                                     imagePath = Schattenkutte.imagePath;
+                                ((GuteHexe) rolle).wiederbeleben(chosenOpfer);
+                            }
+                        } else {
+                            showAufgebrauchtPages(statement);
+                        }
+                        break;
+
+                    case MISS_VERONA:
+                        ArrayList<String> untote = ((MissVerona)rolle).findUntote();
+
+                        showListOnBothScreens(statement, untote);
+                        break;
+
+                    case SEHERIN:
+                        fraktion = Fraktion.findFraktion(feedback);
+                        if (fraktion!=null || feedback!=null && feedback.equals(Nebenrolle.TARNUMHANG)) {
+                            if(feedback.equals(Nebenrolle.TARNUMHANG)) {
+                                imagePath = ResourcePath.TARNUMHANG;
+                                statement.titel = TARNUMHANG_TITEL;
+                            } else {
+                                imagePath = fraktion.getImagePath();
+                                statement.titel = erzählerFrame.chosenOption1;
+                            }
+
+                            showImageOnBothScreens(statement, imagePath);
+
+                            statement.titel = SEHERIN_TITEL;
+                        }
+                        break;
+
+                    case ORAKEL:
+                        Nebenrolle randemNebenrolle;
+
+                        if(statement.getState() == Statement.NORMAL) {
+                            randemNebenrolle = ((Orakel) rolle).generateRandomNebenrolle();
+                            if (randemNebenrolle != null) {
+                                displayCard(statement, randemNebenrolle.getImagePath());
+                            } else {
+                                statement.titel = ORAKEL_VERBRAUCHT_TITEL;
+                                showListOnBothScreens(statement, Orakel.geseheneNebenrollen);
+                            }
+                        } else {
+                            displayCard(statement, "");
+                        }
+                        break;
+
+                    case SPÄHER:
+                        if (feedback != null) {
+                            imagePath = "";
+                            switch(feedback){
+                                case Späher.TÖTEND:
+                                    imagePath  = ResourcePath.TÖTEND;
+                                    statement.titel = TÖTEND_TITEL;
+                                    break;
+
+                                case Späher.NICHT_TÖTEND:
+                                    imagePath  = ResourcePath.NICHT_TÖTEND;
+                                    statement.titel = NICHT_TÖTEND_TITEL;
+                                    break;
+
+                                case Späher.TARNUMHANG:
+                                    imagePath  = ResourcePath.TARNUMHANG;
+                                    statement.titel = TARNUMHANG_TITEL;
+                                    break;
+                            }
+
+                            showImageOnBothScreens(statement, imagePath);
+
+                            statement.titel = SPÄHER_TITEL;
+                        }
+                        break;
+
+                    case BUCHHALTER:
+                        if (feedback != null && feedback.equals(JA)) {
+                            ArrayList<String> hauptrollenImSpiel = Hauptrolle.getMainRolesAlive();
+                            showListOnBothScreens(statement, hauptrollenImSpiel);
+                        }
+                        break;
+
+                    case WAHRSAGER:
+                        Spieler wahrsagerSpieler = Spieler.findSpielerPerRolle(rolle.getName());
+                        if(wahrsagerSpieler!=null) {
+                            Wahrsager wahrsager = (Wahrsager) wahrsagerSpieler.nebenrolle;
+                            if(Wahrsager.allowedToTakeGuesses) {
+                                if(wahrsager.guessedRight()) {
+                                    schönlinge.add(wahrsagerSpieler);
                                 }
-                                Schattenpriester_Fraktion.wiederbeleben(chosenOpfer);
-
-                                neuer.add(chosenOpfer.opfer.name);
+                            } else {
+                                Wahrsager.allowedToTakeGuesses = true;
                             }
-                            showListShowTitle(statement, neuer, imagePath);
-                            break;
 
-                        case PROGRAMM_OPFER:
-                            setOpfer();
-                            break;
+                            wahrsager.tipp = Fraktion.findFraktion(feedback);
+                        }
+                        break;
 
-                        case OPFER:
-                            ArrayList<String> opferDerNacht = new ArrayList<>();
+                    case ANALYTIKER:
+                        if(Rolle.rolleLebend(Analytiker.name)) {
+                            Spieler analytikerSpieler = Spieler.findSpielerPerRolle(rolle.getName());
+                            spielerOrNon.remove(analytikerSpieler.name);
+                            showDropdownPage(statement, spielerOrNon, spielerOrNon);
+                            spielerOrNon.add(analytikerSpieler.name);
+                        } else {
+                            showDropdownPage(statement, spielerOrNon, spielerOrNon);
+                        }
 
-                            for (Opfer currentOpfer : Opfer.deadVictims) {
-                                if(!opferDerNacht.contains(currentOpfer.opfer.name)) {
-                                    Rolle.mitteHauptrollen.add(currentOpfer.opfer.hauptrolle);
-                                    Rolle.mitteNebenrollen.add(currentOpfer.opfer.nebenrolle);
-                                    opferDerNacht.add(currentOpfer.opfer.name);
+                        Spieler chosenSpieler1 = Spieler.findSpieler(erzählerFrame.chosenOption1);
+                        Spieler chosenSpieler2 = Spieler.findSpieler(erzählerFrame.chosenOption2);
+
+                        if (chosenSpieler1 != null && chosenSpieler2 != null) {
+                            if(((Analytiker)rolle).showTarnumhang(chosenSpieler1, chosenSpieler2)) {
+                                imagePath = ResourcePath.TARNUMHANG;
+                                statement.titel = TARNUMHANG_TITEL;
+                                showImageOnBothScreens(statement, imagePath);
+                            } else {
+                                String answer = ((Analytiker)rolle).analysiere(chosenSpieler1, chosenSpieler2);
+                                showListOnBothScreens(statement, answer);
+                            }
+                        }
+                        break;
+
+                    case ARCHIVAR:
+                        if(feedback!=null) {
+                            imagePath = "";
+                            switch(feedback) {
+                                case Nebenrolle.AKTIV:
+                                    statement.titel = AKTIV_TITEL;
+                                    imagePath =  ResourcePath.AKTIV;
+                                    break;
+
+                                case Nebenrolle.PASSIV:
+                                    statement.titel = PASSIV_TITEL;
+                                    imagePath =  ResourcePath.PASSIV;
+                                    break;
+
+                                case Nebenrolle.INFORMATIV:
+                                    statement.titel = INFORMATIV_TITEL;
+                                    imagePath =  ResourcePath.INFORMATIV;
+                                    break;
+
+                                case Nebenrolle.TARNUMHANG:
+                                    statement.titel = TARNUMHANG_TITEL;
+                                    imagePath =  ResourcePath.TARNUMHANG;
+                                    break;
+                            }
+
+                            showImageOnBothScreens(statement, imagePath);
+
+                            statement.titel = ARCHIVAR_TITEL;
+                        }
+                        break;
+
+                    case SPION:
+                        fraktion = Fraktion.findFraktion(feedback);
+                        if (fraktion != null) {
+                            statement.titel = fraktion.getName();
+
+                            int fraktionAnzahl = fraktion.getFraktionsMembers().size();
+                            String answer = Integer.toString(fraktionAnzahl);
+
+                            showListOnBothScreens(statement, answer);
+
+                            statement.titel = SPION_TITEL;
+                        }
+                        break;
+
+                    case BESCHWÖRER:
+                        if(feedback!=null) {
+                            beschworenerSpieler = Spieler.findSpieler(feedback);
+                        }
+                        break;
+
+                    case FRISÖR:
+                        if(feedback!=null) {
+                            schönlinge.add(Spieler.findSpieler(feedback));
+                        }
+                        break;
+
+                    case NACHBAR_INFORMATION:
+                        Spieler nachbarSpieler = Spieler.findSpielerPerRolle(rolle.getName());
+                        Nachbar nachbar = (Nachbar)nachbarSpieler.nebenrolle;
+                        ArrayList<String> besucher = nachbar.getBesucherStrings();
+                        showListOnBothScreens(statement, besucher);
+                        break;
+
+                    case KONDITOR:
+                    case KONDITOR_LEHRLING:
+                        if (Opfer.deadVictims.size() == 0) {
+                            if(Rolle.rolleLebend(Konditor.name) && Rolle.rolleAktiv(Konditor.name) || Rolle.rolleLebend(Konditorlehrling.name) && Rolle.rolleAktiv(Konditorlehrling.name)) {
+                                Torte.torte = true;
+                            }
+
+                            dropdownOtions = rolle.getDropdownOtions();
+                            showKonditorDropdownPage(statement, dropdownOtions);
+                            feedback = rolle.aktion(erzählerFrame.chosenOption1);
+
+                            Torte.gut = feedback.equals(GUT);
+                            feedback = null;
+                        }
+                        break;
+
+                    case PROGRAMM_OPFER:
+                        setOpfer();
+                        break;
+
+                    case OPFER:
+                        ArrayList<String> opferDerNacht = new ArrayList<>();
+
+                        for (Opfer currentOpfer : Opfer.deadVictims) {
+                            if(!opferDerNacht.contains(currentOpfer.opfer.name)) {
+                                Rolle.mitteHauptrollen.add(currentOpfer.opfer.hauptrolle);
+                                Rolle.mitteNebenrollen.add(currentOpfer.opfer.nebenrolle);
+                                opferDerNacht.add(currentOpfer.opfer.name);
+                            }
+                        }
+
+                        showListOnBothScreens(statement, opferDerNacht);
+
+                        if(Rolle.rolleLebend(GuteHexe.name))
+                        {
+                            refreshHexenSchutz();
+                        }
+
+                        String victory = Spieler.checkVictory();
+
+                        if(victory != null) {
+                            showEndScreenPage(victory);
+                        }
+                        break;
+
+                    case WÖLFIN_BONUSROLLE:
+                        if(wölfinKilled) {
+                            if(wölfinSpieler!=null) {
+                                imagePath = wölfinSpieler.nebenrolle.getImagePath();
+                                if (wölfinSpieler.nebenrolle.getName().equals(Tarnumhang.name)) {
+                                    imagePath = ResourcePath.TARNUMHANG;
+                                    statement.titel = TARNUMHANG_TITEL;
+                                }
+                                showImageOnBothScreens(statement, imagePath);
+                            }
+                        }
+                        break;
+
+                    case VERSTUMMT:
+                        if(beschworenerSpieler!=null) {
+                            erzählerListPage(statement, beschworenerSpieler.name);
+                            spielerIconPicturePage(beschworenerSpieler.name, ResourcePath.VERSTUMMT);
+                            waitForAnswer();
+                        }
+                        break;
+
+                    case SCHÖNLINGE:
+                        if(schönlinge!=null) {
+                            ArrayList<String> schönlingeStringList = new ArrayList<>();
+                            for(Spieler spieler : schönlinge) {
+                                if(!schönlingeStringList.contains(spieler.name)){
+                                    schönlingeStringList.add(spieler.name);
                                 }
                             }
 
-                            showListOnBothScreens(statement, opferDerNacht);
-
-                            if(Rolle.rolleLebend(GuteHexe.name))
-                            {
-                                refreshHexenSchutz();
-                            }
-
-                            String victory = Spieler.checkVictory();
-
-                            if(victory != null) {
-                                showEndScreenPage(victory);
-                            }
-
-                            break;
-
-                        case VERSTUMMT:
-                            if(beschworenerSpieler!=null) {
-                                erzählerListPage(statement, beschworenerSpieler.name);
-                                spielerIconPicturePage(beschworenerSpieler.name, ResourcePath.VERSTUMMT);
+                            if(schönlinge.size()==1) {
+                                Spieler schönling = schönlinge.get(0);
+                                erzählerListPage(statement, schönling.name);
+                                spielerIconPicturePage(schönling.name, ResourcePath.SCHÖNLING);
                                 waitForAnswer();
+                            } else if(schönlinge.size()>1){
+                                showListOnBothScreens(statement, schönlingeStringList);
                             }
-                            break;
+                        }
+                        break;
 
-                        case SCHÖNLINGE:
-                            if(schönlinge!=null) {
-                                ArrayList<String> schönlingeStringList = new ArrayList<>();
-                                for(Spieler spieler : schönlinge) {
-                                    if(!schönlingeStringList.contains(spieler.name)){
-                                        schönlingeStringList.add(spieler.name);
-                                    }
-                                }
-
-                                if(schönlinge.size()==1) {
-                                    Spieler schönling = schönlinge.get(0);
-                                    erzählerListPage(statement, schönling.name);
-                                    spielerIconPicturePage(schönling.name, ResourcePath.SCHÖNLING);
-                                    waitForAnswer();
-                                } else if(schönlinge.size()>1){
-                                    showListOnBothScreens(statement, schönlingeStringList);
-                                }
-                            }
-                            break;
-
-                        case PROGRAMM_TORTE:
-                            if (Torte.torte) {
-                                erzählerTortenPage();
-                                spielerIconPicturePage(TORTE_TITEL, ResourcePath.TORTE);
-
-                                waitForAnswer();
-                            }
-                            break;
-
-                        default:
-                            erzählerDefaultNightPage(statement);
-                            spielerTitlePage(statement.titel);
+                    case PROGRAMM_TORTE:
+                        if (Torte.torte) {
+                            erzählerTortenPage();
+                            spielerIconPicturePage(TORTE_TITEL, ResourcePath.TORTE);
 
                             waitForAnswer();
-                            break;
-                    }
+                        }
+                        break;
                 }
+
+                feedbackLastStatement = feedback;
 
                 if (freibier) {
                     break;
@@ -793,7 +761,7 @@ public class Nacht extends Thread
     }
 
     public void showDeadPages(Statement statement) {
-        Statement tot = new StatementIndie(statement.beschreibung, TOT_TITEL, true);
+        Statement tot = new StatementIndie(statement.beschreibung, TOT_TITEL, Statement.INDIE, true);
 
         //TODO generateDeadPage()
         erzählerIconPicturePage(tot, ResourcePath.TOT);
@@ -803,7 +771,7 @@ public class Nacht extends Thread
     }
 
     public void showDeactivatedPages(Statement statement) {
-        Statement deaktiviert = new StatementIndie(statement.beschreibung,DEAKTIVIERT_TITEL, true);
+        Statement deaktiviert = new StatementIndie(statement.beschreibung,DEAKTIVIERT_TITEL, Statement.INDIE, true);
 
         Page nightPage = erzählerFrame.pageFactory.generateDeactivatedPage(deaktiviert);
         erzählerFrame.buildScreenFromPage(nightPage);
@@ -813,7 +781,7 @@ public class Nacht extends Thread
     }
 
     public void showAufgebrauchtPages(Statement statement) {
-        Statement aufgebraucht = new StatementIndie(statement.beschreibung,AUFGEBRAUCHT_TITEL, true);
+        Statement aufgebraucht = new StatementIndie(statement.beschreibung, AUFGEBRAUCHT_TITEL, Statement.INDIE, true);
 
         Page nightPage = erzählerFrame.pageFactory.generateAufgebrauchtPage(aufgebraucht);
         erzählerFrame.buildScreenFromPage(nightPage);
@@ -822,8 +790,18 @@ public class Nacht extends Thread
         waitForAnswer();
     }
 
+    public void showListShowTitle(Statement statement, String string) {
+        showListShowTitle(statement, string, "");
+    }
+
     public void showListShowTitle(Statement statement, ArrayList<String> strings) {
         showListShowTitle(statement, strings, "");
+    }
+
+    public void showListShowTitle(Statement statement, String string, String imagePath) {
+        ArrayList<String> list = new ArrayList<>();
+        list.add(string);
+        showListShowTitle(statement, list, imagePath);
     }
 
     public void showListShowTitle(Statement statement, ArrayList<String> strings, String imagePath) {
@@ -897,7 +875,7 @@ public class Nacht extends Thread
     }
 
     public String choosePlayerOrNonCheckSpammable(Statement statement, Rolle rolle) {
-        ArrayList<String> spielerOrNon = Spieler.getLivigPlayerOrNoneCheckSpammableStrings(rolle);
+        ArrayList<String> spielerOrNon = Spieler.getPlayerCheckSpammableStrings(rolle);
 
         showDropdownPage(statement, spielerOrNon);
 
@@ -1141,46 +1119,47 @@ public class Nacht extends Thread
     public void normaleNachtBuildStatements() {
         statements = new ArrayList<>();
 
-        addStatement(ALLE_SCHLAFEN_EIN, ALLE_SCHLAFEN_EIN_TITEL);
+        addStatementIndie(ALLE_SCHLAFEN_EIN, ALLE_SCHLAFEN_EIN_TITEL, Statement.SHOW_TITLE);
 
         if(Wirt.freibierCharges > 0) {
-            addStatementRolle(WIRT, WIRT_TITEL, Wirt.name);
+            addStatementRolle(WIRT, WIRT_TITEL, Wirt.name, Statement.ROLLE_CHOOSE_ONE);
         }
-        addStatementRolle(TOTENGRÄBER, TOTENGRÄBER_TITEL, Totengräber.name);
-        addStatementRolle(ANÄSTHESIST, ANÄSTHESIST_TITEL, Anästhesist.name);
-        addStatementRolle(GEFÄNGNISWÄRTER, GEFÄNGNISWÄRTER_TITEL, Gefängniswärter.name);
-        addStatementRolle(ÜBERLÄUFER, ÜBERLÄUFER_TITEL, Überläufer.name);
-        addStatementRolle(NACHBAR, NACHBAR_TITEL, Nachbar.name);
-        addStatementRolle(HOLDE_MAID, HOLDE_MAID_TITEL, HoldeMaid.name);
-        addStatementRolle(GUTE_HEXE_SCHÜTZEN, GUTE_HEXE_SCHÜTZEN_TITEL, GuteHexe.name);
+        addStatementRolle(TOTENGRÄBER, TOTENGRÄBER_TITEL, Totengräber.name, Statement.ROLLE_CHOOSE_ONE);
+        addStatementRolle(ANÄSTHESIST, ANÄSTHESIST_TITEL, Anästhesist.name, Statement.ROLLE_CHOOSE_ONE);
+        addStatementRolle(GEFÄNGNISWÄRTER, GEFÄNGNISWÄRTER_TITEL, Gefängniswärter.name, Statement.ROLLE_CHOOSE_ONE);
+        addStatementRolle(ÜBERLÄUFER, ÜBERLÄUFER_TITEL, Überläufer.name, Statement.ROLLE_CHOOSE_ONE);
+        addStatementRolle(NACHBAR, NACHBAR_TITEL, Nachbar.name, Statement.ROLLE_CHOOSE_ONE);
+        addStatementRolle(HOLDE_MAID, HOLDE_MAID_TITEL, HoldeMaid.name, Statement.ROLLE_CHOOSE_ONE);
+        addStatementRolle(GUTE_HEXE_SCHÜTZEN, GUTE_HEXE_SCHÜTZEN_TITEL, GuteHexe.name, Statement.ROLLE_SPECAL);
 
-        addInvisibleStatement(PROGRAMM_SCHÜTZE);
+        addInvisibleProgrammStatement(PROGRAMM_SCHÜTZE);
 
-        addStatementRolle(LADY_ALEERA, LADY_ALEERA_TITEL, LadyAleera.name);
-        addStatementRolle(PROSTITUIERTE, PROSTITUIERTE_TITEL, Prostituierte.name);
+        addStatementRolle(LADY_ALEERA, LADY_ALEERA_TITEL, LadyAleera.name, Statement.ROLLE_SPECAL);
+        addStatementRolle(PROSTITUIERTE, PROSTITUIERTE_TITEL, Prostituierte.name, Statement.ROLLE_CHOOSE_ONE);
 
-        addStatementRolle(RIESE, RIESE_TITEL, Riese.name);
-        addStatementFraktion(VAMPIRE, VAMPIRE_TITEL, Vampire.name);
-        addStatementFraktion(WERWÖLFE, WERWÖLFE_TITEL, Werwölfe.name);
+        addStatementRolle(RIESE, RIESE_TITEL, Riese.name, Statement.ROLLE_CHOOSE_ONE);
+        addStatementFraktion(VAMPIRE, VAMPIRE_TITEL, Vampire.name, Statement.FRAKTION_CHOOSE_ONE);
+        addStatementFraktion(WERWÖLFE, WERWÖLFE_TITEL, Werwölfe.name, Statement.FRAKTION_CHOOSE_ONE);
         if(Wölfin.modus == Wölfin.TÖTEND) {
-            addStatementRolle(WÖLFIN, WÖLFIN_TITEL, Wölfin.name);
+            addStatementRolle(WÖLFIN, WÖLFIN_TITEL, Wölfin.name, Statement.ROLLE_CHOOSE_ONE);
         }
-        addStatementRolle(BÖSE_HEXE, BÖSE_HEXE_TITEL, BöseHexe.name);
+        addStatementRolle(BÖSE_HEXE, BÖSE_HEXE_TITEL, BöseHexe.name, Statement.ROLLE_CHOOSE_ONE);
 
-        addStatementFraktion(SCHATTENPRIESTER, SCHATTENPRIESTER_TITEL, Schattenpriester_Fraktion.name);
-        addStatementFraktion(NEUER_SCHATTENPRIESTER, NEUER_SCHATTENPRIESTER_TITEL, Schattenpriester_Fraktion.name);
-        addStatementRolle(CHEMIKER, CHEMIKER_TITEL, Chemiker.name);
-        addStatementRolle(NEUER_WERWOLF, NEUER_WERWOLF_TITEL, Chemiker.name);
-        addStatementRolle(GUTE_HEXE_WIEDERBELEBEN, GUTE_HEXE_WIEDERBELEBEN_TITEL, GuteHexe.name);
+        addStatementFraktion(SCHATTENPRIESTER, SCHATTENPRIESTER_TITEL, Schattenpriester_Fraktion.name, Statement.FRAKTION_CHOOSE_ONE);
+        addStatementFraktion(NEUER_SCHATTENPRIESTER, NEUER_SCHATTENPRIESTER_TITEL, Schattenpriester_Fraktion.name, Statement.FRAKTION_SPECAL);
+        addStatementRolle(CHEMIKER, CHEMIKER_TITEL, Chemiker.name, Statement.ROLLE_CHOOSE_ONE);
+        addStatementRolle(NEUER_WERWOLF, NEUER_WERWOLF_TITEL, Chemiker.name, Statement.ROLLE_SPECAL);
+        addStatementRolle(GUTE_HEXE_WIEDERBELEBEN, GUTE_HEXE_WIEDERBELEBEN_TITEL, GuteHexe.name, Statement.ROLLE_SPECAL);
 
-        addStatementRolle(MISS_VERONA, MISS_VERONA_TITEL, MissVerona.name);
-        addStatementRolle(SEHERIN, SEHERIN_TITEL, Seherin.name);
-        addStatementRolle(ORAKEL, ORAKEL_TITEL, Orakel.name);
-        addStatementRolle(SPÄHER, SPÄHER_TITEL, Späher.name);
-        addStatementRolle(BUCHHALTER, BUCHHALTER_TITEL, Buchhalter.name);
+        addStatementRolle(MISS_VERONA, MISS_VERONA_TITEL, MissVerona.name, Statement.ROLLE_SPECAL);
+        addStatementRolle(SEHERIN, SEHERIN_TITEL, Seherin.name, Statement.ROLLE_CHOOSE_ONE);
+        addStatementRolle(ORAKEL, ORAKEL_TITEL, Orakel.name, Statement.ROLLE_SPECAL);
+        addStatementRolle(SPÄHER, SPÄHER_TITEL, Späher.name, Statement.ROLLE_CHOOSE_ONE);
+        addStatementRolle(BUCHHALTER, BUCHHALTER_TITEL, Buchhalter.name, Statement.ROLLE_CHOOSE_ONE);
         if(Spieler.getLivigPlayer().size()>4) {
-            addStatementRolle(WAHRSAGER, WAHRSAGER_TITEL, Wahrsager.name);
+            addStatementRolle(WAHRSAGER, WAHRSAGER_TITEL, Wahrsager.name, Statement.ROLLE_CHOOSE_ONE);
         } else {
+            //TODO eigenes Statement für Logik
             if(Wahrsager.allowedToTakeGuesses) {
                 Spieler wahrsagerSpieler = Spieler.findSpielerPerRolle(Wahrsager.name);
                 if(wahrsagerSpieler!=null) {
@@ -1192,54 +1171,54 @@ public class Nacht extends Thread
             }
             Wahrsager.allowedToTakeGuesses = false;
         }
-        addStatementRolle(ANALYTIKER, ANALYTIKER_TITEL, Analytiker.name);
-        addStatementRolle(ARCHIVAR, ARCHIVAR_TITEL, Archivar.name);
-        addStatementRolle(SPION, SPION_TITEL, Spion.name);
+        addStatementRolle(ANALYTIKER, ANALYTIKER_TITEL, Analytiker.name, Statement.ROLLE_SPECAL);
+        addStatementRolle(ARCHIVAR, ARCHIVAR_TITEL, Archivar.name, Statement.ROLLE_CHOOSE_ONE);
+        addStatementRolle(SPION, SPION_TITEL, Spion.name, Statement.ROLLE_CHOOSE_ONE);
 
-        addStatementRolle(BESCHWÖRER, BESCHWÖRER_TITEL, Beschwörer.name);
-        addStatementRolle(FRISÖR, FRISÖR_TITEL, Frisör.name);
-        addStatementRolle(NACHBAR_INFORMATION, NACHBAR_INFORMATION_TITEL, Nachbar.name);
+        addStatementRolle(BESCHWÖRER, BESCHWÖRER_TITEL, Beschwörer.name, Statement.ROLLE_CHOOSE_ONE);
+        addStatementRolle(FRISÖR, FRISÖR_TITEL, Frisör.name, Statement.ROLLE_CHOOSE_ONE);
+        addStatementRolle(NACHBAR_INFORMATION, NACHBAR_INFORMATION_TITEL, Nachbar.name, Statement.ROLLE_SPECAL);
         if (Rolle.rolleInNachtEnthalten(Konditorlehrling.name)) {
-            addStatementRolle(KONDITOR_LEHRLING, KONDITOR_LEHRLING_TITEL, Konditorlehrling.name);
+            addStatementRolle(KONDITOR_LEHRLING, KONDITOR_LEHRLING_TITEL, Konditorlehrling.name, Statement.ROLLE_SPECAL);
         } else {
-            addStatementRolle(KONDITOR, KONDITOR_TITEL, Konditor.name);
+            addStatementRolle(KONDITOR, KONDITOR_TITEL, Konditor.name, Statement.ROLLE_SPECAL);
         }
 
-        addStatement(ALLE_WACHEN_AUF, ALLE_WACHEN_AUF_TITEL);
+        addStatementIndie(ALLE_WACHEN_AUF, ALLE_WACHEN_AUF_TITEL, Statement.SHOW_TITLE);
 
-        addInvisibleStatement(PROGRAMM_OPFER);
+        addInvisibleProgrammStatement(PROGRAMM_OPFER);
 
-        addStatement(OPFER, OPFER_TITEL);
+        addStatementIndie(OPFER, OPFER_TITEL, Statement.INDIE);
         if(Wölfin.modus == Wölfin.TÖTEND) {
-            addStatementRolle(WÖLFIN_BONUSROLLE, WÖLFIN_BONUSROLLE_TITEL, Wölfin.name);
+            addStatementRolle(WÖLFIN_BONUSROLLE, WÖLFIN_BONUSROLLE_TITEL, Wölfin.name, Statement.ROLLE_SPECAL);
         }
         if(Rolle.rolleExists(Beschwörer.name)) {
-            addStatement(VERSTUMMT, VERSTUMMT_TITEL);
+            addStatementIndie(VERSTUMMT, VERSTUMMT_TITEL, Statement.INDIE);
         }
         if(Rolle.rolleExists(Frisör.name) || Rolle.rolleExists(Wahrsager.name)) {
-            addStatement(SCHÖNLINGE, SCHÖNLINGE_TITEL);
+            addStatementIndie(SCHÖNLINGE, SCHÖNLINGE_TITEL, Statement.INDIE);
         }
 
-        addInvisibleStatement(PROGRAMM_TORTE);
+        addInvisibleProgrammStatement(PROGRAMM_TORTE);
     }
 
-    public void addStatement(String statement, String titel) {
-        statements.add(new StatementIndie(statement, titel, true));
+    public void addStatementIndie(String statement, String titel, int type) {
+        statements.add(new StatementIndie(statement, titel, type, true));
     }
 
-    public void addStatementRolle(String statement, String titel, String rolle) {
+    public void addStatementRolle(String statement, String titel, String rolle, int type) {
         if (Rolle.rolleInNachtEnthalten(rolle)) {
-            statements.add(new StatementRolle(statement, titel, rolle, true));
+            statements.add(new StatementRolle(statement, titel, rolle, type, true));
         }
     }
 
-    public void addStatementFraktion(String statement, String titel, String fraktion) {
+    public void addStatementFraktion(String statement, String titel, String fraktion, int type) {
         if (Fraktion.fraktionInNachtEnthalten(fraktion)) {
-            statements.add(new StatementFraktion(statement, titel, fraktion, true));
+            statements.add(new StatementFraktion(statement, titel, fraktion, type, true));
         }
     }
 
-    public void addInvisibleStatement(String statement) {
-        statements.add(new StatementIndie(statement, "", false));
+    public void addInvisibleProgrammStatement(String statement) {
+        statements.add(new StatementIndie(statement, "", Statement.PROGRAMM, false));
     }
 }

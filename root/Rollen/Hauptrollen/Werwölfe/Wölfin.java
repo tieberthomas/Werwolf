@@ -46,7 +46,7 @@ public class Wölfin extends Hauptrolle
 
     @Override
     public FrontendControl getDropdownOtions() {
-        return Spieler.getLivigPlayerOrNoneFrontendControl(this);
+        return Spieler.getPlayerCheckSpammableFrontendControl(this);
     }
 
     @Override

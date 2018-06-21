@@ -92,7 +92,7 @@ public class Spieler
         return allSpieler;
     }
 
-    public static ArrayList<String> getLivigPlayerOrNoneCheckSpammableStrings(Rolle rolle) {
+    public static ArrayList<String> getPlayerCheckSpammableStrings(Rolle rolle) {
         ArrayList<String> allSpieler  = getLivigPlayerOrNoneStrings();
         if (!rolle.isSpammable() && rolle.besuchtLetzteNacht != null) {
             allSpieler.remove(rolle.besuchtLetzteNacht.name);
@@ -104,23 +104,33 @@ public class Spieler
     public static ArrayList<String> getMitspielerCheckSpammableStrings(Rolle rolle) {
         Spieler spieler = Spieler.findSpielerPerRolle(rolle.getName());
 
-        ArrayList<String> mitspieler = getLivigPlayerOrNoneCheckSpammableStrings(rolle);
-        if(spieler!=null)
+        ArrayList<String> mitspieler = getPlayerCheckSpammableStrings(rolle);
+        if(spieler!=null) {
             mitspieler.remove(spieler.name);
+        }
 
         return mitspieler;
     }
 
-    public static FrontendControl getLivigPlayerOrNoneFrontendControl(Rolle rolle) {
+    public static FrontendControl getPlayerFrontendControl() {
         FrontendControl frontendControl = new FrontendControl();
 
         frontendControl.typeOfContent = FrontendControl.LIST_WITHOUT_DISPLAY;
-        frontendControl.content = getLivigPlayerOrNoneCheckSpammableStrings(rolle);
+        frontendControl.content = getLivigPlayerOrNoneStrings();
 
         return frontendControl;
     }
 
-    public static FrontendControl getMitspielerFrontendControl(Rolle rolle) {
+    public static FrontendControl getPlayerCheckSpammableFrontendControl(Rolle rolle) {
+        FrontendControl frontendControl = new FrontendControl();
+
+        frontendControl.typeOfContent = FrontendControl.LIST_WITHOUT_DISPLAY;
+        frontendControl.content = getPlayerCheckSpammableStrings(rolle);
+
+        return frontendControl;
+    }
+
+    public static FrontendControl getMitspielerCheckSpammableFrontendControl(Rolle rolle) {
         FrontendControl frontendControl = new FrontendControl();
 
         frontendControl.typeOfContent = FrontendControl.LIST_WITHOUT_DISPLAY;

@@ -3,9 +3,7 @@ package root.Rollen;
 import root.Frontend.FrontendControl;
 import root.ResourceManagement.ResourcePath;
 import root.Frontend.Frame.MyFrame;
-import root.Rollen.Fraktionen.Bürger;
 import root.Rollen.Fraktionen.Werwölfe;
-import root.Rollen.Hauptrollen.Werwölfe.Werwolf;
 import root.Spieler;
 import root.mechanics.Opfer;
 
@@ -13,7 +11,14 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Fraktion {
-    public static Fraktion DEFALT_FRAKTION = new Bürger();
+
+    public String aktion(String chosenOption) {
+        return null;
+    }
+
+    public FrontendControl getDropdownOtions() {
+        return new FrontendControl();
+    }
 
     public String getName() {
         return "";
@@ -224,7 +229,7 @@ public class Fraktion {
     }
 
     public static Fraktion findFraktion(String searchedFraktion) {
-        for(Hauptrolle currentHautprolle : Hauptrolle.mainRolesInGame) {
+        for(Hauptrolle currentHautprolle : Hauptrolle.mainRoles) {
             if(currentHautprolle.getFraktion().getName().equals(searchedFraktion)) {
                 return currentHautprolle.getFraktion();
             }

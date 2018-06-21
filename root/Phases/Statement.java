@@ -12,8 +12,17 @@ public class Statement
     public static final int DEAD = 2;
     public static final int NOT_IN_GAME = 3;
 
+    public static final int PROGRAMM = -1;
+    public static final int SHOW_TITLE = 0;
+    public static final int INDIE = 1;
+    public static final int ROLLE_CHOOSE_ONE = 2;
+    public static final int ROLLE_SPECAL = 3;
+    public static final int FRAKTION_CHOOSE_ONE = 4;
+    public static final int FRAKTION_SPECAL = 5;
+
     public String beschreibung;
     public String titel;
+    public int type;
     public boolean visible;
 
     public int getState() {

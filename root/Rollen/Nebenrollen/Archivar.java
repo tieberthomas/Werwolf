@@ -2,13 +2,11 @@ package root.Rollen.Nebenrollen;
 
 import root.Frontend.FrontendControl;
 import root.ResourceManagement.ResourcePath;
-import root.Rollen.Fraktion;
 import root.Rollen.Fraktionen.Bürger;
 import root.Rollen.Hauptrollen.Bürger.Bestienmeister;
 import root.Rollen.Nebenrolle;
 import root.Rollen.RoleType;
 import root.Spieler;
-import root.mechanics.Liebespaar;
 
 /**
  * Created by Steve on 12.11.2017.
@@ -44,7 +42,7 @@ public class Archivar extends Nebenrolle
 
     @Override
     public FrontendControl getDropdownOtions() {
-        return Spieler.getLivigPlayerOrNoneFrontendControl(this);
+        return Spieler.getPlayerCheckSpammableFrontendControl(this);
     }
 
     @Override

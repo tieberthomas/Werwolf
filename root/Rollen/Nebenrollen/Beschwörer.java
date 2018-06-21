@@ -6,8 +6,6 @@ import root.Rollen.Nebenrolle;
 import root.Rollen.RoleType;
 import root.Spieler;
 
-import java.util.ArrayList;
-
 /**
  * Created by Steve on 12.11.2017.
  */
@@ -32,7 +30,7 @@ public class Beschwörer extends Nebenrolle
 
     @Override
     public FrontendControl getDropdownOtions() {
-        return Spieler.getLivigPlayerOrNoneFrontendControl(this);
+        return Spieler.getPlayerCheckSpammableFrontendControl(this);
     }
 
     @Override

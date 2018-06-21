@@ -371,12 +371,14 @@ public class ErsteNacht extends Thread {
     }
 
     public void addStatement(String statement, String titel) {
-        statements.add(new StatementIndie(statement, titel, true));
+        statements.add(new StatementIndie(statement, titel, Statement.INDIE, true));
     }
+
+    //TODO Statement Type implementieren
 
     public void addStatementRolle(String statement, String titel, String rolle) {
         if (Rolle.rolleInNachtEnthalten(rolle)) {
-            statements.add(new StatementRolle(statement, titel, rolle, true));
+            statements.add(new StatementRolle(statement, titel, rolle, Statement.INDIE, true));
         }
     }
 
@@ -385,7 +387,7 @@ public class ErsteNacht extends Thread {
 
         if (Fraktion.fraktionInNachtEnthalten(fraktionsName)) {
             if(fraktion.getNumberOfFraktionsMembersInGame()>1) {
-                statements.add(new StatementFraktion(statement, titel, fraktionsName, true));
+                statements.add(new StatementFraktion(statement, titel, fraktionsName, Statement.INDIE, true));
             }
         }
     }

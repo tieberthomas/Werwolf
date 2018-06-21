@@ -4,11 +4,7 @@ import root.Frontend.FrontendControl;
 import root.ResourceManagement.ResourcePath;
 import root.Rollen.Fraktion;
 import root.Rollen.Fraktionen.Bürger;
-import root.Rollen.Fraktionen.Schattenpriester_Fraktion;
-import root.Rollen.Fraktionen.Vampire;
-import root.Rollen.Fraktionen.Werwölfe;
 import root.Rollen.Hauptrolle;
-import root.Rollen.Nebenrolle;
 import root.Rollen.Nebenrollen.*;
 import root.Rollen.RoleType;
 import root.Spieler;
@@ -52,7 +48,7 @@ public class Späher extends Hauptrolle
 
     @Override
     public FrontendControl getDropdownOtions() {
-        return Spieler.getMitspielerFrontendControl(this);
+        return Spieler.getMitspielerCheckSpammableFrontendControl(this);
     }
 
     @Override

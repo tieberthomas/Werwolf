@@ -46,7 +46,7 @@ public class GuteHexe extends Hauptrolle
 
     public void schützen(String chosenOption)
     {
-        if(chosenOption!=null && chosenOption!="" && schutzCharges>0) {
+        if(chosenOption!=null && !chosenOption.equals("") && schutzCharges>0) {
             Spieler chosenPlayer = Spieler.findSpieler(chosenOption);
 
             besucht = chosenPlayer;

@@ -4,9 +4,10 @@ package root.Phases;
  * Created by Steve on 27.12.2017.
  */
 public class StatementIndie extends Statement {
-    public StatementIndie(String beschreibung, String titel, boolean visible) {
+    public StatementIndie(String beschreibung, String titel, int type, boolean visible) {
         this.beschreibung = beschreibung;
         this.titel = titel;
+        this.type = type;
         this.visible = visible;
     }
 

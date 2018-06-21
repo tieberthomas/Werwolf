@@ -1,5 +1,6 @@
 package root.Rollen.Fraktionen;
 
+import root.Frontend.FrontendControl;
 import root.ResourceManagement.ResourcePath;
 import root.Rollen.Fraktion;
 import root.Rollen.Hauptrollen.Werwölfe.Alphawolf;
@@ -20,6 +21,22 @@ public class Werwölfe extends Fraktion
     public static final String name = "Werwölfe";
     public static final Color farbe = Color.green;
     public static final String imagePath = ResourcePath.WÖLFE_ICON;
+
+    @Override
+    public String aktion(String chosenOption) {
+        Spieler chosenPlayer = Spieler.findSpieler(chosenOption);
+        if (chosenPlayer != null) {
+            Spieler täter = this.getFraktionsMembers().get(0);
+            Opfer.addVictim(chosenPlayer, täter, true);
+        }
+
+        return chosenOption;
+    }
+
+    @Override
+    public FrontendControl getDropdownOtions() {
+        return Spieler.getPlayerFrontendControl();
+    }
 
     @Override
     public String getName() {
@@ -43,14 +60,5 @@ public class Werwölfe extends Fraktion
         tötend.add(Wölfin.name);
 
         return tötend.contains(hauptrolle);
-    }
-
-    public void kill(String chosenOption)
-    {
-        Spieler chosenPlayer = Spieler.findSpieler(chosenOption);
-        if (chosenPlayer != null) {
-            Spieler täter = this.getFraktionsMembers().get(0);
-            Opfer.addVictim(chosenPlayer, täter, true);
-        }
     }
 }

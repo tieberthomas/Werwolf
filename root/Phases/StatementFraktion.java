@@ -8,10 +8,11 @@ import root.Rollen.Fraktion;
 public class StatementFraktion extends Statement {
     String fraktion;
 
-    public StatementFraktion(String beschreibung, String titel, String fraktion, boolean visible) {
+    public StatementFraktion(String beschreibung, String titel, String fraktion, int type, boolean visible) {
         this.beschreibung = beschreibung;
         this.titel = titel;
         this.fraktion = fraktion;
+        this.type = type;
         this.visible = visible;
     }
 
@@ -28,5 +29,9 @@ public class StatementFraktion extends Statement {
     @Override
     public boolean isAktiv() {
         return Fraktion.fraktionAktiv(fraktion);
+    }
+
+    public Fraktion getFraktion() {
+        return Fraktion.findFraktion(fraktion);
     }
 }

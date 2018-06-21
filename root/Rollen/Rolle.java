@@ -26,6 +26,7 @@ public class Rolle
         return "";
     }
 
+    //TODO delete
     public int getRoleType() {
         return RoleType.CHOOSE_NOTHING;
     }

@@ -9,10 +9,11 @@ import root.mechanics.Opfer;
 public class StatementRolle extends Statement {
     String rolle;
 
-    public StatementRolle(String beschreibung, String titel, String rolle, boolean visible) {
+    public StatementRolle(String beschreibung, String titel, String rolle, int type, boolean visible) {
         this.beschreibung = beschreibung;
         this.titel = titel;
         this.rolle = rolle;
+        this.type = type;
         this.visible = visible;
     }
 
