@@ -417,6 +417,16 @@ public class ErzählerPageFactory {
 
         erzählerFrame.umbringenJButton = new JButton();
         PageElement umbringenButton = pageElementFactory.generateLowestButton(erzählerFrame.umbringenJButton, "Umbringen", false, 1);
+
+        erzählerFrame.priesterJButton = new JButton();
+        PageElement priesterButton = pageElementFactory.generateLowestButton(erzählerFrame.priesterJButton, "Priester", false, 2);
+
+        erzählerFrame.richterinJButton = new JButton();
+        PageElement richterinButton = pageElementFactory.generateLowestButton(erzählerFrame.richterinJButton, "Richterin", false, 3);
+
+        erzählerFrame.respawnFramesJButton = new JButton();
+        PageElement respawnFramesButton = pageElementFactory.generateLowestButton(erzählerFrame.respawnFramesJButton, "Fenster neustarten", false, 4);
+
         Page tagPage = new Page();
 
         tagPage.add(titleLabel);
@@ -424,6 +434,9 @@ public class ErzählerPageFactory {
         tagPage.add(nextButton);
         tagPage.add(nachzüglerButton);
         tagPage.add(umbringenButton);
+        tagPage.add(priesterButton);
+        tagPage.add(richterinButton);
+        tagPage.add(respawnFramesButton);
 
         return tagPage;
     }
@@ -514,6 +527,83 @@ public class ErzählerPageFactory {
 
         return umbringenPage;
     }
+
+    public Page generatePriesterPage() {
+        PageElement titleLabel = pageElementFactory.generateTitleLabel(null, "Bürgen");
+
+        PageElement priesterLabel = pageElementFactory.generateLabel(titleLabel, "Priester");
+
+        ArrayList<String> comboBoxOptions = Spieler.getLivigPlayerStrings();
+        erzählerFrame.comboBox1 = new JComboBox(comboBoxOptions.toArray());
+        PageElement choosePriester = pageElementFactory.generateDropdown(erzählerFrame.comboBox1,
+                null, priesterLabel,0,0);
+
+        PageElement spielerLabel = pageElementFactory.generateLabel(choosePriester, "Spieler");
+
+        ArrayList<String> comboBox2Options = Spieler.getLivigPlayerStrings();
+        erzählerFrame.comboBox2 = new JComboBox(comboBox2Options.toArray());
+        PageElement choosePlayer = pageElementFactory.generateDropdown(erzählerFrame.comboBox2,
+                null, spielerLabel,0,0);
+
+
+        erzählerFrame.priesterJButton = new JButton();
+        PageElement nextButton = pageElementFactory.generateLowestButton(erzählerFrame.priesterJButton);
+
+        erzählerFrame.goBackJButton = new JButton();
+        PageElement goBackButton = pageElementFactory.generateLowestButton(erzählerFrame.goBackJButton, "Zurück", false);
+        erzählerFrame.goBackButtons.add(erzählerFrame.goBackJButton);
+
+        Page priesterPage = new Page();
+
+        priesterPage.add(titleLabel);
+        priesterPage.add(priesterLabel);
+        priesterPage.add(choosePriester);
+        priesterPage.add(spielerLabel);
+        priesterPage.add(choosePlayer);
+        priesterPage.add(nextButton);
+        priesterPage.add(goBackButton);
+
+        return priesterPage;
+    }
+
+    public Page generateRichterinPage() {
+        PageElement titleLabel = pageElementFactory.generateTitleLabel(null, "Verurteilen");
+
+        PageElement richterinLabel = pageElementFactory.generateLabel(titleLabel, "Richterin");
+
+        ArrayList<String> comboBoxOptions = Spieler.getLivigPlayerStrings();
+        erzählerFrame.comboBox1 = new JComboBox(comboBoxOptions.toArray());
+        PageElement chooseRichterin = pageElementFactory.generateDropdown(erzählerFrame.comboBox1,
+                null, richterinLabel,0,0);
+
+        PageElement spielerLabel = pageElementFactory.generateLabel(chooseRichterin, "Spieler");
+
+        ArrayList<String> comboBox2Options = Spieler.getLivigPlayerStrings();
+        erzählerFrame.comboBox2 = new JComboBox(comboBox2Options.toArray());
+        PageElement choosePlayer = pageElementFactory.generateDropdown(erzählerFrame.comboBox2,
+                null, spielerLabel,0,0);
+
+
+        erzählerFrame.richterinJButton = new JButton();
+        PageElement nextButton = pageElementFactory.generateLowestButton(erzählerFrame.richterinJButton);
+
+        erzählerFrame.goBackJButton = new JButton();
+        PageElement goBackButton = pageElementFactory.generateLowestButton(erzählerFrame.goBackJButton, "Zurück", false);
+        erzählerFrame.goBackButtons.add(erzählerFrame.goBackJButton);
+
+        Page richterinPage = new Page();
+
+        richterinPage.add(titleLabel);
+        richterinPage.add(richterinLabel);
+        richterinPage.add(chooseRichterin);
+        richterinPage.add(spielerLabel);
+        richterinPage.add(choosePlayer);
+        richterinPage.add(nextButton);
+        richterinPage.add(goBackButton);
+
+        return richterinPage;
+    }
+
 
     public Page generateTortenPage() {
         PageElement titleLabel = pageElementFactory.generateTitleLabel(null, "Torte");

@@ -5,7 +5,9 @@ import root.Frontend.Frame.ErzählerFrameMode;
 import root.Frontend.Frame.SpielerFrame;
 import root.Frontend.Page.Page;
 import root.Rollen.Fraktion;
+import root.Rollen.Fraktionen.Bürger;
 import root.Rollen.Fraktionen.Werwölfe;
+import root.Rollen.Hauptrolle;
 import root.Rollen.Hauptrollen.Werwölfe.Wölfin;
 import root.Rollen.Nebenrollen.ReineSeele;
 import root.Rollen.Nebenrollen.ReinesLicht;
@@ -15,12 +17,18 @@ import root.Rollen.Rolle;
 import root.Spieler;
 import root.mechanics.Liebespaar;
 
+import java.util.ArrayList;
+
 public class Tag extends Thread {
     public static ErzählerFrame erzählerFrame;
     public static SpielerFrame spielerFrame;
     public static Object lock;
     public static boolean umbringenButton = false;
     public static Spieler umbringenSpieler;
+    public static Spieler priester;
+    public static ArrayList<Spieler> gebürgteSpieler;
+    public static Spieler richterin;
+    public static ArrayList<Spieler> verurteilteSpieler;
 
     public static String dayTitle = "Opfer der Dorfabstimmung";
 
@@ -30,6 +38,8 @@ public class Tag extends Thread {
     }
 
     public void run() {
+        gebürgteSpieler = new ArrayList<>();
+        verurteilteSpieler = new ArrayList<>();
         day();
 
         if(erzählerFrame.mode == ErzählerFrameMode.freibierTag) {
@@ -59,17 +69,30 @@ public class Tag extends Thread {
 
             if (chosenSpieler != null) {
                 String nebenrolleSpieler = chosenSpieler.nebenrolle.getName();
+                Hauptrolle hauptrolleSpieler = chosenSpieler.hauptrolle;
 
-                if (nebenrolleSpieler.equals(ReineSeele.name) && ((ReineSeele)chosenSpieler.nebenrolle).dayInvincibility) {
+                if (nebenrolleSpieler.equals(ReineSeele.name) && ((ReineSeele)chosenSpieler.nebenrolle).dayInvincibility ||
+                        (gebürgteSpieler.contains(chosenSpieler) && hauptrolleSpieler.getFraktion().getName().equals(Bürger.name))) {
                     dayPage = spielerFrame.pageFactory.generateStaticImagePage(ReinesLicht.name, ReineSeele.imagePath);
                     spielerFrame.buildScreenFromPage(dayPage);
-                    ((ReineSeele)chosenSpieler.nebenrolle).dayInvincibility = false;
+                    if(chosenSpieler.nebenrolle.getName().equals(ReineSeele.name)) {
+                        ((ReineSeele) chosenSpieler.nebenrolle).dayInvincibility = false;
+                    }
 
                     waitForAnswer();
+
+                    checkRichterin(hauptrolleSpieler);
                 }
                 else {
                     killSpielerCheckLiebespaar(chosenSpieler);
                     Wahrsager.opferFraktion = chosenSpieler.hauptrolle.getFraktion();
+                    if(!hauptrolleSpieler.getFraktion().getName().equals(Bürger.name)) {
+                        if(priester.lebend) {
+                            killSpielerCheckLiebespaar(priester);
+                        }
+                    }
+
+                    checkRichterin(hauptrolleSpieler);
                 }
             } else {
                 Wahrsager.opferFraktion = null;
@@ -90,6 +113,14 @@ public class Tag extends Thread {
             erzählerFrame.buildScreenFromPage(spielerFrame.pageFactory.generateEndScreenPage(victory));
 
             waitForAnswer();
+        }
+    }
+
+    public static void checkRichterin(Hauptrolle hauptrolleSpieler) {
+        if(hauptrolleSpieler.getFraktion().getName().equals(Bürger.name)) {
+            if(richterin.lebend) {
+                killSpielerCheckLiebespaar(richterin);
+            }
         }
     }
 

@@ -26,7 +26,6 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener{
     public PageTable protectedTable;
 
     public JButton refreshJButton;
-    public JButton respawnFramesJButton;
 
     public Page übersichtsPage;
 
@@ -181,9 +180,6 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener{
     public void actionPerformed(ActionEvent ae) {
         if(ae.getSource() == refreshJButton) {
             refreshÜbersichtsPage();
-        }
-        if(ae.getSource() == respawnFramesJButton) {
-            erzählerFrame.respawnFrames();
         }
     }
 }

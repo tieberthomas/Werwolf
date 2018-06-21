@@ -64,16 +64,12 @@ public class ÜbersichtsPageFactory {
         übersichtsFrame.refreshJButton = new JButton();
         PageElement refreshButton = pageElementFactory.generateLowestButton(übersichtsFrame.refreshJButton, "Refresh", true, 1);
 
-        übersichtsFrame.respawnFramesJButton = new JButton();
-        PageElement respawnFramesButton = pageElementFactory.generateLowestButton(übersichtsFrame.respawnFramesJButton, "Fenster neustarten");
-
         übersichtsPage.addTable(übersichtsFrame.playerTable);
         übersichtsPage.addTable(übersichtsFrame.mainRoleTable);
         übersichtsPage.addTable(übersichtsFrame.secondaryRoleTable);
         übersichtsPage.addTable(übersichtsFrame.aliveTable);
         übersichtsPage.addTable(übersichtsFrame.activeTable);
         übersichtsPage.addTable(übersichtsFrame.protectedTable);
-        übersichtsPage.add(respawnFramesButton);
         übersichtsPage.add(refreshButton);
 
         return übersichtsPage;

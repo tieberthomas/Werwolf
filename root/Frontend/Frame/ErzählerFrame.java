@@ -7,12 +7,10 @@ import root.Frontend.Page.PageTable;
 import root.Phases.*;
 import root.ResourceManagement.FileManager;
 import root.ResourceManagement.ResourcePath;
-import root.Rollen.Fraktion;
 import root.Rollen.Hauptrolle;
 import root.Rollen.Hauptrollen.Bürger.Dorfbewohner;
 import root.Rollen.Nebenrolle;
 import root.Rollen.Nebenrollen.Schatten;
-import root.mechanics.Liebespaar;
 import root.mechanics.Torte;
 
 import javax.swing.*;
@@ -100,6 +98,9 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     public JButton goBackJButton;
     public JButton nachzüglerJButton;
     public JButton umbringenJButton;
+    public JButton priesterJButton;
+    public JButton richterinJButton;
+    public JButton respawnFramesJButton;
 
     public Page tortenPage;
     public JButton addPlayerTortenButton;
@@ -435,7 +436,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
 
     public void nextPage() {
         if(currentPage!=null) {
-            if(currentPage!=playerSpecifiyPage) {
+            if(currentPage!=playerSpecifiyPage && setupPages.contains(currentPage)) {
                 int index = setupPages.indexOf(currentPage);
                 generateAllPages();
                 currentPage = setupPages.get(index + 1);
@@ -543,7 +544,8 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
             }
             nextPage();
         } else if(goBackButtons.contains(ae.getSource())){
-            if(mode == ErzählerFrameMode.nachzüglerSetup || mode == ErzählerFrameMode.umbringenSetup){
+            if(mode == ErzählerFrameMode.nachzüglerSetup || mode == ErzählerFrameMode.umbringenSetup ||
+                    mode == ErzählerFrameMode.priesterSetup ||mode == ErzählerFrameMode.richterinSetup){
                 mode = ErzählerFrameMode.getPhaseMode();
                 buildScreenFromPage(pageFactory.generateDefaultDayPage());
             }else {
@@ -816,6 +818,66 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                 spielerFrame.mode = SpielerFrameMode.blank;
                 buildScreenFromPage(pageFactory.generateUmbringenPage());
             }
+        } else if (ae.getSource() == priesterJButton) {
+            if(mode == ErzählerFrameMode.priesterSetup) {
+                try {
+                    if(comboBox1 != null) {
+                        chosenOption1 = (String) comboBox1.getSelectedItem();
+                    }
+
+                    if(comboBox2 != null){
+                        chosenOption2 = (String) comboBox2.getSelectedItem();
+                    }
+                }catch (NullPointerException e) {
+                    System.out.println("comboboxes(1,2) might not be initialized.");
+                }
+                Spieler spieler1 = Spieler.findSpieler(chosenOption1);
+                Spieler spieler2 = Spieler.findSpieler(chosenOption2);
+
+                if(spieler1!=null && spieler2!=null) {
+                    Tag.priester = spieler1;
+                    Tag.gebürgteSpieler.add(spieler2);
+                }
+
+                mode = ErzählerFrameMode.getPhaseMode();
+                buildScreenFromPage(pageFactory.generateDefaultDayPage());
+            } else {
+                mode = ErzählerFrameMode.priesterSetup;
+
+                spielerFrame.mode = SpielerFrameMode.blank;
+                buildScreenFromPage(pageFactory.generatePriesterPage());
+            }
+        }else if (ae.getSource() == richterinJButton) {
+            if(mode == ErzählerFrameMode.richterinSetup) {
+                try {
+                    if(comboBox1 != null) {
+                        chosenOption1 = (String) comboBox1.getSelectedItem();
+                    }
+
+                    if(comboBox2 != null){
+                        chosenOption2 = (String) comboBox2.getSelectedItem();
+                    }
+                }catch (NullPointerException e) {
+                    System.out.println("comboboxes(1,2) might not be initialized.");
+                }
+                Spieler spieler1 = Spieler.findSpieler(chosenOption1);
+                Spieler spieler2 = Spieler.findSpieler(chosenOption2);
+
+                if(spieler1!=null && spieler2!=null) {
+                    Tag.richterin = spieler1;
+                    Tag.verurteilteSpieler.add(spieler2);
+                }
+
+                mode = ErzählerFrameMode.getPhaseMode();
+                buildScreenFromPage(pageFactory.generateDefaultDayPage());
+            } else {
+                mode = ErzählerFrameMode.richterinSetup;
+
+                spielerFrame.mode = SpielerFrameMode.blank;
+                buildScreenFromPage(pageFactory.generateRichterinPage());
+            }
+        } else if(ae.getSource() == respawnFramesJButton) {
+            respawnFrames();
         }
     }
 

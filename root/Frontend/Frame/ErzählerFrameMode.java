@@ -10,6 +10,8 @@ public class ErzählerFrameMode {
     public static int nacht = 4;
     public static int nachzüglerSetup = 5;
     public static int umbringenSetup = 6;
+    public static int priesterSetup = 7;
+    public static int richterinSetup = 8;
 
     public static int getPhaseMode() {
         if(PhaseMode.phase == PhaseMode.tag) {
