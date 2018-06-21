@@ -39,7 +39,7 @@ public class Überläufer extends Hauptrolle
 
     @Override
     public FrontendControl getDropdownOtions() {
-        return new FrontendControl(FrontendControl.LIST_DISPLAY_AS_TEXT, Spieler.getDeadHauptrollen());
+        return new FrontendControl(FrontendControl.DROPDOWN_WITH_SUGGESTIONS, Spieler.getDeadHauptrollen());
     }
 
     @Override

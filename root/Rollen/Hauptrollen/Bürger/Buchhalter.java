@@ -33,7 +33,7 @@ public class Buchhalter extends Hauptrolle
     public FrontendControl getDropdownOtions() {
         FrontendControl frontendControl = new FrontendControl();
 
-        frontendControl.typeOfContent = FrontendControl.LIST_WITHOUT_DISPLAY;
+        frontendControl.typeOfContent = FrontendControl.DROPDOWN_WITHOUT_SUGGESTIONS;
         frontendControl.content.add(JA);
         frontendControl.content.add(NEIN);
 

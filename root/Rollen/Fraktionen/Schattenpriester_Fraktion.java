@@ -42,7 +42,7 @@ public class Schattenpriester_Fraktion extends Fraktion
     public FrontendControl getDropdownOtions() {
         FrontendControl frontendControl = new FrontendControl();
 
-        frontendControl.typeOfContent = FrontendControl.LIST_DISPLAY_AS_TEXT;
+        frontendControl.typeOfContent = FrontendControl.DROPDOWN_WITH_SUGGESTIONS;
 
         for (Opfer currentOpfer : Opfer.deadVictims) {
             String fraktionOpfer = currentOpfer.opfer.hauptrolle.getFraktion().getName();

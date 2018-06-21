@@ -151,6 +151,7 @@ public class Nacht extends Thread
         lock = new Object();
         synchronized (lock) {
             FrontendControl dropdownOtions;
+            FrontendControl info;
             String feedback;
             String feedbackLastStatement = null;
 
@@ -185,6 +186,7 @@ public class Nacht extends Thread
                         break;
 
                     case Statement.ROLLE_CHOOSE_ONE:
+                    case Statement.ROLLE_CHOOSE_ONE_INFO:
                         rolle = ((StatementRolle)statement).getRolle();
 
                         if (rolle.abilityCharges > 0) {
@@ -194,6 +196,12 @@ public class Nacht extends Thread
                         } else {
                             showAufgebrauchtPages(statement); //TODO deaktiv/tot beachten
                         }
+                        break;
+
+                    case Statement.ROLLE_INFO:
+                        rolle = ((StatementRolle)statement).getRolle();
+                        info = rolle.getInfo();
+                        showInfo(statement, info);
                         break;
 
                     case Statement.ROLLE_SPECAL:
@@ -229,12 +237,6 @@ public class Nacht extends Thread
 
                     case PROGRAMM_SCHÜTZE:
                         setSchütze();
-                        break;
-
-                    case LADY_ALEERA:
-                        ArrayList<String> geschützte = ((LadyAleera)rolle).findGeschützeSpieler();
-
-                        showListOnBothScreens(statement, geschützte);
                         break;
 
                     case WÖLFIN:
@@ -735,6 +737,18 @@ public class Nacht extends Thread
         }
     }
 
+    public void showInfo(Statement statement, FrontendControl info) {
+        switch (info.typeOfContent) {
+            case FrontendControl.STATIC_IMAGE:
+                showImageOnBothScreens(statement, info.imagePath);
+                break;
+
+            case FrontendControl.STATIC_LIST:
+                showListOnBothScreens(statement, info.content);
+                break;
+        }
+    }
+
     public void displayCard(Statement statement, String imagePath) {
         switch (statement.getState())
         {
@@ -885,12 +899,12 @@ public class Nacht extends Thread
     }
 
     public void showDropdownPage(Statement statement, ArrayList<String> dropdownOptions) {
-        FrontendControl frontendControl = new FrontendControl(FrontendControl.LIST_WITHOUT_DISPLAY, dropdownOptions);
+        FrontendControl frontendControl = new FrontendControl(FrontendControl.DROPDOWN_WITHOUT_SUGGESTIONS, dropdownOptions);
         showDropdownPage(statement, frontendControl);
     }
 
     public void showDropdownListPage(Statement statement, ArrayList<String> dropdownOptions) {
-        FrontendControl frontendControl = new FrontendControl(FrontendControl.LIST_DISPLAY_AS_TEXT, dropdownOptions);
+        FrontendControl frontendControl = new FrontendControl(FrontendControl.DROPDOWN_WITH_SUGGESTIONS, dropdownOptions);
         showDropdownPage(statement, frontendControl);
     }
 
@@ -902,11 +916,11 @@ public class Nacht extends Thread
 
                 switch (frontendControl.typeOfContent)
                 {
-                    case FrontendControl.LIST_WITHOUT_DISPLAY:
+                    case FrontendControl.DROPDOWN_WITHOUT_SUGGESTIONS:
                         spielerDropdownPage(statement.titel, 1);
                         break;
 
-                    case FrontendControl.LIST_DISPLAY_AS_TEXT:
+                    case FrontendControl.DROPDOWN_WITH_SUGGESTIONS:
                         spielerListMirrorPage(statement.titel, frontendControl.content);
                         break;
                 }
@@ -983,11 +997,11 @@ public class Nacht extends Thread
 
                     switch (frontendControl.typeOfContent)
                     {
-                        case FrontendControl.LIST_WITHOUT_DISPLAY:
+                        case FrontendControl.DROPDOWN_WITHOUT_SUGGESTIONS:
                             spielerDropdownPage(statement.titel, 1);
                             break;
 
-                        case FrontendControl.LIST_DISPLAY_AS_TEXT:
+                        case FrontendControl.DROPDOWN_WITH_SUGGESTIONS:
                             spielerListMirrorPage(statement.titel, frontendControl.content);
                             break;
                     }
@@ -1132,11 +1146,11 @@ public class Nacht extends Thread
         addStatementRolle(ÜBERLÄUFER, ÜBERLÄUFER_TITEL, Überläufer.name, Statement.ROLLE_CHOOSE_ONE);
         addStatementRolle(NACHBAR, NACHBAR_TITEL, Nachbar.name, Statement.ROLLE_CHOOSE_ONE);
         addStatementRolle(HOLDE_MAID, HOLDE_MAID_TITEL, HoldeMaid.name, Statement.ROLLE_CHOOSE_ONE);
-        addStatementRolle(GUTE_HEXE_SCHÜTZEN, GUTE_HEXE_SCHÜTZEN_TITEL, GuteHexe.name, Statement.ROLLE_SPECAL);
+        addStatementRolle(GUTE_HEXE_SCHÜTZEN, GUTE_HEXE_SCHÜTZEN_TITEL, GuteHexe.name, Statement.ROLLE_SPECAL); //TODO choose one
 
         addInvisibleProgrammStatement(PROGRAMM_SCHÜTZE);
 
-        addStatementRolle(LADY_ALEERA, LADY_ALEERA_TITEL, LadyAleera.name, Statement.ROLLE_SPECAL);
+        addStatementRolle(LADY_ALEERA, LADY_ALEERA_TITEL, LadyAleera.name, Statement.ROLLE_INFO);
         addStatementRolle(PROSTITUIERTE, PROSTITUIERTE_TITEL, Prostituierte.name, Statement.ROLLE_CHOOSE_ONE);
 
         addStatementRolle(RIESE, RIESE_TITEL, Riese.name, Statement.ROLLE_CHOOSE_ONE);
@@ -1150,12 +1164,12 @@ public class Nacht extends Thread
         addStatementFraktion(SCHATTENPRIESTER, SCHATTENPRIESTER_TITEL, Schattenpriester_Fraktion.name, Statement.FRAKTION_CHOOSE_ONE);
         addStatementFraktion(NEUER_SCHATTENPRIESTER, NEUER_SCHATTENPRIESTER_TITEL, Schattenpriester_Fraktion.name, Statement.FRAKTION_SPECAL);
         addStatementRolle(CHEMIKER, CHEMIKER_TITEL, Chemiker.name, Statement.ROLLE_CHOOSE_ONE);
-        addStatementRolle(NEUER_WERWOLF, NEUER_WERWOLF_TITEL, Chemiker.name, Statement.ROLLE_SPECAL);
+        addStatementRolle(NEUER_WERWOLF, NEUER_WERWOLF_TITEL, Chemiker.name, Statement.ROLLE_INFO);
         addStatementRolle(GUTE_HEXE_WIEDERBELEBEN, GUTE_HEXE_WIEDERBELEBEN_TITEL, GuteHexe.name, Statement.ROLLE_SPECAL);
 
-        addStatementRolle(MISS_VERONA, MISS_VERONA_TITEL, MissVerona.name, Statement.ROLLE_SPECAL);
+        addStatementRolle(MISS_VERONA, MISS_VERONA_TITEL, MissVerona.name, Statement.ROLLE_INFO);
         addStatementRolle(SEHERIN, SEHERIN_TITEL, Seherin.name, Statement.ROLLE_CHOOSE_ONE);
-        addStatementRolle(ORAKEL, ORAKEL_TITEL, Orakel.name, Statement.ROLLE_SPECAL);
+        addStatementRolle(ORAKEL, ORAKEL_TITEL, Orakel.name, Statement.ROLLE_INFO);
         addStatementRolle(SPÄHER, SPÄHER_TITEL, Späher.name, Statement.ROLLE_CHOOSE_ONE);
         addStatementRolle(BUCHHALTER, BUCHHALTER_TITEL, Buchhalter.name, Statement.ROLLE_CHOOSE_ONE);
         if(Spieler.getLivigPlayer().size()>4) {
@@ -1179,7 +1193,7 @@ public class Nacht extends Thread
 
         addStatementRolle(BESCHWÖRER, BESCHWÖRER_TITEL, Beschwörer.name, Statement.ROLLE_CHOOSE_ONE);
         addStatementRolle(FRISÖR, FRISÖR_TITEL, Frisör.name, Statement.ROLLE_CHOOSE_ONE);
-        addStatementRolle(NACHBAR_INFORMATION, NACHBAR_INFORMATION_TITEL, Nachbar.name, Statement.ROLLE_SPECAL);
+        addStatementRolle(NACHBAR_INFORMATION, NACHBAR_INFORMATION_TITEL, Nachbar.name, Statement.ROLLE_INFO);
         if (Rolle.rolleInNachtEnthalten(Konditorlehrling.name)) {
             addStatementRolle(KONDITOR_LEHRLING, KONDITOR_LEHRLING_TITEL, Konditorlehrling.name, Statement.ROLLE_SPECAL);
         } else {
@@ -1192,10 +1206,10 @@ public class Nacht extends Thread
 
         addStatementIndie(OPFER, OPFER_TITEL, Statement.INDIE);
         if(Wölfin.modus == Wölfin.TÖTEND) {
-            addStatementRolle(WÖLFIN_BONUSROLLE, WÖLFIN_BONUSROLLE_TITEL, Wölfin.name, Statement.ROLLE_SPECAL);
+            addStatementRolle(WÖLFIN_BONUSROLLE, WÖLFIN_BONUSROLLE_TITEL, Wölfin.name, Statement.ROLLE_INFO);
         }
         if(Rolle.rolleExists(Beschwörer.name)) {
-            addStatementIndie(VERSTUMMT, VERSTUMMT_TITEL, Statement.INDIE);
+            addStatementRolle(VERSTUMMT, VERSTUMMT_TITEL, Beschwörer.name, Statement.ROLLE_INFO);
         }
         if(Rolle.rolleExists(Frisör.name) || Rolle.rolleExists(Wahrsager.name)) {
             addStatementIndie(SCHÖNLINGE, SCHÖNLINGE_TITEL, Statement.INDIE);

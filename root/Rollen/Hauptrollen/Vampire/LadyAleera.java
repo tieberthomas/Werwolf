@@ -1,5 +1,6 @@
 package root.Rollen.Hauptrollen.Vampire;
 
+import root.Frontend.FrontendControl;
 import root.ResourceManagement.ResourcePath;
 import root.Rollen.Fraktion;
 import root.Rollen.Fraktionen.Vampire;
@@ -20,6 +21,11 @@ public class LadyAleera extends Hauptrolle
     public static boolean unique = true;
     public static boolean spammable = false;
     public static boolean killing = true;
+
+    @Override
+    public FrontendControl getInfo() {
+        return new FrontendControl(FrontendControl.STATIC_LIST, findGeschützeSpieler());
+    }
 
     @Override
     public String getName() {
@@ -60,7 +66,6 @@ public class LadyAleera extends Hauptrolle
             if ((currentSpieler.geschützt || nebenrolleCurrentSpieler.equals(Vampirumhang.name)) && currentSpieler.lebend) {
                 geschützte.add(currentSpieler.name);
             }
-            //TODO bestienmeister nicht zeigen (vorher mit michael absprechen)
         }
 
         return geschützte;

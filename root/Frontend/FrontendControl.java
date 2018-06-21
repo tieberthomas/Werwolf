@@ -6,20 +6,22 @@ import java.util.ArrayList;
  * Created by Steve on 16.05.2018.
  */
 public class FrontendControl {
-    public static final int LIST_WITHOUT_DISPLAY = 0;
-    public static final int LIST_DISPLAY_AS_TEXT = 1;
-    public static final int LIST_DISPLAY_AS_IMAGE = 2;
+    public static final int DROPDOWN_WITHOUT_SUGGESTIONS = 0;
+    public static final int DROPDOWN_WITH_SUGGESTIONS = 1;
+    public static final int STATIC_LIST = 2;
+    public static final int STATIC_IMAGE = 3;
 
     public int typeOfContent;
     public ArrayList<String> content;
+    public String imagePath;
 
     public FrontendControl() {
-        this.typeOfContent = LIST_WITHOUT_DISPLAY;
+        this.typeOfContent = DROPDOWN_WITHOUT_SUGGESTIONS;
         this.content = new ArrayList<>();
     }
 
     public FrontendControl(ArrayList<String> content) {
-        this.typeOfContent = LIST_WITHOUT_DISPLAY;
+        this.typeOfContent = DROPDOWN_WITHOUT_SUGGESTIONS;
         this.content = content;
     }
 

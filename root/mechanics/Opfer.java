@@ -48,7 +48,7 @@ public class Opfer {
     public static FrontendControl getOpferOrNonFrontendControl() {
         FrontendControl frontendControl = new FrontendControl();
 
-        frontendControl.typeOfContent = FrontendControl.LIST_DISPLAY_AS_TEXT;
+        frontendControl.typeOfContent = FrontendControl.DROPDOWN_WITH_SUGGESTIONS;
         frontendControl.content = getOpferOrNonStrings();
 
         return frontendControl;

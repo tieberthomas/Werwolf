@@ -316,12 +316,12 @@ public class ErsteNacht extends Thread {
 
         switch (frontendControl.typeOfContent)
         {
-            case FrontendControl.LIST_WITHOUT_DISPLAY:
+            case FrontendControl.DROPDOWN_WITHOUT_SUGGESTIONS:
                 spielerFrame.dropDownPage = spielerFrame.pageFactory.generateDropdownPage(statement.titel, 1);
                 spielerFrame.buildScreenFromPage(spielerFrame.dropDownPage);
                 break;
 
-            case FrontendControl.LIST_DISPLAY_AS_TEXT:
+            case FrontendControl.DROPDOWN_WITH_SUGGESTIONS:
                 spielerFrame.dropDownPage = spielerFrame.pageFactory.generateListMirrorPage(statement.titel, frontendControl.content);
                 spielerFrame.buildScreenFromPage(spielerFrame.dropDownPage);
                 break;

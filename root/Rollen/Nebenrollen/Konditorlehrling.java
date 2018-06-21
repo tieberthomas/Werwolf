@@ -26,7 +26,7 @@ public class Konditorlehrling extends Nebenrolle
     public FrontendControl getDropdownOtions() {
         FrontendControl frontendControl = new FrontendControl();
 
-        frontendControl.typeOfContent = FrontendControl.LIST_WITHOUT_DISPLAY;
+        frontendControl.typeOfContent = FrontendControl.DROPDOWN_WITHOUT_SUGGESTIONS;
         frontendControl.content.add(GUT);
         frontendControl.content.add(SCHLECHT);
 

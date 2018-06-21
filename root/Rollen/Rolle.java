@@ -22,6 +22,10 @@ public class Rolle
         return new FrontendControl();
     }
 
+    public FrontendControl getInfo() {
+        return new FrontendControl();
+    }
+
     public String getName() {
         return "";
     }
