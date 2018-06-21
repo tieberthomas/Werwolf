@@ -500,12 +500,17 @@ public class ErzählerPageFactory {
         erzählerFrame.umbringenJButton = new JButton();
         PageElement nextButton = pageElementFactory.generateLowestButton(erzählerFrame.umbringenJButton);
 
+        erzählerFrame.goBackJButton = new JButton();
+        PageElement goBackButton = pageElementFactory.generateLowestButton(erzählerFrame.goBackJButton, "Zurück", false);
+        erzählerFrame.goBackButtons.add(erzählerFrame.goBackJButton);
+
         Page umbringenPage = new Page();
 
         umbringenPage.add(titleLabel);
         umbringenPage.add(nameLabel);
         umbringenPage.add(choosePlayer1);
         umbringenPage.add(nextButton);
+        umbringenPage.add(goBackButton);
 
         return umbringenPage;
     }

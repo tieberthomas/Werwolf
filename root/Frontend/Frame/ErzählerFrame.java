@@ -543,7 +543,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
             }
             nextPage();
         } else if(goBackButtons.contains(ae.getSource())){
-            if(mode == ErzählerFrameMode.nachzüglerSetup){
+            if(mode == ErzählerFrameMode.nachzüglerSetup || mode == ErzählerFrameMode.umbringenSetup){
                 mode = ErzählerFrameMode.getPhaseMode();
                 buildScreenFromPage(pageFactory.generateDefaultDayPage());
             }else {
