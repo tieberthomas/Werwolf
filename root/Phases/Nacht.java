@@ -133,12 +133,6 @@ public class Nacht extends Thread
     public static final String TÖTEND_TITEL = "Tötend";
     public static final String NICHT_TÖTEND_TITEL = "Nicht Tötend";
 
-    //TODO delete
-    public static final String JA = "Ja";
-    public static final String NEIN = "Nein";
-    public static final String GUT = "Gut";
-    public static final String SCHLECHT = "Schlecht";
-
     ErzählerFrame erzählerFrame;
     public static SpielerFrame spielerFrame;
     public static ArrayList<Statement> statements;
@@ -217,7 +211,7 @@ public class Nacht extends Thread
 
                 switch (statement.beschreibung) {
                     case WIRT:
-                        if (feedback != null && feedback.equals(JA)) {
+                        if (feedback != null && feedback.equals(Wirt.JA)) {
                             freibier = true;
                         }
                         break;
@@ -357,7 +351,7 @@ public class Nacht extends Thread
                         break;
 
                     case BUCHHALTER:
-                        if (feedback != null && feedback.equals(JA)) {
+                        if (feedback != null && feedback.equals(Buchhalter.JA)) {
                             ArrayList<String> hauptrollenImSpiel = Hauptrolle.getMainRolesAlive();
                             showListOnBothScreens(statement, hauptrollenImSpiel);
                         }
@@ -479,7 +473,7 @@ public class Nacht extends Thread
                             showKonditorDropdownPage(statement, dropdownOtions);
                             feedback = rolle.aktion(erzählerFrame.chosenOption1);
 
-                            Torte.gut = feedback.equals(GUT);
+                            Torte.gut = feedback.equals(Konditor.GUT);
                             feedback = null;
                         }
                         break;
