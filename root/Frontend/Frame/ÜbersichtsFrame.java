@@ -40,7 +40,9 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener{
 
         refreshJButton = new JButton();
 
-        this.setLocation(0,ErzählerFrame.PANEL_HEIGHT + 50);
+        this.setLocation(0,erzählerFrame.frameJpanel.getHeight() + 50);
+
+        frameJpanel = generateDefaultPanel();
 
         übersichtsPage = pageFactory.generateÜbersichtsPage();
         refreshÜbersichtsPage();

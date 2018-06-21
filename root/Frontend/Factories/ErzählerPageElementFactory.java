@@ -49,8 +49,8 @@ public class ErzählerPageElementFactory {
 
         PageElement startButton = new PageElement(button, startButtonWidth, startButtonHeight, null, null, 0, 0);
 
-        int xCoord = erzählerFrame.PANEL_WIDTH / 2 - (startButtonWidth / 2);
-        int yCoord = erzählerFrame.PANEL_HEIGHT / 2 - startButtonHeight;
+        int xCoord = erzählerFrame.frameJpanel.getWidth() / 2 - (startButtonWidth / 2);
+        int yCoord = erzählerFrame.frameJpanel.getHeight() / 2 - startButtonHeight;
 
         startButton.setCoords(xCoord, yCoord);
 
@@ -66,7 +66,7 @@ public class ErzählerPageElementFactory {
 
         PageElement bigButton = new PageElement(button, bigButtonWidth, bigButtonHeight, null, predecessorY, 0, 10);
 
-        int xCoord = erzählerFrame.PANEL_WIDTH / 2 - (bigButtonWidth / 2);
+        int xCoord = erzählerFrame.frameJpanel.getWidth() / 2 - (bigButtonWidth / 2);
 
         bigButton.setCoordX(xCoord);
 
@@ -111,10 +111,10 @@ public class ErzählerPageElementFactory {
         int xSpace = 10;
         int xOffset = (elementWidth + xSpace) * howManyButtonsBefore;
         int spaceToPredecessorX = xOffset;
-        int spaceToPredecessorY = erzählerFrame.PANEL_HEIGHT - elementHeight - 20;
+        int spaceToPredecessorY = erzählerFrame.frameJpanel.getHeight() - elementHeight - 20;
 
         if(right) {
-            spaceToPredecessorX = (erzählerFrame.PANEL_WIDTH - elementWidth - 20) - xOffset;
+            spaceToPredecessorX = (erzählerFrame.frameJpanel.getWidth()  - elementWidth - 20) - xOffset;
         }
 
         PageElement goNextButton = new PageElement(button, elementWidth, elementHeight, null, null, spaceToPredecessorX, spaceToPredecessorY);
@@ -275,8 +275,12 @@ public class ErzählerPageElementFactory {
 
         JLabel nightJLabel = new JLabel(nightText);
         nightJLabel.setVerticalAlignment(SwingConstants.TOP);
+        int width = nightJLabel.getPreferredSize().width;
+        if(width>400) {
+            width = 400;
+        }
 
-        PageElement nightLabel = new PageElement(nightJLabel, 400, erzählerFrame.getHeight()+300);
+        PageElement nightLabel = new PageElement(nightJLabel, width, erzählerFrame.frameJpanel.getHeight()+300);
 
         return nightLabel;
     }
@@ -301,12 +305,12 @@ public class ErzählerPageElementFactory {
     }
 
     public PageElement generateTitleLabel(Predecessor predecessorX, String titel) {
-        int titleLabelWidth = 500;
-        int titleLabelHeight = 50;
+        JLabel titleJLabel = generateTitleJLabel(titel);
+
+        int titleLabelWidth = titleJLabel.getPreferredSize().width;
+        int titleLabelHeight = titleJLabel.getPreferredSize().height;
         int spaceToPredecessorY = 0;
         int spaceToPredecessorX = 20;
-
-        JLabel titleJLabel = generateTitleJLabel(titel);
 
         PageElement titleLabel = new PageElement(titleJLabel, titleLabelWidth, titleLabelHeight, predecessorX, null, spaceToPredecessorX, spaceToPredecessorY);
 
@@ -340,7 +344,7 @@ public class ErzählerPageElementFactory {
 
         PageElement imageLabel = new PageElement(imageJLabel, imageJLabelWidth, imageJLabelHeight, null, predecessorY, 0, 20);
 
-        int xCoord = erzählerFrame.PANEL_WIDTH/2-(imageJLabelWidth/2);
+        int xCoord = erzählerFrame.frameJpanel.getWidth()/2-(imageJLabelWidth/2);
 
         imageLabel.setCoordX(xCoord);
 
@@ -357,11 +361,11 @@ public class ErzählerPageElementFactory {
 
         imageJLabel.setIcon(iconLogo);
 
-        int yOffset = erzählerFrame.PANEL_HEIGHT/2 - (imageJLabelHeight+numberOfBigButtons*bigButtonHeightPlusSpace)/2;
+        int yOffset = erzählerFrame.frameJpanel.getHeight()/2 - (imageJLabelHeight+numberOfBigButtons*bigButtonHeightPlusSpace)/2;
 
         PageElement imageLabel = new PageElement(imageJLabel, imageJLabelWidth, imageJLabelHeight, null, null, 0, yOffset);
 
-        int xCoord = erzählerFrame.PANEL_WIDTH/2-(imageJLabelWidth/2);
+        int xCoord = erzählerFrame.frameJpanel.getWidth()/2-(imageJLabelWidth/2);
 
         imageLabel.setCoordX(xCoord);
 
@@ -402,11 +406,11 @@ public class ErzählerPageElementFactory {
         int imageJLabelWidth = (int)label.getPreferredSize().getWidth();
         int imageJLabelHeight = (int)label.getPreferredSize().getHeight();
 
-        int spaceToPredecessorY = erzählerFrame.PANEL_HEIGHT/2-imageJLabelHeight/2;
+        int spaceToPredecessorY = erzählerFrame.frameJpanel.getHeight()/2-imageJLabelHeight/2;
 
         PageElement centeredLabel = new PageElement(label, imageJLabelWidth, imageJLabelHeight, null, null, 0, spaceToPredecessorY);
 
-        int xCoord = erzählerFrame.PANEL_WIDTH/3-(imageJLabelWidth/2);
+        int xCoord = erzählerFrame.frameJpanel.getWidth()/3-(imageJLabelWidth/2);
 
         centeredLabel.setCoordX(xCoord);
 
@@ -421,13 +425,13 @@ public class ErzählerPageElementFactory {
         int imageJLabelWidth = iconLogo.getIconWidth();
         int imageJLabelHeight = iconLogo.getIconHeight();
 
-        int spaceToPredecessorY = erzählerFrame.PANEL_HEIGHT/2-imageJLabelHeight/2;
+        int spaceToPredecessorY = erzählerFrame.frameJpanel.getHeight()/2-imageJLabelHeight/2;
 
         imageJLabel.setIcon(iconLogo);
 
         PageElement imageLabel = new PageElement(imageJLabel, imageJLabelWidth, imageJLabelHeight, null, null, 0, spaceToPredecessorY);
 
-        int xCoord = (erzählerFrame.PANEL_WIDTH/3)*2-(imageJLabelWidth/2);
+        int xCoord = (erzählerFrame.frameJpanel.getWidth()/3)*2-(imageJLabelWidth/2);
 
         imageLabel.setCoordX(xCoord);
 
@@ -442,6 +446,6 @@ public class ErzählerPageElementFactory {
     }
 
     public int calculateColumns(int columnWidth){
-        return (int)Math.floor((double)erzählerFrame.PANEL_WIDTH/(double)columnWidth);
+        return (int)Math.floor((double)erzählerFrame.frameJpanel.getWidth()/(double)columnWidth);
     }
 }

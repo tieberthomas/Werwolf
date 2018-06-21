@@ -32,15 +32,18 @@ public class Nachbar extends Nebenrolle
     public ArrayList<String> getBesucherStrings() {
         ArrayList<String> besucher = new ArrayList<>();
 
-        for(Spieler spieler : Spieler.getLivigPlayer()) {
-            if(spieler.hauptrolle.besucht!=null && spieler.hauptrolle.besucht.name.equals(beobachteterSpieler.name) ||
-                    (spieler.nebenrolle.besucht!=null && spieler.nebenrolle.besucht.name.equals(beobachteterSpieler.name))) {
-                besucher.add(spieler.name);
-            }
-        }
+        if(beobachteterSpieler!=null) {
 
-        Spieler nachbarSpieler = Spieler.findSpielerPerRolle(Nachbar.name);
-        besucher.remove(nachbarSpieler.name);
+            for (Spieler spieler : Spieler.getLivigPlayer()) {
+                if (spieler.hauptrolle.besucht != null && spieler.hauptrolle.besucht.name.equals(beobachteterSpieler.name) ||
+                        (spieler.nebenrolle.besucht != null && spieler.nebenrolle.besucht.name.equals(beobachteterSpieler.name))) {
+                    besucher.add(spieler.name);
+                }
+            }
+
+            Spieler nachbarSpieler = Spieler.findSpielerPerRolle(Nachbar.name);
+            besucher.remove(nachbarSpieler.name);
+        }
 
         return besucher;
     }

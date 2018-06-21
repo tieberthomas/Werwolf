@@ -49,10 +49,10 @@ public class ÜbersichtsPageElementFactory {
         int xSpace = 10;
         int xOffset = (elementWidth + xSpace) * howManyButtonsBefore;
         int spaceToPredecessorX = xOffset;
-        int spaceToPredecessorY = übersichtsFrame.PANEL_HEIGHT - elementHeight - 20;
+        int spaceToPredecessorY = übersichtsFrame.frameJpanel.getHeight() - elementHeight - 20;
 
         if(right) {
-            spaceToPredecessorX = (übersichtsFrame.PANEL_WIDTH - elementWidth - 20) - xOffset;
+            spaceToPredecessorX = (übersichtsFrame.frameJpanel.getWidth() - elementWidth - 20) - xOffset;
         }
 
         PageElement goNextButton = new PageElement(button, elementWidth, elementHeight, null, null, spaceToPredecessorX, spaceToPredecessorY);

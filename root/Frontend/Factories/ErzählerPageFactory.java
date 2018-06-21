@@ -44,6 +44,8 @@ public class ErzählerPageFactory {
         startPage.add(startButton);
         startPage.add(loadLastGame);
 
+        erzählerFrame.setupPages.add(startPage);
+
         return startPage;
     }
 
@@ -82,15 +84,15 @@ public class ErzählerPageFactory {
         Page playerSetupPage = new Page();
 
         playerSetupPage.add(nameLabel);
-        playerSetupPage.add(goBackButton);
         playerSetupPage.add(addPlayerButton);
         playerSetupPage.add(addPlayerTxtField);
+        playerSetupPage.add(goBackButton);
         playerSetupPage.add(goNextButton);
         playerSetupPage.add(numberOfPlayersLabel);
         playerSetupPage.addTable(erzählerFrame.deletePlayerTable);
         playerSetupPage.addTable(erzählerFrame.playerTable);
 
-        playerSetupPage.chain(erzählerFrame.startPage);
+        erzählerFrame.setupPages.add(playerSetupPage);
 
         return playerSetupPage;
     }
@@ -132,7 +134,7 @@ public class ErzählerPageFactory {
         mainRoleSetupPage.addTable(erzählerFrame.deleteMainRoleTable);
         mainRoleSetupPage.addTable(erzählerFrame.mainRoleLabelTable);
 
-        mainRoleSetupPage.chain(erzählerFrame.playerSetupPage);
+        erzählerFrame.setupPages.add(mainRoleSetupPage);
 
         return mainRoleSetupPage;
     }
@@ -174,7 +176,7 @@ public class ErzählerPageFactory {
         secondaryRoleSetupPage.addTable(erzählerFrame.deleteSecondaryRoleTable);
         secondaryRoleSetupPage.addTable(erzählerFrame.secondaryRoleLabelTable);
 
-        secondaryRoleSetupPage.chain(erzählerFrame.mainRoleSetupPage);
+        erzählerFrame.setupPages.add(secondaryRoleSetupPage);
 
         return secondaryRoleSetupPage;
     }
@@ -247,7 +249,7 @@ public class ErzählerPageFactory {
         playerSpecifyPage.add(goNextButton);
         playerSpecifyPage.add(goBackButton);
 
-        playerSpecifyPage.chain(erzählerFrame.secondaryRoleSetupPage);
+        erzählerFrame.setupPages.add(playerSpecifyPage);
 
         return playerSpecifyPage;
     }
@@ -548,20 +550,20 @@ public class ErzählerPageFactory {
         return tortenPage;
     }
 
-    public Page generateVictoryPage(String victoryMessage) {
+    /*public Page generateVictoryPage(String victoryMessage) {
         Page victoryPage = new Page();
         JLabel victoryJLabel = pageElementFactory.generateBigJLabel(new JLabel(victoryMessage));
         int width = victoryJLabel.getPreferredSize().width;
         int height = victoryJLabel.getPreferredSize().height;
-        int spaceToPredecessorX = erzählerFrame.PANEL_WIDTH/2 - width/2;
-        int spaceToPredecessorY = erzählerFrame.PANEL_HEIGHT/2 - height/2;
+        int spaceToPredecessorX = erzählerFrame.frameJPanel.getWidth()/2 - width/2;
+        int spaceToPredecessorY = erzählerFrame.frameJPanel.getWidth()/2 - height/2;
 
         PageElement victoryLabel = new PageElement(victoryJLabel, width, height, null, null, spaceToPredecessorX, spaceToPredecessorY);
 
         victoryPage.add(victoryLabel);
 
         return victoryPage;
-    }
+    }*/
 
     public PageElement getContinueToGeneratePagePoint(Page page) {
         return page.pageElements.get(continueToGeneratePagePoint);

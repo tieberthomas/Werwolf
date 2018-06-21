@@ -26,6 +26,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     public SpielerFrame spielerFrame;
     public ÜbersichtsFrame übersichtsFrame;
     public Page savePage;
+    public ArrayList<Page> setupPages;
 
     FileManager fileManager;
 
@@ -110,16 +111,18 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         Hauptrolle.generateAllAvailableMainRoles();
         Nebenrolle.generateAllAvailableSecondaryRoles();
 
-        goBackButtons = new ArrayList<JButton>();
-        goNextButtons = new ArrayList<JButton>();
+        goBackButtons = new ArrayList<>();
+        goNextButtons = new ArrayList<>();
 
-        mainRolesLeft = new ArrayList<String>();
-        secondaryRolesLeft = new ArrayList<String>();
-        playersLeft = new ArrayList<String>();
+        mainRolesLeft = new ArrayList<>();
+        secondaryRolesLeft = new ArrayList<>();
+        playersLeft = new ArrayList<>();
 
-        mainRolesSpecified= new ArrayList<String>();
-        secondaryRolesSpecified = new ArrayList<String>();
-        playersSpecified = new ArrayList<String>();
+        mainRolesSpecified= new ArrayList<>();
+        secondaryRolesSpecified = new ArrayList<>();
+        playersSpecified = new ArrayList<>();
+
+        setupPages = new ArrayList<>();
 
         chosenOption1 = "";
         chosenOption2 = "";
@@ -139,6 +142,8 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         deleteSecondaryRoleButtons = new ArrayList<JButton>();
         deleteSpecifyPlayerButtons = new ArrayList<JButton>();
 
+        frameJpanel = generateDefaultPanel();
+
         generateAllPages();
 
         currentPage = startPage;
@@ -152,10 +157,12 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     }
 
     public void generateAllPages() {
+        setupPages = new ArrayList<>();
         startPage = pageFactory.generateStartPage();
         playerSetupPage = pageFactory.generatePlayerSetupPage();
         mainRoleSetupPage = pageFactory.generateMainRoleSetupPage();
         secondaryRoleSetupPage = pageFactory.generateSecondaryRoleSetupPage();
+        playerSpecifiyPage = pageFactory.generatePlayerSpecifiyPage();
     }
 
     public void refreshPlayerPage(){
@@ -428,26 +435,33 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
 
     public void nextPage() {
         if(currentPage!=null) {
-            if(currentPage.nextPage!=null) {
-                currentPage = currentPage.nextPage;
-                buildScreenFromPage(currentPage);
-                refreshPage(currentPage);
-                if(mode == ErzählerFrameMode.setup) {
-                    spielerFrame.refreshSetupPage(this);
-                }
+            if(currentPage!=playerSpecifiyPage) {
+                int index = setupPages.indexOf(currentPage);
+                generateAllPages();
+                currentPage = setupPages.get(index + 1);
+            }
+            buildScreenFromPage(currentPage);
+            refreshPage(currentPage);
+            if(mode == ErzählerFrameMode.setup) {
+                spielerFrame.refreshSetupPage();
             }
         }
     }
 
     public void prevPage() {
-        currentPage = currentPage.prevPage;
+        int index = setupPages.indexOf(currentPage);
+        generateAllPages();
+        currentPage = setupPages.get(index-1);
         buildScreenFromPage(currentPage);
         refreshPage(currentPage);
         if(mode == ErzählerFrameMode.setup) {
-            spielerFrame.refreshSetupPage(this);
+            spielerFrame.refreshSetupPage();
         }
         if(currentPage.equals(startPage)){
             spielerFrame.dispatchEvent(new WindowEvent(spielerFrame, WindowEvent.WINDOW_CLOSING));
+            mainRolesSpecified = new ArrayList<>();
+            secondaryRolesSpecified = new ArrayList<>();
+            playersSpecified = new ArrayList<>();
         }
     }
 
@@ -472,12 +486,12 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                 mainRolesLeft = Hauptrolle.getMainRoleInGameNames();
                 secondaryRolesLeft = Nebenrolle.getSecondaryRoleInGameNames();
                 this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-                spielerFrame = new SpielerFrame();
+                spielerFrame = new SpielerFrame(this);
                 spielerFrame.refreshPlayerSetupPage();
             } else if(ae.getSource() == startJButton) {
                 setUpVariables();
                 this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-                spielerFrame = new SpielerFrame();
+                spielerFrame = new SpielerFrame(this);
                 spielerFrame.refreshPlayerSetupPage();
             }
 
@@ -811,7 +825,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
 
         int spielerFrameMode = spielerFrame.mode;
         savePage = spielerFrame.currentPage;
-        spielerFrame = new SpielerFrame();
+        spielerFrame = new SpielerFrame(this);
         spielerFrame.mode = spielerFrameMode;
         spielerFrame.buildScreenFromPage(savePage);
 

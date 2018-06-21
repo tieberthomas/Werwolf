@@ -113,7 +113,7 @@ public class SpielerPageFactory {
         int frameOffset = MyFrame.yOffset;
         int titleHeight = titleLabel.height;
         int stringHeight = pageElementFactory.getJLabelHeight();
-        int spaceToUse = spielerFrame.PANEL_HEIGHT - frameOffset - titleHeight - stringHeight;
+        int spaceToUse = spielerFrame.frameJpanel.getHeight() - frameOffset - titleHeight - stringHeight;
         int spacePerString;
         int startpoint;
 
@@ -210,7 +210,7 @@ public class SpielerPageFactory {
             int frameOffset = MyFrame.yOffset;
             int titleHeight = titleLabel.height;
             int stringHeight = pageElementFactory.getJLabelHeight();
-            int spaceToUse = spielerFrame.PANEL_HEIGHT - frameOffset - titleHeight - stringHeight;
+            int spaceToUse = spielerFrame.frameJpanel.getHeight() - frameOffset - titleHeight - stringHeight;
             int spacePerString = spaceToUse / realStringsToDisplay.size();
             int spacingBetweenStrings = spacePerString - stringHeight;
             int startpoint = titleHeight + ((spacePerString / 2) - (stringHeight / 2));
@@ -365,7 +365,7 @@ public class SpielerPageFactory {
         if(realStringsToDisplay.size() > 0) {
             int frameOffset = 38;
             int stringHeight = pageElementFactory.getJLabelHeight(textSize);
-            int spaceToUse = spielerFrame.PANEL_HEIGHT - frameOffset - offsetAbove - offsetBelow;
+            int spaceToUse = spielerFrame.frameJpanel.getHeight() - frameOffset - offsetAbove - offsetBelow;
             int spacePerString = spaceToUse / realStringsToDisplay.size();
             int spacingBetweenStrings = spacePerString - stringHeight;
             int startpoint = ((spacePerString / 2) - (stringHeight / 2)) + offsetAbove;

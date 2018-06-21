@@ -17,6 +17,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class SpielerFrame extends MyFrame{
+    ErzählerFrame erzählerFrame;
     public SpielerPageFactory pageFactory;
     public SpielerPageElementFactory pageElementFactory;
 
@@ -39,8 +40,9 @@ public class SpielerFrame extends MyFrame{
     public static String timestring = "00:00:00";
     public static int time = 0;
 
-    public SpielerFrame(){
+    public SpielerFrame(ErzählerFrame erzählerFrame){
         WINDOW_TITLE = "Spieler Fenster";
+        this.erzählerFrame = erzählerFrame;
 
         pageFactory = new SpielerPageFactory(this);
         pageElementFactory = new SpielerPageElementFactory(this);
@@ -50,9 +52,11 @@ public class SpielerFrame extends MyFrame{
         comboBox3Label = new JLabel();
         clockLabel = new JLabel();
 
+        frameJpanel = generateDefaultPanel();
+
         generateAllPages();
 
-        this.setLocation(ErzählerFrame.PANEL_WIDTH + 20,0);
+        this.setLocation(erzählerFrame.frameJpanel.getWidth() + 20,0);
 
         showFrame();
 
@@ -68,7 +72,7 @@ public class SpielerFrame extends MyFrame{
         deactivatedPage = pageFactory.generateStaticImagePage("Deaktiviert", ResourcePath.DEAKTIVIERT, true);
     }
 
-    public void refreshSetupPage(ErzählerFrame erzählerFrame){
+    public void refreshSetupPage(){
         if(erzählerFrame.currentPage.equals(erzählerFrame.playerSetupPage)) {
             refreshPlayerSetupPage();
         }

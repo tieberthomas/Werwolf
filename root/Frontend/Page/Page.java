@@ -3,8 +3,6 @@ package root.Frontend.Page;
 import java.util.ArrayList;
 
 public class Page {
-    public Page prevPage;
-    public Page nextPage;
     public ArrayList<PageElement> pageElements;
     public ArrayList<PageTable> pageTables;
     public int xPageOffset;
@@ -18,9 +16,6 @@ public class Page {
 
         this.xPageOffset = spaceToXBorder;
         this.yPageOffset = spaceToYBorder;
-
-        prevPage = null;
-        nextPage = null;
     }
 
     public Page()
@@ -36,10 +31,5 @@ public class Page {
     public void addTable(PageTable pageTable) {
         pageTable.setPageOffset(xPageOffset, yPageOffset);
         pageTables.add(pageTable);
-    }
-
-    public void chain(Page predecessor) {
-        prevPage = predecessor;
-        predecessor.nextPage = this;
     }
 }

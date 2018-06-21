@@ -1,6 +1,7 @@
 package root;
 
 import root.Frontend.Frame.ErzählerFrame;
+import root.Frontend.Frame.MyFrame;
 
 import javax.swing.*;
 
@@ -11,6 +12,7 @@ public class main {
 
             @Override
             public void run() {
+                MyFrame.calcFrameSize();
                 ErzählerFrame erzählerFrame = new ErzählerFrame();
             }
         });
