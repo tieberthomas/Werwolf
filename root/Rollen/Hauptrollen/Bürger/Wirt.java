@@ -5,10 +5,6 @@ import root.ResourceManagement.ResourcePath;
 import root.Rollen.Fraktion;
 import root.Rollen.Fraktionen.Bürger;
 import root.Rollen.Hauptrolle;
-import root.Rollen.RoleType;
-import root.Spieler;
-
-import java.util.ArrayList;
 
 /**
  * Created by Steve on 12.11.2017.
@@ -19,7 +15,6 @@ public class Wirt extends Hauptrolle
     public static final String NEIN = "Nein";
 
     public static final String name = "Wirt";
-    public static int roleType = RoleType.CHOOSE_ONE;
     public static Fraktion fraktion = new Bürger();
     public static final String imagePath = ResourcePath.WIRT_KARTE;
     public static boolean unique = true;
@@ -49,11 +44,6 @@ public class Wirt extends Hauptrolle
     @Override
     public String getName() {
         return name;
-    }
-
-    @Override
-    public int getRoleType() {
-        return roleType;
     }
 
     @Override

@@ -6,9 +6,6 @@ import root.Rollen.Fraktion;
 import root.Rollen.Fraktionen.Überläufer_Fraktion;
 import root.Rollen.Hauptrolle;
 import root.Rollen.Hauptrollen.Bürger.Dorfbewohner;
-import root.Rollen.Nebenrolle;
-import root.Rollen.Nebenrollen.Schatten;
-import root.Rollen.RoleType;
 import root.Spieler;
 
 /**
@@ -17,7 +14,6 @@ import root.Spieler;
 public class Überläufer extends Hauptrolle
 {
     public static final String name = "Überläufer";
-    public static int roleType = RoleType.CHOOSE_ONE;
     public static Fraktion fraktion = new Überläufer_Fraktion();
     public static final String imagePath = ResourcePath.ÜBERLÄUFER_KARTE;
     public static boolean unique = true;
@@ -49,11 +45,6 @@ public class Überläufer extends Hauptrolle
     @Override
     public String getName() {
         return name;
-    }
-
-    @Override
-    public int getRoleType() {
-        return roleType;
     }
 
     @Override

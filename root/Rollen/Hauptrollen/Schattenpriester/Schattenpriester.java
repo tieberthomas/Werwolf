@@ -4,9 +4,6 @@ import root.ResourceManagement.ResourcePath;
 import root.Rollen.Fraktion;
 import root.Rollen.Fraktionen.Schattenpriester_Fraktion;
 import root.Rollen.Hauptrolle;
-import root.Rollen.Nebenrollen.Schatten;
-import root.Rollen.Nebenrollen.Schattenkutte;
-import root.mechanics.Opfer;
 
 /**
  * Created by Steve on 12.11.2017.

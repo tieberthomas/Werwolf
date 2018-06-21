@@ -1,8 +1,8 @@
 package root.Rollen;
 
+import root.Frontend.Frame.MyFrame;
 import root.Frontend.FrontendControl;
 import root.ResourceManagement.ResourcePath;
-import root.Frontend.Frame.MyFrame;
 import root.Rollen.Fraktionen.Werwölfe;
 import root.Spieler;
 import root.mechanics.Opfer;

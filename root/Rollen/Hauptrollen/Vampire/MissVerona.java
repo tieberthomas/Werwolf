@@ -1,12 +1,9 @@
 package root.Rollen.Hauptrollen.Vampire;
 
-import root.Frontend.FrontendControl;
 import root.ResourceManagement.ResourcePath;
 import root.Rollen.Fraktion;
 import root.Rollen.Fraktionen.Vampire;
 import root.Rollen.Hauptrolle;
-import root.Rollen.RoleType;
-import root.Spieler;
 import root.mechanics.Opfer;
 
 import java.util.ArrayList;

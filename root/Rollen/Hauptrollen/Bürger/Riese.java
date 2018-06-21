@@ -5,7 +5,6 @@ import root.ResourceManagement.ResourcePath;
 import root.Rollen.Fraktion;
 import root.Rollen.Fraktionen.Bürger;
 import root.Rollen.Hauptrolle;
-import root.Rollen.RoleType;
 import root.Spieler;
 import root.mechanics.Opfer;
 
@@ -15,7 +14,6 @@ import root.mechanics.Opfer;
 public class Riese extends Hauptrolle
 {
     public static final String name = "Riese";
-    public static int roleType = RoleType.CHOOSE_ONE;
     public static Fraktion fraktion = new Bürger();
     public static final String imagePath = ResourcePath.RIESE_KARTE;
     public static boolean unique = true;
@@ -45,11 +43,6 @@ public class Riese extends Hauptrolle
     @Override
     public String getName() {
         return name;
-    }
-
-    @Override
-    public int getRoleType() {
-        return roleType;
     }
 
     @Override

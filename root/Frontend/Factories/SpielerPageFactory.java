@@ -1,10 +1,10 @@
 package root.Frontend.Factories;
 
 import root.Frontend.Frame.MyFrame;
+import root.Frontend.Frame.SpielerFrame;
 import root.Frontend.Frame.SpielerFrameMode;
 import root.Frontend.Page.Page;
 import root.Frontend.Page.PageElement;
-import root.Frontend.Frame.SpielerFrame;
 import root.Rollen.Fraktion;
 import root.mechanics.Liebespaar;
 

@@ -3,10 +3,7 @@ package root.Rollen.Nebenrollen;
 import root.Frontend.FrontendControl;
 import root.ResourceManagement.ResourcePath;
 import root.Rollen.Nebenrolle;
-import root.Rollen.RoleType;
 import root.Spieler;
-
-import java.util.ArrayList;
 
 /**
  * Created by Steve on 12.11.2017.
@@ -14,7 +11,6 @@ import java.util.ArrayList;
 public class Totengräber extends Nebenrolle
 {
     public static final String name = "Totengräber";
-    public static int roleType = RoleType.CHOOSE_ONE;
     public static final String imagePath = ResourcePath.TOTENGRÄBER_KARTE;
     public static boolean unique = true;
     public static boolean spammable = false;

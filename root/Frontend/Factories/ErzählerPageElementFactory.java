@@ -1,6 +1,5 @@
 package root.Frontend.Factories;
 
-import root.*;
 import root.Frontend.Frame.ErzählerFrame;
 import root.Frontend.Frame.ErzählerFrameMode;
 import root.Frontend.Page.PageElement;
@@ -11,6 +10,7 @@ import root.Phases.Nacht;
 import root.Phases.Statement;
 import root.Rollen.Hauptrolle;
 import root.Rollen.Nebenrolle;
+import root.Spieler;
 
 import javax.swing.*;
 import java.awt.*;

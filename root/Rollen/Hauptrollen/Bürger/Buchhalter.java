@@ -4,17 +4,7 @@ import root.Frontend.FrontendControl;
 import root.ResourceManagement.ResourcePath;
 import root.Rollen.Fraktion;
 import root.Rollen.Fraktionen.Bürger;
-import root.Rollen.Fraktionen.Schattenpriester_Fraktion;
-import root.Rollen.Fraktionen.Vampire;
-import root.Rollen.Fraktionen.Werwölfe;
 import root.Rollen.Hauptrolle;
-import root.Rollen.Nebenrolle;
-import root.Rollen.Nebenrollen.Lamm;
-import root.Rollen.Nebenrollen.Schattenkutte;
-import root.Rollen.Nebenrollen.Vampirumhang;
-import root.Rollen.Nebenrollen.Wolfspelz;
-import root.Rollen.RoleType;
-import root.Spieler;
 
 /**
  * Created by Steve on 12.11.2017.
@@ -25,7 +15,6 @@ public class Buchhalter extends Hauptrolle
     public static final String NEIN = "Nein";
 
     public static final String name = "Buchhalter";
-    public static int roleType = RoleType.CHOOSE_ONE;
     public static Fraktion fraktion = new Bürger();
     public static final String imagePath = ResourcePath.BUCHHALTER_KARTE;
     public static boolean unique = true;
@@ -54,11 +43,6 @@ public class Buchhalter extends Hauptrolle
     @Override
     public String getName() {
         return name;
-    }
-
-    @Override
-    public int getRoleType() {
-        return roleType;
     }
 
     @Override

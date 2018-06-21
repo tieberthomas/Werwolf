@@ -5,11 +5,7 @@ import root.ResourceManagement.ResourcePath;
 import root.Rollen.Fraktion;
 import root.Rollen.Fraktionen.Werwölfe;
 import root.Rollen.Hauptrolle;
-import root.Rollen.RoleType;
-import root.Spieler;
 import root.mechanics.Opfer;
-
-import java.util.ArrayList;
 
 /**
  * Created by Steve on 12.11.2017.
@@ -17,7 +13,6 @@ import java.util.ArrayList;
 public class Chemiker extends Hauptrolle
 {
     public static final String name = "Chemiker";
-    public static int roleType = RoleType.SPECIAL;
     public static Fraktion fraktion = new Werwölfe();
     public static final String imagePath = ResourcePath.CHEMIKER_KARTE;
     public static boolean unique = true;
@@ -66,11 +61,6 @@ public class Chemiker extends Hauptrolle
     @Override
     public String getName() {
         return name;
-    }
-
-    @Override
-    public int getRoleType() {
-        return roleType;
     }
 
     @Override

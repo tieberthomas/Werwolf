@@ -1,6 +1,5 @@
 package root.Frontend.Frame;
 
-import root.Frontend.Factories.ErzählerPageElementFactory;
 import root.Frontend.Page.Page;
 import root.Frontend.Page.PageElement;
 import root.Frontend.Page.PageTable;

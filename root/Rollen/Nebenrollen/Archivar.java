@@ -5,7 +5,6 @@ import root.ResourceManagement.ResourcePath;
 import root.Rollen.Fraktionen.Bürger;
 import root.Rollen.Hauptrollen.Bürger.Bestienmeister;
 import root.Rollen.Nebenrolle;
-import root.Rollen.RoleType;
 import root.Spieler;
 
 /**
@@ -14,7 +13,6 @@ import root.Spieler;
 public class Archivar extends Nebenrolle
 {
     public static final String name = "Archivar";
-    public static int roleType = RoleType.CHOOSE_ONE;
     public static final String imagePath = ResourcePath.ARCHIVAR_KARTE;
     public static boolean unique = true;
     public static boolean spammable = true;
@@ -48,11 +46,6 @@ public class Archivar extends Nebenrolle
     @Override
     public String getName() {
         return name;
-    }
-
-    @Override
-    public int getRoleType() {
-        return roleType;
     }
 
     @Override

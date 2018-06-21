@@ -5,13 +5,11 @@ import root.ResourceManagement.ResourcePath;
 import root.Rollen.Fraktion;
 import root.Rollen.Fraktionen.Bürger;
 import root.Rollen.Hauptrolle;
-import root.Rollen.RoleType;
 import root.Spieler;
 
 public class HoldeMaid extends Hauptrolle
 {
     public static final String name = "Holde Maid";
-    public static int roleType = RoleType.CHOOSE_ONE;
     public static Fraktion fraktion = new Bürger();
     public static final String imagePath = ResourcePath.HOLDE_MAID_KARTE;
     public static boolean unique = true;
@@ -35,11 +33,6 @@ public class HoldeMaid extends Hauptrolle
     @Override
     public String getName() {
         return name;
-    }
-
-    @Override
-    public int getRoleType() {
-        return roleType;
     }
 
     @Override

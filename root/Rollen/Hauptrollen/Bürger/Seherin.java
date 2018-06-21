@@ -10,12 +10,10 @@ import root.Rollen.Fraktionen.Werwölfe;
 import root.Rollen.Hauptrolle;
 import root.Rollen.Nebenrolle;
 import root.Rollen.Nebenrollen.*;
-import root.Rollen.RoleType;
 import root.Spieler;
 
 public class Seherin extends Hauptrolle {
     public static final String name = "Seherin";
-    public static int roleType = RoleType.CHOOSE_ONE;
     public static Fraktion fraktion = new Bürger();
     public static final String imagePath = ResourcePath.SEHERIN_KARTE;
     public static boolean unique = true;
@@ -59,11 +57,6 @@ public class Seherin extends Hauptrolle {
     @Override
     public String getName() {
         return name;
-    }
-
-    @Override
-    public int getRoleType() {
-        return roleType;
     }
 
     @Override

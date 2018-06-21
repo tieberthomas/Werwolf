@@ -3,7 +3,6 @@ package root.Rollen.Nebenrollen;
 import root.Frontend.FrontendControl;
 import root.ResourceManagement.ResourcePath;
 import root.Rollen.Nebenrolle;
-import root.Rollen.RoleType;
 import root.Spieler;
 
 /**
@@ -12,7 +11,6 @@ import root.Spieler;
 public class Prostituierte extends Nebenrolle
 {
     public static final String name = "Prostituierte";
-    public static int roleType = RoleType.CHOOSE_ONE;
     public static final String imagePath = ResourcePath.PROSTITUIERTE_KARTE;
     public static boolean unique = true;
     public static boolean spammable = false;
@@ -41,11 +39,6 @@ public class Prostituierte extends Nebenrolle
     @Override
     public String getName() {
         return name;
-    }
-
-    @Override
-    public int getRoleType() {
-        return roleType;
     }
 
     @Override

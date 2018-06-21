@@ -5,8 +5,7 @@ import root.ResourceManagement.ResourcePath;
 import root.Rollen.Fraktion;
 import root.Rollen.Fraktionen.Bürger;
 import root.Rollen.Hauptrolle;
-import root.Rollen.Nebenrollen.*;
-import root.Rollen.RoleType;
+import root.Rollen.Nebenrollen.Tarnumhang;
 import root.Spieler;
 
 /**
@@ -19,7 +18,6 @@ public class Späher extends Hauptrolle
     public static final String TARNUMHANG = "Tarnumhang";
 
     public static final String name = "Späher";
-    public static int roleType = RoleType.CHOOSE_ONE;
     public static Fraktion fraktion = new Bürger();
     public static final String imagePath = ResourcePath.SPÄHER_KARTE;
     public static boolean unique = true;
@@ -54,11 +52,6 @@ public class Späher extends Hauptrolle
     @Override
     public String getName() {
         return name;
-    }
-
-    @Override
-    public int getRoleType() {
-        return roleType;
     }
 
     @Override

@@ -1,6 +1,5 @@
 package root.ResourceManagement;
 
-import com.sun.org.apache.regexp.internal.RE;
 import root.Rollen.Hauptrolle;
 import root.Rollen.Nebenrolle;
 import root.Spieler;

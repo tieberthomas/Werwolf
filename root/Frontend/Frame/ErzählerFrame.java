@@ -1,6 +1,5 @@
 package root.Frontend.Frame;
 
-import root.*;
 import root.Frontend.Factories.ErzählerPageFactory;
 import root.Frontend.Page.Page;
 import root.Frontend.Page.PageTable;
@@ -11,6 +10,7 @@ import root.Rollen.Hauptrolle;
 import root.Rollen.Hauptrollen.Bürger.Dorfbewohner;
 import root.Rollen.Nebenrolle;
 import root.Rollen.Nebenrollen.Schatten;
+import root.Spieler;
 import root.mechanics.Torte;
 
 import javax.swing.*;

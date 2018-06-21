@@ -3,9 +3,6 @@ package root.Rollen.Nebenrollen;
 import root.Frontend.FrontendControl;
 import root.ResourceManagement.ResourcePath;
 import root.Rollen.Nebenrolle;
-import root.Rollen.RoleType;
-import root.Spieler;
-import root.mechanics.Opfer;
 
 /**
  * Created by Steve on 12.11.2017.
@@ -16,7 +13,6 @@ public class Konditor extends Nebenrolle
     public static final String SCHLECHT = "Schlecht";
 
     public static final String name = "Konditor";
-    public static int roleType = RoleType.SPECIAL;
     public static final String imagePath = ResourcePath.KONDITOR_KARTE;
     public static boolean unique = true;
     public static boolean spammable = true;
@@ -40,11 +36,6 @@ public class Konditor extends Nebenrolle
     @Override
     public String getName() {
         return name;
-    }
-
-    @Override
-    public int getRoleType() {
-        return roleType;
     }
 
     @Override

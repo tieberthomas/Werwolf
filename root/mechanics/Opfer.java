@@ -5,8 +5,10 @@ import root.Rollen.Fraktionen.Vampire;
 import root.Rollen.Fraktionen.Werwölfe;
 import root.Rollen.Hauptrollen.Bürger.Riese;
 import root.Rollen.Hauptrollen.Werwölfe.Blutwolf;
-import root.Rollen.Nebenrolle;
-import root.Rollen.Nebenrollen.*;
+import root.Rollen.Nebenrollen.Prostituierte;
+import root.Rollen.Nebenrollen.Schatten;
+import root.Rollen.Nebenrollen.Vampirumhang;
+import root.Rollen.Nebenrollen.Wolfspelz;
 import root.Rollen.Rolle;
 import root.Spieler;
 

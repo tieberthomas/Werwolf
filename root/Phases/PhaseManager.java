@@ -1,6 +1,9 @@
 package root.Phases;
 
-import root.Frontend.Frame.*;
+import root.Frontend.Frame.ErzählerFrame;
+import root.Frontend.Frame.ErzählerFrameMode;
+import root.Frontend.Frame.SpielerFrame;
+import root.Frontend.Frame.ÜbersichtsFrame;
 
 public class PhaseManager {
     public static void firstnight(ErzählerFrame erzählerFrame) {

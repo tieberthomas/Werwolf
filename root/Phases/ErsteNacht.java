@@ -1,14 +1,17 @@
 package root.Phases;
 
 import root.Frontend.Frame.ErzählerFrame;
+import root.Frontend.Frame.SpielerFrame;
 import root.Frontend.FrontendControl;
 import root.Frontend.Page.Page;
-import root.Frontend.Frame.SpielerFrame;
 import root.ResourceManagement.ResourcePath;
 import root.Rollen.Fraktion;
-import root.Rollen.Fraktionen.*;
+import root.Rollen.Fraktionen.Schattenpriester_Fraktion;
+import root.Rollen.Fraktionen.Vampire;
+import root.Rollen.Fraktionen.Werwölfe;
 import root.Rollen.Hauptrolle;
-import root.Rollen.Hauptrollen.Bürger.*;
+import root.Rollen.Hauptrollen.Bürger.Bruder;
+import root.Rollen.Hauptrollen.Bürger.Seherin;
 import root.Rollen.Hauptrollen.Werwölfe.Alphawolf;
 import root.Rollen.Nebenrolle;
 import root.Rollen.Nebenrollen.*;

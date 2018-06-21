@@ -1,8 +1,8 @@
 package root.Frontend.Factories;
 
+import root.Frontend.Frame.SpielerFrame;
 import root.Frontend.Page.PageElement;
 import root.Frontend.Page.Predecessor;
-import root.Frontend.Frame.SpielerFrame;
 
 import javax.swing.*;
 import java.awt.*;

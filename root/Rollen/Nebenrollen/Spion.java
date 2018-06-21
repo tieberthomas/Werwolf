@@ -4,9 +4,6 @@ import root.Frontend.FrontendControl;
 import root.ResourceManagement.ResourcePath;
 import root.Rollen.Fraktion;
 import root.Rollen.Nebenrolle;
-import root.Rollen.RoleType;
-import root.Spieler;
-import root.mechanics.Liebespaar;
 
 /**
  * Created by Steve on 12.11.2017.
@@ -14,7 +11,6 @@ import root.mechanics.Liebespaar;
 public class Spion extends Nebenrolle
 {
     public static final String name = "Spion";
-    public static int roleType = RoleType.CHOOSE_ONE;
     public static final String imagePath = ResourcePath.SPION_KARTE;
     public static boolean unique = true;
     public static boolean spammable = true;
@@ -33,11 +29,6 @@ public class Spion extends Nebenrolle
     @Override
     public String getName() {
         return name;
-    }
-
-    @Override
-    public int getRoleType() {
-        return roleType;
     }
 
     @Override

@@ -5,7 +5,6 @@ import root.Frontend.Page.Page;
 import root.Frontend.Page.PageElement;
 import root.Frontend.Page.PageTable;
 import root.Phases.Statement;
-import root.Phases.StatementIndie;
 import root.Phases.Tag;
 import root.ResourceManagement.ResourcePath;
 import root.Rollen.Hauptrolle;

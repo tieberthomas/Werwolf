@@ -5,7 +5,6 @@ import root.ResourceManagement.ResourcePath;
 import root.Rollen.Fraktion;
 import root.Rollen.Fraktionen.Werwölfe;
 import root.Rollen.Hauptrolle;
-import root.Rollen.RoleType;
 import root.Spieler;
 import root.mechanics.Opfer;
 
@@ -15,7 +14,6 @@ import root.mechanics.Opfer;
 public class BöseHexe extends Hauptrolle
 {
     public static final String name = "Böse Hexe";
-    public static int roleType = RoleType.CHOOSE_ONE;
     public static Fraktion fraktion = new Werwölfe();
     public static final String imagePath = ResourcePath.BÖSE_HEXE_KARTE;
     public static boolean unique = true;
@@ -44,11 +42,6 @@ public class BöseHexe extends Hauptrolle
     @Override
     public String getName() {
         return name;
-    }
-
-    @Override
-    public int getRoleType() {
-        return roleType;
     }
 
     @Override

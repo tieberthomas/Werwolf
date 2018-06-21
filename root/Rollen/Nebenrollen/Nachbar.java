@@ -3,7 +3,6 @@ package root.Rollen.Nebenrollen;
 import root.Frontend.FrontendControl;
 import root.ResourceManagement.ResourcePath;
 import root.Rollen.Nebenrolle;
-import root.Rollen.RoleType;
 import root.Spieler;
 
 import java.util.ArrayList;
@@ -14,7 +13,6 @@ import java.util.ArrayList;
 public class Nachbar extends Nebenrolle
 {
     public static final String name = "Nachbar";
-    public static int roleType = RoleType.SPECIAL;
     public static final String imagePath = ResourcePath.NACHBAR_KARTE;
     public static boolean unique = true;
     public static boolean spammable = true;
@@ -56,11 +54,6 @@ public class Nachbar extends Nebenrolle
     @Override
     public String getName() {
         return name;
-    }
-
-    @Override
-    public int getRoleType() {
-        return roleType;
     }
 
     @Override

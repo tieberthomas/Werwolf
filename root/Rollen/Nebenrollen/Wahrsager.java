@@ -4,10 +4,6 @@ import root.Frontend.FrontendControl;
 import root.ResourceManagement.ResourcePath;
 import root.Rollen.Fraktion;
 import root.Rollen.Nebenrolle;
-import root.Rollen.RoleType;
-import root.Spieler;
-
-import java.util.ArrayList;
 
 /**
  * Created by Steve on 12.11.2017.
@@ -15,7 +11,6 @@ import java.util.ArrayList;
 public class Wahrsager extends Nebenrolle
 {
     public static final String name = "Wahrsager";
-    public static int roleType = RoleType.CHOOSE_ONE;
     public static final String imagePath = ResourcePath.WAHRSAGER_KARTE;
     public static boolean unique = true;
     public static boolean spammable = false;
@@ -47,11 +42,6 @@ public class Wahrsager extends Nebenrolle
     @Override
     public String getName() {
         return name;
-    }
-
-    @Override
-    public int getRoleType() {
-        return roleType;
     }
 
     @Override
