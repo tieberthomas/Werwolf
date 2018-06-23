@@ -11,6 +11,7 @@ import root.Rollen.Nebenrolle;
 import root.Spieler;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -47,9 +48,9 @@ public class SpielerFrame extends MyFrame{
         pageFactory = new SpielerPageFactory(this);
         pageElementFactory = new SpielerPageElementFactory(this);
 
-        comboBox1Label = new JLabel();
-        comboBox2Label = new JLabel();
-        comboBox3Label = new JLabel();
+        comboBox1Label = new JLabel("");
+        comboBox2Label = new JLabel("");
+        comboBox3Label = new JLabel("");
         clockLabel = new JLabel();
 
         frameJpanel = generateDefaultPanel();

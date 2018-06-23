@@ -130,8 +130,8 @@ public class SpielerPageElementFactory {
     public PageElement generateCenteredLabel(JLabel label, Predecessor predecessorY, int spaceToPredecessorY) {
         label = generateBigJLabel(label);
 
-        int imageJLabelWidth = spielerFrame.getPreferredSize().width;
-        int imageJLabelHeight = (int)label.getPreferredSize().getHeight();
+        int imageJLabelWidth = 300;
+        int imageJLabelHeight = getJLabelHeight();
 
         PageElement centeredLabel = new PageElement(label, imageJLabelWidth, imageJLabelHeight, null, predecessorY, 0, spaceToPredecessorY);
 
@@ -150,11 +150,11 @@ public class SpielerPageElementFactory {
         label = formatLabel(label, size);
 
         int imageJLabelWidth = spielerFrame.getPreferredSize().width/numberOfColumns;
-        int imageJLabelHeight = (int)label.getPreferredSize().getHeight();
+        int imageJLabelHeight = getJLabelHeight(size);
 
         PageElement centeredLabel = new PageElement(label, imageJLabelWidth, imageJLabelHeight, null, predecessorY, 0, spaceToPredecessorY);
 
-        int sideFrameWidth = spielerFrame.xOffset;
+        int sideFrameWidth = SpielerFrame.xOffset;
         int spacePerColumn = (spielerFrame.frameJpanel.getWidth()-sideFrameWidth*2)/numberOfColumns;
         int xCoord = (int)(spacePerColumn*(indexOfColumn+0.5)-(imageJLabelWidth/2));
 
@@ -175,11 +175,11 @@ public class SpielerPageElementFactory {
         JLabel titleJLabel = generateTitleJLabel(title);
 
         int numberOfPlayersLabelWidth = spielerFrame.getPreferredSize().width;
-        int numberOfPlayersLabelHeight = spaceToUse;
+        int numberOfPlayersLabelHeight = spaceToUse+10;
 
         PageElement titleLabel = new PageElement(titleJLabel, numberOfPlayersLabelWidth, numberOfPlayersLabelHeight, null, null);
 
-        int sideFrameWidth = spielerFrame.xOffset;
+        int sideFrameWidth = SpielerFrame.xOffset;
         int spacePerColumn = (spielerFrame.frameJpanel.getWidth()-sideFrameWidth*2)/numberOfColumns;
         int xCoord = (int)(spacePerColumn*(indexOfColumn+0.5)-(numberOfPlayersLabelWidth/2));
 
@@ -191,7 +191,7 @@ public class SpielerPageElementFactory {
     public PageElement generateClockLabel(JLabel label, int spaceToUse){
         JLabel clockJLabel = formatLabel(label, 100);
 
-        int sideFrameWidth = spielerFrame.xOffset;
+        int sideFrameWidth = SpielerFrame.xOffset;
         int clockLabelWidth = (spielerFrame.frameJpanel.getWidth()-sideFrameWidth*2);
         int clockLabelHeight = spaceToUse;
 

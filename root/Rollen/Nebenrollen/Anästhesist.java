@@ -51,5 +51,4 @@ public class Anästhesist extends Nebenrolle
     public boolean isSpammable() {
         return spammable;
     }
-
 }

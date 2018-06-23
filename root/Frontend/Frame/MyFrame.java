@@ -34,8 +34,7 @@ public class MyFrame extends JFrame {
 
     public void buildScreenFromPage(Page page) {
         currentPage = page;
-        Dimension dimension = null;
-        dimension = frameJpanel.getSize();
+        Dimension dimension = frameJpanel.getSize();
         frameJpanel = generatePanelFromPage(page);
         frameJpanel.setPreferredSize(dimension);
         this.setContentPane(frameJpanel);
