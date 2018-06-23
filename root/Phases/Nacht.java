@@ -298,15 +298,6 @@ public class Nacht extends Thread
                         }
                         break;
 
-                    case WAHRSAGER:
-                        Spieler wahrsagerSpieler1 = Spieler.findSpielerPerRolle(Wahrsager.name);
-                        if(wahrsagerSpieler1!=null) {
-                            Wahrsager wahrsager = (Wahrsager) wahrsagerSpieler1.nebenrolle;
-
-                            wahrsager.tipp = Fraktion.findFraktion(feedback);
-                        }
-                        break;
-
                     case PROGRAMM_WAHRSAGER:
                         if(Wahrsager.isGuessing) {
                             Spieler wahrsagerSpieler2 = Spieler.findSpielerPerRolle(Wahrsager.name);
@@ -324,6 +315,15 @@ public class Nacht extends Thread
 
                         if(! (Spieler.getLivigPlayer().size()>4)) {
                             Wahrsager.isGuessing = false;
+                        }
+                        break;
+
+                    case WAHRSAGER:
+                        Spieler wahrsagerSpieler1 = Spieler.findSpielerPerRolle(Wahrsager.name);
+                        if(wahrsagerSpieler1!=null) {
+                            Wahrsager wahrsager = (Wahrsager) wahrsagerSpieler1.nebenrolle;
+
+                            wahrsager.tipp = Fraktion.findFraktion(feedback);
                         }
                         break;
 
@@ -1100,10 +1100,10 @@ public class Nacht extends Thread
         addStatementRolle(ORAKEL, ORAKEL_TITLE, Orakel.name, Statement.ROLLE_INFO);
         addStatementRolle(SPÄHER, SPÄHER_TITLE, Späher.name, Statement.ROLLE_CHOOSE_ONE_INFO);
         addStatementRolle(BUCHHALTER, BUCHHALTER_TITLE, Buchhalter.name, Statement.ROLLE_CHOOSE_ONE_INFO);
+        addInvisibleProgrammStatement(PROGRAMM_WAHRSAGER);
         if(Spieler.getLivigPlayer().size()>4) {
             addStatementRolle(WAHRSAGER, WAHRSAGER_TITLE, Wahrsager.name, Statement.ROLLE_CHOOSE_ONE);
         }
-        addInvisibleProgrammStatement(PROGRAMM_WAHRSAGER);
         addStatementRolle(ANALYTIKER, ANALYTIKER_TITLE, Analytiker.name, Statement.ROLLE_SPECAL);
         addStatementRolle(ARCHIVAR, ARCHIVAR_TITLE, Archivar.name, Statement.ROLLE_CHOOSE_ONE_INFO);
         addStatementRolle(SPION, SPION_TITLE, Spion.name, Statement.ROLLE_CHOOSE_ONE_INFO);
