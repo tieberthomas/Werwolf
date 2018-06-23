@@ -254,8 +254,12 @@ public class ErzählerPageFactory {
     }
 
     public Page generateDefaultNightPage(Statement statement){
+        return generateDefaultNightPage(statement, statement.titel);
+    }
+
+    public Page generateDefaultNightPage(Statement statement, String titel){
         PageElement nightLabel = pageElementFactory.generateNightLabel(statement.beschreibung);
-        PageElement titleLabel = pageElementFactory.generateTitleLabel(nightLabel, statement.titel);
+        PageElement titleLabel = pageElementFactory.generateTitleLabel(nightLabel, titel);
         erzählerFrame.nextJButton = new JButton();
         PageElement goNextButton = pageElementFactory.generateLowestButton(erzählerFrame.nextJButton);
         Page defaultNightPage = new Page();

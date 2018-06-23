@@ -14,8 +14,7 @@ public class FrontendControl {
     public int typeOfContent;
     public ArrayList<String> content;
     public String imagePath;
-
-    //TODO Add title
+    public String title;
 
     public FrontendControl() {
         this.typeOfContent = DROPDOWN_WITHOUT_SUGGESTIONS;
@@ -27,13 +26,31 @@ public class FrontendControl {
         this.content = content;
     }
 
+    public FrontendControl(ArrayList<String> content, String title) {
+        this.typeOfContent = DROPDOWN_WITHOUT_SUGGESTIONS;
+        this.content = content;
+        this.title = title;
+    }
+
     public FrontendControl(String imagePath) {
         this.typeOfContent = STATIC_IMAGE;
         this.imagePath = imagePath;
     }
 
+    public FrontendControl(String imagePath, String title) {
+        this.typeOfContent = STATIC_IMAGE;
+        this.imagePath = imagePath;
+        this.title = title;
+    }
+
     public FrontendControl(int typeOfContent, ArrayList<String> content) {
         this.typeOfContent = typeOfContent;
         this.content = content;
+    }
+
+    public FrontendControl(int typeOfContent, ArrayList<String> content, String title) {
+        this.typeOfContent = typeOfContent;
+        this.content = content;
+        this.title = title;
     }
 }
