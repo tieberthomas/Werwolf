@@ -79,59 +79,59 @@ public class Nacht extends Thread
     public static final String PROGRAMM_OPFER = "[Programm] Opfer";
     public static final String PROGRAMM_TORTE = "[Programm] Torte";
 
-    public static final String ALLE_SCHLAFEN_EIN_TITEL = "Alle schlafen ein";
-    public static final String ALLE_WACHEN_AUF_TITEL = "Alle wachen auf";
+    public static final String ALLE_SCHLAFEN_EIN_TITLE = "Alle schlafen ein";
+    public static final String ALLE_WACHEN_AUF_TITLE = "Alle wachen auf";
 
-    public static final String WIRT_TITEL = "Freibier ausgeben";
-    public static final String TOTENGRÄBER_TITEL = "Karte tauschen";
-    public static final String ANÄSTHESIST_TITEL = "Mitspieler deaktivieren";
-    public static final String GEFÄNGNISWÄRTER_TITEL = "Schutzhaft";
-    public static final String ÜBERLÄUFER_TITEL = "Karte tauschen";
-    public static final String NACHBAR_TITEL = "Spieler beobachten";
-    public static final String HOLDE_MAID_TITEL = "Mitspieler offenbaren";
-    public static final String GUTE_HEXE_SCHÜTZEN_TITEL = "Spieler schützen";
-    public static final String LADY_ALEERA_TITEL = "Geschützte Spieler";
-    public static final String PROSTITUIERTE_TITEL = "Bett legen";
-    public static final String RIESE_TITEL = "Mitspieler töten";
-    public static final String VAMPIRE_TITEL = "Opfer wählen";
-    public static final String WERWÖLFE_TITEL = "Opfer wählen";
-    public static final String WÖLFIN_TITEL = "Opfer wählen";
-    public static final String BÖSE_HEXE_TITEL = "Mitspieler töten";
-    public static final String SCHATTENPRIESTER_TITEL = "Opfer wiederbeleben";
-    public static final String NEUER_SCHATTENPRIESTER_TITEL = "Neuer Schattenpriester";
-    public static final String CHEMIKER_TITEL = "Opfer wiederbeleben";
-    public static final String NEUER_WERWOLF_TITEL = "Neuer Werwolf";
-    public static final String GUTE_HEXE_WIEDERBELEBEN_TITEL = "Opfer wiederbeleben";
-    public static final String MISS_VERONA_TITEL = "Angegriffene Opfer";
-    public static final String SPION_TITEL = "Fraktion wählen";
-    public static final String ANALYTIKER_TITEL = "Spieler wählen";
-    public static final String ARCHIVAR_TITEL = "Spieler wählen";
-    public static final String SEHERIN_TITEL = "Spieler wählen";
-    public static final String ORAKEL_TITEL = "Bonusrolle";
-    public static final String ORAKEL_VERBRAUCHT_TITEL = "Bonusrollen";
-    public static final String SPÄHER_TITEL = "Spieler wählen";
-    public static final String BUCHHALTER_TITEL = "Fähigkeit verbrauchen";
-    public static final String WAHRSAGER_TITEL = "Fraktion wählen";
-    public static final String BESCHWÖRER_TITEL = "Mitspieler verstummen";
-    public static final String FRISÖR_TITEL = "Mitspieler verschönern";
-    public static final String NACHBAR_INFORMATION_TITEL = "Besucher";
-    public static final String KONDITOR_TITEL = "Torte";
-    public static final String KONDITOR_LEHRLING_TITEL = KONDITOR_TITEL;
-    public static final String OPFER_TITEL = "Opfer der Nacht";
-    public static final String VERSTUMMT_TITEL = "Verstummt";
-    public static final String SCHÖNLINGE_TITEL = "Schönlinge";
-    public static final String WÖLFIN_NEBENROLLE_TITEL = "Wölfin";
+    public static final String WIRT_TITLE = "Freibier ausgeben";
+    public static final String TOTENGRÄBER_TITLE = "Karte tauschen";
+    public static final String ANÄSTHESIST_TITLE = "Mitspieler deaktivieren";
+    public static final String GEFÄNGNISWÄRTER_TITLE = "Schutzhaft";
+    public static final String ÜBERLÄUFER_TITLE = "Karte tauschen";
+    public static final String NACHBAR_TITLE = "Spieler beobachten";
+    public static final String HOLDE_MAID_TITLE = "Mitspieler offenbaren";
+    public static final String GUTE_HEXE_SCHÜTZEN_TITLE = "Spieler schützen";
+    public static final String LADY_ALEERA_TITLE = "Geschützte Spieler";
+    public static final String PROSTITUIERTE_TITLE = "Bett legen";
+    public static final String RIESE_TITLE = "Mitspieler töten";
+    public static final String VAMPIRE_TITLE = "Opfer wählen";
+    public static final String WERWÖLFE_TITLE = "Opfer wählen";
+    public static final String WÖLFIN_TITLE = "Opfer wählen";
+    public static final String BÖSE_HEXE_TITLE = "Mitspieler töten";
+    public static final String SCHATTENPRIESTER_TITLE = "Opfer wiederbeleben";
+    public static final String NEUER_SCHATTENPRIESTER_TITLE = "Neuer Schattenpriester";
+    public static final String CHEMIKER_TITLE = "Opfer wiederbeleben";
+    public static final String NEUER_WERWOLF_TITLE = "Neuer Werwolf";
+    public static final String GUTE_HEXE_WIEDERBELEBEN_TITLE = "Opfer wiederbeleben";
+    public static final String MISS_VERONA_TITLE = "Angegriffene Opfer";
+    public static final String SPION_TITLE = "Fraktion wählen";
+    public static final String ANALYTIKER_TITLE = "Spieler wählen";
+    public static final String ARCHIVAR_TITLE = "Spieler wählen";
+    public static final String SEHERIN_TITLE = "Spieler wählen";
+    public static final String ORAKEL_TITLE = "Bonusrolle";
+    public static final String ORAKEL_VERBRAUCHT_TITLE = "Bonusrollen";
+    public static final String SPÄHER_TITLE = "Spieler wählen";
+    public static final String BUCHHALTER_TITLE = "Fähigkeit verbrauchen";
+    public static final String WAHRSAGER_TITLE = "Fraktion wählen";
+    public static final String BESCHWÖRER_TITLE = "Mitspieler verstummen";
+    public static final String FRISÖR_TITLE = "Mitspieler verschönern";
+    public static final String NACHBAR_INFORMATION_TITLE = "Besucher";
+    public static final String KONDITOR_TITLE = "Torte";
+    public static final String KONDITOR_LEHRLING_TITLE = KONDITOR_TITLE;
+    public static final String OPFER_TITLE = "Opfer der Nacht";
+    public static final String VERSTUMMT_TITLE = "Verstummt";
+    public static final String SCHÖNLINGE_TITLE = "Schönlinge";
+    public static final String WÖLFIN_NEBENROLLE_TITLE = "Wölfin";
 
-    public static final String TORTE_TITEL = "";
-    public static final String PASSIV_TITEL = "Passiv";
-    public static final String AKTIV_TITEL = "Aktiv";
-    public static final String INFORMATIV_TITEL = "Informativ";
-    public static final String TARNUMHANG_TITEL = "Tarnumhang";
-    public static final String TOT_TITEL = "Tot";
-    public static final String DEAKTIVIERT_TITEL = "Deaktiviert";
-    public static final String AUFGEBRAUCHT_TITEL = "Aufgebraucht";
-    public static final String TÖTEND_TITEL = "Tötend";
-    public static final String NICHT_TÖTEND_TITEL = "Nicht Tötend";
+    public static final String TORTE_TITLE = "";
+    public static final String PASSIV_TITLE = "Passiv";
+    public static final String AKTIV_TITLE = "Aktiv";
+    public static final String INFORMATIV_TITLE = "Informativ";
+    public static final String TARNUMHANG_TITLE = "Tarnumhang";
+    public static final String TOT_TITLE = "Tot";
+    public static final String DEAKTIVIERT_TITLE = "Deaktiviert";
+    public static final String AUFGEBRAUCHT_TITLE = "Aufgebraucht";
+    public static final String TÖTEND_TITLE = "Tötend";
+    public static final String NICHT_TÖTEND_TITLE = "Nicht Tötend";
 
     ErzählerFrame erzählerFrame;
     public static SpielerFrame spielerFrame;
@@ -183,7 +183,7 @@ public class Nacht extends Thread
                 switch (statement.type) {
                     case Statement.SHOW_TITLE:
                         erzählerDefaultNightPage(statement);
-                        spielerTitlePage(statement.titel);
+                        spielerTitlePage(statement.title);
 
                         waitForAnswer();
                         break;
@@ -304,15 +304,15 @@ public class Nacht extends Thread
                         if (fraktion!=null || feedback!=null && feedback.equals(Nebenrolle.TARNUMHANG)) {
                             if(feedback.equals(Nebenrolle.TARNUMHANG)) {
                                 imagePath = ResourcePath.TARNUMHANG;
-                                statement.titel = TARNUMHANG_TITEL;
+                                statement.title = TARNUMHANG_TITLE;
                             } else {
                                 imagePath = fraktion.getImagePath();
-                                statement.titel = erzählerFrame.chosenOption1;
+                                statement.title = erzählerFrame.chosenOption1;
                             }
 
                             showImageOnBothScreens(statement, imagePath);
 
-                            statement.titel = SEHERIN_TITEL;
+                            statement.title = SEHERIN_TITLE;
                         }
                         break;
 
@@ -322,23 +322,23 @@ public class Nacht extends Thread
                             switch(feedback){
                                 case Späher.TÖTEND:
                                     imagePath  = ResourcePath.TÖTEND;
-                                    statement.titel = TÖTEND_TITEL;
+                                    statement.title = TÖTEND_TITLE;
                                     break;
 
                                 case Späher.NICHT_TÖTEND:
                                     imagePath  = ResourcePath.NICHT_TÖTEND;
-                                    statement.titel = NICHT_TÖTEND_TITEL;
+                                    statement.title = NICHT_TÖTEND_TITLE;
                                     break;
 
                                 case Späher.TARNUMHANG:
                                     imagePath  = ResourcePath.TARNUMHANG;
-                                    statement.titel = TARNUMHANG_TITEL;
+                                    statement.title = TARNUMHANG_TITLE;
                                     break;
                             }
 
                             showImageOnBothScreens(statement, imagePath);
 
-                            statement.titel = SPÄHER_TITEL;
+                            statement.title = SPÄHER_TITLE;
                         }
                         break;
 
@@ -381,7 +381,7 @@ public class Nacht extends Thread
                         if (chosenSpieler1 != null && chosenSpieler2 != null) {
                             if(((Analytiker)rolle).showTarnumhang(chosenSpieler1, chosenSpieler2)) {
                                 imagePath = ResourcePath.TARNUMHANG;
-                                statement.titel = TARNUMHANG_TITEL;
+                                statement.title = TARNUMHANG_TITLE;
                                 showImageOnBothScreens(statement, imagePath);
                             } else {
                                 String answer = ((Analytiker)rolle).analysiere(chosenSpieler1, chosenSpieler2);
@@ -395,43 +395,43 @@ public class Nacht extends Thread
                             imagePath = "";
                             switch(feedback) {
                                 case Nebenrolle.AKTIV:
-                                    statement.titel = AKTIV_TITEL;
+                                    statement.title = AKTIV_TITLE;
                                     imagePath =  ResourcePath.AKTIV;
                                     break;
 
                                 case Nebenrolle.PASSIV:
-                                    statement.titel = PASSIV_TITEL;
+                                    statement.title = PASSIV_TITLE;
                                     imagePath =  ResourcePath.PASSIV;
                                     break;
 
                                 case Nebenrolle.INFORMATIV:
-                                    statement.titel = INFORMATIV_TITEL;
+                                    statement.title = INFORMATIV_TITLE;
                                     imagePath =  ResourcePath.INFORMATIV;
                                     break;
 
                                 case Nebenrolle.TARNUMHANG:
-                                    statement.titel = TARNUMHANG_TITEL;
+                                    statement.title = TARNUMHANG_TITLE;
                                     imagePath =  ResourcePath.TARNUMHANG;
                                     break;
                             }
 
                             showImageOnBothScreens(statement, imagePath);
 
-                            statement.titel = ARCHIVAR_TITEL;
+                            statement.title = ARCHIVAR_TITLE;
                         }
                         break;
 
                     case SPION:
                         fraktion = Fraktion.findFraktion(feedback);
                         if (fraktion != null) {
-                            statement.titel = fraktion.getName();
+                            statement.title = fraktion.getName();
 
                             int fraktionAnzahl = fraktion.getFraktionsMembers().size();
                             String answer = Integer.toString(fraktionAnzahl);
 
                             showListOnBothScreens(statement, answer);
 
-                            statement.titel = SPION_TITEL;
+                            statement.title = SPION_TITLE;
                         }
                         break;
 
@@ -523,7 +523,7 @@ public class Nacht extends Thread
                     case PROGRAMM_TORTE:
                         if (Torte.torte) {
                             erzählerTortenPage();
-                            spielerIconPicturePage(TORTE_TITEL, ResourcePath.TORTE);
+                            spielerIconPicturePage(TORTE_TITLE, ResourcePath.TORTE);
 
                             waitForAnswer();
                         }
@@ -724,7 +724,7 @@ public class Nacht extends Thread
         {
             case Statement.NORMAL:
                 erzählerCardPicturePage(statement, imagePath);
-                spielerCardPicturePage(statement.titel, imagePath);
+                spielerCardPicturePage(statement.title, imagePath);
                 break;
 
             case Statement.DEAKTIV:
@@ -739,7 +739,7 @@ public class Nacht extends Thread
 
             case Statement.NOT_IN_GAME:
                 erzählerIconPicturePage(statement, ResourcePath.AUS_DEM_SPIEL);
-                spielerCardPicturePage(statement.titel, "");
+                spielerCardPicturePage(statement.title, "");
                 break;
         }
 
@@ -747,7 +747,7 @@ public class Nacht extends Thread
     }
 
     public void showDeadPages(Statement statement) {
-        Statement tot = new StatementIndie(statement.beschreibung, TOT_TITEL, Statement.INDIE, true);
+        Statement tot = new StatementIndie(statement.beschreibung, TOT_TITLE, Statement.INDIE, true);
 
         //TODO generateDeadPage()
         erzählerIconPicturePage(tot, ResourcePath.TOT);
@@ -757,7 +757,7 @@ public class Nacht extends Thread
     }
 
     public void showDeactivatedPages(Statement statement) {
-        Statement deaktiviert = new StatementIndie(statement.beschreibung,DEAKTIVIERT_TITEL, Statement.INDIE, true);
+        Statement deaktiviert = new StatementIndie(statement.beschreibung,DEAKTIVIERT_TITLE, Statement.INDIE, true);
 
         Page nightPage = erzählerFrame.pageFactory.generateDeactivatedPage(deaktiviert);
         erzählerFrame.buildScreenFromPage(nightPage);
@@ -767,7 +767,7 @@ public class Nacht extends Thread
     }
 
     public void showAufgebrauchtPages(Statement statement) {
-        Statement aufgebraucht = new StatementIndie(statement.beschreibung, AUFGEBRAUCHT_TITEL, Statement.INDIE, true);
+        Statement aufgebraucht = new StatementIndie(statement.beschreibung, AUFGEBRAUCHT_TITLE, Statement.INDIE, true);
 
         Page nightPage = erzählerFrame.pageFactory.generateAufgebrauchtPage(aufgebraucht);
         erzählerFrame.buildScreenFromPage(nightPage);
@@ -792,7 +792,7 @@ public class Nacht extends Thread
 
     public void showListShowTitle(Statement statement, ArrayList<String> strings, String imagePath) {
         erzählerListPage(statement, strings, imagePath);
-        spielerTitlePage(statement.titel);
+        spielerTitlePage(statement.title);
 
         waitForAnswer();
     }
@@ -808,7 +808,7 @@ public class Nacht extends Thread
         {
             case Statement.NORMAL:
                 erzählerListPage(statement, strings);
-                spielerListPage(statement.titel, strings);
+                spielerListPage(statement.title, strings);
                 break;
 
             case Statement.DEAKTIV:
@@ -823,7 +823,7 @@ public class Nacht extends Thread
 
             case Statement.NOT_IN_GAME:
                 erzählerListPage(statement, getEmptyStringList(), ResourcePath.AUS_DEM_SPIEL);
-                spielerListPage(statement.titel, getEmptyStringList());
+                spielerListPage(statement.title, getEmptyStringList());
                 break;
         }
 
@@ -832,7 +832,7 @@ public class Nacht extends Thread
 
     public void showImageOnBothScreens(Statement statement, String imagePath) {
         erzählerIconPicturePage(statement, imagePath);
-        spielerIconPicturePage(statement.titel, imagePath);
+        spielerIconPicturePage(statement.title, imagePath);
 
         waitForAnswer();
     }
@@ -887,11 +887,11 @@ public class Nacht extends Thread
                 switch (frontendControl.typeOfContent)
                 {
                     case FrontendControl.DROPDOWN_WITHOUT_SUGGESTIONS:
-                        spielerDropdownPage(statement.titel, 1);
+                        spielerDropdownPage(statement.title, 1);
                         break;
 
                     case FrontendControl.DROPDOWN_WITH_SUGGESTIONS:
-                        spielerListMirrorPage(statement.titel, frontendControl.content);
+                        spielerListMirrorPage(statement.title, frontendControl.content);
                         break;
                 }
                 break;
@@ -908,7 +908,7 @@ public class Nacht extends Thread
 
             case Statement.NOT_IN_GAME:
                 erzählerDropdownPage(statement, getEmptyStringList(), ResourcePath.AUS_DEM_SPIEL);
-                spielerDropdownPage(statement.titel,1);
+                spielerDropdownPage(statement.title,1);
                 break;
         }
 
@@ -920,7 +920,7 @@ public class Nacht extends Thread
         {
             case Statement.NORMAL:
                 erzählerDropdownPage(statement, dropdownOptions1, dropdownOptions2);
-                spielerDropdownPage(statement.titel, 2);
+                spielerDropdownPage(statement.title, 2);
                 break;
 
             case Statement.DEAKTIV:
@@ -935,7 +935,7 @@ public class Nacht extends Thread
 
             case Statement.NOT_IN_GAME:
                 erzählerDropdownPage(statement, getEmptyStringList(), getEmptyStringList(), ResourcePath.AUS_DEM_SPIEL);
-                spielerDropdownPage(statement.titel, 2);
+                spielerDropdownPage(statement.title, 2);
                 break;
         }
 
@@ -946,14 +946,14 @@ public class Nacht extends Thread
         if (statement.isLebend()) {
             if (statement.isAktiv()) {
                 erzählerDropdownPage(statement, dropdownOptions);
-                spielerListMirrorPage(statement.titel, dropdownOptions);
+                spielerListMirrorPage(statement.title, dropdownOptions);
             } else {
                 erzählerDropdownPage(statement, getEmptyStringList(), ResourcePath.DEAKTIVIERT);
                 spielerFrame.deactivatedPage();
             }
         } else {
             erzählerDropdownPage(statement, getEmptyStringList(), ResourcePath.AUS_DEM_SPIEL);
-            spielerDropdownPage(statement.titel, 1);
+            spielerDropdownPage(statement.title, 1);
         }
 
         waitForAnswer();
@@ -968,11 +968,11 @@ public class Nacht extends Thread
                     switch (frontendControl.typeOfContent)
                     {
                         case FrontendControl.DROPDOWN_WITHOUT_SUGGESTIONS:
-                            spielerDropdownPage(statement.titel, 1);
+                            spielerDropdownPage(statement.title, 1);
                             break;
 
                         case FrontendControl.DROPDOWN_WITH_SUGGESTIONS:
-                            spielerListMirrorPage(statement.titel, frontendControl.content);
+                            spielerListMirrorPage(statement.title, frontendControl.content);
                             break;
                     }
                 } else {
@@ -985,7 +985,7 @@ public class Nacht extends Thread
             }
         } else {
             erzählerDropdownPage(statement, getEmptyStringList(), ResourcePath.AUS_DEM_SPIEL);
-            spielerDropdownPage(statement.titel, 1);
+            spielerDropdownPage(statement.title, 1);
         }
 
         waitForAnswer();
@@ -1023,13 +1023,13 @@ public class Nacht extends Thread
         erzählerFrame.buildScreenFromPage(nightPage);
     }
 
-    public void spielerDropdownPage(String titel, int numberOfDropdowns) {
-        spielerFrame.dropDownPage = spielerFrame.pageFactory.generateDropdownPage(titel, numberOfDropdowns);
+    public void spielerDropdownPage(String title, int numberOfDropdowns) {
+        spielerFrame.dropDownPage = spielerFrame.pageFactory.generateDropdownPage(title, numberOfDropdowns);
         spielerFrame.buildScreenFromPage(spielerFrame.dropDownPage);
     }
 
-    public void spielerListMirrorPage(String titel, ArrayList<String> dropdownOptions) {
-        spielerFrame.dropDownPage = spielerFrame.pageFactory.generateListMirrorPage(titel, dropdownOptions);
+    public void spielerListMirrorPage(String title, ArrayList<String> dropdownOptions) {
+        spielerFrame.dropDownPage = spielerFrame.pageFactory.generateListMirrorPage(title, dropdownOptions);
         spielerFrame.buildScreenFromPage(spielerFrame.dropDownPage);
     }
 
@@ -1049,8 +1049,8 @@ public class Nacht extends Thread
         erzählerFrame.buildScreenFromPage(nightPage);
     }
 
-    public void spielerListPage(String titel, ArrayList<String> strings) {
-        Page nightPage = spielerFrame.pageFactory.generateListPage(titel, strings);
+    public void spielerListPage(String title, ArrayList<String> strings) {
+        Page nightPage = spielerFrame.pageFactory.generateListPage(title, strings);
         spielerFrame.buildScreenFromPage(nightPage);
     }
 
@@ -1059,8 +1059,8 @@ public class Nacht extends Thread
         erzählerFrame.buildScreenFromPage(nightPage);
     }
 
-    public void spielerIconPicturePage(String titel, String imagePath) {
-        Page nightPage = spielerFrame.pageFactory.generateStaticImagePage(titel, imagePath, true);
+    public void spielerIconPicturePage(String title, String imagePath) {
+        Page nightPage = spielerFrame.pageFactory.generateStaticImagePage(title, imagePath, true);
         spielerFrame.buildScreenFromPage(nightPage);
     }
 
@@ -1069,13 +1069,13 @@ public class Nacht extends Thread
         erzählerFrame.buildScreenFromPage(nightPage);
     }
 
-    public void spielerCardPicturePage(String titel, String imagePath) {
-        Page nightPage = spielerFrame.pageFactory.generateStaticImagePage(titel, imagePath, false);
+    public void spielerCardPicturePage(String title, String imagePath) {
+        Page nightPage = spielerFrame.pageFactory.generateStaticImagePage(title, imagePath, false);
         spielerFrame.buildScreenFromPage(nightPage);
     }
 
-    public void spielerTitlePage(String titel) {
-        Page nightPage = spielerFrame.pageFactory.generateTitlePage(titel);
+    public void spielerTitlePage(String title) {
+        Page nightPage = spielerFrame.pageFactory.generateTitlePage(title);
         spielerFrame.buildScreenFromPage(nightPage);
     }
 
@@ -1105,45 +1105,45 @@ public class Nacht extends Thread
     public void normaleNachtBuildStatements() {
         statements = new ArrayList<>();
 
-        addStatementIndie(ALLE_SCHLAFEN_EIN, ALLE_SCHLAFEN_EIN_TITEL, Statement.SHOW_TITLE);
+        addStatementIndie(ALLE_SCHLAFEN_EIN, ALLE_SCHLAFEN_EIN_TITLE, Statement.SHOW_TITLE);
 
         if(Wirt.freibierCharges > 0) {
-            addStatementRolle(WIRT, WIRT_TITEL, Wirt.name, Statement.ROLLE_CHOOSE_ONE);
+            addStatementRolle(WIRT, WIRT_TITLE, Wirt.name, Statement.ROLLE_CHOOSE_ONE);
         }
-        addStatementRolle(TOTENGRÄBER, TOTENGRÄBER_TITEL, Totengräber.name, Statement.ROLLE_CHOOSE_ONE);
-        addStatementRolle(ANÄSTHESIST, ANÄSTHESIST_TITEL, Anästhesist.name, Statement.ROLLE_CHOOSE_ONE);
-        addStatementRolle(GEFÄNGNISWÄRTER, GEFÄNGNISWÄRTER_TITEL, Gefängniswärter.name, Statement.ROLLE_CHOOSE_ONE);
-        addStatementRolle(ÜBERLÄUFER, ÜBERLÄUFER_TITEL, Überläufer.name, Statement.ROLLE_CHOOSE_ONE);
-        addStatementRolle(NACHBAR, NACHBAR_TITEL, Nachbar.name, Statement.ROLLE_CHOOSE_ONE);
-        addStatementRolle(HOLDE_MAID, HOLDE_MAID_TITEL, HoldeMaid.name, Statement.ROLLE_CHOOSE_ONE);
-        addStatementRolle(GUTE_HEXE_SCHÜTZEN, GUTE_HEXE_SCHÜTZEN_TITEL, GuteHexe.name, Statement.ROLLE_CHOOSE_ONE);
+        addStatementRolle(TOTENGRÄBER, TOTENGRÄBER_TITLE, Totengräber.name, Statement.ROLLE_CHOOSE_ONE);
+        addStatementRolle(ANÄSTHESIST, ANÄSTHESIST_TITLE, Anästhesist.name, Statement.ROLLE_CHOOSE_ONE);
+        addStatementRolle(GEFÄNGNISWÄRTER, GEFÄNGNISWÄRTER_TITLE, Gefängniswärter.name, Statement.ROLLE_CHOOSE_ONE);
+        addStatementRolle(ÜBERLÄUFER, ÜBERLÄUFER_TITLE, Überläufer.name, Statement.ROLLE_CHOOSE_ONE);
+        addStatementRolle(NACHBAR, NACHBAR_TITLE, Nachbar.name, Statement.ROLLE_CHOOSE_ONE);
+        addStatementRolle(HOLDE_MAID, HOLDE_MAID_TITLE, HoldeMaid.name, Statement.ROLLE_CHOOSE_ONE);
+        addStatementRolle(GUTE_HEXE_SCHÜTZEN, GUTE_HEXE_SCHÜTZEN_TITLE, GuteHexe.name, Statement.ROLLE_CHOOSE_ONE);
 
         addInvisibleProgrammStatement(PROGRAMM_SCHÜTZE);
 
-        addStatementRolle(LADY_ALEERA, LADY_ALEERA_TITEL, LadyAleera.name, Statement.ROLLE_INFO);
-        addStatementRolle(PROSTITUIERTE, PROSTITUIERTE_TITEL, Prostituierte.name, Statement.ROLLE_CHOOSE_ONE);
+        addStatementRolle(LADY_ALEERA, LADY_ALEERA_TITLE, LadyAleera.name, Statement.ROLLE_INFO);
+        addStatementRolle(PROSTITUIERTE, PROSTITUIERTE_TITLE, Prostituierte.name, Statement.ROLLE_CHOOSE_ONE);
 
-        addStatementRolle(RIESE, RIESE_TITEL, Riese.name, Statement.ROLLE_CHOOSE_ONE);
-        addStatementFraktion(VAMPIRE, VAMPIRE_TITEL, Vampire.name, Statement.FRAKTION_CHOOSE_ONE);
-        addStatementFraktion(WERWÖLFE, WERWÖLFE_TITEL, Werwölfe.name, Statement.FRAKTION_CHOOSE_ONE);
+        addStatementRolle(RIESE, RIESE_TITLE, Riese.name, Statement.ROLLE_CHOOSE_ONE);
+        addStatementFraktion(VAMPIRE, VAMPIRE_TITLE, Vampire.name, Statement.FRAKTION_CHOOSE_ONE);
+        addStatementFraktion(WERWÖLFE, WERWÖLFE_TITLE, Werwölfe.name, Statement.FRAKTION_CHOOSE_ONE);
         if(Wölfin.modus == Wölfin.TÖTEND) {
-            addStatementRolle(WÖLFIN, WÖLFIN_TITEL, Wölfin.name, Statement.ROLLE_CHOOSE_ONE);
+            addStatementRolle(WÖLFIN, WÖLFIN_TITLE, Wölfin.name, Statement.ROLLE_CHOOSE_ONE);
         }
-        addStatementRolle(BÖSE_HEXE, BÖSE_HEXE_TITEL, BöseHexe.name, Statement.ROLLE_CHOOSE_ONE);
+        addStatementRolle(BÖSE_HEXE, BÖSE_HEXE_TITLE, BöseHexe.name, Statement.ROLLE_CHOOSE_ONE);
 
-        addStatementFraktion(SCHATTENPRIESTER, SCHATTENPRIESTER_TITEL, Schattenpriester_Fraktion.name, Statement.FRAKTION_CHOOSE_ONE);
-        addStatementFraktion(NEUER_SCHATTENPRIESTER, NEUER_SCHATTENPRIESTER_TITEL, Schattenpriester_Fraktion.name, Statement.FRAKTION_SPECAL);
-        addStatementRolle(CHEMIKER, CHEMIKER_TITEL, Chemiker.name, Statement.ROLLE_CHOOSE_ONE);
-        addStatementRolle(NEUER_WERWOLF, NEUER_WERWOLF_TITEL, Chemiker.name, Statement.ROLLE_SPECAL); //vll. rolle_info
-        addStatementRolle(GUTE_HEXE_WIEDERBELEBEN, GUTE_HEXE_WIEDERBELEBEN_TITEL, GuteHexe.name, Statement.ROLLE_SPECAL);
+        addStatementFraktion(SCHATTENPRIESTER, SCHATTENPRIESTER_TITLE, Schattenpriester_Fraktion.name, Statement.FRAKTION_CHOOSE_ONE);
+        addStatementFraktion(NEUER_SCHATTENPRIESTER, NEUER_SCHATTENPRIESTER_TITLE, Schattenpriester_Fraktion.name, Statement.FRAKTION_SPECAL);
+        addStatementRolle(CHEMIKER, CHEMIKER_TITLE, Chemiker.name, Statement.ROLLE_CHOOSE_ONE);
+        addStatementRolle(NEUER_WERWOLF, NEUER_WERWOLF_TITLE, Chemiker.name, Statement.ROLLE_SPECAL); //vll. rolle_info
+        addStatementRolle(GUTE_HEXE_WIEDERBELEBEN, GUTE_HEXE_WIEDERBELEBEN_TITLE, GuteHexe.name, Statement.ROLLE_SPECAL);
 
-        addStatementRolle(MISS_VERONA, MISS_VERONA_TITEL, MissVerona.name, Statement.ROLLE_INFO);
-        addStatementRolle(SEHERIN, SEHERIN_TITEL, Seherin.name, Statement.ROLLE_CHOOSE_ONE_INFO);
-        addStatementRolle(ORAKEL, ORAKEL_TITEL, Orakel.name, Statement.ROLLE_INFO);
-        addStatementRolle(SPÄHER, SPÄHER_TITEL, Späher.name, Statement.ROLLE_CHOOSE_ONE_INFO);
-        addStatementRolle(BUCHHALTER, BUCHHALTER_TITEL, Buchhalter.name, Statement.ROLLE_CHOOSE_ONE_INFO);
+        addStatementRolle(MISS_VERONA, MISS_VERONA_TITLE, MissVerona.name, Statement.ROLLE_INFO);
+        addStatementRolle(SEHERIN, SEHERIN_TITLE, Seherin.name, Statement.ROLLE_CHOOSE_ONE_INFO);
+        addStatementRolle(ORAKEL, ORAKEL_TITLE, Orakel.name, Statement.ROLLE_INFO);
+        addStatementRolle(SPÄHER, SPÄHER_TITLE, Späher.name, Statement.ROLLE_CHOOSE_ONE_INFO);
+        addStatementRolle(BUCHHALTER, BUCHHALTER_TITLE, Buchhalter.name, Statement.ROLLE_CHOOSE_ONE_INFO);
         if(Spieler.getLivigPlayer().size()>4) {
-            addStatementRolle(WAHRSAGER, WAHRSAGER_TITEL, Wahrsager.name, Statement.ROLLE_CHOOSE_ONE);
+            addStatementRolle(WAHRSAGER, WAHRSAGER_TITLE, Wahrsager.name, Statement.ROLLE_CHOOSE_ONE);
         } else {
             //TODO eigenes Statement für Logik
             if(Wahrsager.allowedToTakeGuesses) {
@@ -1157,48 +1157,48 @@ public class Nacht extends Thread
             }
             Wahrsager.allowedToTakeGuesses = false;
         }
-        addStatementRolle(ANALYTIKER, ANALYTIKER_TITEL, Analytiker.name, Statement.ROLLE_SPECAL);
-        addStatementRolle(ARCHIVAR, ARCHIVAR_TITEL, Archivar.name, Statement.ROLLE_CHOOSE_ONE_INFO);
-        addStatementRolle(SPION, SPION_TITEL, Spion.name, Statement.ROLLE_CHOOSE_ONE_INFO);
+        addStatementRolle(ANALYTIKER, ANALYTIKER_TITLE, Analytiker.name, Statement.ROLLE_SPECAL);
+        addStatementRolle(ARCHIVAR, ARCHIVAR_TITLE, Archivar.name, Statement.ROLLE_CHOOSE_ONE_INFO);
+        addStatementRolle(SPION, SPION_TITLE, Spion.name, Statement.ROLLE_CHOOSE_ONE_INFO);
 
-        addStatementRolle(BESCHWÖRER, BESCHWÖRER_TITEL, Beschwörer.name, Statement.ROLLE_CHOOSE_ONE);
-        addStatementRolle(FRISÖR, FRISÖR_TITEL, Frisör.name, Statement.ROLLE_CHOOSE_ONE);
-        addStatementRolle(NACHBAR_INFORMATION, NACHBAR_INFORMATION_TITEL, Nachbar.name, Statement.ROLLE_INFO);
+        addStatementRolle(BESCHWÖRER, BESCHWÖRER_TITLE, Beschwörer.name, Statement.ROLLE_CHOOSE_ONE);
+        addStatementRolle(FRISÖR, FRISÖR_TITLE, Frisör.name, Statement.ROLLE_CHOOSE_ONE);
+        addStatementRolle(NACHBAR_INFORMATION, NACHBAR_INFORMATION_TITLE, Nachbar.name, Statement.ROLLE_INFO);
         if (Rolle.rolleInNachtEnthalten(Konditorlehrling.name)) {
-            addStatementRolle(KONDITOR_LEHRLING, KONDITOR_LEHRLING_TITEL, Konditorlehrling.name, Statement.ROLLE_SPECAL);
+            addStatementRolle(KONDITOR_LEHRLING, KONDITOR_LEHRLING_TITLE, Konditorlehrling.name, Statement.ROLLE_SPECAL);
         } else {
-            addStatementRolle(KONDITOR, KONDITOR_TITEL, Konditor.name, Statement.ROLLE_SPECAL);
+            addStatementRolle(KONDITOR, KONDITOR_TITLE, Konditor.name, Statement.ROLLE_SPECAL);
         }
 
-        addStatementIndie(ALLE_WACHEN_AUF, ALLE_WACHEN_AUF_TITEL, Statement.SHOW_TITLE);
+        addStatementIndie(ALLE_WACHEN_AUF, ALLE_WACHEN_AUF_TITLE, Statement.SHOW_TITLE);
 
         addInvisibleProgrammStatement(PROGRAMM_OPFER);
 
-        addStatementIndie(OPFER, OPFER_TITEL, Statement.INDIE);
+        addStatementIndie(OPFER, OPFER_TITLE, Statement.INDIE);
         if(Wölfin.modus == Wölfin.TÖTEND) {
-            addStatementRolle(WÖLFIN_NEBENROLLE, WÖLFIN_NEBENROLLE_TITEL, Wölfin.name, Statement.ROLLE_INFO); //vll. rolle_info
+            addStatementRolle(WÖLFIN_NEBENROLLE, WÖLFIN_NEBENROLLE_TITLE, Wölfin.name, Statement.ROLLE_INFO); //vll. rolle_info
         }
-        addStatementRolle(VERSTUMMT, VERSTUMMT_TITEL, Beschwörer.name, Statement.ROLLE_SPECAL); //versuchen auf generisch rolle_info
+        addStatementRolle(VERSTUMMT, VERSTUMMT_TITLE, Beschwörer.name, Statement.ROLLE_SPECAL); //versuchen auf generisch rolle_info
         if(Rolle.rolleExists(Frisör.name) || Rolle.rolleExists(Wahrsager.name)) {
-            addStatementIndie(SCHÖNLINGE, SCHÖNLINGE_TITEL, Statement.INDIE);
+            addStatementIndie(SCHÖNLINGE, SCHÖNLINGE_TITLE, Statement.INDIE);
         }
 
         addInvisibleProgrammStatement(PROGRAMM_TORTE);
     }
 
-    public void addStatementIndie(String statement, String titel, int type) {
-        statements.add(new StatementIndie(statement, titel, type, true));
+    public void addStatementIndie(String statement, String title, int type) {
+        statements.add(new StatementIndie(statement, title, type, true));
     }
 
-    public void addStatementRolle(String statement, String titel, String rolle, int type) {
+    public void addStatementRolle(String statement, String title, String rolle, int type) {
         if (Rolle.rolleInNachtEnthalten(rolle)) {
-            statements.add(new StatementRolle(statement, titel, rolle, type, true));
+            statements.add(new StatementRolle(statement, title, rolle, type, true));
         }
     }
 
-    public void addStatementFraktion(String statement, String titel, String fraktion, int type) {
+    public void addStatementFraktion(String statement, String title, String fraktion, int type) {
         if (Fraktion.fraktionInNachtEnthalten(fraktion)) {
-            statements.add(new StatementFraktion(statement, titel, fraktion, type, true));
+            statements.add(new StatementFraktion(statement, title, fraktion, type, true));
         }
     }
 

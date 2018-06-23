@@ -8,9 +8,9 @@ import root.Rollen.Fraktion;
 public class StatementFraktion extends Statement {
     String fraktion;
 
-    public StatementFraktion(String beschreibung, String titel, String fraktion, int type, boolean visible) {
+    public StatementFraktion(String beschreibung, String title, String fraktion, int type, boolean visible) {
         this.beschreibung = beschreibung;
-        this.titel = titel;
+        this.title = title;
         this.fraktion = fraktion;
         this.type = type;
         this.visible = visible;

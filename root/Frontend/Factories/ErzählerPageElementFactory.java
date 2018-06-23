@@ -23,8 +23,8 @@ public class ErzählerPageElementFactory {
         this.erzählerFrame = erzählerFrame;
     }
 
-    public PageElement generateLabel(Predecessor predecessorY, String titel) {
-        JLabel titleJLabel = new JLabel(titel);
+    public PageElement generateLabel(Predecessor predecessorY, String title) {
+        JLabel titleJLabel = new JLabel(title);
 
         return generateInteractiveLabel(predecessorY, titleJLabel);
     }
@@ -304,8 +304,8 @@ public class ErzählerPageElementFactory {
         return generateDropdown(jComboBox, predecessorX, predecessorY, 200, 20, 0, 20);
     }
 
-    public PageElement generateTitleLabel(Predecessor predecessorX, String titel) {
-        JLabel titleJLabel = generateTitleJLabel(titel);
+    public PageElement generateTitleLabel(Predecessor predecessorX, String title) {
+        JLabel titleJLabel = generateTitleJLabel(title);
 
         int titleLabelWidth = titleJLabel.getPreferredSize().width;
         int titleLabelHeight = titleJLabel.getPreferredSize().height;

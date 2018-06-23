@@ -40,24 +40,24 @@ public class ErsteNacht extends Thread {
     public static final String BRÜDER = "Brüder erwachen und sehen einander";
     public static final String SEHERIN = "Seherin erwacht und lässt sich Auskunft über einen Mitspieler geben";
 
-    public static final String ALLE_SCHLAFEN_EIN_TITEL = "Alle schlafen ein";
-    public static final String ALLE_WACHEN_AUF_TITEL = "Alle wachen auf";
+    public static final String ALLE_SCHLAFEN_EIN_TITLE = "Alle schlafen ein";
+    public static final String ALLE_WACHEN_AUF_TITLE = "Alle wachen auf";
 
-    public static final String LIEBESPAAR_TITEL = "Liebespaar wählen";
-    public static final String LIEBESPAAR_FINDEN_TITEL = "Liebespaar";
-    public static final String REINES_LICHT_TITEL = "neue Karte";
-    public static final String LAMM_TITEL = "neue Karte";
-    public static final String VAMPIRUMHANG_TITEL = "neue Karte";
-    public static final String WOLFSPELZ_TITEL = "neue Karte";
-    public static final String IMITATOR_TITEL = "Imitieren";
-    public static final String VAMPIRE_TITEL = "Vampire";
-    public static final String WERWÖLFE_TITEL = "Werwölfe";
-    public static final String ALPHAWOLF_TITEL = "Werwölfe";
-    public static final String SCHATTENPRIESTER_TITEL = "Schattenpriester";
-    public static final String BRÜDER_TITEL = "Brüder";
-    public static final String SEHERIN_TITEL = "Spieler wählen";
+    public static final String LIEBESPAAR_TITLE = "Liebespaar wählen";
+    public static final String LIEBESPAAR_FINDEN_TITLE = "Liebespaar";
+    public static final String REINES_LICHT_TITLE = "neue Karte";
+    public static final String LAMM_TITLE = "neue Karte";
+    public static final String VAMPIRUMHANG_TITLE = "neue Karte";
+    public static final String WOLFSPELZ_TITLE = "neue Karte";
+    public static final String IMITATOR_TITLE = "Imitieren";
+    public static final String VAMPIRE_TITLE = "Vampire";
+    public static final String WERWÖLFE_TITLE = "Werwölfe";
+    public static final String ALPHAWOLF_TITLE = "Werwölfe";
+    public static final String SCHATTENPRIESTER_TITLE = "Schattenpriester";
+    public static final String BRÜDER_TITLE = "Brüder";
+    public static final String SEHERIN_TITLE = "Spieler wählen";
 
-    public static final String TARNUMHANG_TITEL = "Tarnumhang";
+    public static final String TARNUMHANG_TITLE = "Tarnumhang";
 
     ErzählerFrame erzählerFrame;
     public static SpielerFrame spielerFrame;
@@ -115,7 +115,7 @@ public class ErsteNacht extends Thread {
                             spielerOrZufällig.add(Liebespaar.ZUFÄLLIG);
                             nightPage = erzählerFrame.pageFactory.generateDropdownPage(statement, spielerOrZufällig, spielerOrZufällig);
                             erzählerFrame.buildScreenFromPage(nightPage);
-                            spielerFrame.dropDownPage = spielerFrame.pageFactory.generateDropdownPage(statement.titel, 2);
+                            spielerFrame.dropDownPage = spielerFrame.pageFactory.generateDropdownPage(statement.title, 2);
                             spielerFrame.buildScreenFromPage(spielerFrame.dropDownPage);
 
                             waitForAnswer();
@@ -134,7 +134,7 @@ public class ErsteNacht extends Thread {
 
                                 nightPage = erzählerFrame.pageFactory.generateListPage(statement, liebespaarStrings);
                                 erzählerFrame.buildScreenFromPage(nightPage);
-                                nightPage = spielerFrame.pageFactory.generateStaticImagePage(statement.titel, imagePath, true);
+                                nightPage = spielerFrame.pageFactory.generateStaticImagePage(statement.title, imagePath, true);
                                 spielerFrame.buildScreenFromPage(nightPage);
 
                                 waitForAnswer();
@@ -153,7 +153,7 @@ public class ErsteNacht extends Thread {
                             ArrayList<String> brüder = Spieler.findSpielersPerRolle(Bruder.name);
                             nightPage = erzählerFrame.pageFactory.generateListPage(statement, brüder);
                             erzählerFrame.buildScreenFromPage(nightPage);
-                            nightPage = spielerFrame.pageFactory.generateStaticImagePage(statement.titel, ResourcePath.BRÜDER_KARTE);
+                            nightPage = spielerFrame.pageFactory.generateStaticImagePage(statement.title, ResourcePath.BRÜDER_KARTE);
                             spielerFrame.buildScreenFromPage(nightPage);
 
                             waitForAnswer();
@@ -168,22 +168,22 @@ public class ErsteNacht extends Thread {
                             if (fraktion != null || feedback != null && feedback.equals(Nebenrolle.TARNUMHANG)) {
                                 if (feedback.equals(Nebenrolle.TARNUMHANG)) {
                                     imagePath = ResourcePath.TARNUMHANG;
-                                    statement.titel = TARNUMHANG_TITEL;
+                                    statement.title = TARNUMHANG_TITLE;
                                 } else {
                                     imagePath = fraktion.getImagePath();
-                                    statement.titel = erzählerFrame.chosenOption1;
+                                    statement.title = erzählerFrame.chosenOption1;
                                 }
 
                                 showImageOnBothScreens(statement, imagePath);
 
-                                statement.titel = SEHERIN_TITEL;
+                                statement.title = SEHERIN_TITLE;
                             }
                             break;
 
                         default:
                             nightPage = erzählerFrame.pageFactory.generateDefaultNightPage(statement);
                             erzählerFrame.buildScreenFromPage(nightPage);
-                            nightPage = spielerFrame.pageFactory.generateTitlePage(statement.titel);
+                            nightPage = spielerFrame.pageFactory.generateTitlePage(statement.title);
                             spielerFrame.buildScreenFromPage(nightPage);
 
                             waitForAnswer();
@@ -220,7 +220,7 @@ public class ErsteNacht extends Thread {
         try {
             String fraktionsLogoImagePath = fraktion.getImagePath();
 
-            nightPage = spielerFrame.pageFactory.generateStaticImagePage(statement.titel, fraktionsLogoImagePath, true);
+            nightPage = spielerFrame.pageFactory.generateStaticImagePage(statement.title, fraktionsLogoImagePath, true);
             spielerFrame.buildScreenFromPage(nightPage);
         } catch (NullPointerException e) {
             System.out.println(fraktionName + " nicht gefunden");
@@ -264,12 +264,12 @@ public class ErsteNacht extends Thread {
 
     public void showNebenrolle(Statement statement, Spieler spieler) {
         if (spieler != null) {
-            statement.titel = spieler.name;
+            statement.title = spieler.name;
 
             String imagePath = spieler.nebenrolle.getImagePath();
             if(spieler.nebenrolle.getName().equals(Tarnumhang.name)) {
                 imagePath = ResourcePath.TARNUMHANG;
-                statement.titel = TARNUMHANG_TITEL;
+                statement.title = TARNUMHANG_TITLE;
             }
             displayCard(statement, imagePath);
         }
@@ -277,7 +277,7 @@ public class ErsteNacht extends Thread {
 
     public void showHauptrolle(Statement statement, Spieler spieler) {
         if (spieler != null) {
-            statement.titel = spieler.name;
+            statement.title = spieler.name;
 
             String imagePath = spieler.hauptrolle.getImagePath();
             displayCard(statement, imagePath);
@@ -287,7 +287,7 @@ public class ErsteNacht extends Thread {
     public void displayCard(Statement statement, String imagePath) {
         Page nightPage = erzählerFrame.pageFactory.generateCardPicturePage(statement, imagePath);
         erzählerFrame.buildScreenFromPage(nightPage);
-        nightPage = spielerFrame.pageFactory.generateStaticImagePage(statement.titel, imagePath);
+        nightPage = spielerFrame.pageFactory.generateStaticImagePage(statement.title, imagePath);
         spielerFrame.buildScreenFromPage(nightPage);
 
         waitForAnswer();
@@ -304,7 +304,7 @@ public class ErsteNacht extends Thread {
     public void showDropdownPage(Statement statement, ArrayList<String> strings) {
         Page nightPage = erzählerFrame.pageFactory.generateDropdownPage(statement, strings);
         erzählerFrame.buildScreenFromPage(nightPage);
-        spielerFrame.dropDownPage = spielerFrame.pageFactory.generateDropdownPage(statement.titel, 1);
+        spielerFrame.dropDownPage = spielerFrame.pageFactory.generateDropdownPage(statement.title, 1);
         spielerFrame.buildScreenFromPage(spielerFrame.dropDownPage);
 
         waitForAnswer();
@@ -317,12 +317,12 @@ public class ErsteNacht extends Thread {
         switch (frontendControl.typeOfContent)
         {
             case FrontendControl.DROPDOWN_WITHOUT_SUGGESTIONS:
-                spielerFrame.dropDownPage = spielerFrame.pageFactory.generateDropdownPage(statement.titel, 1);
+                spielerFrame.dropDownPage = spielerFrame.pageFactory.generateDropdownPage(statement.title, 1);
                 spielerFrame.buildScreenFromPage(spielerFrame.dropDownPage);
                 break;
 
             case FrontendControl.DROPDOWN_WITH_SUGGESTIONS:
-                spielerFrame.dropDownPage = spielerFrame.pageFactory.generateListMirrorPage(statement.titel, frontendControl.content);
+                spielerFrame.dropDownPage = spielerFrame.pageFactory.generateListMirrorPage(statement.title, frontendControl.content);
                 spielerFrame.buildScreenFromPage(spielerFrame.dropDownPage);
                 break;
         }
@@ -333,7 +333,7 @@ public class ErsteNacht extends Thread {
     public void showImageOnBothScreens(Statement statement, String imagePath) {
         Page nightPage = erzählerFrame.pageFactory.generateIconPicturePage(statement, imagePath);
         erzählerFrame.buildScreenFromPage(nightPage);
-        nightPage = spielerFrame.pageFactory.generateStaticImagePage(statement.titel, imagePath, true);
+        nightPage = spielerFrame.pageFactory.generateStaticImagePage(statement.title, imagePath, true);
         spielerFrame.buildScreenFromPage(nightPage);
 
         waitForAnswer();
@@ -350,47 +350,47 @@ public class ErsteNacht extends Thread {
     public void ersteNachtBuildStatements() {
         statements = new ArrayList<>();
 
-        addStatement(ALLE_SCHLAFEN_EIN, ALLE_SCHLAFEN_EIN_TITEL);
+        addStatement(ALLE_SCHLAFEN_EIN, ALLE_SCHLAFEN_EIN_TITLE);
 
-        addStatement(LIEBESPAAR, LIEBESPAAR_TITEL);
-        addStatement(LIEBESPAAR_FINDEN, LIEBESPAAR_FINDEN_TITEL);
+        addStatement(LIEBESPAAR, LIEBESPAAR_TITLE);
+        addStatement(LIEBESPAAR_FINDEN, LIEBESPAAR_FINDEN_TITLE);
 
-        addStatementRolle(REINES_LICHT, REINES_LICHT_TITEL, ReinesLicht.name);
-        addStatementRolle(LAMM, LAMM_TITEL, Lamm.name);
-        addStatementRolle(VAMPIRUMHANG, VAMPIRUMHANG_TITEL, Vampirumhang.name);
-        addStatementRolle(WOLFSPELZ, WOLFSPELZ_TITEL, Wolfspelz.name);
+        addStatementRolle(REINES_LICHT, REINES_LICHT_TITLE, ReinesLicht.name);
+        addStatementRolle(LAMM, LAMM_TITLE, Lamm.name);
+        addStatementRolle(VAMPIRUMHANG, VAMPIRUMHANG_TITLE, Vampirumhang.name);
+        addStatementRolle(WOLFSPELZ, WOLFSPELZ_TITLE, Wolfspelz.name);
 
-        //addStatementRolle(IMITATOR, IMITATOR_TITEL, Imitator.name);
+        //addStatementRolle(IMITATOR, IMITATOR_TITLE, Imitator.name);
 
-        addStatementFraktion(VAMPIRE, VAMPIRE_TITEL, Vampire.name);
-        addStatementFraktion(WERWÖLFE, WERWÖLFE_TITEL, Werwölfe.name);
-        addStatementRolle(ALPHAWOLF, ALPHAWOLF_TITEL, Alphawolf.name);
-        addStatementFraktion(SCHATTENPRIESTER, SCHATTENPRIESTER_TITEL, Schattenpriester_Fraktion.name);
-        addStatementRolle(BRÜDER, BRÜDER_TITEL, Bruder.name);
+        addStatementFraktion(VAMPIRE, VAMPIRE_TITLE, Vampire.name);
+        addStatementFraktion(WERWÖLFE, WERWÖLFE_TITLE, Werwölfe.name);
+        addStatementRolle(ALPHAWOLF, ALPHAWOLF_TITLE, Alphawolf.name);
+        addStatementFraktion(SCHATTENPRIESTER, SCHATTENPRIESTER_TITLE, Schattenpriester_Fraktion.name);
+        addStatementRolle(BRÜDER, BRÜDER_TITLE, Bruder.name);
 
-        addStatementRolle(SEHERIN, SEHERIN_TITEL, Seherin.name);
+        addStatementRolle(SEHERIN, SEHERIN_TITLE, Seherin.name);
 
-        addStatement(ALLE_WACHEN_AUF, ALLE_WACHEN_AUF_TITEL);
+        addStatement(ALLE_WACHEN_AUF, ALLE_WACHEN_AUF_TITLE);
     }
 
-    public void addStatement(String statement, String titel) {
-        statements.add(new StatementIndie(statement, titel, Statement.INDIE, true));
+    public void addStatement(String statement, String title) {
+        statements.add(new StatementIndie(statement, title, Statement.INDIE, true));
     }
 
     //TODO Statement Type implementieren
 
-    public void addStatementRolle(String statement, String titel, String rolle) {
+    public void addStatementRolle(String statement, String title, String rolle) {
         if (Rolle.rolleInNachtEnthalten(rolle)) {
-            statements.add(new StatementRolle(statement, titel, rolle, Statement.INDIE, true));
+            statements.add(new StatementRolle(statement, title, rolle, Statement.INDIE, true));
         }
     }
 
-    public void addStatementFraktion(String statement, String titel, String fraktionsName) {
+    public void addStatementFraktion(String statement, String title, String fraktionsName) {
         Fraktion fraktion = Fraktion.findFraktion(fraktionsName);
 
         if (Fraktion.fraktionInNachtEnthalten(fraktionsName)) {
             if(fraktion.getNumberOfFraktionsMembersInGame()>1) {
-                statements.add(new StatementFraktion(statement, titel, fraktionsName, Statement.INDIE, true));
+                statements.add(new StatementFraktion(statement, title, fraktionsName, Statement.INDIE, true));
             }
         }
     }

@@ -31,7 +31,7 @@ public class Orakel extends Hauptrolle {
         if (randomNebenrolle != null) {
             return new FrontendControl(randomNebenrolle.getImagePath());
         } else {
-            //statement.titel = Nacht.ORAKEL_VERBRAUCHT_TITEL;
+            //statement.title = Nacht.ORAKEL_VERBRAUCHT_TITLE;
             return new FrontendControl(FrontendControl.STATIC_LIST, Orakel.geseheneNebenrollen);
         }
     }

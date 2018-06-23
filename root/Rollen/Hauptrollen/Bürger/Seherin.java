@@ -45,11 +45,11 @@ public class Seherin extends Hauptrolle {
                 return new FrontendControl(Schattenpriester_Fraktion.imagePath);
             }
             if (nebenrolle.equals(Tarnumhang.name)) {
-                //statement.titel = TARNUMHANG_TITEL;
+                //statement.title = TARNUMHANG_TITLE;
                 return new FrontendControl(ResourcePath.TARNUMHANG);
             }
 
-            //statement.titel = chosenOption;
+            //statement.title = chosenOption;
             return new FrontendControl(chosenPlayer.hauptrolle.getFraktion().getImagePath());
         }
 

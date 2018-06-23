@@ -163,16 +163,16 @@ public class SpielerPageElementFactory {
         return centeredLabel;
     }
 
-    public PageElement generateTitleLabel(String titel) {
-        return generateColumnTitleLabel(titel, 1,0);
+    public PageElement generateTitleLabel(String title) {
+        return generateColumnTitleLabel(title, 1,0);
     }
 
-    public PageElement generateColumnTitleLabel(String titel, int numberOfColumns, int indexOfColumn) {
-        return generateColumnTitleLabel(titel, numberOfColumns, indexOfColumn, defaultTitleSize);
+    public PageElement generateColumnTitleLabel(String title, int numberOfColumns, int indexOfColumn) {
+        return generateColumnTitleLabel(title, numberOfColumns, indexOfColumn, defaultTitleSize);
     }
 
-    public PageElement generateColumnTitleLabel(String titel, int numberOfColumns, int indexOfColumn, int spaceToUse) {
-        JLabel titleJLabel = generateTitleJLabel(titel);
+    public PageElement generateColumnTitleLabel(String title, int numberOfColumns, int indexOfColumn, int spaceToUse) {
+        JLabel titleJLabel = generateTitleJLabel(title);
 
         int numberOfPlayersLabelWidth = (int)titleJLabel.getPreferredSize().getWidth();
         int numberOfPlayersLabelHeight = spaceToUse;

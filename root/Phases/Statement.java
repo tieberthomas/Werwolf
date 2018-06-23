@@ -24,7 +24,7 @@ public class Statement
     public static final int FRAKTION_SPECAL = 21;
 
     public String beschreibung;
-    public String titel;
+    public String title;
     public int type;
     public boolean visible;
 

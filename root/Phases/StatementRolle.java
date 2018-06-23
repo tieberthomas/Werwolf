@@ -9,9 +9,9 @@ import root.mechanics.Opfer;
 public class StatementRolle extends Statement {
     String rolle;
 
-    public StatementRolle(String beschreibung, String titel, String rolle, int type, boolean visible) {
+    public StatementRolle(String beschreibung, String title, String rolle, int type, boolean visible) {
         this.beschreibung = beschreibung;
-        this.titel = titel;
+        this.title = title;
         this.rolle = rolle;
         this.type = type;
         this.visible = visible;

@@ -1,12 +1,9 @@
 ST:
 schlechte torte - koplett deaktiv
-	neue Karte - Titel
+	neue Karte - Title
 	booleans?
 	besucht?
 	deaktiviert und verbraucht - deaktiviert anzeigen
-
-	imports
-
 
 TH:
 Englisch-Deutsch-Gemisch
