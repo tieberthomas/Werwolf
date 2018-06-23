@@ -14,11 +14,15 @@ public class Rolle
     public Spieler besuchtLetzteNacht;
     public int abilityCharges = 1;
 
-    public String aktion(String chosenOption) {
+    public FrontendControl getDropdownOtions() {
+        return new FrontendControl();
+    }
+
+    public String aktion(String chosenOption) { //TODO rename processChosenOption
         return null;
     }
 
-    public FrontendControl getDropdownOtions() {
+    public FrontendControl processChosenOptionGetInfo(String chosenOption) {
         return new FrontendControl();
     }
 

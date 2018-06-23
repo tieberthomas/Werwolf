@@ -186,7 +186,6 @@ public class Nacht extends Thread
                         break;
 
                     case Statement.ROLLE_CHOOSE_ONE:
-                    case Statement.ROLLE_CHOOSE_ONE_INFO:
                         rolle = ((StatementRolle)statement).getRolle();
 
                         if (rolle.abilityCharges > 0) {
@@ -198,8 +197,19 @@ public class Nacht extends Thread
                         }
                         break;
 
+                    case Statement.ROLLE_CHOOSE_ONE_INFO:
+                        rolle = ((StatementRolle)statement).getRolle();
+
+                        dropdownOtions = rolle.getDropdownOtions();
+                        showDropdownPage(statement, dropdownOtions);
+                        feedback = rolle.aktion(erzählerFrame.chosenOption1);
+                        info = rolle.getInfo();
+                        showInfo(statement, info);
+                        break;
+
                     case Statement.ROLLE_INFO:
                         rolle = ((StatementRolle)statement).getRolle();
+
                         info = rolle.getInfo();
                         showInfo(statement, info);
                         break;
