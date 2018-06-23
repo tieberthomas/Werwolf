@@ -71,7 +71,7 @@ public class Tag extends Thread {
 
                 if (nebenrolleSpieler.equals(ReineSeele.name) && ((ReineSeele)chosenSpieler.nebenrolle).dayInvincibility ||
                         (gebürgteSpieler.contains(chosenSpieler) && hauptrolleSpieler.getFraktion().getName().equals(Bürger.name))) {
-                    dayPage = spielerFrame.pageFactory.generateStaticImagePage(ReinesLicht.name, ReineSeele.imagePath);
+                    dayPage = spielerFrame.pageFactory.generateStaticImagePage(chosenSpieler.name, ReineSeele.imagePath);
                     spielerFrame.buildScreenFromPage(dayPage);
                     if(chosenSpieler.nebenrolle.getName().equals(ReineSeele.name)) {
                         ((ReineSeele) chosenSpieler.nebenrolle).dayInvincibility = false;
