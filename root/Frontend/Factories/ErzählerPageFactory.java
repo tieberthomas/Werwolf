@@ -282,7 +282,11 @@ public class ErzählerPageFactory {
     }
 
     public Page generateIconPicturePage(Statement statement, String imagePath) {
-        Page picturePage = generateDefaultNightPage(statement);
+        return generateIconPicturePage(statement, statement.title, imagePath);
+    }
+
+    public Page generateIconPicturePage(Statement statement, String title, String imagePath) {
+        Page picturePage = generateDefaultNightPage(statement, title);
         PageElement deactivatedIcon = pageElementFactory.generateIcon(getContinueToGeneratePagePoint(picturePage), imagePath);
 
         picturePage.add(deactivatedIcon);
@@ -370,7 +374,11 @@ public class ErzählerPageFactory {
     }
 
     public Page generateListPage(Statement statement, ArrayList<String> stringsToDisplay) {
-        Page listPage = generateDefaultNightPage(statement);
+        return generateListPage(statement, statement.title, stringsToDisplay);
+    }
+
+    public Page generateListPage(Statement statement, String title, ArrayList<String> stringsToDisplay) {
+        Page listPage = generateDefaultNightPage(statement, title);
 
         if(stringsToDisplay.size() > 0) {
             PageElement label = pageElementFactory.generateLabel(getContinueToGeneratePagePoint(listPage), stringsToDisplay.get(0));
@@ -394,7 +402,11 @@ public class ErzählerPageFactory {
     }
 
     public Page generateListPage(Statement statement, ArrayList<String> stringsToDisplay, String imagePath) {
-        Page listPage = generateListPage(statement, stringsToDisplay);
+        return generateListPage(statement, statement.title, stringsToDisplay, imagePath);
+    }
+
+    public Page generateListPage(Statement statement, String title,  ArrayList<String> stringsToDisplay, String imagePath) {
+        Page listPage = generateListPage(statement, title, stringsToDisplay);
 
         PageElement modeIcon = pageElementFactory.generateSmallIcon(getContinueToGeneratePagePoint(listPage), imagePath);
 

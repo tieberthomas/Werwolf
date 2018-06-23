@@ -213,6 +213,8 @@ public class Nacht extends Thread
                         rolle = ((StatementRolle)statement).getRolle();
 
                         info = rolle.getInfo();
+                        if(info.title==null)
+                            info.title = statement.title;
                         showInfo(statement, info);
                         break;
 
@@ -710,11 +712,11 @@ public class Nacht extends Thread
     public void showInfo(Statement statement, FrontendControl info) {
         switch (info.typeOfContent) {
             case FrontendControl.STATIC_IMAGE:
-                showImageOnBothScreens(statement, info.imagePath);
+                showImageOnBothScreens(statement, info.title, info.imagePath);
                 break;
 
             case FrontendControl.STATIC_LIST:
-                showListOnBothScreens(statement, info.content);
+                showListOnBothScreens(statement, info.title, info.content);
                 break;
         }
     }
@@ -803,12 +805,16 @@ public class Nacht extends Thread
         showListOnBothScreens(statement, list);
     }
 
-    public void showListOnBothScreens(Statement statement, ArrayList<String> strings) {
+    public void showListOnBothScreens(Statement statement, ArrayList<String> strings){
+        showListOnBothScreens(statement, statement.title, strings);
+    }
+
+    public void showListOnBothScreens(Statement statement, String title, ArrayList<String> strings) {
         switch (statement.getState())
         {
             case Statement.NORMAL:
-                erzählerListPage(statement, strings);
-                spielerListPage(statement.title, strings);
+                erzählerListPage(statement, title, strings);
+                spielerListPage(title, strings);
                 break;
 
             case Statement.DEAKTIV:
@@ -831,8 +837,12 @@ public class Nacht extends Thread
     }
 
     public void showImageOnBothScreens(Statement statement, String imagePath) {
-        erzählerIconPicturePage(statement, imagePath);
-        spielerIconPicturePage(statement.title, imagePath);
+        showImageOnBothScreens(statement, statement.title, imagePath);
+    }
+
+    public void showImageOnBothScreens(Statement statement, String title, String imagePath) {
+        erzählerIconPicturePage(statement, title, imagePath);
+        spielerIconPicturePage(title, imagePath);
 
         waitForAnswer();
     }
@@ -1040,12 +1050,20 @@ public class Nacht extends Thread
     }
 
     public void erzählerListPage(Statement statement, ArrayList<String> strings) {
-        Page nightPage = erzählerFrame.pageFactory.generateListPage(statement, strings);
+        erzählerListPage(statement, statement.title, strings);
+    }
+
+    public void erzählerListPage(Statement statement, String title, ArrayList<String> strings) {
+        Page nightPage = erzählerFrame.pageFactory.generateListPage(statement, title, strings);
         erzählerFrame.buildScreenFromPage(nightPage);
     }
 
     public void erzählerListPage(Statement statement, ArrayList<String> strings, String imagePath) {
-        Page nightPage = erzählerFrame.pageFactory.generateListPage(statement, strings, imagePath);
+        erzählerListPage(statement, statement.title, strings, imagePath);
+    }
+
+    public void erzählerListPage(Statement statement, String title, ArrayList<String> strings, String imagePath) {
+        Page nightPage = erzählerFrame.pageFactory.generateListPage(statement, title, strings, imagePath);
         erzählerFrame.buildScreenFromPage(nightPage);
     }
 
@@ -1055,7 +1073,11 @@ public class Nacht extends Thread
     }
 
     public void erzählerIconPicturePage(Statement statement, String imagePath) {
-        Page nightPage = erzählerFrame.pageFactory.generateIconPicturePage(statement, imagePath);
+        erzählerIconPicturePage(statement, statement.title, imagePath);
+    }
+
+    public void erzählerIconPicturePage(Statement statement, String title, String imagePath) {
+        Page nightPage = erzählerFrame.pageFactory.generateIconPicturePage(statement, title, imagePath);
         erzählerFrame.buildScreenFromPage(nightPage);
     }
 
