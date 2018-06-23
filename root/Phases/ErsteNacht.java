@@ -53,6 +53,7 @@ public class ErsteNacht extends Thread {
     public static final String VAMPIRE_TITLE = "Vampire";
     public static final String WERWÖLFE_TITLE = "Werwölfe";
     public static final String ALPHAWOLF_TITLE = "Werwölfe";
+    public static final String ALPHAWOLF_FERTIG_TITLE = "Fertig";
     public static final String SCHATTENPRIESTER_TITLE = "Schattenpriester";
     public static final String BRÜDER_TITLE = "Brüder";
     public static final String SEHERIN_TITLE = "Spieler wählen";
@@ -147,6 +148,8 @@ public class ErsteNacht extends Thread {
                             for (Spieler currentSpieler : werwölfe) {
                                 showHauptrolle(statement, currentSpieler);
                             }
+                            statement.title = ALPHAWOLF_FERTIG_TITLE;
+                            showImageOnBothScreens(statement, ResourcePath.WÖLFE_ICON);
                             break;
 
                         case BRÜDER:
