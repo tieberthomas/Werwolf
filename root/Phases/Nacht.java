@@ -78,6 +78,7 @@ public class Nacht extends Thread
     public static final String PROGRAMM_SCHÜTZE = "[Programm] Schütze";
     public static final String PROGRAMM_OPFER = "[Programm] Opfer";
     public static final String PROGRAMM_TORTE = "[Programm] Torte";
+    public static final String PROGRAMM_WAHRSAGER = "[Programm] Wahrsager";
 
     public static final String ALLE_SCHLAFEN_EIN_TITLE = "Alle schlafen ein";
     public static final String ALLE_WACHEN_AUF_TITLE = "Alle wachen auf";
@@ -233,7 +234,7 @@ public class Nacht extends Thread
                         }
                         break;
 
-                    case GUTE_HEXE_SCHÜTZEN:
+                    case GUTE_HEXE_SCHÜTZEN: //TODO
                         if(((GuteHexe)rolle).schutzCharges > 0) {
                             chosenOption = choosePlayerOrNonCheckSpammable(statement, rolle);
                             if (chosenOption != null) {
@@ -298,18 +299,31 @@ public class Nacht extends Thread
                         break;
 
                     case WAHRSAGER:
-                        Spieler wahrsagerSpieler = Spieler.findSpielerPerRolle(rolle.getName());
-                        if(wahrsagerSpieler!=null) {
-                            Wahrsager wahrsager = (Wahrsager) wahrsagerSpieler.nebenrolle;
-                            if(Wahrsager.allowedToTakeGuesses) {
-                                if(wahrsager.guessedRight()) {
-                                    schönlinge.add(wahrsagerSpieler);
-                                }
-                            } else {
-                                Wahrsager.allowedToTakeGuesses = true;
-                            }
+                        Spieler wahrsagerSpieler1 = Spieler.findSpielerPerRolle(Wahrsager.name);
+                        if(wahrsagerSpieler1!=null) {
+                            Wahrsager wahrsager = (Wahrsager) wahrsagerSpieler1.nebenrolle;
 
                             wahrsager.tipp = Fraktion.findFraktion(feedback);
+                        }
+                        break;
+
+                    case PROGRAMM_WAHRSAGER:
+                        if(Wahrsager.isGuessing) {
+                            Spieler wahrsagerSpieler2 = Spieler.findSpielerPerRolle(Wahrsager.name);
+                            if(wahrsagerSpieler2!=null) {
+                                Wahrsager wahrsager = (Wahrsager) wahrsagerSpieler2.nebenrolle;
+                                if(wahrsager.guessedRight()) {
+                                    schönlinge.add(wahrsagerSpieler2);
+                                }
+                            }
+                        }
+
+                        if (!Wahrsager.isGuessing) {
+                            Wahrsager.isGuessing = true;
+                        }
+
+                        if(! (Spieler.getLivigPlayer().size()>4)) {
+                            Wahrsager.isGuessing = false;
                         }
                         break;
 
@@ -1088,19 +1102,8 @@ public class Nacht extends Thread
         addStatementRolle(BUCHHALTER, BUCHHALTER_TITLE, Buchhalter.name, Statement.ROLLE_CHOOSE_ONE_INFO);
         if(Spieler.getLivigPlayer().size()>4) {
             addStatementRolle(WAHRSAGER, WAHRSAGER_TITLE, Wahrsager.name, Statement.ROLLE_CHOOSE_ONE);
-        } else {
-            //TODO eigenes Statement für Logik
-            if(Wahrsager.allowedToTakeGuesses) {
-                Spieler wahrsagerSpieler = Spieler.findSpielerPerRolle(Wahrsager.name);
-                if(wahrsagerSpieler!=null) {
-                    Wahrsager wahrsager = (Wahrsager) wahrsagerSpieler.nebenrolle;
-                    if(wahrsager.guessedRight()) {
-                        schönlinge.add(wahrsagerSpieler);
-                    }
-                }
-            }
-            Wahrsager.allowedToTakeGuesses = false;
         }
+        addInvisibleProgrammStatement(PROGRAMM_WAHRSAGER);
         addStatementRolle(ANALYTIKER, ANALYTIKER_TITLE, Analytiker.name, Statement.ROLLE_SPECAL);
         addStatementRolle(ARCHIVAR, ARCHIVAR_TITLE, Archivar.name, Statement.ROLLE_CHOOSE_ONE_INFO);
         addStatementRolle(SPION, SPION_TITLE, Spion.name, Statement.ROLLE_CHOOSE_ONE_INFO);

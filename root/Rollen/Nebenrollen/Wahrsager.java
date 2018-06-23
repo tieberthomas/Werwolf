@@ -18,7 +18,7 @@ public class Wahrsager extends Nebenrolle
     public static boolean spammable = false;
     public Fraktion tipp = null;
     public static Fraktion opferFraktion = null;
-    public static boolean allowedToTakeGuesses = false;
+    public static boolean isGuessing = false;
 
     @Override
     public String aktion(String chosenOption) {
