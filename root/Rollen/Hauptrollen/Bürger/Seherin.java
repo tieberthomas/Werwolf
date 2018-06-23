@@ -20,38 +20,40 @@ public class Seherin extends Hauptrolle {
     public static boolean spammable = true;
 
     @Override
-    public String aktion(String chosenOption) {
+    public FrontendControl getDropdownOtions() {
+        return Spieler.getMitspielerCheckSpammableFrontendControl(this);
+    }
+
+    @Override
+    public FrontendControl processChosenOptionGetInfo(String chosenOption) {
         Spieler chosenPlayer = Spieler.findSpieler(chosenOption);
+
         if(chosenPlayer != null) {
             besucht = chosenPlayer;
 
             String nebenrolle = chosenPlayer.nebenrolle.getName();
-
             if (nebenrolle.equals(Lamm.name)) {
-                return Bürger.name;
+                return new FrontendControl(Bürger.imagePath);
             }
             if (nebenrolle.equals(Wolfspelz.name)) {
-                return Werwölfe.name;
+                return new FrontendControl(Werwölfe.imagePath);
             }
             if (nebenrolle.equals(Vampirumhang.name)) {
-                return Vampire.name;
+                return new FrontendControl(Vampire.imagePath);
             }
             if (nebenrolle.equals(Schattenkutte.name)) {
-                return Schattenpriester_Fraktion.name;
+                return new FrontendControl(Schattenpriester_Fraktion.imagePath);
             }
             if (nebenrolle.equals(Tarnumhang.name)) {
-                return Nebenrolle.TARNUMHANG;
+                //statement.titel = TARNUMHANG_TITEL;
+                return new FrontendControl(ResourcePath.TARNUMHANG);
             }
 
-            return chosenPlayer.hauptrolle.getFraktion().getName();
+            //statement.titel = chosenOption;
+            return new FrontendControl(chosenPlayer.hauptrolle.getFraktion().getImagePath());
         }
 
-        return null;
-    }
-
-    @Override
-    public FrontendControl getDropdownOtions() {
-        return Spieler.getMitspielerCheckSpammableFrontendControl(this);
+        return new FrontendControl();
     }
 
     @Override
