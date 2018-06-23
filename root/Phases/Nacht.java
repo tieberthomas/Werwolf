@@ -199,6 +199,8 @@ public class Nacht extends Thread
                         dropdownOtions = rolle.getDropdownOtions();
                         showDropdownPage(statement, dropdownOtions);
                         info = rolle.processChosenOptionGetInfo(erzählerFrame.chosenOption1);
+                        if(info.title==null)
+                            info.title = statement.title;
                         showInfo(statement, info);
                         break;
 

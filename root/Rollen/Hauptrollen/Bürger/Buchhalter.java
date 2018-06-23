@@ -16,6 +16,7 @@ public class Buchhalter extends Hauptrolle
 {
     public static final String JA = "Ja";
     public static final String NEIN = "Nein";
+    public static final String USED_TITLE = "Rollen im Spiel";
 
     public static final String name = "Buchhalter";
     public static Fraktion fraktion = new Bürger();
@@ -39,7 +40,7 @@ public class Buchhalter extends Hauptrolle
         if (chosenOption.equals(JA)) {
             abilityCharges--;
 
-            return new FrontendControl(FrontendControl.STATIC_LIST, Hauptrolle.getMainRolesAlive());
+            return new FrontendControl(FrontendControl.STATIC_LIST, Hauptrolle.getMainRolesAlive(), USED_TITLE);
         }
 
         return new FrontendControl();
