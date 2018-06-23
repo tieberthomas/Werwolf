@@ -262,11 +262,12 @@ public class Nacht extends Thread
                         if (chosenPlayer != null) {
                             neuerSchattenpriester = chosenPlayer.name;
 
-                            if(chosenPlayer.nebenrolle.getName().equals(Schattenkutte.name)) {
+                            if(!chosenPlayer.hauptrolle.getFraktion().getName().equals(Schattenpriester_Fraktion.name)) {
+                                System.out.println("schattenkutte");
                                 imagePath = Schattenkutte.imagePath;
                             }
                         }
-                        showListShowTitle(statement, neuerSchattenpriester, imagePath);
+                        showListShowImage(statement, neuerSchattenpriester, ResourcePath.SCHATTENPRIESTER_ICON, imagePath);
                         break;
 
                     case NEUER_WERWOLF:
@@ -276,7 +277,7 @@ public class Nacht extends Thread
                             neuerWerwolf = chosenPlayer.name;
                         }
 
-                        showListShowTitle(statement, neuerWerwolf);
+                        showListShowImage(statement, neuerWerwolf, ResourcePath.WÖLFE_ICON);
 
                         break;
 
@@ -695,6 +696,27 @@ public class Nacht extends Thread
     public void showListShowTitle(Statement statement, ArrayList<String> strings, String imagePath) {
         erzählerListPage(statement, strings, imagePath);
         spielerTitlePage(statement.title);
+
+        waitForAnswer();
+    }
+
+    public void showListShowImage(Statement statement, ArrayList<String> strings, String spielerImagePath) {
+        showListShowImage(statement, strings, spielerImagePath, "");
+    }
+
+    public void showListShowImage(Statement statement, String string, String spielerImagePath, String erzählerImagePath) {
+        ArrayList<String> list = new ArrayList<>();
+        list.add(string);
+        showListShowImage(statement, list, spielerImagePath, erzählerImagePath);
+    }
+
+    public void showListShowImage(Statement statement, String string, String spielerImagePath) {
+        showListShowImage(statement, string, spielerImagePath, "");
+    }
+
+    public void showListShowImage(Statement statement, ArrayList<String> strings, String spielerImagePath, String erzählerImagePath) {
+        erzählerListPage(statement, strings, erzählerImagePath);
+        spielerIconPicturePage(statement.title, spielerImagePath);
 
         waitForAnswer();
     }
