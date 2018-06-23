@@ -5,6 +5,8 @@ import root.ResourceManagement.ResourcePath;
 import root.Rollen.Fraktion;
 import root.Rollen.Nebenrolle;
 
+import java.util.ArrayList;
+
 /**
  * Created by Steve on 12.11.2017.
  */
@@ -17,13 +19,23 @@ public class Spion extends Nebenrolle
     public String type = Nebenrolle.INFORMATIV;
 
     @Override
-    public String aktion(String chosenOption) {
-        return chosenOption;
+    public FrontendControl getDropdownOtions() {
+        return Fraktion.getFraktionOrNoneFrontendControl();
     }
 
     @Override
-    public FrontendControl getDropdownOtions() {
-        return Fraktion.getFraktionOrNoneFrontendControl();
+    public FrontendControl processChosenOptionGetInfo(String chosenOption) {
+        Fraktion fraktion = Fraktion.findFraktion(chosenOption);
+
+        if (fraktion != null) {
+            int fraktionAnzahl = fraktion.getFraktionsMembers().size();
+            ArrayList<String> list = new ArrayList<>();
+            list.add(Integer.toString(fraktionAnzahl));
+
+            return new FrontendControl(FrontendControl.STATIC_LIST, list, fraktion.getName());
+        }
+
+        return new FrontendControl();
     }
 
     @Override

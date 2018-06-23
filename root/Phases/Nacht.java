@@ -153,7 +153,6 @@ public class Nacht extends Thread
             String feedbackLastStatement = null;
 
             Rolle rolle = null;
-            Fraktion fraktion;
 
             String imagePath;
 
@@ -217,7 +216,7 @@ public class Nacht extends Thread
                         break;
 
                     case Statement.FRAKTION_CHOOSE_ONE:
-                        fraktion = ((StatementFraktion)statement).getFraktion();
+                        Fraktion fraktion = ((StatementFraktion)statement).getFraktion();
 
                         dropdownOtions = fraktion.getDropdownOtions();
                         showDropdownPage(statement, dropdownOtions);
@@ -333,20 +332,6 @@ public class Nacht extends Thread
                                 String answer = ((Analytiker)rolle).analysiere(chosenSpieler1, chosenSpieler2);
                                 showListOnBothScreens(statement, answer);
                             }
-                        }
-                        break;
-
-                    case SPION:
-                        fraktion = Fraktion.findFraktion(feedback);
-                        if (fraktion != null) {
-                            statement.title = fraktion.getName();
-
-                            int fraktionAnzahl = fraktion.getFraktionsMembers().size();
-                            String answer = Integer.toString(fraktionAnzahl);
-
-                            showListOnBothScreens(statement, answer);
-
-                            statement.title = SPION_TITLE;
                         }
                         break;
 
