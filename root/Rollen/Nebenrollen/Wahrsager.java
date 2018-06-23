@@ -20,17 +20,6 @@ public class Wahrsager extends Nebenrolle
     public static Fraktion opferFraktion = null;
     public static boolean allowedToTakeGuesses = false;
 
-    public boolean guessedRight() {
-        if((tipp == null && Wahrsager.opferFraktion == null) ||
-                (tipp!=null && Wahrsager.opferFraktion != null) &&
-                        tipp.getName().equals(Wahrsager.opferFraktion.getName()))
-        {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     @Override
     public String aktion(String chosenOption) {
         return chosenOption;
@@ -64,5 +53,16 @@ public class Wahrsager extends Nebenrolle
     @Override
     public boolean isSpammable() {
         return spammable;
+    }
+
+    public boolean guessedRight() {
+        if((tipp == null && Wahrsager.opferFraktion == null) ||
+                (tipp!=null && Wahrsager.opferFraktion != null) &&
+                        tipp.getName().equals(Wahrsager.opferFraktion.getName()))
+        {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
