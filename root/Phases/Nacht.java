@@ -1146,7 +1146,7 @@ public class Nacht extends Thread
         addStatementRolle(ÜBERLÄUFER, ÜBERLÄUFER_TITEL, Überläufer.name, Statement.ROLLE_CHOOSE_ONE);
         addStatementRolle(NACHBAR, NACHBAR_TITEL, Nachbar.name, Statement.ROLLE_CHOOSE_ONE);
         addStatementRolle(HOLDE_MAID, HOLDE_MAID_TITEL, HoldeMaid.name, Statement.ROLLE_CHOOSE_ONE);
-        addStatementRolle(GUTE_HEXE_SCHÜTZEN, GUTE_HEXE_SCHÜTZEN_TITEL, GuteHexe.name, Statement.ROLLE_SPECAL); //TODO choose one
+        addStatementRolle(GUTE_HEXE_SCHÜTZEN, GUTE_HEXE_SCHÜTZEN_TITEL, GuteHexe.name, Statement.ROLLE_CHOOSE_ONE);
 
         addInvisibleProgrammStatement(PROGRAMM_SCHÜTZE);
 
@@ -1168,10 +1168,10 @@ public class Nacht extends Thread
         addStatementRolle(GUTE_HEXE_WIEDERBELEBEN, GUTE_HEXE_WIEDERBELEBEN_TITEL, GuteHexe.name, Statement.ROLLE_SPECAL);
 
         addStatementRolle(MISS_VERONA, MISS_VERONA_TITEL, MissVerona.name, Statement.ROLLE_INFO);
-        addStatementRolle(SEHERIN, SEHERIN_TITEL, Seherin.name, Statement.ROLLE_CHOOSE_ONE);
+        addStatementRolle(SEHERIN, SEHERIN_TITEL, Seherin.name, Statement.ROLLE_CHOOSE_ONE_INFO);
         addStatementRolle(ORAKEL, ORAKEL_TITEL, Orakel.name, Statement.ROLLE_INFO);
-        addStatementRolle(SPÄHER, SPÄHER_TITEL, Späher.name, Statement.ROLLE_CHOOSE_ONE);
-        addStatementRolle(BUCHHALTER, BUCHHALTER_TITEL, Buchhalter.name, Statement.ROLLE_CHOOSE_ONE);
+        addStatementRolle(SPÄHER, SPÄHER_TITEL, Späher.name, Statement.ROLLE_CHOOSE_ONE_INFO);
+        addStatementRolle(BUCHHALTER, BUCHHALTER_TITEL, Buchhalter.name, Statement.ROLLE_CHOOSE_ONE_INFO);
         if(Spieler.getLivigPlayer().size()>4) {
             addStatementRolle(WAHRSAGER, WAHRSAGER_TITEL, Wahrsager.name, Statement.ROLLE_CHOOSE_ONE);
         } else {
@@ -1188,8 +1188,8 @@ public class Nacht extends Thread
             Wahrsager.allowedToTakeGuesses = false;
         }
         addStatementRolle(ANALYTIKER, ANALYTIKER_TITEL, Analytiker.name, Statement.ROLLE_SPECAL);
-        addStatementRolle(ARCHIVAR, ARCHIVAR_TITEL, Archivar.name, Statement.ROLLE_CHOOSE_ONE);
-        addStatementRolle(SPION, SPION_TITEL, Spion.name, Statement.ROLLE_CHOOSE_ONE);
+        addStatementRolle(ARCHIVAR, ARCHIVAR_TITEL, Archivar.name, Statement.ROLLE_CHOOSE_ONE_INFO);
+        addStatementRolle(SPION, SPION_TITEL, Spion.name, Statement.ROLLE_CHOOSE_ONE_INFO);
 
         addStatementRolle(BESCHWÖRER, BESCHWÖRER_TITEL, Beschwörer.name, Statement.ROLLE_CHOOSE_ONE);
         addStatementRolle(FRISÖR, FRISÖR_TITEL, Frisör.name, Statement.ROLLE_CHOOSE_ONE);
@@ -1208,9 +1208,7 @@ public class Nacht extends Thread
         if(Wölfin.modus == Wölfin.TÖTEND) {
             addStatementRolle(WÖLFIN_BONUSROLLE, WÖLFIN_BONUSROLLE_TITEL, Wölfin.name, Statement.ROLLE_INFO);
         }
-        if(Rolle.rolleExists(Beschwörer.name)) {
-            addStatementRolle(VERSTUMMT, VERSTUMMT_TITEL, Beschwörer.name, Statement.ROLLE_INFO);
-        }
+        addStatementRolle(VERSTUMMT, VERSTUMMT_TITEL, Beschwörer.name, Statement.ROLLE_INFO);
         if(Rolle.rolleExists(Frisör.name) || Rolle.rolleExists(Wahrsager.name)) {
             addStatementIndie(SCHÖNLINGE, SCHÖNLINGE_TITEL, Statement.INDIE);
         }
