@@ -122,9 +122,6 @@ public class Nacht extends Thread
     public static final String WÖLFIN_NEBENROLLE_TITLE = "Wölfin";
 
     public static final String TORTE_TITLE = "";
-    public static final String PASSIV_TITLE = "Passiv";
-    public static final String AKTIV_TITLE = "Aktiv";
-    public static final String INFORMATIV_TITLE = "Informativ";
     public static final String TARNUMHANG_TITLE = "Tarnumhang";
     public static final String TOT_TITLE = "Tot";
     public static final String DEAKTIVIERT_TITLE = "Deaktiviert";
@@ -336,37 +333,6 @@ public class Nacht extends Thread
                                 String answer = ((Analytiker)rolle).analysiere(chosenSpieler1, chosenSpieler2);
                                 showListOnBothScreens(statement, answer);
                             }
-                        }
-                        break;
-
-                    case ARCHIVAR:
-                        if(feedback!=null) {
-                            imagePath = "";
-                            switch(feedback) {
-                                case Nebenrolle.AKTIV:
-                                    statement.title = AKTIV_TITLE;
-                                    imagePath =  ResourcePath.AKTIV;
-                                    break;
-
-                                case Nebenrolle.PASSIV:
-                                    statement.title = PASSIV_TITLE;
-                                    imagePath =  ResourcePath.PASSIV;
-                                    break;
-
-                                case Nebenrolle.INFORMATIV:
-                                    statement.title = INFORMATIV_TITLE;
-                                    imagePath =  ResourcePath.INFORMATIV;
-                                    break;
-
-                                case Nebenrolle.TARNUMHANG:
-                                    statement.title = TARNUMHANG_TITLE;
-                                    imagePath =  ResourcePath.TARNUMHANG;
-                                    break;
-                            }
-
-                            showImageOnBothScreens(statement, imagePath);
-
-                            statement.title = ARCHIVAR_TITLE;
                         }
                         break;
 
