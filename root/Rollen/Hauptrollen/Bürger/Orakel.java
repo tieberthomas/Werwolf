@@ -1,5 +1,8 @@
 package root.Rollen.Hauptrollen.Bürger;
 
+import root.Frontend.FrontendControl;
+import root.Phases.Nacht;
+import root.Phases.Statement;
 import root.ResourceManagement.ResourcePath;
 import root.Rollen.Fraktion;
 import root.Rollen.Fraktionen.Bürger;
@@ -22,37 +25,14 @@ public class Orakel extends Hauptrolle {
 
     public static ArrayList<String> geseheneNebenrollen = new ArrayList<>();
 
-    public Nebenrolle generateRandomNebenrolle() {
-        ArrayList<Spieler> bürger = fraktion.getFraktionsMembers();
-        ArrayList<Spieler> bürgerToRemove = new ArrayList<>();
+    public FrontendControl getInfo() {
+        Nebenrolle randomNebenrolle = generateRandomNebenrolle();
 
-        if(Rolle.rolleLebend(name)) {
-            Nebenrolle orakelSpielerNebenrolle = Spieler.findSpielerPerRolle(name).nebenrolle;
-            if (!geseheneNebenrollen.contains(orakelSpielerNebenrolle.getName())) {
-                geseheneNebenrollen.add(orakelSpielerNebenrolle.getName());
-            }
-        }
-
-        for(Spieler currentBürger : bürger) {
-            if(geseheneNebenrollen.contains(currentBürger.nebenrolle.getName())) {
-                bürgerToRemove.add(currentBürger);
-            }
-        }
-
-        bürger.removeAll(bürgerToRemove);
-
-        Nebenrolle nebenrolle;
-
-        if(bürger.size()>0) {
-            int randIndex = (int) (Math.random() * bürger.size());
-
-            nebenrolle = bürger.get(randIndex).nebenrolle;
-            geseheneNebenrollen.add(nebenrolle.getName());
+        if (randomNebenrolle != null) {
+            return new FrontendControl(randomNebenrolle.getImagePath());
         } else {
-            nebenrolle = null;
+            return new FrontendControl(FrontendControl.STATIC_LIST, Orakel.geseheneNebenrollen);
         }
-
-        return nebenrolle;
     }
 
     @Override
@@ -78,5 +58,43 @@ public class Orakel extends Hauptrolle {
     @Override
     public boolean isSpammable() {
         return spammable;
+    }
+
+    public Nebenrolle generateRandomNebenrolle() {
+        ArrayList<Spieler> unseenBürger = getUnseenBürger();
+
+        Nebenrolle nebenrolle;
+
+        if(unseenBürger.size()>0) {
+            int randIndex = (int) (Math.random() * unseenBürger.size());
+
+            nebenrolle = unseenBürger.get(randIndex).nebenrolle;
+            geseheneNebenrollen.add(nebenrolle.getName());
+        } else {
+            nebenrolle = null;
+        }
+
+        return nebenrolle;
+    }
+
+    public static ArrayList<Spieler> getUnseenBürger(){
+        ArrayList<Spieler> bürger = fraktion.getFraktionsMembers();
+        ArrayList<Spieler> bürgerToRemove = new ArrayList<>();
+
+        if(Rolle.rolleLebend(name)) {
+            Nebenrolle orakelSpielerNebenrolle = Spieler.findSpielerPerRolle(name).nebenrolle;
+            if (!geseheneNebenrollen.contains(orakelSpielerNebenrolle.getName())) {
+                geseheneNebenrollen.add(orakelSpielerNebenrolle.getName());
+            }
+        }
+
+        for(Spieler currentBürger : bürger) {
+            if(geseheneNebenrollen.contains(currentBürger.nebenrolle.getName())) {
+                bürgerToRemove.add(currentBürger);
+            }
+        }
+
+        bürger.removeAll(bürgerToRemove);
+        return bürger;
     }
 }

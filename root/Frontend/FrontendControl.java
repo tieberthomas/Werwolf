@@ -25,6 +25,11 @@ public class FrontendControl {
         this.content = content;
     }
 
+    public FrontendControl(String imagePath) {
+        this.typeOfContent = STATIC_IMAGE;
+        this.imagePath = imagePath;
+    }
+
     public FrontendControl(int typeOfContent, ArrayList<String> content) {
         this.typeOfContent = typeOfContent;
         this.content = content;

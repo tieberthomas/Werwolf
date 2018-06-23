@@ -177,6 +177,10 @@ public class Nacht extends Thread
             for (Statement statement : statements) {
                 feedback = null;
 
+                if(Orakel.getUnseenBürger().size()==0 && statement.beschreibung.equals(ORAKEL)) {
+                    statement.titel = Nacht.ORAKEL_VERBRAUCHT_TITEL;
+                }
+
                 switch (statement.type) {
                     case Statement.SHOW_TITLE:
                         erzählerDefaultNightPage(statement);
@@ -297,12 +301,6 @@ public class Nacht extends Thread
                         }
                         break;
 
-                    case MISS_VERONA:
-                        ArrayList<String> untote = ((MissVerona)rolle).findUntote();
-
-                        showListOnBothScreens(statement, untote);
-                        break;
-
                     case SEHERIN:
                         fraktion = Fraktion.findFraktion(feedback);
                         if (fraktion!=null || feedback!=null && feedback.equals(Nebenrolle.TARNUMHANG)) {
@@ -317,22 +315,6 @@ public class Nacht extends Thread
                             showImageOnBothScreens(statement, imagePath);
 
                             statement.titel = SEHERIN_TITEL;
-                        }
-                        break;
-
-                    case ORAKEL:
-                        Nebenrolle randemNebenrolle;
-
-                        if(statement.getState() == Statement.NORMAL) {
-                            randemNebenrolle = ((Orakel) rolle).generateRandomNebenrolle();
-                            if (randemNebenrolle != null) {
-                                displayCard(statement, randemNebenrolle.getImagePath());
-                            } else {
-                                statement.titel = ORAKEL_VERBRAUCHT_TITEL;
-                                showListOnBothScreens(statement, Orakel.geseheneNebenrollen);
-                            }
-                        } else {
-                            displayCard(statement, "");
                         }
                         break;
 

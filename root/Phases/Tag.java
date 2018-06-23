@@ -85,7 +85,7 @@ public class Tag extends Thread {
                     killSpielerCheckLiebespaar(chosenSpieler);
                     Wahrsager.opferFraktion = chosenSpieler.hauptrolle.getFraktion();
                     if(!hauptrolleSpieler.getFraktion().getName().equals(Bürger.name)) {
-                        if(priester.lebend) {
+                        if(priester != null && priester.lebend) {
                             killSpielerCheckLiebespaar(priester);
                         }
                     }
@@ -116,7 +116,7 @@ public class Tag extends Thread {
 
     public static void checkRichterin(Hauptrolle hauptrolleSpieler) {
         if(hauptrolleSpieler.getFraktion().getName().equals(Bürger.name)) {
-            if(richterin.lebend) {
+            if(richterin != null && richterin.lebend) {
                 killSpielerCheckLiebespaar(richterin);
             }
         }

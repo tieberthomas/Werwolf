@@ -1,5 +1,6 @@
 package root.Rollen.Hauptrollen.Vampire;
 
+import root.Frontend.FrontendControl;
 import root.ResourceManagement.ResourcePath;
 import root.Rollen.Fraktion;
 import root.Rollen.Fraktionen.Vampire;
@@ -19,6 +20,11 @@ public class MissVerona extends Hauptrolle
     public static boolean unique = true;
     public static boolean spammable = false;
     public static boolean killing = true;
+
+    @Override
+    public FrontendControl getInfo() {
+        return new FrontendControl(FrontendControl.STATIC_LIST, findUntote());
+    }
 
     @Override
     public String getName() {

@@ -603,7 +603,6 @@ public class ErzählerPageFactory {
         return richterinPage;
     }
 
-
     public Page generateTortenPage() {
         PageElement titleLabel = pageElementFactory.generateTitleLabel(null, "Torte");
 
