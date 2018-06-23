@@ -19,6 +19,11 @@ public class Nachbar extends Nebenrolle
     public Spieler beobachteterSpieler = null;
 
     @Override
+    public FrontendControl getDropdownOtions() {
+        return Spieler.getPlayerCheckSpammableFrontendControl(this);
+    }
+
+    @Override
     public String aktion(String chosenOption) {
         Spieler chosenPlayer = Spieler.findSpieler(chosenOption);
         besucht = chosenPlayer;
@@ -27,28 +32,9 @@ public class Nachbar extends Nebenrolle
         return null;
     }
 
-    public ArrayList<String> getBesucherStrings() {
-        ArrayList<String> besucher = new ArrayList<>();
-
-        if(beobachteterSpieler!=null) {
-
-            for (Spieler spieler : Spieler.getLivigPlayer()) {
-                if (spieler.hauptrolle.besucht != null && spieler.hauptrolle.besucht.name.equals(beobachteterSpieler.name) ||
-                        (spieler.nebenrolle.besucht != null && spieler.nebenrolle.besucht.name.equals(beobachteterSpieler.name))) {
-                    besucher.add(spieler.name);
-                }
-            }
-
-            Spieler nachbarSpieler = Spieler.findSpielerPerRolle(Nachbar.name);
-            besucher.remove(nachbarSpieler.name);
-        }
-
-        return besucher;
-    }
-
     @Override
-    public FrontendControl getDropdownOtions() {
-        return Spieler.getPlayerCheckSpammableFrontendControl(this);
+    public FrontendControl getInfo() {
+        return new FrontendControl(FrontendControl.STATIC_LIST, getBesucherStrings());
     }
 
     @Override
@@ -71,4 +57,22 @@ public class Nachbar extends Nebenrolle
         return spammable;
     }
 
+    public ArrayList<String> getBesucherStrings() {
+        ArrayList<String> besucher = new ArrayList<>();
+
+        if(beobachteterSpieler!=null) {
+
+            for (Spieler spieler : Spieler.getLivigPlayer()) {
+                if (spieler.hauptrolle.besucht != null && spieler.hauptrolle.besucht.name.equals(beobachteterSpieler.name) ||
+                        (spieler.nebenrolle.besucht != null && spieler.nebenrolle.besucht.name.equals(beobachteterSpieler.name))) {
+                    besucher.add(spieler.name);
+                }
+            }
+
+            Spieler nachbarSpieler = Spieler.findSpielerPerRolle(Nachbar.name);
+            besucher.remove(nachbarSpieler.name);
+        }
+
+        return besucher;
+    }
 }

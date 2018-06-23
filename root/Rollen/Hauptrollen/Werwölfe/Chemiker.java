@@ -47,11 +47,6 @@ public class Chemiker extends Hauptrolle
         return chosenOption;
     }
 
-    /*@Override
-    public FrontendControl getInfo() {
-        return new FrontendControl(FrontendControl.STATIC_LIST, findUntote());
-    }*/
-
     @Override
     public String getName() {
         return name;

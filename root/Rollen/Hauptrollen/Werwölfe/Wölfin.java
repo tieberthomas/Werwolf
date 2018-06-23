@@ -1,10 +1,12 @@
 package root.Rollen.Hauptrollen.Werwölfe;
 
 import root.Frontend.FrontendControl;
+import root.Phases.Nacht;
 import root.ResourceManagement.ResourcePath;
 import root.Rollen.Fraktion;
 import root.Rollen.Fraktionen.Werwölfe;
 import root.Rollen.Hauptrolle;
+import root.Rollen.Nebenrollen.Tarnumhang;
 import root.Spieler;
 import root.mechanics.Opfer;
 
@@ -29,6 +31,11 @@ public class Wölfin extends Hauptrolle
     public static int modus = WARTEND;
 
     @Override
+    public FrontendControl getDropdownOtions() {
+        return Spieler.getPlayerCheckSpammableFrontendControl(this);
+    }
+
+    @Override
     public String aktion(String chosenOption) {
         Spieler chosenPlayer = Spieler.findSpieler(chosenOption);
         modus = FERTIG;
@@ -45,8 +52,19 @@ public class Wölfin extends Hauptrolle
     }
 
     @Override
-    public FrontendControl getDropdownOtions() {
-        return Spieler.getPlayerCheckSpammableFrontendControl(this);
+    public FrontendControl getInfo() {
+        if(Nacht.wölfinKilled) {
+            Spieler wölfinSpieler = Nacht.wölfinSpieler;
+            if(wölfinSpieler!=null) {
+                String imagePath = wölfinSpieler.nebenrolle.getImagePath();
+                if (wölfinSpieler.nebenrolle.getName().equals(Tarnumhang.name)) {
+                    imagePath = ResourcePath.TARNUMHANG;
+                }
+                return new FrontendControl(imagePath);
+            }
+        }
+
+        return new FrontendControl(); //TODO type implementieren dass statement ganz übersürungen wird
     }
 
     @Override

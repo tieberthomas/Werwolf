@@ -1,6 +1,7 @@
 package root.Rollen.Nebenrollen;
 
 import root.Frontend.FrontendControl;
+import root.Phases.Nacht;
 import root.ResourceManagement.ResourcePath;
 import root.Rollen.Nebenrolle;
 import root.Spieler;
@@ -16,6 +17,11 @@ public class Beschwörer extends Nebenrolle
     public static boolean spammable = false;
 
     @Override
+    public FrontendControl getDropdownOtions() {
+        return Spieler.getPlayerCheckSpammableFrontendControl(this);
+    }
+
+    @Override
     public String aktion(String chosenOption) {
         Spieler chosenPlayer = Spieler.findSpieler(chosenOption);
         if(chosenPlayer != null) {
@@ -24,11 +30,6 @@ public class Beschwörer extends Nebenrolle
         }
 
         return null;
-    }
-
-    @Override
-    public FrontendControl getDropdownOtions() {
-        return Spieler.getPlayerCheckSpammableFrontendControl(this);
     }
 
     @Override

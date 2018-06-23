@@ -73,7 +73,7 @@ public class Nacht extends Thread
     public static final String OPFER = "Alle Opfer inklusive Liebespaaropfer werden bekannt gegeben";
     public static final String VERSTUMMT = "Der verstummte Spieler wird bekannt gegeben";
     public static final String SCHÖNLINGE = "Die Schönlinge werden bekannt gegeben";
-    public static final String WÖLFIN_BONUSROLLE = "Das Dorf erfährt die Bonusrolle der Wölfin";
+    public static final String WÖLFIN_NEBENROLLE = "Das Dorf erfährt die Bonusrolle der Wölfin";
 
     public static final String PROGRAMM_SCHÜTZE = "[Programm] Schütze";
     public static final String PROGRAMM_OPFER = "[Programm] Opfer";
@@ -120,7 +120,7 @@ public class Nacht extends Thread
     public static final String OPFER_TITEL = "Opfer der Nacht";
     public static final String VERSTUMMT_TITEL = "Verstummt";
     public static final String SCHÖNLINGE_TITEL = "Schönlinge";
-    public static final String WÖLFIN_BONUSROLLE_TITEL = "Wölfin";
+    public static final String WÖLFIN_NEBENROLLE_TITEL = "Wölfin";
 
     public static final String TORTE_TITEL = "";
     public static final String PASSIV_TITEL = "Passiv";
@@ -139,6 +139,9 @@ public class Nacht extends Thread
     public static Object lock;
 
     ArrayList<Spieler> schönlinge = new ArrayList<>();
+    public static boolean wölfinKilled;
+    public static Spieler wölfinSpieler;
+    public static Spieler beschworenerSpieler;
 
     public Nacht(ErzählerFrame erzählerFrame, SpielerFrame spielerFrame) {
         this.erzählerFrame = erzählerFrame;
@@ -163,10 +166,10 @@ public class Nacht extends Thread
             String chosenOption;
             Opfer chosenOpfer;
             Spieler chosenPlayer;
-            boolean wölfinKilled = false;
-            Spieler wölfinSpieler = null;
+            wölfinKilled = false;
+            wölfinSpieler = null;
             schönlinge = new ArrayList<>();
-            Spieler beschworenerSpieler = null;
+            beschworenerSpieler = null;
 
             ArrayList<String> spielerOrNon = Spieler.getLivigPlayerOrNoneStrings();
 
@@ -176,10 +179,6 @@ public class Nacht extends Thread
 
             for (Statement statement : statements) {
                 feedback = null;
-
-                if(Orakel.getUnseenBürger().size()==0 && statement.beschreibung.equals(ORAKEL)) {
-                    statement.titel = Nacht.ORAKEL_VERBRAUCHT_TITEL;
-                }
 
                 switch (statement.type) {
                     case Statement.SHOW_TITLE:
@@ -449,13 +448,6 @@ public class Nacht extends Thread
                         }
                         break;
 
-                    case NACHBAR_INFORMATION:
-                        Spieler nachbarSpieler = Spieler.findSpielerPerRolle(rolle.getName());
-                        Nachbar nachbar = (Nachbar)nachbarSpieler.nebenrolle;
-                        ArrayList<String> besucher = nachbar.getBesucherStrings();
-                        showListOnBothScreens(statement, besucher);
-                        break;
-
                     case KONDITOR:
                     case KONDITOR_LEHRLING:
                         if (Opfer.deadVictims.size() == 0) {
@@ -498,19 +490,6 @@ public class Nacht extends Thread
 
                         if(victory != null) {
                             showEndScreenPage(victory);
-                        }
-                        break;
-
-                    case WÖLFIN_BONUSROLLE:
-                        if(wölfinKilled) {
-                            if(wölfinSpieler!=null) {
-                                imagePath = wölfinSpieler.nebenrolle.getImagePath();
-                                if (wölfinSpieler.nebenrolle.getName().equals(Tarnumhang.name)) {
-                                    imagePath = ResourcePath.TARNUMHANG;
-                                    statement.titel = TARNUMHANG_TITEL;
-                                }
-                                showImageOnBothScreens(statement, imagePath);
-                            }
                         }
                         break;
 
@@ -1156,7 +1135,7 @@ public class Nacht extends Thread
         addStatementFraktion(SCHATTENPRIESTER, SCHATTENPRIESTER_TITEL, Schattenpriester_Fraktion.name, Statement.FRAKTION_CHOOSE_ONE);
         addStatementFraktion(NEUER_SCHATTENPRIESTER, NEUER_SCHATTENPRIESTER_TITEL, Schattenpriester_Fraktion.name, Statement.FRAKTION_SPECAL);
         addStatementRolle(CHEMIKER, CHEMIKER_TITEL, Chemiker.name, Statement.ROLLE_CHOOSE_ONE);
-        addStatementRolle(NEUER_WERWOLF, NEUER_WERWOLF_TITEL, Chemiker.name, Statement.ROLLE_INFO);
+        addStatementRolle(NEUER_WERWOLF, NEUER_WERWOLF_TITEL, Chemiker.name, Statement.ROLLE_SPECAL); //vll. rolle_info
         addStatementRolle(GUTE_HEXE_WIEDERBELEBEN, GUTE_HEXE_WIEDERBELEBEN_TITEL, GuteHexe.name, Statement.ROLLE_SPECAL);
 
         addStatementRolle(MISS_VERONA, MISS_VERONA_TITEL, MissVerona.name, Statement.ROLLE_INFO);
@@ -1198,9 +1177,9 @@ public class Nacht extends Thread
 
         addStatementIndie(OPFER, OPFER_TITEL, Statement.INDIE);
         if(Wölfin.modus == Wölfin.TÖTEND) {
-            addStatementRolle(WÖLFIN_BONUSROLLE, WÖLFIN_BONUSROLLE_TITEL, Wölfin.name, Statement.ROLLE_INFO);
+            addStatementRolle(WÖLFIN_NEBENROLLE, WÖLFIN_NEBENROLLE_TITEL, Wölfin.name, Statement.ROLLE_INFO); //vll. rolle_info
         }
-        addStatementRolle(VERSTUMMT, VERSTUMMT_TITEL, Beschwörer.name, Statement.ROLLE_INFO);
+        addStatementRolle(VERSTUMMT, VERSTUMMT_TITEL, Beschwörer.name, Statement.ROLLE_SPECAL); //versuchen auf generisch rolle_info
         if(Rolle.rolleExists(Frisör.name) || Rolle.rolleExists(Wahrsager.name)) {
             addStatementIndie(SCHÖNLINGE, SCHÖNLINGE_TITEL, Statement.INDIE);
         }
