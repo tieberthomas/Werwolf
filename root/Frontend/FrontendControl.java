@@ -15,6 +15,8 @@ public class FrontendControl {
     public ArrayList<String> content;
     public String imagePath;
 
+    //TODO Add title
+
     public FrontendControl() {
         this.typeOfContent = DROPDOWN_WITHOUT_SUGGESTIONS;
         this.content = new ArrayList<>();

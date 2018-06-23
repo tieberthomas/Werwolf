@@ -206,8 +206,7 @@ public class Nacht extends Thread
 
                         dropdownOtions = rolle.getDropdownOtions();
                         showDropdownPage(statement, dropdownOtions);
-                        feedback = rolle.aktion(erzählerFrame.chosenOption1);
-                        info = rolle.getInfo();
+                        info = rolle.processChosenOptionGetInfo(erzählerFrame.chosenOption1);
                         showInfo(statement, info);
                         break;
 
