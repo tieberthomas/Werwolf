@@ -1,10 +1,13 @@
 package root.Rollen.Hauptrollen.Bürger;
 
 import root.Frontend.FrontendControl;
+import root.Phases.Statement;
 import root.ResourceManagement.ResourcePath;
 import root.Rollen.Fraktion;
 import root.Rollen.Fraktionen.Bürger;
 import root.Rollen.Hauptrolle;
+
+import java.util.ArrayList;
 
 /**
  * Created by Steve on 12.11.2017.
@@ -21,15 +24,6 @@ public class Buchhalter extends Hauptrolle
     public static boolean spammable = false;
 
     @Override
-    public String aktion(String chosenOption) {
-        if (chosenOption.equals(JA)) {
-            abilityCharges--;
-        }
-
-        return chosenOption;
-    }
-
-    @Override
     public FrontendControl getDropdownOtions() {
         FrontendControl frontendControl = new FrontendControl();
 
@@ -38,6 +32,17 @@ public class Buchhalter extends Hauptrolle
         frontendControl.content.add(NEIN);
 
         return frontendControl;
+    }
+
+    @Override
+    public FrontendControl processChosenOptionGetInfo(String chosenOption) {
+        if (chosenOption.equals(JA)) {
+            abilityCharges--;
+
+            return new FrontendControl(FrontendControl.STATIC_LIST, Hauptrolle.getMainRolesAlive());
+        }
+
+        return new FrontendControl();
     }
 
     @Override

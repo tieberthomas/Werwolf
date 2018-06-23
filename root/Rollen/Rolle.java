@@ -16,7 +16,7 @@ public class Rolle
 
     public FrontendControl getDropdownOtions() {
         return new FrontendControl();
-    }
+    } //TODO typo
 
     public String aktion(String chosenOption) { //TODO rename processChosenOption
         return null;

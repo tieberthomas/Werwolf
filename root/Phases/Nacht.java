@@ -108,7 +108,6 @@ public class Nacht extends Thread
     public static final String ARCHIVAR_TITLE = "Spieler wählen";
     public static final String SEHERIN_TITLE = "Spieler wählen";
     public static final String ORAKEL_TITLE = "Bonusrolle";
-    public static final String ORAKEL_VERBRAUCHT_TITLE = "Bonusrollen";
     public static final String SPÄHER_TITLE = "Spieler wählen";
     public static final String BUCHHALTER_TITLE = "Fähigkeit verbrauchen";
     public static final String WAHRSAGER_TITLE = "Fraktion wählen";
@@ -130,8 +129,6 @@ public class Nacht extends Thread
     public static final String TOT_TITLE = "Tot";
     public static final String DEAKTIVIERT_TITLE = "Deaktiviert";
     public static final String AUFGEBRAUCHT_TITLE = "Aufgebraucht";
-    public static final String TÖTEND_TITLE = "Tötend";
-    public static final String NICHT_TÖTEND_TITLE = "Nicht Tötend";
 
     ErzählerFrame erzählerFrame;
     public static SpielerFrame spielerFrame;
@@ -298,56 +295,6 @@ public class Nacht extends Thread
                             }
                         } else {
                             showAufgebrauchtPages(statement);
-                        }
-                        break;
-
-                    case SEHERIN:
-                        fraktion = Fraktion.findFraktion(feedback);
-                        if (fraktion!=null || feedback!=null && feedback.equals(Nebenrolle.TARNUMHANG)) {
-                            if(feedback.equals(Nebenrolle.TARNUMHANG)) {
-                                imagePath = ResourcePath.TARNUMHANG;
-                                statement.title = TARNUMHANG_TITLE;
-                            } else {
-                                imagePath = fraktion.getImagePath();
-                                statement.title = erzählerFrame.chosenOption1;
-                            }
-
-                            showImageOnBothScreens(statement, imagePath);
-
-                            statement.title = SEHERIN_TITLE;
-                        }
-                        break;
-
-                    case SPÄHER:
-                        if (feedback != null) {
-                            imagePath = "";
-                            switch(feedback){
-                                case Späher.TÖTEND:
-                                    imagePath  = ResourcePath.TÖTEND;
-                                    statement.title = TÖTEND_TITLE;
-                                    break;
-
-                                case Späher.NICHT_TÖTEND:
-                                    imagePath  = ResourcePath.NICHT_TÖTEND;
-                                    statement.title = NICHT_TÖTEND_TITLE;
-                                    break;
-
-                                case Späher.TARNUMHANG:
-                                    imagePath  = ResourcePath.TARNUMHANG;
-                                    statement.title = TARNUMHANG_TITLE;
-                                    break;
-                            }
-
-                            showImageOnBothScreens(statement, imagePath);
-
-                            statement.title = SPÄHER_TITLE;
-                        }
-                        break;
-
-                    case BUCHHALTER:
-                        if (feedback != null && feedback.equals(Buchhalter.JA)) {
-                            ArrayList<String> hauptrollenImSpiel = Hauptrolle.getMainRolesAlive();
-                            showListOnBothScreens(statement, hauptrollenImSpiel);
                         }
                         break;
 

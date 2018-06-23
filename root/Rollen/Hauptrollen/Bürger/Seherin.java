@@ -8,11 +8,12 @@ import root.Rollen.Fraktionen.Schattenpriester_Fraktion;
 import root.Rollen.Fraktionen.Vampire;
 import root.Rollen.Fraktionen.Werwölfe;
 import root.Rollen.Hauptrolle;
-import root.Rollen.Nebenrolle;
 import root.Rollen.Nebenrollen.*;
 import root.Spieler;
 
 public class Seherin extends Hauptrolle {
+    public static final String TARNUMHANG_TITLE = "Tarnumhang";
+
     public static final String name = "Seherin";
     public static Fraktion fraktion = new Bürger();
     public static final String imagePath = ResourcePath.SEHERIN_KARTE;
@@ -45,12 +46,10 @@ public class Seherin extends Hauptrolle {
                 return new FrontendControl(Schattenpriester_Fraktion.imagePath);
             }
             if (nebenrolle.equals(Tarnumhang.name)) {
-                //statement.title = TARNUMHANG_TITLE;
-                return new FrontendControl(ResourcePath.TARNUMHANG);
+                return new FrontendControl(ResourcePath.TARNUMHANG, TARNUMHANG_TITLE);
             }
 
-            //statement.title = chosenOption;
-            return new FrontendControl(chosenPlayer.hauptrolle.getFraktion().getImagePath());
+            return new FrontendControl(chosenPlayer.hauptrolle.getFraktion().getImagePath(), chosenOption);
         }
 
         return new FrontendControl();

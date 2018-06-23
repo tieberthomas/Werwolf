@@ -13,9 +13,9 @@ import root.Spieler;
  */
 public class Späher extends Hauptrolle
 {
-    public static final String TÖTEND = "Tötend";
-    public static final String NICHT_TÖTEND = "Nicht Tötend";
-    public static final String TARNUMHANG = "Tarnumhang";
+    public static final String TÖTEND_TITLE = "Tötend";
+    public static final String NICHT_TÖTEND_TITLE = "Nicht Tötend";
+    public static final String TARNUMHANG_TITLE = "Tarnumhang";
 
     public static final String name = "Späher";
     public static Fraktion fraktion = new Bürger();
@@ -24,29 +24,31 @@ public class Späher extends Hauptrolle
     public static boolean spammable = true;
 
     @Override
-    public String aktion(String chosenOption) {
+    public FrontendControl getDropdownOtions() {
+        return Spieler.getMitspielerCheckSpammableFrontendControl(this);
+    }
+
+    @Override
+    public FrontendControl processChosenOptionGetInfo(String chosenOption) {
         Spieler chosenPlayer = Spieler.findSpieler(chosenOption);
-        if(chosenPlayer!=null) {
+
+        if(chosenPlayer != null) {
             besucht = chosenPlayer;
 
             if(chosenPlayer.nebenrolle.getName().equals(Tarnumhang.name)) {
-                return TARNUMHANG;
+                return new FrontendControl(ResourcePath.TARNUMHANG, TARNUMHANG_TITLE);
             }
 
             if(chosenPlayer.hauptrolle.isKilling()) {
                 abilityCharges--;
-                return TÖTEND;
+
+                return new FrontendControl(ResourcePath.TÖTEND, TÖTEND_TITLE);
             } else {
-                return NICHT_TÖTEND;
+                return new FrontendControl(ResourcePath.NICHT_TÖTEND, NICHT_TÖTEND_TITLE);
             }
         }
 
-        return null;
-    }
-
-    @Override
-    public FrontendControl getDropdownOtions() {
-        return Spieler.getMitspielerCheckSpammableFrontendControl(this);
+        return new FrontendControl();
     }
 
     @Override
