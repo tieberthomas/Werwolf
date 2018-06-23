@@ -130,7 +130,7 @@ public class SpielerPageElementFactory {
     public PageElement generateCenteredLabel(JLabel label, Predecessor predecessorY, int spaceToPredecessorY) {
         label = generateBigJLabel(label);
 
-        int imageJLabelWidth = (int)label.getPreferredSize().getWidth();
+        int imageJLabelWidth = spielerFrame.getPreferredSize().width;
         int imageJLabelHeight = (int)label.getPreferredSize().getHeight();
 
         PageElement centeredLabel = new PageElement(label, imageJLabelWidth, imageJLabelHeight, null, predecessorY, 0, spaceToPredecessorY);
@@ -149,7 +149,7 @@ public class SpielerPageElementFactory {
     public PageElement generateColumnCenteredLabel(JLabel label, Predecessor predecessorY, int spaceToPredecessorY, int numberOfColumns, int indexOfColumn, int size) {
         label = formatLabel(label, size);
 
-        int imageJLabelWidth = (int)label.getPreferredSize().getWidth();
+        int imageJLabelWidth = spielerFrame.getPreferredSize().width/numberOfColumns;
         int imageJLabelHeight = (int)label.getPreferredSize().getHeight();
 
         PageElement centeredLabel = new PageElement(label, imageJLabelWidth, imageJLabelHeight, null, predecessorY, 0, spaceToPredecessorY);
@@ -174,7 +174,7 @@ public class SpielerPageElementFactory {
     public PageElement generateColumnTitleLabel(String title, int numberOfColumns, int indexOfColumn, int spaceToUse) {
         JLabel titleJLabel = generateTitleJLabel(title);
 
-        int numberOfPlayersLabelWidth = (int)titleJLabel.getPreferredSize().getWidth();
+        int numberOfPlayersLabelWidth = spielerFrame.getPreferredSize().width;
         int numberOfPlayersLabelHeight = spaceToUse;
 
         PageElement titleLabel = new PageElement(titleJLabel, numberOfPlayersLabelWidth, numberOfPlayersLabelHeight, null, null);
