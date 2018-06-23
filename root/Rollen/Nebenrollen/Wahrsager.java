@@ -10,6 +10,8 @@ import root.Rollen.Nebenrolle;
  */
 public class Wahrsager extends Nebenrolle
 {
+    public static final String KEIN_OPFER = "Kein Opfer";
+
     public static final String name = "Wahrsager";
     public static final String imagePath = ResourcePath.WAHRSAGER_KARTE;
     public static boolean unique = true;
@@ -36,7 +38,12 @@ public class Wahrsager extends Nebenrolle
 
     @Override
     public FrontendControl getDropdownOtions() {
-        return Fraktion.getFraktionOrNoneFrontendControl();
+        FrontendControl dropDownOptions = Fraktion.getFraktionOrNoneFrontendControl();
+
+        dropDownOptions.content.remove("");
+        dropDownOptions.content.add(KEIN_OPFER);
+
+        return dropDownOptions;
     }
 
     @Override
