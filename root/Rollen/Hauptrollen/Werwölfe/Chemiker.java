@@ -20,9 +20,8 @@ public class Chemiker extends Hauptrolle
     public static boolean unique = true;
     public static boolean spammable = true;
 
-
     @Override
-    public FrontendControl getDropdownOtions() {
+    public FrontendControl getDropdownOptions() {
         FrontendControl frontendControl = new FrontendControl();
 
         frontendControl.typeOfContent = FrontendControl.DROPDOWN_WITH_SUGGESTIONS;
@@ -35,7 +34,7 @@ public class Chemiker extends Hauptrolle
     }
 
     @Override
-    public String aktion(String chosenOption) {
+    public String processChosenOption(String chosenOption) {
         Opfer chosenOpfer = Opfer.findOpfer(chosenOption);
         if(chosenOpfer != null) {
             besucht = chosenOpfer.opfer;

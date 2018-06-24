@@ -25,6 +25,7 @@ public class Orakel extends Hauptrolle {
 
     public static ArrayList<String> geseheneNebenrollen = new ArrayList<>();
 
+    @Override
     public FrontendControl getInfo() {
         Nebenrolle randomNebenrolle = generateRandomNebenrolle();
 

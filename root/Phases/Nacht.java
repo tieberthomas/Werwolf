@@ -186,9 +186,9 @@ public class Nacht extends Thread
                         rolle = ((StatementRolle)statement).getRolle();
 
                         if (rolle.abilityCharges > 0) {
-                            dropdownOtions = rolle.getDropdownOtions();
+                            dropdownOtions = rolle.getDropdownOptions();
                             showDropdownPage(statement, dropdownOtions);
-                            feedback = rolle.aktion(erzählerFrame.chosenOption1);
+                            feedback = rolle.processChosenOption(erzählerFrame.chosenOption1);
                         } else {
                             showAufgebrauchtPages(statement); //TODO deaktiv/tot beachten
                         }
@@ -197,7 +197,7 @@ public class Nacht extends Thread
                     case Statement.ROLLE_CHOOSE_ONE_INFO:
                         rolle = ((StatementRolle)statement).getRolle();
 
-                        dropdownOtions = rolle.getDropdownOtions();
+                        dropdownOtions = rolle.getDropdownOptions();
                         showDropdownPage(statement, dropdownOtions);
                         info = rolle.processChosenOptionGetInfo(erzählerFrame.chosenOption1);
                         if(info.title==null)
@@ -371,9 +371,9 @@ public class Nacht extends Thread
                                 Torte.torte = true;
                             }
 
-                            dropdownOtions = rolle.getDropdownOtions();
+                            dropdownOtions = rolle.getDropdownOptions();
                             showKonditorDropdownPage(statement, dropdownOtions);
-                            feedback = rolle.aktion(erzählerFrame.chosenOption1);
+                            feedback = rolle.processChosenOption(erzählerFrame.chosenOption1);
 
                             Torte.gut = feedback.equals(Konditor.GUT);
                             feedback = null;

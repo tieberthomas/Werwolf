@@ -21,18 +21,18 @@ public class Wahrsager extends Nebenrolle
     public static boolean isGuessing = false;
 
     @Override
-    public String aktion(String chosenOption) {
-        return chosenOption;
-    }
-
-    @Override
-    public FrontendControl getDropdownOtions() {
+    public FrontendControl getDropdownOptions() {
         FrontendControl dropDownOptions = Fraktion.getFraktionOrNoneFrontendControl();
 
         dropDownOptions.content.remove("");
         dropDownOptions.content.add(KEIN_OPFER);
 
         return dropDownOptions;
+    }
+
+    @Override
+    public String processChosenOption(String chosenOption) {
+        return chosenOption;
     }
 
     @Override

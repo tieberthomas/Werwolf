@@ -31,12 +31,12 @@ public class Wölfin extends Hauptrolle
     public static int modus = WARTEND;
 
     @Override
-    public FrontendControl getDropdownOtions() {
+    public FrontendControl getDropdownOptions() {
         return Spieler.getPlayerCheckSpammableFrontendControl(this);
     }
 
     @Override
-    public String aktion(String chosenOption) {
+    public String processChosenOption(String chosenOption) {
         Spieler chosenPlayer = Spieler.findSpieler(chosenOption);
         modus = FERTIG;
         if(chosenPlayer!=null) {

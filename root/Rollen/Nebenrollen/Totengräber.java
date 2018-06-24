@@ -16,7 +16,12 @@ public class Totengräber extends Nebenrolle
     public static boolean spammable = false;
 
     @Override
-    public String aktion(String chosenOption) {
+    public FrontendControl getDropdownOptions() {
+        return new FrontendControl(FrontendControl.DROPDOWN_WITH_SUGGESTIONS, Spieler.getDeadNebenrollen());
+    }
+
+    @Override
+    public String processChosenOption(String chosenOption) {
         Nebenrolle chosenNebenrolle = Nebenrolle.findNebenrolle(chosenOption);
         if (chosenNebenrolle != null) {
             try {
@@ -31,11 +36,6 @@ public class Totengräber extends Nebenrolle
         }
 
         return null;
-    }
-
-    @Override
-    public FrontendControl getDropdownOtions() {
-        return new FrontendControl(FrontendControl.DROPDOWN_WITH_SUGGESTIONS, Spieler.getDeadNebenrollen());
     }
 
     @Override

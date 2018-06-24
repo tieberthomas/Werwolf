@@ -24,7 +24,7 @@ public class Archivar extends Nebenrolle
     public String type = Nebenrolle.INFORMATIV;
 
     @Override
-    public FrontendControl getDropdownOtions() {
+    public FrontendControl getDropdownOptions() {
         return Spieler.getPlayerCheckSpammableFrontendControl(this);
     }
 

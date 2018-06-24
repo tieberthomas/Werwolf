@@ -4,6 +4,7 @@ schlechte torte - koplett deaktiv
 	booleans?
 	besucht?
 	deaktiviert und verbraucht - deaktiviert anzeigen
+	feedback löschen? (return chosenOption;)
 
 TH:
 Englisch-Deutsch-Gemisch

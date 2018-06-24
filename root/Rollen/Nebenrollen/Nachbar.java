@@ -19,12 +19,12 @@ public class Nachbar extends Nebenrolle
     public Spieler beobachteterSpieler = null;
 
     @Override
-    public FrontendControl getDropdownOtions() {
+    public FrontendControl getDropdownOptions() {
         return Spieler.getPlayerCheckSpammableFrontendControl(this);
     }
 
     @Override
-    public String aktion(String chosenOption) {
+    public String processChosenOption(String chosenOption) {
         Spieler chosenPlayer = Spieler.findSpieler(chosenOption);
         besucht = chosenPlayer;
         beobachteterSpieler = chosenPlayer;

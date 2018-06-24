@@ -18,12 +18,7 @@ public class Konditor extends Nebenrolle
     public static boolean spammable = true;
 
     @Override
-    public String aktion(String chosenOption) {
-        return chosenOption;
-    }
-
-    @Override
-    public FrontendControl getDropdownOtions() {
+    public FrontendControl getDropdownOptions() {
         FrontendControl frontendControl = new FrontendControl();
 
         frontendControl.typeOfContent = FrontendControl.DROPDOWN_WITHOUT_SUGGESTIONS;
@@ -31,6 +26,11 @@ public class Konditor extends Nebenrolle
         frontendControl.content.add(SCHLECHT);
 
         return frontendControl;
+    }
+
+    @Override
+    public String processChosenOption(String chosenOption) {
+        return chosenOption;
     }
 
     @Override

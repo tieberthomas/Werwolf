@@ -20,7 +20,12 @@ public class Überläufer extends Hauptrolle
     public static boolean spammable = false;
 
     @Override
-    public String aktion(String chosenOption) {
+    public FrontendControl getDropdownOptions() {
+        return new FrontendControl(FrontendControl.DROPDOWN_WITH_SUGGESTIONS, Spieler.getDeadHauptrollen());
+    }
+
+    @Override
+    public String processChosenOption(String chosenOption) {
         Hauptrolle chosenHauptrolle = Hauptrolle.findHauptrolle(chosenOption);
         if (chosenHauptrolle != null) {
             try {
@@ -35,11 +40,6 @@ public class Überläufer extends Hauptrolle
         }
 
         return null;
-    }
-
-    @Override
-    public FrontendControl getDropdownOtions() {
-        return new FrontendControl(FrontendControl.DROPDOWN_WITH_SUGGESTIONS, Spieler.getDeadHauptrollen());
     }
 
     @Override

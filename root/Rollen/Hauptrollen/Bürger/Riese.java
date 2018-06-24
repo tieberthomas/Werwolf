@@ -21,7 +21,12 @@ public class Riese extends Hauptrolle
     public static boolean killing = true;
 
     @Override
-    public String aktion(String chosenOption) {
+    public FrontendControl getDropdownOptions() {
+        return Spieler.getPlayerCheckSpammableFrontendControl(this);
+    }
+
+    @Override
+    public String processChosenOption(String chosenOption) {
         Spieler chosenPlayer = Spieler.findSpieler(chosenOption);
         if(chosenPlayer!=null) {
             besucht = chosenPlayer;
@@ -33,11 +38,6 @@ public class Riese extends Hauptrolle
         }
 
         return null;
-    }
-
-    @Override
-    public FrontendControl getDropdownOtions() {
-        return Spieler.getPlayerCheckSpammableFrontendControl(this);
     }
 
     @Override

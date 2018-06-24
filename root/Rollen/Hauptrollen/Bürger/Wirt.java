@@ -22,16 +22,7 @@ public class Wirt extends Hauptrolle
     public static int freibierCharges = 1;
 
     @Override
-    public String aktion(String chosenOption) {
-        if (chosenOption.equals(JA)) {
-            freibierCharges--;
-        }
-
-        return chosenOption;
-    }
-
-    @Override
-    public FrontendControl getDropdownOtions() {
+    public FrontendControl getDropdownOptions() {
         FrontendControl frontendControl = new FrontendControl();
 
         frontendControl.typeOfContent = FrontendControl.DROPDOWN_WITHOUT_SUGGESTIONS;
@@ -39,6 +30,15 @@ public class Wirt extends Hauptrolle
         frontendControl.content.add(NEIN);
 
         return frontendControl;
+    }
+
+    @Override
+    public String processChosenOption(String chosenOption) {
+        if (chosenOption.equals(JA)) {
+            freibierCharges--;
+        }
+
+        return chosenOption;
     }
 
     @Override

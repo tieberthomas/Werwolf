@@ -16,7 +16,12 @@ public class Frisör extends Nebenrolle
     public static boolean spammable = false;
 
     @Override
-    public String aktion(String chosenOption) {
+    public FrontendControl getDropdownOptions() {
+        return Spieler.getPlayerCheckSpammableFrontendControl(this);
+    }
+
+    @Override
+    public String processChosenOption(String chosenOption) {
         Spieler chosenPlayer = Spieler.findSpieler(chosenOption);
         if(chosenPlayer != null) {
             besucht = chosenPlayer;
@@ -24,11 +29,6 @@ public class Frisör extends Nebenrolle
         }
 
         return null;
-    }
-
-    @Override
-    public FrontendControl getDropdownOtions() {
-        return Spieler.getPlayerCheckSpammableFrontendControl(this);
     }
 
     @Override

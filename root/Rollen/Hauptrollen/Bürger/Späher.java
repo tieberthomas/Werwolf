@@ -24,7 +24,7 @@ public class Späher extends Hauptrolle
     public static boolean spammable = true;
 
     @Override
-    public FrontendControl getDropdownOtions() {
+    public FrontendControl getDropdownOptions() {
         return Spieler.getMitspielerCheckSpammableFrontendControl(this);
     }
 
