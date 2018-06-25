@@ -18,7 +18,7 @@ public class Vampire extends Fraktion
     public static final String imagePath = ResourcePath.VAMPIERE_ICON;
 
     @Override
-    public String aktion(String chosenOption) {
+    public String processChosenOption(String chosenOption) {
         Spieler chosenPlayer = Spieler.findSpieler(chosenOption);
         if (chosenPlayer != null) {
             Spieler täter = this.getFraktionsMembers().get(0);
@@ -29,7 +29,7 @@ public class Vampire extends Fraktion
     }
 
     @Override
-    public FrontendControl getDropdownOtions() {
+    public FrontendControl getDropdownOptions() {
         return Spieler.getPlayerFrontendControl();
     }
 

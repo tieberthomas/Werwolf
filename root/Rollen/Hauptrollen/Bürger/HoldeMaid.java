@@ -21,13 +21,11 @@ public class HoldeMaid extends Hauptrolle
     }
 
     @Override
-    public String processChosenOption(String chosenOption) {
+    public void processChosenOption(String chosenOption) {
         Spieler chosenPlayer = Spieler.findSpieler(chosenOption);
         if(chosenPlayer!=null) {
             besucht = chosenPlayer;
         }
-
-        return null;
     }
 
     @Override

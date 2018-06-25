@@ -23,7 +23,7 @@ public class Prostituierte extends Nebenrolle
     }
 
     @Override
-    public String processChosenOption(String chosenOption) {
+    public void processChosenOption(String chosenOption) {
         Spieler chosenPlayer = Spieler.findSpieler(chosenOption);
         if(chosenPlayer!=null && !chosenPlayer.equals(Spieler.findSpielerPerRolle(name))) {
             besucht = chosenPlayer;
@@ -32,8 +32,6 @@ public class Prostituierte extends Nebenrolle
         } else {
             host = Spieler.findSpielerPerRolle(name);
         }
-
-        return null;
     }
 
     @Override

@@ -22,7 +22,7 @@ public class Schattenpriester_Fraktion extends Fraktion
     public static final String imagePath = ResourcePath.SCHATTENPRIESTER_ICON;
 
     @Override
-    public String aktion(String chosenOption) {
+    public String processChosenOption(String chosenOption) {
         Opfer chosenOpfer = Opfer.findOpfer(chosenOption);
         if(chosenOpfer != null) {
             Opfer.deadVictims.remove(chosenOpfer);
@@ -39,7 +39,7 @@ public class Schattenpriester_Fraktion extends Fraktion
 
 
     @Override
-    public FrontendControl getDropdownOtions() {
+    public FrontendControl getDropdownOptions() {
         FrontendControl frontendControl = new FrontendControl();
 
         frontendControl.typeOfContent = FrontendControl.DROPDOWN_WITH_SUGGESTIONS;

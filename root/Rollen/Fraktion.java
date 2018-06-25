@@ -12,13 +12,11 @@ import java.util.ArrayList;
 
 public class Fraktion {
 
-    public String aktion(String chosenOption) {
-        return null;
-    }
-
-    public FrontendControl getDropdownOtions() {
+    public FrontendControl getDropdownOptions() {
         return new FrontendControl();
     }
+
+    public void processChosenOption(String chosenOption) { }
 
     public String getName() {
         return "";

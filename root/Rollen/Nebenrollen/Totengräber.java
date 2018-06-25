@@ -21,7 +21,7 @@ public class Totengräber extends Nebenrolle
     }
 
     @Override
-    public String processChosenOption(String chosenOption) {
+    public void processChosenOption(String chosenOption) {
         Nebenrolle chosenNebenrolle = Nebenrolle.findNebenrolle(chosenOption);
         if (chosenNebenrolle != null) {
             try {
@@ -34,8 +34,6 @@ public class Totengräber extends Nebenrolle
                 System.out.println(name + " nicht gefunden");
             }
         }
-
-        return null;
     }
 
     @Override

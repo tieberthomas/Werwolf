@@ -25,7 +25,7 @@ public class Überläufer extends Hauptrolle
     }
 
     @Override
-    public String processChosenOption(String chosenOption) {
+    public void processChosenOption(String chosenOption) {
         Hauptrolle chosenHauptrolle = Hauptrolle.findHauptrolle(chosenOption);
         if (chosenHauptrolle != null) {
             try {
@@ -38,8 +38,6 @@ public class Überläufer extends Hauptrolle
                 System.out.println(name + " nicht gefunden");
             }
         }
-
-        return null;
     }
 
     @Override

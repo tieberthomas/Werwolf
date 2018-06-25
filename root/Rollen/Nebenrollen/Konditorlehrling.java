@@ -29,11 +29,6 @@ public class Konditorlehrling extends Nebenrolle
     }
 
     @Override
-    public String processChosenOption(String chosenOption) {
-        return chosenOption;
-    }
-
-    @Override
     public String getName() {
         return name;
     }

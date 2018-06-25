@@ -165,7 +165,7 @@ public class ErsteNacht extends Thread {
                         case SEHERIN:
                             dropdownOtions = rolle.getDropdownOptions();
                             showDropdownPage(statement, dropdownOtions);
-                            feedback = rolle.processChosenOption(erzählerFrame.chosenOption1);
+                            rolle.processChosenOption(erzählerFrame.chosenOption1);
 
                             Fraktion fraktion = Fraktion.findFraktion(feedback);
                             if (fraktion != null || feedback != null && feedback.equals(Nebenrolle.TARNUMHANG)) {

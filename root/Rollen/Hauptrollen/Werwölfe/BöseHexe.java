@@ -26,7 +26,7 @@ public class BöseHexe extends Hauptrolle
     }
 
     @Override
-    public String processChosenOption(String chosenOption) {
+    public void processChosenOption(String chosenOption) {
         Spieler chosenPlayer = Spieler.findSpieler(chosenOption);
         if(chosenPlayer!=null) {
             besucht = chosenPlayer;
@@ -35,8 +35,6 @@ public class BöseHexe extends Hauptrolle
             Opfer.addVictim(chosenPlayer, täter, false);
             abilityCharges--;
         }
-
-        return null;
     }
 
     @Override

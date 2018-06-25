@@ -18,9 +18,7 @@ public class Rolle
         return new FrontendControl();
     }
 
-    public String processChosenOption(String chosenOption) {
-        return null;
-    }
+    public void processChosenOption(String chosenOption) { }
 
     public FrontendControl processChosenOptionGetInfo(String chosenOption) {
         return new FrontendControl();

@@ -25,12 +25,10 @@ public class Nachbar extends Nebenrolle
     }
 
     @Override
-    public String processChosenOption(String chosenOption) {
+    public void processChosenOption(String chosenOption) {
         Spieler chosenPlayer = Spieler.findSpieler(chosenOption);
         besucht = chosenPlayer;
         beobachteterSpieler = chosenPlayer;
-
-        return null;
     }
 
     @Override

@@ -27,7 +27,7 @@ public class GuteHexe extends Hauptrolle
     }
 
     @Override
-    public String processChosenOption(String chosenOption) {
+    public void processChosenOption(String chosenOption) {
         Spieler chosenPlayer = Spieler.findSpieler(chosenOption);
         if(chosenPlayer!=null && schutzCharges>0) {
             besucht = chosenPlayer;
@@ -36,8 +36,6 @@ public class GuteHexe extends Hauptrolle
 
             schutzCharges--;
         }
-
-        return null;
     }
 
     @Override

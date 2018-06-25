@@ -151,14 +151,13 @@ public class Nacht extends Thread
         synchronized (lock) {
             FrontendControl dropdownOtions;
             FrontendControl info;
-            String feedback;
-            String feedbackLastStatement = null;
+            String chosenOption;
+            String chosenOptionLastStatement = null;
 
             Rolle rolle = null;
 
             String imagePath;
 
-            String chosenOption;
             Opfer chosenOpfer;
             Spieler chosenPlayer;
             wölfinKilled = false;
@@ -173,7 +172,7 @@ public class Nacht extends Thread
             normaleNachtBuildStatements();
 
             for (Statement statement : statements) {
-                feedback = null;
+                chosenOption = null;
 
                 switch (statement.type) {
                     case Statement.SHOW_TITLE:
@@ -189,24 +188,21 @@ public class Nacht extends Thread
                         if (rolle.abilityCharges > 0 && !(statement.beschreibung.equals(GUTE_HEXE_SCHÜTZEN) && ((GuteHexe)rolle).schutzCharges <= 0)) {
                             dropdownOtions = rolle.getDropdownOptions();
                             showDropdownPage(statement, dropdownOtions);
-                            feedback = rolle.processChosenOption(erzählerFrame.chosenOption1);
+                            chosenOption = erzählerFrame.chosenOption1;
+                            rolle.processChosenOption(chosenOption);
                         } else {
-                            if(rolle.getName().equals(Buchhalter.name)){
-                                info = ((Buchhalter)rolle).getAufgebrauchtPage();
-                                showInfo(statement, info);
-                            } else {
-                                showAufgebrauchtPages(statement); //TODO deaktiv/tot beachten
-                            }
+                            showAufgebrauchtPages(statement); //TODO deaktiv/tot beachten
                         }
                         break;
 
                     case Statement.ROLLE_CHOOSE_ONE_INFO:
-                        rolle = ((StatementRolle) statement).getRolle();
+                        rolle = ((StatementRolle)statement).getRolle();
 
                         if (rolle.abilityCharges > 0) {
                             dropdownOtions = rolle.getDropdownOptions();
                             showDropdownPage(statement, dropdownOtions);
-                            info = rolle.processChosenOptionGetInfo(erzählerFrame.chosenOption1);
+                            chosenOption = erzählerFrame.chosenOption1;
+                            info = rolle.processChosenOptionGetInfo(chosenOption);
                             if (info.title == null)
                                 info.title = statement.title;
                             showInfo(statement, info);
@@ -236,15 +232,15 @@ public class Nacht extends Thread
                     case Statement.FRAKTION_CHOOSE_ONE:
                         Fraktion fraktion = ((StatementFraktion)statement).getFraktion();
 
-                        dropdownOtions = fraktion.getDropdownOtions();
+                        dropdownOtions = fraktion.getDropdownOptions();
                         showDropdownPage(statement, dropdownOtions);
-                        feedback = fraktion.aktion(erzählerFrame.chosenOption1);
+                        chosenOption = fraktion.processChosenOption(erzählerFrame.chosenOption1);
                         break;
                 }
 
                 switch (statement.beschreibung) {
                     case WIRT:
-                        if (feedback != null && feedback.equals(Wirt.JA)) {
+                        if (chosenOption != null && chosenOption.equals(Wirt.JA)) {
                             freibier = true;
                         }
                         break;
@@ -254,14 +250,14 @@ public class Nacht extends Thread
                         break;
 
                     case WÖLFIN:
-                        if(feedback.equals(Wölfin.KILL)) {
+                        if(chosenOption.equals(Wölfin.KILL)) {
                             wölfinKilled = true;
                             wölfinSpieler = Spieler.findSpielerPerRolle(Wölfin.name);
                         }
                         break;
 
                     case NEUER_SCHATTENPRIESTER:
-                        chosenPlayer = Spieler.findSpieler(feedbackLastStatement);
+                        chosenPlayer = Spieler.findSpieler(chosenOptionLastStatement);
                         String neuerSchattenpriester = "";
                         imagePath = "";
                         if (chosenPlayer != null) {
@@ -276,7 +272,7 @@ public class Nacht extends Thread
                         break;
 
                     case NEUER_WERWOLF:
-                        chosenPlayer = Spieler.findSpieler(feedbackLastStatement);
+                        chosenPlayer = Spieler.findSpieler(chosenOptionLastStatement);
                         String neuerWerwolf = "";
                         if (chosenPlayer != null) {
                             neuerWerwolf = chosenPlayer.name;
@@ -327,7 +323,7 @@ public class Nacht extends Thread
                         if(wahrsagerSpieler1!=null) {
                             Wahrsager wahrsager = (Wahrsager) wahrsagerSpieler1.nebenrolle;
 
-                            wahrsager.tipp = Fraktion.findFraktion(feedback);
+                            wahrsager.tipp = Fraktion.findFraktion(chosenOption);
                         }
                         break;
 
@@ -358,14 +354,14 @@ public class Nacht extends Thread
                         break;
 
                     case BESCHWÖRER:
-                        if(feedback!=null) {
-                            beschworenerSpieler = Spieler.findSpieler(feedback);
+                        if(chosenOption!=null) {
+                            beschworenerSpieler = Spieler.findSpieler(chosenOption);
                         }
                         break;
 
                     case FRISÖR:
-                        if(feedback!=null) {
-                            schönlinge.add(Spieler.findSpieler(feedback));
+                        if(chosenOption!=null) {
+                            schönlinge.add(Spieler.findSpieler(chosenOption));
                         }
                         break;
 
@@ -378,10 +374,10 @@ public class Nacht extends Thread
 
                             dropdownOtions = rolle.getDropdownOptions();
                             showKonditorDropdownPage(statement, dropdownOtions);
-                            feedback = rolle.processChosenOption(erzählerFrame.chosenOption1);
+                            rolle.processChosenOption(erzählerFrame.chosenOption1);
 
-                            Torte.gut = feedback.equals(Konditor.GUT);
-                            feedback = null;
+                            Torte.gut = chosenOption.equals(Konditor.GUT);
+                            chosenOption = null;
                         }
                         break;
 
@@ -452,7 +448,7 @@ public class Nacht extends Thread
                         break;
                 }
 
-                feedbackLastStatement = feedback;
+                chosenOptionLastStatement = chosenOption;
 
                 if (freibier) {
                     break;
@@ -679,26 +675,6 @@ public class Nacht extends Thread
         waitForAnswer();
     }
 
-    public void showDeadPages(Statement statement) {
-        Statement tot = new StatementIndie(statement.beschreibung, TOT_TITLE, Statement.INDIE, true);
-
-        //TODO generateDeadPage()
-        erzählerIconPicturePage(tot, ResourcePath.TOT);
-        spielerFrame.deadPage();
-
-        waitForAnswer();
-    }
-
-    public void showDeactivatedPages(Statement statement) {
-        Statement deaktiviert = new StatementIndie(statement.beschreibung,DEAKTIVIERT_TITLE, Statement.INDIE, true);
-
-        Page nightPage = erzählerFrame.pageFactory.generateDeactivatedPage(deaktiviert);
-        erzählerFrame.buildScreenFromPage(nightPage);
-        spielerFrame.deactivatedPage();
-
-        waitForAnswer();
-    }
-
     public void showAufgebrauchtPages(Statement statement) {
         Statement aufgebraucht = new StatementIndie(statement.beschreibung, AUFGEBRAUCHT_TITLE, Statement.INDIE, true);
 
@@ -804,40 +780,6 @@ public class Nacht extends Thread
         spielerEndScreenPage(victory);
 
         waitForAnswer();
-    }
-
-    public String choosePlayer(Statement statement) {
-        ArrayList<String> spieler = Spieler.getLivigPlayerStrings();
-
-        showDropdownPage(statement, spieler);
-
-        return erzählerFrame.chosenOption1;
-    }
-
-    public String choosePlayerOrNon(Statement statement) {
-        ArrayList<String> spielerOrNon = Spieler.getLivigPlayerOrNoneStrings();
-
-        showDropdownPage(statement, spielerOrNon);
-
-        return erzählerFrame.chosenOption1;
-    }
-
-    public String choosePlayerOrNonCheckSpammable(Statement statement, Rolle rolle) {
-        ArrayList<String> spielerOrNon = Spieler.getPlayerCheckSpammableStrings(rolle);
-
-        showDropdownPage(statement, spielerOrNon);
-
-        return erzählerFrame.chosenOption1;
-    }
-
-    public void showDropdownPage(Statement statement, ArrayList<String> dropdownOptions) {
-        FrontendControl frontendControl = new FrontendControl(FrontendControl.DROPDOWN_WITHOUT_SUGGESTIONS, dropdownOptions);
-        showDropdownPage(statement, frontendControl);
-    }
-
-    public void showDropdownListPage(Statement statement, ArrayList<String> dropdownOptions) {
-        FrontendControl frontendControl = new FrontendControl(FrontendControl.DROPDOWN_WITH_SUGGESTIONS, dropdownOptions);
-        showDropdownPage(statement, frontendControl);
     }
 
     public void showDropdownPage(Statement statement, FrontendControl frontendControl) {

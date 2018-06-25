@@ -34,7 +34,7 @@ public class Chemiker extends Hauptrolle
     }
 
     @Override
-    public String processChosenOption(String chosenOption) {
+    public void processChosenOption(String chosenOption) {
         Opfer chosenOpfer = Opfer.findOpfer(chosenOption);
         if(chosenOpfer != null) {
             besucht = chosenOpfer.opfer;
@@ -42,8 +42,6 @@ public class Chemiker extends Hauptrolle
             Opfer.deadVictims.remove(chosenOpfer);
             chosenOpfer.opfer.hauptrolle = new Werwolf();
         }
-
-        return chosenOption;
     }
 
     @Override

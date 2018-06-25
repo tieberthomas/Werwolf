@@ -36,7 +36,7 @@ public class Wölfin extends Hauptrolle
     }
 
     @Override
-    public String processChosenOption(String chosenOption) {
+    public void processChosenOption(String chosenOption) {
         Spieler chosenPlayer = Spieler.findSpieler(chosenOption);
         modus = FERTIG;
         if(chosenPlayer!=null) {
@@ -44,10 +44,6 @@ public class Wölfin extends Hauptrolle
 
             Spieler täter = Spieler.findSpielerPerRolle(name);
             Opfer.addVictim(chosenPlayer, täter, false);
-
-            return KILL;
-        } else {
-            return KEIN_KILL;
         }
     }
 

@@ -22,14 +22,11 @@ public class Beschwörer extends Nebenrolle
     }
 
     @Override
-    public String processChosenOption(String chosenOption) {
+    public void processChosenOption(String chosenOption) {
         Spieler chosenPlayer = Spieler.findSpieler(chosenOption);
         if(chosenPlayer != null) {
             besucht = chosenPlayer;
-            return chosenPlayer.name;
         }
-
-        return null;
     }
 
     @Override
