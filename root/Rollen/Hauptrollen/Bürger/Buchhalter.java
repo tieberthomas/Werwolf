@@ -47,10 +47,6 @@ public class Buchhalter extends Hauptrolle
         return new FrontendControl();
     }
 
-    public FrontendControl getAufgebrauchtPage() {
-        return new FrontendControl(FrontendControl.STATIC_LIST, seenRoles, USED_TITLE);
-    }
-
     @Override
     public String getName() {
         return name;
@@ -74,5 +70,9 @@ public class Buchhalter extends Hauptrolle
     @Override
     public boolean isSpammable() {
         return spammable;
+    }
+
+    public FrontendControl getAufgebrauchtPage() {
+        return new FrontendControl(FrontendControl.STATIC_LIST, seenRoles, USED_TITLE);
     }
 }

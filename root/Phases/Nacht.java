@@ -191,12 +191,7 @@ public class Nacht extends Thread
                             showDropdownPage(statement, dropdownOtions);
                             feedback = rolle.processChosenOption(erzählerFrame.chosenOption1);
                         } else {
-                            if(rolle.getName().equals(Buchhalter.name)){
-                                info = ((Buchhalter)rolle).getAufgebrauchtPage();
-                                showInfo(statement, info);
-                            } else {
-                                showAufgebrauchtPages(statement); //TODO deaktiv/tot beachten
-                            }
+                            showAufgebrauchtPages(statement); //TODO deaktiv/tot beachten
                         }
                         break;
 
