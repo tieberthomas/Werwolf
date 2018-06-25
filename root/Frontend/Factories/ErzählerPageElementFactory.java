@@ -9,9 +9,12 @@ import root.Frontend.Page.Predecessor;
 import root.Phases.ErsteNacht;
 import root.Phases.Nacht;
 import root.Phases.Statement;
+import root.Phases.StatementRolle;
 import root.Rollen.Fraktion;
 import root.Rollen.Hauptrolle;
+import root.Rollen.Hauptrollen.Bürger.Sammler;
 import root.Rollen.Nebenrolle;
+import root.Rollen.Rolle;
 import root.Spieler;
 
 import javax.swing.*;
@@ -250,7 +253,18 @@ public class ErzählerPageElementFactory {
         if(erzählerFrame.mode == ErzählerFrameMode.ersteNacht){
             statements = ErsteNacht.statements;
         } else if (erzählerFrame.mode == ErzählerFrameMode.nacht) {
-            statements = Nacht.statements;
+            statements = (ArrayList<Statement>)Nacht.statements.clone();
+            //TODO move code to another place
+            for(Statement statement : statements) {
+                if(statement.getClass() == StatementRolle.class) {
+                    Rolle rolle = ((StatementRolle)statement).getRolle();
+                    if(rolle.getClass() == Nebenrolle.class) {
+                        if(Rolle.mitteNebenrollen.contains(rolle)) {
+                            statement.beschreibung = Sammler.beschreibungAddiditon + statement.beschreibung;
+                        }
+                    }
+                }
+            }
         }
 
         for (Statement statement : statements) {
