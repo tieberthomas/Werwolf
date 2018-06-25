@@ -18,7 +18,7 @@ public class GuteHexe extends Hauptrolle
     public static final String imagePath = ResourcePath.GUTE_HEXE_KARTE;
     public static boolean unique = true;
     public static boolean spammable = false;
-    public int schutzCharges = 1;
+    public int wiederbelebenCharges = 1;
     public Spieler besuchtWiederbeleben = null;
 
     @Override
@@ -29,12 +29,12 @@ public class GuteHexe extends Hauptrolle
     @Override
     public void processChosenOption(String chosenOption) {
         Spieler chosenPlayer = Spieler.findSpieler(chosenOption);
-        if(chosenPlayer!=null && schutzCharges>0) {
+        if(chosenPlayer!=null) {
             besucht = chosenPlayer;
 
             chosenPlayer.geschützt = true;
 
-            schutzCharges--;
+            abilityCharges--;
         }
     }
 
@@ -69,6 +69,6 @@ public class GuteHexe extends Hauptrolle
         }
 
         Opfer.deadVictims.remove(opfer);
-        abilityCharges--;
+        wiederbelebenCharges--;
     }
 }

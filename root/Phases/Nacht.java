@@ -185,7 +185,7 @@ public class Nacht extends Thread
                     case Statement.ROLLE_CHOOSE_ONE:
                         rolle = ((StatementRolle)statement).getRolle();
 
-                        if (rolle.abilityCharges > 0 && !(statement.beschreibung.equals(GUTE_HEXE_SCHÜTZEN) && ((GuteHexe)rolle).schutzCharges <= 0)) {
+                        if (rolle.abilityCharges > 0) {
                             dropdownOtions = rolle.getDropdownOptions();
                             chosenOption = showDropdownPage(statement, dropdownOtions);
                             rolle.processChosenOption(chosenOption);
@@ -201,8 +201,6 @@ public class Nacht extends Thread
                             dropdownOtions = rolle.getDropdownOptions();
                             chosenOption = showDropdownPage(statement, dropdownOtions);
                             info = rolle.processChosenOptionGetInfo(chosenOption);
-                            if (info.title == null)
-                                info.title = statement.title;
                             showInfo(statement, info);
                         } else {
                             if(rolle.getName().equals(Buchhalter.name)){
@@ -218,8 +216,6 @@ public class Nacht extends Thread
                         rolle = ((StatementRolle)statement).getRolle();
 
                         info = rolle.getInfo();
-                        if(info.title==null)
-                            info.title = statement.title;
                         showInfo(statement, info);
                         break;
 
@@ -281,7 +277,8 @@ public class Nacht extends Thread
                         break;
 
                     case GUTE_HEXE_WIEDERBELEBEN:
-                        if (rolle.abilityCharges > 0) {
+                        GuteHexe guteHexe = (GuteHexe)Spieler.findSpielerPerRolle(GuteHexe.name).hauptrolle;
+                        if (guteHexe.wiederbelebenCharges > 0) {
                             ArrayList<String> erweckbareOpferOrNon = Opfer.getErweckbareStringsOrNon();
 
                             showAfterDeathDropdownListPage(statement, erweckbareOpferOrNon);
@@ -289,7 +286,7 @@ public class Nacht extends Thread
                             chosenOpfer = Opfer.findOpfer(erzählerFrame.chosenOption1);
 
                             if (chosenOpfer != null) {
-                                ((GuteHexe) rolle).wiederbeleben(chosenOpfer);
+                                guteHexe.wiederbeleben(chosenOpfer);
                             }
                         } else {
                             showAufgebrauchtPages(statement);
@@ -612,7 +609,7 @@ public class Nacht extends Thread
 
             for (Opfer opfer : Opfer.possibleVictims) {
                 if (opfer.opfer.name.equals(hexenSchutzSpieler)) {
-                    guteHexe.schutzCharges++;
+                    guteHexe.abilityCharges++;
                     refreshed = true;
                     break;
                 }
@@ -621,8 +618,7 @@ public class Nacht extends Thread
             if (!refreshed) {
                 for (Opfer opfer : Opfer.deadVictims) {
                     if (opfer.opfer.name.equals(hexenSchutzSpieler)) {
-                        guteHexe.schutzCharges++;
-                        refreshed = true;
+                        guteHexe.abilityCharges++;
                         break;
                     }
                 }
@@ -631,6 +627,10 @@ public class Nacht extends Thread
     }
 
     public void showInfo(Statement statement, FrontendControl info) {
+        if (info.title == null) {
+            info.title = statement.title;
+        }
+
         switch (info.typeOfContent) {
             case FrontendControl.STATIC_IMAGE:
                 showImageOnBothScreens(statement, info.title, info.imagePath);
