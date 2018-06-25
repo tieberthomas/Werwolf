@@ -187,8 +187,7 @@ public class Nacht extends Thread
 
                         if (rolle.abilityCharges > 0 && !(statement.beschreibung.equals(GUTE_HEXE_SCHÜTZEN) && ((GuteHexe)rolle).schutzCharges <= 0)) {
                             dropdownOtions = rolle.getDropdownOptions();
-                            showDropdownPage(statement, dropdownOtions);
-                            chosenOption = erzählerFrame.chosenOption1;
+                            chosenOption = showDropdownPage(statement, dropdownOtions);
                             rolle.processChosenOption(chosenOption);
                         } else {
                             showAufgebrauchtPages(statement); //TODO deaktiv/tot beachten
@@ -200,8 +199,7 @@ public class Nacht extends Thread
 
                         if (rolle.abilityCharges > 0) {
                             dropdownOtions = rolle.getDropdownOptions();
-                            showDropdownPage(statement, dropdownOtions);
-                            chosenOption = erzählerFrame.chosenOption1;
+                            chosenOption = showDropdownPage(statement, dropdownOtions);
                             info = rolle.processChosenOptionGetInfo(chosenOption);
                             if (info.title == null)
                                 info.title = statement.title;
@@ -233,8 +231,7 @@ public class Nacht extends Thread
                         Fraktion fraktion = ((StatementFraktion)statement).getFraktion();
 
                         dropdownOtions = fraktion.getDropdownOptions();
-                        showDropdownPage(statement, dropdownOtions);
-                        chosenOption = erzählerFrame.chosenOption1;
+                        chosenOption = showDropdownPage(statement, dropdownOtions);
                         fraktion.processChosenOption(chosenOption);
                         break;
                 }
@@ -374,8 +371,7 @@ public class Nacht extends Thread
                             }
 
                             dropdownOtions = rolle.getDropdownOptions();
-                            showKonditorDropdownPage(statement, dropdownOtions);
-                            chosenOption = erzählerFrame.chosenOption1;
+                            chosenOption = showKonditorDropdownPage(statement, dropdownOtions);
                             rolle.processChosenOption(chosenOption);
 
                             Torte.gut = chosenOption.equals(Konditor.GUT);
@@ -784,7 +780,7 @@ public class Nacht extends Thread
         waitForAnswer();
     }
 
-    public void showDropdownPage(Statement statement, FrontendControl frontendControl) {
+    public String showDropdownPage(Statement statement, FrontendControl frontendControl) {
         switch (statement.getState())
         {
             case Statement.NORMAL:
@@ -819,6 +815,8 @@ public class Nacht extends Thread
         }
 
         waitForAnswer();
+
+        return erzählerFrame.chosenOption1;
     }
 
     public void showDropdownPage(Statement statement, ArrayList<String> dropdownOptions1, ArrayList<String> dropdownOptions2) {
@@ -865,7 +863,7 @@ public class Nacht extends Thread
         waitForAnswer();
     }
 
-    public void showKonditorDropdownPage(Statement statement, FrontendControl frontendControl) {
+    public String showKonditorDropdownPage(Statement statement, FrontendControl frontendControl) {
         if (Rolle.rolleLebend(Konditor.name) || Rolle.rolleLebend(Konditorlehrling.name)) {
             if (!Opfer.isOpferPerRolle(Konditor.name) || !Opfer.isOpferPerRolle(Konditorlehrling.name)) {
                 if (Rolle.rolleAktiv(Konditor.name) || Rolle.rolleAktiv(Konditorlehrling.name)) {
@@ -895,6 +893,8 @@ public class Nacht extends Thread
         }
 
         waitForAnswer();
+
+        return erzählerFrame.chosenOption1;
     }
 
     public static ArrayList<String> getEmptyStringList() {
