@@ -18,6 +18,7 @@ public class GuteHexe extends Hauptrolle
     public static boolean unique = true;
     public static boolean spammable = false;
     public int schutzCharges = 1;
+    public Spieler besuchtWiederbeleben = null;
 
     @Override
     public String getName() {
@@ -59,8 +60,9 @@ public class GuteHexe extends Hauptrolle
 
     public void wiederbeleben(Opfer opfer)
     {
-        //besucht = opfer.opfer;
-        //TODO etwas überlegen wegen den zwei besuchen
+        if(opfer!=null) {
+            besuchtWiederbeleben = opfer.opfer;
+        }
 
         Opfer.deadVictims.remove(opfer);
         abilityCharges--;

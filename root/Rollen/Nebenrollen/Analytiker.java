@@ -22,6 +22,7 @@ public class Analytiker extends Nebenrolle
     public String type = Nebenrolle.INFORMATIV;
     public static final String GLEICH = "gleich";
     public static final String UNGLEICH = "ungleich";
+    public Spieler besuchtAnalysieren = null;
 
     @Override
     public String getName() {
@@ -77,6 +78,8 @@ public class Analytiker extends Nebenrolle
     }
 
     public String analysiere(Spieler spieler1, Spieler spieler2) {
+        besucht = spieler1;
+        besuchtAnalysieren = spieler2;
         String name1 = spieler1.name;
         String name2 = spieler2.name;
 

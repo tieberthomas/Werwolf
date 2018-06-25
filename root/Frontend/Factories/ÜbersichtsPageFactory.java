@@ -62,7 +62,7 @@ public class ÜbersichtsPageFactory {
                 tableElementHeight, 0, spaceBetween, xOffset, spaceBetween);
 
         übersichtsFrame.refreshJButton = new JButton();
-        PageElement refreshButton = pageElementFactory.generateLowestButton(übersichtsFrame.refreshJButton, "Refresh", true, 1);
+        PageElement refreshButton = pageElementFactory.generateLowestButton(übersichtsFrame.refreshJButton, "Refresh", true);
 
         übersichtsPage.addTable(übersichtsFrame.playerTable);
         übersichtsPage.addTable(übersichtsFrame.mainRoleTable);

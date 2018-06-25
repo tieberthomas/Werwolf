@@ -328,11 +328,11 @@ public class Nacht extends Thread
                         break;
 
                     case ANALYTIKER:
+                        Spieler analytikerSpieler = Spieler.findSpielerPerRolle(rolle.getName());
                         if(Rolle.rolleLebend(Analytiker.name)) {
-                            Spieler analytikerSpieler = Spieler.findSpielerPerRolle(rolle.getName());
-                            spielerOrNon.remove(analytikerSpieler.name);
-                            showDropdownPage(statement, spielerOrNon, spielerOrNon);
-                            spielerOrNon.add(analytikerSpieler.name);
+                            ArrayList<String> spielerOrNonWithoutAnalytiker = (ArrayList<String>)spielerOrNon.clone();
+                            spielerOrNonWithoutAnalytiker.remove(analytikerSpieler.name);
+                            showDropdownPage(statement, spielerOrNonWithoutAnalytiker, spielerOrNonWithoutAnalytiker);
                         } else {
                             showDropdownPage(statement, spielerOrNon, spielerOrNon);
                         }
@@ -341,12 +341,13 @@ public class Nacht extends Thread
                         Spieler chosenSpieler2 = Spieler.findSpieler(erzählerFrame.chosenOption2);
 
                         if (chosenSpieler1 != null && chosenSpieler2 != null) {
-                            if(((Analytiker)rolle).showTarnumhang(chosenSpieler1, chosenSpieler2)) {
+                            Analytiker analytiker = (Analytiker)analytikerSpieler.nebenrolle;
+                            if(analytiker.showTarnumhang(chosenSpieler1, chosenSpieler2)) {
                                 imagePath = ResourcePath.TARNUMHANG;
                                 statement.title = TARNUMHANG_TITLE;
                                 showImageOnBothScreens(statement, imagePath);
                             } else {
-                                String answer = ((Analytiker)rolle).analysiere(chosenSpieler1, chosenSpieler2);
+                                String answer = analytiker.analysiere(chosenSpieler1, chosenSpieler2);
                                 showListOnBothScreens(statement, answer);
                             }
                         }
@@ -478,10 +479,17 @@ public class Nacht extends Thread
         for (Hauptrolle currentHauptrolle : Hauptrolle.mainRoles) {
             currentHauptrolle.besuchtLetzteNacht = currentHauptrolle.besucht;
             currentHauptrolle.besucht = null;
+            if(currentHauptrolle.getName().equals(GuteHexe.name)) {
+                ((GuteHexe)currentHauptrolle).besuchtWiederbeleben = null;
+            }
         }
         for (Nebenrolle currentNebenrolle : Nebenrolle.secondaryRoles) {
             currentNebenrolle.besuchtLetzteNacht = currentNebenrolle.besucht;
             currentNebenrolle.besucht = null;
+
+            if(currentNebenrolle.getName().equals(Analytiker.name)) {
+                ((Analytiker)currentNebenrolle).besuchtAnalysieren = null;
+            }
         }
 
         if(Rolle.rolleLebend(Prostituierte.name)) {
