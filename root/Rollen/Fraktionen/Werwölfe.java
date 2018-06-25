@@ -23,14 +23,12 @@ public class Werwölfe extends Fraktion
     public static final String imagePath = ResourcePath.WÖLFE_ICON;
 
     @Override
-    public String processChosenOption(String chosenOption) {
+    public void processChosenOption(String chosenOption) {
         Spieler chosenPlayer = Spieler.findSpieler(chosenOption);
         if (chosenPlayer != null) {
             Spieler täter = this.getFraktionsMembers().get(0);
             Opfer.addVictim(chosenPlayer, täter, true);
         }
-
-        return chosenOption;
     }
 
     @Override

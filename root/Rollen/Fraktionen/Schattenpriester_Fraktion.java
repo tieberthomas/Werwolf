@@ -22,7 +22,7 @@ public class Schattenpriester_Fraktion extends Fraktion
     public static final String imagePath = ResourcePath.SCHATTENPRIESTER_ICON;
 
     @Override
-    public String processChosenOption(String chosenOption) {
+    public void processChosenOption(String chosenOption) {
         Opfer chosenOpfer = Opfer.findOpfer(chosenOption);
         if(chosenOpfer != null) {
             Opfer.deadVictims.remove(chosenOpfer);
@@ -33,8 +33,6 @@ public class Schattenpriester_Fraktion extends Fraktion
             }
             chosenOpfer.opfer.nebenrolle = new Schatten();
         }
-
-        return chosenOption;
     }
 
 

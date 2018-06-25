@@ -234,7 +234,8 @@ public class Nacht extends Thread
 
                         dropdownOtions = fraktion.getDropdownOptions();
                         showDropdownPage(statement, dropdownOtions);
-                        chosenOption = fraktion.processChosenOption(erzählerFrame.chosenOption1);
+                        chosenOption = erzählerFrame.chosenOption1;
+                        fraktion.processChosenOption(chosenOption);
                         break;
                 }
 
@@ -374,7 +375,8 @@ public class Nacht extends Thread
 
                             dropdownOtions = rolle.getDropdownOptions();
                             showKonditorDropdownPage(statement, dropdownOtions);
-                            rolle.processChosenOption(erzählerFrame.chosenOption1);
+                            chosenOption = erzählerFrame.chosenOption1;
+                            rolle.processChosenOption(chosenOption);
 
                             Torte.gut = chosenOption.equals(Konditor.GUT);
                             chosenOption = null;
