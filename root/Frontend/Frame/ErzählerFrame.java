@@ -539,9 +539,6 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                 playerSpecifiyPage = pageFactory.generatePlayerSpecifiyPage();
             }
 
-            if(übersichtsFrame!=null) {
-                übersichtsFrame.refreshÜbersichtsPage();
-            }
             nextPage();
         } else if(goBackButtons.contains(ae.getSource())){
             if(mode == ErzählerFrameMode.nachzüglerSetup || mode == ErzählerFrameMode.umbringenSetup ||
@@ -670,8 +667,6 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                     refreshSpecifyPlayerPage();
                 }
             }
-        } else if (ae.getSource() == okButton) {
-            System.out.println("asdfasdafasdf"); //dead code at the moment
         } else if (ae.getSource() == nextJButton) {
             try {
                 if(comboBox1 != null) {
@@ -782,6 +777,10 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
 
                     mode = ErzählerFrameMode.getPhaseMode();
                     buildScreenFromPage(pageFactory.generateDefaultDayPage());
+
+                    if(übersichtsFrame != null) {
+                        übersichtsFrame.refreshÜbersichtsPage();
+                    }
                 }
             } else {
                 mode = ErzählerFrameMode.nachzüglerSetup;
@@ -808,6 +807,10 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                 }
 
                 mode = ErzählerFrameMode.getPhaseMode();
+
+                if(übersichtsFrame != null) {
+                    übersichtsFrame.refreshÜbersichtsPage();
+                }
 
                 if(spieler!=null) {
                     continueThreads();
