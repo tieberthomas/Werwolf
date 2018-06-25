@@ -191,19 +191,33 @@ public class Nacht extends Thread
                             showDropdownPage(statement, dropdownOtions);
                             feedback = rolle.processChosenOption(erzählerFrame.chosenOption1);
                         } else {
-                            showAufgebrauchtPages(statement); //TODO deaktiv/tot beachten
+                            if(rolle.getName().equals(Buchhalter.name)){
+                                info = ((Buchhalter)rolle).getAufgebrauchtPage();
+                                showInfo(statement, info);
+                            } else {
+                                showAufgebrauchtPages(statement); //TODO deaktiv/tot beachten
+                            }
                         }
                         break;
 
                     case Statement.ROLLE_CHOOSE_ONE_INFO:
-                        rolle = ((StatementRolle)statement).getRolle();
+                        rolle = ((StatementRolle) statement).getRolle();
 
-                        dropdownOtions = rolle.getDropdownOptions();
-                        showDropdownPage(statement, dropdownOtions);
-                        info = rolle.processChosenOptionGetInfo(erzählerFrame.chosenOption1);
-                        if(info.title==null)
-                            info.title = statement.title;
-                        showInfo(statement, info);
+                        if (rolle.abilityCharges > 0) {
+                            dropdownOtions = rolle.getDropdownOptions();
+                            showDropdownPage(statement, dropdownOtions);
+                            info = rolle.processChosenOptionGetInfo(erzählerFrame.chosenOption1);
+                            if (info.title == null)
+                                info.title = statement.title;
+                            showInfo(statement, info);
+                        } else {
+                            if(rolle.getName().equals(Buchhalter.name)){
+                                info = ((Buchhalter)rolle).getAufgebrauchtPage();
+                                showInfo(statement, info);
+                            } else {
+                                showAufgebrauchtPages(statement); //TODO deaktiv/tot beachten
+                            }
+                        }
                         break;
 
                     case Statement.ROLLE_INFO:

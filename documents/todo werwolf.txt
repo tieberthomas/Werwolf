@@ -20,9 +20,7 @@ killer schütze ignorieren generischer machen
 Fraktions bamboozelstatements bleiben
 seher bamboozlekarten dem erzähler zeigen während der seher aktion damit dieser nicht verwirrt ist
 anästesierter spieler dem erzähler anzeigen wenn der aufgerufen wird
-Beim buchhalter alle gesehenen rollen anzeigen
 siegüberprüfung generischer machen (tag und nacht)
-showcardPage für alle screengrößen zentriert generische machen
 
 
 Rollen ganz implementieren:

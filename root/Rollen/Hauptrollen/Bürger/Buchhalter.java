@@ -23,6 +23,7 @@ public class Buchhalter extends Hauptrolle
     public static final String imagePath = ResourcePath.BUCHHALTER_KARTE;
     public static boolean unique = true;
     public static boolean spammable = false;
+    public ArrayList<String> seenRoles;
 
     @Override
     public FrontendControl getDropdownOptions() {
@@ -39,11 +40,15 @@ public class Buchhalter extends Hauptrolle
     public FrontendControl processChosenOptionGetInfo(String chosenOption) {
         if (chosenOption.equals(JA)) {
             abilityCharges--;
-
-            return new FrontendControl(FrontendControl.STATIC_LIST, Hauptrolle.getMainRolesAlive(), USED_TITLE);
+            seenRoles = Hauptrolle.getMainRolesAlive();
+            return new FrontendControl(FrontendControl.STATIC_LIST, seenRoles, USED_TITLE);
         }
 
         return new FrontendControl();
+    }
+
+    public FrontendControl getAufgebrauchtPage() {
+        return new FrontendControl(FrontendControl.STATIC_LIST, seenRoles, USED_TITLE);
     }
 
     @Override
