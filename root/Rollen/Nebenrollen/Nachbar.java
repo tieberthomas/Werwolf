@@ -64,8 +64,7 @@ public class Nachbar extends Nebenrolle
             for (Spieler spieler : Spieler.getLivigPlayer()) {
                 //TODO mit stefan ansehen ob man generischer machen kann
                 //!besucher.contains kann nicht rausgezogen werden wegen GuteHexe + Analytiker bei einem Spieler
-                if (!besucher.contains(spieler.name) &&
-                        spieler.hauptrolle.besucht != null && spieler.hauptrolle.besucht.name.equals(beobachteterSpieler.name) ||
+                if (spieler.hauptrolle.besucht != null && spieler.hauptrolle.besucht.name.equals(beobachteterSpieler.name) ||
                         (spieler.nebenrolle.besucht != null && spieler.nebenrolle.besucht.name.equals(beobachteterSpieler.name))) {
                     besucher.add(spieler.name);
                 }
