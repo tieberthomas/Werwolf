@@ -1,0 +1,43 @@
+michael fragen:
+soll man sehen wenn der beobachtete sich selbst besucht hat?
+
+michael testen:
+alle interaktionvon von konditor und konditorlehrling (deaktiviert, nicht zugeteilt, usw.)
+wahrsager
+nachbar
+priester
+richterin
+
+Schattenpriester können den Liebespartner des Tagesopfers ind er nächsten Nacht erwecken
+Priester stirbt als der Liebespartner des gebürgten stirbt
+Liebespaar probleme
+
+
+
+CherryOnTop:
+Wenn das ziel der holden maid anästisiert ist, soll es nicht aufwachen (deaktiviertpage für holde maid anzeigen)
+killer schütze ignorieren generischer machen
+Fraktions bamboozelstatements bleiben
+seher bamboozlekarten dem erzähler zeigen während der seher aktion damit dieser nicht verwirrt ist
+anästesierter spieler dem erzähler anzeigen wenn der aufgerufen wird
+Beim buchhalter alle gesehenen rollen anzeigen
+siegüberprüfung generischer machen (tag und nacht)
+showcardPage für alle screengrößen zentriert generische machen
+
+
+Rollen ganz implementieren:
+
+Hauptrollen:
+Sammler //passive aus der mitte werden nicht für seher verwendet
+überläufer
+
+Nebenrollen:
+Imitator
+Wachhund
+Totengräber
+
+
+zuviel arbeit fürs erste:
+nocheinmal spielen button auf endscreen
+in der nacht ein zurückbutton.
+	->dann soll erzählersreen auch mit pfeiltasten navigierbar sein
