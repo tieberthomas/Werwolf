@@ -1,5 +1,6 @@
 package root.Rollen.Hauptrollen.Bürger;
 
+import root.Frontend.FrontendControl;
 import root.ResourceManagement.ResourcePath;
 import root.Rollen.Fraktion;
 import root.Rollen.Fraktionen.Bürger;
@@ -19,6 +20,25 @@ public class GuteHexe extends Hauptrolle
     public static boolean spammable = false;
     public int schutzCharges = 1;
     public Spieler besuchtWiederbeleben = null;
+
+    @Override
+    public FrontendControl getDropdownOptions() {
+        return Spieler.getPlayerCheckSpammableFrontendControl(this);
+    }
+
+    @Override
+    public String processChosenOption(String chosenOption) {
+        Spieler chosenPlayer = Spieler.findSpieler(chosenOption);
+        if(chosenPlayer!=null && schutzCharges>0) {
+            besucht = chosenPlayer;
+
+            chosenPlayer.geschützt = true;
+
+            schutzCharges--;
+        }
+
+        return null;
+    }
 
     @Override
     public String getName() {
@@ -45,21 +65,7 @@ public class GuteHexe extends Hauptrolle
         return spammable;
     }
 
-    public void schützen(String chosenOption)
-    {
-        if(chosenOption!=null && !chosenOption.equals("") && schutzCharges>0) {
-            Spieler chosenPlayer = Spieler.findSpieler(chosenOption);
-
-            besucht = chosenPlayer;
-
-            chosenPlayer.geschützt = true;
-
-            schutzCharges--;
-        }
-    }
-
-    public void wiederbeleben(Opfer opfer)
-    {
+    public void wiederbeleben(Opfer opfer) {
         if(opfer!=null) {
             besuchtWiederbeleben = opfer.opfer;
         }

@@ -185,7 +185,7 @@ public class Nacht extends Thread
                     case Statement.ROLLE_CHOOSE_ONE:
                         rolle = ((StatementRolle)statement).getRolle();
 
-                        if (rolle.abilityCharges > 0) {
+                        if (rolle.abilityCharges > 0 && !(statement.beschreibung.equals(GUTE_HEXE_SCHÜTZEN) && ((GuteHexe)rolle).schutzCharges <= 0)) {
                             dropdownOtions = rolle.getDropdownOptions();
                             showDropdownPage(statement, dropdownOtions);
                             feedback = rolle.processChosenOption(erzählerFrame.chosenOption1);
@@ -231,17 +231,6 @@ public class Nacht extends Thread
                     case WIRT:
                         if (feedback != null && feedback.equals(Wirt.JA)) {
                             freibier = true;
-                        }
-                        break;
-
-                    case GUTE_HEXE_SCHÜTZEN: //TODO
-                        if(((GuteHexe)rolle).schutzCharges > 0) {
-                            chosenOption = choosePlayerOrNonCheckSpammable(statement, rolle);
-                            if (chosenOption != null) {
-                                ((GuteHexe) rolle).schützen(chosenOption);
-                            }
-                        } else {
-                            showAufgebrauchtPages(statement);
                         }
                         break;
 
