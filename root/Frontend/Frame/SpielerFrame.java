@@ -60,8 +60,6 @@ public class SpielerFrame extends MyFrame{
         this.setLocation(erzählerFrame.frameJpanel.getWidth() + 20,0);
 
         showFrame();
-
-        startTimeUpdateThread();
     }
 
     public void generateAllPages() {

@@ -506,6 +506,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                 if(playersLeft.size()==0) {
                     if(PhaseMode.phase != PhaseMode.ersteNacht) {
                         PhaseManager.firstnight(this);
+                        spielerFrame.startTimeUpdateThread();
                     }
                 } else {
                     try {

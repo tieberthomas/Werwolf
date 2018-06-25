@@ -2,12 +2,14 @@ package root.Frontend.Factories;
 
 import root.Frontend.Frame.ErzählerFrame;
 import root.Frontend.Frame.ErzählerFrameMode;
+import root.Frontend.Frame.FrameMode;
 import root.Frontend.Page.PageElement;
 import root.Frontend.Page.PageTable;
 import root.Frontend.Page.Predecessor;
 import root.Phases.ErsteNacht;
 import root.Phases.Nacht;
 import root.Phases.Statement;
+import root.Rollen.Fraktion;
 import root.Rollen.Hauptrolle;
 import root.Rollen.Nebenrolle;
 import root.Spieler;
@@ -18,6 +20,8 @@ import java.util.ArrayList;
 
 public class ErzählerPageElementFactory {
     ErzählerFrame erzählerFrame;
+    public static final int bigTextSize = 36;
+    public static final int smallTextSize = 28;
 
     public ErzählerPageElementFactory(ErzählerFrame erzählerFrame) {
         this.erzählerFrame = erzählerFrame;
@@ -107,6 +111,9 @@ public class ErzählerPageElementFactory {
 
     public PageElement generateLowestButton(JButton button, String title, boolean right, int howManyButtonsBefore) {
         int elementWidth = 120;
+        if(erzählerFrame.frameMode == FrameMode.small) {
+            elementWidth = 100;
+        }
         int elementHeight = 50;
         int xSpace = 10;
         int xOffset = (elementWidth + xSpace) * howManyButtonsBefore;
@@ -305,7 +312,12 @@ public class ErzählerPageElementFactory {
     }
 
     public PageElement generateTitleLabel(Predecessor predecessorX, String title) {
-        JLabel titleJLabel = generateTitleJLabel(title);
+        int textSize = bigTextSize;
+        if(erzählerFrame.frameMode == FrameMode.small) {
+            textSize = smallTextSize;
+        }
+
+        JLabel titleJLabel = generateTitleJLabel(title, textSize);
 
         int titleLabelWidth = titleJLabel.getPreferredSize().width;
         int titleLabelHeight = titleJLabel.getPreferredSize().height;
@@ -394,8 +406,12 @@ public class ErzählerPageElementFactory {
     }
 
     public JLabel generateTitleJLabel(String text) {
+        return  generateTitleJLabel(text, bigTextSize);
+    }
+
+    public JLabel generateTitleJLabel(String text, int textSize) {
         JLabel label = new JLabel(text);
-        label.setFont(new Font("Arial",Font.PLAIN, 36));
+        label.setFont(new Font("Arial",Font.PLAIN, textSize));
 
         return label;
     }

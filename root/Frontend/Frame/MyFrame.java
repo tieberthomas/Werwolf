@@ -14,6 +14,7 @@ public class MyFrame extends JFrame {
     public static int DEFAULT_PANEL_HEIGHT = 675;
     public static final int yOffset = 38;
     public static final int xOffset = 8;
+    public static boolean frameMode = FrameMode.big;
 
     public static Color DEFAULT_BACKGROUND_COLOR = WHITE;
     public static Color BACKGROUND_COLOR = DEFAULT_BACKGROUND_COLOR;
@@ -76,6 +77,7 @@ public class MyFrame extends JFrame {
         if(width != 1920.0) {
             DEFAULT_PANEL_WIDTH = 720;
             DEFAULT_PANEL_HEIGHT = 540;
+            frameMode = FrameMode.small;
         }
     }
 }

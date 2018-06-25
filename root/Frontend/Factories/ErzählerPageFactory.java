@@ -182,8 +182,10 @@ public class ErzählerPageFactory {
 
     public Page generatePlayerSpecifiyPage(){
         String title = "Wählen Sie für diesen Spieler Haupt- und Nebenrolle.";
-        PageElement titleLabel = pageElementFactory.generateLabel(null, title);
-        titleLabel.width = 330;
+        String HTMLtitle = HTMLStringBuilder.buildHTMLText(title);
+        PageElement titleLabel = pageElementFactory.generateLabel(null, HTMLtitle);
+        titleLabel.width = 250;
+        titleLabel.height = 50;
 
         PageElement playerLabel = pageElementFactory.generateLabel(titleLabel, "Spieler");
         erzählerFrame.comboBox1 = new JComboBox(erzählerFrame.playersLeft.toArray());
@@ -440,7 +442,7 @@ public class ErzählerPageFactory {
         PageElement richterinButton = pageElementFactory.generateLowestButton(erzählerFrame.richterinJButton, "Richterin", false, 3);
 
         erzählerFrame.respawnFramesJButton = new JButton();
-        PageElement respawnFramesButton = pageElementFactory.generateLowestButton(erzählerFrame.respawnFramesJButton, "Fenster neustarten", false, 4);
+        PageElement respawnFramesButton = pageElementFactory.generateLowestButton(erzählerFrame.respawnFramesJButton, "Fenster neustart", false, 4);
 
         Page tagPage = new Page();
 

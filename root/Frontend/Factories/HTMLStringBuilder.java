@@ -28,6 +28,20 @@ public class HTMLStringBuilder {
         return HTMLText;
     }
 
+    public static String buildHTMLText(String text) {
+        String HTMLText = openHTML();
+
+        HTMLText += openParagraph();
+
+        HTMLText += text;
+
+        HTMLText += closeParagraph();
+
+        HTMLText += closeHTML();
+
+        return HTMLText;
+    }
+
     public static String buildColoredParagraph(String text, String color) {
         String HTMLText;
 
