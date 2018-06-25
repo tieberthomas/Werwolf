@@ -109,6 +109,7 @@ public class Nacht extends Thread
     public static final String ARCHIVAR_TITLE = "Spieler wählen";
     public static final String SEHERIN_TITLE = "Spieler wählen";
     public static final String ORAKEL_TITLE = "Bonusrolle";
+    public static final String ORAKEL_VERBRAUCHT_TITLE = "Bonusrollen";
     public static final String SPÄHER_TITLE = "Spieler wählen";
     public static final String BUCHHALTER_TITLE = "Fähigkeit verbrauchen";
     public static final String WAHRSAGER_TITLE = "Fraktion wählen";
@@ -630,15 +631,19 @@ public class Nacht extends Thread
             case FrontendControl.STATIC_LIST:
                 showListOnBothScreens(statement, info.title, info.content);
                 break;
+
+            case FrontendControl.STATIC_CARD:
+                displayCard(statement, info.title, info.imagePath);
+                break;
         }
     }
 
-    public void displayCard(Statement statement, String imagePath) {
+    public void displayCard(Statement statement, String title, String imagePath) {
         switch (statement.getState())
         {
             case Statement.NORMAL:
-                erzählerCardPicturePage(statement, imagePath);
-                spielerCardPicturePage(statement.title, imagePath);
+                erzählerCardPicturePage(statement, title, imagePath);
+                spielerCardPicturePage(title, imagePath);
                 break;
 
             case Statement.DEAKTIV:
@@ -1019,8 +1024,8 @@ public class Nacht extends Thread
         spielerFrame.buildScreenFromPage(nightPage);
     }
 
-    public void erzählerCardPicturePage(Statement statement, String imagePath) {
-        Page nightPage = erzählerFrame.pageFactory.generateCardPicturePage(statement, imagePath);
+    public void erzählerCardPicturePage(Statement statement, String title, String imagePath) {
+        Page nightPage = erzählerFrame.pageFactory.generateCardPicturePage(statement, title, imagePath);
         erzählerFrame.buildScreenFromPage(nightPage);
     }
 

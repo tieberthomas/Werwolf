@@ -394,10 +394,12 @@ public class ErzählerPageElementFactory {
 
         if(filePath!="") {
             Image img = iconLogo.getImage();
-            Image newimg = img.getScaledInstance(iconWidth, iconHeight, java.awt.Image.SCALE_SMOOTH);
-            iconLogo = new ImageIcon(newimg);
+            if(img!=null) {
+                Image newimg = img.getScaledInstance(iconWidth, iconHeight, java.awt.Image.SCALE_SMOOTH);
+                iconLogo = new ImageIcon(newimg);
 
-            iconJLabel.setIcon(iconLogo);
+                iconJLabel.setIcon(iconLogo);
+            }
         }
 
         PageElement iconLabel = new PageElement(iconJLabel, iconWidth, iconHeight, null, predecessorY, PageElement.DEFAULT_SPACE, 20);

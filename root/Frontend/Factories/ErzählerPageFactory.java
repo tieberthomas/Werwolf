@@ -296,8 +296,8 @@ public class ErzählerPageFactory {
         return picturePage;
     }
 
-    public Page generateCardPicturePage(Statement statement, String imagePath) {
-        Page picturePage = generateDefaultNightPage(statement);
+    public Page generateCardPicturePage(Statement statement, String title, String imagePath) {
+        Page picturePage = generateDefaultNightPage(statement, title);
         PageElement deactivatedIcon = pageElementFactory.generateSmallIcon(getContinueToGeneratePagePoint(picturePage), imagePath);
 
         picturePage.add(deactivatedIcon);

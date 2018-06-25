@@ -10,6 +10,7 @@ public class FrontendControl {
     public static final int DROPDOWN_WITH_SUGGESTIONS = 1;
     public static final int STATIC_LIST = 2;
     public static final int STATIC_IMAGE = 3;
+    public static final int STATIC_CARD = 4;
 
     public int typeOfContent;
     public ArrayList<String> content;
@@ -38,6 +39,12 @@ public class FrontendControl {
     }
 
     public FrontendControl(String imagePath, String title) {
+        this.typeOfContent = STATIC_IMAGE;
+        this.imagePath = imagePath;
+        this.title = title;
+    }
+
+    public FrontendControl(int typeOfContent, String imagePath) {
         this.typeOfContent = STATIC_IMAGE;
         this.imagePath = imagePath;
         this.title = title;

@@ -288,7 +288,7 @@ public class ErsteNacht extends Thread {
     }
 
     public void displayCard(Statement statement, String imagePath) {
-        Page nightPage = erzählerFrame.pageFactory.generateCardPicturePage(statement, imagePath);
+        Page nightPage = erzählerFrame.pageFactory.generateCardPicturePage(statement, statement.title, imagePath);
         erzählerFrame.buildScreenFromPage(nightPage);
         nightPage = spielerFrame.pageFactory.generateStaticImagePage(statement.title, imagePath);
         spielerFrame.buildScreenFromPage(nightPage);

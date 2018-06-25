@@ -30,10 +30,14 @@ public class Orakel extends Hauptrolle {
         Nebenrolle randomNebenrolle = generateRandomNebenrolle();
 
         if (randomNebenrolle != null) {
-            return new FrontendControl(randomNebenrolle.getImagePath());
+            return new FrontendControl(FrontendControl.STATIC_CARD, randomNebenrolle.getImagePath());
         } else {
-            //statement.title = Nacht.ORAKEL_VERBRAUCHT_TITLE;
-            return new FrontendControl(FrontendControl.STATIC_LIST, Orakel.geseheneNebenrollen);
+            ArrayList<String> nebenRolleList = (ArrayList<String>)geseheneNebenrollen.clone();
+            Nebenrolle orakelSpielerNebenrolle = Spieler.findSpielerPerRolle(name).nebenrolle;
+            nebenRolleList.remove(orakelSpielerNebenrolle.getName());
+            FrontendControl info = new FrontendControl(FrontendControl.STATIC_LIST, nebenRolleList);
+            info.title = Nacht.ORAKEL_VERBRAUCHT_TITLE;
+            return info;
         }
     }
 
