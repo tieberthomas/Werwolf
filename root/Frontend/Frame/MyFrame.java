@@ -38,7 +38,7 @@ public class MyFrame extends JFrame {
         Dimension dimension = frameJpanel.getSize();
         frameJpanel = generatePanelFromPage(page);
         frameJpanel.setPreferredSize(dimension);
-        this.setContentPane(frameJpanel);
+        this.setContentPane(frameJpanel); //TODO fix frontend bug
         this.pack();
         this.requestFocusInWindow();
     }

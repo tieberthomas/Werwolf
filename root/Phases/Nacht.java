@@ -174,279 +174,281 @@ public class Nacht extends Thread
             for (Statement statement : statements) {
                 chosenOption = null;
 
-                switch (statement.type) {
-                    case Statement.SHOW_TITLE:
-                        erzählerDefaultNightPage(statement);
-                        spielerTitlePage(statement.title);
+                if (statement.visible || statement.type == Statement.PROGRAMM) {
 
-                        waitForAnswer();
-                        break;
+                    switch (statement.type) {
+                        case Statement.SHOW_TITLE:
+                            erzählerDefaultNightPage(statement);
+                            spielerTitlePage(statement.title);
 
-                    case Statement.ROLLE_CHOOSE_ONE:
-                        rolle = ((StatementRolle)statement).getRolle();
+                            waitForAnswer();
+                            break;
 
-                        if (rolle.abilityCharges > 0) {
-                            dropdownOtions = rolle.getDropdownOptions();
-                            chosenOption = showDropdownPage(statement, dropdownOtions);
-                            rolle.processChosenOption(chosenOption);
-                        } else {
-                            showAufgebrauchtPages(statement); //TODO deaktiv/tot beachten
-                        }
-                        break;
+                        case Statement.ROLLE_CHOOSE_ONE:
+                            rolle = ((StatementRolle) statement).getRolle();
 
-                    case Statement.ROLLE_CHOOSE_ONE_INFO:
-                        rolle = ((StatementRolle)statement).getRolle();
-
-                        if (rolle.abilityCharges > 0) {
-                            dropdownOtions = rolle.getDropdownOptions();
-                            chosenOption = showDropdownPage(statement, dropdownOtions);
-                            info = rolle.processChosenOptionGetInfo(chosenOption);
-                            showInfo(statement, info);
-                        } else {
-                            if(rolle.getName().equals(Buchhalter.name)){
-                                info = ((Buchhalter)rolle).getAufgebrauchtPage();
-                                showInfo(statement, info);
+                            if (rolle.abilityCharges > 0) {
+                                dropdownOtions = rolle.getDropdownOptions();
+                                chosenOption = showDropdownPage(statement, dropdownOtions);
+                                rolle.processChosenOption(chosenOption);
                             } else {
                                 showAufgebrauchtPages(statement); //TODO deaktiv/tot beachten
                             }
-                        }
-                        break;
+                            break;
 
-                    case Statement.ROLLE_INFO:
-                        rolle = ((StatementRolle)statement).getRolle();
+                        case Statement.ROLLE_CHOOSE_ONE_INFO:
+                            rolle = ((StatementRolle) statement).getRolle();
 
-                        info = rolle.getInfo();
-                        showInfo(statement, info);
-                        break;
-
-                    case Statement.ROLLE_SPECAL:
-                        rolle = ((StatementRolle)statement).getRolle();
-                        break;
-
-                    case Statement.FRAKTION_CHOOSE_ONE:
-                        Fraktion fraktion = ((StatementFraktion)statement).getFraktion();
-
-                        dropdownOtions = fraktion.getDropdownOptions();
-                        chosenOption = showDropdownPage(statement, dropdownOtions);
-                        fraktion.processChosenOption(chosenOption);
-                        break;
-                }
-
-                switch (statement.beschreibung) {
-                    case WIRT:
-                        if (chosenOption != null && chosenOption.equals(Wirt.JA)) {
-                            freibier = true;
-                        }
-                        break;
-
-                    case PROGRAMM_SCHÜTZE:
-                        setSchütze();
-                        break;
-
-                    case WÖLFIN:
-                        if(chosenOption.equals(Wölfin.KILL)) {
-                            wölfinKilled = true;
-                            wölfinSpieler = Spieler.findSpielerPerRolle(Wölfin.name);
-                        }
-                        break;
-
-                    case NEUER_SCHATTENPRIESTER:
-                        chosenPlayer = Spieler.findSpieler(chosenOptionLastStatement);
-                        String neuerSchattenpriester = "";
-                        imagePath = "";
-                        if (chosenPlayer != null) {
-                            neuerSchattenpriester = chosenPlayer.name;
-
-                            if(!chosenPlayer.hauptrolle.getFraktion().getName().equals(Schattenpriester_Fraktion.name)) {
-                                System.out.println("schattenkutte");
-                                imagePath = Schattenkutte.imagePath;
-                            }
-                        }
-                        showListShowImage(statement, neuerSchattenpriester, ResourcePath.SCHATTENPRIESTER_ICON, imagePath);
-                        break;
-
-                    case NEUER_WERWOLF:
-                        chosenPlayer = Spieler.findSpieler(chosenOptionLastStatement);
-                        String neuerWerwolf = "";
-                        if (chosenPlayer != null) {
-                            neuerWerwolf = chosenPlayer.name;
-                        }
-
-                        showListShowImage(statement, neuerWerwolf, ResourcePath.WÖLFE_ICON);
-
-                        break;
-
-                    case GUTE_HEXE_WIEDERBELEBEN:
-                        GuteHexe guteHexe = (GuteHexe)Spieler.findSpielerPerRolle(GuteHexe.name).hauptrolle;
-                        if (guteHexe.wiederbelebenCharges > 0) {
-                            ArrayList<String> erweckbareOpferOrNon = Opfer.getErweckbareStringsOrNon();
-
-                            showAfterDeathDropdownListPage(statement, erweckbareOpferOrNon);
-
-                            chosenOpfer = Opfer.findOpfer(erzählerFrame.chosenOption1);
-
-                            if (chosenOpfer != null) {
-                                guteHexe.wiederbeleben(chosenOpfer);
-                            }
-                        } else {
-                            showAufgebrauchtPages(statement);
-                        }
-                        break;
-
-                    case PROGRAMM_WAHRSAGER:
-                        if(Wahrsager.isGuessing) {
-                            Spieler wahrsagerSpieler2 = Spieler.findSpielerPerRolle(Wahrsager.name);
-                            if(wahrsagerSpieler2!=null) {
-                                Wahrsager wahrsager = (Wahrsager) wahrsagerSpieler2.nebenrolle;
-                                if(wahrsager.guessedRight()) {
-                                    schönlinge.add(wahrsagerSpieler2);
-                                }
-                            }
-                        }
-
-                        if (!Wahrsager.isGuessing) {
-                            Wahrsager.isGuessing = true;
-                        }
-
-                        if(! (Spieler.getLivigPlayer().size()>4)) {
-                            Wahrsager.isGuessing = false;
-                        }
-                        break;
-
-                    case WAHRSAGER:
-                        Spieler wahrsagerSpieler1 = Spieler.findSpielerPerRolle(Wahrsager.name);
-                        if(wahrsagerSpieler1!=null) {
-                            Wahrsager wahrsager = (Wahrsager) wahrsagerSpieler1.nebenrolle;
-
-                            wahrsager.tipp = Fraktion.findFraktion(chosenOption);
-                        }
-                        break;
-
-                    case ANALYTIKER:
-                        Spieler analytikerSpieler = Spieler.findSpielerPerRolle(rolle.getName());
-                        if(Rolle.rolleLebend(Analytiker.name)) {
-                            ArrayList<String> spielerOrNonWithoutAnalytiker = (ArrayList<String>)spielerOrNon.clone();
-                            spielerOrNonWithoutAnalytiker.remove(analytikerSpieler.name);
-                            showDropdownPage(statement, spielerOrNonWithoutAnalytiker, spielerOrNonWithoutAnalytiker);
-                        } else {
-                            showDropdownPage(statement, spielerOrNon, spielerOrNon);
-                        }
-
-                        Spieler chosenSpieler1 = Spieler.findSpieler(erzählerFrame.chosenOption1);
-                        Spieler chosenSpieler2 = Spieler.findSpieler(erzählerFrame.chosenOption2);
-
-                        if (chosenSpieler1 != null && chosenSpieler2 != null) {
-                            Analytiker analytiker = (Analytiker)analytikerSpieler.nebenrolle;
-                            if(analytiker.showTarnumhang(chosenSpieler1, chosenSpieler2)) {
-                                imagePath = ResourcePath.TARNUMHANG;
-                                statement.title = TARNUMHANG_TITLE;
-                                showImageOnBothScreens(statement, imagePath);
+                            if (rolle.abilityCharges > 0) {
+                                dropdownOtions = rolle.getDropdownOptions();
+                                chosenOption = showDropdownPage(statement, dropdownOtions);
+                                info = rolle.processChosenOptionGetInfo(chosenOption);
+                                showInfo(statement, info);
                             } else {
-                                String answer = analytiker.analysiere(chosenSpieler1, chosenSpieler2);
-                                showListOnBothScreens(statement, answer);
+                                if (rolle.getName().equals(Buchhalter.name)) {
+                                    info = ((Buchhalter) rolle).getAufgebrauchtPage();
+                                    showInfo(statement, info);
+                                } else {
+                                    showAufgebrauchtPages(statement); //TODO deaktiv/tot beachten
+                                }
                             }
-                        }
-                        break;
+                            break;
 
-                    case BESCHWÖRER:
-                        if(chosenOption!=null) {
-                            beschworenerSpieler = Spieler.findSpieler(chosenOption);
-                        }
-                        break;
+                        case Statement.ROLLE_INFO:
+                            rolle = ((StatementRolle) statement).getRolle();
 
-                    case FRISÖR:
-                        if(chosenOption!=null) {
-                            schönlinge.add(Spieler.findSpieler(chosenOption));
-                        }
-                        break;
+                            info = rolle.getInfo();
+                            showInfo(statement, info);
+                            break;
 
-                    case KONDITOR:
-                    case KONDITOR_LEHRLING:
-                        if (Opfer.deadVictims.size() == 0) {
-                            if(Rolle.rolleLebend(Konditor.name) && Rolle.rolleAktiv(Konditor.name) || Rolle.rolleLebend(Konditorlehrling.name) && Rolle.rolleAktiv(Konditorlehrling.name)) {
-                                Torte.torte = true;
+                        case Statement.ROLLE_SPECAL:
+                            rolle = ((StatementRolle) statement).getRolle();
+                            break;
+
+                        case Statement.FRAKTION_CHOOSE_ONE:
+                            Fraktion fraktion = ((StatementFraktion) statement).getFraktion();
+
+                            dropdownOtions = fraktion.getDropdownOptions();
+                            chosenOption = showDropdownPage(statement, dropdownOtions);
+                            fraktion.processChosenOption(chosenOption);
+                            break;
+                    }
+
+                    switch (statement.beschreibung) {
+                        case WIRT:
+                            if (chosenOption != null && chosenOption.equals(Wirt.JA)) {
+                                freibier = true;
+                            }
+                            break;
+
+                        case PROGRAMM_SCHÜTZE:
+                            setSchütze();
+                            break;
+
+                        case WÖLFIN:
+                            if (chosenOption.equals(Wölfin.KILL)) {
+                                wölfinKilled = true;
+                                wölfinSpieler = Spieler.findSpielerPerRolle(Wölfin.name);
+                            }
+                            break;
+
+                        case NEUER_SCHATTENPRIESTER:
+                            chosenPlayer = Spieler.findSpieler(chosenOptionLastStatement);
+                            String neuerSchattenpriester = "";
+                            imagePath = "";
+                            if (chosenPlayer != null) {
+                                neuerSchattenpriester = chosenPlayer.name;
+
+                                if (!chosenPlayer.hauptrolle.getFraktion().getName().equals(Schattenpriester_Fraktion.name)) {
+                                    System.out.println("schattenkutte");
+                                    imagePath = Schattenkutte.imagePath;
+                                }
+                            }
+                            showListShowImage(statement, neuerSchattenpriester, ResourcePath.SCHATTENPRIESTER_ICON, imagePath);
+                            break;
+
+                        case NEUER_WERWOLF:
+                            chosenPlayer = Spieler.findSpieler(chosenOptionLastStatement);
+                            String neuerWerwolf = "";
+                            if (chosenPlayer != null) {
+                                neuerWerwolf = chosenPlayer.name;
                             }
 
-                            dropdownOtions = rolle.getDropdownOptions();
-                            chosenOption = showKonditorDropdownPage(statement, dropdownOtions);
-                            rolle.processChosenOption(chosenOption);
+                            showListShowImage(statement, neuerWerwolf, ResourcePath.WÖLFE_ICON);
 
-                            Torte.gut = chosenOption.equals(Konditor.GUT);
-                            chosenOption = null;
-                        }
-                        break;
+                            break;
 
-                    case PROGRAMM_OPFER:
-                        setOpfer();
-                        break;
+                        case GUTE_HEXE_WIEDERBELEBEN:
+                            GuteHexe guteHexe = (GuteHexe) Spieler.findSpielerPerRolle(GuteHexe.name).hauptrolle;
+                            if (guteHexe.wiederbelebenCharges > 0) {
+                                ArrayList<String> erweckbareOpferOrNon = Opfer.getErweckbareStringsOrNon();
 
-                    case OPFER:
-                        ArrayList<String> opferDerNacht = new ArrayList<>();
+                                showAfterDeathDropdownListPage(statement, erweckbareOpferOrNon);
 
-                        for (Opfer currentOpfer : Opfer.deadVictims) {
-                            if(!opferDerNacht.contains(currentOpfer.opfer.name)) {
-                                Rolle.mitteHauptrollen.add(currentOpfer.opfer.hauptrolle);
-                                Rolle.mitteNebenrollen.add(currentOpfer.opfer.nebenrolle);
-                                opferDerNacht.add(currentOpfer.opfer.name);
+                                chosenOpfer = Opfer.findOpfer(erzählerFrame.chosenOption1);
+
+                                if (chosenOpfer != null) {
+                                    guteHexe.wiederbeleben(chosenOpfer);
+                                }
+                            } else {
+                                showAufgebrauchtPages(statement);
                             }
-                        }
+                            break;
 
-                        showListOnBothScreens(statement, opferDerNacht);
-
-                        if(Rolle.rolleLebend(GuteHexe.name))
-                        {
-                            refreshHexenSchutz();
-                        }
-
-                        String victory = Spieler.checkVictory();
-
-                        if(victory != null) {
-                            showEndScreenPage(victory);
-                        }
-                        break;
-
-                    case VERSTUMMT:
-                        if(beschworenerSpieler!=null) {
-                            erzählerListPage(statement, beschworenerSpieler.name);
-                            spielerIconPicturePage(beschworenerSpieler.name, ResourcePath.VERSTUMMT);
-                            waitForAnswer();
-                        }
-                        break;
-
-                    case SCHÖNLINGE:
-                        if(schönlinge!=null) {
-                            ArrayList<String> schönlingeStringList = new ArrayList<>();
-                            for(Spieler spieler : schönlinge) {
-                                if(!schönlingeStringList.contains(spieler.name)){
-                                    schönlingeStringList.add(spieler.name);
+                        case PROGRAMM_WAHRSAGER:
+                            if (Wahrsager.isGuessing) {
+                                Spieler wahrsagerSpieler2 = Spieler.findSpielerPerRolle(Wahrsager.name);
+                                if (wahrsagerSpieler2 != null) {
+                                    Wahrsager wahrsager = (Wahrsager) wahrsagerSpieler2.nebenrolle;
+                                    if (wahrsager.guessedRight()) {
+                                        schönlinge.add(wahrsagerSpieler2);
+                                    }
                                 }
                             }
 
-                            if(schönlinge.size()==1) {
-                                Spieler schönling = schönlinge.get(0);
-                                erzählerListPage(statement, schönling.name);
-                                spielerIconPicturePage(schönling.name, ResourcePath.SCHÖNLING);
-                                waitForAnswer();
-                            } else if(schönlinge.size()>1){
-                                showListOnBothScreens(statement, schönlingeStringList);
+                            if (!Wahrsager.isGuessing) {
+                                Wahrsager.isGuessing = true;
                             }
-                        }
+
+                            if (!(Spieler.getLivigPlayer().size() > 4)) {
+                                Wahrsager.isGuessing = false;
+                            }
+                            break;
+
+                        case WAHRSAGER:
+                            Spieler wahrsagerSpieler1 = Spieler.findSpielerPerRolle(Wahrsager.name);
+                            if (wahrsagerSpieler1 != null) {
+                                Wahrsager wahrsager = (Wahrsager) wahrsagerSpieler1.nebenrolle;
+
+                                wahrsager.tipp = Fraktion.findFraktion(chosenOption);
+                            }
+                            break;
+
+                        case ANALYTIKER:
+                            Spieler analytikerSpieler = Spieler.findSpielerPerRolle(rolle.getName());
+                            if (Rolle.rolleLebend(Analytiker.name)) {
+                                ArrayList<String> spielerOrNonWithoutAnalytiker = (ArrayList<String>) spielerOrNon.clone();
+                                spielerOrNonWithoutAnalytiker.remove(analytikerSpieler.name);
+                                showDropdownPage(statement, spielerOrNonWithoutAnalytiker, spielerOrNonWithoutAnalytiker);
+                            } else {
+                                showDropdownPage(statement, spielerOrNon, spielerOrNon);
+                            }
+
+                            Spieler chosenSpieler1 = Spieler.findSpieler(erzählerFrame.chosenOption1);
+                            Spieler chosenSpieler2 = Spieler.findSpieler(erzählerFrame.chosenOption2);
+
+                            if (chosenSpieler1 != null && chosenSpieler2 != null) {
+                                Analytiker analytiker = (Analytiker) analytikerSpieler.nebenrolle;
+                                if (analytiker.showTarnumhang(chosenSpieler1, chosenSpieler2)) {
+                                    imagePath = ResourcePath.TARNUMHANG;
+                                    statement.title = TARNUMHANG_TITLE;
+                                    showImageOnBothScreens(statement, imagePath);
+                                } else {
+                                    String answer = analytiker.analysiere(chosenSpieler1, chosenSpieler2);
+                                    showListOnBothScreens(statement, answer);
+                                }
+                            }
+                            break;
+
+                        case BESCHWÖRER:
+                            if (chosenOption != null) {
+                                beschworenerSpieler = Spieler.findSpieler(chosenOption);
+                            }
+                            break;
+
+                        case FRISÖR:
+                            if (chosenOption != null) {
+                                schönlinge.add(Spieler.findSpieler(chosenOption));
+                            }
+                            break;
+
+                        case KONDITOR:
+                        case KONDITOR_LEHRLING:
+                            if (Opfer.deadVictims.size() == 0) {
+                                if (Rolle.rolleLebend(Konditor.name) && Rolle.rolleAktiv(Konditor.name) || Rolle.rolleLebend(Konditorlehrling.name) && Rolle.rolleAktiv(Konditorlehrling.name)) {
+                                    Torte.torte = true;
+                                }
+
+                                dropdownOtions = rolle.getDropdownOptions();
+                                chosenOption = showKonditorDropdownPage(statement, dropdownOtions);
+                                rolle.processChosenOption(chosenOption);
+
+                                Torte.gut = chosenOption.equals(Konditor.GUT);
+                                chosenOption = null;
+                            }
+                            break;
+
+                        case PROGRAMM_OPFER:
+                            setOpfer();
+                            break;
+
+                        case OPFER:
+                            ArrayList<String> opferDerNacht = new ArrayList<>();
+
+                            for (Opfer currentOpfer : Opfer.deadVictims) {
+                                if (!opferDerNacht.contains(currentOpfer.opfer.name)) {
+                                    Rolle.mitteHauptrollen.add(currentOpfer.opfer.hauptrolle);
+                                    Rolle.mitteNebenrollen.add(currentOpfer.opfer.nebenrolle);
+                                    opferDerNacht.add(currentOpfer.opfer.name);
+                                }
+                            }
+
+                            showListOnBothScreens(statement, opferDerNacht);
+
+                            if (Rolle.rolleLebend(GuteHexe.name)) {
+                                refreshHexenSchutz();
+                            }
+
+                            String victory = Spieler.checkVictory();
+
+                            if (victory != null) {
+                                showEndScreenPage(victory);
+                            }
+                            break;
+
+                        case VERSTUMMT:
+                            if (beschworenerSpieler != null) {
+                                erzählerListPage(statement, beschworenerSpieler.name);
+                                spielerIconPicturePage(beschworenerSpieler.name, ResourcePath.VERSTUMMT);
+                                waitForAnswer();
+                            }
+                            break;
+
+                        case SCHÖNLINGE:
+                            if (schönlinge != null) {
+                                ArrayList<String> schönlingeStringList = new ArrayList<>();
+                                for (Spieler spieler : schönlinge) {
+                                    if (!schönlingeStringList.contains(spieler.name)) {
+                                        schönlingeStringList.add(spieler.name);
+                                    }
+                                }
+
+                                if (schönlinge.size() == 1) {
+                                    Spieler schönling = schönlinge.get(0);
+                                    erzählerListPage(statement, schönling.name);
+                                    spielerIconPicturePage(schönling.name, ResourcePath.SCHÖNLING);
+                                    waitForAnswer();
+                                } else if (schönlinge.size() > 1) {
+                                    showListOnBothScreens(statement, schönlingeStringList);
+                                }
+                            }
+                            break;
+
+                        case PROGRAMM_TORTE:
+                            if (Torte.torte) {
+                                erzählerTortenPage();
+                                spielerIconPicturePage(TORTE_TITLE, ResourcePath.TORTE);
+
+                                waitForAnswer();
+                            }
+                            break;
+                    }
+
+                    chosenOptionLastStatement = chosenOption;
+
+                    if (freibier) {
                         break;
-
-                    case PROGRAMM_TORTE:
-                        if (Torte.torte) {
-                            erzählerTortenPage();
-                            spielerIconPicturePage(TORTE_TITLE, ResourcePath.TORTE);
-
-                            waitForAnswer();
-                        }
-                        break;
-                }
-
-                chosenOptionLastStatement = chosenOption;
-
-                if (freibier) {
-                    break;
+                    }
                 }
             }
         }
@@ -1100,6 +1102,8 @@ public class Nacht extends Thread
     public void addStatementRolle(String statement, String title, String rolle, int type) {
         if (Rolle.rolleInNachtEnthalten(rolle)) {
             statements.add(new StatementRolle(statement, title, rolle, type, true));
+        } else {
+            statements.add(new StatementRolle(statement, title, rolle, type, false));
         }
     }
 
