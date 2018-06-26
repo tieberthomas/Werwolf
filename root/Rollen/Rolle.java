@@ -2,6 +2,7 @@ package root.Rollen;
 
 import root.Frontend.FrontendControl;
 import root.ResourceManagement.ResourcePath;
+import root.Rollen.Hauptrollen.Bürger.Sammler;
 import root.Spieler;
 
 import java.util.ArrayList;
@@ -68,6 +69,19 @@ public class Rolle
         return false;
     }
 
+    public static boolean hauptRolleInNachtEnthalten(String rolle) {
+        if(Hauptrolle.getMainRoleInGameNames().contains(rolle)) {
+            for(Rolle currentRolle : Rolle.mitteHauptrollen){
+                if(currentRolle.getName().equals(rolle)) {
+                    return false;
+                }
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public static boolean rolleInNachtEnthalten(String rolle) {
         if(Hauptrolle.getMainRoleInGameNames().contains(rolle) || Nebenrolle.getSecondaryRoleInGameNames().contains(rolle)) {
             for(Rolle currentRolle : Rolle.mitteHauptrollen){
@@ -76,9 +90,11 @@ public class Rolle
                 }
             }
 
-            for(Rolle currentRolle : Rolle.mitteNebenrollen){
-                if(currentRolle.getName().equals(rolle)) {
-                    return false;
+            if(!hauptRolleInNachtEnthalten(Sammler.name)) {
+                for (Rolle currentRolle : Rolle.mitteNebenrollen) {
+                    if (currentRolle.getName().equals(rolle)) {
+                        return false;
+                    }
                 }
             }
             return true;

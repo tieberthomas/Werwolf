@@ -4,6 +4,7 @@ import root.Frontend.FrontendControl;
 import root.ResourceManagement.ResourcePath;
 import root.Rollen.Fraktionen.Bürger;
 import root.Rollen.Hauptrollen.Bürger.Bestienmeister;
+import root.Rollen.Hauptrollen.Bürger.Sammler;
 import root.Rollen.Nebenrolle;
 import root.Spieler;
 
@@ -36,7 +37,12 @@ public class Archivar extends Nebenrolle
             besucht = chosenPlayer;
 
             if(chosenPlayer.hauptrolle.getName().equals(Bestienmeister.name)) {
-                if(!Spieler.findSpielerPerRolle(name).hauptrolle.getFraktion().getName().equals(Bürger.name)) {
+                Spieler spieler = Spieler.findSpielerPerRolle(name);
+                if(spieler!=null) {
+                    spieler = Spieler.findSpielerPerRolle(Sammler.name);
+                }
+
+                if(!spieler.hauptrolle.getFraktion().getName().equals(Bürger.name)) {
                     return new FrontendControl(ResourcePath.TARNUMHANG, TARNUMHANG_TITLE);
                 }
             }

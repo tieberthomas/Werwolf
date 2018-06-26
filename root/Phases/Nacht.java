@@ -1088,8 +1088,10 @@ public class Nacht extends Thread
         if(Wölfin.modus == Wölfin.TÖTEND) {
             addStatementRolle(WÖLFIN_NEBENROLLE, WÖLFIN_NEBENROLLE_TITLE, Wölfin.name, Statement.ROLLE_INFO); //vll. rolle_info
         }
+
         addStatementRolle(VERSTUMMT, VERSTUMMT_TITLE, Beschwörer.name, Statement.ROLLE_SPECAL); //versuchen auf generisch rolle_info
-        if(Rolle.rolleExists(Frisör.name) || Rolle.rolleExists(Wahrsager.name)) {
+
+        if(Rolle.rolleInNachtEnthalten(Frisör.name) || Rolle.rolleInNachtEnthalten(Wahrsager.name)) {
             addStatementIndie(SCHÖNLINGE, SCHÖNLINGE_TITLE, Statement.INDIE);
         }
 

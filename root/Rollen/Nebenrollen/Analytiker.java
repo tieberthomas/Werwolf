@@ -3,6 +3,7 @@ package root.Rollen.Nebenrollen;
 import root.ResourceManagement.ResourcePath;
 import root.Rollen.Fraktionen.Bürger;
 import root.Rollen.Hauptrollen.Bürger.Bestienmeister;
+import root.Rollen.Hauptrollen.Bürger.Sammler;
 import root.Rollen.Nebenrolle;
 import root.Spieler;
 import root.mechanics.Liebespaar;
@@ -66,6 +67,9 @@ public class Analytiker extends Nebenrolle
 
 
         Spieler analytikerSpieler = Spieler.findSpielerPerRolle(name);
+        if(analytikerSpieler!=null) {
+            analytikerSpieler = Spieler.findSpielerPerRolle(Sammler.name);
+        }
         if(!analytikerSpieler.hauptrolle.getFraktion().getName().equals(Bürger.name)){
             analytikerKeinBürger = true;
         }
