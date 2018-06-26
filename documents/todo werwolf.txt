@@ -1,12 +1,5 @@
-michael fragen:
-soll man sehen wenn der beobachtete sich selbst besucht hat?
-
 michael testen:
-alle interaktionvon von konditor und konditorlehrling (deaktiviert, nicht zugeteilt, usw.)
-wahrsager
-nachbar
-priester
-richterin
+sammler
 
 Schattenpriester können den Liebespartner des Tagesopfers ind er nächsten Nacht erwecken
 Priester stirbt als der Liebespartner des gebürgten stirbt
@@ -27,7 +20,6 @@ siegüberprüfung generischer machen (tag und nacht)
 Rollen ganz implementieren:
 
 Hauptrollen:
-Sammler //passive aus der mitte werden nicht für seher verwendet
 überläufer
 
 Nebenrollen:

@@ -1103,7 +1103,12 @@ public class Nacht extends Thread
         if (Rolle.rolleInNachtEnthalten(rolle)) {
             statements.add(new StatementRolle(statement, title, rolle, type, true));
         } else {
-            statements.add(new StatementRolle(statement, title, rolle, type, false));
+            Nebenrolle nebenrolle = Nebenrolle.findNebenrolle(rolle);
+            if(Rolle.rolleInNachtEnthalten(Sammler.name) && nebenrolle!=null && Nebenrolle.getSecondaryRoleInGameNames().contains(nebenrolle.getName())) {
+                statements.add(new StatementRolle(statement, title, rolle, type, true, true));
+            } else {
+                statements.add(new StatementRolle(statement, title, rolle, type, false));
+            }
         }
     }
 

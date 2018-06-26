@@ -253,32 +253,21 @@ public class ErzählerPageElementFactory {
         if(erzählerFrame.mode == ErzählerFrameMode.ersteNacht){
             statements = ErsteNacht.statements;
         } else if (erzählerFrame.mode == ErzählerFrameMode.nacht) {
-            statements = (ArrayList<Statement>)Nacht.statements.clone();
-            //TODO move code to another place
-            for(Statement statement : statements) {
-                if(statement.getClass() == StatementRolle.class) {
-                    Rolle rolle = ((StatementRolle)statement).getRolle();
-                    if(rolle.getClass() == Nebenrolle.class) {
-                        if(Rolle.mitteNebenrollen.contains(rolle)) {
-                            statement.beschreibung = Sammler.beschreibungAddiditon + statement.beschreibung;
-                        }
-                    }
-                }
-            }
+            statements = changeStatementsToFitSammler(Nacht.statements);
         }
 
         for (Statement statement : statements) {
             if(statement.visible) {
                 nachtPunkte.add(statement.beschreibung);
-                if(/*(erzählerFrame.mode != ErzählerFrameMode.ersteNacht) && */!statement.isLebend()) {
-                    if (statement.beschreibung.equals(currentStatement)) {
+                if(!statement.isLebend()) {
+                    if (statement.beschreibung.contains(currentStatement)) {
                         found = true;
                         nachtPunkteFarben.add(HTMLStringBuilder.blue);
                     } else {
                         nachtPunkteFarben.add(HTMLStringBuilder.gray);
                     }
                 } else {
-                    if (statement.beschreibung.equals(currentStatement)) {
+                    if (statement.beschreibung.contains(currentStatement)) {
                         nachtPunkteFarben.add(HTMLStringBuilder.yellow);
                         found = true;
                     } else {
@@ -304,6 +293,25 @@ public class ErzählerPageElementFactory {
         PageElement nightLabel = new PageElement(nightJLabel, width, erzählerFrame.frameJpanel.getHeight()+300);
 
         return nightLabel;
+    }
+
+    public ArrayList<Statement> changeStatementsToFitSammler(ArrayList<Statement> statements) {
+        ArrayList<Statement> newStatements = new ArrayList<Statement>();
+
+        for(Statement statement : statements) {
+            if(statement.getClass() == StatementRolle.class) {
+                StatementRolle statementRolle = (StatementRolle)statement;
+                StatementRolle newRolleStatement = new StatementRolle(statementRolle.beschreibung, statementRolle.title, statementRolle.getRolle().getName(), statementRolle.type, statementRolle.visible, statementRolle.sammler);
+                if(statementRolle.sammler) {
+                    newRolleStatement.beschreibung = Sammler.beschreibungAddiditon + statement.beschreibung;
+                }
+                newStatements.add(newRolleStatement);
+            } else {
+                newStatements.add(statement);
+            }
+        }
+
+        return newStatements;
     }
 
     public PageElement generateDropdown(JComboBox jComboBox, Predecessor predecessorX, Predecessor predecessorY,
