@@ -45,9 +45,8 @@ public class FrontendControl {
     }
 
     public FrontendControl(int typeOfContent, String imagePath) {
-        this.typeOfContent = STATIC_IMAGE;
+        this.typeOfContent = typeOfContent;
         this.imagePath = imagePath;
-        this.title = title;
     }
 
     public FrontendControl(int typeOfContent, ArrayList<String> content) {
