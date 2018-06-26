@@ -351,14 +351,16 @@ public class Nacht extends Thread
                             break;
 
                         case BESCHWÖRER:
-                            if (chosenOption != null) {
-                                beschworenerSpieler = Spieler.findSpieler(chosenOption);
+                            chosenPlayer = Spieler.findSpieler(chosenOption);
+                            if (chosenPlayer != null) {
+                                beschworenerSpieler = chosenPlayer;
                             }
                             break;
 
                         case FRISÖR:
-                            if (chosenOption != null) {
-                                schönlinge.add(Spieler.findSpieler(chosenOption));
+                            chosenPlayer = Spieler.findSpieler(chosenOption);
+                            if (chosenPlayer != null) {
+                                schönlinge.add(chosenPlayer);
                             }
                             break;
 
@@ -374,7 +376,6 @@ public class Nacht extends Thread
                                 rolle.processChosenOption(chosenOption);
 
                                 Torte.gut = chosenOption.equals(Konditor.GUT);
-                                chosenOption = null;
                             }
                             break;
 
