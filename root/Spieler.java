@@ -3,6 +3,7 @@ package root;
 import root.Frontend.FrontendControl;
 import root.Rollen.Fraktion;
 import root.Rollen.Hauptrolle;
+import root.Rollen.Hauptrollen.Bürger.Sammler;
 import root.Rollen.Nebenrolle;
 import root.Rollen.Rolle;
 import root.mechanics.Liebespaar;
@@ -186,7 +187,25 @@ public class Spieler
         return null;
     }
 
+    public static Spieler findSpielerOrDeadPerRolle(String name) {
+        for(Spieler currentSpieler : spieler)
+        {
+            if(currentSpieler.hauptrolle.getName().equals(name) || currentSpieler.nebenrolle.getName().equals(name)) {
+                return currentSpieler;
+            }
+        }
+
+        return null;
+    }
+
     public static Spieler findSpielerPerRolle(String name) {
+        for(Nebenrolle nebenrolle : Rolle.mitteNebenrollen)
+        {
+            if(nebenrolle.getName().equals(name)) {
+                return findSpielerPerRolle(Sammler.name);
+            }
+        }
+
         for(Spieler currentSpieler : spieler)
         {
             if(currentSpieler.hauptrolle.getName().equals(name) || currentSpieler.nebenrolle.getName().equals(name)) {

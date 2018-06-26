@@ -298,15 +298,14 @@ public class Nacht extends Thread
                         case PROGRAMM_WAHRSAGER:
                             if (Wahrsager.isGuessing) {
                                 Spieler wahrsagerSpieler2 = Spieler.findSpielerPerRolle(Wahrsager.name);
+                                Spieler deadWahrsagerSpieler = Spieler.findSpielerOrDeadPerRolle(Wahrsager.name);
                                 if (wahrsagerSpieler2 != null) {
-                                    Wahrsager wahrsager = (Wahrsager) wahrsagerSpieler2.nebenrolle;
+                                    Wahrsager wahrsager = (Wahrsager) deadWahrsagerSpieler.nebenrolle;
                                     if (wahrsager.guessedRight()) {
                                         schönlinge.add(wahrsagerSpieler2);
                                     }
                                 }
-                            }
-
-                            if (!Wahrsager.isGuessing) {
+                            } else {
                                 Wahrsager.isGuessing = true;
                             }
 
@@ -316,7 +315,7 @@ public class Nacht extends Thread
                             break;
 
                         case WAHRSAGER:
-                            Spieler wahrsagerSpieler1 = Spieler.findSpielerPerRolle(Wahrsager.name);
+                            Spieler wahrsagerSpieler1 = Spieler.findSpielerOrDeadPerRolle(Wahrsager.name);
                             if (wahrsagerSpieler1 != null) {
                                 Wahrsager wahrsager = (Wahrsager) wahrsagerSpieler1.nebenrolle;
 
@@ -390,6 +389,9 @@ public class Nacht extends Thread
                                 if (!opferDerNacht.contains(currentOpfer.opfer.name)) {
                                     Rolle.mitteHauptrollen.add(currentOpfer.opfer.hauptrolle);
                                     Rolle.mitteNebenrollen.add(currentOpfer.opfer.nebenrolle);
+                                    if(currentOpfer.opfer.nebenrolle.getName().equals(Wahrsager.name)){
+                                        Wahrsager.isGuessing = false;
+                                    }
                                     opferDerNacht.add(currentOpfer.opfer.name);
                                 }
                             }
