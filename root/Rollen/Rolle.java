@@ -103,6 +103,15 @@ public class Rolle
         }
     }
 
+    public static boolean isSammlerRolle(String rolle) {
+        for (Rolle currentRolle : Rolle.mitteNebenrollen) {
+            if (currentRolle.getName().equals(rolle)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static boolean rolleLebend(String rolle) {
         for (Spieler currentSpieler : Spieler.spieler) {
             if((currentSpieler.hauptrolle.getName().equals(rolle) || currentSpieler.nebenrolle.getName().equals(rolle)) && currentSpieler.lebend) {

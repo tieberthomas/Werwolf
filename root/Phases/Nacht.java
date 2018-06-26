@@ -1104,14 +1104,10 @@ public class Nacht extends Thread
 
     public void addStatementRolle(String statement, String title, String rolle, int type) {
         if (Rolle.rolleInNachtEnthalten(rolle)) {
-            statements.add(new StatementRolle(statement, title, rolle, type, true));
+            boolean isSammlerStatement = Rolle.isSammlerRolle(rolle);
+            statements.add(new StatementRolle(statement, title, rolle, type, true, isSammlerStatement));
         } else {
-            Nebenrolle nebenrolle = Nebenrolle.findNebenrolle(rolle);
-            if(Rolle.rolleInNachtEnthalten(Sammler.name) && nebenrolle!=null && Nebenrolle.getSecondaryRoleInGameNames().contains(nebenrolle.getName())) {
-                statements.add(new StatementRolle(statement, title, rolle, type, true, true));
-            } else {
-                statements.add(new StatementRolle(statement, title, rolle, type, false));
-            }
+            statements.add(new StatementRolle(statement, title, rolle, type, false));
         }
     }
 
