@@ -1,8 +1,12 @@
 package root.Rollen.Nebenrollen;
 
 import root.Frontend.FrontendControl;
+import root.Phases.Nacht;
+import root.Phases.Statement;
+import root.Phases.StatementRolle;
 import root.ResourceManagement.ResourcePath;
 import root.Rollen.Nebenrolle;
+import root.Rollen.Rolle;
 import root.Spieler;
 
 /**
@@ -25,11 +29,16 @@ public class Totengräber extends Nebenrolle
         Nebenrolle chosenNebenrolle = Nebenrolle.findNebenrolle(chosenOption);
         if (chosenNebenrolle != null) {
             try {
-                Spieler spielerNebenrolle = Spieler.findSpielerPerRolle(chosenNebenrolle.getName());
+                Spieler spielerNebenrolle = Spieler.findSpielerOrDeadPerRolle(chosenNebenrolle.getName());
+                chosenNebenrolle = spielerNebenrolle.nebenrolle;
                 spielerNebenrolle.nebenrolle = new Schatten();
 
                 Spieler spielerTotengräber = Spieler.findSpielerPerRolle(name);
                 spielerTotengräber.nebenrolle = chosenNebenrolle;
+                Rolle.mitteNebenrollen.remove(chosenNebenrolle);
+                Rolle.mitteNebenrollen.add(this);
+
+                removeSammlerFlag(chosenNebenrolle.getName());
             }catch (NullPointerException e) {
                 System.out.println(name + " nicht gefunden");
             }
@@ -54,5 +63,16 @@ public class Totengräber extends Nebenrolle
     @Override
     public boolean isSpammable() {
         return spammable;
+    }
+
+    public void removeSammlerFlag(String nebenRolle) {
+        for(Statement statement : Nacht.statements) {
+            if(statement.getClass() == StatementRolle.class) {
+                StatementRolle statementRolle = (StatementRolle)statement;
+                if(statementRolle.getRolle().getName().equals(nebenRolle)){
+                    statementRolle.sammler = false;
+                }
+            }
+        }
     }
 }
