@@ -1,15 +1,14 @@
 ST:
 schlechte torte - koplett deaktiv
-	neue Karte - Title
-	booleans?
-	besucht?
-	deaktiviert und verbraucht - deaktiviert anzeigen
-	feedback löschen? (return chosenOption;)
+neue Karte - Title
+booleans?
+besucht?
+deaktiviert und verbraucht - deaktiviert anzeigen
+ErsteNacht Statement Type
+Statement State invisble
 
 TH:
 Englisch-Deutsch-Gemisch
-
-nicht gelistete Satements, einfach invisible und nicht lebend
 
 MT:
 Bonusrolle - Nebenrolle
