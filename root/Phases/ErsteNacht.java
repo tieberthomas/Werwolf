@@ -60,30 +60,25 @@ public class ErsteNacht extends Thread {
 
     public static final String TARNUMHANG_TITLE = "Tarnumhang";
 
-    ErzählerFrame erzählerFrame;
-    public static SpielerFrame spielerFrame;
     public static ArrayList<Statement> statements;
     public static Object lock;
 
     public ErsteNacht(ErzählerFrame erzählerFrame, SpielerFrame spielerFrame) {
-        this.erzählerFrame = erzählerFrame;
-        this.spielerFrame = spielerFrame;
+        FrontendControl.erzählerFrame = erzählerFrame;
+        FrontendControl.spielerFrame = spielerFrame;
+        //TODO
     }
 
     public void run() {
         lock = new Object();
         synchronized (lock) {
-            Page nightPage;
             FrontendControl dropdownOtions;
-            String feedback = null;
+            FrontendControl info;
+            String chosenOption;
 
-            Spieler chosenSpieler;
             Nebenrolle newNebenrolle;
             String cardToDisplay;
             String imagePath;
-
-            ArrayList<String> spieler = Spieler.getLivigPlayerStrings();
-            ArrayList<String> secondaryRolesLeft = getSecondaryRolesLeft();
 
             beginNight();
 
@@ -99,7 +94,7 @@ public class ErsteNacht extends Thread {
                     Nebenrolle nebenrolle = ((Nebenrolle) rolle);
                     newNebenrolle = nebenrolle.getTauschErgebnis();
                     cardToDisplay = newNebenrolle.getImagePath();
-                    displayCard(statement, cardToDisplay);
+                    displayCard(statement, statement.title, cardToDisplay); //TODO title
                     if(Rolle.rolleLebend(rolle.getName())) {
                         nebenrolle.tauschen(newNebenrolle);
                         Nebenrolle.secondaryRolesInGame.remove(nebenrolle);
@@ -114,14 +109,10 @@ public class ErsteNacht extends Thread {
                         case LIEBESPAAR:
                             ArrayList<String> spielerOrZufällig = Spieler.getLivigPlayerStrings();
                             spielerOrZufällig.add(Liebespaar.ZUFÄLLIG);
-                            nightPage = erzählerFrame.pageFactory.generateDropdownPage(statement, spielerOrZufällig, spielerOrZufällig);
-                            erzählerFrame.buildScreenFromPage(nightPage);
-                            spielerFrame.dropDownPage = spielerFrame.pageFactory.generateDropdownPage(statement.title, 2);
-                            spielerFrame.buildScreenFromPage(spielerFrame.dropDownPage);
 
-                            waitForAnswer();
+                            showDropdownPage(statement, spielerOrZufällig, spielerOrZufällig);
 
-                            Liebespaar.neuesLiebespaar(erzählerFrame.chosenOption1, erzählerFrame.chosenOption2);
+                            Liebespaar.neuesLiebespaar(FrontendControl.erzählerFrame.chosenOption1, FrontendControl.erzählerFrame.chosenOption2);
                             break;
 
                         case LIEBESPAAR_FINDEN:
@@ -133,10 +124,8 @@ public class ErsteNacht extends Thread {
 
                                 imagePath = Liebespaar.getImagePath();
 
-                                nightPage = erzählerFrame.pageFactory.generateListPage(statement, liebespaarStrings);
-                                erzählerFrame.buildScreenFromPage(nightPage);
-                                nightPage = spielerFrame.pageFactory.generateStaticImagePage(statement.title, imagePath, true);
-                                spielerFrame.buildScreenFromPage(nightPage);
+                                FrontendControl.erzählerListPage(statement, liebespaarStrings);
+                                FrontendControl.spielerIconPicturePage(statement.title, imagePath);
 
                                 waitForAnswer();
                             }
@@ -154,40 +143,23 @@ public class ErsteNacht extends Thread {
 
                         case BRÜDER:
                             ArrayList<String> brüder = Spieler.findSpielersPerRolle(Bruder.name);
-                            nightPage = erzählerFrame.pageFactory.generateListPage(statement, brüder);
-                            erzählerFrame.buildScreenFromPage(nightPage);
-                            nightPage = spielerFrame.pageFactory.generateStaticImagePage(statement.title, ResourcePath.BRÜDER_KARTE);
-                            spielerFrame.buildScreenFromPage(nightPage);
+
+                            FrontendControl.erzählerListPage(statement, brüder);
+                            FrontendControl.spielerCardPicturePage(statement.title, ResourcePath.BRÜDER_KARTE);
 
                             waitForAnswer();
                             break;
 
                         case SEHERIN:
                             dropdownOtions = rolle.getDropdownOptions();
-                            showDropdownPage(statement, dropdownOtions);
-                            rolle.processChosenOption(erzählerFrame.chosenOption1);
-
-                            Fraktion fraktion = Fraktion.findFraktion(feedback);
-                            if (fraktion != null || feedback != null && feedback.equals(Nebenrolle.TARNUMHANG)) {
-                                if (feedback.equals(Nebenrolle.TARNUMHANG)) {
-                                    imagePath = ResourcePath.TARNUMHANG;
-                                    statement.title = TARNUMHANG_TITLE;
-                                } else {
-                                    imagePath = fraktion.getImagePath();
-                                    statement.title = erzählerFrame.chosenOption1;
-                                }
-
-                                showImageOnBothScreens(statement, imagePath);
-
-                                statement.title = SEHERIN_TITLE;
-                            }
+                            chosenOption = showDropdownPage(statement, dropdownOtions);
+                            info = rolle.processChosenOptionGetInfo(chosenOption);
+                            showInfo(statement, info);
                             break;
 
                         default:
-                            nightPage = erzählerFrame.pageFactory.generateDefaultNightPage(statement);
-                            erzählerFrame.buildScreenFromPage(nightPage);
-                            nightPage = spielerFrame.pageFactory.generateTitlePage(statement.title);
-                            spielerFrame.buildScreenFromPage(nightPage);
+                            FrontendControl.erzählerDefaultNightPage(statement);
+                            FrontendControl.spielerTitlePage(statement.title);
 
                             waitForAnswer();
                             break;
@@ -197,7 +169,7 @@ public class ErsteNacht extends Thread {
         }
 
         cleanUp();
-        PhaseManager.day(erzählerFrame, spielerFrame);
+        PhaseManager.day(FrontendControl.erzählerFrame, FrontendControl.spielerFrame);
     }
 
     public void beginNight() {
@@ -209,27 +181,6 @@ public class ErsteNacht extends Thread {
             currentNebenrolle.besuchtLetzteNacht = null;
             currentNebenrolle.besucht = null;
         }
-    }
-
-    public void showFraktionMembers(Statement statement, String fraktionName) {
-        Page nightPage;
-
-        Fraktion fraktion = Fraktion.findFraktion(fraktionName);
-        ArrayList<String> fraktionMembers = fraktion.getFraktionsMemberStrings();
-
-        nightPage = erzählerFrame.pageFactory.generateListPage(statement, fraktionMembers);
-        erzählerFrame.buildScreenFromPage(nightPage);
-
-        try {
-            String fraktionsLogoImagePath = fraktion.getImagePath();
-
-            nightPage = spielerFrame.pageFactory.generateStaticImagePage(statement.title, fraktionsLogoImagePath, true);
-            spielerFrame.buildScreenFromPage(nightPage);
-        } catch (NullPointerException e) {
-            System.out.println(fraktionName + " nicht gefunden");
-        }
-
-        waitForAnswer();
     }
 
     private ArrayList<String> getSecondaryRolesLeft() {
@@ -265,6 +216,43 @@ public class ErsteNacht extends Thread {
         }
     }
 
+    public void showFraktionMembers(Statement statement, String fraktionName) {
+        Fraktion fraktion = Fraktion.findFraktion(fraktionName);
+        ArrayList<String> fraktionMembers = fraktion.getFraktionsMemberStrings();
+
+        FrontendControl.erzählerListPage(statement, fraktionMembers);
+
+        try {
+            String fraktionsLogoImagePath = fraktion.getImagePath();
+
+            FrontendControl.spielerIconPicturePage(statement.title, fraktionsLogoImagePath);
+        } catch (NullPointerException e) {
+            System.out.println(fraktionName + " nicht gefunden");
+        }
+
+        waitForAnswer();
+    }
+
+    public void showInfo(Statement statement, FrontendControl info) {
+        if (info.title == null) {
+            info.title = statement.title;
+        }
+
+        switch (info.typeOfContent) {
+            case FrontendControl.STATIC_IMAGE:
+                showImageOnBothScreens(statement, info.title, info.imagePath);
+                break;
+
+            case FrontendControl.STATIC_LIST:
+                showListOnBothScreens(statement, info.title, info.content);
+                break;
+
+            case FrontendControl.STATIC_CARD:
+                displayCard(statement, info.title, info.imagePath);
+                break;
+        }
+    }
+
     public void showNebenrolle(Statement statement, Spieler spieler) {
         if (spieler != null) {
             statement.title = spieler.name;
@@ -274,71 +262,51 @@ public class ErsteNacht extends Thread {
                 imagePath = ResourcePath.TARNUMHANG;
                 statement.title = TARNUMHANG_TITLE;
             }
-            displayCard(statement, imagePath);
+            displayCard(statement, statement.title, imagePath);
         }
     }
 
     public void showHauptrolle(Statement statement, Spieler spieler) {
         if (spieler != null) {
-            statement.title = spieler.name;
-
-            String imagePath = spieler.hauptrolle.getImagePath();
-            displayCard(statement, imagePath);
+            displayCard(statement, spieler.name, spieler.hauptrolle.getImagePath());
         }
     }
 
-    public void displayCard(Statement statement, String imagePath) {
-        Page nightPage = erzählerFrame.pageFactory.generateCardPicturePage(statement, statement.title, imagePath);
-        erzählerFrame.buildScreenFromPage(nightPage);
-        nightPage = spielerFrame.pageFactory.generateStaticImagePage(statement.title, imagePath);
-        spielerFrame.buildScreenFromPage(nightPage);
+    public void displayCard(Statement statement, String title, String imagePath) {
+        FrontendControl.erzählerCardPicturePage(statement, title, imagePath);
+        FrontendControl.spielerCardPicturePage(title, imagePath);
 
         waitForAnswer();
     }
 
-    public Spieler choosePlayerOrNon(Statement statement) {
-        ArrayList<String> spielerOrNon = Spieler.getLivigPlayerOrNoneStrings();
-
-        showDropdownPage(statement, spielerOrNon);
-
-        return Spieler.findSpieler(erzählerFrame.chosenOption1);
+    public void showListOnBothScreens(Statement statement, ArrayList<String> strings){
+        showListOnBothScreens(statement, statement.title, strings);
     }
 
-    public void showDropdownPage(Statement statement, ArrayList<String> strings) {
-        Page nightPage = erzählerFrame.pageFactory.generateDropdownPage(statement, strings);
-        erzählerFrame.buildScreenFromPage(nightPage);
-        spielerFrame.dropDownPage = spielerFrame.pageFactory.generateDropdownPage(statement.title, 1);
-        spielerFrame.buildScreenFromPage(spielerFrame.dropDownPage);
-
-        waitForAnswer();
-    }
-
-    public void showDropdownPage(Statement statement, FrontendControl frontendControl) {
-        Page nightPage = erzählerFrame.pageFactory.generateDropdownPage(statement, frontendControl.content);
-        erzählerFrame.buildScreenFromPage(nightPage);
-
-        switch (frontendControl.typeOfContent)
-        {
-            case FrontendControl.DROPDOWN_WITHOUT_SUGGESTIONS:
-                spielerFrame.dropDownPage = spielerFrame.pageFactory.generateDropdownPage(statement.title, 1);
-                spielerFrame.buildScreenFromPage(spielerFrame.dropDownPage);
-                break;
-
-            case FrontendControl.DROPDOWN_WITH_SUGGESTIONS:
-                spielerFrame.dropDownPage = spielerFrame.pageFactory.generateListMirrorPage(statement.title, frontendControl.content);
-                spielerFrame.buildScreenFromPage(spielerFrame.dropDownPage);
-                break;
-        }
-
+    public void showListOnBothScreens(Statement statement, String title, ArrayList<String> strings) {
+        FrontendControl.showListOnBothScreens(statement, title, strings);
         waitForAnswer();
     }
 
     public void showImageOnBothScreens(Statement statement, String imagePath) {
-        Page nightPage = erzählerFrame.pageFactory.generateIconPicturePage(statement, imagePath);
-        erzählerFrame.buildScreenFromPage(nightPage);
-        nightPage = spielerFrame.pageFactory.generateStaticImagePage(statement.title, imagePath, true);
-        spielerFrame.buildScreenFromPage(nightPage);
+        showImageOnBothScreens(statement, statement.title, imagePath);
+    }
 
+    public void showImageOnBothScreens(Statement statement, String title, String imagePath) {
+        FrontendControl.erzählerIconPicturePage(statement, title, imagePath);
+        FrontendControl.spielerIconPicturePage(title, imagePath);
+
+        waitForAnswer();
+    }
+
+    public String showDropdownPage(Statement statement, FrontendControl frontendControl) {
+        FrontendControl.showDropdownPage(statement, frontendControl);
+        waitForAnswer();
+        return FrontendControl.erzählerFrame.chosenOption1;
+    }
+
+    public void showDropdownPage(Statement statement, ArrayList<String> dropdownOptions1, ArrayList<String> dropdownOptions2) {
+        FrontendControl.showDropdownPage(statement, dropdownOptions1, dropdownOptions2);
         waitForAnswer();
     }
 

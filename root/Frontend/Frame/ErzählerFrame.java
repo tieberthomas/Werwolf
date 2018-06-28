@@ -898,14 +898,10 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
 
         übersichtsFrame = new ÜbersichtsFrame(this);
 
-        if(PhaseMode.phase == PhaseMode.tag ||PhaseMode.phase == PhaseMode.freibierTag) {
-            FrontendControl.spielerFrame = spielerFrame;
+        FrontendControl.spielerFrame = spielerFrame;
+        if(PhaseMode.phase == PhaseMode.tag || PhaseMode.phase == PhaseMode.freibierTag) {
             spielerFrame.generateDayPage();
-        } else if (PhaseMode.phase == PhaseMode.nacht) {
-            FrontendControl.spielerFrame = spielerFrame;
-            spielerFrame.buildScreenFromPage(savePage);
-        } else if (PhaseMode.phase == PhaseMode.ersteNacht) {
-            ErsteNacht.spielerFrame = spielerFrame;
+        } else if (PhaseMode.phase == PhaseMode.nacht || PhaseMode.phase == PhaseMode.ersteNacht) {
             spielerFrame.buildScreenFromPage(savePage);
         }
     }
