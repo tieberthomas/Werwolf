@@ -38,9 +38,6 @@ public class Archivar extends Nebenrolle
 
             if(chosenPlayer.hauptrolle.getName().equals(Bestienmeister.name)) {
                 Spieler spieler = Spieler.findSpielerPerRolle(name);
-                if(spieler!=null) {
-                    spieler = Spieler.findSpielerPerRolle(Sammler.name);
-                }
 
                 if(!spieler.hauptrolle.getFraktion().getName().equals(Bürger.name)) {
                     return new FrontendControl(ResourcePath.TARNUMHANG, TARNUMHANG_TITLE);

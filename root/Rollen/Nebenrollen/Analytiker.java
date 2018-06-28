@@ -49,37 +49,26 @@ public class Analytiker extends Nebenrolle
     public String getType() { return type; }
 
     public boolean showTarnumhang(Spieler spieler1, Spieler spieler2){
-        boolean tarnumhandBeiSpielern = false;
-
         if(spieler1.nebenrolle.getName().equals(Tarnumhang.name) ||
                 spieler2.nebenrolle.getName().equals(Tarnumhang.name)) {
-            tarnumhandBeiSpielern = true;
+            return true;
         }
 
         boolean bestienmeisterBeiSpielern = false;
+        boolean analytikerKeinBürger = false;
 
         if(spieler1.hauptrolle.getName().equals(Bestienmeister.name) ||
                 spieler2.hauptrolle.getName().equals(Bestienmeister.name)) {
             bestienmeisterBeiSpielern = true;
         }
 
-        boolean analytikerKeinBürger = false;
-
-
         Spieler analytikerSpieler = Spieler.findSpielerPerRolle(name);
-        if(analytikerSpieler!=null) {
-            analytikerSpieler = Spieler.findSpielerPerRolle(Sammler.name);
-        }
-        //TODO fix exception
+
         if(!analytikerSpieler.hauptrolle.getFraktion().getName().equals(Bürger.name)){
             analytikerKeinBürger = true;
         }
 
-        if(tarnumhandBeiSpielern || (bestienmeisterBeiSpielern && analytikerKeinBürger)) {
-            return true;
-        } else {
-            return false;
-        }
+        return bestienmeisterBeiSpielern && analytikerKeinBürger;
     }
 
     public String analysiere(Spieler spieler1, Spieler spieler2) {
