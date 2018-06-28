@@ -70,6 +70,7 @@ public class Analytiker extends Nebenrolle
         if(analytikerSpieler!=null) {
             analytikerSpieler = Spieler.findSpielerPerRolle(Sammler.name);
         }
+        //TODO fix exception
         if(!analytikerSpieler.hauptrolle.getFraktion().getName().equals(Bürger.name)){
             analytikerKeinBürger = true;
         }
@@ -89,8 +90,6 @@ public class Analytiker extends Nebenrolle
 
         String fraktion1 = spieler1.hauptrolle.getFraktion().getName();
         String fraktion2 = spieler2.hauptrolle.getFraktion().getName();
-
-        ArrayList<String> answer = new ArrayList<>();
 
         if (Objects.equals(fraktion1, fraktion2)) {
             return GLEICH;

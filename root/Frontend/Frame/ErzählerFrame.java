@@ -1,6 +1,7 @@
 package root.Frontend.Frame;
 
 import root.Frontend.Factories.ErzählerPageFactory;
+import root.Frontend.FrontendControl;
 import root.Frontend.Page.Page;
 import root.Frontend.Page.PageTable;
 import root.Phases.*;
@@ -901,7 +902,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
             Tag.spielerFrame = spielerFrame;
             spielerFrame.generateDayPage();
         } else if (PhaseMode.phase == PhaseMode.nacht) {
-            Nacht.spielerFrame = spielerFrame;
+            FrontendControl.spielerFrame = spielerFrame;
             spielerFrame.buildScreenFromPage(savePage);
         } else if (PhaseMode.phase == PhaseMode.ersteNacht) {
             ErsteNacht.spielerFrame = spielerFrame;
