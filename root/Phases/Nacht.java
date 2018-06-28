@@ -137,12 +137,6 @@ public class Nacht extends Thread
     public static Spieler wölfinSpieler;
     public static Spieler beschworenerSpieler;
 
-    public Nacht(ErzählerFrame erzählerFrame, SpielerFrame spielerFrame) {
-        FrontendControl.erzählerFrame = erzählerFrame;
-        FrontendControl.spielerFrame = spielerFrame;
-        //TODO
-    }
-
     public void run() {
         boolean freibier = false;
 
@@ -456,10 +450,10 @@ public class Nacht extends Thread
         cleanUp();
 
         if (freibier) {
-            PhaseManager.freibierDay(FrontendControl.erzählerFrame, FrontendControl.spielerFrame);
+            PhaseManager.freibierDay();
         }
         else {
-            PhaseManager.day(FrontendControl.erzählerFrame, FrontendControl.spielerFrame);
+            PhaseManager.day();
         }
     }
 

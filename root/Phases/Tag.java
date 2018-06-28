@@ -29,12 +29,6 @@ public class Tag extends Thread {
 
     public static String dayTitle = "Opfer der Dorfabstimmung";
 
-    public Tag(ErzählerFrame erzählerFrame, SpielerFrame spielerFrame) {
-        FrontendControl.erzählerFrame = erzählerFrame;
-        FrontendControl.spielerFrame = spielerFrame;
-        //TODO
-    }
-
     public void run() {
         gebürgteSpieler = new ArrayList<>();
         verurteilteSpieler = new ArrayList<>();
@@ -44,7 +38,7 @@ public class Tag extends Thread {
             day();
         }
 
-        PhaseManager.night(FrontendControl.erzählerFrame, FrontendControl.spielerFrame);
+        PhaseManager.night();
     }
 
     public void day() {

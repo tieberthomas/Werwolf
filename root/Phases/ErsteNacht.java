@@ -63,12 +63,6 @@ public class ErsteNacht extends Thread {
     public static ArrayList<Statement> statements;
     public static Object lock;
 
-    public ErsteNacht(ErzählerFrame erzählerFrame, SpielerFrame spielerFrame) {
-        FrontendControl.erzählerFrame = erzählerFrame;
-        FrontendControl.spielerFrame = spielerFrame;
-        //TODO
-    }
-
     public void run() {
         lock = new Object();
         synchronized (lock) {
@@ -169,7 +163,7 @@ public class ErsteNacht extends Thread {
         }
 
         cleanUp();
-        PhaseManager.day(FrontendControl.erzählerFrame, FrontendControl.spielerFrame);
+        PhaseManager.day();
     }
 
     public void beginNight() {

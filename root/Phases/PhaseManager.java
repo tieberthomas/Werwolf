@@ -4,6 +4,7 @@ import root.Frontend.Frame.ErzählerFrame;
 import root.Frontend.Frame.ErzählerFrameMode;
 import root.Frontend.Frame.SpielerFrame;
 import root.Frontend.Frame.ÜbersichtsFrame;
+import root.Frontend.FrontendControl;
 
 public class PhaseManager {
     public static void firstnight(ErzählerFrame erzählerFrame) {
@@ -11,28 +12,30 @@ public class PhaseManager {
         erzählerFrame.mode = ErzählerFrameMode.ersteNacht;
         erzählerFrame.übersichtsFrame = new ÜbersichtsFrame(erzählerFrame);
         erzählerFrame.toFront();
-        ErsteNacht ersteNacht = new ErsteNacht(erzählerFrame, erzählerFrame.spielerFrame);
+        FrontendControl.erzählerFrame = erzählerFrame;
+        FrontendControl.spielerFrame = erzählerFrame.spielerFrame;
+        ErsteNacht ersteNacht = new ErsteNacht();
         ersteNacht.start();
     }
 
-    public static void day(ErzählerFrame erzählerFrame, SpielerFrame spielerFrame) {
-        erzählerFrame.mode = ErzählerFrameMode.tag;
+    public static void day() {
+        FrontendControl.erzählerFrame.mode = ErzählerFrameMode.tag;
         PhaseMode.phase = PhaseMode.tag;
-        Tag tag = new Tag(erzählerFrame, spielerFrame);
+        Tag tag = new Tag();
         tag.start();
     }
 
-    public static void freibierDay(ErzählerFrame erzählerFrame, SpielerFrame spielerFrame) {
-        erzählerFrame.mode = ErzählerFrameMode.freibierTag;
+    public static void freibierDay() {
+        FrontendControl.erzählerFrame.mode = ErzählerFrameMode.freibierTag;
         PhaseMode.phase = PhaseMode.freibierTag;
-        Tag tag = new Tag(erzählerFrame, spielerFrame);
+        Tag tag = new Tag();
         tag.start();
     }
 
-    public static void night(ErzählerFrame erzählerFrame, SpielerFrame spielerFrame) {
-        erzählerFrame.mode = ErzählerFrameMode.nacht;
+    public static void night() {
+        FrontendControl.erzählerFrame.mode = ErzählerFrameMode.nacht;
         PhaseMode.phase = PhaseMode.nacht;
-        Nacht nacht = new Nacht(erzählerFrame, spielerFrame);
+        Nacht nacht = new Nacht();
         nacht.start();
     }
 }
