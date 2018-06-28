@@ -2,8 +2,14 @@ package root;
 
 import root.Frontend.FrontendControl;
 import root.Rollen.Fraktion;
+import root.Rollen.Fraktionen.Schattenpriester_Fraktion;
+import root.Rollen.Fraktionen.Werwölfe;
 import root.Rollen.Hauptrolle;
+import root.Rollen.Hauptrollen.Bürger.Sammler;
+import root.Rollen.Hauptrollen.Schattenpriester.Schattenpriester;
+import root.Rollen.Hauptrollen.Werwölfe.Wölfin;
 import root.Rollen.Nebenrolle;
+import root.Rollen.Nebenrollen.Schatten;
 import root.Rollen.Rolle;
 import root.mechanics.Liebespaar;
 
@@ -186,7 +192,25 @@ public class Spieler
         return null;
     }
 
+    public static Spieler findSpielerOrDeadPerRolle(String name) {
+        for(Spieler currentSpieler : spieler)
+        {
+            if(currentSpieler.hauptrolle.getName().equals(name) || currentSpieler.nebenrolle.getName().equals(name)) {
+                return currentSpieler;
+            }
+        }
+
+        return null;
+    }
+
     public static Spieler findSpielerPerRolle(String name) {
+        for(Nebenrolle nebenrolle : Rolle.mitteNebenrollen)
+        {
+            if(nebenrolle.getName().equals(name)) {
+                return findSpielerPerRolle(Sammler.name);
+            }
+        }
+
         for(Spieler currentSpieler : spieler)
         {
             if(currentSpieler.hauptrolle.getName().equals(name) || currentSpieler.nebenrolle.getName().equals(name)) {
@@ -208,6 +232,23 @@ public class Spieler
         }
 
         return spielers;
+    }
+
+    public static void killSpieler(Spieler spieler) {
+        if(spieler!=null) {
+            spieler.lebend = false;
+            Rolle.mitteHauptrollen.add(spieler.hauptrolle);
+            Rolle.mitteNebenrollen.add(spieler.nebenrolle);
+            if(spieler.hauptrolle.getName().equals(Schattenpriester.name) && !spieler.nebenrolle.getName().equals(Schatten.name)) {
+                Schattenpriester_Fraktion.deadSchattenPriester++;
+            }
+
+            if(Rolle.rolleLebend(Wölfin.name) && Wölfin.modus==Wölfin.WARTEND) {
+                if(spieler.hauptrolle.getFraktion().getName().equals(Werwölfe.name)) {
+                    Wölfin.modus = Wölfin.TÖTEND;
+                }
+            }
+        }
     }
 
     public static String checkVictory() {

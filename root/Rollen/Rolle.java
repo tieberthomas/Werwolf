@@ -7,8 +7,7 @@ import root.Spieler;
 
 import java.util.ArrayList;
 
-public class Rolle
-{
+public class Rolle {
     public static ArrayList<Hauptrolle> mitteHauptrollen = new ArrayList<>();
     public static ArrayList<Nebenrolle> mitteNebenrollen = new ArrayList<>();
     public Spieler besucht;
@@ -101,6 +100,15 @@ public class Rolle
         } else {
             return false;
         }
+    }
+
+    public static boolean isSammlerRolle(String rolle) {
+        for (Rolle currentRolle : Rolle.mitteNebenrollen) {
+            if (currentRolle.getName().equals(rolle)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public static boolean rolleLebend(String rolle) {

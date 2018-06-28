@@ -297,15 +297,14 @@ public class Nacht extends Thread
                         case PROGRAMM_WAHRSAGER:
                             if (Wahrsager.isGuessing) {
                                 Spieler wahrsagerSpieler2 = Spieler.findSpielerPerRolle(Wahrsager.name);
+                                Spieler deadWahrsagerSpieler = Spieler.findSpielerOrDeadPerRolle(Wahrsager.name);
                                 if (wahrsagerSpieler2 != null) {
-                                    Wahrsager wahrsager = (Wahrsager) wahrsagerSpieler2.nebenrolle;
+                                    Wahrsager wahrsager = (Wahrsager) deadWahrsagerSpieler.nebenrolle;
                                     if (wahrsager.guessedRight()) {
                                         schönlinge.add(wahrsagerSpieler2);
                                     }
                                 }
-                            }
-
-                            if (!Wahrsager.isGuessing) {
+                            } else {
                                 Wahrsager.isGuessing = true;
                             }
 
@@ -315,7 +314,7 @@ public class Nacht extends Thread
                             break;
 
                         case WAHRSAGER:
-                            Spieler wahrsagerSpieler1 = Spieler.findSpielerPerRolle(Wahrsager.name);
+                            Spieler wahrsagerSpieler1 = Spieler.findSpielerOrDeadPerRolle(Wahrsager.name);
                             if (wahrsagerSpieler1 != null) {
                                 Wahrsager wahrsager = (Wahrsager) wahrsagerSpieler1.nebenrolle;
 
@@ -387,8 +386,9 @@ public class Nacht extends Thread
 
                             for (Opfer currentOpfer : Opfer.deadVictims) {
                                 if (!opferDerNacht.contains(currentOpfer.opfer.name)) {
-                                    Rolle.mitteHauptrollen.add(currentOpfer.opfer.hauptrolle);
-                                    Rolle.mitteNebenrollen.add(currentOpfer.opfer.nebenrolle);
+                                    if(currentOpfer.opfer.nebenrolle.getName().equals(Wahrsager.name)){
+                                        Wahrsager.isGuessing = false;
+                                    }
                                     opferDerNacht.add(currentOpfer.opfer.name);
                                 }
                             }
@@ -568,12 +568,7 @@ public class Nacht extends Thread
                 }
             }
 
-            if(Rolle.rolleLebend(Wölfin.name) && Wölfin.modus==Wölfin.WARTEND) {
-                if(currentVictim.opfer.hauptrolle.getFraktion().getName().equals(Werwölfe.name)) {
-                    Wölfin.modus = Wölfin.TÖTEND;
-                }
-            }
-            killSpieler(currentVictim.opfer);
+            Spieler.killSpieler(currentVictim.opfer);
         }
     }
 
@@ -597,10 +592,6 @@ public class Nacht extends Thread
             if (!spieler1Lebend && spieler2Lebend) {
                 Opfer.deadVictims.add(new Opfer(Liebespaar.spieler2, Liebespaar.spieler1, false));
         }
-    }
-
-    public void killSpieler(Spieler spieler) {
-        spieler.lebend = false;
     }
 
     public void refreshHexenSchutz() {
@@ -851,7 +842,7 @@ public class Nacht extends Thread
 
         addStatementIndie(OPFER, OPFER_TITLE, Statement.INDIE);
         if(Wölfin.modus == Wölfin.TÖTEND) {
-            addStatementRolle(WÖLFIN_NEBENROLLE, WÖLFIN_NEBENROLLE_TITLE, Wölfin.name, Statement.ROLLE_INFO); //vll. rolle_info
+            addStatementRolle(WÖLFIN_NEBENROLLE, WÖLFIN_NEBENROLLE_TITLE, Wölfin.name, Statement.ROLLE_INFO);
         }
 
         addStatementRolle(VERSTUMMT, VERSTUMMT_TITLE, Beschwörer.name, Statement.ROLLE_SPECAL); //versuchen auf generisch rolle_info
@@ -869,14 +860,10 @@ public class Nacht extends Thread
 
     public void addStatementRolle(String statement, String title, String rolle, int type) {
         if (Rolle.rolleInNachtEnthalten(rolle)) {
-            statements.add(new StatementRolle(statement, title, rolle, type, true));
+            boolean isSammlerStatement = Rolle.isSammlerRolle(rolle);
+            statements.add(new StatementRolle(statement, title, rolle, type, true, isSammlerStatement));
         } else {
-            Nebenrolle nebenrolle = Nebenrolle.findNebenrolle(rolle);
-            if(Rolle.rolleInNachtEnthalten(Sammler.name) && nebenrolle!=null && Nebenrolle.getSecondaryRoleInGameNames().contains(nebenrolle.getName())) {
-                statements.add(new StatementRolle(statement, title, rolle, type, true, true));
-            } else {
-                statements.add(new StatementRolle(statement, title, rolle, type, false));
-            }
+            statements.add(new StatementRolle(statement, title, rolle, type, false));
         }
     }
 

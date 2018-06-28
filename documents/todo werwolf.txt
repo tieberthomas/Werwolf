@@ -1,12 +1,12 @@
 michael testen:
 sammler
+totengräber
+priester liebespaar interaktion erneut testen
 
-Schattenpriester können den Liebespartner des Tagesopfers ind er nächsten Nacht erwecken
-Priester stirbt als der Liebespartner des gebürgten stirbt
-Liebespaar probleme
 
 tasks:
-besucher in spieler reinschreiben
+konditorlehrling statement mit sammler überarbeiten
+besucher in spieler reinschreiben (?)
 
 CherryOnTop:
 Wenn das ziel der holden maid anästisiert ist, soll es nicht aufwachen (deaktiviertpage für holde maid anzeigen)
