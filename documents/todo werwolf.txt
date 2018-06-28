@@ -3,9 +3,6 @@ sammler
 totengräber
 priester liebespaar interaktion erneut testen
 
-michael fragen:
-tagescreen (gelistete neben und hauptrollen) (sollen schattenpriester aus liste entfernt werden?)
-
 
 tasks:
 konditorlehrling statement mit sammler überarbeiten

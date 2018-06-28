@@ -1,6 +1,7 @@
 package root.Rollen;
 
 import root.Rollen.Fraktionen.Bürger;
+import root.Rollen.Fraktionen.Schattenpriester_Fraktion;
 import root.Rollen.Hauptrollen.Bürger.*;
 import root.Rollen.Hauptrollen.Schattenpriester.Schattenpriester;
 import root.Rollen.Hauptrollen.Vampire.GrafVladimir;
@@ -8,6 +9,7 @@ import root.Rollen.Hauptrollen.Vampire.LadyAleera;
 import root.Rollen.Hauptrollen.Vampire.MissVerona;
 import root.Rollen.Hauptrollen.Werwölfe.*;
 import root.Rollen.Hauptrollen.Überläufer.Überläufer;
+import root.Rollen.Nebenrollen.Schatten;
 import root.Spieler;
 
 import java.util.ArrayList;
@@ -112,7 +114,13 @@ public class Hauptrolle extends Rolle
         ArrayList<String> mainRolesInGame = getMainRoleInGameNames();
 
         for(Hauptrolle hauptrolle : Rolle.mitteHauptrollen) {
-            mainRolesInGame.remove(hauptrolle.getName());
+            if(!hauptrolle.getName().equals(Schattenpriester.name)) {
+                mainRolesInGame.remove(hauptrolle.getName());
+            }
+        }
+
+        for(int i=0; i< Schattenpriester_Fraktion.deadSchattenPriester; i++) {
+            mainRolesInGame.remove(Schattenpriester.name);
         }
 
         return  mainRolesInGame;

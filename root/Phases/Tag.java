@@ -124,16 +124,7 @@ public class Tag extends Thread {
 
     public static void killSpieler(Spieler spieler) {
         if(spieler!=null) {
-            spieler.lebend = false;
-
-            if(Rolle.rolleLebend(Wölfin.name) && Wölfin.modus==Wölfin.WARTEND) {
-                if(spieler.hauptrolle.getFraktion().getName().equals(Werwölfe.name)) {
-                    Wölfin.modus = Wölfin.TÖTEND;
-                }
-            }
-
-            Rolle.mitteHauptrollen.add(spieler.hauptrolle);
-            Rolle.mitteNebenrollen.add(spieler.nebenrolle);
+            Spieler.killSpieler(spieler);
 
             Page dayPage = spielerFrame.pageFactory.generateTwoImagePage(spieler.name, spieler.hauptrolle.getImagePath(), spieler.nebenrolle.getImagePath());
             spielerFrame.buildScreenFromPage(dayPage);

@@ -7,8 +7,7 @@ import root.Spieler;
 
 import java.util.ArrayList;
 
-public class Rolle
-{
+public class Rolle {
     public static ArrayList<Hauptrolle> mitteHauptrollen = new ArrayList<>();
     public static ArrayList<Nebenrolle> mitteNebenrollen = new ArrayList<>();
     public Spieler besucht;

@@ -21,6 +21,8 @@ public class Schattenpriester_Fraktion extends Fraktion
     public static final Color farbe = Color.lightGray;
     public static final String imagePath = ResourcePath.SCHATTENPRIESTER_ICON;
 
+    public static int deadSchattenPriester = 0;
+
     @Override
     public void processChosenOption(String chosenOption) {
         Opfer chosenOpfer = Opfer.findOpfer(chosenOption);

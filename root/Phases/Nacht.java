@@ -387,8 +387,6 @@ public class Nacht extends Thread
 
                             for (Opfer currentOpfer : Opfer.deadVictims) {
                                 if (!opferDerNacht.contains(currentOpfer.opfer.name)) {
-                                    Rolle.mitteHauptrollen.add(currentOpfer.opfer.hauptrolle);
-                                    Rolle.mitteNebenrollen.add(currentOpfer.opfer.nebenrolle);
                                     if(currentOpfer.opfer.nebenrolle.getName().equals(Wahrsager.name)){
                                         Wahrsager.isGuessing = false;
                                     }
@@ -571,12 +569,7 @@ public class Nacht extends Thread
                 }
             }
 
-            if(Rolle.rolleLebend(Wölfin.name) && Wölfin.modus==Wölfin.WARTEND) {
-                if(currentVictim.opfer.hauptrolle.getFraktion().getName().equals(Werwölfe.name)) {
-                    Wölfin.modus = Wölfin.TÖTEND;
-                }
-            }
-            killSpieler(currentVictim.opfer);
+            Spieler.killSpieler(currentVictim.opfer);
         }
     }
 
@@ -600,10 +593,6 @@ public class Nacht extends Thread
             if (!spieler1Lebend && spieler2Lebend) {
                 Opfer.deadVictims.add(new Opfer(Liebespaar.spieler2, Liebespaar.spieler1, false));
         }
-    }
-
-    public void killSpieler(Spieler spieler) {
-        spieler.lebend = false;
     }
 
     public void refreshHexenSchutz() {
@@ -1088,7 +1077,7 @@ public class Nacht extends Thread
 
         addStatementIndie(OPFER, OPFER_TITLE, Statement.INDIE);
         if(Wölfin.modus == Wölfin.TÖTEND) {
-            addStatementRolle(WÖLFIN_NEBENROLLE, WÖLFIN_NEBENROLLE_TITLE, Wölfin.name, Statement.ROLLE_INFO); //vll. rolle_info
+            addStatementRolle(WÖLFIN_NEBENROLLE, WÖLFIN_NEBENROLLE_TITLE, Wölfin.name, Statement.ROLLE_INFO);
         }
 
         addStatementRolle(VERSTUMMT, VERSTUMMT_TITLE, Beschwörer.name, Statement.ROLLE_SPECAL); //versuchen auf generisch rolle_info
