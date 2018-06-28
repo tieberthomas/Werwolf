@@ -3,6 +3,7 @@ package root.Phases;
 import root.Frontend.Frame.ErzählerFrame;
 import root.Frontend.Frame.ErzählerFrameMode;
 import root.Frontend.Frame.SpielerFrame;
+import root.Frontend.FrontendControl;
 import root.Frontend.Page.Page;
 import root.Rollen.Fraktionen.Bürger;
 import root.Rollen.Fraktionen.Werwölfe;
@@ -18,8 +19,6 @@ import root.mechanics.Liebespaar;
 import java.util.ArrayList;
 
 public class Tag extends Thread {
-    public static ErzählerFrame erzählerFrame;
-    public static SpielerFrame spielerFrame;
     public static Object lock;
     public static boolean umbringenButton = false;
     public static Spieler umbringenSpieler;
@@ -31,8 +30,9 @@ public class Tag extends Thread {
     public static String dayTitle = "Opfer der Dorfabstimmung";
 
     public Tag(ErzählerFrame erzählerFrame, SpielerFrame spielerFrame) {
-        this.erzählerFrame = erzählerFrame;
-        this.spielerFrame = spielerFrame;
+        FrontendControl.erzählerFrame = erzählerFrame;
+        FrontendControl.spielerFrame = spielerFrame;
+        //TODO
     }
 
     public void run() {
@@ -40,21 +40,20 @@ public class Tag extends Thread {
         verurteilteSpieler = new ArrayList<>();
         day();
 
-        if(erzählerFrame.mode == ErzählerFrameMode.freibierTag) {
+        if(FrontendControl.erzählerFrame.mode == ErzählerFrameMode.freibierTag) {
             day();
         }
 
-        PhaseManager.night(erzählerFrame, spielerFrame);
+        PhaseManager.night(FrontendControl.erzählerFrame, FrontendControl.spielerFrame);
     }
 
     public void day() {
         lock = new Object();
         synchronized (lock) {
-            Page dayPage = erzählerFrame.pageFactory.generateDefaultDayPage();
-            erzählerFrame.buildScreenFromPage(dayPage);
+            SpielerFrame.time = 0;
 
-            spielerFrame.generateDayPage();
-            spielerFrame.time = 0;
+            FrontendControl.erzählerDefaultDayPage();
+            FrontendControl.spielerDayPage();
 
             waitForAnswer();
 
@@ -63,7 +62,7 @@ public class Tag extends Thread {
                 killSpielerCheckLiebespaar(umbringenSpieler);
             }
 
-            Spieler chosenSpieler = Spieler.findSpieler(erzählerFrame.chosenOption1);
+            Spieler chosenSpieler = Spieler.findSpieler(FrontendControl.erzählerFrame.chosenOption1);
 
             if (chosenSpieler != null) {
                 String nebenrolleSpieler = chosenSpieler.nebenrolle.getName();
@@ -71,8 +70,7 @@ public class Tag extends Thread {
 
                 if (nebenrolleSpieler.equals(ReineSeele.name) && ((ReineSeele)chosenSpieler.nebenrolle).dayInvincibility ||
                         (gebürgteSpieler.contains(chosenSpieler) && hauptrolleSpieler.getFraktion().getName().equals(Bürger.name))) {
-                    dayPage = spielerFrame.pageFactory.generateStaticImagePage(chosenSpieler.name, ReineSeele.imagePath);
-                    spielerFrame.buildScreenFromPage(dayPage);
+                    FrontendControl.spielerCardPicturePage(chosenSpieler.name, ReineSeele.imagePath);
                     if(chosenSpieler.nebenrolle.getName().equals(ReineSeele.name)) {
                         ((ReineSeele) chosenSpieler.nebenrolle).dayInvincibility = false;
                     }
@@ -107,10 +105,7 @@ public class Tag extends Thread {
         String victory = Spieler.checkVictory();
 
         if (victory != null) {
-            spielerFrame.buildScreenFromPage(spielerFrame.pageFactory.generateEndScreenPage(victory));
-            erzählerFrame.buildScreenFromPage(spielerFrame.pageFactory.generateEndScreenPage(victory));
-
-            waitForAnswer();
+            showEndScreenPage(victory);
         }
     }
 
@@ -126,11 +121,8 @@ public class Tag extends Thread {
         if(spieler!=null) {
             Spieler.killSpieler(spieler);
 
-            Page dayPage = spielerFrame.pageFactory.generateTwoImagePage(spieler.name, spieler.hauptrolle.getImagePath(), spieler.nebenrolle.getImagePath());
-            spielerFrame.buildScreenFromPage(dayPage);
-
-            dayPage = erzählerFrame.pageFactory.generateAnnounceVictimsDayPage(spieler.name);
-            erzählerFrame.buildScreenFromPage(dayPage);
+            FrontendControl.erzählerAnnounceVictimPage(spieler);
+            FrontendControl.spielerAnnounceVictimPage(spieler);
         }
     }
 
@@ -138,7 +130,7 @@ public class Tag extends Thread {
         killSpieler(spieler);
 
         if(Liebespaar.getPlayerToDie()!=null) {
-            erzählerFrame.disableButton(erzählerFrame.umbringenJButton);
+            FrontendControl.erzählerFrame.disableButton(FrontendControl.erzählerFrame.umbringenJButton);
             waitForAnswer();
             killSpieler(Liebespaar.getPlayerToDie());
         }
@@ -146,6 +138,13 @@ public class Tag extends Thread {
         waitForAnswer();
 
         checkVictory();
+    }
+
+    public static void showEndScreenPage(String victory) {
+        FrontendControl.erzählerEndScreenPage(victory);
+        FrontendControl.spielerEndScreenPage(victory);
+
+        waitForAnswer();
     }
 
     public static void waitForAnswer() {

@@ -899,7 +899,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         übersichtsFrame = new ÜbersichtsFrame(this);
 
         if(PhaseMode.phase == PhaseMode.tag ||PhaseMode.phase == PhaseMode.freibierTag) {
-            Tag.spielerFrame = spielerFrame;
+            FrontendControl.spielerFrame = spielerFrame;
             spielerFrame.generateDayPage();
         } else if (PhaseMode.phase == PhaseMode.nacht) {
             FrontendControl.spielerFrame = spielerFrame;

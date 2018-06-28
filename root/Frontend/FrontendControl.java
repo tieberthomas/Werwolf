@@ -8,6 +8,7 @@ import root.ResourceManagement.ResourcePath;
 import root.Rollen.Nebenrollen.Konditor;
 import root.Rollen.Nebenrollen.Konditorlehrling;
 import root.Rollen.Rolle;
+import root.Spieler;
 import root.mechanics.Opfer;
 
 import java.util.ArrayList;
@@ -214,6 +215,44 @@ public class FrontendControl {
         erzählerFrame.buildScreenFromPage(nightPage);
     }
 
+    public static void spielerTitlePage(String title) {
+        Page nightPage = spielerFrame.pageFactory.generateTitlePage(title);
+        spielerFrame.buildScreenFromPage(nightPage);
+    }
+
+    public static void erzählerDefaultDayPage() {
+        Page dayPage = erzählerFrame.pageFactory.generateDefaultDayPage();
+        erzählerFrame.buildScreenFromPage(dayPage);
+    }
+
+    public static void spielerDayPage() {
+        spielerFrame.generateDayPage();
+    }
+
+    public static void erzählerTortenPage() {
+        erzählerFrame.tortenPage = erzählerFrame.pageFactory.generateTortenPage();
+        erzählerFrame.buildScreenFromPage(erzählerFrame.tortenPage);
+    }
+    
+    public static void spielerAnnounceVictimPage(Spieler spieler) {
+        spielerTwoImagePage(spieler.name, spieler.hauptrolle.getImagePath(), spieler.nebenrolle.getImagePath());
+    }
+
+    public static void erzählerAnnounceVictimPage(Spieler spieler) {
+        Page dayPage = erzählerFrame.pageFactory.generateAnnounceVictimsDayPage(spieler.name);
+        erzählerFrame.buildScreenFromPage(dayPage);
+    }
+    
+    public static void erzählerEndScreenPage(String victory) {
+        Page nightPage = spielerFrame.pageFactory.generateEndScreenPage(victory);
+        erzählerFrame.buildScreenFromPage(nightPage);
+    }
+
+    public static void spielerEndScreenPage(String victory) {
+        Page nightPage = spielerFrame.pageFactory.generateEndScreenPage(victory);
+        spielerFrame.buildScreenFromPage(nightPage);
+    }
+
     public static void erzählerDropdownPage(Statement statement, ArrayList<String> dropdownOptions) {
         Page nightPage = erzählerFrame.pageFactory.generateDropdownPage(statement, dropdownOptions);
         erzählerFrame.buildScreenFromPage(nightPage);
@@ -297,23 +336,8 @@ public class FrontendControl {
         spielerFrame.buildScreenFromPage(nightPage);
     }
 
-    public static void spielerTitlePage(String title) {
-        Page nightPage = spielerFrame.pageFactory.generateTitlePage(title);
-        spielerFrame.buildScreenFromPage(nightPage);
-    }
-
-    public static void erzählerTortenPage() {
-        erzählerFrame.tortenPage = erzählerFrame.pageFactory.generateTortenPage();
-        erzählerFrame.buildScreenFromPage(erzählerFrame.tortenPage);
-    }
-
-    public static void erzählerEndScreenPage(String victory) {
-        Page nightPage = spielerFrame.pageFactory.generateEndScreenPage(victory);
-        erzählerFrame.buildScreenFromPage(nightPage);
-    }
-
-    public static void spielerEndScreenPage(String victory) {
-        Page nightPage = spielerFrame.pageFactory.generateEndScreenPage(victory);
-        spielerFrame.buildScreenFromPage(nightPage);
+    public static void spielerTwoImagePage(String title, String imagePath1, String imagePath2) {
+        Page dayPage = spielerFrame.pageFactory.generateTwoImagePage(title, imagePath1, imagePath2);
+        spielerFrame.buildScreenFromPage(dayPage);
     }
 }
