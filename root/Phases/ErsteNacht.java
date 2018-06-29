@@ -202,8 +202,6 @@ public class ErsteNacht extends Thread {
             currentSpieler.aktiv = true;
             currentSpieler.geschützt = false;
             currentSpieler.ressurectable = true;
-
-            currentSpieler.hauptrolle.aktiv = true;
         }
     }
 

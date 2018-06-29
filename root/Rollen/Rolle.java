@@ -123,8 +123,7 @@ public class Rolle {
 
     public static boolean rolleAktiv(String rolle) {
         for (Spieler currentSpieler : Spieler.spieler) {
-            //TODO deaktivierungen nochmal genauer ansehen mit Michael
-            if(currentSpieler.hauptrolle.getName().equals(rolle) && currentSpieler.hauptrolle.aktiv && currentSpieler.aktiv) {
+            if(currentSpieler.hauptrolle.getName().equals(rolle) && currentSpieler.aktiv) {
                 return true;
             }
             if(currentSpieler.nebenrolle.getName().equals(rolle) && currentSpieler.aktiv) {

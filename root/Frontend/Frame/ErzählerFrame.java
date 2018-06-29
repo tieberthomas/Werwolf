@@ -774,9 +774,6 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                     Nebenrolle.secondaryRolesInGame.remove(nebenrolle);
                     newPlayer.nebenrolle = newPlayer.nebenrolle.getTauschErgebnis();
 
-
-                    newPlayer.hauptrolle.aktiv = true;
-
                     mode = ErzählerFrameMode.getPhaseMode();
                     buildScreenFromPage(pageFactory.generateDefaultDayPage());
 

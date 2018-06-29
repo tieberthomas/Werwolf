@@ -139,13 +139,13 @@ public class Fraktion {
 
             if (fraktion.equals(Werwölfe.name)) {
                 if (fraktionSpieler.equals(fraktion) && Werwölfe.isTötend(hauptrolleSpieler)) {
-                    if (currentSpieler.aktiv && currentSpieler.hauptrolle.aktiv) {
+                    if (currentSpieler.aktiv) {
                         return true;
                     }
                 }
             } else {
                 if (fraktionSpieler.equals(fraktion)) {
-                    if (currentSpieler.aktiv && currentSpieler.hauptrolle.aktiv) {
+                    if (currentSpieler.aktiv) {
                         return true;
                     }
                 }

@@ -20,12 +20,6 @@ public class Hauptrolle extends Rolle
 
     public static Hauptrolle defaultHauptrolle = new Dorfbewohner();
 
-    public boolean aktiv;
-
-    public boolean isAktiv() {
-        return aktiv;
-    }
-
     public boolean isKilling() {
         return false;
     }

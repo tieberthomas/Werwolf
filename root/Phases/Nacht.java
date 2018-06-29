@@ -502,7 +502,6 @@ public class Nacht extends Thread
                     currentSpieler.geschützt = true;
                 } else {
                     currentSpieler.aktiv = false;
-                    currentSpieler.hauptrolle.aktiv = false;
                 }
             }
         }
@@ -522,10 +521,8 @@ public class Nacht extends Thread
                 currentSpieler.geschützt = true;
             }
 
-            if(currentSpieler.hauptrolle.aktiv) {
-                if (hauptrolleCurrentSpieler.equals(GrafVladimir.name) && GrafVladimir.fraktion.getFraktionsMembers().size()>1) {
-                    currentSpieler.geschützt = true;
-                }
+            if (hauptrolleCurrentSpieler.equals(GrafVladimir.name) && GrafVladimir.fraktion.getFraktionsMembers().size()>1) {
+                currentSpieler.geschützt = true;
             }
         }
     }
@@ -543,8 +540,6 @@ public class Nacht extends Thread
             currentSpieler.aktiv = true;
             currentSpieler.geschützt = false;
             currentSpieler.ressurectable = true;
-
-            currentSpieler.hauptrolle.aktiv = true;
         }
     }
 
