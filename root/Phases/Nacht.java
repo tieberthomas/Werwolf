@@ -65,8 +65,8 @@ public class Nacht extends Thread
     public static final String BESCHWÖRER = "Beschwörer erwacht und wählt einen Mitspieler der verstummt";
     public static final String FRISÖR = "Frisör erwacht und wählt einen Mitspieler den er verschönert";
     public static final String NACHBAR_INFORMATION = "Nachbar erwacht und erfährt wer die Besucher seines gewählten Spielers waren";
-    public static final String KONDITOR = "Falls es in dieser Nacht keine Opfer gab, wacht der Konditor auf und entscheidet sich ob es eine gute oder schlechte Torte gibt";
-    public static final String KONDITOR_LEHRLING = "Falls es in dieser Nacht keine Opfer gab, wacht der Konditor und Konditorlehrling auf und entscheidet sich ob es eine gute oder schlechte Torte gibt";
+    public static final String KONDITOR = "Konditor erwacht und entscheidet sich ob es eine gute oder schlechte Torte gibt";
+    public static final String KONDITOR_LEHRLING = "Konditor und Konditorlehrling erwachen und entscheiden sich ob es eine gute oder schlechte Torte gibt";
     public static final String OPFER = "Alle Opfer inklusive Liebespaaropfer werden bekannt gegeben";
     public static final String VERSTUMMT = "Der verstummte Spieler wird bekannt gegeben";
     public static final String SCHÖNLINGE = "Die Schönlinge werden bekannt gegeben";
@@ -928,8 +928,9 @@ public class Nacht extends Thread
         if(Wölfin.modus == Wölfin.TÖTEND) {
             addStatementRolle(WÖLFIN_NEBENROLLE, WÖLFIN_NEBENROLLE_TITLE, Wölfin.name, Statement.ROLLE_INFO);
         }
-
-        addStatementRolle(VERSTUMMT, VERSTUMMT_TITLE, Beschwörer.name, Statement.ROLLE_SPECAL); //versuchen auf generisch rolle_info
+        if(Rolle.rolleInNachtEnthalten(Beschwörer.name)) {
+            addStatementIndie(VERSTUMMT, VERSTUMMT_TITLE, Statement.INDIE);
+        }
 
         if(Rolle.rolleInNachtEnthalten(Frisör.name) || Rolle.rolleInNachtEnthalten(Wahrsager.name)) {
             addStatementIndie(SCHÖNLINGE, SCHÖNLINGE_TITLE, Statement.INDIE);

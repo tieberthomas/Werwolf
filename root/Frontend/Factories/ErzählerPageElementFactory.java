@@ -258,14 +258,14 @@ public class ErzählerPageElementFactory {
             if(statement.visible) {
                 nachtPunkte.add(statement.beschreibung);
                 if(!statement.isLebend()) {
-                    if (statement.beschreibung.contains(currentStatement)) {
+                    if (statement.beschreibung.contains(currentStatement) || (statement.title.equals(Nacht.KONDITOR_LEHRLING_TITLE) && currentStatement.equals(Nacht.KONDITOR_LEHRLING))) {
                         found = true;
                         nachtPunkteFarben.add(HTMLStringBuilder.blue);
                     } else {
                         nachtPunkteFarben.add(HTMLStringBuilder.gray);
                     }
                 } else {
-                    if (statement.beschreibung.contains(currentStatement)) {
+                    if (statement.beschreibung.contains(currentStatement) || (statement.title.equals(Nacht.KONDITOR_LEHRLING_TITLE) && currentStatement.equals(Nacht.KONDITOR_LEHRLING))) {
                         nachtPunkteFarben.add(HTMLStringBuilder.yellow);
                         found = true;
                     } else {
@@ -301,7 +301,12 @@ public class ErzählerPageElementFactory {
                 StatementRolle statementRolle = (StatementRolle)statement;
                 StatementRolle newRolleStatement = new StatementRolle(statementRolle.beschreibung, statementRolle.title, statementRolle.getRolle().getName(), statementRolle.type, statementRolle.visible, statementRolle.sammler);
                 if(statementRolle.sammler) {
-                    newRolleStatement.beschreibung = Sammler.beschreibungAddiditon + statement.beschreibung;
+                    if(!statementRolle.beschreibung.equals(Nacht.KONDITOR_LEHRLING)) {
+                        newRolleStatement.beschreibung = Sammler.beschreibungAddiditon + statement.beschreibung;
+                    } else {
+                        String searchString = "Konditorlehrling erwachen ";
+                        newRolleStatement.beschreibung = statement.beschreibung.replace(searchString, Sammler.beschreibungAddiditonLowerCase+searchString);
+                    }
                 }
                 newStatements.add(newRolleStatement);
             } else {

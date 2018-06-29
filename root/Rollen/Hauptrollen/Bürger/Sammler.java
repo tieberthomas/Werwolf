@@ -11,6 +11,7 @@ import root.Rollen.Hauptrolle;
 public class Sammler extends Hauptrolle
 {
     public static final String beschreibungAddiditon = "Der Sammler als ";
+    public static final String beschreibungAddiditonLowerCase = "der Sammler als ";
 
     public static final String name = "Sammler";
     public static Fraktion fraktion = new Bürger();
