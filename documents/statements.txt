@@ -66,6 +66,7 @@ Das Dorf erfährt die Bonusrolle der Wölfin
 Wirt erwacht und entscheidet sich ob er ein Freibier ausgeben will
 Totengräber erwacht und entscheidet ob er seine Bonusrollenkarte tauschen möchte
 Anästhesist erwacht und deaktiviert einen Spieler
+Der anästhesierte Spieler erwacht und erfährt, dass er diese Nacht nicht mehr erwacht
 Gefängniswärter erwacht und stellt einen Spieler  unter Schutzhaft
 Überläufer erwacht und entscheidet ob er seine Hauptrollenkarte tauschen möchte
 Nachbar erwacht und entscheidet welchen Spieler er beobachten möchte
@@ -76,19 +77,19 @@ Lady Aleera erwacht und sieht alle geschützten Spieler
 Prostituierte legt sich zu einem Mitspieler ins Bett
 Riese erwacht und entscheidet sich ob einen Mitspieler töten möchte
 Die Vampire erwachen und wählen ein Opfer aus
-Die Werwölfe erwachen und wählen ein Opfer aus
-Wölfin erwacht und wählt ein Opfer aus
+Die Werwölfe erwachen und die Wölfe wählen ein Opfer aus
+Wölfin erwacht und wählt ein Opfer aus, wenn sie das tut, erfährt das dorf ihre Bonusrolle
 Böse Hexe erwacht und entscheidet ob sie diese Nacht einen Mitspieler töten möchte
-Die Schattenpriester erwachen und entscheiden ob sie einen der Verstorbenen dieser Nacht wiederbeleben und zum Kult hinzufügen möchten
+Die Schattenpriester erwachen und entscheiden welchen Verstorbenen dieser Nacht sie wiederbeleben und zum Kult hinzufügen möchten
 Der Wiederbelebte erwacht und tauscht seine Karten gegen Schattenkarten
-Chemiker erwacht und entscheidet ob er das Werwolf Opfer dieser Nacht wiederbeleben und zum Wolfsrudel hinzufügen möchte
+Chemiker erwacht und kann ein Wolfsopfer dieser Nacht wiederbeleben und zum Wolfsrudel hinzufügen
 Der Wiederbelebte erwacht und tauscht seine Hauptrollen- gegen eine Werwolfkarte
 Gute Hexe erwacht und entscheidet sich ob sie ein Opfer der Nacht wiederbeleben will
 Miss Verona erwacht und lässt sich Auskunft über die Spieler geben, die angegriffen wurden
 Spion erwacht und fragt den Erzähler nach der Anzahl der verbleibenden Spieler einer Fraktion
-Analytiker erwacht und wählt zwei Spieler, der Erzähler sagt ihm ob diese in einer Fraktion sind
-Archivar erwacht und lässt sich Auskunft über einen Mitspieler geben
-Seherin erwacht und lässt sich Auskunft über einen Mitspieler geben
+Analytiker erwacht und wählt zwei Spieler, der Erzähler sagt ihm ob diese in derselben Fraktion sind
+Archivar erwacht und lässt sich Auskunft über die Bonusrolle eines Mitspielers geben
+Seherin erwacht und lässt sich Auskunft über die Fraktion eines Mitspielers geben
 Orakel erwacht und lässt sich vom Erzähler die Bonusrollenkarte eines zufälligen Bürgers zeigen
 Späher erwacht und lässt sich Auskunft über einen Mitspieler geben
 Buchhalter erwacht und entscheidet ob er die verbleibenden Rollen erfahren möchte
@@ -96,6 +97,7 @@ Wahrsager erwacht und gibt seinen Tipp ab welche Fraktion bei der Dorfabstimmung
 Beschwörer erwacht und wählt einen Mitspieler der verstummt
 Frisör erwacht und wählt einen Mitspieler den er verschönert
 Nachbar erwacht und erfährt wer die Besucher seines gewählten Spielers waren
+Wachhund erwacht und erfährt wer die Besucher seines gewählten Spielers waren
 Konditor erwacht und entscheidet sich ob es eine gute oder schlechte Torte gibt
 Konditor und Konditorlehrling erwachen und entscheiden sich ob es eine gute oder schlechte Torte gibt
 Alle Opfer inklusive Liebespaaropfer werden bekannt gegeben
