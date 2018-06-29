@@ -1,9 +1,6 @@
 package root.Phases;
 
-import root.Frontend.Frame.ErzählerFrame;
-import root.Frontend.Frame.SpielerFrame;
 import root.Frontend.FrontendControl;
-import root.Frontend.Page.Page;
 import root.ResourceManagement.ResourcePath;
 import root.Rollen.Fraktion;
 import root.Rollen.Fraktionen.Schattenpriester_Fraktion;
@@ -273,10 +270,6 @@ public class ErsteNacht extends Thread {
         waitForAnswer();
     }
 
-    public void showListOnBothScreens(Statement statement, ArrayList<String> strings){
-        showListOnBothScreens(statement, statement.title, strings);
-    }
-
     public void showListOnBothScreens(Statement statement, String title, ArrayList<String> strings) {
         FrontendControl.erzählerListPage(statement, title, strings);
         FrontendControl.spielerListPage(title, strings);
@@ -305,7 +298,7 @@ public class ErsteNacht extends Thread {
                 break;
 
             case FrontendControl.DROPDOWN_WITH_SUGGESTIONS:
-                FrontendControl.spielerListMirrorPage(statement.title, frontendControl.content);
+                FrontendControl.spielerDropdownListPage(statement.title, frontendControl.content);
                 break;
         }
 

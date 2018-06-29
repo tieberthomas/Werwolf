@@ -97,16 +97,21 @@ public class FrontendControl {
         erzählerFrame.tortenPage = erzählerFrame.pageFactory.generateTortenPage();
         erzählerFrame.buildScreenFromPage(erzählerFrame.tortenPage);
     }
-    
-    public static void spielerAnnounceVictimPage(Spieler spieler) {
-        spielerTwoImagePage(spieler.name, spieler.hauptrolle.getImagePath(), spieler.nebenrolle.getImagePath());
-    }
 
     public static void erzählerAnnounceVictimPage(Spieler spieler) {
         Page dayPage = erzählerFrame.pageFactory.generateAnnounceVictimsDayPage(spieler.name);
         erzählerFrame.buildScreenFromPage(dayPage);
     }
-    
+
+    public static void spielerAnnounceVictimPage(Spieler spieler) {
+        spielerTwoImagePage(spieler.name, spieler.hauptrolle.getImagePath(), spieler.nebenrolle.getImagePath());
+    }
+
+    public static void spielerTwoImagePage(String title, String imagePath1, String imagePath2) {
+        Page dayPage = spielerFrame.pageFactory.generateTwoImagePage(title, imagePath1, imagePath2);
+        spielerFrame.buildScreenFromPage(dayPage);
+    }
+
     public static void erzählerEndScreenPage(String victory) {
         Page nightPage = spielerFrame.pageFactory.generateEndScreenPage(victory);
         erzählerFrame.buildScreenFromPage(nightPage);
@@ -142,7 +147,7 @@ public class FrontendControl {
         spielerFrame.buildScreenFromPage(spielerFrame.dropDownPage);
     }
 
-    public static void spielerListMirrorPage(String title, ArrayList<String> dropdownOptions) {
+    public static void spielerDropdownListPage(String title, ArrayList<String> dropdownOptions) {
         spielerFrame.dropDownPage = spielerFrame.pageFactory.generateListMirrorPage(title, dropdownOptions);
         spielerFrame.buildScreenFromPage(spielerFrame.dropDownPage);
     }
@@ -198,10 +203,5 @@ public class FrontendControl {
     public static void spielerCardPicturePage(String title, String imagePath) {
         Page nightPage = spielerFrame.pageFactory.generateStaticImagePage(title, imagePath, false);
         spielerFrame.buildScreenFromPage(nightPage);
-    }
-
-    public static void spielerTwoImagePage(String title, String imagePath1, String imagePath2) {
-        Page dayPage = spielerFrame.pageFactory.generateTwoImagePage(title, imagePath1, imagePath2);
-        spielerFrame.buildScreenFromPage(dayPage);
     }
 }

@@ -1,9 +1,6 @@
 package root.Phases;
 
-import root.Frontend.Frame.ErzählerFrame;
-import root.Frontend.Frame.SpielerFrame;
 import root.Frontend.FrontendControl;
-import root.Frontend.Page.Page;
 import root.ResourceManagement.ResourcePath;
 import root.Rollen.Fraktion;
 import root.Rollen.Fraktionen.Schattenpriester_Fraktion;
@@ -626,7 +623,7 @@ public class Nacht extends Thread
                         break;
 
                     case FrontendControl.DROPDOWN_WITH_SUGGESTIONS:
-                        FrontendControl.spielerListMirrorPage(statement.title, frontendControl.content);
+                        FrontendControl.spielerDropdownListPage(statement.title, frontendControl.content);
                         break;
                 }
                 break;
@@ -650,33 +647,6 @@ public class Nacht extends Thread
         waitForAnswer();
 
         return FrontendControl.erzählerFrame.chosenOption1;
-    }
-
-    public void showDropdownPage(Statement statement, ArrayList<String> dropdownOptions1, ArrayList<String> dropdownOptions2) {
-        switch (statement.getState())
-        {
-            case Statement.NORMAL:
-                FrontendControl.erzählerDropdownPage(statement, dropdownOptions1, dropdownOptions2);
-                FrontendControl.spielerDropdownPage(statement.title, 2);
-                break;
-
-            case Statement.DEAKTIV:
-                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), getEmptyStringList(), ResourcePath.DEAKTIVIERT);
-                FrontendControl.spielerFrame.deactivatedPage();
-                break;
-
-            case Statement.DEAD:
-                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), getEmptyStringList(), ResourcePath.TOT);
-                FrontendControl.spielerFrame.deadPage();
-                break;
-
-            case Statement.NOT_IN_GAME:
-                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), getEmptyStringList(), ResourcePath.AUS_DEM_SPIEL);
-                FrontendControl.spielerDropdownPage(statement.title, 2);
-                break;
-        }
-
-        waitForAnswer();
     }
 
     public void showInfo(Statement statement, FrontendControl info) {
@@ -733,11 +703,38 @@ public class Nacht extends Thread
         waitForAnswer();
     }
 
+    public void showDropdownPage(Statement statement, ArrayList<String> dropdownOptions1, ArrayList<String> dropdownOptions2) {
+        switch (statement.getState())
+        {
+            case Statement.NORMAL:
+                FrontendControl.erzählerDropdownPage(statement, dropdownOptions1, dropdownOptions2);
+                FrontendControl.spielerDropdownPage(statement.title, 2);
+                break;
+
+            case Statement.DEAKTIV:
+                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), getEmptyStringList(), ResourcePath.DEAKTIVIERT);
+                FrontendControl.spielerFrame.deactivatedPage();
+                break;
+
+            case Statement.DEAD:
+                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), getEmptyStringList(), ResourcePath.TOT);
+                FrontendControl.spielerFrame.deadPage();
+                break;
+
+            case Statement.NOT_IN_GAME:
+                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), getEmptyStringList(), ResourcePath.AUS_DEM_SPIEL);
+                FrontendControl.spielerDropdownPage(statement.title, 2);
+                break;
+        }
+
+        waitForAnswer();
+    }
+
     public String showAfterDeathDropdownListPage(Statement statement, ArrayList<String> dropdownOptions) {
         if (statement.isLebend()) {
             if (statement.isAktiv()) {
                 FrontendControl.erzählerDropdownPage(statement, dropdownOptions);
-                FrontendControl.spielerListMirrorPage(statement.title, dropdownOptions);
+                FrontendControl.spielerDropdownListPage(statement.title, dropdownOptions);
             } else {
                 FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), ResourcePath.DEAKTIVIERT);
                 FrontendControl.spielerFrame.deactivatedPage();
@@ -765,7 +762,7 @@ public class Nacht extends Thread
                             break;
 
                         case FrontendControl.DROPDOWN_WITH_SUGGESTIONS:
-                            FrontendControl.spielerListMirrorPage(statement.title, frontendControl.content);
+                            FrontendControl.spielerDropdownListPage(statement.title, frontendControl.content);
                             break;
                     }
                 } else {
@@ -791,31 +788,6 @@ public class Nacht extends Thread
         FrontendControl.spielerIconPicturePage(AUFGEBRAUCHT_TITLE, ResourcePath.AUFGEBRAUCHT);
 
         waitForAnswer();
-    }
-
-    public void showListShowTitle(Statement statement, String string) {
-        showListShowTitle(statement, string, "");
-    }
-
-    public void showListShowTitle(Statement statement, ArrayList<String> strings) {
-        showListShowTitle(statement, strings, "");
-    }
-
-    public void showListShowTitle(Statement statement, String string, String imagePath) {
-        ArrayList<String> list = new ArrayList<>();
-        list.add(string);
-        showListShowTitle(statement, list, imagePath);
-    }
-
-    public void showListShowTitle(Statement statement, ArrayList<String> strings, String imagePath) {
-        FrontendControl.erzählerListPage(statement, strings, imagePath);
-        FrontendControl.spielerTitlePage(statement.title);
-
-        waitForAnswer();
-    }
-
-    public void showListShowImage(Statement statement, ArrayList<String> strings, String spielerImagePath) {
-        showListShowImage(statement, strings, spielerImagePath, "");
     }
 
     public void showListShowImage(Statement statement, String string, String spielerImagePath, String erzählerImagePath) {
