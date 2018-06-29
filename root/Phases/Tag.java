@@ -1,18 +1,12 @@
 package root.Phases;
 
-import root.Frontend.Frame.ErzählerFrame;
 import root.Frontend.Frame.ErzählerFrameMode;
 import root.Frontend.Frame.SpielerFrame;
 import root.Frontend.FrontendControl;
-import root.Frontend.Page.Page;
 import root.Rollen.Fraktionen.Bürger;
-import root.Rollen.Fraktionen.Werwölfe;
 import root.Rollen.Hauptrolle;
-import root.Rollen.Hauptrollen.Werwölfe.Wölfin;
 import root.Rollen.Nebenrollen.ReineSeele;
-import root.Rollen.Nebenrollen.ReinesLicht;
 import root.Rollen.Nebenrollen.Wahrsager;
-import root.Rollen.Rolle;
 import root.Spieler;
 import root.mechanics.Liebespaar;
 

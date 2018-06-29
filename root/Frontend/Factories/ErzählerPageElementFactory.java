@@ -10,11 +10,9 @@ import root.Phases.ErsteNacht;
 import root.Phases.Nacht;
 import root.Phases.Statement;
 import root.Phases.StatementRolle;
-import root.Rollen.Fraktion;
 import root.Rollen.Hauptrolle;
 import root.Rollen.Hauptrollen.Bürger.Sammler;
 import root.Rollen.Nebenrolle;
-import root.Rollen.Rolle;
 import root.Spieler;
 
 import javax.swing.*;

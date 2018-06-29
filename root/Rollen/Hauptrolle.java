@@ -9,7 +9,6 @@ import root.Rollen.Hauptrollen.Vampire.LadyAleera;
 import root.Rollen.Hauptrollen.Vampire.MissVerona;
 import root.Rollen.Hauptrollen.Werwölfe.*;
 import root.Rollen.Hauptrollen.Überläufer.Überläufer;
-import root.Rollen.Nebenrollen.Schatten;
 import root.Spieler;
 
 import java.util.ArrayList;

@@ -4,12 +4,7 @@ import root.Frontend.Frame.ErzählerFrame;
 import root.Frontend.Frame.SpielerFrame;
 import root.Frontend.Page.Page;
 import root.Phases.Statement;
-import root.ResourceManagement.ResourcePath;
-import root.Rollen.Nebenrollen.Konditor;
-import root.Rollen.Nebenrollen.Konditorlehrling;
-import root.Rollen.Rolle;
 import root.Spieler;
-import root.mechanics.Opfer;
 
 import java.util.ArrayList;
 

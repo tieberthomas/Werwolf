@@ -1,7 +1,6 @@
 package root.Rollen.Nebenrollen;
 
 import root.Frontend.FrontendControl;
-import root.Phases.Nacht;
 import root.ResourceManagement.ResourcePath;
 import root.Rollen.Nebenrolle;
 import root.Spieler;

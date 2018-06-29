@@ -11,7 +11,6 @@ import root.Rollen.Nebenrolle;
 import root.Spieler;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
