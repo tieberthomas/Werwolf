@@ -34,7 +34,8 @@ public class Nachbar extends Nebenrolle
 
     @Override
     public FrontendControl getInfo() {
-        FrontendControl info = new FrontendControl(FrontendControl.STATIC_LIST, getBesucherStrings());
+        Spieler nachbarSpieler = Spieler.findSpielerPerRolle(Nachbar.name);
+        FrontendControl info = new FrontendControl(FrontendControl.STATIC_LIST, getBesucherStrings(beobachteterSpieler, nachbarSpieler));
         if(beobachteterSpieler!=null) {
             info.title = Nacht.NACHBAR_INFORMATION_TITLE + beobachteterSpieler.name;
         }
@@ -61,11 +62,10 @@ public class Nachbar extends Nebenrolle
         return spammable;
     }
 
-    public ArrayList<String> getBesucherStrings() {
+    public ArrayList<String> getBesucherStrings(Spieler beobachteterSpieler, Spieler beobachter) {
         ArrayList<String> besucher = new ArrayList<>();
 
         if(beobachteterSpieler!=null) {
-
             for (Spieler spieler : Spieler.getLivigPlayer()) {
                 if (spieler.hauptrolle.besucht != null && spieler.hauptrolle.besucht.name.equals(beobachteterSpieler.name) ||
                         (spieler.nebenrolle.besucht != null && spieler.nebenrolle.besucht.name.equals(beobachteterSpieler.name))) {
@@ -87,8 +87,7 @@ public class Nachbar extends Nebenrolle
                 }
             }
 
-            Spieler nachbarSpieler = Spieler.findSpielerPerRolle(Nachbar.name);
-            besucher.remove(nachbarSpieler.name);
+            besucher.remove(beobachter.name);
         }
 
         return besucher;
