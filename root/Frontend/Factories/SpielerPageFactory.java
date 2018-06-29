@@ -335,6 +335,7 @@ public class SpielerPageFactory {
                 textSize = 25;
             }
         }
+        System.out.println(textSize);
 
         for(int i=0; i<numberOfColumnsPerList; i++) {
             int start1 = Math.round(dividingPoint1*i);

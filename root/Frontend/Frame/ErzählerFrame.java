@@ -108,6 +108,8 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     public ArrayList<JButton> deleteTortenPlayerButtons;
 
     public ErzählerFrame() {
+        calcFrameSize();
+
         WINDOW_TITLE = "Erzähler Fenster";
 
         Hauptrolle.generateAllAvailableMainRoles();
