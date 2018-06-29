@@ -39,6 +39,7 @@ public class SpielerFrame extends MyFrame{
 
     public static String timestring = "00:00:00";
     public static int time = 0;
+    public static boolean timeThreadStarted = false;
 
     public SpielerFrame(ErzählerFrame erzählerFrame){
         WINDOW_TITLE = "Spieler Fenster";
@@ -136,17 +137,20 @@ public class SpielerFrame extends MyFrame{
     }
 
     public void startTimeUpdateThread() {
-        ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
+        if(!timeThreadStarted) {
+            timeThreadStarted = true;
+            ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
 
-        Runnable periodicTask = new Runnable() {
-            public void run() {
-                time++;
-                SpielerFrame.generateTimeString();
-                clockLabel.setText(timestring);
-            }
-        };
+            Runnable periodicTask = new Runnable() {
+                public void run() {
+                    time++;
+                    SpielerFrame.generateTimeString();
+                    clockLabel.setText(timestring);
+                }
+            };
 
-        executor.scheduleAtFixedRate(periodicTask, 0, 1, TimeUnit.SECONDS);
+            executor.scheduleAtFixedRate(periodicTask, 0, 1, TimeUnit.SECONDS);
+        }
     }
 
     public static void generateTimeString(){
