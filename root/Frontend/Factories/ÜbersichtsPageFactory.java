@@ -24,7 +24,6 @@ public class ÜbersichtsPageFactory {
         int aliveLabelWidth = 80;
         int activeLabelWidth = 80;
         int protectedLabelWidth = 80;
-        int resurrectableLabelWidth = 80;
         int spaceBetween = 5;
         int columns = 1;
 
