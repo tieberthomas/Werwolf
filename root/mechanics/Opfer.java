@@ -5,10 +5,7 @@ import root.Rollen.Fraktionen.Vampire;
 import root.Rollen.Fraktionen.Werwölfe;
 import root.Rollen.Hauptrollen.Bürger.Riese;
 import root.Rollen.Hauptrollen.Werwölfe.Blutwolf;
-import root.Rollen.Nebenrollen.Prostituierte;
-import root.Rollen.Nebenrollen.Schatten;
-import root.Rollen.Nebenrollen.Vampirumhang;
-import root.Rollen.Nebenrollen.Wolfspelz;
+import root.Rollen.Nebenrollen.*;
 import root.Rollen.Rolle;
 import root.Spieler;
 
@@ -83,26 +80,11 @@ public class Opfer {
     public static void addVictim(Spieler opfer, Spieler täter, boolean fraktionsTäter) {
         possibleVictims.add(new Opfer(opfer, täter, fraktionsTäter));
 
-        String opferNebenrolle = new Schatten().getName();
-        if(opfer.nebenrolle!=null)
-            opferNebenrolle = opfer.nebenrolle.getName();
+        String opferNebenrolle = opfer.nebenrolle.getName();
         String täterFraktion = täter.hauptrolle.getFraktion().getName();
 
-        Spieler prostituierteSpieler = Spieler.findSpielerPerRolle(Prostituierte.name);
-        String hostProstituierte = "";
-        if(prostituierteSpieler!=null) {
-            hostProstituierte = Prostituierte.host.name;
-        }
-
         if(täter.hauptrolle.getName().equals(Riese.name)) {
-            deadVictims.add(new Opfer(opfer, täter, fraktionsTäter));
-            opfer.ressurectable = false;
-
-            if(prostituierteSpieler!=null) {
-                if (opfer.name.equals(hostProstituierte)) {
-                    deadVictims.add(new Opfer(prostituierteSpieler, täter, fraktionsTäter));
-                }
-            }
+            addDeadVictim(opfer, täter, fraktionsTäter, true);
         }
         else {
             boolean blutwolfDeadly = false;
@@ -115,17 +97,31 @@ public class Opfer {
             if (!opfer.geschützt || blutwolfDeadly) {
                 if (!(opferNebenrolle.equals(Vampirumhang.name) && täterFraktion.equals(Vampire.name) ||
                         opferNebenrolle.equals(Wolfspelz.name) && täterFraktion.equals(Werwölfe.name) && !blutwolfDeadly)) {
-                    if (!opferNebenrolle.equals(Prostituierte.name)) {
-                        deadVictims.add(new Opfer(opfer, täter, fraktionsTäter));
-                    }
+                    addDeadVictim(opfer, täter, fraktionsTäter, false);
+                }
+            }
+        }
+    }
 
-                    if(prostituierteSpieler!=null) {
-                        if (opfer.name.equals(hostProstituierte)) {
-                            if (!prostituierteSpieler.geschützt) {
-                                deadVictims.add(new Opfer(prostituierteSpieler, täter, fraktionsTäter));
-                            }
-                        }
-                    }
+    public static void addDeadVictim(Spieler opfer, Spieler täter, boolean fraktionsTäter, boolean riese) {
+        Spieler prostituierteSpieler = Spieler.findSpielerPerRolle(Prostituierte.name);
+        String hostProstituierte = "";
+        if(prostituierteSpieler!=null) {
+            hostProstituierte = Prostituierte.host.name;
+        }
+
+        if(riese) {
+            opfer.ressurectable = false;
+        }
+        String opferNebenrolle = opfer.nebenrolle.getName();
+        if (!opferNebenrolle.equals(Prostituierte.name) || riese) {
+            deadVictims.add(new Opfer(opfer, täter, fraktionsTäter));
+        }
+
+        if(prostituierteSpieler!=null) {
+            if (opfer.name.equals(hostProstituierte)) {
+                if (!prostituierteSpieler.geschützt || riese) {
+                    deadVictims.add(new Opfer(prostituierteSpieler, täter, fraktionsTäter));
                 }
             }
         }

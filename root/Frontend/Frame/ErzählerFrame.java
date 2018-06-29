@@ -8,9 +8,7 @@ import root.Phases.*;
 import root.ResourceManagement.FileManager;
 import root.ResourceManagement.ResourcePath;
 import root.Rollen.Hauptrolle;
-import root.Rollen.Hauptrollen.Bürger.Dorfbewohner;
 import root.Rollen.Nebenrolle;
-import root.Rollen.Nebenrollen.Schatten;
 import root.Spieler;
 import root.mechanics.Torte;
 
@@ -108,6 +106,8 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     public ArrayList<JButton> deleteTortenPlayerButtons;
 
     public ErzählerFrame() {
+        calcFrameSize();
+
         WINDOW_TITLE = "Erzähler Fenster";
 
         Hauptrolle.generateAllAvailableMainRoles();
@@ -478,8 +478,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
             refreshSpecifyPlayerPage();
     }
 
-    public void actionPerformed (ActionEvent ae)
-    {
+    public void actionPerformed (ActionEvent ae) {
         if(goNextButtons.contains(ae.getSource())){
             if(ae.getSource() == loadLastGameJButton) {
                 setUpVariables();
@@ -506,6 +505,9 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
             {
                 if(playersLeft.size()==0) {
                     if(PhaseMode.phase != PhaseMode.ersteNacht) {
+                        PhaseManager.firstnight(this);
+                        spielerFrame.startTimeUpdateThread();
+                    } else {
                         PhaseManager.firstnight(this);
                         spielerFrame.startTimeUpdateThread();
                     }
@@ -746,10 +748,6 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         } else if (ae.getSource() == nachzüglerJButton || ae.getSource() == addPlayerTxtField && mode == ErzählerFrameMode.nachzüglerSetup) {
             if(mode == ErzählerFrameMode.nachzüglerSetup) {
                 if (!addPlayerTxtField.getText().equals("") && !Spieler.spielerExists(addPlayerTxtField.getText())) {
-                    Spieler newPlayer = new Spieler(addPlayerTxtField.getText());
-                    Spieler.spieler.add(newPlayer);
-                    addPlayerTxtField.setText("");
-
                     try {
                         if(comboBox1 != null) {
                             chosenOption1 = (String) comboBox1.getSelectedItem();
@@ -762,17 +760,13 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                         System.out.println("some comboboxes (1,2) might not be initialized.");
                     }
 
-                    Hauptrolle hauptrolle = Hauptrolle.findHauptrolle(chosenOption1);
-                    if(hauptrolle==null)
-                        hauptrolle = new Dorfbewohner();
-                    newPlayer.hauptrolle = hauptrolle;
+                    String name = addPlayerTxtField.getText();
+                    String hauptrolle = chosenOption1;
+                    String nebenrolle = chosenOption2;
 
-                    Nebenrolle nebenrolle = Nebenrolle.findNebenrolle(chosenOption2);
-                    if(nebenrolle==null)
-                        nebenrolle = new Schatten();
-                    newPlayer.nebenrolle = nebenrolle;
-                    Nebenrolle.secondaryRolesInGame.remove(nebenrolle);
-                    newPlayer.nebenrolle = newPlayer.nebenrolle.getTauschErgebnis();
+                    Spieler.newSpieler(name, hauptrolle, nebenrolle);
+
+                    addPlayerTxtField.setText("");
 
                     mode = ErzählerFrameMode.getPhaseMode();
                     buildScreenFromPage(pageFactory.generateDefaultDayPage());
@@ -833,13 +827,9 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                 }catch (NullPointerException e) {
                     System.out.println("comboboxes(1,2) might not be initialized.");
                 }
-                Spieler spieler1 = Spieler.findSpieler(chosenOption1);
-                Spieler spieler2 = Spieler.findSpieler(chosenOption2);
-
-                if(spieler1!=null && spieler2!=null) {
-                    Tag.priester = spieler1;
-                    Tag.gebürgteSpieler.add(spieler2);
-                }
+                String priester = chosenOption1;
+                String spieler = chosenOption2;
+                Tag.bürgen(priester, spieler);
 
                 mode = ErzählerFrameMode.getPhaseMode();
                 buildScreenFromPage(pageFactory.generateDefaultDayPage());
@@ -862,13 +852,10 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                 }catch (NullPointerException e) {
                     System.out.println("comboboxes(1,2) might not be initialized.");
                 }
-                Spieler spieler1 = Spieler.findSpieler(chosenOption1);
-                Spieler spieler2 = Spieler.findSpieler(chosenOption2);
 
-                if(spieler1!=null && spieler2!=null) {
-                    Tag.richterin = spieler1;
-                    Tag.verurteilteSpieler.add(spieler2);
-                }
+                String richterin = chosenOption1;
+                String spieler = chosenOption2;
+                Tag.verurteilen(richterin, spieler);
 
                 mode = ErzählerFrameMode.getPhaseMode();
                 buildScreenFromPage(pageFactory.generateDefaultDayPage());

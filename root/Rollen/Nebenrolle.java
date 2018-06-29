@@ -38,7 +38,7 @@ public class Nebenrolle extends Rolle
         secondaryRoles.add(new Tarnumhang());
         secondaryRoles.add(new Totengräber()); //ungetested
         secondaryRoles.add(new Vampirumhang());
-        //Wachhund
+        secondaryRoles.add(new Wachhund());
         secondaryRoles.add(new Wahrsager());
         secondaryRoles.add(new Wolfspelz());
     }

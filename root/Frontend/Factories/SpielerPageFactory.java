@@ -1,5 +1,6 @@
 package root.Frontend.Factories;
 
+import root.Frontend.Frame.FrameMode;
 import root.Frontend.Frame.MyFrame;
 import root.Frontend.Frame.SpielerFrame;
 import root.Frontend.Frame.SpielerFrameMode;
@@ -275,10 +276,14 @@ public class SpielerPageFactory {
         ArrayList<String> realStringsToDisplay2 = new ArrayList<String>(stringsToDisplay2);
         realStringsToDisplay2.remove("");
 
-        if(realStringsToDisplay1.size()<13 && realStringsToDisplay2.size()<13) {
-            return generateListPage(realStringsToDisplay1, realStringsToDisplay2, 1, offsetAbove, offsetBelow);
-        } else {
+        int maxLinesPerCollumnBig = 12;
+        int maxLinesPerCollumnSmall = 10;
+
+        if((spielerFrame.frameMode == FrameMode.big && (realStringsToDisplay1.size()>maxLinesPerCollumnBig || realStringsToDisplay2.size()>maxLinesPerCollumnBig)) ||
+                (spielerFrame.frameMode == FrameMode.small && (realStringsToDisplay1.size()>maxLinesPerCollumnSmall || realStringsToDisplay2.size()>maxLinesPerCollumnSmall))) {
             return generateListPage(realStringsToDisplay1, realStringsToDisplay2, 2, offsetAbove, offsetBelow);
+        } else {
+            return generateListPage(realStringsToDisplay1, realStringsToDisplay2, 1, offsetAbove, offsetBelow);
         }
     }
 
@@ -318,13 +323,17 @@ public class SpielerPageFactory {
     }
 
     public Page generateListPage(ArrayList<String> stringsToDisplay, ArrayList<String> stringsToDisplay2, int numberOfColumnsPerList, int offsetAbove, int offsetBelow) {
-        Page listPage = new Page(0,10);
+        Page listPage = new Page(5,10);
         float dividingPoint1 = ((float)stringsToDisplay.size())/numberOfColumnsPerList;
         float dividingPoint2 = ((float)stringsToDisplay2.size())/numberOfColumnsPerList;
         int textSize = 36;
 
         if(numberOfColumnsPerList>1) {
-            textSize = 30;
+            if(spielerFrame.frameMode == FrameMode.big) {
+                textSize = 30;
+            } else {
+                textSize = 25;
+            }
         }
 
         for(int i=0; i<numberOfColumnsPerList; i++) {

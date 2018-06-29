@@ -5,6 +5,7 @@ import root.Rollen.Fraktion;
 import root.Rollen.Fraktionen.Schattenpriester_Fraktion;
 import root.Rollen.Fraktionen.Werwölfe;
 import root.Rollen.Hauptrolle;
+import root.Rollen.Hauptrollen.Bürger.Dorfbewohner;
 import root.Rollen.Hauptrollen.Bürger.Sammler;
 import root.Rollen.Hauptrollen.Schattenpriester.Schattenpriester;
 import root.Rollen.Hauptrollen.Werwölfe.Wölfin;
@@ -40,31 +41,21 @@ public class Spieler
         this.ressurectable = true;
     }
 
-    public void printSpieler() {
-        System.out.println(this.name + " " + this.hauptrolle.getName() + " " + this.nebenrolle.getName());
-    }
+    public static void newSpieler(String name, String hauptrolleName, String nebenrolleName) {
+        Spieler newPlayer = new Spieler(name);
+        Spieler.spieler.add(newPlayer);
 
-    public static void printAllSpieler() {
-        for (Spieler currentSpieler: spieler)
-        {
-            printSpace(currentSpieler.name, 15);
-            printSpace(currentSpieler.hauptrolle.getName(), 15);
-            printSpace(currentSpieler.nebenrolle.getName(), 15);
-            System.out.print("Lebend: " + currentSpieler.lebend + " ");
-            System.out.print("Aktiv: " + currentSpieler.aktiv + " ");
-            System.out.print("Geschützt: " + currentSpieler.geschützt + " ");
-            System.out.print("Ressurectable: " + currentSpieler.ressurectable + " ");
-            System.out.print("\n");
-        }
+        Hauptrolle hauptrolle = Hauptrolle.findHauptrolle(hauptrolleName);
+        if(hauptrolle==null)
+            hauptrolle = new Dorfbewohner();
+        newPlayer.hauptrolle = hauptrolle;
 
-        System.out.print("\n");
-    }
-
-    public static void printSpace(String string, int space) {
-        System.out.print(string);
-        for (int i=0; i<space-string.length(); i++) {
-            System.out.print(" ");
-        }
+        Nebenrolle nebenrolle = Nebenrolle.findNebenrolle(nebenrolleName);
+        if(nebenrolle==null)
+            nebenrolle = new Schatten();
+        newPlayer.nebenrolle = nebenrolle;
+        Nebenrolle.secondaryRolesInGame.remove(nebenrolle);
+        newPlayer.nebenrolle = newPlayer.nebenrolle.getTauschErgebnis();
     }
 
     public static ArrayList<Spieler> getLivigPlayer() {

@@ -135,6 +135,26 @@ public class Tag extends Thread {
         waitForAnswer();
     }
 
+    public static void bürgen(String priester, String spieler) {
+        Spieler priesterSpieler = Spieler.findSpieler(priester);
+        Spieler verbürgerSpieler = Spieler.findSpieler(spieler);
+
+        if(priesterSpieler!=null && spieler!=null) {
+            Tag.priester = priesterSpieler;
+            Tag.gebürgteSpieler.add(verbürgerSpieler);
+        }
+    }
+
+    public static void verurteilen(String richterin, String spieler) {
+        Spieler richterinSpieler = Spieler.findSpieler(richterin);
+        Spieler verurteilterSpieler = Spieler.findSpieler(spieler);
+
+        if(richterinSpieler!=null && spieler!=null) {
+            Tag.richterin = richterinSpieler;
+            Tag.verurteilteSpieler.add(verurteilterSpieler);
+        }
+    }
+
     public static void waitForAnswer() {
         try {
             lock.wait();
