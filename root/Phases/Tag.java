@@ -71,18 +71,18 @@ public class Tag extends Thread {
 
                     waitForAnswer();
 
-                    checkRichterin(hauptrolleSpieler);
+                    checkRichterin(chosenSpieler);
                 }
                 else {
                     killSpielerCheckLiebespaar(chosenSpieler);
                     Wahrsager.opferFraktion = chosenSpieler.hauptrolle.getFraktion();
                     if(!hauptrolleSpieler.getFraktion().getName().equals(Bürger.name)) {
-                        if(priester != null && priester.lebend) {
+                        if(priester != null && priester.lebend && gebürgteSpieler.contains(chosenSpieler)) {
                             killSpielerCheckLiebespaar(priester);
                         }
                     }
 
-                    checkRichterin(hauptrolleSpieler);
+                    checkRichterin(chosenSpieler);
                 }
             } else {
                 Wahrsager.opferFraktion = null;
@@ -103,9 +103,9 @@ public class Tag extends Thread {
         }
     }
 
-    public static void checkRichterin(Hauptrolle hauptrolleSpieler) {
-        if(hauptrolleSpieler.getFraktion().getName().equals(Bürger.name)) {
-            if(richterin != null && richterin.lebend) {
+    public static void checkRichterin(Spieler spieler) {
+        if(spieler.hauptrolle.getFraktion().getName().equals(Bürger.name)) {
+            if(richterin != null && richterin.lebend && verurteilteSpieler.contains(spieler)) {
                 killSpielerCheckLiebespaar(richterin);
             }
         }

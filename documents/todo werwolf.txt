@@ -3,6 +3,8 @@ sammler
 totengräber
 priester liebespaar interaktion erneut testen
 
+Seherin bekommt in der ersten nacht nichts angezeigt
+
 
 tasks:
 konditorlehrling statement mit sammler überarbeiten
@@ -25,7 +27,6 @@ Hauptrollen:
 Nebenrollen:
 Imitator
 Wachhund
-Totengräber
 
 
 zuviel arbeit fürs erste:
