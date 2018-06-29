@@ -62,7 +62,7 @@ public class Nachbar extends Nebenrolle
         return spammable;
     }
 
-    public ArrayList<String> getBesucherStrings(Spieler beobachteterSpieler, Spieler beobachter) {
+    public static ArrayList<String> getBesucherStrings(Spieler beobachteterSpieler, Spieler beobachter) {
         ArrayList<String> besucher = new ArrayList<>();
 
         if(beobachteterSpieler!=null) {
