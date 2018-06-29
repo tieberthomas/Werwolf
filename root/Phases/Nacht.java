@@ -165,7 +165,6 @@ public class Nacht extends Thread
                 chosenOption = null;
 
                 if (statement.visible || statement.type == Statement.PROGRAMM) {
-
                     switch (statement.type) {
                         case Statement.SHOW_TITLE:
                             FrontendControl.erzählerDefaultNightPage(statement);

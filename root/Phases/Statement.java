@@ -11,7 +11,6 @@ public class Statement
     public static final int DEAKTIV = 1;
     public static final int DEAD = 2;
     public static final int NOT_IN_GAME = 3;
-    public static final int INVISBLE = 4;
 
     public static final int PROGRAMM = 0;
     public static final int SHOW_TITLE = 1;
