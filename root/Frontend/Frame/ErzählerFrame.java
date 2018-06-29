@@ -507,6 +507,8 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                     if(PhaseMode.phase != PhaseMode.ersteNacht) {
                         PhaseManager.firstnight(this);
                         spielerFrame.startTimeUpdateThread();
+                    } else {
+                        System.out.println("Freeze wird dadurch verursacht dass phasemode schon auf erste nacht steht aber die erste nacht page noch nciht generiert wurde");
                     }
                 } else {
                     try {

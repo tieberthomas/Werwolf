@@ -1,6 +1,7 @@
 package root.Rollen.Nebenrollen;
 
 import root.Frontend.FrontendControl;
+import root.Phases.Nacht;
 import root.ResourceManagement.ResourcePath;
 import root.Rollen.Hauptrollen.Bürger.GuteHexe;
 import root.Rollen.Nebenrolle;
@@ -33,7 +34,11 @@ public class Nachbar extends Nebenrolle
 
     @Override
     public FrontendControl getInfo() {
-        return new FrontendControl(FrontendControl.STATIC_LIST, getBesucherStrings());
+        FrontendControl info = new FrontendControl(FrontendControl.STATIC_LIST, getBesucherStrings());
+        if(beobachteterSpieler!=null) {
+            info.title = Nacht.NACHBAR_INFORMATION_TITLE + beobachteterSpieler.name;
+        }
+        return info;
     }
 
     @Override

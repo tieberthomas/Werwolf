@@ -1,14 +1,7 @@
 michael testen:
 sammler
 totengräber
-priester liebespaar interaktion erneut testen
 
-Seherin bekommt in der ersten nacht nichts angezeigt
-
-
-tasks:
-konditorlehrling statement mit sammler überarbeiten
-besucher in spieler reinschreiben (?)
 
 CherryOnTop:
 Wenn das ziel der holden maid anästisiert ist, soll es nicht aufwachen (deaktiviertpage für holde maid anzeigen)

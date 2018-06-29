@@ -112,7 +112,7 @@ public class Nacht extends Thread
     public static final String WAHRSAGER_TITLE = "Fraktion wählen";
     public static final String BESCHWÖRER_TITLE = "Mitspieler verstummen";
     public static final String FRISÖR_TITLE = "Mitspieler verschönern";
-    public static final String NACHBAR_INFORMATION_TITLE = "Besucher";
+    public static final String NACHBAR_INFORMATION_TITLE = "Besucher von ";
     public static final String KONDITOR_TITLE = "Torte";
     public static final String KONDITOR_LEHRLING_TITLE = KONDITOR_TITLE;
     public static final String OPFER_TITLE = "Opfer der Nacht";
