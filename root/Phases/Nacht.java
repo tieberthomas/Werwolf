@@ -613,6 +613,72 @@ public class Nacht extends Thread
         }
     }
 
+    public String showDropdownPage(Statement statement, FrontendControl frontendControl) {
+        switch (statement.getState())
+        {
+            case Statement.NORMAL:
+                FrontendControl.erzählerDropdownPage(statement, frontendControl.content);
+
+                switch (frontendControl.typeOfContent)
+                {
+                    case FrontendControl.DROPDOWN_WITHOUT_SUGGESTIONS:
+                        FrontendControl.spielerDropdownPage(statement.title, 1);
+                        break;
+
+                    case FrontendControl.DROPDOWN_WITH_SUGGESTIONS:
+                        FrontendControl.spielerListMirrorPage(statement.title, frontendControl.content);
+                        break;
+                }
+                break;
+
+            case Statement.DEAKTIV:
+                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), ResourcePath.DEAKTIVIERT);
+                FrontendControl.spielerFrame.deactivatedPage();
+                break;
+
+            case Statement.DEAD:
+                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), ResourcePath.TOT);
+                FrontendControl.spielerFrame.deadPage();
+                break;
+
+            case Statement.NOT_IN_GAME:
+                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), ResourcePath.AUS_DEM_SPIEL);
+                FrontendControl.spielerDropdownPage(statement.title,1);
+                break;
+        }
+
+        waitForAnswer();
+
+        return FrontendControl.erzählerFrame.chosenOption1;
+    }
+
+    public void showDropdownPage(Statement statement, ArrayList<String> dropdownOptions1, ArrayList<String> dropdownOptions2) {
+        switch (statement.getState())
+        {
+            case Statement.NORMAL:
+                FrontendControl.erzählerDropdownPage(statement, dropdownOptions1, dropdownOptions2);
+                FrontendControl.spielerDropdownPage(statement.title, 2);
+                break;
+
+            case Statement.DEAKTIV:
+                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), getEmptyStringList(), ResourcePath.DEAKTIVIERT);
+                FrontendControl.spielerFrame.deactivatedPage();
+                break;
+
+            case Statement.DEAD:
+                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), getEmptyStringList(), ResourcePath.TOT);
+                FrontendControl.spielerFrame.deadPage();
+                break;
+
+            case Statement.NOT_IN_GAME:
+                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), getEmptyStringList(), ResourcePath.AUS_DEM_SPIEL);
+                FrontendControl.spielerDropdownPage(statement.title, 2);
+                break;
+        }
+
+        waitForAnswer();
+    }
+
     public void showInfo(Statement statement, FrontendControl info) {
         if (info.title == null) {
             info.title = statement.title;
@@ -658,6 +724,66 @@ public class Nacht extends Thread
         }
 
         waitForAnswer();
+    }
+
+    public void showEndScreenPage(String victory) {
+        FrontendControl.erzählerEndScreenPage(victory);
+        FrontendControl.spielerEndScreenPage(victory);
+
+        waitForAnswer();
+    }
+
+    public String showAfterDeathDropdownListPage(Statement statement, ArrayList<String> dropdownOptions) {
+        if (statement.isLebend()) {
+            if (statement.isAktiv()) {
+                FrontendControl.erzählerDropdownPage(statement, dropdownOptions);
+                FrontendControl.spielerListMirrorPage(statement.title, dropdownOptions);
+            } else {
+                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), ResourcePath.DEAKTIVIERT);
+                FrontendControl.spielerFrame.deactivatedPage();
+            }
+        } else {
+            FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), ResourcePath.AUS_DEM_SPIEL);
+            FrontendControl.spielerDropdownPage(statement.title, 1);
+        }
+
+        waitForAnswer();
+
+        return FrontendControl.erzählerFrame.chosenOption1;
+    }
+
+    public String showKonditorDropdownPage(Statement statement, FrontendControl frontendControl) {
+        if (Rolle.rolleLebend(Konditor.name) || Rolle.rolleLebend(Konditorlehrling.name)) {
+            if (!Opfer.isOpferPerRolle(Konditor.name) || !Opfer.isOpferPerRolle(Konditorlehrling.name)) {
+                if (Rolle.rolleAktiv(Konditor.name) || Rolle.rolleAktiv(Konditorlehrling.name)) {
+                    FrontendControl.erzählerDropdownPage(statement, frontendControl.content);
+
+                    switch (frontendControl.typeOfContent)
+                    {
+                        case FrontendControl.DROPDOWN_WITHOUT_SUGGESTIONS:
+                            FrontendControl.spielerDropdownPage(statement.title, 1);
+                            break;
+
+                        case FrontendControl.DROPDOWN_WITH_SUGGESTIONS:
+                            FrontendControl.spielerListMirrorPage(statement.title, frontendControl.content);
+                            break;
+                    }
+                } else {
+                    FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), ResourcePath.DEAKTIVIERT);
+                    FrontendControl.spielerFrame.deactivatedPage();
+                }
+            } else {
+                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), ResourcePath.TOT);
+                FrontendControl.spielerFrame.deadPage();
+            }
+        } else {
+            FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), ResourcePath.AUS_DEM_SPIEL);
+            FrontendControl.spielerDropdownPage(statement.title, 1);
+        }
+
+        waitForAnswer();
+
+        return FrontendControl.erzählerFrame.chosenOption1;
     }
 
     public void showAufgebrauchtPages(Statement statement) {
@@ -720,7 +846,29 @@ public class Nacht extends Thread
     }
 
     public void showListOnBothScreens(Statement statement, String title, ArrayList<String> strings) {
-        FrontendControl.showListOnBothScreens(statement, title, strings);
+        switch (statement.getState())
+        {
+            case Statement.NORMAL:
+                FrontendControl.erzählerListPage(statement, title, strings);
+                FrontendControl.spielerListPage(title, strings);
+                break;
+
+            case Statement.DEAKTIV:
+                FrontendControl.erzählerListPage(statement, getEmptyStringList(), ResourcePath.DEAKTIVIERT);
+                FrontendControl.spielerFrame.deactivatedPage();
+                break;
+
+            case Statement.DEAD:
+                FrontendControl.erzählerListPage(statement, getEmptyStringList(), ResourcePath.TOT);
+                FrontendControl.spielerFrame.deadPage();
+                break;
+
+            case Statement.NOT_IN_GAME:
+                FrontendControl.erzählerListPage(statement, getEmptyStringList(), ResourcePath.AUS_DEM_SPIEL);
+                FrontendControl.spielerListPage(statement.title, getEmptyStringList());
+                break;
+        }
+
         waitForAnswer();
     }
 
@@ -735,34 +883,10 @@ public class Nacht extends Thread
         waitForAnswer();
     }
 
-    public void showEndScreenPage(String victory) {
-        FrontendControl.erzählerEndScreenPage(victory);
-        FrontendControl.spielerEndScreenPage(victory);
-
-        waitForAnswer();
-    }
-
-    public String showDropdownPage(Statement statement, FrontendControl frontendControl) {
-        FrontendControl.showDropdownPage(statement, frontendControl);
-        waitForAnswer();
-        return FrontendControl.erzählerFrame.chosenOption1;
-    }
-
-    public void showDropdownPage(Statement statement, ArrayList<String> dropdownOptions1, ArrayList<String> dropdownOptions2) {
-        FrontendControl.showDropdownPage(statement, dropdownOptions1, dropdownOptions2);
-        waitForAnswer();
-    }
-
-    public String showAfterDeathDropdownListPage(Statement statement, ArrayList<String> dropdownOptions) {
-        FrontendControl.showAfterDeathDropdownListPage(statement, dropdownOptions);
-        waitForAnswer();
-        return FrontendControl.erzählerFrame.chosenOption1;
-    }
-
-    public String showKonditorDropdownPage(Statement statement, FrontendControl frontendControl) {
-        FrontendControl.showKonditorDropdownPage(statement, frontendControl);
-        waitForAnswer();
-        return FrontendControl.erzählerFrame.chosenOption1;
+    public static ArrayList<String> getEmptyStringList() {
+        ArrayList<String> emptyContent = new ArrayList<>();
+        emptyContent.add("");
+        return emptyContent;
     }
 
     public void waitForAnswer() {

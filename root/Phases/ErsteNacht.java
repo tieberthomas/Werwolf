@@ -278,7 +278,9 @@ public class ErsteNacht extends Thread {
     }
 
     public void showListOnBothScreens(Statement statement, String title, ArrayList<String> strings) {
-        FrontendControl.showListOnBothScreens(statement, title, strings);
+        FrontendControl.erzählerListPage(statement, title, strings);
+        FrontendControl.spielerListPage(title, strings);
+
         waitForAnswer();
     }
 
@@ -294,13 +296,28 @@ public class ErsteNacht extends Thread {
     }
 
     public String showDropdownPage(Statement statement, FrontendControl frontendControl) {
-        FrontendControl.showDropdownPage(statement, frontendControl);
+        FrontendControl.erzählerDropdownPage(statement, frontendControl.content);
+
+        switch (frontendControl.typeOfContent)
+        {
+            case FrontendControl.DROPDOWN_WITHOUT_SUGGESTIONS:
+                FrontendControl.spielerDropdownPage(statement.title, 1);
+                break;
+
+            case FrontendControl.DROPDOWN_WITH_SUGGESTIONS:
+                FrontendControl.spielerListMirrorPage(statement.title, frontendControl.content);
+                break;
+        }
+
         waitForAnswer();
+
         return FrontendControl.erzählerFrame.chosenOption1;
     }
 
     public void showDropdownPage(Statement statement, ArrayList<String> dropdownOptions1, ArrayList<String> dropdownOptions2) {
-        FrontendControl.showDropdownPage(statement, dropdownOptions1, dropdownOptions2);
+        FrontendControl.erzählerDropdownPage(statement, dropdownOptions1, dropdownOptions2);
+        FrontendControl.spielerDropdownPage(statement.title, 2);
+
         waitForAnswer();
     }
 
