@@ -69,11 +69,11 @@ public class Fraktion {
     public FrontendControl getFraktionsMemberOrNonFrontendControl(Rolle rolle) {
         FrontendControl frontendControl = new FrontendControl();
 
-        frontendControl.typeOfContent = FrontendControl.DROPDOWN_WITH_SUGGESTIONS;
-        frontendControl.content = getFraktionsMemberStrings();
-        frontendControl.content.add("");
+        frontendControl.typeOfContent = FrontendControl.DROPDOWN_LIST;
+        frontendControl.strings = getFraktionsMemberStrings();
+        frontendControl.strings.add("");
         if (!rolle.isSpammable() && rolle.besuchtLetzteNacht != null) {
-            frontendControl.content.remove(rolle.besuchtLetzteNacht.name);
+            frontendControl.strings.remove(rolle.besuchtLetzteNacht.name);
         }
 
         return frontendControl;
@@ -211,8 +211,8 @@ public class Fraktion {
     public static FrontendControl getLivigFraktionOrNoneFrontendControl() {
         FrontendControl frontendControl = new FrontendControl();
 
-        frontendControl.typeOfContent = FrontendControl.DROPDOWN_WITH_SUGGESTIONS;
-        frontendControl.content = getLivingFraktionOrNoneStrings();
+        frontendControl.typeOfContent = FrontendControl.DROPDOWN_LIST;
+        frontendControl.strings = getLivingFraktionOrNoneStrings();
 
         return frontendControl;
     }
@@ -220,8 +220,8 @@ public class Fraktion {
     public static FrontendControl getFraktionOrNoneFrontendControl() {
         FrontendControl frontendControl = new FrontendControl();
 
-        frontendControl.typeOfContent = FrontendControl.DROPDOWN_WITH_SUGGESTIONS;
-        frontendControl.content = getFraktionOrNoneStrings();
+        frontendControl.typeOfContent = FrontendControl.DROPDOWN_LIST;
+        frontendControl.strings = getFraktionOrNoneStrings();
 
         return frontendControl;
     }

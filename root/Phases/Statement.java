@@ -11,6 +11,7 @@ public class Statement
     public static final int DEAKTIV = 1;
     public static final int DEAD = 2;
     public static final int NOT_IN_GAME = 3;
+    public static final int INVISIBLE_NOT_IN_GAME = 4;
 
     public static final int PROGRAMM = 0;
     public static final int SHOW_TITLE = 1;
@@ -28,6 +29,9 @@ public class Statement
     public boolean visible;
 
     public int getState() {
+        if(!visible) {
+            return INVISIBLE_NOT_IN_GAME;
+        }
         if(!isLebend()) {
             return NOT_IN_GAME;
         }

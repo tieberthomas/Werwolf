@@ -36,15 +36,15 @@ public class Späher extends Hauptrolle
             besucht = chosenPlayer;
 
             if(chosenPlayer.nebenrolle.getName().equals(Tarnumhang.name)) {
-                return new FrontendControl(ResourcePath.TARNUMHANG, TARNUMHANG_TITLE);
+                return new FrontendControl(TARNUMHANG_TITLE, ResourcePath.TARNUMHANG);
             }
 
             if(chosenPlayer.hauptrolle.isKilling()) {
                 abilityCharges--;
 
-                return new FrontendControl(ResourcePath.TÖTEND, TÖTEND_TITLE);
+                return new FrontendControl(TÖTEND_TITLE, ResourcePath.TÖTEND);
             } else {
-                return new FrontendControl(ResourcePath.NICHT_TÖTEND, NICHT_TÖTEND_TITLE);
+                return new FrontendControl(NICHT_TÖTEND_TITLE, ResourcePath.NICHT_TÖTEND);
             }
         }
 

@@ -6,6 +6,8 @@ import root.Rollen.Fraktion;
 import root.Rollen.Fraktionen.Bürger;
 import root.Rollen.Hauptrolle;
 
+import java.util.ArrayList;
+
 /**
  * Created by Steve on 12.11.2017.
  */
@@ -25,9 +27,10 @@ public class Wirt extends Hauptrolle
     public FrontendControl getDropdownOptions() {
         FrontendControl frontendControl = new FrontendControl();
 
-        frontendControl.typeOfContent = FrontendControl.DROPDOWN_WITHOUT_SUGGESTIONS;
-        frontendControl.content.add(JA);
-        frontendControl.content.add(NEIN);
+        frontendControl.typeOfContent = FrontendControl.DROPDOWN;
+        frontendControl.strings = new ArrayList<>();
+        frontendControl.strings.add(JA);
+        frontendControl.strings.add(NEIN);
 
         return frontendControl;
     }

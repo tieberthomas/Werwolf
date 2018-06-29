@@ -85,7 +85,7 @@ public class ErsteNacht extends Thread {
                     Nebenrolle nebenrolle = ((Nebenrolle) rolle);
                     newNebenrolle = nebenrolle.getTauschErgebnis();
                     cardToDisplay = newNebenrolle.getImagePath();
-                    displayCard(statement, statement.title, cardToDisplay); //TODO title
+                    showCard(statement, statement.title, cardToDisplay); //TODO title
                     if(Rolle.rolleLebend(rolle.getName())) {
                         nebenrolle.tauschen(newNebenrolle);
                         Nebenrolle.secondaryRolesInGame.remove(nebenrolle);
@@ -101,7 +101,7 @@ public class ErsteNacht extends Thread {
                             ArrayList<String> spielerOrZufällig = Spieler.getLivigPlayerStrings();
                             spielerOrZufällig.add(Liebespaar.ZUFÄLLIG);
 
-                            showDropdownPage(statement, spielerOrZufällig, spielerOrZufällig);
+                            showDropdown(statement, spielerOrZufällig, spielerOrZufällig);
 
                             Liebespaar.neuesLiebespaar(FrontendControl.erzählerFrame.chosenOption1, FrontendControl.erzählerFrame.chosenOption2);
                             break;
@@ -129,7 +129,7 @@ public class ErsteNacht extends Thread {
                                 showHauptrolle(statement, currentSpieler);
                             }
                             statement.title = ALPHAWOLF_FERTIG_TITLE;
-                            showImageOnBothScreens(statement, ResourcePath.WÖLFE_ICON);
+                            showImage(statement, statement.title, ResourcePath.WÖLFE_ICON);
                             break;
 
                         case BRÜDER:
@@ -143,16 +143,13 @@ public class ErsteNacht extends Thread {
 
                         case SEHERIN:
                             dropdownOtions = rolle.getDropdownOptions();
-                            chosenOption = showDropdownPage(statement, dropdownOtions);
+                            chosenOption = showFrontendControl(statement, dropdownOtions);
                             info = rolle.processChosenOptionGetInfo(chosenOption);
-                            showInfo(statement, info);
+                            showFrontendControl(statement, info);
                             break;
 
                         default:
-                            FrontendControl.erzählerDefaultNightPage(statement);
-                            FrontendControl.spielerTitlePage(statement.title);
-
-                            waitForAnswer();
+                            showTitle(statement);
                             break;
                     }
                 }
@@ -222,24 +219,39 @@ public class ErsteNacht extends Thread {
         waitForAnswer();
     }
 
-    public void showInfo(Statement statement, FrontendControl info) {
-        if (info.title == null) {
-            info.title = statement.title;
+    public String showFrontendControl(Statement statement, FrontendControl frontendControl) {
+        if (frontendControl.title == null) {
+            frontendControl.title = statement.title;
         }
 
-        switch (info.typeOfContent) {
-            case FrontendControl.STATIC_IMAGE:
-                showImageOnBothScreens(statement, info.title, info.imagePath);
+        switch (frontendControl.typeOfContent)
+        {
+            case FrontendControl.TITLE:
+                showTitle(statement, frontendControl.title);
                 break;
 
+            case FrontendControl.DROPDOWN:
+                showDropdown(statement, frontendControl.title, frontendControl.strings);
+                return FrontendControl.erzählerFrame.chosenOption1;
+
+            case FrontendControl.DROPDOWN_LIST:
+                showDropdownList(statement, frontendControl.title, frontendControl.strings);
+                return FrontendControl.erzählerFrame.chosenOption1;
+
             case FrontendControl.STATIC_LIST:
-                showListOnBothScreens(statement, info.title, info.content);
+                showList(statement, frontendControl.title, frontendControl.strings);
+                break;
+
+            case FrontendControl.STATIC_IMAGE:
+                showImage(statement, frontendControl.title, frontendControl.imagePath);
                 break;
 
             case FrontendControl.STATIC_CARD:
-                displayCard(statement, info.title, info.imagePath);
+                showCard(statement, frontendControl.title, frontendControl.imagePath);
                 break;
         }
+
+        return null;
     }
 
     public void showNebenrolle(Statement statement, Spieler spieler) {
@@ -251,63 +263,65 @@ public class ErsteNacht extends Thread {
                 imagePath = ResourcePath.TARNUMHANG;
                 statement.title = TARNUMHANG_TITLE;
             }
-            displayCard(statement, statement.title, imagePath);
+            showCard(statement, statement.title, imagePath);
         }
     }
 
     public void showHauptrolle(Statement statement, Spieler spieler) {
         if (spieler != null) {
-            displayCard(statement, spieler.name, spieler.hauptrolle.getImagePath());
+            showCard(statement, spieler.name, spieler.hauptrolle.getImagePath());
         }
     }
 
-    public void displayCard(Statement statement, String title, String imagePath) {
-        FrontendControl.erzählerCardPicturePage(statement, title, imagePath);
-        FrontendControl.spielerCardPicturePage(title, imagePath);
+    public void showTitle(Statement statement) {
+        showTitle(statement, statement.title);
+    }
+
+    public void showTitle(Statement statement, String title) {
+        FrontendControl.erzählerDefaultNightPage(statement);
+        FrontendControl.spielerTitlePage(title);
 
         waitForAnswer();
     }
 
-    public void showListOnBothScreens(Statement statement, String title, ArrayList<String> strings) {
+    public void showList(Statement statement, String title, ArrayList<String> strings) {
         FrontendControl.erzählerListPage(statement, title, strings);
         FrontendControl.spielerListPage(title, strings);
 
         waitForAnswer();
     }
 
-    public void showImageOnBothScreens(Statement statement, String imagePath) {
-        showImageOnBothScreens(statement, statement.title, imagePath);
-    }
-
-    public void showImageOnBothScreens(Statement statement, String title, String imagePath) {
+    public void showImage(Statement statement, String title, String imagePath) {
         FrontendControl.erzählerIconPicturePage(statement, title, imagePath);
         FrontendControl.spielerIconPicturePage(title, imagePath);
 
         waitForAnswer();
     }
 
-    public String showDropdownPage(Statement statement, FrontendControl frontendControl) {
-        FrontendControl.erzählerDropdownPage(statement, frontendControl.content);
-
-        switch (frontendControl.typeOfContent)
-        {
-            case FrontendControl.DROPDOWN_WITHOUT_SUGGESTIONS:
-                FrontendControl.spielerDropdownPage(statement.title, 1);
-                break;
-
-            case FrontendControl.DROPDOWN_WITH_SUGGESTIONS:
-                FrontendControl.spielerDropdownListPage(statement.title, frontendControl.content);
-                break;
-        }
+    public void showDropdown(Statement statement, String title, ArrayList<String> dropdownOptions) {
+        FrontendControl.erzählerDropdownPage(statement, dropdownOptions);
+        FrontendControl.spielerDropdownPage(title, 1);
 
         waitForAnswer();
-
-        return FrontendControl.erzählerFrame.chosenOption1;
     }
 
-    public void showDropdownPage(Statement statement, ArrayList<String> dropdownOptions1, ArrayList<String> dropdownOptions2) {
+    public void showDropdown(Statement statement, ArrayList<String> dropdownOptions1, ArrayList<String> dropdownOptions2) {
         FrontendControl.erzählerDropdownPage(statement, dropdownOptions1, dropdownOptions2);
         FrontendControl.spielerDropdownPage(statement.title, 2);
+
+        waitForAnswer();
+    }
+
+    public void showDropdownList(Statement statement, String title, ArrayList<String> strings) {
+        FrontendControl.erzählerDropdownPage(statement, strings);
+        FrontendControl.spielerDropdownListPage(title, strings);
+
+        waitForAnswer();
+    }
+
+    public void showCard(Statement statement, String title, String imagePath) {
+        FrontendControl.erzählerCardPicturePage(statement, title, imagePath);
+        FrontendControl.spielerCardPicturePage(title, imagePath);
 
         waitForAnswer();
     }

@@ -121,8 +121,8 @@ public class Spieler
     public static FrontendControl getPlayerFrontendControl() {
         FrontendControl frontendControl = new FrontendControl();
 
-        frontendControl.typeOfContent = FrontendControl.DROPDOWN_WITHOUT_SUGGESTIONS;
-        frontendControl.content = getLivigPlayerOrNoneStrings();
+        frontendControl.typeOfContent = FrontendControl.DROPDOWN;
+        frontendControl.strings = getLivigPlayerOrNoneStrings();
 
         return frontendControl;
     }
@@ -130,8 +130,8 @@ public class Spieler
     public static FrontendControl getPlayerCheckSpammableFrontendControl(Rolle rolle) {
         FrontendControl frontendControl = new FrontendControl();
 
-        frontendControl.typeOfContent = FrontendControl.DROPDOWN_WITHOUT_SUGGESTIONS;
-        frontendControl.content = getPlayerCheckSpammableStrings(rolle);
+        frontendControl.typeOfContent = FrontendControl.DROPDOWN;
+        frontendControl.strings = getPlayerCheckSpammableStrings(rolle);
 
         return frontendControl;
     }
@@ -139,8 +139,8 @@ public class Spieler
     public static FrontendControl getMitspielerCheckSpammableFrontendControl(Rolle rolle) {
         FrontendControl frontendControl = new FrontendControl();
 
-        frontendControl.typeOfContent = FrontendControl.DROPDOWN_WITHOUT_SUGGESTIONS;
-        frontendControl.content = getMitspielerCheckSpammableStrings(rolle);
+        frontendControl.typeOfContent = FrontendControl.DROPDOWN;
+        frontendControl.strings = getMitspielerCheckSpammableStrings(rolle);
 
         return frontendControl;
     }

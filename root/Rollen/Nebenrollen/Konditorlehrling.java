@@ -4,6 +4,8 @@ import root.Frontend.FrontendControl;
 import root.ResourceManagement.ResourcePath;
 import root.Rollen.Nebenrolle;
 
+import java.util.ArrayList;
+
 /**
  * Created by Steve on 21.01.2018.
  */
@@ -21,9 +23,10 @@ public class Konditorlehrling extends Nebenrolle
     public FrontendControl getDropdownOptions() {
         FrontendControl frontendControl = new FrontendControl();
 
-        frontendControl.typeOfContent = FrontendControl.DROPDOWN_WITHOUT_SUGGESTIONS;
-        frontendControl.content.add(GUT);
-        frontendControl.content.add(SCHLECHT);
+        frontendControl.typeOfContent = FrontendControl.DROPDOWN;
+        frontendControl.strings = new ArrayList<>();
+        frontendControl.strings.add(GUT);
+        frontendControl.strings.add(SCHLECHT);
 
         return frontendControl;
     }

@@ -11,6 +11,7 @@ import root.Rollen.Rolle;
 import root.mechanics.Opfer;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * Created by Steve on 25.11.2017.
@@ -42,20 +43,21 @@ public class Schattenpriester_Fraktion extends Fraktion
     public FrontendControl getDropdownOptions() {
         FrontendControl frontendControl = new FrontendControl();
 
-        frontendControl.typeOfContent = FrontendControl.DROPDOWN_WITH_SUGGESTIONS;
+        frontendControl.typeOfContent = FrontendControl.DROPDOWN_LIST;
+        frontendControl.strings = new ArrayList<>();
 
         for (Opfer currentOpfer : Opfer.deadVictims) {
             String fraktionOpfer = currentOpfer.opfer.hauptrolle.getFraktion().getName();
             if (currentOpfer.opfer.nebenrolle.getName().equals(Schattenkutte.name) ||
                     (currentOpfer.opfer.ressurectable && !fraktionOpfer.equals(Schattenpriester_Fraktion.name))) {
                 Rolle täter = currentOpfer.täter.hauptrolle;
-                if(!frontendControl.content.contains(currentOpfer.opfer.name) && !täter.getName().equals(Riese.name)) {
-                    frontendControl.content.add(currentOpfer.opfer.name);
+                if(!frontendControl.strings.contains(currentOpfer.opfer.name) && !täter.getName().equals(Riese.name)) {
+                    frontendControl.strings.add(currentOpfer.opfer.name);
                 }
             }
         }
 
-        frontendControl.content.add("");
+        frontendControl.strings.add("");
 
         return frontendControl;
     }

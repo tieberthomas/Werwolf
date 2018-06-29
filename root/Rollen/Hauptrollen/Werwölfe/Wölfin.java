@@ -56,11 +56,11 @@ public class Wölfin extends Hauptrolle
                 if (wölfinSpieler.nebenrolle.getName().equals(Tarnumhang.name)) {
                     imagePath = ResourcePath.TARNUMHANG;
                 }
-                return new FrontendControl(imagePath);
+                return new FrontendControl(FrontendControl.STATIC_IMAGE, imagePath);
             }
         }
 
-        return new FrontendControl(); //TODO type implementieren dass statement ganz übersürungen wird
+        return new FrontendControl();
     }
 
     @Override

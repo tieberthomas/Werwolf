@@ -21,7 +21,7 @@ public class Totengräber extends Nebenrolle
 
     @Override
     public FrontendControl getDropdownOptions() {
-        return new FrontendControl(FrontendControl.DROPDOWN_WITH_SUGGESTIONS, Spieler.getDeadNebenrollen());
+        return new FrontendControl(FrontendControl.DROPDOWN_LIST, Spieler.getDeadNebenrollen());
     }
 
     @Override

@@ -24,11 +24,9 @@ public class Chemiker extends Hauptrolle
     public FrontendControl getDropdownOptions() {
         FrontendControl frontendControl = new FrontendControl();
 
-        frontendControl.typeOfContent = FrontendControl.DROPDOWN_WITH_SUGGESTIONS;
-
-        frontendControl.content = findResurrectableOpfer();
-
-        frontendControl.content.add("");
+        frontendControl.typeOfContent = FrontendControl.DROPDOWN_LIST;
+        frontendControl.strings = findResurrectableOpfer();
+        frontendControl.strings.add("");
 
         return frontendControl;
     }

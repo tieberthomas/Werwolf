@@ -28,9 +28,10 @@ public class Buchhalter extends Hauptrolle
     public FrontendControl getDropdownOptions() {
         FrontendControl frontendControl = new FrontendControl();
 
-        frontendControl.typeOfContent = FrontendControl.DROPDOWN_WITHOUT_SUGGESTIONS;
-        frontendControl.content.add(JA);
-        frontendControl.content.add(NEIN);
+        frontendControl.typeOfContent = FrontendControl.DROPDOWN;
+        frontendControl.strings = new ArrayList<>();
+        frontendControl.strings.add(JA);
+        frontendControl.strings.add(NEIN);
 
         return frontendControl;
     }
@@ -40,7 +41,7 @@ public class Buchhalter extends Hauptrolle
         if (chosenOption.equals(JA)) {
             abilityCharges--;
             seenRoles = Hauptrolle.getMainRolesAlive();
-            return new FrontendControl(FrontendControl.STATIC_LIST, seenRoles, USED_TITLE);
+            return new FrontendControl(FrontendControl.STATIC_LIST, USED_TITLE, seenRoles);
         }
 
         return new FrontendControl();
@@ -72,6 +73,6 @@ public class Buchhalter extends Hauptrolle
     }
 
     public FrontendControl getAufgebrauchtPage() {
-        return new FrontendControl(FrontendControl.STATIC_LIST, seenRoles, USED_TITLE);
+        return new FrontendControl(FrontendControl.STATIC_LIST, USED_TITLE, seenRoles);
     }
 }

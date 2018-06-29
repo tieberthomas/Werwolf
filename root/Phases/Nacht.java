@@ -167,10 +167,7 @@ public class Nacht extends Thread
                 if (statement.visible || statement.type == Statement.PROGRAMM) {
                     switch (statement.type) {
                         case Statement.SHOW_TITLE:
-                            FrontendControl.erzählerDefaultNightPage(statement);
-                            FrontendControl.spielerTitlePage(statement.title);
-
-                            waitForAnswer();
+                            showTitle(statement);
                             break;
 
                         case Statement.ROLLE_CHOOSE_ONE:
@@ -178,7 +175,7 @@ public class Nacht extends Thread
 
                             if (rolle.abilityCharges > 0) {
                                 dropdownOtions = rolle.getDropdownOptions();
-                                chosenOption = showDropdownPage(statement, dropdownOtions);
+                                chosenOption = showFrontendControl(statement, dropdownOtions);
                                 rolle.processChosenOption(chosenOption);
                             } else {
                                 showAufgebrauchtPages(statement); //TODO deaktiv/tot beachten
@@ -190,13 +187,13 @@ public class Nacht extends Thread
 
                             if (rolle.abilityCharges > 0) {
                                 dropdownOtions = rolle.getDropdownOptions();
-                                chosenOption = showDropdownPage(statement, dropdownOtions);
+                                chosenOption = showFrontendControl(statement, dropdownOtions);
                                 info = rolle.processChosenOptionGetInfo(chosenOption);
-                                showInfo(statement, info);
+                                showFrontendControl(statement, info);
                             } else {
                                 if (rolle.getName().equals(Buchhalter.name)) {
                                     info = ((Buchhalter) rolle).getAufgebrauchtPage();
-                                    showInfo(statement, info);
+                                    showFrontendControl(statement, info);
                                 } else {
                                     showAufgebrauchtPages(statement); //TODO deaktiv/tot beachten
                                 }
@@ -207,7 +204,7 @@ public class Nacht extends Thread
                             rolle = ((StatementRolle) statement).getRolle();
 
                             info = rolle.getInfo();
-                            showInfo(statement, info);
+                            showFrontendControl(statement, info);
                             break;
 
                         case Statement.ROLLE_SPECAL:
@@ -218,7 +215,7 @@ public class Nacht extends Thread
                             Fraktion fraktion = ((StatementFraktion) statement).getFraktion();
 
                             dropdownOtions = fraktion.getDropdownOptions();
-                            chosenOption = showDropdownPage(statement, dropdownOtions);
+                            chosenOption = showFrontendControl(statement, dropdownOtions);
                             fraktion.processChosenOption(chosenOption);
                             break;
                     }
@@ -330,10 +327,10 @@ public class Nacht extends Thread
                                 if (analytiker.showTarnumhang(chosenSpieler1, chosenSpieler2)) {
                                     imagePath = ResourcePath.TARNUMHANG;
                                     statement.title = TARNUMHANG_TITLE;
-                                    showImageOnBothScreens(statement, imagePath);
+                                    showImage(statement, imagePath);
                                 } else {
                                     String answer = analytiker.analysiere(chosenSpieler1, chosenSpieler2);
-                                    showListOnBothScreens(statement, answer);
+                                    showList(statement, answer);//TODO generisch machen
                                 }
                             }
                             break;
@@ -383,7 +380,7 @@ public class Nacht extends Thread
                                 }
                             }
 
-                            showListOnBothScreens(statement, opferDerNacht);
+                            showList(statement, opferDerNacht);
 
                             if (Rolle.rolleLebend(GuteHexe.name)) {
                                 refreshHexenSchutz();
@@ -400,6 +397,7 @@ public class Nacht extends Thread
                             if (beschworenerSpieler != null) {
                                 FrontendControl.erzählerListPage(statement, beschworenerSpieler.name);
                                 FrontendControl.spielerIconPicturePage(beschworenerSpieler.name, ResourcePath.VERSTUMMT);
+
                                 waitForAnswer();
                             }
                             break;
@@ -419,7 +417,7 @@ public class Nacht extends Thread
                                     FrontendControl.spielerIconPicturePage(schönling.name, ResourcePath.SCHÖNLING);
                                     waitForAnswer();
                                 } else if (schönlinge.size() > 1) {
-                                    showListOnBothScreens(statement, schönlingeStringList);
+                                    showList(statement, schönlingeStringList);
                                 }
                             }
                             break;
@@ -604,97 +602,56 @@ public class Nacht extends Thread
         }
     }
 
-    public String showDropdownPage(Statement statement, FrontendControl frontendControl) {
+    public String showFrontendControl(Statement statement, FrontendControl frontendControl) {
+        if (frontendControl.title == null) {
+            frontendControl.title = statement.title;
+        }
+
         switch (statement.getState())
         {
             case Statement.NORMAL:
-                FrontendControl.erzählerDropdownPage(statement, frontendControl.content);
-
                 switch (frontendControl.typeOfContent)
                 {
-                    case FrontendControl.DROPDOWN_WITHOUT_SUGGESTIONS:
-                        FrontendControl.spielerDropdownPage(statement.title, 1);
+                    case FrontendControl.TITLE:
+                        showTitle(statement, frontendControl.title);
                         break;
 
-                    case FrontendControl.DROPDOWN_WITH_SUGGESTIONS:
-                        FrontendControl.spielerDropdownListPage(statement.title, frontendControl.content);
+                    case FrontendControl.DROPDOWN:
+                        showDropdown(statement, frontendControl.title, frontendControl.strings);
+                        return FrontendControl.erzählerFrame.chosenOption1;
+
+                    case FrontendControl.DROPDOWN_LIST:
+                        showDropdownList(statement, frontendControl.title, frontendControl.strings);
+                        return FrontendControl.erzählerFrame.chosenOption1;
+
+                    case FrontendControl.STATIC_LIST:
+                        showList(statement, frontendControl.title, frontendControl.strings);
+                        break;
+
+                    case FrontendControl.STATIC_IMAGE:
+                        showImage(statement, frontendControl.title, frontendControl.imagePath);
+                        break;
+
+                    case FrontendControl.STATIC_CARD:
+                        showCard(statement, frontendControl.title, frontendControl.imagePath);
                         break;
                 }
                 break;
 
             case Statement.DEAKTIV:
-                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), ResourcePath.DEAKTIVIERT);
-                FrontendControl.spielerFrame.deactivatedPage();
+                showDeaktivPages(statement, frontendControl);
                 break;
 
             case Statement.DEAD:
-                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), ResourcePath.TOT);
-                FrontendControl.spielerFrame.deadPage();
+                showTotPages(statement, frontendControl);
                 break;
 
             case Statement.NOT_IN_GAME:
-                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), ResourcePath.AUS_DEM_SPIEL);
-                FrontendControl.spielerDropdownPage(statement.title,1);
+                showAusDemSpielPages(statement, frontendControl);
                 break;
         }
 
-        waitForAnswer();
-
-        return FrontendControl.erzählerFrame.chosenOption1;
-    }
-
-    public void showInfo(Statement statement, FrontendControl info) {
-        if (info.title == null) {
-            info.title = statement.title;
-        }
-
-        switch (info.typeOfContent) {
-            case FrontendControl.STATIC_IMAGE:
-                showImageOnBothScreens(statement, info.title, info.imagePath);
-                break;
-
-            case FrontendControl.STATIC_LIST:
-                showListOnBothScreens(statement, info.title, info.content);
-                break;
-
-            case FrontendControl.STATIC_CARD:
-                displayCard(statement, info.title, info.imagePath);
-                break;
-        }
-    }
-
-    public void displayCard(Statement statement, String title, String imagePath) {
-        switch (statement.getState())
-        {
-            case Statement.NORMAL:
-                FrontendControl.erzählerCardPicturePage(statement, title, imagePath);
-                FrontendControl.spielerCardPicturePage(title, imagePath);
-                break;
-
-            case Statement.DEAKTIV:
-                FrontendControl.erzählerIconPicturePage(statement, ResourcePath.DEAKTIVIERT);
-                FrontendControl.spielerIconPicturePage(DEAKTIVIERT_TITLE, ResourcePath.DEAKTIVIERT);
-                break;
-
-            case Statement.DEAD:
-                FrontendControl.erzählerIconPicturePage(statement, ResourcePath.TOT);
-                FrontendControl.spielerIconPicturePage(TOT_TITLE, ResourcePath.TOT);
-                break;
-
-            case Statement.NOT_IN_GAME:
-                FrontendControl.erzählerIconPicturePage(statement, ResourcePath.AUS_DEM_SPIEL);
-                FrontendControl.spielerCardPicturePage(statement.title, "");
-                break;
-        }
-
-        waitForAnswer();
-    }
-
-    public void showEndScreenPage(String victory) {
-        FrontendControl.erzählerEndScreenPage(victory);
-        FrontendControl.spielerEndScreenPage(victory);
-
-        waitForAnswer();
+        return null;
     }
 
     public void showDropdownPage(Statement statement, ArrayList<String> dropdownOptions1, ArrayList<String> dropdownOptions2) {
@@ -707,12 +664,12 @@ public class Nacht extends Thread
 
             case Statement.DEAKTIV:
                 FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), getEmptyStringList(), ResourcePath.DEAKTIVIERT);
-                FrontendControl.spielerFrame.deactivatedPage();
+                FrontendControl.spielerIconPicturePage(DEAKTIVIERT_TITLE, ResourcePath.DEAKTIVIERT);
                 break;
 
             case Statement.DEAD:
                 FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), getEmptyStringList(), ResourcePath.TOT);
-                FrontendControl.spielerFrame.deadPage();
+                FrontendControl.spielerIconPicturePage(TOT_TITLE, ResourcePath.TOT);
                 break;
 
             case Statement.NOT_IN_GAME:
@@ -731,7 +688,7 @@ public class Nacht extends Thread
                 FrontendControl.spielerDropdownListPage(statement.title, dropdownOptions);
             } else {
                 FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), ResourcePath.DEAKTIVIERT);
-                FrontendControl.spielerFrame.deactivatedPage();
+                FrontendControl.spielerIconPicturePage(DEAKTIVIERT_TITLE, ResourcePath.DEAKTIVIERT);
             }
         } else {
             FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), ResourcePath.AUS_DEM_SPIEL);
@@ -747,25 +704,25 @@ public class Nacht extends Thread
         if (Rolle.rolleLebend(Konditor.name) || Rolle.rolleLebend(Konditorlehrling.name)) {
             if (!Opfer.isOpferPerRolle(Konditor.name) || !Opfer.isOpferPerRolle(Konditorlehrling.name)) {
                 if (Rolle.rolleAktiv(Konditor.name) || Rolle.rolleAktiv(Konditorlehrling.name)) {
-                    FrontendControl.erzählerDropdownPage(statement, frontendControl.content);
+                    FrontendControl.erzählerDropdownPage(statement, frontendControl.strings);
 
                     switch (frontendControl.typeOfContent)
                     {
-                        case FrontendControl.DROPDOWN_WITHOUT_SUGGESTIONS:
+                        case FrontendControl.DROPDOWN:
                             FrontendControl.spielerDropdownPage(statement.title, 1);
                             break;
 
-                        case FrontendControl.DROPDOWN_WITH_SUGGESTIONS:
-                            FrontendControl.spielerDropdownListPage(statement.title, frontendControl.content);
+                        case FrontendControl.DROPDOWN_LIST:
+                            FrontendControl.spielerDropdownListPage(statement.title, frontendControl.strings);
                             break;
                     }
                 } else {
                     FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), ResourcePath.DEAKTIVIERT);
-                    FrontendControl.spielerFrame.deactivatedPage();
+                    FrontendControl.spielerIconPicturePage(DEAKTIVIERT_TITLE, ResourcePath.DEAKTIVIERT);
                 }
             } else {
                 FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), ResourcePath.TOT);
-                FrontendControl.spielerFrame.deadPage();
+                FrontendControl.spielerIconPicturePage(TOT_TITLE, ResourcePath.TOT);
             }
         } else {
             FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), ResourcePath.AUS_DEM_SPIEL);
@@ -777,6 +734,13 @@ public class Nacht extends Thread
         return FrontendControl.erzählerFrame.chosenOption1;
     }
 
+    public void showEndScreenPage(String victory) {
+        FrontendControl.erzählerEndScreenPage(victory);
+        FrontendControl.spielerEndScreenPage(victory);
+
+        waitForAnswer();
+    }
+
     public void showAufgebrauchtPages(Statement statement) {
         FrontendControl.erzählerIconPicturePage(statement, ResourcePath.AUFGEBRAUCHT);
         FrontendControl.spielerIconPicturePage(AUFGEBRAUCHT_TITLE, ResourcePath.AUFGEBRAUCHT);
@@ -784,14 +748,124 @@ public class Nacht extends Thread
         waitForAnswer();
     }
 
-    public void showListShowImage(Statement statement, String string, String spielerImagePath, String erzählerImagePath) {
-        ArrayList<String> list = new ArrayList<>();
-        list.add(string);
-        showListShowImage(statement, list, spielerImagePath, erzählerImagePath);
+    //TODO Cases die sowieso gleich aussehen zusammenfassen
+    public void showDeaktivPages(Statement statement, FrontendControl frontendControl) {
+        switch (frontendControl.typeOfContent) {
+            case FrontendControl.DROPDOWN:
+            case FrontendControl.DROPDOWN_LIST:
+                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), ResourcePath.DEAKTIVIERT);
+                FrontendControl.spielerIconPicturePage(DEAKTIVIERT_TITLE, ResourcePath.DEAKTIVIERT);
+
+                waitForAnswer();
+                break;
+                
+            case FrontendControl.STATIC_LIST:
+                FrontendControl.erzählerListPage(statement, getEmptyStringList(), ResourcePath.DEAKTIVIERT);
+                FrontendControl.spielerIconPicturePage(DEAKTIVIERT_TITLE, ResourcePath.DEAKTIVIERT);
+
+                waitForAnswer();
+                break;
+
+            case FrontendControl.TITLE:
+            case FrontendControl.STATIC_IMAGE:
+            case FrontendControl.STATIC_CARD:
+                FrontendControl.erzählerIconPicturePage(statement, ResourcePath.DEAKTIVIERT);
+                FrontendControl.spielerIconPicturePage(DEAKTIVIERT_TITLE, ResourcePath.DEAKTIVIERT);
+
+                waitForAnswer();
+                break;
+        }
+    }
+    
+    public void showTotPages(Statement statement, FrontendControl frontendControl) {
+        switch (frontendControl.typeOfContent) {
+            case FrontendControl.DROPDOWN:
+            case FrontendControl.DROPDOWN_LIST:
+                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), ResourcePath.TOT);
+                FrontendControl.spielerIconPicturePage(TOT_TITLE, ResourcePath.TOT);
+
+                waitForAnswer();
+                break;
+                
+            case FrontendControl.STATIC_LIST:
+                FrontendControl.erzählerListPage(statement, getEmptyStringList(), ResourcePath.TOT);
+                FrontendControl.spielerIconPicturePage(TOT_TITLE, ResourcePath.TOT);
+
+                waitForAnswer();
+                break;
+
+            case FrontendControl.TITLE:
+            case FrontendControl.STATIC_IMAGE:
+            case FrontendControl.STATIC_CARD:
+                FrontendControl.erzählerIconPicturePage(statement, ResourcePath.TOT);
+                FrontendControl.spielerIconPicturePage(TOT_TITLE, ResourcePath.TOT);
+
+                waitForAnswer();
+                break;
+        }
+    }
+
+    public void showAusDemSpielPages(Statement statement, FrontendControl frontendControl) {
+        switch (frontendControl.typeOfContent) {
+            case FrontendControl.DROPDOWN:
+            case FrontendControl.DROPDOWN_LIST:
+                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), ResourcePath.AUS_DEM_SPIEL);
+                FrontendControl.spielerDropdownPage(statement.title,1);
+
+                waitForAnswer();
+                break;
+
+            case FrontendControl.STATIC_LIST:
+                FrontendControl.erzählerListPage(statement, getEmptyStringList(), ResourcePath.AUS_DEM_SPIEL);
+                FrontendControl.spielerListPage(statement.title, getEmptyStringList());
+
+                waitForAnswer();
+                break;
+
+            case FrontendControl.TITLE:
+            case FrontendControl.STATIC_IMAGE:
+            case FrontendControl.STATIC_CARD:
+                FrontendControl.erzählerIconPicturePage(statement, ResourcePath.AUS_DEM_SPIEL);
+                FrontendControl.spielerIconPicturePage(statement.title, "");
+
+                waitForAnswer();
+                break;
+        }
+    }
+
+    public void showTitle(Statement statement) {
+        showTitle(statement, statement.title);
+    }
+
+    public void showTitle(Statement statement, String title) {
+        FrontendControl.erzählerDefaultNightPage(statement);
+        FrontendControl.spielerTitlePage(title);
+
+        waitForAnswer();
+    }
+
+    public void showDropdown(Statement statement, String title, ArrayList<String> dropdownOptions) {
+        FrontendControl.erzählerDropdownPage(statement, dropdownOptions);
+        FrontendControl.spielerDropdownPage(title, 1);
+
+        waitForAnswer();
+    }
+
+    public void showDropdownList(Statement statement, String title, ArrayList<String> strings) {
+        FrontendControl.erzählerDropdownPage(statement, strings);
+        FrontendControl.spielerDropdownListPage(title, strings);
+
+        waitForAnswer();
     }
 
     public void showListShowImage(Statement statement, String string, String spielerImagePath) {
         showListShowImage(statement, string, spielerImagePath, "");
+    }
+
+    public void showListShowImage(Statement statement, String string, String spielerImagePath, String erzählerImagePath) {
+        ArrayList<String> list = new ArrayList<>();
+        list.add(string);
+        showListShowImage(statement, list, spielerImagePath, erzählerImagePath);
     }
 
     public void showListShowImage(Statement statement, ArrayList<String> strings, String spielerImagePath, String erzählerImagePath) {
@@ -801,50 +875,37 @@ public class Nacht extends Thread
         waitForAnswer();
     }
 
-    public void showListOnBothScreens(Statement statement, String string) {
+    public void showList(Statement statement, String string) {
         ArrayList<String> list = new ArrayList<>();
         list.add(string);
-        showListOnBothScreens(statement, list);
+        showList(statement, list);
     }
 
-    public void showListOnBothScreens(Statement statement, ArrayList<String> strings){
-        showListOnBothScreens(statement, statement.title, strings);
+    public void showList(Statement statement, ArrayList<String> strings){
+        showList(statement, statement.title, strings);
     }
 
-    public void showListOnBothScreens(Statement statement, String title, ArrayList<String> strings) {
-        switch (statement.getState())
-        {
-            case Statement.NORMAL:
-                FrontendControl.erzählerListPage(statement, title, strings);
-                FrontendControl.spielerListPage(title, strings);
-                break;
-
-            case Statement.DEAKTIV:
-                FrontendControl.erzählerListPage(statement, getEmptyStringList(), ResourcePath.DEAKTIVIERT);
-                FrontendControl.spielerFrame.deactivatedPage();
-                break;
-
-            case Statement.DEAD:
-                FrontendControl.erzählerListPage(statement, getEmptyStringList(), ResourcePath.TOT);
-                FrontendControl.spielerFrame.deadPage();
-                break;
-
-            case Statement.NOT_IN_GAME:
-                FrontendControl.erzählerListPage(statement, getEmptyStringList(), ResourcePath.AUS_DEM_SPIEL);
-                FrontendControl.spielerListPage(statement.title, getEmptyStringList());
-                break;
-        }
+    public void showList(Statement statement, String title, ArrayList<String> strings) {
+        FrontendControl.erzählerListPage(statement, title, strings);
+        FrontendControl.spielerListPage(title, strings);
 
         waitForAnswer();
     }
 
-    public void showImageOnBothScreens(Statement statement, String imagePath) {
-        showImageOnBothScreens(statement, statement.title, imagePath);
+    public void showImage(Statement statement, String imagePath) {
+        showImage(statement, statement.title, imagePath);
     }
 
-    public void showImageOnBothScreens(Statement statement, String title, String imagePath) {
+    public void showImage(Statement statement, String title, String imagePath) {
         FrontendControl.erzählerIconPicturePage(statement, title, imagePath);
         FrontendControl.spielerIconPicturePage(title, imagePath);
+
+        waitForAnswer();
+    }
+
+    public void showCard(Statement statement, String title, String imagePath) {
+        FrontendControl.erzählerCardPicturePage(statement, title, imagePath);
+        FrontendControl.spielerCardPicturePage(title, imagePath);
 
         waitForAnswer();
     }

@@ -34,22 +34,22 @@ public class Seherin extends Hauptrolle {
 
             String nebenrolle = chosenPlayer.nebenrolle.getName();
             if (nebenrolle.equals(Lamm.name)) {
-                return new FrontendControl(Bürger.imagePath);
+                return new FrontendControl(FrontendControl.STATIC_IMAGE, Bürger.imagePath);
             }
             if (nebenrolle.equals(Wolfspelz.name)) {
-                return new FrontendControl(Werwölfe.imagePath);
+                return new FrontendControl(FrontendControl.STATIC_IMAGE, Werwölfe.imagePath);
             }
             if (nebenrolle.equals(Vampirumhang.name)) {
-                return new FrontendControl(Vampire.imagePath);
+                return new FrontendControl(FrontendControl.STATIC_IMAGE, Vampire.imagePath);
             }
             if (nebenrolle.equals(Schattenkutte.name)) {
-                return new FrontendControl(Schattenpriester_Fraktion.imagePath);
+                return new FrontendControl(FrontendControl.STATIC_IMAGE, Schattenpriester_Fraktion.imagePath);
             }
             if (nebenrolle.equals(Tarnumhang.name)) {
-                return new FrontendControl(ResourcePath.TARNUMHANG, TARNUMHANG_TITLE);
+                return new FrontendControl(TARNUMHANG_TITLE, ResourcePath.TARNUMHANG);
             }
 
-            return new FrontendControl(chosenPlayer.hauptrolle.getFraktion().getImagePath(), chosenOption);
+            return new FrontendControl(chosenOption, chosenPlayer.hauptrolle.getFraktion().getImagePath());
         }
 
         return new FrontendControl();

@@ -39,22 +39,22 @@ public class Archivar extends Nebenrolle
                 Spieler spieler = Spieler.findSpielerPerRolle(name);
 
                 if(!spieler.hauptrolle.getFraktion().getName().equals(Bürger.name)) {
-                    return new FrontendControl(ResourcePath.TARNUMHANG, TARNUMHANG_TITLE);
+                    return new FrontendControl(TARNUMHANG_TITLE, ResourcePath.TARNUMHANG);
                 }
             }
 
             switch(chosenPlayer.nebenrolle.getType()) {
                 case Nebenrolle.AKTIV:
-                    return new FrontendControl(ResourcePath.AKTIV, AKTIV_TITLE);
+                    return new FrontendControl(AKTIV_TITLE, ResourcePath.AKTIV);
 
                 case Nebenrolle.PASSIV:
-                    return new FrontendControl(ResourcePath.PASSIV, PASSIV_TITLE);
+                    return new FrontendControl(PASSIV_TITLE, ResourcePath.PASSIV);
 
                 case Nebenrolle.INFORMATIV:
-                    return new FrontendControl(ResourcePath.INFORMATIV, INFORMATIV_TITLE);
+                    return new FrontendControl(INFORMATIV_TITLE, ResourcePath.INFORMATIV);
 
                 case Nebenrolle.TARNUMHANG:
-                    return new FrontendControl(ResourcePath.TARNUMHANG, TARNUMHANG_TITLE);
+                    return new FrontendControl(TARNUMHANG_TITLE, ResourcePath.TARNUMHANG);
             }
         }
 

@@ -24,8 +24,8 @@ public class Wahrsager extends Nebenrolle
     public FrontendControl getDropdownOptions() {
         FrontendControl dropDownOptions = Fraktion.getFraktionOrNoneFrontendControl();
 
-        dropDownOptions.content.remove("");
-        dropDownOptions.content.add(KEIN_OPFER);
+        dropDownOptions.strings.remove("");
+        dropDownOptions.strings.add(KEIN_OPFER);
 
         return dropDownOptions;
     }
