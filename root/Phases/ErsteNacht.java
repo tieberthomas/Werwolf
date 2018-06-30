@@ -205,17 +205,13 @@ public class ErsteNacht extends Thread {
         Fraktion fraktion = Fraktion.findFraktion(fraktionName);
         ArrayList<String> fraktionMembers = fraktion.getFraktionsMemberStrings();
 
-        FrontendControl.erzählerListPage(statement, fraktionMembers);
-
         try {
             String fraktionsLogoImagePath = fraktion.getImagePath();
 
-            FrontendControl.spielerIconPicturePage(statement.title, fraktionsLogoImagePath);
+            showListShowImage(statement, fraktionMembers, fraktionsLogoImagePath);
         } catch (NullPointerException e) {
             System.out.println(fraktionName + " nicht gefunden");
         }
-
-        waitForAnswer();
     }
 
     public String showFrontendControl(Statement statement, FrontendControl frontendControl) {
@@ -248,6 +244,9 @@ public class ErsteNacht extends Thread {
             case FrontendControl.CARD:
                 showCard(statement, frontendControl.title, frontendControl.imagePath);
                 break;
+
+            case FrontendControl.LIST_IMAGE:
+                showListShowImage(statement, frontendControl.title, frontendControl.strings, frontendControl.imagePath);
         }
 
         return null;
@@ -321,6 +320,17 @@ public class ErsteNacht extends Thread {
     public void showCard(Statement statement, String title, String imagePath) {
         FrontendControl.erzählerCardPicturePage(statement, title, imagePath);
         FrontendControl.spielerCardPicturePage(title, imagePath);
+
+        waitForAnswer();
+    }
+
+    public void showListShowImage(Statement statement, ArrayList<String> strings, String spielerImagePath) {
+        showListShowImage(statement, statement.title, strings, spielerImagePath);
+    }
+
+    public void showListShowImage(Statement statement, String title, ArrayList<String> strings, String spielerImagePath) {
+        FrontendControl.erzählerListPage(statement, strings);
+        FrontendControl.spielerIconPicturePage(title, spielerImagePath);
 
         waitForAnswer();
     }
