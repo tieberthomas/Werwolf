@@ -35,7 +35,7 @@ public class Nachbar extends Nebenrolle
     @Override
     public FrontendControl getInfo() {
         Spieler nachbarSpieler = Spieler.findSpielerPerRolle(Nachbar.name);
-        FrontendControl info = new FrontendControl(FrontendControl.STATIC_LIST, getBesucherStrings(beobachteterSpieler, nachbarSpieler));
+        FrontendControl info = new FrontendControl(FrontendControl.LIST, getBesucherStrings(beobachteterSpieler, nachbarSpieler));
         if(beobachteterSpieler!=null) {
             info.title = Nacht.NACHBAR_INFORMATION_TITLE + beobachteterSpieler.name;
         }

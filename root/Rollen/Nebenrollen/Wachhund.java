@@ -35,7 +35,7 @@ public class Wachhund extends Nebenrolle
     @Override
     public FrontendControl getInfo() {
         Spieler wachhundSpieler = Spieler.findSpielerPerRolle(Wachhund.name);
-        FrontendControl info = new FrontendControl(FrontendControl.STATIC_LIST, Nachbar.getBesucherStrings(bewachterSpieler, wachhundSpieler));
+        FrontendControl info = new FrontendControl(FrontendControl.LIST, Nachbar.getBesucherStrings(bewachterSpieler, wachhundSpieler));
         if(bewachterSpieler!=null) {
             info.title = Nacht.WACHHUND_INFORMATION_TITLE + bewachterSpieler.name;
         }

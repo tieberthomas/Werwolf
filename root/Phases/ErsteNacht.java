@@ -237,15 +237,15 @@ public class ErsteNacht extends Thread {
                 showDropdownList(statement, frontendControl.title, frontendControl.strings);
                 return FrontendControl.erzählerFrame.chosenOption1;
 
-            case FrontendControl.STATIC_LIST:
+            case FrontendControl.LIST:
                 showList(statement, frontendControl.title, frontendControl.strings);
                 break;
 
-            case FrontendControl.STATIC_IMAGE:
+            case FrontendControl.IMAGE:
                 showImage(statement, frontendControl.title, frontendControl.imagePath);
                 break;
 
-            case FrontendControl.STATIC_CARD:
+            case FrontendControl.CARD:
                 showCard(statement, frontendControl.title, frontendControl.imagePath);
                 break;
         }

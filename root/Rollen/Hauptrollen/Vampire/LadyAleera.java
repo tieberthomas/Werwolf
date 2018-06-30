@@ -24,7 +24,7 @@ public class LadyAleera extends Hauptrolle
 
     @Override
     public FrontendControl getInfo() {
-        return new FrontendControl(FrontendControl.STATIC_LIST, findGeschützeSpieler());
+        return new FrontendControl(FrontendControl.LIST, findGeschützeSpieler());
     }
 
     @Override

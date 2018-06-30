@@ -41,7 +41,7 @@ public class Buchhalter extends Hauptrolle
         if (chosenOption.equals(JA)) {
             abilityCharges--;
             seenRoles = Hauptrolle.getMainRolesAlive();
-            return new FrontendControl(FrontendControl.STATIC_LIST, USED_TITLE, seenRoles);
+            return new FrontendControl(FrontendControl.LIST, USED_TITLE, seenRoles);
         }
 
         return new FrontendControl();
@@ -73,6 +73,6 @@ public class Buchhalter extends Hauptrolle
     }
 
     public FrontendControl getAufgebrauchtPage() {
-        return new FrontendControl(FrontendControl.STATIC_LIST, USED_TITLE, seenRoles);
+        return new FrontendControl(FrontendControl.LIST, USED_TITLE, seenRoles);
     }
 }

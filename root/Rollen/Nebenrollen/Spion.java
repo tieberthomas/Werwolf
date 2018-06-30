@@ -32,7 +32,7 @@ public class Spion extends Nebenrolle
             ArrayList<String> list = new ArrayList<>();
             list.add(Integer.toString(fraktionAnzahl));
 
-            return new FrontendControl(FrontendControl.STATIC_LIST, fraktion.getName(), list);
+            return new FrontendControl(FrontendControl.LIST, fraktion.getName(), list);
         }
 
         return new FrontendControl();

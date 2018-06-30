@@ -23,7 +23,7 @@ public class MissVerona extends Hauptrolle
 
     @Override
     public FrontendControl getInfo() {
-        return new FrontendControl(FrontendControl.STATIC_LIST, findUntote());
+        return new FrontendControl(FrontendControl.LIST, findUntote());
     }
 
     @Override

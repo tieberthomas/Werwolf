@@ -658,17 +658,20 @@ public class Nacht extends Thread
                         showDropdownList(statement, frontendControl.title, frontendControl.strings);
                         return FrontendControl.erzählerFrame.chosenOption1;
 
-                    case FrontendControl.STATIC_LIST:
+                    case FrontendControl.LIST:
                         showList(statement, frontendControl.title, frontendControl.strings);
                         break;
 
-                    case FrontendControl.STATIC_IMAGE:
+                    case FrontendControl.IMAGE:
                         showImage(statement, frontendControl.title, frontendControl.imagePath);
                         break;
 
-                    case FrontendControl.STATIC_CARD:
+                    case FrontendControl.CARD:
                         showCard(statement, frontendControl.title, frontendControl.imagePath);
                         break;
+
+                    case FrontendControl.LIST_IMAGE:
+                        showListShowImage(statement, frontendControl.title, frontendControl.strings, frontendControl.imagePath);
                 }
                 break;
 
@@ -793,7 +796,8 @@ public class Nacht extends Thread
                 waitForAnswer();
                 break;
                 
-            case FrontendControl.STATIC_LIST:
+            case FrontendControl.LIST:
+            case FrontendControl.LIST_IMAGE:
                 FrontendControl.erzählerListPage(statement, getEmptyStringList(), ResourcePath.DEAKTIVIERT);
                 FrontendControl.spielerIconPicturePage(DEAKTIVIERT_TITLE, ResourcePath.DEAKTIVIERT);
 
@@ -801,8 +805,8 @@ public class Nacht extends Thread
                 break;
 
             case FrontendControl.TITLE:
-            case FrontendControl.STATIC_IMAGE:
-            case FrontendControl.STATIC_CARD:
+            case FrontendControl.IMAGE:
+            case FrontendControl.CARD:
                 FrontendControl.erzählerIconPicturePage(statement, ResourcePath.DEAKTIVIERT);
                 FrontendControl.spielerIconPicturePage(DEAKTIVIERT_TITLE, ResourcePath.DEAKTIVIERT);
 
@@ -821,7 +825,8 @@ public class Nacht extends Thread
                 waitForAnswer();
                 break;
                 
-            case FrontendControl.STATIC_LIST:
+            case FrontendControl.LIST:
+            case FrontendControl.LIST_IMAGE:
                 FrontendControl.erzählerListPage(statement, getEmptyStringList(), ResourcePath.TOT);
                 FrontendControl.spielerIconPicturePage(TOT_TITLE, ResourcePath.TOT);
 
@@ -829,8 +834,8 @@ public class Nacht extends Thread
                 break;
 
             case FrontendControl.TITLE:
-            case FrontendControl.STATIC_IMAGE:
-            case FrontendControl.STATIC_CARD:
+            case FrontendControl.IMAGE:
+            case FrontendControl.CARD:
                 FrontendControl.erzählerIconPicturePage(statement, ResourcePath.TOT);
                 FrontendControl.spielerIconPicturePage(TOT_TITLE, ResourcePath.TOT);
 
@@ -849,7 +854,8 @@ public class Nacht extends Thread
                 waitForAnswer();
                 break;
 
-            case FrontendControl.STATIC_LIST:
+            case FrontendControl.LIST:
+            case FrontendControl.LIST_IMAGE:
                 FrontendControl.erzählerListPage(statement, getEmptyStringList(), ResourcePath.AUS_DEM_SPIEL);
                 FrontendControl.spielerListPage(statement.title, getEmptyStringList());
 
@@ -857,8 +863,8 @@ public class Nacht extends Thread
                 break;
 
             case FrontendControl.TITLE:
-            case FrontendControl.STATIC_IMAGE:
-            case FrontendControl.STATIC_CARD:
+            case FrontendControl.IMAGE:
+            case FrontendControl.CARD:
                 FrontendControl.erzählerIconPicturePage(statement, ResourcePath.AUS_DEM_SPIEL);
                 FrontendControl.spielerIconPicturePage(statement.title, "");
 
@@ -888,23 +894,6 @@ public class Nacht extends Thread
     public void showDropdownList(Statement statement, String title, ArrayList<String> strings) {
         FrontendControl.erzählerDropdownPage(statement, strings);
         FrontendControl.spielerDropdownListPage(title, strings);
-
-        waitForAnswer();
-    }
-
-    public void showListShowImage(Statement statement, String string, String spielerImagePath) {
-        showListShowImage(statement, string, spielerImagePath, "");
-    }
-
-    public void showListShowImage(Statement statement, String string, String spielerImagePath, String erzählerImagePath) {
-        ArrayList<String> list = new ArrayList<>();
-        list.add(string);
-        showListShowImage(statement, list, spielerImagePath, erzählerImagePath);
-    }
-
-    public void showListShowImage(Statement statement, ArrayList<String> strings, String spielerImagePath, String erzählerImagePath) {
-        FrontendControl.erzählerListPage(statement, strings, erzählerImagePath);
-        FrontendControl.spielerIconPicturePage(statement.title, spielerImagePath);
 
         waitForAnswer();
     }
@@ -940,6 +929,27 @@ public class Nacht extends Thread
     public void showCard(Statement statement, String title, String imagePath) {
         FrontendControl.erzählerCardPicturePage(statement, title, imagePath);
         FrontendControl.spielerCardPicturePage(title, imagePath);
+
+        waitForAnswer();
+    }
+
+    public void showListShowImage(Statement statement, String string, String spielerImagePath) {
+        showListShowImage(statement, string, spielerImagePath, "");
+    }
+
+    public void showListShowImage(Statement statement, String string, String spielerImagePath, String erzählerImagePath) {
+        ArrayList<String> list = new ArrayList<>();
+        list.add(string);
+        showListShowImage(statement, statement.title, list, spielerImagePath, erzählerImagePath);
+    }
+
+    public void showListShowImage(Statement statement, String title, ArrayList<String> strings, String spielerImagePath) {
+        showListShowImage(statement, title, strings, spielerImagePath, "");
+    }
+
+    public void showListShowImage(Statement statement, String title, ArrayList<String> strings, String spielerImagePath, String erzählerImagePath) {
+        FrontendControl.erzählerListPage(statement, strings, erzählerImagePath);
+        FrontendControl.spielerIconPicturePage(title, spielerImagePath);
 
         waitForAnswer();
     }

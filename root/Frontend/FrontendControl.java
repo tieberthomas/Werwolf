@@ -16,9 +16,10 @@ public class FrontendControl {
     public static final int TITLE = 0;
     public static final int DROPDOWN = 10;
     public static final int DROPDOWN_LIST = 11;
-    public static final int STATIC_LIST = 20;
-    public static final int STATIC_IMAGE = 30;
-    public static final int STATIC_CARD = 31;
+    public static final int LIST = 20;
+    public static final int IMAGE = 30;
+    public static final int CARD = 31;
+    public static final int LIST_IMAGE = 40;
 
     public static ErzählerFrame erzählerFrame;
     public static SpielerFrame spielerFrame;
@@ -60,7 +61,7 @@ public class FrontendControl {
     }
 
     public FrontendControl(String title, String imagePath) {
-        this.typeOfContent = STATIC_IMAGE;
+        this.typeOfContent = IMAGE;
         this.title = title;
         this.imagePath = imagePath;
     }
@@ -73,6 +74,32 @@ public class FrontendControl {
     public FrontendControl(int typeOfContent, String title, String imagePath) {
         this.typeOfContent = typeOfContent;
         this.title = title;
+        this.imagePath = imagePath;
+    }
+
+    public FrontendControl(ArrayList<String> strings, String imagePath) {
+        this.typeOfContent = LIST_IMAGE;
+        this.strings = strings;
+        this.imagePath = imagePath;
+    }
+
+    public FrontendControl(String title, ArrayList<String> strings, String imagePath) {
+        this.typeOfContent = LIST_IMAGE;
+        this.title = title;
+        this.strings = strings;
+        this.imagePath = imagePath;
+    }
+
+    public FrontendControl(int typeOfContent, ArrayList<String> strings, String imagePath) {
+        this.typeOfContent = typeOfContent;
+        this.strings = strings;
+        this.imagePath = imagePath;
+    }
+
+    public FrontendControl(int typeOfContent, String title, ArrayList<String> strings, String imagePath) {
+        this.typeOfContent = typeOfContent;
+        this.title = title;
+        this.strings = strings;
         this.imagePath = imagePath;
     }
 
