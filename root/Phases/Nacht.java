@@ -389,11 +389,7 @@ public class Nacht extends Thread
                                 refreshHexenSchutz();
                             }
 
-                            String victory = Spieler.checkVictory();
-
-                            if (victory != null) {
-                                showEndScreenPage(victory);
-                            }
+                            checkVictory();
                             break;
 
                         case VERSTUMMT:
@@ -618,6 +614,14 @@ public class Nacht extends Thread
                     }
                 }
             }
+        }
+    }
+
+    public void checkVictory() {
+        String victory = Spieler.checkVictory();
+
+        if (victory != null) {
+            showEndScreenPage(victory);
         }
     }
 
