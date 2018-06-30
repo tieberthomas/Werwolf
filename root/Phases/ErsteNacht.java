@@ -88,7 +88,6 @@ public class ErsteNacht extends Thread {
                     showCard(statement, statement.title, cardToDisplay); //TODO title
                     if(Rolle.rolleLebend(rolle.getName())) {
                         nebenrolle.tauschen(newNebenrolle);
-                        Nebenrolle.secondaryRolesInGame.remove(nebenrolle);
                     }
 
                 } else if(statement.getClass() == StatementFraktion.class){
