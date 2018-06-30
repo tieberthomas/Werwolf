@@ -36,7 +36,7 @@ public class Nebenrolle extends Rolle
         secondaryRoles.add(new Schattenkutte());
         secondaryRoles.add(new Spion());
         secondaryRoles.add(new Tarnumhang());
-        secondaryRoles.add(new Totengräber()); //ungetested
+        secondaryRoles.add(new Totengräber());
         secondaryRoles.add(new Vampirumhang());
         secondaryRoles.add(new Wachhund());
         secondaryRoles.add(new Wahrsager());
@@ -63,7 +63,7 @@ public class Nebenrolle extends Rolle
         return names;
     }
 
-    public static ArrayList<String> getPossibleInGameMainRoleNames() {
+    public static ArrayList<String> getPossibleInGameSecondaryRoleNames() {
         ArrayList<String> secondaryRoleInGameNames = getSecondaryRoleInGameNames();
 
         for(Nebenrolle nebenrolle : Rolle.mitteNebenrollen) {
