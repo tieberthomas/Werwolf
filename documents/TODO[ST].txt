@@ -2,7 +2,6 @@ ST:
 deaktiv nochmal anschauen
 neue Karte - Title
 booleans?
-besucht?
 deaktiviert und verbraucht - deaktiviert anzeigen
 ErsteNacht Statement Type
 Statement State invisble
