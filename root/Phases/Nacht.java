@@ -85,7 +85,7 @@ public class Nacht extends Thread
     public static final String WIRT_TITLE = "Freibier ausgeben";
     public static final String TOTENGRÄBER_TITLE = "Karte tauschen";
     public static final String ANÄSTHESIST_TITLE = "Mitspieler deaktivieren";
-    public static final String ANÄSTHESIERTE_SPIELER_TITLE = "Anästhesiert"; //TODO Michael fragen
+    public static final String ANÄSTHESIERTE_SPIELER_TITLE = "Anästhesiert";
     public static final String GEFÄNGNISWÄRTER_TITLE = "Schutzhaft";
     public static final String ÜBERLÄUFER_TITLE = "Karte tauschen";
     public static final String HOLDE_MAID_TITLE = "Mitspieler offenbaren";
@@ -232,6 +232,16 @@ public class Nacht extends Thread
                             }
                             break;
 
+                        case ANÄSTHESIERTE_SPIELER:
+                            chosenPlayer = Spieler.findSpieler(chosenOptionLastStatement);
+                            String anästhesierteSpieler = "";
+                            if (chosenPlayer != null) {
+                                anästhesierteSpieler = chosenPlayer.name;
+                            }
+
+                            showListShowImage(statement, anästhesierteSpieler, ResourcePath.DEAKTIVIERT); //TODO anästhesiert Symbol?
+                            break;
+
                         case PROGRAMM_SCHÜTZE:
                             setSchütze();
                             break;
@@ -266,7 +276,6 @@ public class Nacht extends Thread
                             }
 
                             showListShowImage(statement, neuerWerwolf, ResourcePath.WÖLFE_ICON);
-
                             break;
 
                         case GUTE_HEXE_WIEDERBELEBEN:
@@ -960,7 +969,7 @@ public class Nacht extends Thread
 
         addStatementRolle(TOTENGRÄBER, TOTENGRÄBER_TITLE, Totengräber.name, Statement.ROLLE_CHOOSE_ONE);
         addStatementRolle(ANÄSTHESIST, ANÄSTHESIST_TITLE, Anästhesist.name, Statement.ROLLE_CHOOSE_ONE);
-        addStatementRolle(ANÄSTHESIERTE_SPIELER, ANÄSTHESIERTE_SPIELER_TITLE, Anästhesist.name, Statement.ROLLE_INFO);
+        addStatementRolle(ANÄSTHESIERTE_SPIELER, ANÄSTHESIERTE_SPIELER_TITLE, Anästhesist.name, Statement.ROLLE_SPECAL);
         addStatementRolle(GEFÄNGNISWÄRTER, GEFÄNGNISWÄRTER_TITLE, Gefängniswärter.name, Statement.ROLLE_CHOOSE_ONE);
 
         addStatementRolle(ÜBERLÄUFER, ÜBERLÄUFER_TITLE, Überläufer.name, Statement.ROLLE_CHOOSE_ONE);
