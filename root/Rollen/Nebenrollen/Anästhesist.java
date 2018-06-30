@@ -31,6 +31,11 @@ public class Anästhesist extends Nebenrolle
     }
 
     @Override
+    public FrontendControl getInfo() {
+        return new FrontendControl(); //TODO
+    }
+
+    @Override
     public String getName() {
         return name;
     }

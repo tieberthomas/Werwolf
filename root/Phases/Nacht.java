@@ -35,37 +35,38 @@ public class Nacht extends Thread
     public static final String WIRT = "Wirt erwacht und entscheidet sich ob er ein Freibier ausgeben will";
     public static final String TOTENGRÄBER = "Totengräber erwacht und entscheidet ob er seine Bonusrollenkarte tauschen möchte";
     public static final String ANÄSTHESIST = "Anästhesist erwacht und deaktiviert einen Spieler";
+    public static final String ANÄSTHESIERTE_SPIELER = "Der anästhesierte Spieler erwacht und erfährt, dass er diese Nacht nicht mehr erwacht";
     public static final String GEFÄNGNISWÄRTER = "Gefängniswärter erwacht und stellt einen Spieler  unter Schutzhaft";
     public static final String ÜBERLÄUFER = "Überläufer erwacht und entscheidet ob er seine Hauptrollenkarte tauschen möchte";
-    public static final String NACHBAR = "Nachbar erwacht und entscheidet welchen Spieler er beobachten möchte";
-    public static final String WACHHUND = "Wachhund erwacht und entscheidet welchen Mitspieler er bewachen möchte";
     public static final String HOLDE_MAID = "Holde Maid erwacht und offenbart sich einem Mitspieler";
+    public static final String NACHBAR = "Nachbar erwacht und entscheidet welchen Spieler er beobachten möchte";
+    public static final String WACHHUND = "Wachhund erwacht und entscheidet welchen Mitspieler er schützen möchte";
     public static final String GUTE_HEXE_SCHÜTZEN = "Gute Hexe erwacht und entscheidet ob sie einen Spieler schützen will";
     public static final String LADY_ALEERA = "Lady Aleera erwacht und sieht alle geschützten Spieler";
     public static final String PROSTITUIERTE = "Prostituierte legt sich zu einem Mitspieler ins Bett";
     public static final String RIESE = "Riese erwacht und entscheidet sich ob einen Mitspieler töten möchte";
     public static final String VAMPIRE = "Die Vampire erwachen und wählen ein Opfer aus";
-    public static final String WERWÖLFE = "Die Werwölfe erwachen und wählen ein Opfer aus";
-    public static final String WÖLFIN = "Wölfin erwacht und wählt ein Opfer aus";
+    public static final String WERWÖLFE = "Die Werwölfe erwachen und die Wölfe wählen ein Opfer aus";
+    public static final String WÖLFIN = "Wölfin erwacht und wählt ein Opfer aus, wenn sie das tut, erfährt das dorf ihre Bonusrolle";
     public static final String BÖSE_HEXE = "Böse Hexe erwacht und entscheidet ob sie diese Nacht einen Mitspieler töten möchte";
-    public static final String SCHATTENPRIESTER = "Die Schattenpriester erwachen und entscheiden ob sie einen der Verstorbenen dieser Nacht wiederbeleben und zum Kult hinzufügen möchten";
+    public static final String SCHATTENPRIESTER = "Die Schattenpriester erwachen und entscheiden welchen Verstorbenen dieser Nacht sie wiederbeleben und zum Kult hinzufügen möchten";
     public static final String NEUER_SCHATTENPRIESTER = "Der Wiederbelebte erwacht und tauscht seine Karten gegen Schattenkarten";
-    public static final String CHEMIKER = "Chemiker erwacht und entscheidet ob er das Werwolf Opfer dieser Nacht wiederbeleben und zum Wolfsrudel hinzufügen möchte";
+    public static final String CHEMIKER = "Chemiker erwacht und kann ein Wolfsopfer dieser Nacht wiederbeleben und zum Wolfsrudel hinzufügen";
     public static final String NEUER_WERWOLF = "Der Wiederbelebte erwacht und tauscht seine Hauptrollen- gegen eine Werwolfkarte";
     public static final String GUTE_HEXE_WIEDERBELEBEN = "Gute Hexe erwacht und entscheidet sich ob sie ein Opfer der Nacht wiederbeleben will";
     public static final String MISS_VERONA = "Miss Verona erwacht und lässt sich Auskunft über die Spieler geben, die angegriffen wurden";
     public static final String SPION = "Spion erwacht und fragt den Erzähler nach der Anzahl der verbleibenden Spieler einer Fraktion";
-    public static final String ANALYTIKER = "Analytiker erwacht und wählt zwei Spieler, der Erzähler sagt ihm ob diese in einer Fraktion sind";
-    public static final String ARCHIVAR = "Archivar erwacht und lässt sich Auskunft über einen Mitspieler geben";
-    public static final String SEHERIN = "Seherin erwacht und lässt sich Auskunft über einen Mitspieler geben";
+    public static final String ANALYTIKER = "Analytiker erwacht und wählt zwei Spieler, der Erzähler sagt ihm ob diese in derselben Fraktion sind";
+    public static final String ARCHIVAR = "Archivar erwacht und lässt sich Auskunft über die Bonusrolle eines Mitspielers geben";
+    public static final String SEHERIN = "Seherin erwacht und lässt sich Auskunft über die Fraktion eines Mitspielers geben";
     public static final String ORAKEL = "Orakel erwacht und lässt sich vom Erzähler die Bonusrollenkarte eines zufälligen Bürgers zeigen";
     public static final String SPÄHER = "Späher erwacht und lässt sich Auskunft über einen Mitspieler geben";
     public static final String BUCHHALTER = "Buchhalter erwacht und entscheidet ob er die verbleibenden Rollen erfahren möchte";
-    public static final String WAHRSAGER = "Wahrsager erwacht und gibt seinen Tipp ab welche Fraktion bei der Dorfabstimmung sterben wird";
     public static final String BESCHWÖRER = "Beschwörer erwacht und wählt einen Mitspieler der verstummt";
     public static final String FRISÖR = "Frisör erwacht und wählt einen Mitspieler den er verschönert";
     public static final String NACHBAR_INFORMATION = "Nachbar erwacht und erfährt wer die Besucher seines gewählten Spielers waren";
     public static final String WACHHUND_INFORMATION = "Wachhund erwacht und erfährt wer die Besucher seines gewählten Spielers waren";
+    public static final String WAHRSAGER = "Wahrsager erwacht und gibt seinen Tipp ab welche Fraktion bei der Dorfabstimmung sterben wird";
     public static final String KONDITOR = "Konditor erwacht und entscheidet sich ob es eine gute oder schlechte Torte gibt";
     public static final String KONDITOR_LEHRLING = "Konditor und Konditorlehrling erwachen und entscheiden sich ob es eine gute oder schlechte Torte gibt";
     public static final String OPFER = "Alle Opfer inklusive Liebespaaropfer werden bekannt gegeben";
@@ -84,11 +85,12 @@ public class Nacht extends Thread
     public static final String WIRT_TITLE = "Freibier ausgeben";
     public static final String TOTENGRÄBER_TITLE = "Karte tauschen";
     public static final String ANÄSTHESIST_TITLE = "Mitspieler deaktivieren";
+    public static final String ANÄSTHESIERTE_SPIELER_TITLE = "Anästhesiert"; //TODO Michael fragen
     public static final String GEFÄNGNISWÄRTER_TITLE = "Schutzhaft";
     public static final String ÜBERLÄUFER_TITLE = "Karte tauschen";
+    public static final String HOLDE_MAID_TITLE = "Mitspieler offenbaren";
     public static final String NACHBAR_TITLE = "Spieler beobachten";
     public static final String WACHHUND_TITLE = "Spieler bewachen";
-    public static final String HOLDE_MAID_TITLE = "Mitspieler offenbaren";
     public static final String GUTE_HEXE_SCHÜTZEN_TITLE = "Spieler schützen";
     public static final String LADY_ALEERA_TITLE = "Geschützte Spieler";
     public static final String PROSTITUIERTE_TITLE = "Bett legen";
@@ -111,11 +113,11 @@ public class Nacht extends Thread
     public static final String ORAKEL_VERBRAUCHT_TITLE = "Bonusrollen";
     public static final String SPÄHER_TITLE = "Spieler wählen";
     public static final String BUCHHALTER_TITLE = "Fähigkeit verbrauchen";
-    public static final String WAHRSAGER_TITLE = "Fraktion wählen";
     public static final String BESCHWÖRER_TITLE = "Mitspieler verstummen";
     public static final String FRISÖR_TITLE = "Mitspieler verschönern";
     public static final String NACHBAR_INFORMATION_TITLE = "Besucher von ";
     public static final String WACHHUND_INFORMATION_TITLE = "Besucher von ";
+    public static final String WAHRSAGER_TITLE = "Fraktion wählen";
     public static final String KONDITOR_TITLE = "Torte";
     public static final String KONDITOR_LEHRLING_TITLE = KONDITOR_TITLE;
     public static final String OPFER_TITLE = "Opfer der Nacht";
@@ -167,7 +169,7 @@ public class Nacht extends Thread
             for (Statement statement : statements) {
                 chosenOption = null;
 
-                if (statement.visible || statement.type == Statement.PROGRAMM) {
+                if (statement.visible || statement.type == Statement.PROGRAMM) { //TODO useless?
                     switch (statement.type) {
                         case Statement.SHOW_TITLE:
                             showTitle(statement);
@@ -284,34 +286,6 @@ public class Nacht extends Thread
                             }
                             break;
 
-                        case PROGRAMM_WAHRSAGER:
-                            if (Wahrsager.isGuessing) {
-                                Spieler wahrsagerSpieler2 = Spieler.findSpielerPerRolle(Wahrsager.name);
-                                Spieler deadWahrsagerSpieler = Spieler.findSpielerOrDeadPerRolle(Wahrsager.name);
-                                if (wahrsagerSpieler2 != null) {
-                                    Wahrsager wahrsager = (Wahrsager) deadWahrsagerSpieler.nebenrolle;
-                                    if (wahrsager.guessedRight()) {
-                                        schönlinge.add(wahrsagerSpieler2);
-                                    }
-                                }
-                            } else {
-                                Wahrsager.isGuessing = true;
-                            }
-
-                            if (!(Spieler.getLivigPlayer().size() > 4)) {
-                                Wahrsager.isGuessing = false;
-                            }
-                            break;
-
-                        case WAHRSAGER:
-                            Spieler wahrsagerSpieler1 = Spieler.findSpielerOrDeadPerRolle(Wahrsager.name);
-                            if (wahrsagerSpieler1 != null) {
-                                Wahrsager wahrsager = (Wahrsager) wahrsagerSpieler1.nebenrolle;
-
-                                wahrsager.tipp = Fraktion.findFraktion(chosenOption);
-                            }
-                            break;
-
                         case ANALYTIKER:
                             Spieler analytikerSpieler = Spieler.findSpielerPerRolle(rolle.getName());
                             if (Rolle.rolleLebend(Analytiker.name)) {
@@ -349,6 +323,34 @@ public class Nacht extends Thread
                             chosenPlayer = Spieler.findSpieler(chosenOption);
                             if (chosenPlayer != null) {
                                 schönlinge.add(chosenPlayer);
+                            }
+                            break;
+
+                        case PROGRAMM_WAHRSAGER:
+                            if (Wahrsager.isGuessing) {
+                                Spieler wahrsagerSpieler2 = Spieler.findSpielerPerRolle(Wahrsager.name);
+                                Spieler deadWahrsagerSpieler = Spieler.findSpielerOrDeadPerRolle(Wahrsager.name);
+                                if (wahrsagerSpieler2 != null) {
+                                    Wahrsager wahrsager = (Wahrsager) deadWahrsagerSpieler.nebenrolle;
+                                    if (wahrsager.guessedRight()) {
+                                        schönlinge.add(wahrsagerSpieler2);
+                                    }
+                                }
+                            } else {
+                                Wahrsager.isGuessing = true;
+                            }
+
+                            if (!(Spieler.getLivigPlayer().size() > 4)) {
+                                Wahrsager.isGuessing = false;
+                            }
+                            break;
+
+                        case WAHRSAGER:
+                            Spieler wahrsagerSpieler1 = Spieler.findSpielerOrDeadPerRolle(Wahrsager.name);
+                            if (wahrsagerSpieler1 != null) {
+                                Wahrsager wahrsager = (Wahrsager) wahrsagerSpieler1.nebenrolle;
+
+                                wahrsager.tipp = Fraktion.findFraktion(chosenOption);
                             }
                             break;
 
@@ -955,13 +957,16 @@ public class Nacht extends Thread
         if(Wirt.freibierCharges > 0) {
             addStatementRolle(WIRT, WIRT_TITLE, Wirt.name, Statement.ROLLE_CHOOSE_ONE);
         }
+
         addStatementRolle(TOTENGRÄBER, TOTENGRÄBER_TITLE, Totengräber.name, Statement.ROLLE_CHOOSE_ONE);
         addStatementRolle(ANÄSTHESIST, ANÄSTHESIST_TITLE, Anästhesist.name, Statement.ROLLE_CHOOSE_ONE);
+        addStatementRolle(ANÄSTHESIERTE_SPIELER, ANÄSTHESIERTE_SPIELER_TITLE, Anästhesist.name, Statement.ROLLE_INFO);
         addStatementRolle(GEFÄNGNISWÄRTER, GEFÄNGNISWÄRTER_TITLE, Gefängniswärter.name, Statement.ROLLE_CHOOSE_ONE);
+
         addStatementRolle(ÜBERLÄUFER, ÜBERLÄUFER_TITLE, Überläufer.name, Statement.ROLLE_CHOOSE_ONE);
+        addStatementRolle(HOLDE_MAID, HOLDE_MAID_TITLE, HoldeMaid.name, Statement.ROLLE_CHOOSE_ONE);
         addStatementRolle(NACHBAR, NACHBAR_TITLE, Nachbar.name, Statement.ROLLE_CHOOSE_ONE);
         addStatementRolle(WACHHUND, WACHHUND_TITLE, Wachhund.name, Statement.ROLLE_CHOOSE_ONE);
-        addStatementRolle(HOLDE_MAID, HOLDE_MAID_TITLE, HoldeMaid.name, Statement.ROLLE_CHOOSE_ONE);
         addStatementRolle(GUTE_HEXE_SCHÜTZEN, GUTE_HEXE_SCHÜTZEN_TITLE, GuteHexe.name, Statement.ROLLE_CHOOSE_ONE);
 
         addInvisibleProgrammStatement(PROGRAMM_SCHÜTZE);
@@ -984,22 +989,24 @@ public class Nacht extends Thread
         addStatementRolle(GUTE_HEXE_WIEDERBELEBEN, GUTE_HEXE_WIEDERBELEBEN_TITLE, GuteHexe.name, Statement.ROLLE_SPECAL);
 
         addStatementRolle(MISS_VERONA, MISS_VERONA_TITLE, MissVerona.name, Statement.ROLLE_INFO);
+        addStatementRolle(SPION, SPION_TITLE, Spion.name, Statement.ROLLE_CHOOSE_ONE_INFO);
+        addStatementRolle(ANALYTIKER, ANALYTIKER_TITLE, Analytiker.name, Statement.ROLLE_SPECAL);
+        addStatementRolle(ARCHIVAR, ARCHIVAR_TITLE, Archivar.name, Statement.ROLLE_CHOOSE_ONE_INFO);
         addStatementRolle(SEHERIN, SEHERIN_TITLE, Seherin.name, Statement.ROLLE_CHOOSE_ONE_INFO);
         addStatementRolle(ORAKEL, ORAKEL_TITLE, Orakel.name, Statement.ROLLE_INFO);
         addStatementRolle(SPÄHER, SPÄHER_TITLE, Späher.name, Statement.ROLLE_CHOOSE_ONE_INFO);
         addStatementRolle(BUCHHALTER, BUCHHALTER_TITLE, Buchhalter.name, Statement.ROLLE_CHOOSE_ONE_INFO);
-        addInvisibleProgrammStatement(PROGRAMM_WAHRSAGER);
-        if(Spieler.getLivigPlayer().size()>4) {
-            addStatementRolle(WAHRSAGER, WAHRSAGER_TITLE, Wahrsager.name, Statement.ROLLE_CHOOSE_ONE);
-        }
-        addStatementRolle(ANALYTIKER, ANALYTIKER_TITLE, Analytiker.name, Statement.ROLLE_SPECAL);
-        addStatementRolle(ARCHIVAR, ARCHIVAR_TITLE, Archivar.name, Statement.ROLLE_CHOOSE_ONE_INFO);
-        addStatementRolle(SPION, SPION_TITLE, Spion.name, Statement.ROLLE_CHOOSE_ONE_INFO);
 
         addStatementRolle(BESCHWÖRER, BESCHWÖRER_TITLE, Beschwörer.name, Statement.ROLLE_CHOOSE_ONE);
         addStatementRolle(FRISÖR, FRISÖR_TITLE, Frisör.name, Statement.ROLLE_CHOOSE_ONE);
         addStatementRolle(NACHBAR_INFORMATION, NACHBAR_INFORMATION_TITLE, Nachbar.name, Statement.ROLLE_INFO);
         addStatementRolle(WACHHUND_INFORMATION, WACHHUND_INFORMATION_TITLE, Wachhund.name, Statement.ROLLE_INFO);
+
+        addInvisibleProgrammStatement(PROGRAMM_WAHRSAGER);
+        if(Spieler.getLivigPlayer().size()>4) {
+            addStatementRolle(WAHRSAGER, WAHRSAGER_TITLE, Wahrsager.name, Statement.ROLLE_CHOOSE_ONE);
+        }
+
         if (Rolle.rolleInNachtEnthalten(Konditorlehrling.name)) {
             addStatementRolle(KONDITOR_LEHRLING, KONDITOR_LEHRLING_TITLE, Konditorlehrling.name, Statement.ROLLE_SPECAL);
         } else {
@@ -1009,17 +1016,16 @@ public class Nacht extends Thread
         addStatementIndie(ALLE_WACHEN_AUF, ALLE_WACHEN_AUF_TITLE, Statement.SHOW_TITLE);
 
         addInvisibleProgrammStatement(PROGRAMM_OPFER);
-
         addStatementIndie(OPFER, OPFER_TITLE, Statement.INDIE);
-        if(Wölfin.modus == Wölfin.TÖTEND) {
-            addStatementRolle(WÖLFIN_NEBENROLLE, WÖLFIN_NEBENROLLE_TITLE, Wölfin.name, Statement.ROLLE_INFO);
-        }
+
         if(Rolle.rolleInNachtEnthalten(Beschwörer.name)) {
             addStatementIndie(VERSTUMMT, VERSTUMMT_TITLE, Statement.INDIE);
         }
-
         if(Rolle.rolleInNachtEnthalten(Frisör.name) || Rolle.rolleInNachtEnthalten(Wahrsager.name)) {
             addStatementIndie(SCHÖNLINGE, SCHÖNLINGE_TITLE, Statement.INDIE);
+        }
+        if(Wölfin.modus == Wölfin.TÖTEND) {
+            addStatementRolle(WÖLFIN_NEBENROLLE, WÖLFIN_NEBENROLLE_TITLE, Wölfin.name, Statement.ROLLE_INFO);
         }
 
         addInvisibleProgrammStatement(PROGRAMM_TORTE);

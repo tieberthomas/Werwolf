@@ -17,7 +17,7 @@ Seherin erwacht und lässt sich Auskunft über einen Mitspieler geben
 Alle wachen auf
 
 Normale Nacht
-Alle schlafe ein
+Alle schlafen ein
 Wirt erwacht und entscheidet sich ob er ein Freibier ausgeben will
 Totengräber erwacht und entscheidet ob er seine Bonusrollenkarte tauschen möchte
 Anästhesist erwacht und deaktiviert einen Spieler
@@ -55,6 +55,7 @@ Wachhund erwacht und erfährt wer die Besucher seines gewählten Spielers waren
 Wahrsager erwacht und gibt seinen Tipp ab welche Fraktion bei der Dorfabstimmung sterben wird
 Konditor erwacht und entscheidet sich ob es eine gute oder schlechte Torte gibt
 Konditor und Konditorlehrling erwachen und entscheiden sich ob es eine gute oder schlechte Torte gibt
+Alle wachen auf
 Alle Opfer inklusive Liebespaaropfer werden bekannt gegeben
 Der verstummte Spieler wird bekannt gegeben
 Die Schönlinge werden bekannt gegeben
