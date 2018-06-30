@@ -87,7 +87,9 @@ public class Nachbar extends Nebenrolle
                 }
             }
 
-            besucher.remove(beobachter.name);
+            if(beobachter!=null) {
+                besucher.remove(beobachter.name);
+            }
         }
 
         return besucher;
