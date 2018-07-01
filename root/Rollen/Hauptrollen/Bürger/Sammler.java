@@ -4,6 +4,9 @@ import root.ResourceManagement.ResourcePath;
 import root.Rollen.Fraktion;
 import root.Rollen.Fraktionen.Bürger;
 import root.Rollen.Hauptrolle;
+import root.Rollen.Nebenrolle;
+import root.Rollen.Nebenrollen.Totengräber;
+import root.Rollen.Rolle;
 
 /**
  * Created by Steve on 12.11.2017.
@@ -42,5 +45,16 @@ public class Sammler extends Hauptrolle
     @Override
     public boolean isSpammable() {
         return spammable;
+    }
+
+    public static boolean isSammlerRolle(String rolle) {
+        for (Nebenrolle currentRolle : Rolle.mitteNebenrollen) {
+            if (currentRolle.getName().equals(rolle) &&
+                    !currentRolle.getName().equals(Totengräber.name) &&
+                    !currentRolle.getType().equals(Nebenrolle.PASSIV)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

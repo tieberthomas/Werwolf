@@ -1056,7 +1056,7 @@ public class Nacht extends Thread
 
     public void addStatementRolle(String statement, String title, String rolle, int type) {
         if (Rolle.rolleInNachtEnthalten(rolle)) {
-            boolean isSammlerStatement = Rolle.isSammlerRolle(rolle);
+            boolean isSammlerStatement = Sammler.isSammlerRolle(rolle);
             statements.add(new StatementRolle(statement, title, rolle, type, true, isSammlerStatement));
         } else {
             statements.add(new StatementRolle(statement, title, rolle, type, false));
