@@ -535,15 +535,8 @@ public class Nacht extends Thread
     }
 
     public void setOpfer() {
-        if (Liebespaar.spieler1 != null) {
-            checkLiebespaar();
-        }
-
-        Spieler wachhundSpieler= Spieler.findSpielerPerRolle(Wachhund.name);
-        if (wachhundSpieler != null) {
-            checkWachhund();
-        }
-
+        checkLiebespaar();
+        checkWachhund();
         killVictims();
     }
 
@@ -574,31 +567,40 @@ public class Nacht extends Thread
         boolean spieler1Lebend = true;
         boolean spieler2Lebend = true;
 
-        for (Opfer currentVictim : Opfer.deadVictims) {
-            if (currentVictim.opfer.name.equals(Liebespaar.spieler1.name)) {
-                spieler1Lebend = false;
-            }
-            if (currentVictim.opfer.name.equals(Liebespaar.spieler2.name)) {
-                spieler2Lebend = false;
-            }
-        }
+        if (Liebespaar.spieler1 != null && Liebespaar.spieler2!=null) {
 
-        if (spieler1Lebend && !spieler2Lebend) {
+            for (Opfer currentVictim : Opfer.deadVictims) {
+                if (currentVictim.opfer.name.equals(Liebespaar.spieler1.name)) {
+                    spieler1Lebend = false;
+                }
+                if (currentVictim.opfer.name.equals(Liebespaar.spieler2.name)) {
+                    spieler2Lebend = false;
+                }
+            }
+
+            if (spieler1Lebend && !spieler2Lebend) {
                 Opfer.deadVictims.add(new Opfer(Liebespaar.spieler1, Liebespaar.spieler2, false));
             }
+
             if (!spieler1Lebend && spieler2Lebend) {
                 Opfer.deadVictims.add(new Opfer(Liebespaar.spieler2, Liebespaar.spieler1, false));
+            }
         }
     }
 
     public void checkWachhund() {
+        boolean bewachterSpielerDied = false;
         Spieler wachhundSpieler = Spieler.findSpielerPerRolle(Wachhund.name);
         if(wachhundSpieler!=null) {
             Wachhund wachhund = (Wachhund)wachhundSpieler.nebenrolle;
             for (Opfer currentVictim : Opfer.deadVictims) {
-                if (currentVictim.opfer.name.equals(wachhund.bewachterSpieler)) {
-                    Opfer.deadVictims.add(new Opfer(wachhundSpieler, wachhund.bewachterSpieler, false));
+                if (wachhund.bewachterSpieler!=null && currentVictim.opfer.name.equals(wachhund.bewachterSpieler.name)) {
+                    bewachterSpielerDied = true;
                 }
+            }
+
+            if(bewachterSpielerDied) {
+                Opfer.deadVictims.add(new Opfer(wachhundSpieler, wachhund.bewachterSpieler, false));
             }
         }
     }
