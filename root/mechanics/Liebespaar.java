@@ -33,6 +33,10 @@ public class Liebespaar
         ArrayList<Spieler> spieler = (ArrayList<Spieler>)Spieler.spieler.clone();
 
         if(spieler1String.equals(ZUFÄLLIG)) {
+            if(!spieler2String.equals(ZUFÄLLIG)) {
+                spieler2 = Spieler.findSpieler(spieler2String);
+                spieler.remove(spieler2);
+            }
             spieler1 = generateRandomSpieler(spieler);
         } else {
             spieler1 = Spieler.findSpieler(spieler1String);
