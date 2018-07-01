@@ -19,6 +19,7 @@ public class Nachbar extends Nebenrolle
     public static boolean unique = true;
     public static boolean spammable = true;
     public Spieler beobachteterSpieler = null;
+    public String type = Nebenrolle.INFORMATIV;
 
     @Override
     public FrontendControl getDropdownOptions() {
@@ -61,6 +62,9 @@ public class Nachbar extends Nebenrolle
     public boolean isSpammable() {
         return spammable;
     }
+
+    @Override
+    public String getType() { return type; }
 
     public static ArrayList<String> getBesucherStrings(Spieler beobachteterSpieler, Spieler beobachter) {
         ArrayList<String> besucher = new ArrayList<>();

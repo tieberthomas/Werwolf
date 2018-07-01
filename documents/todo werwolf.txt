@@ -14,6 +14,7 @@ anästesierter spieler dem erzähler anzeigen wenn der aufgerufen wird
 siegüberprüfung generischer machen (tag und nacht)
 tauschkarten quasi aus secondaryRolesInGame removen (für nachzügler) aber nicht wirklich, weil ja der spielerscreen am tag anzeigen soll dass es drin war
 
+bei jeder rolle als kommentar den kartentext dazuschreiben
 
 Rollen ganz implementieren:
 

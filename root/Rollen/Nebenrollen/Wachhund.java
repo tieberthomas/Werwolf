@@ -16,6 +16,7 @@ public class Wachhund extends Nebenrolle
     public static boolean unique = true;
     public static boolean spammable = true;
     public Spieler bewachterSpieler = null;
+    public String type = Nebenrolle.INFORMATIV;
 
     @Override
     public FrontendControl getDropdownOptions() {
@@ -61,4 +62,7 @@ public class Wachhund extends Nebenrolle
     public boolean isSpammable() {
         return spammable;
     }
+
+    @Override
+    public String getType() { return type; }
 }
