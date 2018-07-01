@@ -33,11 +33,11 @@ public class Hauptrolle extends Rolle
         mainRoles.add(new Bruder());
         mainRoles.add(new Buchhalter());
         mainRoles.add(new Dorfbewohner());
-        mainRoles.add(new GuteHexe()); //wiederbeleben fragwürdig (und zweimal besuche fragwürdig)
+        mainRoles.add(new GuteHexe());
         mainRoles.add(new HoldeMaid());
         mainRoles.add(new Orakel());
         mainRoles.add(new Riese());
-        mainRoles.add(new Sammler()); //fehlt
+        mainRoles.add(new Sammler());
         mainRoles.add(new Seherin());
         mainRoles.add(new Späher());
         mainRoles.add(new Wirt());
