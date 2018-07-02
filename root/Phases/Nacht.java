@@ -61,7 +61,7 @@ public class Nacht extends Thread
     public static final String SEHERIN = "Seherin erwacht und lässt sich Auskunft über die Fraktion eines Mitspielers geben";
     public static final String ORAKEL = "Orakel erwacht und lässt sich vom Erzähler die Bonusrollenkarte eines zufälligen Bürgers zeigen";
     public static final String SPÄHER = "Späher erwacht und lässt sich Auskunft über einen Mitspieler geben";
-    public static final String BUCHHALTER = "Buchhalter erwacht und entscheidet ob er die verbleibenden Rollen erfahren möchte";
+    public static final String BUCHHALTER = "Buchhalter erwacht und entscheidet ob er die verbleibenden Hauptrollen erfahren möchte";
     public static final String BESCHWÖRER = "Beschwörer erwacht und wählt einen Mitspieler der verstummt";
     public static final String FRISÖR = "Frisör erwacht und wählt einen Mitspieler den er verschönert";
     public static final String NACHBAR_INFORMATION = "Nachbar erwacht und erfährt wer die Besucher seines gewählten Spielers waren";
