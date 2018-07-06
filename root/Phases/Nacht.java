@@ -449,6 +449,17 @@ public class Nacht extends Thread
             }
         }
 
+        for(String fraktionsName : Fraktion.getFraktionStrings()) {
+            if (Fraktion.fraktionOffenkundigTot(fraktionsName)) {
+                System.out.println(fraktionsName + " tot");
+            } else {
+                System.out.println(fraktionsName + " lebendig");
+            }
+        }
+        System.out.println("fertig für diese Nacht");
+        System.out.println();
+        System.out.println();
+
         cleanUp();
 
         if (freibier) {

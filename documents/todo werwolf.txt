@@ -5,7 +5,6 @@ interaktion prostituierte wachhund riese blutwolf
 
 CherryOnTop:
 Wenn das ziel der holden maid anästisiert ist, soll es nicht aufwachen (deaktiviertpage für holde maid anzeigen)
-killer schütze ignorieren generischer machen
 Fraktions bamboozelstatements bleiben
 seher bamboozlekarten dem erzähler zeigen während der seher aktion damit dieser nicht verwirrt ist
 anästesierter spieler dem erzähler anzeigen wenn der aufgerufen wird
@@ -26,4 +25,4 @@ Imitator
 zuviel arbeit fürs erste:
 nocheinmal spielen button auf endscreen
 in der nacht ein zurückbutton.
-	->dann soll erzählersreen auch mit pfeiltasten navigierbar sein
+	->dann soll erzählersrceen auch mit pfeiltasten navigierbar sein

@@ -90,7 +90,15 @@ public class Fraktion {
     }
 
     public static boolean fraktionInNachtEnthalten(String fraktion) {
-        return getFraktionStrings().contains(fraktion);
+        if(getFraktionStrings().contains(fraktion)) {
+            /*if(Fraktion.findFraktion(fraktion).getName().equals(Vampire.name)) {
+
+            }*/
+
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public static boolean fraktionLebend(String fraktion) {
@@ -101,6 +109,25 @@ public class Fraktion {
         }
 
         return false;
+    }
+
+    public static boolean fraktionOffenkundigTot(String fraktion) {
+        for (Hauptrolle hauptrolle : Hauptrolle.mainRolesInGame) {
+            if (hauptrolle.getFraktion().getName().equals(fraktion)) {
+                boolean contains = false;
+                for(Hauptrolle mitteHauptrolle : Rolle.mitteHauptrollen) {
+                    if(hauptrolle.getName().equals(mitteHauptrolle.getName())){
+                        contains = true;
+                    }
+                }
+
+                if(!contains) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
 
     public static boolean fraktionOpfer(String fraktion) {
