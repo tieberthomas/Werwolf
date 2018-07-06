@@ -396,9 +396,7 @@ public class Nacht extends Thread
 
                             showList(statement, opferDerNacht);
 
-                            if (Rolle.rolleLebend(GuteHexe.name)) {
-                                refreshHexenSchutz();
-                            }
+                            refreshHexenSchutz();
 
                             checkVictory();
                             break;
@@ -590,7 +588,7 @@ public class Nacht extends Thread
 
     public void checkWachhund() {
         boolean bewachterSpielerDied = false;
-        Spieler wachhundSpieler = Spieler.findSpielerPerRolle(Wachhund.name);
+        Spieler wachhundSpieler = Spieler.findSpielerOrDeadPerRolle(Wachhund.name);
         if(wachhundSpieler!=null) {
             Wachhund wachhund = (Wachhund)wachhundSpieler.nebenrolle;
             for (Opfer currentVictim : Opfer.deadVictims) {
@@ -606,24 +604,26 @@ public class Nacht extends Thread
     }
 
     public void refreshHexenSchutz() {
-        GuteHexe guteHexe = (GuteHexe)Spieler.findSpielerPerRolle(GuteHexe.name).hauptrolle;
-        if(guteHexe.besucht!=null) {
-            String hexenSchutzSpieler = guteHexe.besucht.name;
-            boolean refreshed = false;
+        if (Rolle.rolleLebend(GuteHexe.name)) {
+            GuteHexe guteHexe = (GuteHexe) Spieler.findSpielerPerRolle(GuteHexe.name).hauptrolle;
+            if (guteHexe.besucht != null) {
+                String hexenSchutzSpieler = guteHexe.besucht.name;
+                boolean refreshed = false;
 
-            for (Opfer opfer : Opfer.possibleVictims) {
-                if (opfer.opfer.name.equals(hexenSchutzSpieler)) {
-                    guteHexe.abilityCharges++;
-                    refreshed = true;
-                    break;
-                }
-            }
-
-            if (!refreshed) {
-                for (Opfer opfer : Opfer.deadVictims) {
+                for (Opfer opfer : Opfer.possibleVictims) {
                     if (opfer.opfer.name.equals(hexenSchutzSpieler)) {
                         guteHexe.abilityCharges++;
+                        refreshed = true;
                         break;
+                    }
+                }
+
+                if (!refreshed) {
+                    for (Opfer opfer : Opfer.deadVictims) {
+                        if (opfer.opfer.name.equals(hexenSchutzSpieler)) {
+                            guteHexe.abilityCharges++;
+                            break;
+                        }
                     }
                 }
             }
