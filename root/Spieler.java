@@ -212,13 +212,26 @@ public class Spieler
         return null;
     }
 
-    public static ArrayList<String> findSpielersPerRolle(String name) {
+    public static ArrayList<String> findSpielersStringsPerRolle(String name) {
         ArrayList<String> spielers = new ArrayList<>();
 
         for(Spieler currentSpieler : spieler)
         {
             if(currentSpieler.hauptrolle.getName().equals(name) || currentSpieler.nebenrolle.getName().equals(name)) {
                 spielers.add(currentSpieler.name);
+            }
+        }
+
+        return spielers;
+    }
+
+    public static ArrayList<Spieler> findSpielersPerRolle(String name) {
+        ArrayList<Spieler> spielers = new ArrayList<>();
+
+        for(Spieler currentSpieler : spieler)
+        {
+            if(currentSpieler.hauptrolle.getName().equals(name) || currentSpieler.nebenrolle.getName().equals(name)) {
+                spielers.add(currentSpieler);
             }
         }
 

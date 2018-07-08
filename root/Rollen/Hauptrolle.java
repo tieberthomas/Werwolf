@@ -119,8 +119,7 @@ public class Hauptrolle extends Rolle
         return  mainRolesInGame;
     }
 
-    public static Hauptrolle findHauptrolle(String wantedName)
-    {
+    public static Hauptrolle findHauptrolle(String wantedName) {
         for(Hauptrolle hauptrolle : mainRoles) {
             if(hauptrolle.getName().equals(wantedName))
                 return hauptrolle;

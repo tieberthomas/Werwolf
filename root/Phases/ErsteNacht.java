@@ -134,7 +134,7 @@ public class ErsteNacht extends Thread {
                             break;
 
                         case BRÜDER:
-                            ArrayList<String> brüder = Spieler.findSpielersPerRolle(Bruder.name);
+                            ArrayList<String> brüder = Spieler.findSpielersStringsPerRolle(Bruder.name);
 
                             FrontendControl.erzählerListPage(statement, brüder);
                             FrontendControl.spielerCardPicturePage(statement.title, ResourcePath.BRÜDER_KARTE);
@@ -212,7 +212,11 @@ public class ErsteNacht extends Thread {
         } else if(statement.getClass() == StatementRolle.class) {
             StatementRolle statementRolle = (StatementRolle)statement;
             Rolle rolle = Rolle.findRolle(statementRolle.rolle);
-            playersAwake.add(Spieler.findSpielerPerRolle(rolle.getName()));
+            if(rolle.getName()!=Bruder.name) {
+                playersAwake.add(Spieler.findSpielerPerRolle(rolle.getName()));
+            } else {
+                playersAwake.addAll(Spieler.findSpielersPerRolle(rolle.getName()));
+            }
         }
     }
 
