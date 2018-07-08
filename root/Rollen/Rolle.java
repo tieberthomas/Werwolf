@@ -3,6 +3,7 @@ package root.Rollen;
 import root.Frontend.FrontendControl;
 import root.ResourceManagement.ResourcePath;
 import root.Rollen.Hauptrollen.Bürger.Sammler;
+import root.Rollen.Nebenrollen.Totengräber;
 import root.Spieler;
 
 import java.util.ArrayList;
@@ -92,6 +93,13 @@ public class Rolle {
             if(!hauptRolleInNachtEnthalten(Sammler.name)) {
                 for (Rolle currentRolle : Rolle.mitteNebenrollen) {
                     if (currentRolle.getName().equals(rolle)) {
+                        return false;
+                    }
+                }
+            } else {
+                //TODO generischer machen
+                for (Rolle currentRolle : Rolle.mitteNebenrollen) {
+                    if (currentRolle.getName().equals(rolle) && currentRolle.getName().equals(Totengräber.name)) {
                         return false;
                     }
                 }

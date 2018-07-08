@@ -35,6 +35,7 @@ public class Totengräber extends Nebenrolle
 
                 Spieler spielerTotengräber = Spieler.findSpielerPerRolle(name);
                 spielerTotengräber.nebenrolle = chosenNebenrolle;
+
                 Rolle.mitteNebenrollen.remove(chosenNebenrolle);
                 Rolle.mitteNebenrollen.add(this);
 

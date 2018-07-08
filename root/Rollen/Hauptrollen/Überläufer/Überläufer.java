@@ -6,11 +6,9 @@ import root.Rollen.Fraktion;
 import root.Rollen.Fraktionen.Überläufer_Fraktion;
 import root.Rollen.Hauptrolle;
 import root.Rollen.Hauptrollen.Bürger.Dorfbewohner;
+import root.Rollen.Rolle;
 import root.Spieler;
 
-/**
- * Created by Steve on 12.11.2017.
- */
 public class Überläufer extends Hauptrolle
 {
     public static final String name = "Überläufer";
@@ -30,10 +28,14 @@ public class Überläufer extends Hauptrolle
         if (chosenHauptrolle != null) {
             try {
                 Spieler spielerHauptrolle = Spieler.findSpielerPerRolle(chosenHauptrolle.getName());
+                chosenHauptrolle = spielerHauptrolle.hauptrolle;
                 spielerHauptrolle.hauptrolle = new Dorfbewohner();
 
                 Spieler spielerÜberläufer = Spieler.findSpielerPerRolle(name);
                 spielerÜberläufer.hauptrolle = chosenHauptrolle;
+
+                Rolle.mitteHauptrollen.remove(chosenHauptrolle);
+                Rolle.mitteHauptrollen.add(this);
             }catch (NullPointerException e) {
                 System.out.println(name + " nicht gefunden");
             }
