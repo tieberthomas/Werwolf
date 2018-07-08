@@ -134,6 +134,7 @@ public class Nacht extends Thread
     public static ArrayList<Statement> statements;
     public static Object lock;
 
+    public static ArrayList<Spieler> playersAwake = new ArrayList<>();
     ArrayList<Spieler> schönlinge = new ArrayList<>();
     public static boolean wölfinKilled;
     public static Spieler wölfinSpieler;
@@ -170,6 +171,8 @@ public class Nacht extends Thread
                 chosenOption = null;
 
                 if (statement.visible || statement.type == Statement.PROGRAMM) { //TODO useless?
+                    setPlayersAwake(statement);
+
                     switch (statement.type) {
                         case Statement.SHOW_TITLE:
                             showTitle(statement);
@@ -547,6 +550,19 @@ public class Nacht extends Thread
         checkLiebespaar();
         checkWachhund();
         killVictims();
+    }
+
+    public void setPlayersAwake(Statement statement) {
+        playersAwake.clear();
+        if(statement.getClass() == StatementFraktion.class) {
+            StatementFraktion statementFraktion = (StatementFraktion)statement;
+            Fraktion fraktion = Fraktion.findFraktion(statementFraktion.fraktion);
+            playersAwake.addAll(fraktion.getFraktionsMembers());
+        } else if(statement.getClass() == StatementRolle.class) {
+            StatementRolle statementRolle = (StatementRolle)statement;
+            Rolle rolle = Rolle.findRolle(statementRolle.rolle);
+            playersAwake.add(Spieler.findSpielerPerRolle(rolle.getName()));
+        }
     }
 
     private void cleanUp() {
@@ -974,6 +990,7 @@ public class Nacht extends Thread
     }
 
     public void waitForAnswer() {
+        FrontendControl.refreshÜbersichtsFrame();
         try {
             lock.wait();
         } catch (InterruptedException e) {

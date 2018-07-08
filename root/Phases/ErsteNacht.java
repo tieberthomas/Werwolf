@@ -59,6 +59,7 @@ public class ErsteNacht extends Thread {
 
     public static ArrayList<Statement> statements;
     public static Object lock;
+    public static ArrayList<Spieler> playersAwake = new ArrayList<>();
 
     public void run() {
         lock = new Object();
@@ -76,6 +77,7 @@ public class ErsteNacht extends Thread {
             ersteNachtBuildStatements();
 
             for (Statement statement : statements) {
+                setPlayersAwake(statement);
                 Rolle rolle = null;
                 if (statement.getClass() == StatementRolle.class) {
                     rolle = ((StatementRolle) statement).getRolle();
@@ -198,6 +200,19 @@ public class ErsteNacht extends Thread {
             currentSpieler.aktiv = true;
             currentSpieler.geschützt = false;
             currentSpieler.ressurectable = true;
+        }
+    }
+
+    public void setPlayersAwake(Statement statement) {
+        playersAwake.clear();
+        if(statement.getClass() == StatementFraktion.class) {
+            StatementFraktion statementFraktion = (StatementFraktion)statement;
+            Fraktion fraktion = Fraktion.findFraktion(statementFraktion.fraktion);
+            playersAwake.addAll(fraktion.getFraktionsMembers());
+        } else if(statement.getClass() == StatementRolle.class) {
+            StatementRolle statementRolle = (StatementRolle)statement;
+            Rolle rolle = Rolle.findRolle(statementRolle.rolle);
+            playersAwake.add(Spieler.findSpielerPerRolle(rolle.getName()));
         }
     }
 
@@ -336,6 +351,7 @@ public class ErsteNacht extends Thread {
     }
 
     public void waitForAnswer() {
+        FrontendControl.refreshÜbersichtsFrame();
         try {
             lock.wait();
         } catch (InterruptedException e) {

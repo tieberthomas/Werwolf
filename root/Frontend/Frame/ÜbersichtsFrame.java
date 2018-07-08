@@ -4,6 +4,9 @@ import root.Frontend.Factories.ÜbersichtsPageElementFactory;
 import root.Frontend.Factories.ÜbersichtsPageFactory;
 import root.Frontend.Page.Page;
 import root.Frontend.Page.PageTable;
+import root.Phases.ErsteNacht;
+import root.Phases.Nacht;
+import root.Phases.PhaseMode;
 import root.Rollen.Nebenrollen.Schatten;
 import root.Spieler;
 
@@ -73,6 +76,10 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener{
                 label.setBackground(Color.white);
             }
             label.setOpaque(true);
+            if((PhaseMode.phase == PhaseMode.ersteNacht && ErsteNacht.playersAwake.contains(spieler)) ||
+                (PhaseMode.phase == PhaseMode.nacht && Nacht.playersAwake.contains(spieler))) {
+                label.setBorder(BorderFactory.createLineBorder(Color.BLUE, 2));
+            }
             playerTable.add(label);
         }
     }

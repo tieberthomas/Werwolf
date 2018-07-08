@@ -2,6 +2,7 @@ package root.Frontend;
 
 import root.Frontend.Frame.ErzählerFrame;
 import root.Frontend.Frame.SpielerFrame;
+import root.Frontend.Frame.ÜbersichtsFrame;
 import root.Frontend.Page.Page;
 import root.Phases.Statement;
 import root.Spieler;
@@ -23,6 +24,7 @@ public class FrontendControl {
 
     public static ErzählerFrame erzählerFrame;
     public static SpielerFrame spielerFrame;
+    public static ÜbersichtsFrame übersichtsFrame;
 
     public int typeOfContent;
     public String title;
@@ -232,5 +234,9 @@ public class FrontendControl {
     public static void spielerCardPicturePage(String title, String imagePath) {
         Page nightPage = spielerFrame.pageFactory.generateStaticImagePage(title, imagePath, false);
         spielerFrame.buildScreenFromPage(nightPage);
+    }
+
+    public static void refreshÜbersichtsFrame(){
+        übersichtsFrame.refreshÜbersichtsPage();
     }
 }

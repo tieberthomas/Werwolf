@@ -13,6 +13,7 @@ public class PhaseManager {
         erzählerFrame.toFront();
         FrontendControl.erzählerFrame = erzählerFrame;
         FrontendControl.spielerFrame = erzählerFrame.spielerFrame;
+        FrontendControl.übersichtsFrame = erzählerFrame.übersichtsFrame;
         ErsteNacht ersteNacht = new ErsteNacht();
         ersteNacht.start();
     }
