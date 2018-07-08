@@ -3,7 +3,9 @@ package root.Rollen;
 import root.Frontend.Frame.MyFrame;
 import root.Frontend.FrontendControl;
 import root.ResourceManagement.ResourcePath;
+import root.Rollen.Fraktionen.Schattenpriester_Fraktion;
 import root.Rollen.Fraktionen.Werwölfe;
+import root.Rollen.Hauptrollen.Werwölfe.Chemiker;
 import root.Spieler;
 import root.mechanics.Opfer;
 
@@ -91,11 +93,7 @@ public class Fraktion {
 
     public static boolean fraktionInNachtEnthalten(String fraktion) {
         if(getFraktionStrings().contains(fraktion)) {
-            /*if(Fraktion.findFraktion(fraktion).getName().equals(Vampire.name)) {
-
-            }*/
-
-            return true;
+            return !fraktionOffenkundigTot(fraktion);
         } else {
             return false;
         }
@@ -112,22 +110,28 @@ public class Fraktion {
     }
 
     public static boolean fraktionOffenkundigTot(String fraktion) {
+        if (fraktion.equals(Schattenpriester_Fraktion.name)) {
+            return false;
+        }
+        if (fraktion.equals(Werwölfe.name) && Hauptrolle.getMainRoleInGameNames().contains(Chemiker.name)) {
+            return false;
+        }
+
+        int numberMainRolesInGame = 0;
         for (Hauptrolle hauptrolle : Hauptrolle.mainRolesInGame) {
             if (hauptrolle.getFraktion().getName().equals(fraktion)) {
-                boolean contains = false;
-                for(Hauptrolle mitteHauptrolle : Rolle.mitteHauptrollen) {
-                    if(hauptrolle.getName().equals(mitteHauptrolle.getName())){
-                        contains = true;
-                    }
-                }
-
-                if(!contains) {
-                    return false;
-                }
+                numberMainRolesInGame++;
             }
         }
 
-        return true;
+        int numberMitteHauptrollen = 0;
+        for(Hauptrolle mitteHauptrolle : Rolle.mitteHauptrollen) {
+            if(mitteHauptrolle.getFraktion().getName().equals(fraktion)) {
+                numberMitteHauptrollen++;
+            }
+        }
+
+        return numberMitteHauptrollen >= numberMainRolesInGame;
     }
 
     public static boolean fraktionOpfer(String fraktion) {
