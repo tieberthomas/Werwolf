@@ -314,13 +314,12 @@ public class Nacht extends Thread
                             Spieler chosenSpieler2 = Spieler.findSpieler(FrontendControl.erzählerFrame.chosenOption2);
 
                             if (chosenSpieler1 != null && chosenSpieler2 != null) {
-                                Analytiker analytiker = (Analytiker) analytikerSpieler.nebenrolle;
-                                if (analytiker.showTarnumhang(chosenSpieler1, chosenSpieler2)) {
+                                if (((Analytiker) rolle).showTarnumhang(chosenSpieler1, chosenSpieler2)) {
                                     imagePath = ResourcePath.TARNUMHANG;
                                     statement.title = TARNUMHANG_TITLE;
                                     showImage(statement, imagePath);
                                 } else {
-                                    String answer = analytiker.analysiere(chosenSpieler1, chosenSpieler2);
+                                    String answer = ((Analytiker) rolle).analysiere(chosenSpieler1, chosenSpieler2);
                                     showList(statement, answer);//TODO generisch machen
                                 }
                             }
