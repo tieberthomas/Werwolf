@@ -3,6 +3,8 @@ package root.Rollen.Nebenrollen;
 import root.ResourceManagement.ResourcePath;
 import root.Rollen.Nebenrolle;
 
+import java.awt.*;
+
 /**
  * Created by Steve on 12.11.2017.
  */
@@ -13,6 +15,7 @@ public class Tarnumhang extends Nebenrolle
     public static boolean unique = true;
     public static boolean spammable = false;
     public String type = Nebenrolle.TARNUMHANG;
+    public Color farbe = Color.BLACK;
 
     @Override
     public String getName() {
@@ -34,7 +37,13 @@ public class Tarnumhang extends Nebenrolle
         return spammable;
     }
 
+    @Override
     public String getType() {
         return type;
+    }
+
+    @Override
+    public Color getFarbe() {
+        return farbe;
     }
 }

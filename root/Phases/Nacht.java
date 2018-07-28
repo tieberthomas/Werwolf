@@ -135,6 +135,7 @@ public class Nacht extends Thread
     public static Object lock;
 
     public static ArrayList<Spieler> playersAwake = new ArrayList<>();
+    public static Spieler anästesierterSpieler = null;
     ArrayList<Spieler> schönlinge = new ArrayList<>();
     public static boolean wölfinKilled;
     public static Spieler wölfinSpieler;
@@ -237,12 +238,13 @@ public class Nacht extends Thread
 
                         case ANÄSTHESIERTE_SPIELER:
                             chosenPlayer = Spieler.findSpieler(chosenOptionLastStatement);
-                            String anästhesierteSpieler = "";
                             if (chosenPlayer != null) {
-                                anästhesierteSpieler = chosenPlayer.name;
+                                anästesierterSpieler = Spieler.findSpieler(chosenPlayer.name);
                             }
 
-                            showListShowImage(statement, anästhesierteSpieler, ResourcePath.DEAKTIVIERT); //TODO anästhesiert Symbol?
+                            String anästesierterSpielerName = anästesierterSpieler.name;
+
+                            showListShowImage(statement, anästesierterSpielerName, ResourcePath.DEAKTIVIERT); //TODO anästhesiert Symbol?
                             break;
 
                         case PROGRAMM_SCHÜTZE:

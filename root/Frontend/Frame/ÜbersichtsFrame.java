@@ -23,6 +23,9 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener{
     public ÜbersichtsPageFactory pageFactory;
     public ÜbersichtsPageElementFactory pageElementFactory;
 
+    public Color defaultBorderColor = Color.BLUE;
+    public Color anästesiertBorderColor = Color.RED;
+
     public PageTable playerTable;
     public PageTable mainRoleTable;
     public PageTable secondaryRoleTable;
@@ -80,7 +83,11 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener{
             label.setOpaque(true);
             if((PhaseMode.phase == PhaseMode.ersteNacht && ErsteNacht.playersAwake.contains(spieler)) ||
                 (PhaseMode.phase == PhaseMode.nacht && Nacht.playersAwake.contains(spieler))) {
-                label.setBorder(BorderFactory.createLineBorder(Color.BLUE, 2));
+                Color borderColor = defaultBorderColor;
+                if(Nacht.anästesierterSpieler!=null && Nacht.anästesierterSpieler.equals(spieler)) {
+                    borderColor = anästesiertBorderColor;
+                }
+                label.setBorder(BorderFactory.createLineBorder(borderColor, 2));
             }
             playerTable.add(label);
         }
@@ -122,7 +129,11 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener{
         JLabel label = new JLabel(rolle.getName());
 
         if(spieler.lebend) {
-            label.setBackground(rolle.getFarbe());
+            Color farbe = rolle.getFarbe();
+            if(farbe.equals(Color.BLACK)) {
+                label.setForeground(Color.WHITE);
+            }
+            label.setBackground(farbe);
         } else {
             label.setBackground(Color.lightGray);
         }
