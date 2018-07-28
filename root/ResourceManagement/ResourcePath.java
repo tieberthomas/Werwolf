@@ -20,6 +20,7 @@ public class ResourcePath {
     public static String WÖLFE_PATH = CARD_PATH + "Werwölfe\\";
 
     public static String DEAKTIVIERT = ICON_PATH + "Deaktiviert" + IMAGE_FILE_EXTENSION;
+    public static String ANÄSTESIERT = ICON_PATH + "Anästesiert" + IMAGE_FILE_EXTENSION;
     public static String AKTIV = ICON_PATH + "Aktiv" + IMAGE_FILE_EXTENSION;
     public static String PASSIV = ICON_PATH + "Passiv" + IMAGE_FILE_EXTENSION;
     public static String INFORMATIV = ICON_PATH + "Informativ" + IMAGE_FILE_EXTENSION;

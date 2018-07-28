@@ -238,11 +238,11 @@ public class Nacht extends Thread
 
                         case ANÄSTHESIERTE_SPIELER:
                             chosenPlayer = Spieler.findSpieler(chosenOptionLastStatement);
+                            String anästesierterSpielerName = "";
                             if (chosenPlayer != null) {
                                 anästesierterSpieler = Spieler.findSpieler(chosenPlayer.name);
+                                anästesierterSpielerName = anästesierterSpieler.name;
                             }
-
-                            String anästesierterSpielerName = anästesierterSpieler.name;
 
                             showListShowImage(statement, anästesierterSpielerName, ResourcePath.DEAKTIVIERT); //TODO anästhesiert Symbol?
                             break;
@@ -807,10 +807,14 @@ public class Nacht extends Thread
 
     //TODO Cases die sowieso gleich aussehen zusammenfassen
     public void showDeaktivPages(Statement statement, FrontendControl frontendControl) {
+        String erzählerDeaktiviertIconPath = ResourcePath.DEAKTIVIERT;
+        if(statementSpielerIsAnästesiert(statement)) {
+            erzählerDeaktiviertIconPath = ResourcePath.ANÄSTESIERT;
+        }
         switch (frontendControl.typeOfContent) {
             case FrontendControl.DROPDOWN:
             case FrontendControl.DROPDOWN_LIST:
-                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), ResourcePath.DEAKTIVIERT);
+                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), erzählerDeaktiviertIconPath);
                 FrontendControl.spielerIconPicturePage(DEAKTIVIERT_TITLE, ResourcePath.DEAKTIVIERT);
 
                 waitForAnswer();
@@ -818,7 +822,7 @@ public class Nacht extends Thread
                 
             case FrontendControl.LIST:
             case FrontendControl.LIST_IMAGE:
-                FrontendControl.erzählerListPage(statement, getEmptyStringList(), ResourcePath.DEAKTIVIERT);
+                FrontendControl.erzählerListPage(statement, getEmptyStringList(), erzählerDeaktiviertIconPath);
                 FrontendControl.spielerIconPicturePage(DEAKTIVIERT_TITLE, ResourcePath.DEAKTIVIERT);
 
                 waitForAnswer();
@@ -827,7 +831,7 @@ public class Nacht extends Thread
             case FrontendControl.TITLE:
             case FrontendControl.IMAGE:
             case FrontendControl.CARD:
-                FrontendControl.erzählerIconPicturePage(statement, ResourcePath.DEAKTIVIERT);
+                FrontendControl.erzählerIconPicturePage(statement, erzählerDeaktiviertIconPath);
                 FrontendControl.spielerIconPicturePage(DEAKTIVIERT_TITLE, ResourcePath.DEAKTIVIERT);
 
                 waitForAnswer();
@@ -1085,5 +1089,23 @@ public class Nacht extends Thread
 
     public void addStatementFraktion(String statement, String title, String fraktion, int type) {
         statements.add(new StatementFraktion(statement, title, fraktion, type));
+    }
+
+    public boolean statementSpielerIsAnästesiert(Statement statement) {
+        if(statement.getClass() == StatementRolle.class) {
+            StatementRolle statementRolle = (StatementRolle)statement;
+
+            Rolle rolle = statementRolle.getRolle();
+            if(rolle!=null) {
+                Spieler spieler = Spieler.findSpielerPerRolle(rolle.getName());
+                if(spieler!=null) {
+                    if(spieler.name.equals(anästesierterSpieler.name)) {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
     }
 }
