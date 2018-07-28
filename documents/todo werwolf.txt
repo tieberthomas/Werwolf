@@ -5,9 +5,6 @@ sammler
 totengräber
 interaktion prostituierte wachhund riese blutwolf
 
-tasks:
-überläufer und totengräber nacht wo ausgesucht wird funktioniert nciht
-neuer button auf startpage neues spiel mit gleicher zuweisung
 
 CherryOnTop:
 Wenn das ziel der holden maid anästisiert ist, soll es nicht aufwachen (deaktiviertpage für holde maid anzeigen)
@@ -16,7 +13,6 @@ anästesierter spieler dem erzähler anzeigen wenn der aufgerufen wird
 siegüberprüfung generischer machen (tag und nacht)
 tauschkarten quasi aus secondaryRolesInGame removen (für nachzügler) aber nicht wirklich, weil ja der spielerscreen am tag anzeigen soll dass es drin war
 bei übersichtspage rahmen von mehreren personen anzeigen (die nicht die ganze fraktion sind)
-    -> möglichkeiten der rahmen voller ausschöpfen (deaktive spieler markieren, anästesierte spieler erkennen)
 
 bei jeder rolle als kommentar den kartentext dazuschreiben
 
