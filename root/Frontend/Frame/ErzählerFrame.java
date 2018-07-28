@@ -910,7 +910,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     public ArrayList<Hauptrolle> getMainRolesUnspecified() {
         ArrayList<Hauptrolle> mainRolesUnspecified = (ArrayList)Hauptrolle.mainRolesInGame.clone();
 
-        mainRolesUnspecified.removeAll(getMainRolesSpecified());
+        myRemoveAllHauptrollen(mainRolesUnspecified, getMainRolesSpecified());
 
         return mainRolesUnspecified;
     }
@@ -950,7 +950,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     public ArrayList<Nebenrolle> getSecondaryRolesUnspecified() {
         ArrayList<Nebenrolle> secondaryRolesUnspecified = (ArrayList)Nebenrolle.secondaryRolesInGame.clone();
 
-        secondaryRolesUnspecified.removeAll(getSecondaryRolesSpecified());
+        myRemoveAllNebenrollen(secondaryRolesUnspecified, getSecondaryRolesSpecified());
 
         return secondaryRolesUnspecified;
     }
@@ -963,5 +963,23 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         }
 
         return secondaryRolesUnspecifiedStrings;
+    }
+
+    public ArrayList<Hauptrolle> myRemoveAllHauptrollen(ArrayList<Hauptrolle> list, ArrayList<Hauptrolle> elementsToRemove) {
+        for(Hauptrolle hauptrolle : elementsToRemove){
+            int index = list.indexOf(hauptrolle);
+            list.remove(index);
+        }
+
+        return list;
+    }
+
+    public ArrayList<Nebenrolle> myRemoveAllNebenrollen(ArrayList<Nebenrolle> list, ArrayList<Nebenrolle> elementsToRemove) {
+        for(Nebenrolle nebenrolle : elementsToRemove){
+            int index = list.indexOf(nebenrolle);
+            list.remove(index);
+        }
+
+        return list;
     }
 }

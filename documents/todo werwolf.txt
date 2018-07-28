@@ -21,3 +21,12 @@ zuviel arbeit fürs erste:
 nocheinmal spielen button auf endscreen
 in der nacht ein zurückbutton.
 	->dann soll erzählersrceen auch mit pfeiltasten navigierbar sein
+
+
+
+
+Michael änderungs requests
+
+Liste der bonusrollen verlängert sich manchmal während dem spiel
+beim neuen schattenpriester werden alle SP eingerahmt
+Wachhund bekommt noch info obwohl er gestorben ist

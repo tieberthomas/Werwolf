@@ -32,11 +32,11 @@ public class ErzählerPageFactory {
         PageElement startButton = pageElementFactory.generateCenteredBigButton(erzählerFrame.startJButton, werwolfIcon);
         erzählerFrame.goNextButtons.add(erzählerFrame.startJButton);
 
-        erzählerFrame.loadLastGameJButton = new JButton("Letztes Spiel laden");
+        erzählerFrame.loadLastGameJButton = new JButton("Letzte Zusammenstellung laden");
         PageElement loadLastGame = pageElementFactory.generateCenteredBigButton(erzählerFrame.loadLastGameJButton, startButton);
         erzählerFrame.goNextButtons.add(erzählerFrame.loadLastGameJButton);
 
-        erzählerFrame.loadLastCompositionJButton = new JButton("Letzte Zusammenstellung laden");
+        erzählerFrame.loadLastCompositionJButton = new JButton("Letztes Spiel laden");
         PageElement loadLastComposition = pageElementFactory.generateCenteredBigButton(erzählerFrame.loadLastCompositionJButton, loadLastGame);
         erzählerFrame.goNextButtons.add(erzählerFrame.loadLastCompositionJButton);
 
