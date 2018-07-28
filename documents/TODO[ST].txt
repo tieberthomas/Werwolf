@@ -4,11 +4,12 @@ neue Karte - Title
 booleans?
 deaktiviert und verbraucht - deaktiviert anzeigen
 ErsteNacht Statement Type
-Statement State invisble
 
 TH:
+bug - am Anfang ein Werwolf zugewießen zwei aus Liste verschwunden
 Englisch-Deutsch-Gemisch
 
 MT:
+Freigestellt - Weiß
 Bonusrolle - Nebenrolle
 Buchhalter: Rollen - Hauptrollen
