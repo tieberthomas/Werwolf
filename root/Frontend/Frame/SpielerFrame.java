@@ -60,8 +60,6 @@ public class SpielerFrame extends MyFrame{
         this.setLocation(erzählerFrame.frameJpanel.getWidth() + 20,0);
 
         showFrame();
-
-        startTimeUpdateThread();
     }
 
     public void generateAllPages() {
@@ -148,6 +146,7 @@ public class SpielerFrame extends MyFrame{
                     time++;
                     SpielerFrame.generateTimeString();
                     clockLabel.setText(timestring);
+                    System.out.println(timestring);
                 }
             };
 

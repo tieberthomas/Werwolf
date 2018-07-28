@@ -26,6 +26,5 @@ in der nacht ein zurückbutton.
 
 Michael änderungs requests
 
-Liste der bonusrollen verlängert sich manchmal während dem spiel
 beim neuen schattenpriester werden alle SP eingerahmt
 Wachhund bekommt noch info obwohl er gestorben ist

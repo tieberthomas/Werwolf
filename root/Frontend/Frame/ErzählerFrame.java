@@ -479,7 +479,6 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
             if(ae.getSource() == playerSpecifyGoNextJButton) {
                 if(playersSpecified.size() == Spieler.spieler.size()) {
                     PhaseManager.firstnight(this);
-                    spielerFrame.startTimeUpdateThread();
                     fileManager.writeComposition(ResourcePath.LAST_GAME_COMPOSITION_FILE, Spieler.getLivigPlayer(),
                             getMainRolesUnspecifiedStrings(), getSecondaryRolesUnspecifiedStrings());
                 } else {
