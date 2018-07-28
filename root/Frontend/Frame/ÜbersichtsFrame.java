@@ -7,7 +7,9 @@ import root.Frontend.Page.PageTable;
 import root.Phases.ErsteNacht;
 import root.Phases.Nacht;
 import root.Phases.PhaseMode;
-import root.Rollen.Nebenrollen.Schatten;
+import root.Rollen.Hauptrolle;
+import root.Rollen.Nebenrolle;
+import root.Rollen.Rolle;
 import root.Spieler;
 
 import javax.swing.*;
@@ -90,15 +92,13 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener{
         mainRoleTable.add(new JLabel("Hauptrolle"));
 
         for(Spieler spieler : Spieler.spieler) {
-            JLabel label = new JLabel(spieler.hauptrolle.getName());
-            if(spieler.lebend) {
-                label.setBackground(spieler.hauptrolle.getFraktion().getFarbe());
-            } else {
-                label.setBackground(Color.lightGray);
-            }
+            Rolle rolle;
+            if (spieler.hauptrolle == null)
+                rolle = Hauptrolle.defaultHauptrolle;
+            else
+                rolle = spieler.hauptrolle;
 
-            label.setOpaque(true);
-            mainRoleTable.add(label);
+            mainRoleTable.add(generateColorLabel(spieler, rolle));
         }
     }
 
@@ -108,13 +108,28 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener{
         secondaryRoleTable.add(new JLabel("Nebenrolle"));
 
         for(Spieler spieler : Spieler.spieler) {
-            String spielerNebenrolle;
-            if(spieler.nebenrolle==null)
-                spielerNebenrolle = new Schatten().getName();
+            Rolle rolle;
+            if (spieler.nebenrolle == null)
+                rolle = Nebenrolle.defaultNebenrolle;
             else
-                spielerNebenrolle = spieler.nebenrolle.getName();
-            secondaryRoleTable.add(new JLabel(spielerNebenrolle));
+                rolle = spieler.nebenrolle;
+
+            secondaryRoleTable.add(generateColorLabel(spieler, rolle));
         }
+    }
+
+    public JLabel generateColorLabel(Spieler spieler, Rolle rolle) {
+        JLabel label = new JLabel(rolle.getName());
+
+        if(spieler.lebend) {
+            label.setBackground(rolle.getFarbe());
+        } else {
+            label.setBackground(Color.lightGray);
+        }
+
+        label.setOpaque(true);
+
+        return label;
     }
 
     public void refreshAliveTable() {

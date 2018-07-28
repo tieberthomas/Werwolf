@@ -6,6 +6,7 @@ import root.Rollen.Hauptrollen.Bürger.Sammler;
 import root.Rollen.Nebenrollen.Totengräber;
 import root.Spieler;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public class Rolle {
@@ -43,6 +44,10 @@ public class Rolle {
 
     public boolean isSpammable() {
         return true;
+    }
+
+    public Color getFarbe() {
+        return Color.WHITE;
     }
 
     public static Rolle findRolle(String wantedName) {

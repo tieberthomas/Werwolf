@@ -5,6 +5,8 @@ import root.Rollen.Fraktionen.Werwölfe;
 import root.Rollen.Nebenrolle;
 import root.Spieler;
 
+import java.awt.*;
+
 /**
  * Created by Steve on 12.11.2017.
  */
@@ -15,6 +17,7 @@ public class Wolfspelz extends Nebenrolle
     public static boolean unique = true;
     public static boolean spammable = false;
     public String type = Nebenrolle.PASSIV;
+    public Color farbe = Werwölfe.farbe;
 
     public void tauschen(Nebenrolle nebenrolle) {
         try {
@@ -66,4 +69,9 @@ public class Wolfspelz extends Nebenrolle
 
     @Override
     public String getType() { return type; }
+
+    @Override
+    public Color getFarbe() {
+        return farbe;
+    }
 }

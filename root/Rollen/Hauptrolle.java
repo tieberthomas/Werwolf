@@ -11,6 +11,7 @@ import root.Rollen.Hauptrollen.Werwölfe.*;
 import root.Rollen.Hauptrollen.Überläufer.Überläufer;
 import root.Spieler;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public class Hauptrolle extends Rolle
@@ -126,5 +127,9 @@ public class Hauptrolle extends Rolle
         }
 
         return null;
+    }
+
+    public Color getFarbe() {
+        return getFraktion().getFarbe();
     }
 }
