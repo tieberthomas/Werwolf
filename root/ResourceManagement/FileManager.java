@@ -94,6 +94,100 @@ public class FileManager {
         return true;
     }
 
+    public boolean readComposition(String filePath){
+        try {
+            File file = new File(filePath);
+            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8));
+            String line;
+
+            line = br.readLine();
+            int numberOfPlayers = Integer.parseInt(line);
+
+            for(int i=0; i<numberOfPlayers; i++) {
+                line = br.readLine();
+                String[] fractals = line.split(" ");
+                Spieler spieler = new Spieler(fractals[0].replace("*"," "));
+
+                Hauptrolle hauptrolle = Hauptrolle.findHauptrolle(fractals[1].replace("*"," "));;
+                spieler.hauptrolle = hauptrolle;
+                if(hauptrolle!=null) {
+                    Hauptrolle.mainRolesInGame.add(hauptrolle);
+                }
+
+                Nebenrolle nebenrolle = Nebenrolle.findNebenrolle(fractals[2].replace("*"," "));;
+                spieler.nebenrolle = nebenrolle;
+                if(nebenrolle!=null) {
+                    Nebenrolle.secondaryRolesInGame.add(nebenrolle);
+                }
+
+                Spieler.spieler.add(spieler);
+            }
+
+            line = br.readLine();
+            int numberOfMainRoles = Integer.parseInt(line);
+
+            for(int i=0; i<numberOfMainRoles; i++) {
+                line = br.readLine();
+                Hauptrolle hauptrolle = Hauptrolle.findHauptrolle(line);
+                if(hauptrolle!=null) {
+                    Hauptrolle.mainRolesInGame.add(hauptrolle);
+                }
+
+            }
+
+            line = br.readLine();
+            int numberOfSecondaryRoles = Integer.parseInt(line);
+
+            for(int i=0; i<numberOfSecondaryRoles; i++) {
+                line = br.readLine();
+                Nebenrolle nebenrolle = Nebenrolle.findNebenrolle(line);
+                if(nebenrolle!=null) {
+                    Nebenrolle.secondaryRolesInGame.add(nebenrolle);
+                }
+            }
+
+            br.close();
+        } catch (IOException e) {
+            System.out.println("Something went wrong while reading the file");
+            return false;
+        }
+
+        return true;
+    }
+
+    public boolean writeComposition (String filePath, ArrayList<Spieler> spieler, ArrayList<String> mainRolesLeft, ArrayList<String> secondaryRolesLeft) {
+        try {
+            File file = new File(filePath);
+            file.createNewFile();
+            Writer writer = new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8);
+
+            ArrayList<String> compositionStrings = new ArrayList<>();
+
+            for(Spieler currentSpieler : spieler) {
+                compositionStrings.add(buildCompositionString(currentSpieler));
+            }
+
+            writeArrayList(writer, compositionStrings);
+            writeArrayList(writer, mainRolesLeft);
+            writeArrayList(writer, secondaryRolesLeft);
+
+            writer.flush();
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("Something went wrong while writing the file");
+            return false;
+        }
+
+        return true;
+    }
+
+    public String buildCompositionString(Spieler spieler) {
+        String name = spieler.name.replace(" ","*");
+        String hauptrolle = spieler.hauptrolle.getName().replace(" ","*");
+        String nebenrolle = spieler.nebenrolle.getName().replace(" ","*");
+        return name + " " + hauptrolle + " " + nebenrolle;
+    }
+
     public void writeArrayList(Writer writer, ArrayList<String> arrayToWrite) throws IOException{
         int numberOfLines = arrayToWrite.size();
         writer.write(Integer.toString(numberOfLines));

@@ -39,6 +39,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     public Page startPage;
     public JButton startJButton;
     public JButton loadLastGameJButton;
+    public JButton loadLastCompositionJButton;
 
     public Page playerSetupPage;
     public JLabel mainRoleCounterJLabel;
@@ -77,13 +78,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     public PageTable deleteSpecifyPlayerTable;
     public ArrayList<JButton> deleteSpecifyPlayerButtons;
 
-    public ArrayList<String> mainRolesLeft;
-    public ArrayList<String> secondaryRolesLeft;
-    public ArrayList<String> playersLeft;
-
-    public ArrayList<String> mainRolesSpecified;
-    public ArrayList<String> secondaryRolesSpecified;
-    public ArrayList<String> playersSpecified;
+    public ArrayList<Spieler> playersSpecified; // in game object bewegen
 
     public String chosenOption1;
     public String chosenOption2;
@@ -116,12 +111,6 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         goBackButtons = new ArrayList<>();
         goNextButtons = new ArrayList<>();
 
-        mainRolesLeft = new ArrayList<>();
-        secondaryRolesLeft = new ArrayList<>();
-        playersLeft = new ArrayList<>();
-
-        mainRolesSpecified= new ArrayList<>();
-        secondaryRolesSpecified = new ArrayList<>();
         playersSpecified = new ArrayList<>();
 
         setupPages = new ArrayList<>();
@@ -317,26 +306,26 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     }
 
     public void refreshSpecifyComboBoxes() {
-        DefaultComboBoxModel model1 = new DefaultComboBoxModel(playersLeft.toArray());
+        DefaultComboBoxModel model1 = new DefaultComboBoxModel(getPlayersUnspecifiedStrings().toArray());
         comboBox1.setModel(model1);
-        DefaultComboBoxModel model2 = new DefaultComboBoxModel(mainRolesLeft.toArray());
+        DefaultComboBoxModel model2 = new DefaultComboBoxModel(getMainRolesUnspecifiedStrings().toArray());
         comboBox2.setModel(model2);
-        DefaultComboBoxModel model3 = new DefaultComboBoxModel(secondaryRolesLeft.toArray());
+        DefaultComboBoxModel model3 = new DefaultComboBoxModel(getSecondaryRolesUnspecifiedStrings().toArray());
         comboBox3.setModel(model3);
     }
 
     public void refreshSecifyPlayerTable() {
         playerSpecifyTable.tableElements.clear();
 
-        for(String playerName: playersSpecified) {
-            playerSpecifyTable.add(new JLabel(playerName));
+        for(Spieler spieler : playersSpecified) {
+            playerSpecifyTable.add(new JLabel(spieler.name));
         }
     }
 
     public void refreshSecifyMainRoleTable() {
         mainRoleSpecifyTable.tableElements.clear();
 
-        for(String mainRoleName : mainRolesSpecified) {
+        for(String mainRoleName : getMainRolesSpecifiedStrings()) {
             if(mainRoleName == "" || mainRoleName == null) {
                 mainRoleName = Hauptrolle.defaultHauptrolle.getName();
             }
@@ -347,7 +336,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     public void refreshSecifySecondaryRoleTable() {
         secondaryRoleSpecifyTable.tableElements.clear();
 
-        for(String secondaryRoleName : secondaryRolesSpecified) {
+        for(String secondaryRoleName : getSecondaryRoleSpecifiedStrings()) {
             if(secondaryRoleName == "" || secondaryRoleName == null) {
                 secondaryRoleName = Nebenrolle.defaultNebenrolle.getName();
             }
@@ -359,30 +348,19 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         deleteSpecifyPlayerTable.tableElements.clear();
         deleteSpecifyPlayerButtons.clear();
 
-        for(String playerName : playersSpecified) {
+        for(Spieler spieler : playersSpecified) {
             JButton deleteButton = pageFactory.pageElementFactory.generateDeleteButton();
             deleteSpecifyPlayerTable.add(deleteButton);
             deleteSpecifyPlayerButtons.add(deleteButton);
         }
     }
 
-    public void removeSpecifiedIndex(int index, int thingToRemoveCompletely) {
-        deleteSpecifyPlayerButtons.remove(index);
-
-        if (thingToRemoveCompletely != 0) {
-            playersLeft.add(playersSpecified.get(index));
+    public void removeSpecifiedIndex(int index) {
+        if(deleteSpecifyPlayerButtons.size()>index) {
+            deleteSpecifyPlayerButtons.remove(index);
         }
+
         playersSpecified.remove(index);
-
-        if (thingToRemoveCompletely != 1) {
-            mainRolesLeft.add(mainRolesSpecified.get(index));
-        }
-        mainRolesSpecified.remove(index);
-
-        if (thingToRemoveCompletely != 2) {
-            secondaryRolesLeft.add(secondaryRolesSpecified.get(index));
-        }
-        secondaryRolesSpecified.remove(index);
     }
 
     public void refreshTortenPage() {
@@ -427,12 +405,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         Spieler.spieler.clear();
         Hauptrolle.mainRolesInGame.clear();
         Nebenrolle.secondaryRolesInGame.clear();
-        playersLeft.clear();
-        mainRolesLeft.clear();
-        secondaryRolesLeft.clear();
         playersSpecified.clear();
-        mainRolesLeft.clear();
-        secondaryRolesLeft.clear();
     }
 
     public void nextPage() {
@@ -461,8 +434,6 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         }
         if(currentPage.equals(startPage)){
             spielerFrame.dispatchEvent(new WindowEvent(spielerFrame, WindowEvent.WINDOW_CLOSING));
-            mainRolesSpecified = new ArrayList<>();
-            secondaryRolesSpecified = new ArrayList<>();
             playersSpecified = new ArrayList<>();
         }
     }
@@ -482,10 +453,14 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         if(goNextButtons.contains(ae.getSource())){
             if(ae.getSource() == loadLastGameJButton) {
                 setUpVariables();
-                fileManager.read(ResourcePath.LAST_GAME_FILE_FILE);
-                playersLeft = Spieler.getLivigPlayerStrings();
-                mainRolesLeft = Hauptrolle.getMainRoleInGameNames();
-                secondaryRolesLeft = Nebenrolle.getSecondaryRoleInGameNames();
+                fileManager.read(ResourcePath.LAST_GAME_FILE);
+                this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+                spielerFrame = new SpielerFrame(this);
+                spielerFrame.refreshPlayerSetupPage();
+            } else if(ae.getSource() == loadLastCompositionJButton) {
+                setUpVariables();
+                fileManager.readComposition(ResourcePath.LAST_GAME_COMPOSITION_FILE);
+                playersSpecified = (ArrayList)Spieler.spieler.clone();
                 this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
                 spielerFrame = new SpielerFrame(this);
                 spielerFrame.refreshPlayerSetupPage();
@@ -497,42 +472,34 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
             }
 
             if(ae.getSource() == secondaryRoleGoNextJButton) {
-                fileManager.write(ResourcePath.LAST_GAME_FILE_FILE, Spieler.getLivigPlayerStrings(),
+                fileManager.write(ResourcePath.LAST_GAME_FILE, Spieler.getLivigPlayerStrings(),
                         Hauptrolle.getMainRoleInGameNames(), Nebenrolle.getSecondaryRoleInGameNames());
             }
 
             if(ae.getSource() == playerSpecifyGoNextJButton)
             {
-                if(playersLeft.size()==0) {
-                    if(PhaseMode.phase != PhaseMode.ersteNacht) {
-                        PhaseManager.firstnight(this);
-                        spielerFrame.startTimeUpdateThread();
-                    } else {
-                        PhaseManager.firstnight(this);
-                        spielerFrame.startTimeUpdateThread();
-                    }
+                if(playersSpecified.size() == Spieler.spieler.size()) {
+                    PhaseManager.firstnight(this);
+                    spielerFrame.startTimeUpdateThread();
+                    fileManager.writeComposition(ResourcePath.LAST_GAME_COMPOSITION_FILE, Spieler.getLivigPlayer(),
+                            getMainRolesUnspecifiedStrings(), getSecondaryRolesUnspecifiedStrings());
                 } else {
                     try {
                         String spielerName = (String) comboBox1.getSelectedItem();
                         Spieler spieler = Spieler.findSpieler(spielerName);
-                        playersLeft.remove(spielerName);
-                        playersSpecified.add(spielerName);
+                        playersSpecified.add(spieler);
 
                         String hauptrolle = (String) comboBox2.getSelectedItem();
                         spieler.hauptrolle = Hauptrolle.findHauptrolle(hauptrolle);
                         if(spieler.hauptrolle == null) {
                             spieler.hauptrolle = Hauptrolle.defaultHauptrolle;
                         }
-                        mainRolesLeft.remove(hauptrolle);
-                        mainRolesSpecified.add(hauptrolle);
 
                         String nebenrolle = (String) comboBox3.getSelectedItem();
                         spieler.nebenrolle = Nebenrolle.findNebenrolle(nebenrolle);
                         if(spieler.nebenrolle == null) {
                             spieler.nebenrolle = Nebenrolle.defaultNebenrolle;
                         }
-                        secondaryRolesLeft.remove(nebenrolle);
-                        secondaryRolesSpecified.add(nebenrolle);
 
                         refreshSpecifyPlayerPage();
                     } catch (IndexOutOfBoundsException e) {
@@ -557,7 +524,6 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                 String newPlayerName = addPlayerTxtField.getText();
                 Spieler newPlayer = new Spieler(newPlayerName);
                 Spieler.spieler.add(newPlayer);
-                playersLeft.add(newPlayerName);
                 addPlayerTxtField.setText("");
 
                 refreshPlayerPage();
@@ -586,11 +552,9 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                     deletePlayerButtons.remove(i);
                     String spielerName = Spieler.spieler.get(i).name;
 
-                    if(playersLeft.contains(spielerName)) {
-                        playersLeft.remove(spielerName);
-                    } else if(playersSpecified.contains(spielerName)) {
+                    if(playersSpecified.contains(spielerName)) {
                         int index = playersSpecified.indexOf(spielerName);
-                        removeSpecifiedIndex(index,0);
+                        removeSpecifiedIndex(index);
                     }
 
                     Spieler.spieler.remove(i);
@@ -606,8 +570,6 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                     Hauptrolle newMainRole = Hauptrolle.findHauptrolle(mainRoleName);
                     Hauptrolle.mainRolesInGame.add(newMainRole);
 
-                    mainRolesLeft.add(mainRoleName);
-
                     refreshMainRolePage();
                     spielerFrame.refreshMainRoleSetupPage();
                 }
@@ -618,11 +580,11 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                     deleteMainRoleButtons.remove(i);
                     String mainRoleName = Hauptrolle.mainRolesInGame.get(i).getName();
 
-                    if(mainRolesLeft.contains(mainRoleName)) {
-                        mainRolesLeft.remove(mainRoleName);
-                    } else if(mainRolesSpecified.contains(mainRoleName)) {
+                    ArrayList<String> mainRolesSpecified = getMainRolesSpecifiedStrings();
+
+                    if(mainRolesSpecified.contains(mainRoleName)) {
                         int index = mainRolesSpecified.indexOf(mainRoleName);
-                        removeSpecifiedIndex(index,1);
+                        removeSpecifiedIndex(index);
                     }
 
                     Hauptrolle.mainRolesInGame.remove(i);
@@ -638,8 +600,6 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                     Nebenrolle newSecondaryRole = Nebenrolle.findNebenrolle(secondaryRoleName);
                     Nebenrolle.secondaryRolesInGame.add(newSecondaryRole);
 
-                    secondaryRolesLeft.add(secondaryRoleName);
-
                     refreshSecondaryRolePage();
                     spielerFrame.refreshSecondaryRoleSetupPage();
                 }
@@ -650,11 +610,11 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                     deleteSecondaryRoleButtons.remove(i);
                     String secondaryRoleName = Nebenrolle.secondaryRolesInGame.get(i).getName();
 
-                    if(secondaryRolesLeft.contains(secondaryRoleName)) {
-                        secondaryRolesLeft.remove(secondaryRoleName);
-                    } else if(secondaryRolesSpecified.contains(secondaryRoleName)) {
+                    ArrayList<String> secondaryRolesSpecified = getMainRolesSpecifiedStrings();
+
+                    if(secondaryRolesSpecified.contains(secondaryRoleName)) {
                         int index = secondaryRolesSpecified.indexOf(secondaryRoleName);
-                        removeSpecifiedIndex(index,2);
+                        removeSpecifiedIndex(index);
                     }
 
                     Nebenrolle.secondaryRolesInGame.remove(i);
@@ -666,7 +626,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         } else if (deleteSpecifyPlayerButtons.contains(ae.getSource())) {
             for (int i = 0; i < deleteSpecifyPlayerButtons.size(); i++) {
                 if (ae.getSource() == deleteSpecifyPlayerButtons.get(i)) {
-                    removeSpecifiedIndex(i,3);
+                    removeSpecifiedIndex(i);
 
                     refreshSpecifyPlayerPage();
                 }
@@ -908,5 +868,101 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         } catch (NullPointerException e) {
             System.out.println("Somehting went wrong with the Phases. (phasemode might be set wrong)");
         }
+    }
+
+    public ArrayList<Spieler> getPlayersUnspecified() {
+        ArrayList<Spieler> playersUnspecified = (ArrayList)Spieler.spieler.clone();
+        playersUnspecified.removeAll(playersSpecified);
+        return playersUnspecified;
+    }
+
+    public ArrayList<String> getPlayersUnspecifiedStrings() {
+        ArrayList<String> playersUnspecifiedStrings = new ArrayList<>();
+
+        for(Spieler spieler : getPlayersUnspecified()) {
+            playersUnspecifiedStrings.add(spieler.name);
+        }
+
+        return playersUnspecifiedStrings;
+    }
+
+    public ArrayList<Hauptrolle> getMainRolesSpecified() {
+        ArrayList<Hauptrolle> mainRolesSpecified = new ArrayList<>();
+
+        for(Spieler spieler : playersSpecified) {
+            mainRolesSpecified.add(spieler.hauptrolle);
+        }
+
+        return mainRolesSpecified;
+    }
+
+    public ArrayList<String> getMainRolesSpecifiedStrings() {
+        ArrayList<String> mainRolesSpecifiedStrings = new ArrayList<>();
+
+        for(Hauptrolle hauptrolle : getMainRolesSpecified()) {
+            if(hauptrolle!=null) {
+                mainRolesSpecifiedStrings.add(hauptrolle.getName());
+            }
+        }
+
+        return mainRolesSpecifiedStrings;
+    }
+
+    public ArrayList<Hauptrolle> getMainRolesUnspecified() {
+        ArrayList<Hauptrolle> mainRolesUnspecified = (ArrayList)Hauptrolle.mainRolesInGame.clone();
+
+        mainRolesUnspecified.removeAll(getMainRolesSpecified());
+
+        return mainRolesUnspecified;
+    }
+
+    public ArrayList<String> getMainRolesUnspecifiedStrings() {
+        ArrayList<String> mainRolesUnspecifiedStrings = new ArrayList<>();
+
+        for(Hauptrolle hauptrolle : getMainRolesUnspecified()) {
+            mainRolesUnspecifiedStrings.add(hauptrolle.getName());
+        }
+
+        return mainRolesUnspecifiedStrings;
+    }
+
+    public ArrayList<Nebenrolle> getSecondaryRolesSpecified() {
+        ArrayList<Nebenrolle> secondaryRolesSpecified = new ArrayList<>();
+
+        for(Spieler spieler : playersSpecified) {
+            secondaryRolesSpecified.add(spieler.nebenrolle);
+        }
+
+        return secondaryRolesSpecified;
+    }
+
+    public ArrayList<String> getSecondaryRoleSpecifiedStrings() {
+        ArrayList<String> secondaryRolesSpecifiedStrings = new ArrayList<>();
+
+        for(Nebenrolle nebenrolle : getSecondaryRolesSpecified()) {
+            if(nebenrolle!=null) {
+                secondaryRolesSpecifiedStrings.add(nebenrolle.getName());
+            }
+        }
+
+        return secondaryRolesSpecifiedStrings;
+    }
+
+    public ArrayList<Nebenrolle> getSecondaryRolesUnspecified() {
+        ArrayList<Nebenrolle> secondaryRolesUnspecified = (ArrayList)Nebenrolle.secondaryRolesInGame.clone();
+
+        secondaryRolesUnspecified.removeAll(getSecondaryRolesSpecified());
+
+        return secondaryRolesUnspecified;
+    }
+
+    public ArrayList<String> getSecondaryRolesUnspecifiedStrings() {
+        ArrayList<String> secondaryRolesUnspecifiedStrings = new ArrayList<>();
+
+        for(Nebenrolle nebenrolle : getSecondaryRolesUnspecified()) {
+            secondaryRolesUnspecifiedStrings.add(nebenrolle.getName());
+        }
+
+        return secondaryRolesUnspecifiedStrings;
     }
 }

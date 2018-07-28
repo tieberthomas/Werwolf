@@ -10,7 +10,8 @@ public class ResourcePath {
     public static String SECONDARY_ROLE_PATH = CARD_PATH + "Nebenrollen\\";
     public static String OPEN_SECONDARY_ROLE_PATH = SECONDARY_ROLE_PATH + "Augensymbolkarten\\";
 
-    public static String LAST_GAME_FILE_FILE = SAVE_FILE_PATH + "lastGame" + SAVE_FILE_EXTENSION;
+    public static String LAST_GAME_FILE = SAVE_FILE_PATH + "lastGame" + SAVE_FILE_EXTENSION;
+    public static String LAST_GAME_COMPOSITION_FILE = SAVE_FILE_PATH + "lastGameComposition" + SAVE_FILE_EXTENSION;
 
     public static String BÜRGER_PATH = CARD_PATH + "Bürger\\";
     public static String SCHATTENPRIESTER_PATH = CARD_PATH + "Schattenpriester\\";

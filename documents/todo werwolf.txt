@@ -1,5 +1,8 @@
 michael testen:
+setup testen
 sammler
+überläufer
+totengräber
 interaktion prostituierte wachhund riese blutwolf
 
 tasks:
@@ -14,17 +17,8 @@ siegüberprüfung generischer machen (tag und nacht)
 tauschkarten quasi aus secondaryRolesInGame removen (für nachzügler) aber nicht wirklich, weil ja der spielerscreen am tag anzeigen soll dass es drin war
 bei übersichtspage rahmen von mehreren personen anzeigen (die nicht die ganze fraktion sind)
     -> möglichkeiten der rahmen voller ausschöpfen (deaktive spieler markieren, anästesierte spieler erkennen)
-seher bamoboozelkarten auf übersichtsfenster farbig markieren in der fraktion zu der sie gehören
 
 bei jeder rolle als kommentar den kartentext dazuschreiben
-
-Rollen ganz implementieren:
-
-Hauptrollen:
-überläufer
-
-Nebenrollen:
-Imitator
 
 
 zuviel arbeit fürs erste:
