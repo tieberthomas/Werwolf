@@ -244,7 +244,7 @@ public class Nacht extends Thread
                                 anästesierterSpielerName = anästesierterSpieler.name;
                             }
 
-                            showListShowImage(statement, anästesierterSpielerName, ResourcePath.DEAKTIVIERT); //TODO anästhesiert Symbol?
+                            showListShowImage(statement, anästesierterSpielerName, ResourcePath.ANÄSTESIERT);
                             break;
 
                         case PROGRAMM_SCHÜTZE:
