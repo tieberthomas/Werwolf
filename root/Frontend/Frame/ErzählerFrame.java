@@ -476,8 +476,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                         Hauptrolle.getMainRoleInGameNames(), Nebenrolle.getSecondaryRoleInGameNames());
             }
 
-            if(ae.getSource() == playerSpecifyGoNextJButton)
-            {
+            if(ae.getSource() == playerSpecifyGoNextJButton) {
                 if(playersSpecified.size() == Spieler.spieler.size()) {
                     PhaseManager.firstnight(this);
                     spielerFrame.startTimeUpdateThread();
