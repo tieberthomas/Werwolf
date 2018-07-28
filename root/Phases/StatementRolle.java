@@ -19,14 +19,6 @@ public class StatementRolle extends Statement {
         this.sammler = Sammler.isSammlerRolle(rolle);
     }
 
-    public StatementRolle(String beschreibung, String title, String rolle, int type, boolean sammler) {
-        this.beschreibung = beschreibung;
-        this.title = title;
-        this.rolle = rolle;
-        this.type = type;
-        this.sammler = sammler;
-    }
-
     @Override
     public boolean isVisible() {
         return Rolle.rolleInNachtEnthalten(rolle);
