@@ -40,17 +40,6 @@ public class FrontendControl {
         this.title = title;
     }
 
-    public FrontendControl(ArrayList<String> strings) {
-        this.typeOfContent = DROPDOWN;
-        this.strings = strings;
-    }
-
-    public FrontendControl(String title, ArrayList<String> strings) {
-        this.typeOfContent = DROPDOWN;
-        this.title = title;
-        this.strings = strings;
-    }
-
     public FrontendControl(int typeOfContent, ArrayList<String> strings) {
         this.typeOfContent = typeOfContent;
         this.strings = strings;
@@ -62,12 +51,6 @@ public class FrontendControl {
         this.strings = strings;
     }
 
-    public FrontendControl(String title, String imagePath) {
-        this.typeOfContent = IMAGE;
-        this.title = title;
-        this.imagePath = imagePath;
-    }
-
     public FrontendControl(int typeOfContent, String imagePath) {
         this.typeOfContent = typeOfContent;
         this.imagePath = imagePath;
@@ -76,19 +59,6 @@ public class FrontendControl {
     public FrontendControl(int typeOfContent, String title, String imagePath) {
         this.typeOfContent = typeOfContent;
         this.title = title;
-        this.imagePath = imagePath;
-    }
-
-    public FrontendControl(ArrayList<String> strings, String imagePath) {
-        this.typeOfContent = LIST_IMAGE;
-        this.strings = strings;
-        this.imagePath = imagePath;
-    }
-
-    public FrontendControl(String title, ArrayList<String> strings, String imagePath) {
-        this.typeOfContent = LIST_IMAGE;
-        this.title = title;
-        this.strings = strings;
         this.imagePath = imagePath;
     }
 
