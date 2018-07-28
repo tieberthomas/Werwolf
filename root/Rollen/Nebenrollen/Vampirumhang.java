@@ -29,22 +29,21 @@ public class Vampirumhang extends Nebenrolle
     }
 
     public Nebenrolle getTauschErgebnis() {
-        try {
-            Spieler spieler = Spieler.findSpielerPerRolle(name);
+        Spieler spieler = Spieler.findSpielerPerRolle(name);
+
+        if(spieler!=null) {
             Nebenrolle nebenrolle;
 
-            if(spieler.hauptrolle.getFraktion().getName().equals(Vampire.name)) {
+            if (spieler.hauptrolle.getFraktion().getName().equals(Vampire.name)) {
                 nebenrolle = new SchwarzeSeele();
             } else {
                 nebenrolle = spieler.nebenrolle;
             }
 
             return nebenrolle;
-        }catch (NullPointerException e) {
-            System.out.println(name + " nicht gefunden");
+        } else {
+            return  this;
         }
-
-        return this;
     }
 
     @Override

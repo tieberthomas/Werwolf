@@ -26,8 +26,9 @@ public class ReinesLicht extends Nebenrolle
     }
 
     public Nebenrolle getTauschErgebnis() {
-        try {
-            Spieler spieler = Spieler.findSpielerPerRolle(name);
+        Spieler spieler = Spieler.findSpielerPerRolle(name);
+
+        if(spieler!=null) {
             Nebenrolle nebenrolle;
 
             if(spieler.hauptrolle.getFraktion().getName().equals(Bürger.name)) {
@@ -37,11 +38,9 @@ public class ReinesLicht extends Nebenrolle
             }
 
             return nebenrolle;
-        }catch (NullPointerException e) {
-            System.out.println(name + " nicht gefunden");
+        } else {
+            return new ReineSeele();
         }
-
-        return new ReineSeele();
     }
 
     @Override
