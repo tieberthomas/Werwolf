@@ -89,7 +89,10 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener{
                 }
                 label.setBorder(BorderFactory.createLineBorder(borderColor, 2));
             }
-            playerTable.add(label);
+
+            if(playerTable.tableElements.size()<Spieler.spieler.size()+1) {
+                playerTable.add(label);
+            }
         }
     }
 
@@ -105,7 +108,9 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener{
             else
                 rolle = spieler.hauptrolle;
 
-            mainRoleTable.add(generateColorLabel(spieler, rolle));
+            if(mainRoleTable.tableElements.size()<Spieler.spieler.size()+1) {
+                mainRoleTable.add(generateColorLabel(spieler, rolle));
+            }
         }
     }
 
@@ -121,7 +126,9 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener{
             else
                 rolle = spieler.nebenrolle;
 
-            secondaryRoleTable.add(generateColorLabel(spieler, rolle));
+            if(secondaryRoleTable.tableElements.size()<Spieler.spieler.size()+1) {
+                secondaryRoleTable.add(generateColorLabel(spieler, rolle));
+            }
         }
     }
 
@@ -161,7 +168,9 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener{
                 label.setBackground(Color.lightGray);
             }
             label.setOpaque(true);
-            aliveTable.add(label);
+            if(aliveTable.tableElements.size()<Spieler.spieler.size()+1) {
+                aliveTable.add(label);
+            }
         }
     }
 
@@ -183,7 +192,9 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener{
                 label.setBackground(Color.white);
             }
             label.setOpaque(true);
-            activeTable.add(label);
+            if(activeTable.tableElements.size()<Spieler.spieler.size()+1) {
+                activeTable.add(label);
+            }
         }
     }
 
@@ -205,7 +216,9 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener{
                 label.setBackground(Color.white);
             }
             label.setOpaque(true);
-            protectedTable.add(label);
+            if(protectedTable.tableElements.size()<Spieler.spieler.size()+1) {
+                protectedTable.add(label);
+            }
         }
     }
 
