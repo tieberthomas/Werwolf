@@ -1,7 +1,5 @@
 package root.Phases;
 
-import root.ResourceManagement.ResourcePath;
-
 /**
  * Created by Steve on 23.11.2017.
  */
@@ -26,10 +24,9 @@ public class Statement
     public String beschreibung;
     public String title;
     public int type;
-    public boolean visible;
 
     public int getState() {
-        if(!visible) {
+        if(!isVisible()) {
             return INVISIBLE_NOT_IN_GAME;
         }
         if(!isLebend()) {
@@ -44,24 +41,8 @@ public class Statement
         return NORMAL;
     }
 
-    public String getResourcePathOfState() {
-        switch (getState())
-        {
-            case Statement.NORMAL:
-                return "";
-
-            case Statement.DEAKTIV:
-                return ResourcePath.DEAKTIVIERT;
-
-            case Statement.DEAD:
-                return ResourcePath.TOT;
-
-            case Statement.NOT_IN_GAME:
-                return ResourcePath.AUS_DEM_SPIEL;
-
-            default:
-                return "";
-        }
+    public boolean isVisible() {
+        return true;
     }
 
     public boolean isLebend() {

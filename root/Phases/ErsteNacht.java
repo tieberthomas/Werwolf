@@ -77,81 +77,83 @@ public class ErsteNacht extends Thread {
             ersteNachtBuildStatements();
 
             for (Statement statement : statements) {
-                setPlayersAwake(statement);
-                Rolle rolle = null;
-                if (statement.getClass() == StatementRolle.class) {
-                    rolle = ((StatementRolle) statement).getRolle();
-                }
-
-                if (rolle != null && rolle instanceof Nebenrolle && ((Nebenrolle) rolle).getType().equals(Nebenrolle.PASSIV)) {
-                    Nebenrolle nebenrolle = ((Nebenrolle) rolle);
-                    newNebenrolle = nebenrolle.getTauschErgebnis();
-                    cardToDisplay = newNebenrolle.getImagePath();
-                    showCard(statement, statement.title, cardToDisplay); //TODO title
-                    if(Rolle.rolleLebend(rolle.getName())) {
-                        nebenrolle.tauschen(newNebenrolle);
+                if (statement.isVisible()) {
+                    setPlayersAwake(statement);
+                    Rolle rolle = null;
+                    if (statement.getClass() == StatementRolle.class) {
+                        rolle = ((StatementRolle) statement).getRolle();
                     }
 
-                } else if(statement.getClass() == StatementFraktion.class){
-                    Fraktion fraktion = Fraktion.findFraktion(((StatementFraktion) statement).fraktion);
-                    showFraktionMembers(statement, fraktion.getName());
-                }
-                else{
-                    switch (statement.beschreibung) {
-                        case LIEBESPAAR:
-                            ArrayList<String> spielerOrZufällig = Spieler.getLivigPlayerStrings();
-                            spielerOrZufällig.add(Liebespaar.ZUFÄLLIG);
+                    if (rolle != null && rolle instanceof Nebenrolle && ((Nebenrolle) rolle).getType().equals(Nebenrolle.PASSIV)) {
+                        Nebenrolle nebenrolle = ((Nebenrolle) rolle);
+                        newNebenrolle = nebenrolle.getTauschErgebnis();
+                        cardToDisplay = newNebenrolle.getImagePath();
+                        showCard(statement, statement.title, cardToDisplay); //TODO title
+                        if(Rolle.rolleLebend(rolle.getName())) {
+                            nebenrolle.tauschen(newNebenrolle);
+                        }
 
-                            showDropdown(statement, spielerOrZufällig, spielerOrZufällig);
+                    } else if(statement.getClass() == StatementFraktion.class){
+                        Fraktion fraktion = Fraktion.findFraktion(((StatementFraktion) statement).fraktion);
+                        showFraktionMembers(statement, fraktion.getName());
+                    }
+                    else{
+                        switch (statement.beschreibung) {
+                            case LIEBESPAAR:
+                                ArrayList<String> spielerOrZufällig = Spieler.getLivigPlayerStrings();
+                                spielerOrZufällig.add(Liebespaar.ZUFÄLLIG);
 
-                            Liebespaar.neuesLiebespaar(FrontendControl.erzählerFrame.chosenOption1, FrontendControl.erzählerFrame.chosenOption2);
-                            break;
+                                showDropdown(statement, spielerOrZufällig, spielerOrZufällig);
 
-                        case LIEBESPAAR_FINDEN:
-                            if(Liebespaar.spieler1!=null) {
-                                ArrayList<String> liebespaarStrings = new ArrayList<>();
+                                Liebespaar.neuesLiebespaar(FrontendControl.erzählerFrame.chosenOption1, FrontendControl.erzählerFrame.chosenOption2);
+                                break;
 
-                                liebespaarStrings.add(Liebespaar.spieler1.name);
-                                liebespaarStrings.add(Liebespaar.spieler2.name);
+                            case LIEBESPAAR_FINDEN:
+                                if(Liebespaar.spieler1!=null) {
+                                    ArrayList<String> liebespaarStrings = new ArrayList<>();
 
-                                imagePath = Liebespaar.getImagePath();
+                                    liebespaarStrings.add(Liebespaar.spieler1.name);
+                                    liebespaarStrings.add(Liebespaar.spieler2.name);
 
-                                FrontendControl.erzählerListPage(statement, liebespaarStrings);
-                                FrontendControl.spielerIconPicturePage(statement.title, imagePath);
+                                    imagePath = Liebespaar.getImagePath();
+
+                                    FrontendControl.erzählerListPage(statement, liebespaarStrings);
+                                    FrontendControl.spielerIconPicturePage(statement.title, imagePath);
+
+                                    waitForAnswer();
+                                }
+                                break;
+
+                            case ALPHAWOLF:
+                                ArrayList<Spieler> werwölfe = Fraktion.findFraktion(Werwölfe.name).getFraktionsMembers();
+                                werwölfe.remove(Spieler.findSpielerPerRolle(Alphawolf.name));
+                                for (Spieler currentSpieler : werwölfe) {
+                                    showHauptrolle(statement, currentSpieler);
+                                }
+                                statement.title = ALPHAWOLF_FERTIG_TITLE;
+                                showImage(statement, statement.title, ResourcePath.WÖLFE_ICON);
+                                break;
+
+                            case BRÜDER:
+                                ArrayList<String> brüder = Spieler.findSpielersStringsPerRolle(Bruder.name);
+
+                                FrontendControl.erzählerListPage(statement, brüder);
+                                FrontendControl.spielerCardPicturePage(statement.title, ResourcePath.BRÜDER_KARTE);
 
                                 waitForAnswer();
-                            }
-                            break;
+                                break;
 
-                        case ALPHAWOLF:
-                            ArrayList<Spieler> werwölfe = Fraktion.findFraktion(Werwölfe.name).getFraktionsMembers();
-                            werwölfe.remove(Spieler.findSpielerPerRolle(Alphawolf.name));
-                            for (Spieler currentSpieler : werwölfe) {
-                                showHauptrolle(statement, currentSpieler);
-                            }
-                            statement.title = ALPHAWOLF_FERTIG_TITLE;
-                            showImage(statement, statement.title, ResourcePath.WÖLFE_ICON);
-                            break;
+                            case SEHERIN:
+                                dropdownOtions = rolle.getDropdownOptions();
+                                chosenOption = showFrontendControl(statement, dropdownOtions);
+                                info = rolle.processChosenOptionGetInfo(chosenOption);
+                                showFrontendControl(statement, info);
+                                break;
 
-                        case BRÜDER:
-                            ArrayList<String> brüder = Spieler.findSpielersStringsPerRolle(Bruder.name);
-
-                            FrontendControl.erzählerListPage(statement, brüder);
-                            FrontendControl.spielerCardPicturePage(statement.title, ResourcePath.BRÜDER_KARTE);
-
-                            waitForAnswer();
-                            break;
-
-                        case SEHERIN:
-                            dropdownOtions = rolle.getDropdownOptions();
-                            chosenOption = showFrontendControl(statement, dropdownOtions);
-                            info = rolle.processChosenOptionGetInfo(chosenOption);
-                            showFrontendControl(statement, info);
-                            break;
-
-                        default:
-                            showTitle(statement);
-                            break;
+                            default:
+                                showTitle(statement);
+                                break;
+                        }
                     }
                 }
             }
@@ -366,10 +368,10 @@ public class ErsteNacht extends Thread {
     public void ersteNachtBuildStatements() {
         statements = new ArrayList<>();
 
-        addStatement(ALLE_SCHLAFEN_EIN, ALLE_SCHLAFEN_EIN_TITLE);
+        addStatementIndie(ALLE_SCHLAFEN_EIN, ALLE_SCHLAFEN_EIN_TITLE);
 
-        addStatement(LIEBESPAAR, LIEBESPAAR_TITLE);
-        addStatement(LIEBESPAAR_FINDEN, LIEBESPAAR_FINDEN_TITLE);
+        addStatementIndie(LIEBESPAAR, LIEBESPAAR_TITLE);
+        addStatementIndie(LIEBESPAAR_FINDEN, LIEBESPAAR_FINDEN_TITLE);
 
         addStatementRolle(REINES_LICHT, REINES_LICHT_TITLE, ReinesLicht.name);
         addStatementRolle(LAMM, LAMM_TITLE, Lamm.name);
@@ -386,19 +388,17 @@ public class ErsteNacht extends Thread {
 
         addStatementRolle(SEHERIN, SEHERIN_TITLE, Seherin.name);
 
-        addStatement(ALLE_WACHEN_AUF, ALLE_WACHEN_AUF_TITLE);
+        addStatementIndie(ALLE_WACHEN_AUF, ALLE_WACHEN_AUF_TITLE);
     }
 
-    public void addStatement(String statement, String title) {
-        statements.add(new StatementIndie(statement, title, Statement.INDIE, true));
+    public void addStatementIndie(String statement, String title) {
+        statements.add(new StatementIndie(statement, title, Statement.INDIE));
     }
 
     //TODO Statement Type implementieren
 
     public void addStatementRolle(String statement, String title, String rolle) {
-        if (Rolle.rolleInNachtEnthalten(rolle)) {
-            statements.add(new StatementRolle(statement, title, rolle, Statement.INDIE, true));
-        }
+        statements.add(new StatementRolle(statement, title, rolle, Statement.INDIE));
     }
 
     public void addStatementFraktion(String statement, String title, String fraktionsName) {
@@ -406,7 +406,7 @@ public class ErsteNacht extends Thread {
 
         if (Fraktion.fraktionInNachtEnthalten(fraktionsName)) {
             if(fraktion.getNumberOfFraktionsMembersInGame()>1) {
-                statements.add(new StatementFraktion(statement, title, fraktionsName, Statement.INDIE, true));
+                statements.add(new StatementFraktion(statement, title, fraktionsName, Statement.INDIE));
             }
         }
     }

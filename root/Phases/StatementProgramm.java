@@ -3,16 +3,15 @@ package root.Phases;
 /**
  * Created by Steve on 27.12.2017.
  */
-public class StatementIndie extends Statement {
-    public StatementIndie(String beschreibung, String title, int type) {
+public class StatementProgramm extends Statement {
+    public StatementProgramm(String beschreibung) {
         this.beschreibung = beschreibung;
-        this.title = title;
-        this.type = type;
+        this.type = Statement.PROGRAMM;
     }
 
     @Override
     public boolean isVisible() {
-        return true;
+        return false;
     }
 
     @Override

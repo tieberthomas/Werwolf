@@ -255,7 +255,7 @@ public class ErzählerPageElementFactory {
         }
 
         for (Statement statement : statements) {
-            if(statement.visible) {
+            if(statement.isVisible()) {
                 nachtPunkte.add(statement.beschreibung);
                 if(!statement.isLebend()) {
                     if (statement.beschreibung.contains(currentStatement) || (statement.title.equals(Nacht.KONDITOR_LEHRLING_TITLE) && currentStatement.equals(Nacht.KONDITOR_LEHRLING))) {
@@ -299,19 +299,19 @@ public class ErzählerPageElementFactory {
         for(Statement statement : statements) {
             if(statement.getClass() == StatementRolle.class) {
                 StatementRolle statementRolle = (StatementRolle)statement;
-                StatementRolle newRolleStatement = new StatementRolle(statementRolle.beschreibung, statementRolle.title, statementRolle.getRolle().getName(), statementRolle.type, statementRolle.visible, statementRolle.sammler);
                 if(statementRolle.sammler) {
+                    //TODO copy Statement
+                    StatementRolle newRolleStatement = new StatementRolle(statementRolle.beschreibung, statementRolle.title, statementRolle.getRolle().getName(), statementRolle.type, statementRolle.sammler);
                     if(!statementRolle.beschreibung.equals(Nacht.KONDITOR_LEHRLING)) {
                         newRolleStatement.beschreibung = Sammler.beschreibungAddiditon + statement.beschreibung;
                     } else {
                         String searchString = "Konditorlehrling erwachen ";
                         newRolleStatement.beschreibung = statement.beschreibung.replace(searchString, Sammler.beschreibungAddiditonLowerCase+searchString);
                     }
+                    statement = newRolleStatement;
                 }
-                newStatements.add(newRolleStatement);
-            } else {
-                newStatements.add(statement);
             }
+            newStatements.add(statement);
         }
 
         return newStatements;

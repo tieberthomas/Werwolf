@@ -170,7 +170,7 @@ public class Nacht extends Thread
             for (Statement statement : statements) {
                 chosenOption = null;
 
-                if (statement.visible || statement.type == Statement.PROGRAMM) { //TODO useless?
+                if (statement.isVisible() || statement.type == Statement.PROGRAMM) {
                     setPlayersAwake(statement);
 
                     switch (statement.type) {
@@ -1007,7 +1007,7 @@ public class Nacht extends Thread
         addStatementRolle(WACHHUND, WACHHUND_TITLE, Wachhund.name, Statement.ROLLE_CHOOSE_ONE);
         addStatementRolle(GUTE_HEXE_SCHÜTZEN, GUTE_HEXE_SCHÜTZEN_TITLE, GuteHexe.name, Statement.ROLLE_CHOOSE_ONE);
 
-        addInvisibleProgrammStatement(PROGRAMM_SCHÜTZE);
+        addProgrammStatement(PROGRAMM_SCHÜTZE);
 
         addStatementRolle(LADY_ALEERA, LADY_ALEERA_TITLE, LadyAleera.name, Statement.ROLLE_INFO);
         addStatementRolle(PROSTITUIERTE, PROSTITUIERTE_TITLE, Prostituierte.name, Statement.ROLLE_CHOOSE_ONE);
@@ -1040,7 +1040,7 @@ public class Nacht extends Thread
         addStatementRolle(NACHBAR_INFORMATION, NACHBAR_INFORMATION_TITLE, Nachbar.name, Statement.ROLLE_INFO);
         addStatementRolle(WACHHUND_INFORMATION, WACHHUND_INFORMATION_TITLE, Wachhund.name, Statement.ROLLE_INFO);
 
-        addInvisibleProgrammStatement(PROGRAMM_WAHRSAGER);
+        addProgrammStatement(PROGRAMM_WAHRSAGER);
         if(Spieler.getLivigPlayer().size()>4) {
             addStatementRolle(WAHRSAGER, WAHRSAGER_TITLE, Wahrsager.name, Statement.ROLLE_CHOOSE_ONE);
         }
@@ -1053,7 +1053,7 @@ public class Nacht extends Thread
 
         addStatementIndie(ALLE_WACHEN_AUF, ALLE_WACHEN_AUF_TITLE, Statement.SHOW_TITLE);
 
-        addInvisibleProgrammStatement(PROGRAMM_OPFER);
+        addProgrammStatement(PROGRAMM_OPFER);
         addStatementIndie(OPFER, OPFER_TITLE, Statement.INDIE);
 
         if(Rolle.rolleInNachtEnthalten(Beschwörer.name)) {
@@ -1066,29 +1066,22 @@ public class Nacht extends Thread
             addStatementRolle(WÖLFIN_NEBENROLLE, WÖLFIN_NEBENROLLE_TITLE, Wölfin.name, Statement.ROLLE_INFO);
         }
 
-        addInvisibleProgrammStatement(PROGRAMM_TORTE);
+        addProgrammStatement(PROGRAMM_TORTE);
+    }
+
+    public void addProgrammStatement(String statement) {
+        statements.add(new StatementProgramm(statement));
     }
 
     public void addStatementIndie(String statement, String title, int type) {
-        statements.add(new StatementIndie(statement, title, type, true));
+        statements.add(new StatementIndie(statement, title, type));
     }
 
     public void addStatementRolle(String statement, String title, String rolle, int type) {
-        if (Rolle.rolleInNachtEnthalten(rolle)) {
-            boolean isSammlerStatement = Sammler.isSammlerRolle(rolle);
-            statements.add(new StatementRolle(statement, title, rolle, type, true, isSammlerStatement));
-        } else {
-            statements.add(new StatementRolle(statement, title, rolle, type, false));
-        }
+        statements.add(new StatementRolle(statement, title, rolle, type));
     }
 
     public void addStatementFraktion(String statement, String title, String fraktion, int type) {
-        if (Fraktion.fraktionInNachtEnthalten(fraktion)) {
-            statements.add(new StatementFraktion(statement, title, fraktion, type, true));
-        }
-    }
-
-    public void addInvisibleProgrammStatement(String statement) {
-        statements.add(new StatementIndie(statement, "", Statement.PROGRAMM, false));
+        statements.add(new StatementFraktion(statement, title, fraktion, type));
     }
 }

@@ -11,22 +11,25 @@ public class StatementRolle extends Statement {
     String rolle;
     public boolean sammler;
 
-    public StatementRolle(String beschreibung, String title, String rolle, int type, boolean visible) {
+    public StatementRolle(String beschreibung, String title, String rolle, int type) {
         this.beschreibung = beschreibung;
         this.title = title;
         this.rolle = rolle;
         this.type = type;
-        this.visible = visible;
-        this.sammler = false;
+        this.sammler = Sammler.isSammlerRolle(rolle);
     }
 
-    public StatementRolle(String beschreibung, String title, String rolle, int type, boolean visible, boolean sammler) {
+    public StatementRolle(String beschreibung, String title, String rolle, int type, boolean sammler) {
         this.beschreibung = beschreibung;
         this.title = title;
         this.rolle = rolle;
         this.type = type;
-        this.visible = visible;
         this.sammler = sammler;
+    }
+
+    @Override
+    public boolean isVisible() {
+        return Rolle.rolleInNachtEnthalten(rolle);
     }
 
     @Override
