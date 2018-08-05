@@ -38,10 +38,12 @@ public class Buchhalter extends Hauptrolle
 
     @Override
     public FrontendControl processChosenOptionGetInfo(String chosenOption) {
-        if (chosenOption.equals(JA)) {
-            abilityCharges--;
-            seenRoles = Hauptrolle.getMainRolesAlive();
-            return new FrontendControl(FrontendControl.LIST, USED_TITLE, seenRoles);
+        if(chosenOption!=null) {
+            if (chosenOption.equals(JA)) {
+                abilityCharges--;
+                seenRoles = Hauptrolle.getMainRolesAlive();
+                return new FrontendControl(FrontendControl.LIST, USED_TITLE, seenRoles);
+            }
         }
 
         return new FrontendControl();
