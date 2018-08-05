@@ -14,6 +14,7 @@ tauschkarten quasi aus secondaryRolesInGame removen (für nachzügler) aber nich
 bei übersichtspage rahmen von mehreren personen anzeigen (die nicht die ganze fraktion sind)
 alle karten hinzufügen auf haupt und nebenrollen
 brüder (wenn nur einer im spiel ist) und dass man nicht mehr als 2 adden kann
+anästesiert titel
 
 bei jeder rolle als kommentar den kartentext dazuschreiben
 

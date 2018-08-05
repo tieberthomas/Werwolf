@@ -6,6 +6,7 @@ import root.Frontend.Page.PageTable;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ConcurrentModificationException;
 
 import static java.awt.Color.WHITE;
 
@@ -37,7 +38,10 @@ public class MyFrame extends JFrame {
         currentPage = page;
         Dimension dimension = frameJpanel.getSize();
         setFrameMode(dimension);
-        frameJpanel = generatePanelFromPage(page);
+        try {
+            frameJpanel = generatePanelFromPage(page);
+        } catch (ConcurrentModificationException e) {
+        }
         frameJpanel.setPreferredSize(dimension);
         setContentPane(frameJpanel);
         pack();
