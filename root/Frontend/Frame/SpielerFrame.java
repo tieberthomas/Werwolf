@@ -146,7 +146,6 @@ public class SpielerFrame extends MyFrame{
                     time++;
                     SpielerFrame.generateTimeString();
                     clockLabel.setText(timestring);
-                    System.out.println(timestring);
                 }
             };
 

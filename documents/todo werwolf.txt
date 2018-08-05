@@ -12,6 +12,8 @@ seher bamboozlekarten dem erzähler zeigen während der seher aktion damit diese
 siegüberprüfung generischer machen (tag und nacht)
 tauschkarten quasi aus secondaryRolesInGame removen (für nachzügler) aber nicht wirklich, weil ja der spielerscreen am tag anzeigen soll dass es drin war
 bei übersichtspage rahmen von mehreren personen anzeigen (die nicht die ganze fraktion sind)
+alle karten hinzufügen auf haupt und nebenrollen
+brüder (wenn nur einer im spiel ist) und dass man nicht mehr als 2 adden kann
 
 bei jeder rolle als kommentar den kartentext dazuschreiben
 
