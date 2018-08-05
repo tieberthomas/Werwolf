@@ -284,22 +284,18 @@ public class Nacht extends Thread
                             break;
 
                         case GUTE_HEXE_WIEDERBELEBEN:
-                            Spieler guteHexeSpieler = Spieler.findSpielerPerRolle(GuteHexe.name);
-                            if(guteHexeSpieler!=null) {
-                                GuteHexe guteHexe = (GuteHexe) guteHexeSpieler.hauptrolle;
-                                if (guteHexe.wiederbelebenCharges > 0) {
-                                    ArrayList<String> erweckbareOpferOrNon = Opfer.getErweckbareStringsOrNon();
+                            if (GuteHexe.wiederbelebenCharges > 0) {
+                                ArrayList<String> erweckbareOpferOrNon = Opfer.getErweckbareStringsOrNon();
 
-                                    chosenOption = showAfterDeathDropdownListPage(statement, erweckbareOpferOrNon);
+                                chosenOption = showAfterDeathDropdownListPage(statement, erweckbareOpferOrNon);
 
-                                    chosenOpfer = Opfer.findOpfer(chosenOption);
+                                chosenOpfer = Opfer.findOpfer(chosenOption);
 
-                                    if (chosenOpfer != null) {
-                                        guteHexe.wiederbeleben(chosenOpfer);
-                                    }
-                                } else {
-                                    showAufgebrauchtPages(statement);
+                                if (chosenOpfer != null) {
+                                    ((GuteHexe) rolle).wiederbeleben(chosenOpfer);
                                 }
+                            } else {
+                                showAufgebrauchtPages(statement);
                             }
                             break;
 

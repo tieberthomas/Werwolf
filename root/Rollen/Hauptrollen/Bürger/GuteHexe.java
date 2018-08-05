@@ -18,8 +18,8 @@ public class GuteHexe extends Hauptrolle
     public static final String imagePath = ResourcePath.GUTE_HEXE_KARTE;
     public static boolean unique = true;
     public static boolean spammable = false;
-    public int wiederbelebenCharges = 1;
-    public Spieler besuchtWiederbeleben = null;
+    public static int wiederbelebenCharges = 1;
+    public static Spieler besuchtWiederbeleben = null;
 
     @Override
     public FrontendControl getDropdownOptions() {
