@@ -178,7 +178,8 @@ public class FrontendControl {
     }
 
     public static void spielerListPage(String title, ArrayList<String> strings) {
-        Page nightPage = spielerFrame.pageFactory.generateListPage(title, strings);
+        //Page nightPage = spielerFrame.pageFactory.generateListPage(title, strings); //TODO removen falls option auf hotfix nichtmer notwendig ist
+        Page nightPage = spielerFrame.pageFactory.generateListPage(strings);
         spielerFrame.buildScreenFromPage(nightPage);
     }
 
