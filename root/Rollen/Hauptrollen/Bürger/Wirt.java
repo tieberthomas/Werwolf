@@ -37,8 +37,10 @@ public class Wirt extends Hauptrolle
 
     @Override
     public void processChosenOption(String chosenOption) {
-        if (chosenOption.equals(JA)) {
-            freibierCharges--;
+        if(chosenOption!=null) {
+            if (chosenOption.equals(JA)) {
+                freibierCharges--;
+            }
         }
     }
 

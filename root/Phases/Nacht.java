@@ -1090,15 +1090,17 @@ public class Nacht extends Thread
     }
 
     public boolean statementSpielerIsAnästesiert(Statement statement) {
-        if(statement.getClass() == StatementRolle.class) {
-            StatementRolle statementRolle = (StatementRolle)statement;
+        if(anästesierterSpieler!=null) {
+            if (statement.getClass() == StatementRolle.class) {
+                StatementRolle statementRolle = (StatementRolle) statement;
 
-            Rolle rolle = statementRolle.getRolle();
-            if(rolle!=null) {
-                Spieler spieler = Spieler.findSpielerPerRolle(rolle.getName());
-                if(spieler!=null) {
-                    if(spieler.name.equals(anästesierterSpieler.name)) {
-                        return true;
+                Rolle rolle = statementRolle.getRolle();
+                if (rolle != null) {
+                    Spieler spieler = Spieler.findSpielerPerRolle(rolle.getName());
+                    if (spieler != null) {
+                        if (spieler.name.equals(anästesierterSpieler.name)) {
+                            return true;
+                        }
                     }
                 }
             }
