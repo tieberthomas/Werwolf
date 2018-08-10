@@ -231,7 +231,7 @@ public class Nacht extends Thread
 
                     switch (statement.beschreibung) {
                         case WIRT:
-                            if (chosenOption != null && chosenOption.equals(Wirt.JA)) {
+                            if (Wirt.JA.equals(chosenOption)) {
                                 freibier = true;
                             }
                             break;
@@ -266,7 +266,6 @@ public class Nacht extends Thread
                                 neuerSchattenpriester = chosenPlayer.name;
 
                                 if (!chosenPlayer.hauptrolle.getFraktion().getName().equals(Schattenpriester_Fraktion.name)) {
-                                    System.out.println("schattenkutte");
                                     imagePath = Schattenkutte.imagePath;
                                 }
                             }

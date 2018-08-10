@@ -43,7 +43,10 @@ public class MyFrame extends JFrame {
         } catch (ConcurrentModificationException e) {
         }
         frameJpanel.setPreferredSize(dimension);
+        try {
         setContentPane(frameJpanel);
+        } catch (IllegalArgumentException e) {
+        }
         pack();
         requestFocusInWindow();
     }
