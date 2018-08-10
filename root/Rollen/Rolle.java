@@ -64,16 +64,6 @@ public class Rolle {
         return null;
     }
 
-    public static boolean rolleExists(String rolle) {
-        for (Spieler currentSpieler : Spieler.spieler) {
-            if(currentSpieler.hauptrolle.getName().equals(rolle) || currentSpieler.nebenrolle.getName().equals(rolle)) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
     public static boolean hauptRolleInNachtEnthalten(String rolle) {
         if(Hauptrolle.getMainRoleInGameNames().contains(rolle)) {
             for(Rolle currentRolle : Rolle.mitteHauptrollen){
@@ -95,20 +85,14 @@ public class Rolle {
                 }
             }
 
-            if(!hauptRolleInNachtEnthalten(Sammler.name)) {
-                for (Rolle currentRolle : Rolle.mitteNebenrollen) {
+            for (Rolle currentRolle : Rolle.mitteNebenrollen) {
+                if(!hauptRolleInNachtEnthalten(Sammler.name) || currentRolle.getName().equals(Totengräber.name)) {
                     if (currentRolle.getName().equals(rolle)) {
                         return false;
                     }
                 }
-            } else {
-                //TODO generischer machen
-                for (Rolle currentRolle : Rolle.mitteNebenrollen) {
-                    if (currentRolle.getName().equals(rolle) && currentRolle.getName().equals(Totengräber.name)) {
-                        return false;
-                    }
-                }
             }
+
             return true;
         } else {
             return false;

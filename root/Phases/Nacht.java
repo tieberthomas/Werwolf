@@ -368,16 +368,17 @@ public class Nacht extends Thread
 
                         case KONDITOR:
                         case KONDITOR_LEHRLING:
+                            //TODO evaluieren ob Page angezeigt werden soll wenn gibtEsTorte();
                             if (Opfer.deadVictims.size() == 0) {
-                                if (Rolle.rolleLebend(Konditor.name) && Rolle.rolleAktiv(Konditor.name) || Rolle.rolleLebend(Konditorlehrling.name) && Rolle.rolleAktiv(Konditorlehrling.name)) {
+                                if (gibtEsTorte()) {
                                     Torte.torte = true;
+
+                                    dropdownOtions = rolle.getDropdownOptions();
+                                    chosenOption = showKonditorDropdownPage(statement, dropdownOtions);
+                                    rolle.processChosenOption(chosenOption);
+
+                                    Torte.gut = chosenOption.equals(Konditor.GUT);
                                 }
-
-                                dropdownOtions = rolle.getDropdownOptions();
-                                chosenOption = showKonditorDropdownPage(statement, dropdownOtions);
-                                rolle.processChosenOption(chosenOption);
-
-                                Torte.gut = chosenOption.equals(Konditor.GUT);
                             }
                             break;
 
@@ -646,6 +647,24 @@ public class Nacht extends Thread
         }
     }
 
+    public boolean gibtEsTorte() {
+        if (Rolle.rolleLebend(Konditor.name) && !Opfer.isOpferPerRolle(Konditor.name) && Rolle.rolleAktiv(Konditor.name)) {
+            return true;
+        }
+
+        if (Rolle.rolleLebend(Konditorlehrling.name) && !Opfer.isOpferPerRolle(Konditorlehrling.name) && Rolle.rolleAktiv(Konditorlehrling.name)) {
+            return true;
+        }
+
+        if (Sammler.isSammlerRolle(Konditor.name) || Sammler.isSammlerRolle(Konditorlehrling.name)) {
+            if (Rolle.rolleLebend(Sammler.name) && !Opfer.isOpferPerRolle(Sammler.name) && Rolle.rolleAktiv(Sammler.name)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public void checkVictory() {
         String victory = Spieler.checkVictory();
 
@@ -756,22 +775,12 @@ public class Nacht extends Thread
     }
 
     public String showKonditorDropdownPage(Statement statement, FrontendControl frontendControl) {
-        if (Rolle.rolleLebend(Konditor.name) || Rolle.rolleLebend(Konditorlehrling.name)) {
+        /*if (Rolle.rolleLebend(Konditor.name) || Rolle.rolleLebend(Konditorlehrling.name)) {
             if (!Opfer.isOpferPerRolle(Konditor.name) || !Opfer.isOpferPerRolle(Konditorlehrling.name)) {
-                if (Rolle.rolleAktiv(Konditor.name) || Rolle.rolleAktiv(Konditorlehrling.name)) {
+                if (Rolle.rolleAktiv(Konditor.name) || Rolle.rolleAktiv(Konditorlehrling.name)) {*/
                     FrontendControl.erzählerDropdownPage(statement, frontendControl.strings);
-
-                    switch (frontendControl.typeOfContent)
-                    {
-                        case FrontendControl.DROPDOWN:
-                            FrontendControl.spielerDropdownPage(statement.title, 1);
-                            break;
-
-                        case FrontendControl.DROPDOWN_LIST:
-                            FrontendControl.spielerDropdownListPage(statement.title, frontendControl.strings);
-                            break;
-                    }
-                } else {
+                    FrontendControl.spielerDropdownPage(statement.title, 1);
+                /*} else {
                     FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), ResourcePath.DEAKTIVIERT);
                     FrontendControl.spielerIconPicturePage(DEAKTIVIERT_TITLE, ResourcePath.DEAKTIVIERT);
                 }
@@ -782,7 +791,7 @@ public class Nacht extends Thread
         } else {
             FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), ResourcePath.AUS_DEM_SPIEL);
             FrontendControl.spielerDropdownPage(statement.title, 1);
-        }
+        }*/
 
         waitForAnswer();
 
@@ -893,6 +902,26 @@ public class Nacht extends Thread
                 waitForAnswer();
                 break;
         }
+    }
+
+    public boolean statementSpielerIsAnästesiert(Statement statement) {
+        if(anästesierterSpieler!=null) {
+            if (statement.getClass() == StatementRolle.class) {
+                StatementRolle statementRolle = (StatementRolle) statement;
+
+                Rolle rolle = statementRolle.getRolle();
+                if (rolle != null) {
+                    Spieler spieler = Spieler.findSpielerPerRolle(rolle.getName());
+                    if (spieler != null) {
+                        if (spieler.name.equals(anästesierterSpieler.name)) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+
+        return false;
     }
 
     public void showTitle(Statement statement) {
@@ -1049,7 +1078,7 @@ public class Nacht extends Thread
             addStatementRolle(WAHRSAGER, WAHRSAGER_TITLE, Wahrsager.name, Statement.ROLLE_CHOOSE_ONE);
         }
 
-        if (Rolle.rolleInNachtEnthalten(Konditorlehrling.name)) {
+        if (Nebenrolle.getSecondaryRoleInGameNames().contains(Konditorlehrling.name)) {
             addStatementRolle(KONDITOR_LEHRLING, KONDITOR_LEHRLING_TITLE, Konditorlehrling.name, Statement.ROLLE_SPECAL);
         } else {
             addStatementRolle(KONDITOR, KONDITOR_TITLE, Konditor.name, Statement.ROLLE_SPECAL);
@@ -1060,7 +1089,7 @@ public class Nacht extends Thread
         addProgrammStatement(PROGRAMM_OPFER);
         addStatementIndie(OPFER, OPFER_TITLE, Statement.INDIE);
 
-        if(Rolle.rolleInNachtEnthalten(Beschwörer.name)) {
+        if(Rolle.rolleInNachtEnthalten(Beschwörer.name)) { //TODO useless
             addStatementIndie(VERSTUMMT, VERSTUMMT_TITLE, Statement.INDIE);
         }
         if(Rolle.rolleInNachtEnthalten(Frisör.name) || Rolle.rolleInNachtEnthalten(Wahrsager.name)) {
@@ -1087,25 +1116,5 @@ public class Nacht extends Thread
 
     public void addStatementFraktion(String statement, String title, String fraktion, int type) {
         statements.add(new StatementFraktion(statement, title, fraktion, type));
-    }
-
-    public boolean statementSpielerIsAnästesiert(Statement statement) {
-        if(anästesierterSpieler!=null) {
-            if (statement.getClass() == StatementRolle.class) {
-                StatementRolle statementRolle = (StatementRolle) statement;
-
-                Rolle rolle = statementRolle.getRolle();
-                if (rolle != null) {
-                    Spieler spieler = Spieler.findSpielerPerRolle(rolle.getName());
-                    if (spieler != null) {
-                        if (spieler.name.equals(anästesierterSpieler.name)) {
-                            return true;
-                        }
-                    }
-                }
-            }
-        }
-
-        return false;
     }
 }
