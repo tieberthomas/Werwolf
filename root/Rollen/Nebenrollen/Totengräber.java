@@ -9,6 +9,8 @@ import root.Rollen.Nebenrolle;
 import root.Rollen.Rolle;
 import root.Spieler;
 
+import java.util.ArrayList;
+
 /**
  * Created by Steve on 12.11.2017.
  */
@@ -21,7 +23,7 @@ public class Totengräber extends Nebenrolle
 
     @Override
     public FrontendControl getDropdownOptions() {
-        return new FrontendControl(FrontendControl.DROPDOWN_LIST, Spieler.getDeadNebenrollen());
+        return new FrontendControl(FrontendControl.DROPDOWN_LIST, getNehmbareNebenrollen());
     }
 
     @Override
@@ -29,12 +31,12 @@ public class Totengräber extends Nebenrolle
         Nebenrolle chosenNebenrolle = Nebenrolle.findNebenrolle(chosenOption);
         if (chosenNebenrolle != null) {
             try {
-                Spieler spielerNebenrolle = Spieler.findSpielerOrDeadPerRolle(chosenNebenrolle.getName());
-                chosenNebenrolle = spielerNebenrolle.nebenrolle;
-                spielerNebenrolle.nebenrolle = new Schatten();
+                Spieler deadSpieler = Spieler.findSpielerOrDeadPerRolle(chosenNebenrolle.getName());
+                chosenNebenrolle = (Nebenrolle)Rolle.findRolle(deadSpieler.nebenrolle.getName());
 
                 Spieler spielerTotengräber = Spieler.findSpielerPerRolle(name);
                 spielerTotengräber.nebenrolle = chosenNebenrolle;
+                deadSpieler.nebenrolle = new Schatten();
 
                 Rolle.mitteNebenrollen.remove(chosenNebenrolle);
                 Rolle.mitteNebenrollen.add(this);
@@ -75,5 +77,17 @@ public class Totengräber extends Nebenrolle
                 }
             }
         }
+    }
+
+    public static ArrayList<String> getNehmbareNebenrollen() {
+        ArrayList<String> nehmbareNebenrollen = new ArrayList<>();
+
+        for(Nebenrolle nebenrolle : Rolle.mitteNebenrollen) {
+            if(!nebenrolle.getType().equals(Nebenrolle.PASSIV)) {
+                nehmbareNebenrollen.add(nebenrolle.getName());
+            }
+        }
+
+        return nehmbareNebenrollen;
     }
 }

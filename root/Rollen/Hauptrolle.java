@@ -132,4 +132,10 @@ public class Hauptrolle extends Rolle
     public Color getFarbe() {
         return getFraktion().getFarbe();
     }
+
+    public static void addAllMainRoles() {
+        mainRolesInGame.addAll(mainRoles);
+        mainRolesInGame.add(new Bruder());
+        mainRolesInGame.remove(findHauptrolle(Dorfbewohner.name));
+    }
 }

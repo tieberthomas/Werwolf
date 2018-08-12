@@ -60,6 +60,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     public PageTable mainRoleLabelTable;
     public PageTable deleteMainRoleTable;
     public ArrayList<JButton> deleteMainRoleButtons;
+    public JButton addAllMainRolesJButton;
 
     public Page secondaryRoleSetupPage;
     public JButton secondaryRoleGoBackJButton;
@@ -68,6 +69,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     public PageTable secondaryRoleLabelTable;
     public PageTable deleteSecondaryRoleTable;
     public ArrayList<JButton> deleteSecondaryRoleButtons;
+    public JButton addAllSecondaryRolesJButton;
 
     public Page playerSpecifiyPage;
     public JButton playerSpecifyGoNextJButton;
@@ -218,7 +220,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
 
         for(Hauptrolle hauptrolle: Hauptrolle.mainRolesInGame) {
             for(JButton button : mainRoleButtons) {
-                if(button.getText().equals(hauptrolle.getName()) && hauptrolle.isUnique()){
+                if(button.getText().equals(hauptrolle.getName()) && hauptrolle.isUnique()){ //TODO auf anzahl gehen
                     disableButton(button);
                 }
             }
@@ -561,6 +563,10 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                     spielerFrame.refreshPlayerSetupPage();
                 }
             }
+        } else if (addAllMainRolesJButton == ae.getSource()) {
+            Hauptrolle.addAllMainRoles();
+            refreshMainRolePage();
+            spielerFrame.refreshMainRoleSetupPage();
         } else if (mainRoleButtons.contains(ae.getSource())) {
             for (int i = 0; i < mainRoleButtons.size(); i++) {
                 if (ae.getSource() == mainRoleButtons.get(i)) {
@@ -591,6 +597,10 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                     spielerFrame.refreshMainRoleSetupPage();
                 }
             }
+        }  else if (addAllSecondaryRolesJButton == ae.getSource()) {
+            Nebenrolle.addAllSecondaryRoles();
+            refreshSecondaryRolePage();
+            spielerFrame.refreshSecondaryRoleSetupPage();
         } else if (secondaryRoleButtons.contains(ae.getSource())) {
             for (int i = 0; i < secondaryRoleButtons.size(); i++) {
                 if (ae.getSource() == secondaryRoleButtons.get(i)) {

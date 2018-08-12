@@ -19,7 +19,7 @@ public class Überläufer extends Hauptrolle
 
     @Override
     public FrontendControl getDropdownOptions() {
-        return new FrontendControl(FrontendControl.DROPDOWN_LIST, Spieler.getDeadHauptrollen());
+        return new FrontendControl(FrontendControl.DROPDOWN_LIST, getMitteHauptrollenStrings());
     }
 
     @Override
@@ -29,10 +29,10 @@ public class Überläufer extends Hauptrolle
             try {
                 Spieler spielerHauptrolle = Spieler.findSpielerPerRolle(chosenHauptrolle.getName());
                 chosenHauptrolle = spielerHauptrolle.hauptrolle;
-                spielerHauptrolle.hauptrolle = new Dorfbewohner();
 
                 Spieler spielerÜberläufer = Spieler.findSpielerPerRolle(name);
                 spielerÜberläufer.hauptrolle = chosenHauptrolle;
+                spielerHauptrolle.hauptrolle = new Dorfbewohner();
 
                 Rolle.mitteHauptrollen.remove(chosenHauptrolle);
                 Rolle.mitteHauptrollen.add(this);

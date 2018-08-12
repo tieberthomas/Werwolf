@@ -26,6 +26,16 @@ public class Rolle {
         return new FrontendControl();
     }
 
+    public static ArrayList<String> getMitteHauptrollenStrings(){
+        ArrayList<String> mitteHauptrollenStrings = new ArrayList<String>();
+
+        for(Hauptrolle hauptrolle : mitteHauptrollen) {
+            mitteHauptrollenStrings.add(hauptrolle.getName());
+        }
+
+        return mitteHauptrollenStrings;
+    }
+
     public FrontendControl getInfo() {
         return new FrontendControl();
     }

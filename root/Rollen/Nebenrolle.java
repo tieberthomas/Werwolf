@@ -121,4 +121,9 @@ public class Nebenrolle extends Rolle
     public String getType() {
         return AKTIV;
     }
+
+    public static void addAllSecondaryRoles() {
+        secondaryRolesInGame.addAll(secondaryRoles);
+        secondaryRolesInGame.remove(findNebenrolle(Schatten.name));
+    }
 }

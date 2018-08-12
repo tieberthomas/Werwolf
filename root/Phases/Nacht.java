@@ -1028,12 +1028,16 @@ public class Nacht extends Thread
             addStatementRolle(WIRT, WIRT_TITLE, Wirt.name, Statement.ROLLE_CHOOSE_ONE);
         }
 
-        addStatementRolle(TOTENGRÄBER, TOTENGRÄBER_TITLE, Totengräber.name, Statement.ROLLE_CHOOSE_ONE);
+        if(Totengräber.getNehmbareNebenrollen().size()>0) {
+            addStatementRolle(TOTENGRÄBER, TOTENGRÄBER_TITLE, Totengräber.name, Statement.ROLLE_CHOOSE_ONE);
+        }
         addStatementRolle(ANÄSTHESIST, ANÄSTHESIST_TITLE, Anästhesist.name, Statement.ROLLE_CHOOSE_ONE);
         addStatementRolle(ANÄSTHESIERTE_SPIELER, ANÄSTHESIERTE_SPIELER_TITLE, Anästhesist.name, Statement.ROLLE_SPECAL);
         addStatementRolle(GEFÄNGNISWÄRTER, GEFÄNGNISWÄRTER_TITLE, Gefängniswärter.name, Statement.ROLLE_CHOOSE_ONE);
 
-        addStatementRolle(ÜBERLÄUFER, ÜBERLÄUFER_TITLE, Überläufer.name, Statement.ROLLE_CHOOSE_ONE);
+        if(Rolle.mitteHauptrollen.size()>0) {
+            addStatementRolle(ÜBERLÄUFER, ÜBERLÄUFER_TITLE, Überläufer.name, Statement.ROLLE_CHOOSE_ONE);
+        }
         addStatementRolle(HOLDE_MAID, HOLDE_MAID_TITLE, HoldeMaid.name, Statement.ROLLE_CHOOSE_ONE);
         addStatementRolle(NACHBAR, NACHBAR_TITLE, Nachbar.name, Statement.ROLLE_CHOOSE_ONE);
         addStatementRolle(WACHHUND, WACHHUND_TITLE, Wachhund.name, Statement.ROLLE_CHOOSE_ONE);

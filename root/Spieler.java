@@ -136,38 +136,6 @@ public class Spieler
         return frontendControl;
     }
 
-    public static ArrayList<String> getDeadNebenrollen() {
-        ArrayList<String> nebenrollenOrNon = new ArrayList<>();
-
-        for(Spieler currentSpieler : Spieler.spieler) {
-            String nebenrolleCurrentSpieler = currentSpieler.nebenrolle.getName();
-
-            if(!currentSpieler.lebend) {
-                nebenrollenOrNon.add(nebenrolleCurrentSpieler);
-            }
-        }
-
-        nebenrollenOrNon.add("");
-
-        return nebenrollenOrNon;
-    }
-
-    public static ArrayList<String> getDeadHauptrollen() {
-        ArrayList<String> hauptrollenOrNon = new ArrayList<>();
-
-        for(Spieler currentSpieler : Spieler.spieler) {
-            String hauptrolleCurrentSpieler = currentSpieler.hauptrolle.getName();
-
-            if(!currentSpieler.lebend && !hauptrollenOrNon.contains(hauptrolleCurrentSpieler)) {
-                hauptrollenOrNon.add(hauptrolleCurrentSpieler);
-            }
-        }
-
-        hauptrollenOrNon.add("");
-
-        return hauptrollenOrNon;
-    }
-
     public static boolean spielerExists(String name) {
         return findSpieler(name) != null;
     }
