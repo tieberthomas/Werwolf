@@ -12,7 +12,6 @@ public class Tarnumhang extends Nebenrolle
 {
     public static final String name = "Tarnumhang";
     public static final String imagePath = ResourcePath.TARNUMHANG_KARTE;
-    public static boolean unique = true;
     public static boolean spammable = false;
     public String type = Nebenrolle.TARNUMHANG;
     public Color farbe = Color.BLACK;
@@ -25,11 +24,6 @@ public class Tarnumhang extends Nebenrolle
     @Override
     public String getImagePath() {
         return imagePath;
-    }
-
-    @Override
-    public boolean isUnique() {
-        return unique;
     }
 
     @Override

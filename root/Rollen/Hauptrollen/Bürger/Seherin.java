@@ -17,7 +17,6 @@ public class Seherin extends Hauptrolle {
     public static final String name = "Seherin";
     public static Fraktion fraktion = new Bürger();
     public static final String imagePath = ResourcePath.SEHERIN_KARTE;
-    public static boolean unique = true;
     public static boolean spammable = true;
 
     @Override
@@ -68,11 +67,6 @@ public class Seherin extends Hauptrolle {
     @Override
     public String getImagePath() {
         return imagePath;
-    }
-
-    @Override
-    public boolean isUnique() {
-        return unique;
     }
 
     @Override

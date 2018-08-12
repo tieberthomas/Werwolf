@@ -14,7 +14,6 @@ public class Wahrsager extends Nebenrolle
 
     public static final String name = "Wahrsager";
     public static final String imagePath = ResourcePath.WAHRSAGER_KARTE;
-    public static boolean unique = true;
     public static boolean spammable = false;
     public Fraktion tipp = null;
     public static Fraktion opferFraktion = null;
@@ -38,11 +37,6 @@ public class Wahrsager extends Nebenrolle
     @Override
     public String getImagePath() {
         return imagePath;
-    }
-
-    @Override
-    public boolean isUnique() {
-        return unique;
     }
 
     @Override

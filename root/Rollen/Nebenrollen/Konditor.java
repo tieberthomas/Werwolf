@@ -16,7 +16,6 @@ public class Konditor extends Nebenrolle
 
     public static final String name = "Konditor";
     public static final String imagePath = ResourcePath.KONDITOR_KARTE;
-    public static boolean unique = true;
     public static boolean spammable = true;
 
     @Override
@@ -39,11 +38,6 @@ public class Konditor extends Nebenrolle
     @Override
     public String getImagePath() {
         return imagePath;
-    }
-
-    @Override
-    public boolean isUnique() {
-        return unique;
     }
 
     @Override

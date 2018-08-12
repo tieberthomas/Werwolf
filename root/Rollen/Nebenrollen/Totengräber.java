@@ -18,7 +18,6 @@ public class Totengräber extends Nebenrolle
 {
     public static final String name = "Totengräber";
     public static final String imagePath = ResourcePath.TOTENGRÄBER_KARTE;
-    public static boolean unique = true;
     public static boolean spammable = false;
 
     @Override
@@ -56,11 +55,6 @@ public class Totengräber extends Nebenrolle
     @Override
     public String getImagePath() {
         return imagePath;
-    }
-
-    @Override
-    public boolean isUnique() {
-        return unique;
     }
 
     @Override

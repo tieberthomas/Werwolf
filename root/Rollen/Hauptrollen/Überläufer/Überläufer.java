@@ -14,7 +14,6 @@ public class Überläufer extends Hauptrolle
     public static final String name = "Überläufer";
     public static Fraktion fraktion = new Überläufer_Fraktion();
     public static final String imagePath = ResourcePath.ÜBERLÄUFER_KARTE;
-    public static boolean unique = true;
     public static boolean spammable = false;
 
     @Override
@@ -55,11 +54,6 @@ public class Überläufer extends Hauptrolle
     @Override
     public String getImagePath() {
         return imagePath;
-    }
-
-    @Override
-    public boolean isUnique() {
-        return unique;
     }
 
     @Override

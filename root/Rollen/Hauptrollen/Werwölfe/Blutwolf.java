@@ -13,7 +13,6 @@ public class Blutwolf extends Hauptrolle
     public static final String name = "Blutwolf";
     public static Fraktion fraktion = new Werwölfe();
     public static final String imagePath = ResourcePath.BLUTWOLF_KARTE;
-    public static boolean unique = true;
     public static boolean spammable = false;
     public static boolean killing = true;
     public static int deadStacks = 0;
@@ -32,11 +31,6 @@ public class Blutwolf extends Hauptrolle
     @Override
     public String getImagePath() {
         return imagePath;
-    }
-
-    @Override
-    public boolean isUnique() {
-        return unique;
     }
 
     @Override

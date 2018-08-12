@@ -13,7 +13,7 @@ public class Schattenpriester extends Hauptrolle
     public static final String name = "Schattenpriester";
     public static Fraktion fraktion = new Schattenpriester_Fraktion();
     public static final String imagePath = ResourcePath.SCHATTENPRIESTER_KARTE;
-    public static boolean unique = false;
+    public static int numberOfPossibleInstances = 100;
     public static boolean spammable = true;
     public boolean neuster = false;
 
@@ -33,8 +33,8 @@ public class Schattenpriester extends Hauptrolle
     }
 
     @Override
-    public boolean isUnique() {
-        return unique;
+    public int getNumberOfPossibleInstances() {
+        return numberOfPossibleInstances;
     }
 
     @Override

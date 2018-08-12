@@ -25,7 +25,6 @@ public class Wölfin extends Hauptrolle
     public static final String name = "Wölfin";
     public static Fraktion fraktion = new Werwölfe();
     public static final String imagePath = ResourcePath.WÖLFIN_KARTE;
-    public static boolean unique = true;
     public static boolean spammable = false;
     public static boolean killing = true;
     public static int modus = WARTEND;
@@ -76,11 +75,6 @@ public class Wölfin extends Hauptrolle
     @Override
     public String getImagePath() {
         return imagePath;
-    }
-
-    @Override
-    public boolean isUnique() {
-        return unique;
     }
 
     @Override

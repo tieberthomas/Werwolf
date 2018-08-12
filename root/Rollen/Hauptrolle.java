@@ -129,13 +129,26 @@ public class Hauptrolle extends Rolle
         return null;
     }
 
+    public static int numberOfOccurencesOfMainRoleInGame(Hauptrolle hauptrolle) {
+        int occurences = 0;
+        for(Hauptrolle currentHauptrolle : mainRolesInGame) {
+            if(currentHauptrolle.getName().equals(hauptrolle.getName())) {
+                occurences++;
+            }
+        }
+
+        return occurences;
+    }
+
     public Color getFarbe() {
         return getFraktion().getFarbe();
     }
 
     public static void addAllMainRoles() {
         mainRolesInGame.addAll(mainRoles);
+        mainRolesInGame.remove(findHauptrolle(Bruder.name));
         mainRolesInGame.add(new Bruder());
+        mainRolesInGame.add(new Bruder()); //zum sortieren der liste
         mainRolesInGame.remove(findHauptrolle(Dorfbewohner.name));
     }
 }

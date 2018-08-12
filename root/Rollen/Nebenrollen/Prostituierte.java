@@ -12,7 +12,6 @@ public class Prostituierte extends Nebenrolle
 {
     public static final String name = "Prostituierte";
     public static final String imagePath = ResourcePath.PROSTITUIERTE_KARTE;
-    public static boolean unique = true;
     public static boolean spammable = false;
 
     public static Spieler host;
@@ -42,11 +41,6 @@ public class Prostituierte extends Nebenrolle
     @Override
     public String getImagePath() {
         return imagePath;
-    }
-
-    @Override
-    public boolean isUnique() {
-        return unique;
     }
 
     @Override

@@ -48,8 +48,8 @@ public class Rolle {
         return ResourcePath.DEAKTIVIERT;
     }
 
-    public boolean isUnique() {
-        return true;
+    public int getNumberOfPossibleInstances() {
+        return 1;
     }
 
     public boolean isSpammable() {
@@ -73,6 +73,19 @@ public class Rolle {
 
         return null;
     }
+
+    public static int numberOfOccurencesOfRoleInGame(Rolle rolle) {
+        Hauptrolle wantedHauptRolle = Hauptrolle.findHauptrolle(rolle.getName());
+        if(wantedHauptRolle!=null)
+            return Hauptrolle.numberOfOccurencesOfMainRoleInGame(wantedHauptRolle);
+
+        Nebenrolle wantedNebenrolleRolle = Nebenrolle.findNebenrolle(rolle.getName());
+        if(wantedNebenrolleRolle!=null)
+            return Nebenrolle.numberOfOccurencesOfSecondaryRoleInGame(wantedNebenrolleRolle);
+
+        return 0;
+    }
+
 
     public static boolean hauptRolleInNachtEnthalten(String rolle) {
         if(Hauptrolle.getMainRoleInGameNames().contains(rolle)) {

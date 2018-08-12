@@ -97,6 +97,17 @@ public class Nebenrolle extends Rolle
         return null;
     }
 
+    public static int numberOfOccurencesOfSecondaryRoleInGame(Nebenrolle nebenrolle) {
+        int occurences = 0;
+        for(Nebenrolle currentNebenrolle : secondaryRolesInGame) {
+            if(currentNebenrolle.getName().equals(nebenrolle.getName())) {
+                occurences++;
+            }
+        }
+
+        return occurences;
+    }
+
     public void tauschen(Nebenrolle nebenrolle) {
         try {
             Spieler spieler = Spieler.findSpielerPerRolle(this.getName());

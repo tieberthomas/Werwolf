@@ -10,7 +10,7 @@ public class Bruder extends Hauptrolle
     public static final String name = "Bruder";
     public static Fraktion fraktion = new Bürger();
     public static final String imagePath = ResourcePath.BRUDER_KARTE;
-    public static boolean unique = false;
+    public static int numberOfPossibleInstances = 2;
     public static boolean spammable = false;
 
     @Override
@@ -29,8 +29,8 @@ public class Bruder extends Hauptrolle
     }
 
     @Override
-    public boolean isUnique() {
-        return unique;
+    public int getNumberOfPossibleInstances() {
+        return numberOfPossibleInstances;
     }
 
     @Override

@@ -13,7 +13,6 @@ public class Wachhund extends Nebenrolle
 {
     public static final String name = "Wachhund";
     public static final String imagePath = ResourcePath.WACHHUND_KARTE;
-    public static boolean unique = true;
     public static boolean spammable = true;
     public Spieler bewachterSpieler = null;
     public String type = Nebenrolle.INFORMATIV;
@@ -51,11 +50,6 @@ public class Wachhund extends Nebenrolle
     @Override
     public String getImagePath() {
         return imagePath;
-    }
-
-    @Override
-    public boolean isUnique() {
-        return unique;
     }
 
     @Override

@@ -57,11 +57,6 @@ public class Wolfspelz extends Nebenrolle
     }
 
     @Override
-    public boolean isUnique() {
-        return unique;
-    }
-
-    @Override
     public boolean isSpammable() {
         return spammable;
     }

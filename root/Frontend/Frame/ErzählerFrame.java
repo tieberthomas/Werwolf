@@ -218,10 +218,13 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
             button.setBackground(Hauptrolle.findHauptrolle(button.getText()).getFraktion().getFarbe());
         }
 
-        for(Hauptrolle hauptrolle: Hauptrolle.mainRolesInGame) {
+        for(Hauptrolle hauptrolle : Hauptrolle.mainRolesInGame) {
             for(JButton button : mainRoleButtons) {
-                if(button.getText().equals(hauptrolle.getName()) && hauptrolle.isUnique()){ //TODO auf anzahl gehen
-                    disableButton(button);
+                int occurrences = Hauptrolle.numberOfOccurencesOfMainRoleInGame(hauptrolle);
+                if(button.getText().equals(hauptrolle.getName()) && hauptrolle.getNumberOfPossibleInstances()<=occurrences){
+                    if(button.isEnabled()) {
+                        disableButton(button);
+                    }
                 }
             }
         }
@@ -235,8 +238,11 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
 
         for(Nebenrolle nebenrolle: Nebenrolle.secondaryRolesInGame) {
             for(JButton button : secondaryRoleButtons) {
-                if(button.getText().equals(nebenrolle.getName()) && nebenrolle.isUnique()){
-                    disableButton(button);
+                int occurrences = Nebenrolle.numberOfOccurencesOfSecondaryRoleInGame(nebenrolle);
+                if(button.getText().equals(nebenrolle.getName()) && nebenrolle.getNumberOfPossibleInstances()<=occurrences){
+                    if(button.isEnabled()) {
+                        disableButton(button);
+                    }
                 }
             }
         }

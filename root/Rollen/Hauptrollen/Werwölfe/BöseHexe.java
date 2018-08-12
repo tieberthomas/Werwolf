@@ -16,7 +16,6 @@ public class BöseHexe extends Hauptrolle
     public static final String name = "Böse Hexe";
     public static Fraktion fraktion = new Werwölfe();
     public static final String imagePath = ResourcePath.BÖSE_HEXE_KARTE;
-    public static boolean unique = true;
     public static boolean spammable = true;
     public static boolean killing = true;
 
@@ -50,11 +49,6 @@ public class BöseHexe extends Hauptrolle
     @Override
     public String getImagePath() {
         return imagePath;
-    }
-
-    @Override
-    public boolean isUnique() {
-        return unique;
     }
 
     @Override

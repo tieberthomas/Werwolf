@@ -19,7 +19,6 @@ public class Archivar extends Nebenrolle
 
     public static final String name = "Archivar";
     public static final String imagePath = ResourcePath.ARCHIVAR_KARTE;
-    public static boolean unique = true;
     public static boolean spammable = true;
     public String type = Nebenrolle.INFORMATIV;
 
@@ -69,11 +68,6 @@ public class Archivar extends Nebenrolle
     @Override
     public String getImagePath() {
         return imagePath;
-    }
-
-    @Override
-    public boolean isUnique() {
-        return unique;
     }
 
     @Override

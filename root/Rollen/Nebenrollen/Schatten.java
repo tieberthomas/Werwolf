@@ -10,7 +10,7 @@ public class Schatten extends Nebenrolle
 {
     public static final String name = "Schatten";
     public static final String imagePath = ResourcePath.SCHATTEN_KARTE;
-    public static boolean unique = false;
+    public static int numberOfPossibleInstances = 100;
     public static boolean spammable = false;
     public String type = Nebenrolle.PASSIV;
 
@@ -25,8 +25,8 @@ public class Schatten extends Nebenrolle
     }
 
     @Override
-    public boolean isUnique() {
-        return unique;
+    public int getNumberOfPossibleInstances() {
+        return numberOfPossibleInstances;
     }
 
     @Override

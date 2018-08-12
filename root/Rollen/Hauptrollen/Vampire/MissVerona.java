@@ -17,7 +17,6 @@ public class MissVerona extends Hauptrolle
     public static final String name = "Miss Verona";
     public static Fraktion fraktion = new Vampire();
     public static final String imagePath = ResourcePath.MISS_VERONA_KARTE;
-    public static boolean unique = true;
     public static boolean spammable = false;
     public static boolean killing = true;
 
@@ -39,11 +38,6 @@ public class MissVerona extends Hauptrolle
     @Override
     public String getImagePath() {
         return imagePath;
-    }
-
-    @Override
-    public boolean isUnique() {
-        return unique;
     }
 
     @Override

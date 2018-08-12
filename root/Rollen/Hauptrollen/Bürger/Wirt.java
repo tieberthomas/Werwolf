@@ -19,7 +19,6 @@ public class Wirt extends Hauptrolle
     public static final String name = "Wirt";
     public static Fraktion fraktion = new Bürger();
     public static final String imagePath = ResourcePath.WIRT_KARTE;
-    public static boolean unique = true;
     public static boolean spammable = false;
     public static int freibierCharges = 1;
 
@@ -57,11 +56,6 @@ public class Wirt extends Hauptrolle
     @Override
     public String getImagePath() {
         return imagePath;
-    }
-
-    @Override
-    public boolean isUnique() {
-        return unique;
     }
 
     @Override

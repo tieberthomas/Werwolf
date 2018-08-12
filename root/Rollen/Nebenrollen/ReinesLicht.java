@@ -12,7 +12,6 @@ public class ReinesLicht extends Nebenrolle
 {
     public static final String name = "Reines Licht";
     public static final String imagePath = ResourcePath.REINES_LICHT_KARTE;
-    public static boolean unique = true;
     public static boolean spammable = false;
     public String type = Nebenrolle.PASSIV;
 
@@ -51,11 +50,6 @@ public class ReinesLicht extends Nebenrolle
     @Override
     public String getImagePath() {
         return imagePath;
-    }
-
-    @Override
-    public boolean isUnique() {
-        return unique;
     }
 
     @Override

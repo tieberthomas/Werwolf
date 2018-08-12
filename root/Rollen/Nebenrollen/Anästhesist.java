@@ -12,7 +12,6 @@ public class Anästhesist extends Nebenrolle
 {
     public static final String name = "Anästhesist";
     public static final String imagePath = ResourcePath.ANÄSTHESIST_KARTE;
-    public static boolean unique = true;
     public static boolean spammable = false;
 
     @Override
@@ -38,11 +37,6 @@ public class Anästhesist extends Nebenrolle
     @Override
     public String getImagePath() {
         return imagePath;
-    }
-
-    @Override
-    public boolean isUnique() {
-        return unique;
     }
 
     @Override

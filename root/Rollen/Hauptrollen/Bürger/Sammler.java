@@ -19,7 +19,6 @@ public class Sammler extends Hauptrolle
     public static final String name = "Sammler";
     public static Fraktion fraktion = new Bürger();
     public static final String imagePath = ResourcePath.SAMMLER_KARTE;
-    public static boolean unique = true;
     public static boolean spammable = false;
 
     @Override
@@ -35,11 +34,6 @@ public class Sammler extends Hauptrolle
     @Override
     public String getImagePath() {
         return imagePath;
-    }
-
-    @Override
-    public boolean isUnique() {
-        return unique;
     }
 
     @Override

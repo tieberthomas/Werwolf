@@ -16,7 +16,6 @@ public class Nachbar extends Nebenrolle
 {
     public static final String name = "Nachbar";
     public static final String imagePath = ResourcePath.NACHBAR_KARTE;
-    public static boolean unique = true;
     public static boolean spammable = true;
     public Spieler beobachteterSpieler = null;
     public String type = Nebenrolle.INFORMATIV;
@@ -51,11 +50,6 @@ public class Nachbar extends Nebenrolle
     @Override
     public String getImagePath() {
         return imagePath;
-    }
-
-    @Override
-    public boolean isUnique() {
-        return unique;
     }
 
     @Override

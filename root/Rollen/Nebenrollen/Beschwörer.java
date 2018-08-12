@@ -12,7 +12,6 @@ public class Beschwörer extends Nebenrolle
 {
     public static final String name = "Beschwörer";
     public static final String imagePath = ResourcePath.BESCHWÖRER_KARTE;
-    public static boolean unique = true;
     public static boolean spammable = false;
 
     @Override
@@ -36,11 +35,6 @@ public class Beschwörer extends Nebenrolle
     @Override
     public String getImagePath() {
         return imagePath;
-    }
-
-    @Override
-    public boolean isUnique() {
-        return unique;
     }
 
     @Override

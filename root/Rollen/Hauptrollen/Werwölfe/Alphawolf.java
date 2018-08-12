@@ -33,11 +33,6 @@ public class Alphawolf extends Hauptrolle
     }
 
     @Override
-    public boolean isUnique() {
-        return unique;
-    }
-
-    @Override
     public boolean isSpammable() {
         return spammable;
     }

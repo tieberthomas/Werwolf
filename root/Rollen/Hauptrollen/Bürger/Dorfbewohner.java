@@ -13,7 +13,7 @@ public class Dorfbewohner extends Hauptrolle
     public static final String name = "Dorfbewohner";
     public static Fraktion fraktion = new Bürger();
     public static final String imagePath = ResourcePath.DORFBEWOHNER_KARTE;
-    public static boolean unique = false;
+    public static int numberOfPossibleInstances = 100;
     public static boolean spammable = false;
 
     @Override
@@ -32,8 +32,8 @@ public class Dorfbewohner extends Hauptrolle
     }
 
     @Override
-    public boolean isUnique() {
-        return unique;
+    public int getNumberOfPossibleInstances() {
+        return numberOfPossibleInstances;
     }
 
     @Override

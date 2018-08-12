@@ -147,7 +147,7 @@ public class ErsteNacht extends Thread {
                                     if(newHauptrolle!=null) {
                                         Spieler bruderSpieler = Spieler.findSpielerPerRolle(Bruder.name);
                                         bruderSpieler.hauptrolle = newHauptrolle;
-                                        showFrontendControl(statement, new FrontendControl(FrontendControl.IMAGE, chosenOption, newHauptrolle.getImagePath()));
+                                        showFrontendControl(statement, new FrontendControl(FrontendControl.IMAGE, BRÜDER_SECOND_TITLE, newHauptrolle.getImagePath()));
                                     }
                                 } else {
                                     FrontendControl.erzählerListPage(statement, brüder);

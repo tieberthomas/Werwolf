@@ -17,7 +17,6 @@ public class Chemiker extends Hauptrolle
     public static final String name = "Chemiker";
     public static Fraktion fraktion = new Werwölfe();
     public static final String imagePath = ResourcePath.CHEMIKER_KARTE;
-    public static boolean unique = true;
     public static boolean spammable = true;
 
     @Override
@@ -55,11 +54,6 @@ public class Chemiker extends Hauptrolle
     @Override
     public String getImagePath() {
         return imagePath;
-    }
-
-    @Override
-    public boolean isUnique() {
-        return unique;
     }
 
     @Override

@@ -14,7 +14,6 @@ public class Spion extends Nebenrolle
 {
     public static final String name = "Spion";
     public static final String imagePath = ResourcePath.SPION_KARTE;
-    public static boolean unique = true;
     public static boolean spammable = true;
     public String type = Nebenrolle.INFORMATIV;
 
@@ -46,11 +45,6 @@ public class Spion extends Nebenrolle
     @Override
     public String getImagePath() {
         return imagePath;
-    }
-
-    @Override
-    public boolean isUnique() {
-        return unique;
     }
 
     @Override

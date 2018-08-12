@@ -26,11 +26,6 @@ public class ReineSeele extends Nebenrolle
     }
 
     @Override
-    public boolean isUnique() {
-        return unique;
-    }
-
-    @Override
     public boolean isSpammable() {
         return spammable;
     }

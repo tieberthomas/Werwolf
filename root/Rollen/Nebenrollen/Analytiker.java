@@ -16,7 +16,6 @@ public class Analytiker extends Nebenrolle
 {
     public static final String name = "Analytiker";
     public static final String imagePath = ResourcePath.ANALYTIKER_KARTE;
-    public static boolean unique = true;
     public static boolean spammable = true;
     public String type = Nebenrolle.INFORMATIV;
     public static final String GLEICH = "gleich";
@@ -31,11 +30,6 @@ public class Analytiker extends Nebenrolle
     @Override
     public String getImagePath() {
         return imagePath;
-    }
-
-    @Override
-    public boolean isUnique() {
-        return unique;
     }
 
     @Override

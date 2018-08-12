@@ -41,10 +41,6 @@ public class Gefängniswärter extends Nebenrolle
         return imagePath;
     }
 
-    @Override
-    public boolean isUnique() {
-        return unique;
-    }
 
     @Override
     public boolean isSpammable() {

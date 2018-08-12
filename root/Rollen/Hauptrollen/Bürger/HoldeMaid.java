@@ -12,7 +12,6 @@ public class HoldeMaid extends Hauptrolle
     public static final String name = "Holde Maid";
     public static Fraktion fraktion = new Bürger();
     public static final String imagePath = ResourcePath.HOLDE_MAID_KARTE;
-    public static boolean unique = true;
     public static boolean spammable = true;
 
     @Override
@@ -41,11 +40,6 @@ public class HoldeMaid extends Hauptrolle
     @Override
     public String getImagePath() {
         return imagePath;
-    }
-
-    @Override
-    public boolean isUnique() {
-        return unique;
     }
 
     @Override

@@ -16,7 +16,6 @@ public class GuteHexe extends Hauptrolle
     public static final String name = "Gute Hexe";
     public static Fraktion fraktion = new Bürger();
     public static final String imagePath = ResourcePath.GUTE_HEXE_KARTE;
-    public static boolean unique = true;
     public static boolean spammable = false;
     public static int wiederbelebenCharges = 1;
     public static Spieler besuchtWiederbeleben = null;
@@ -51,11 +50,6 @@ public class GuteHexe extends Hauptrolle
     @Override
     public String getImagePath() {
         return imagePath;
-    }
-
-    @Override
-    public boolean isUnique() {
-        return unique;
     }
 
     @Override

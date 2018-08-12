@@ -13,7 +13,6 @@ public class GrafVladimir extends Hauptrolle
     public static final String name = "Graf Vladimir";
     public static Fraktion fraktion = new Vampire();
     public static final String imagePath = ResourcePath.GRAF_VLADIMIR_KARTE;
-    public static boolean unique = true;
     public static boolean spammable = false;
     public static boolean killing = true;
 
@@ -30,11 +29,6 @@ public class GrafVladimir extends Hauptrolle
     @Override
     public String getImagePath() {
         return imagePath;
-    }
-
-    @Override
-    public boolean isUnique() {
-        return unique;
     }
 
     @Override
