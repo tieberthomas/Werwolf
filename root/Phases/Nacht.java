@@ -529,7 +529,7 @@ public class Nacht extends Thread
                 currentSpieler.geschützt = true;
             }
 
-            if (hauptrolleCurrentSpieler.equals(GrafVladimir.name) && GrafVladimir.fraktion.getFraktionsMembers().size()>1) {
+            if (hauptrolleCurrentSpieler.equals(GrafVladimir.name) && Fraktion.getFraktionsMembers(Vampire.name).size()>1) {
                 currentSpieler.geschützt = true;
             }
         }
@@ -545,12 +545,10 @@ public class Nacht extends Thread
         playersAwake.clear();
         if(statement.getClass() == StatementFraktion.class) {
             StatementFraktion statementFraktion = (StatementFraktion)statement;
-            Fraktion fraktion = Fraktion.findFraktion(statementFraktion.fraktion);
-            playersAwake.addAll(fraktion.getFraktionsMembers());
+            playersAwake.addAll(Fraktion.getFraktionsMembers(statementFraktion.fraktion));
         } else if(statement.getClass() == StatementRolle.class) {
             StatementRolle statementRolle = (StatementRolle)statement;
-            Rolle rolle = Rolle.findRolle(statementRolle.rolle);
-            playersAwake.add(Spieler.findSpielerPerRolle(rolle.getName()));
+            playersAwake.add(Spieler.findSpielerPerRolle(statementRolle.rolle));
         }
     }
 

@@ -88,7 +88,7 @@ public class Orakel extends Hauptrolle {
     }
 
     public static ArrayList<Spieler> getUnseenBürger(){
-        ArrayList<Spieler> bürger = fraktion.getFraktionsMembers();
+        ArrayList<Spieler> bürger = Fraktion.getFraktionsMembers(Bürger.name);
         ArrayList<Spieler> bürgerToRemove = new ArrayList<>();
 
         if(Rolle.rolleLebend(name)) {

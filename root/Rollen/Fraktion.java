@@ -32,11 +32,11 @@ public class Fraktion {
         return ResourcePath.DEAKTIVIERT;
     }
 
-    public ArrayList<Spieler> getFraktionsMembers() {
+    public static ArrayList<Spieler> getFraktionsMembers(String fraktion) {
         ArrayList<Spieler> fraktionsMembers = new ArrayList<>();
 
         for(Spieler currentSpieler : Spieler.spieler) {
-            if(currentSpieler.lebend && !Opfer.isOpfer(currentSpieler.name) && currentSpieler.hauptrolle.getFraktion().getName().equals(this.getName())) {
+            if(currentSpieler.lebend && !Opfer.isOpfer(currentSpieler.name) && currentSpieler.hauptrolle.getFraktion().getName().equals(fraktion)) {
                 fraktionsMembers.add(currentSpieler);
             }
         }
@@ -56,11 +56,11 @@ public class Fraktion {
         return numberOfFraktionsMembersInGame;
     }
 
-    public ArrayList<String> getFraktionsMemberStrings() {
+    public static ArrayList<String> getFraktionsMemberStrings(String fraktion) {
         ArrayList<String> fraktionsMembers = new ArrayList<>();
 
         for(Spieler currentSpieler : Spieler.spieler) {
-            if(currentSpieler.lebend && currentSpieler.hauptrolle.getFraktion().getName().equals(this.getName())) {
+            if(currentSpieler.lebend && currentSpieler.hauptrolle.getFraktion().getName().equals(fraktion)) {
                 fraktionsMembers.add(currentSpieler.name);
             }
         }
@@ -68,27 +68,17 @@ public class Fraktion {
         return fraktionsMembers;
     }
 
-    public FrontendControl getFraktionsMemberOrNonFrontendControl(Rolle rolle) {
+    public FrontendControl getFraktionsMemberOrNonFrontendControl(Hauptrolle rolle) {
         FrontendControl frontendControl = new FrontendControl();
 
         frontendControl.typeOfContent = FrontendControl.DROPDOWN_LIST;
-        frontendControl.strings = getFraktionsMemberStrings();
+        frontendControl.strings = getFraktionsMemberStrings(rolle.getFraktion().getName());
         frontendControl.strings.add("");
         if (!rolle.isSpammable() && rolle.besuchtLetzteNacht != null) {
             frontendControl.strings.remove(rolle.besuchtLetzteNacht.name);
         }
 
         return frontendControl;
-    }
-
-    public static boolean fraktionExists(String fraktion) {
-        for (Spieler currentSpieler : Spieler.spieler) {
-            if (currentSpieler.hauptrolle.getFraktion().getName().equals(fraktion)) {
-                return true;
-            }
-        }
-
-        return false;
     }
 
     public static boolean fraktionInNachtEnthalten(String fraktion) {

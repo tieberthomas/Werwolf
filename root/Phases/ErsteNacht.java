@@ -125,7 +125,7 @@ public class ErsteNacht extends Thread {
                                 break;
 
                             case ALPHAWOLF:
-                                ArrayList<Spieler> werwölfe = Fraktion.findFraktion(Werwölfe.name).getFraktionsMembers();
+                                ArrayList<Spieler> werwölfe = Fraktion.getFraktionsMembers(Werwölfe.name);
                                 werwölfe.remove(Spieler.findSpielerPerRolle(Alphawolf.name));
                                 for (Spieler currentSpieler : werwölfe) {
                                     showHauptrolle(statement, currentSpieler);
@@ -174,6 +174,29 @@ public class ErsteNacht extends Thread {
         }
     }
 
+    private ArrayList<String> getMainRolesLeft() {
+        ArrayList<String> freieHauptrollen = new ArrayList<>();
+
+        for (Hauptrolle currentHauptrolle: Hauptrolle.mainRolesInGame) {
+            String hauptrolle = currentHauptrolle.getName();
+
+            boolean frei = true;
+            for (Spieler currentSpieler: Spieler.spieler) {
+                String hauptrolleSpieler = currentSpieler.hauptrolle.getName();
+
+                if (Objects.equals(hauptrolle, hauptrolleSpieler)) {
+                    frei = false;
+                }
+            }
+
+            if(frei) {
+                freieHauptrollen.add(hauptrolle);
+            }
+        }
+
+        return freieHauptrollen;
+    }
+
     private ArrayList<String> getSecondaryRolesLeft() {
         ArrayList<String> freieNebenrollen = new ArrayList<>();
 
@@ -209,24 +232,22 @@ public class ErsteNacht extends Thread {
         playersAwake.clear();
         if(statement.getClass() == StatementFraktion.class) {
             StatementFraktion statementFraktion = (StatementFraktion)statement;
-            Fraktion fraktion = Fraktion.findFraktion(statementFraktion.fraktion);
-            playersAwake.addAll(fraktion.getFraktionsMembers());
+            playersAwake.addAll(Fraktion.getFraktionsMembers(statementFraktion.fraktion));
         } else if(statement.getClass() == StatementRolle.class) {
             StatementRolle statementRolle = (StatementRolle)statement;
-            Rolle rolle = Rolle.findRolle(statementRolle.rolle);
-            if(rolle.getName()!=Bruder.name) {
-                playersAwake.add(Spieler.findSpielerPerRolle(rolle.getName()));
+            if(!statementRolle.rolle.equals(Bruder.name)) {
+                playersAwake.add(Spieler.findSpielerPerRolle(statementRolle.rolle));
             } else {
-                playersAwake.addAll(Spieler.findSpielersPerRolle(rolle.getName()));
+                playersAwake.addAll(Spieler.findSpielersPerRolle(statementRolle.rolle));
             }
         }
     }
 
     public void showFraktionMembers(Statement statement, String fraktionName) {
-        Fraktion fraktion = Fraktion.findFraktion(fraktionName);
-        ArrayList<String> fraktionMembers = fraktion.getFraktionsMemberStrings();
+        ArrayList<String> fraktionMembers = Fraktion.getFraktionsMemberStrings(fraktionName);
 
         try {
+            Fraktion fraktion = Fraktion.findFraktion(fraktionName);
             String fraktionsLogoImagePath = fraktion.getImagePath();
 
             showListShowImage(statement, fraktionMembers, fraktionsLogoImagePath);
@@ -402,10 +423,8 @@ public class ErsteNacht extends Thread {
     }
 
     public void addStatementFraktion(String statement, String title, String fraktionsName) {
-        Fraktion fraktion = Fraktion.findFraktion(fraktionsName);
-
         if (Fraktion.fraktionInNachtEnthalten(fraktionsName)) {
-            if(fraktion.getNumberOfFraktionsMembersInGame()>1) {
+            if(Fraktion.getFraktionsMembers(fraktionsName).size()>1) {
                 statements.add(new StatementFraktion(statement, title, fraktionsName, Statement.INDIE));
             }
         }

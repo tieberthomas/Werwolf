@@ -28,7 +28,7 @@ public class Spion extends Nebenrolle
         Fraktion fraktion = Fraktion.findFraktion(chosenOption);
 
         if (fraktion != null) {
-            int fraktionAnzahl = fraktion.getFraktionsMembers().size();
+            int fraktionAnzahl = Fraktion.getFraktionsMembers(fraktion.getName()).size();
             ArrayList<String> list = new ArrayList<>();
             list.add(Integer.toString(fraktionAnzahl));
 

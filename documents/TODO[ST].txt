@@ -6,7 +6,6 @@ deaktiviert und verbraucht - deaktiviert anzeigen
 ErsteNacht Statement Type
 
 TH:
-bug - am Anfang ein Werwolf zugewießen zwei aus Liste verschwunden
 Englisch-Deutsch-Gemisch
 
 MT:
