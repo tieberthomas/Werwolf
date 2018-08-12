@@ -34,7 +34,7 @@ public class ErsteNacht extends Thread {
     public static final String WERWÖLFE = "Die Werwölfe erwachen und sehen einander";
     public static final String ALPHAWOLF = "Alpha Wolf erwacht und erfährt die Rollen der Wolfsfraktion";
     public static final String SCHATTENPRIESTER = "Die Schattenpriester erwachen und sehen einander";
-    public static final String BRÜDER = "Brüder erwachen und sehen einander";
+    public static final String BRÜDER = "Die Brüder erwachen und sehen einander";
     public static final String SEHERIN = "Seherin erwacht und lässt sich Auskunft über einen Mitspieler geben";
 
     public static final String ALLE_SCHLAFEN_EIN_TITLE = "Alle schlafen ein";
@@ -53,6 +53,7 @@ public class ErsteNacht extends Thread {
     public static final String ALPHAWOLF_FERTIG_TITLE = "Fertig";
     public static final String SCHATTENPRIESTER_TITLE = "Schattenpriester";
     public static final String BRÜDER_TITLE = "Brüder";
+    public static final String BRÜDER_SECOND_TITLE = "neue Hauptrolle";
     public static final String SEHERIN_TITLE = "Spieler wählen";
 
     public static final String TARNUMHANG_TITLE = "Tarnumhang";
@@ -137,10 +138,23 @@ public class ErsteNacht extends Thread {
                             case BRÜDER:
                                 ArrayList<String> brüder = Spieler.findSpielersStringsPerRolle(Bruder.name);
 
-                                FrontendControl.erzählerListPage(statement, brüder);
-                                FrontendControl.spielerCardPicturePage(statement.title, ResourcePath.BRÜDER_KARTE);
+                                if(brüder.size()==1) {
+                                    ArrayList<String> stillAvailableMainRoles = Hauptrolle.getStillAvailableMainRoleNames();
+                                    stillAvailableMainRoles.remove(Bruder.name);
+                                    dropdownOtions = new FrontendControl(FrontendControl.DROPDOWN, BRÜDER_SECOND_TITLE, stillAvailableMainRoles);
+                                    chosenOption = showFrontendControl(statement, dropdownOtions);
+                                    Hauptrolle newHauptrolle = Hauptrolle.findHauptrolle(chosenOption);
+                                    if(newHauptrolle!=null) {
+                                        Spieler bruderSpieler = Spieler.findSpielerPerRolle(Bruder.name);
+                                        bruderSpieler.hauptrolle = newHauptrolle;
+                                        showFrontendControl(statement, new FrontendControl(FrontendControl.IMAGE, chosenOption, newHauptrolle.getImagePath()));
+                                    }
+                                } else {
+                                    FrontendControl.erzählerListPage(statement, brüder);
+                                    FrontendControl.spielerCardPicturePage(statement.title, ResourcePath.BRÜDER_KARTE);
 
-                                waitForAnswer();
+                                    waitForAnswer();
+                                }
                                 break;
 
                             case SEHERIN:

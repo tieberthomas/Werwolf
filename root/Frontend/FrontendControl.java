@@ -40,6 +40,11 @@ public class FrontendControl {
         this.title = title;
     }
 
+    public FrontendControl(ArrayList<String> strings) {
+        this.typeOfContent = LIST;
+        this.strings = strings;
+    }
+
     public FrontendControl(int typeOfContent, ArrayList<String> strings) {
         this.typeOfContent = typeOfContent;
         this.strings = strings;
