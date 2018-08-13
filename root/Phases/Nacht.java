@@ -46,6 +46,7 @@ public class Nacht extends Thread
     public static final String PROSTITUIERTE = "Prostituierte legt sich zu einem Mitspieler ins Bett";
     public static final String RIESE = "Riese erwacht und entscheidet sich ob einen Mitspieler töten möchte";
     public static final String VAMPIRE = "Die Vampire erwachen und wählen ein Opfer aus";
+    public static final String GRAF_VLADIMIR = "Graf Vladimir erwacht und macht einen Spieler unerkennbar";
     public static final String WERWÖLFE = "Die Werwölfe erwachen und die Wölfe wählen ein Opfer aus";
     public static final String WÖLFIN = "Wölfin erwacht und wählt ein Opfer aus, wenn sie das tut, erfährt das dorf ihre Bonusrolle";
     public static final String BÖSE_HEXE = "Böse Hexe erwacht und entscheidet ob sie diese Nacht einen Mitspieler töten möchte";
@@ -96,6 +97,7 @@ public class Nacht extends Thread
     public static final String PROSTITUIERTE_TITLE = "Bett legen";
     public static final String RIESE_TITLE = "Mitspieler töten";
     public static final String VAMPIRE_TITLE = "Opfer wählen";
+    public static final String GRAF_VLADIMIR_TITLE = "Spieler unerkennbar machen";
     public static final String WERWÖLFE_TITLE = "Opfer wählen";
     public static final String WÖLFIN_TITLE = "Opfer wählen";
     public static final String BÖSE_HEXE_TITLE = "Mitspieler töten";
@@ -397,7 +399,13 @@ public class Nacht extends Thread
                                 }
                             }
 
-                            showList(statement, opferDerNacht);
+                            //showList(statement, opferDerNacht);
+                            FrontendControl.erzählerListPage(statement, OPFER_TITLE, opferDerNacht);
+                            for(String opfer : opferDerNacht) {
+                                FrontendControl.spielerAnnounceVictimPage(Spieler.findSpieler(opfer));
+                                waitForAnswer();
+                            }
+
 
                             refreshHexenSchutz();
 
@@ -475,10 +483,10 @@ public class Nacht extends Thread
         for (Hauptrolle currentHauptrolle : Hauptrolle.mainRoles) {
             currentHauptrolle.besuchtLetzteNacht = currentHauptrolle.besucht;
             currentHauptrolle.besucht = null;
-            if(currentHauptrolle.getName().equals(GuteHexe.name)) {
-                ((GuteHexe)currentHauptrolle).besuchtWiederbeleben = null;
-            }
         }
+
+        GuteHexe.besuchtWiederbeleben = null;
+
         for (Nebenrolle currentNebenrolle : Nebenrolle.secondaryRoles) {
             currentNebenrolle.besuchtLetzteNacht = currentNebenrolle.besucht;
             currentNebenrolle.besucht = null;
@@ -515,6 +523,8 @@ public class Nacht extends Thread
         }
 
         Torte.torte = false;
+
+        GrafVladimir.unerkennbarerSpieler = null;
     }
 
     public void setSchütze() {
@@ -1048,6 +1058,7 @@ public class Nacht extends Thread
 
         addStatementRolle(RIESE, RIESE_TITLE, Riese.name, Statement.ROLLE_CHOOSE_ONE);
         addStatementFraktion(VAMPIRE, VAMPIRE_TITLE, Vampire.name, Statement.FRAKTION_CHOOSE_ONE);
+        addStatementRolle(GRAF_VLADIMIR, GRAF_VLADIMIR_TITLE, GrafVladimir.name, Statement.ROLLE_CHOOSE_ONE);
         addStatementFraktion(WERWÖLFE, WERWÖLFE_TITLE, Werwölfe.name, Statement.FRAKTION_CHOOSE_ONE);
         if(Wölfin.modus == Wölfin.TÖTEND) {
             addStatementRolle(WÖLFIN, WÖLFIN_TITLE, Wölfin.name, Statement.ROLLE_CHOOSE_ONE);

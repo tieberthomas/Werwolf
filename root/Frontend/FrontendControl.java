@@ -5,6 +5,8 @@ import root.Frontend.Frame.SpielerFrame;
 import root.Frontend.Frame.ÜbersichtsFrame;
 import root.Frontend.Page.Page;
 import root.Phases.Statement;
+import root.ResourceManagement.ResourcePath;
+import root.Rollen.Hauptrollen.Vampire.GrafVladimir;
 import root.Spieler;
 
 import java.util.ArrayList;
@@ -110,7 +112,15 @@ public class FrontendControl {
     }
 
     public static void spielerAnnounceVictimPage(Spieler spieler) {
-        spielerTwoImagePage(spieler.name, spieler.hauptrolle.getImagePath(), spieler.nebenrolle.getImagePath());
+        String hauptRolleImagePath = spieler.hauptrolle.getImagePath();
+        String nebenRolleImagePath = spieler.nebenrolle.getImagePath();
+        if(GrafVladimir.unerkennbarerSpieler!=null) {
+            if (spieler.name.equals(GrafVladimir.unerkennbarerSpieler.name)) {
+                hauptRolleImagePath = ResourcePath.AUS_DEM_SPIEL;
+                nebenRolleImagePath = ResourcePath.AUS_DEM_SPIEL;
+            }
+        }
+        spielerTwoImagePage(spieler.name, hauptRolleImagePath, nebenRolleImagePath);
     }
 
     public static void spielerTwoImagePage(String title, String imagePath1, String imagePath2) {

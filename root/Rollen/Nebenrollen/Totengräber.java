@@ -82,6 +82,8 @@ public class Totengräber extends Nebenrolle
             }
         }
 
+        nehmbareNebenrollen.add("");
+
         return nehmbareNebenrollen;
     }
 }

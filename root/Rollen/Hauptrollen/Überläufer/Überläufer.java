@@ -9,6 +9,8 @@ import root.Rollen.Hauptrollen.Bürger.Dorfbewohner;
 import root.Rollen.Rolle;
 import root.Spieler;
 
+import java.util.ArrayList;
+
 public class Überläufer extends Hauptrolle
 {
     public static final String name = "Überläufer";
@@ -18,7 +20,9 @@ public class Überläufer extends Hauptrolle
 
     @Override
     public FrontendControl getDropdownOptions() {
-        return new FrontendControl(FrontendControl.DROPDOWN_LIST, getMitteHauptrollenStrings());
+        ArrayList<String> nehmbareHauptrollen = getMitteHauptrollenStrings();
+        nehmbareHauptrollen.add("");
+        return new FrontendControl(FrontendControl.DROPDOWN_LIST, nehmbareHauptrollen);
     }
 
     @Override
