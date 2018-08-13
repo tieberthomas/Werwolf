@@ -19,7 +19,7 @@ public class Liebespaar
 
     public Liebespaar(Spieler spieler1, Spieler spieler2)
     {
-        if(spieler1.name!=spieler2.name) {
+        if(!spieler1.name.equals(spieler2.name)) {
             Liebespaar.spieler1 = spieler1;
             Liebespaar.spieler2 = spieler2;
         }
