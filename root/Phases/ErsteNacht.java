@@ -14,12 +14,15 @@ import root.Rollen.Nebenrolle;
 import root.Rollen.Nebenrollen.*;
 import root.Rollen.Rolle;
 import root.Spieler;
+import root.mechanics.Game;
 import root.mechanics.Liebespaar;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
 public class ErsteNacht extends Thread {
+    Game game;
+
     public static final String ALLE_SCHLAFEN_EIN = "Alle schlafen ein";
     public static final String ALLE_WACHEN_AUF = "Alle wachen auf";
 
@@ -61,6 +64,10 @@ public class ErsteNacht extends Thread {
     public static ArrayList<Statement> statements;
     public static Object lock;
     public static ArrayList<Spieler> playersAwake = new ArrayList<>();
+
+    public ErsteNacht(Game game){
+        this.game = game;
+    }
 
     public void run() {
         lock = new Object();
@@ -174,7 +181,7 @@ public class ErsteNacht extends Thread {
         }
 
         cleanUp();
-        PhaseManager.day();
+        game.day();
     }
 
     public void beginNight() {

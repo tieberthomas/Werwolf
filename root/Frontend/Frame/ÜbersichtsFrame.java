@@ -11,6 +11,7 @@ import root.Rollen.Hauptrolle;
 import root.Rollen.Nebenrolle;
 import root.Rollen.Rolle;
 import root.Spieler;
+import root.mechanics.Game;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,6 +19,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ÜbersichtsFrame extends MyFrame implements ActionListener{
+    Game game;
     ErzählerFrame erzählerFrame;
 
     public ÜbersichtsPageFactory pageFactory;
@@ -37,7 +39,8 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener{
 
     public Page übersichtsPage;
 
-    public ÜbersichtsFrame(ErzählerFrame erzählerFrame) {
+    public ÜbersichtsFrame(ErzählerFrame erzählerFrame, Game game) {
+        this.game = game;
         WINDOW_TITLE = "Übersichts Fenster";
 
         this.erzählerFrame = erzählerFrame;
@@ -81,8 +84,8 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener{
                 label.setBackground(Color.white);
             }
             label.setOpaque(true);
-            if((PhaseMode.phase == PhaseMode.ersteNacht && ErsteNacht.playersAwake.contains(spieler)) ||
-                (PhaseMode.phase == PhaseMode.nacht && Nacht.playersAwake.contains(spieler))) {
+            if((game.phaseMode == PhaseMode.ersteNacht && ErsteNacht.playersAwake.contains(spieler)) ||
+                (game.phaseMode == PhaseMode.nacht && Nacht.playersAwake.contains(spieler))) {
                 Color borderColor = defaultBorderColor;
                 if(Nacht.anästesierterSpieler!=null && Nacht.anästesierterSpieler.equals(spieler)) {
                     borderColor = anästesiertBorderColor;

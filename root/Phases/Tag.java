@@ -8,11 +8,14 @@ import root.Rollen.Hauptrolle;
 import root.Rollen.Nebenrollen.ReineSeele;
 import root.Rollen.Nebenrollen.Wahrsager;
 import root.Spieler;
+import root.mechanics.Game;
 import root.mechanics.Liebespaar;
 
 import java.util.ArrayList;
 
 public class Tag extends Thread {
+    Game game;
+
     public static Object lock;
     public static boolean umbringenButton = false;
     public static Spieler umbringenSpieler;
@@ -23,6 +26,10 @@ public class Tag extends Thread {
 
     public static String dayTitle = "Opfer der Dorfabstimmung";
 
+    public Tag(Game game) {
+        this.game = game;
+    }
+
     public void run() {
         gebürgteSpieler = new ArrayList<>();
         verurteilteSpieler = new ArrayList<>();
@@ -32,7 +39,7 @@ public class Tag extends Thread {
             day();
         }
 
-        PhaseManager.night();
+        game.night();
     }
 
     public void day() {

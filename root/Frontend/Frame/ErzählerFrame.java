@@ -10,6 +10,7 @@ import root.ResourceManagement.ResourcePath;
 import root.Rollen.Hauptrolle;
 import root.Rollen.Nebenrolle;
 import root.Spieler;
+import root.mechanics.Game;
 import root.mechanics.Torte;
 
 import javax.swing.*;
@@ -20,6 +21,8 @@ import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
 public class ErzählerFrame extends MyFrame implements ActionListener {
+    public Game game;
+
     public SpielerFrame spielerFrame;
     public ÜbersichtsFrame übersichtsFrame;
     public Page savePage;
@@ -29,7 +32,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
 
     public static Object lock;
 
-    public int mode = ErzählerFrameMode.setup;
+    public ErzählerFrameMode mode = ErzählerFrameMode.setup;
 
     public ErzählerPageFactory pageFactory;
 
@@ -460,22 +463,25 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     public void actionPerformed (ActionEvent ae) {
         if(goNextButtons.contains(ae.getSource())){
             if(ae.getSource() == loadLastGameJButton) {
+                game = new Game();
                 setUpVariables();
                 fileManager.read(ResourcePath.LAST_GAME_FILE);
                 this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-                spielerFrame = new SpielerFrame(this);
+                spielerFrame = new SpielerFrame(this, game);
                 spielerFrame.refreshPlayerSetupPage();
             } else if(ae.getSource() == loadLastCompositionJButton) {
+                game = new Game();
                 setUpVariables();
                 fileManager.readComposition(ResourcePath.LAST_GAME_COMPOSITION_FILE);
                 playersSpecified = (ArrayList)Spieler.spieler.clone();
                 this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-                spielerFrame = new SpielerFrame(this);
+                spielerFrame = new SpielerFrame(this, game);
                 spielerFrame.refreshPlayerSetupPage();
             } else if(ae.getSource() == startJButton) {
+                game = new Game();
                 setUpVariables();
                 this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-                spielerFrame = new SpielerFrame(this);
+                spielerFrame = new SpielerFrame(this, game);
                 spielerFrame.refreshPlayerSetupPage();
             }
 
@@ -486,7 +492,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
 
             if(ae.getSource() == playerSpecifyGoNextJButton) {
                 if(playersSpecified.size() == Spieler.spieler.size()) {
-                    PhaseManager.firstnight(this);
+                    game.firstnight(this);
                     fileManager.writeComposition(ResourcePath.LAST_GAME_COMPOSITION_FILE, Spieler.getLivigPlayer(),
                             getMainRolesUnspecifiedStrings(), getSecondaryRolesUnspecifiedStrings());
                 } else {
@@ -520,7 +526,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         } else if(goBackButtons.contains(ae.getSource())){
             if(mode == ErzählerFrameMode.nachzüglerSetup || mode == ErzählerFrameMode.umbringenSetup ||
                     mode == ErzählerFrameMode.priesterSetup ||mode == ErzählerFrameMode.richterinSetup){
-                mode = ErzählerFrameMode.getPhaseMode();
+                mode = game.parsePhaseMode();
                 buildScreenFromPage(pageFactory.generateDefaultDayPage());
             }else {
                 prevPage();
@@ -742,7 +748,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
 
                     addPlayerTxtField.setText("");
 
-                    mode = ErzählerFrameMode.getPhaseMode();
+                    mode = game.parsePhaseMode();
                     buildScreenFromPage(pageFactory.generateDefaultDayPage());
 
                     if(übersichtsFrame != null) {
@@ -773,7 +779,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                     buildScreenFromPage(pageFactory.generateDefaultDayPage());
                 }
 
-                mode = ErzählerFrameMode.getPhaseMode();
+                mode = game.parsePhaseMode();
 
                 if(übersichtsFrame != null) {
                     übersichtsFrame.refreshÜbersichtsPage();
@@ -805,7 +811,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                 String spieler = chosenOption2;
                 Tag.bürgen(priester, spieler);
 
-                mode = ErzählerFrameMode.getPhaseMode();
+                mode = game.parsePhaseMode();
                 buildScreenFromPage(pageFactory.generateDefaultDayPage());
             } else {
                 mode = ErzählerFrameMode.priesterSetup;
@@ -831,7 +837,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                 String spieler = chosenOption2;
                 Tag.verurteilen(richterin, spieler);
 
-                mode = ErzählerFrameMode.getPhaseMode();
+                mode = game.parsePhaseMode();
                 buildScreenFromPage(pageFactory.generateDefaultDayPage());
             } else {
                 mode = ErzählerFrameMode.richterinSetup;
@@ -850,16 +856,16 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
 
         int spielerFrameMode = spielerFrame.mode;
         savePage = spielerFrame.currentPage;
-        spielerFrame = new SpielerFrame(this);
+        spielerFrame = new SpielerFrame(this, game);
         spielerFrame.mode = spielerFrameMode;
         spielerFrame.buildScreenFromPage(savePage);
 
-        übersichtsFrame = new ÜbersichtsFrame(this);
+        übersichtsFrame = new ÜbersichtsFrame(this, game);
 
         FrontendControl.spielerFrame = spielerFrame;
-        if(PhaseMode.phase == PhaseMode.tag || PhaseMode.phase == PhaseMode.freibierTag) {
+        if(game.phaseMode == PhaseMode.tag || game.phaseMode == PhaseMode.freibierTag) {
             spielerFrame.generateDayPage();
-        } else if (PhaseMode.phase == PhaseMode.nacht || PhaseMode.phase == PhaseMode.ersteNacht) {
+        } else if (game.phaseMode == PhaseMode.nacht || game.phaseMode == PhaseMode.ersteNacht) {
             spielerFrame.buildScreenFromPage(savePage);
         }
     }

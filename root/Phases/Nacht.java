@@ -21,6 +21,7 @@ import root.Rollen.Nebenrolle;
 import root.Rollen.Nebenrollen.*;
 import root.Rollen.Rolle;
 import root.Spieler;
+import root.mechanics.Game;
 import root.mechanics.Liebespaar;
 import root.mechanics.Opfer;
 import root.mechanics.Torte;
@@ -29,6 +30,8 @@ import java.util.ArrayList;
 
 public class Nacht extends Thread
 {
+    Game game;
+
     public static final String ALLE_SCHLAFEN_EIN = "Alle schlafen ein";
     public static final String ALLE_WACHEN_AUF = "Alle wachen auf";
 
@@ -142,6 +145,10 @@ public class Nacht extends Thread
     public static boolean wölfinKilled;
     public static Spieler wölfinSpieler;
     public static Spieler beschworenerSpieler;
+
+    public Nacht(Game game) {
+        this.game = game;
+    }
 
     public void run() {
         boolean freibier = false;
@@ -463,10 +470,10 @@ public class Nacht extends Thread
         cleanUp();
 
         if (freibier) {
-            PhaseManager.freibierDay();
+            game.freibierDay();
         }
         else {
-            PhaseManager.day();
+            game.day();
         }
     }
 

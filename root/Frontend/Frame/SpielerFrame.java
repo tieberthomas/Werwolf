@@ -9,6 +9,7 @@ import root.ResourceManagement.ResourcePath;
 import root.Rollen.Hauptrolle;
 import root.Rollen.Nebenrolle;
 import root.Spieler;
+import root.mechanics.Game;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class SpielerFrame extends MyFrame{
+    Game game;
     ErzählerFrame erzählerFrame;
     public SpielerPageFactory pageFactory;
     public SpielerPageElementFactory pageElementFactory;
@@ -41,7 +43,8 @@ public class SpielerFrame extends MyFrame{
     public static int time = 0;
     public static boolean timeThreadStarted = false;
 
-    public SpielerFrame(ErzählerFrame erzählerFrame){
+    public SpielerFrame(ErzählerFrame erzählerFrame, Game game){
+        this.game = game;
         WINDOW_TITLE = "Spieler Fenster";
         this.erzählerFrame = erzählerFrame;
 
@@ -112,7 +115,7 @@ public class SpielerFrame extends MyFrame{
 
     public void generateDayPage() {
         title = Tag.dayTitle;
-        if(PhaseMode.phase == PhaseMode.freibierTag) {
+        if(game.phaseMode == PhaseMode.freibierTag) {
             mode = SpielerFrameMode.freibierPage;
             this.bierPage();
         } else {
