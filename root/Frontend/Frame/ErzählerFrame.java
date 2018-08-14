@@ -343,7 +343,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         }
     }
 
-    public void removeSpecifiedIndex(int index) {
+    public void removeSpecifiedPlayer(int index) {
         if(deleteSpecifyPlayerButtons.size()>index) {
             deleteSpecifyPlayerButtons.remove(index);
         }
@@ -450,31 +450,11 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
             }
 
             if(ae.getSource() == playerSpecifyGoNextJButton) {
-                if(game.playersSpecified.size() == game.spieler.size()) {
+                if(allPlayersSpecified()) {
                     game.firstnight(this);
                     dataManager.writeGame();
                 } else {
-                    try {
-                        String spielerName = (String) comboBox1.getSelectedItem();
-                        Spieler spieler = game.findSpieler(spielerName);
-                        game.playersSpecified.add(spieler);
-
-                        String hauptrolle = (String) comboBox2.getSelectedItem();
-                        spieler.hauptrolle = game.findHauptrolle(hauptrolle);
-                        if(spieler.hauptrolle == null) {
-                            spieler.hauptrolle = Hauptrolle.defaultHauptrolle;
-                        }
-
-                        String nebenrolle = (String) comboBox3.getSelectedItem();
-                        spieler.nebenrolle = game.findNebenrolle(nebenrolle);
-                        if(spieler.nebenrolle == null) {
-                            spieler.nebenrolle = Nebenrolle.defaultNebenrolle;
-                        }
-
-                        refreshSpecifyPlayerPage();
-                    } catch (IndexOutOfBoundsException e) {
-                        System.out.println("No player in game.");
-                    }
+                    specifyPlayer();
                 }
             } else if(ae.getSource() == secondaryRoleGoNextJButton) {
                 playerSpecifiyPage = generateSpecifyPlayerPage();
@@ -482,8 +462,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
 
             nextPage();
         } else if(goBackButtons.contains(ae.getSource())){
-            if(mode == ErzählerFrameMode.nachzüglerSetup || mode == ErzählerFrameMode.umbringenSetup ||
-                    mode == ErzählerFrameMode.priesterSetup ||mode == ErzählerFrameMode.richterinSetup){
+            if(gameIsInDaySetupMode()){
                 mode = game.parsePhaseMode();
                 showDayPage();
             }else {
@@ -491,124 +470,32 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
             }
         } else if (ae.getSource() == addPlayerButton || ae.getSource() == addPlayerTxtField && mode == ErzählerFrameMode.setup) {
             if (!addPlayerTxtField.getText().equals("") && !game.spielerExists(addPlayerTxtField.getText())) {
-                String newPlayerName = addPlayerTxtField.getText();
-                Spieler newPlayer = new Spieler(newPlayerName);
-                game.spieler.add(newPlayer);
-                addPlayerTxtField.setText("");
-
-                refreshPlayerPage();
-                spielerFrame.refreshPlayerSetupPage();
+                addNewPlayer();
             }
         } else if (ae.getSource() == addPlayerTortenButton) {
-            try {
-                String spielerName = comboBox1.getSelectedItem().toString();
-                Spieler spieler = game.findSpieler(spielerName);
-                Torte.tortenEsser.add(spieler);
-                refreshTortenPage();
-            } catch(NullPointerException e) {}
+            addTortenEsser();
         }else if (deleteTortenPlayerButtons.contains(ae.getSource())) {
-            for (int i = 0; i < deleteTortenPlayerButtons.size(); i++) {
-                if (ae.getSource() == deleteTortenPlayerButtons.get(i)) {
-                    deleteTortenPlayerButtons.remove(i);
-
-                    Torte.tortenEsser.remove(i);
-
-                    refreshTortenPage();
-                }
-            }
+            deleteTortenesser(ae);
         } else if (deletePlayerButtons.contains(ae.getSource())) {
-            for (int i = 0; i < deletePlayerButtons.size(); i++) {
-                if (ae.getSource() == deletePlayerButtons.get(i)) {
-                    deletePlayerButtons.remove(i);
-                    String spielerName = game.spieler.get(i).name;
-
-                    if(game.playersSpecified.contains(spielerName)) {
-                        int index = game.playersSpecified.indexOf(spielerName);
-                        removeSpecifiedIndex(index);
-                    }
-
-                    game.spieler.remove(i);
-
-                    refreshPlayerPage();
-                    spielerFrame.refreshPlayerSetupPage();
-                }
-            }
+            deletePlayer(ae);
         } else if (addAllMainRolesJButton == ae.getSource()) {
             game.addAllMainRoles();
             refreshMainRolePage();
             spielerFrame.refreshMainRoleSetupPage();
         } else if (mainRoleButtons.contains(ae.getSource())) {
-            for (int i = 0; i < mainRoleButtons.size(); i++) {
-                if (ae.getSource() == mainRoleButtons.get(i)) {
-                    String mainRoleName = mainRoleButtons.get(i).getText();
-                    Hauptrolle newMainRole = game.findHauptrolle(mainRoleName);
-                    game.mainRolesInGame.add(newMainRole);
-
-                    refreshMainRolePage();
-                    spielerFrame.refreshMainRoleSetupPage();
-                }
-            }
+            addMainRole(ae);
         } else if (deleteMainRoleButtons.contains(ae.getSource())) {
-            for (int i = 0; i < deleteMainRoleButtons.size(); i++) {
-                if (ae.getSource() == deleteMainRoleButtons.get(i)) {
-                    deleteMainRoleButtons.remove(i);
-                    String mainRoleName = game.mainRolesInGame.get(i).getName();
-
-                    ArrayList<String> mainRolesSpecified = game.getMainRolesSpecifiedStrings();
-
-                    if(mainRolesSpecified.contains(mainRoleName)) {
-                        int index = mainRolesSpecified.indexOf(mainRoleName);
-                        removeSpecifiedIndex(index);
-                    }
-
-                    game.mainRolesInGame.remove(i);
-
-                    refreshMainRolePage();
-                    spielerFrame.refreshMainRoleSetupPage();
-                }
-            }
+            deleteMainRole(ae);
         }  else if (addAllSecondaryRolesJButton == ae.getSource()) {
             game.addAllSecondaryRoles();
             refreshSecondaryRolePage();
             spielerFrame.refreshSecondaryRoleSetupPage();
         } else if (secondaryRoleButtons.contains(ae.getSource())) {
-            for (int i = 0; i < secondaryRoleButtons.size(); i++) {
-                if (ae.getSource() == secondaryRoleButtons.get(i)) {
-                    String secondaryRoleName = secondaryRoleButtons.get(i).getText();
-                    Nebenrolle newSecondaryRole = game.findNebenrolle(secondaryRoleName);
-                    game.secondaryRolesInGame.add(newSecondaryRole);
-
-                    refreshSecondaryRolePage();
-                    spielerFrame.refreshSecondaryRoleSetupPage();
-                }
-            }
+            addSecondaryRole(ae);
         } else if (deleteSecondaryRoleButtons.contains(ae.getSource())) {
-            for (int i = 0; i < deleteSecondaryRoleButtons.size(); i++) {
-                if (ae.getSource() == deleteSecondaryRoleButtons.get(i)) {
-                    deleteSecondaryRoleButtons.remove(i);
-                    String secondaryRoleName = game.secondaryRolesInGame.get(i).getName();
-
-                    ArrayList<String> secondaryRolesSpecified = game.getMainRolesSpecifiedStrings();
-
-                    if(secondaryRolesSpecified.contains(secondaryRoleName)) {
-                        int index = secondaryRolesSpecified.indexOf(secondaryRoleName);
-                        removeSpecifiedIndex(index);
-                    }
-
-                    game.secondaryRolesInGame.remove(i);
-
-                    refreshSecondaryRolePage();
-                    spielerFrame.refreshSecondaryRoleSetupPage();
-                }
-            }
+            deleteSecondaryRole(ae);
         } else if (deleteSpecifyPlayerButtons.contains(ae.getSource())) {
-            for (int i = 0; i < deleteSpecifyPlayerButtons.size(); i++) {
-                if (ae.getSource() == deleteSpecifyPlayerButtons.get(i)) {
-                    removeSpecifiedIndex(i);
-
-                    refreshSpecifyPlayerPage();
-                }
-            }
+            deleteSpecifiedPlayer(ae);
         } else if (ae.getSource() == nextJButton) {
             try {
                 if(comboBox1 != null) {
@@ -808,6 +695,169 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
             }
         } else if(ae.getSource() == respawnFramesJButton) {
             respawnFrames();
+        }
+    }
+
+    private void deleteSpecifiedPlayer(ActionEvent ae) {
+        for (int i = 0; i < deleteSpecifyPlayerButtons.size(); i++) {
+            if (ae.getSource() == deleteSpecifyPlayerButtons.get(i)) {
+                removeSpecifiedPlayer(i);
+
+                refreshSpecifyPlayerPage();
+            }
+        }
+    }
+
+    private void deleteSecondaryRole(ActionEvent ae) {
+        for (int i = 0; i < deleteSecondaryRoleButtons.size(); i++) {
+            if (ae.getSource() == deleteSecondaryRoleButtons.get(i)) {
+                deleteSecondaryRoleButtons.remove(i);
+                String secondaryRoleName = game.secondaryRolesInGame.get(i).getName();
+
+                ArrayList<String> secondaryRolesSpecified = game.getMainRolesSpecifiedStrings();
+
+                if(secondaryRolesSpecified.contains(secondaryRoleName)) {
+                    int index = secondaryRolesSpecified.indexOf(secondaryRoleName);
+                    removeSpecifiedPlayer(index);
+                }
+
+                game.secondaryRolesInGame.remove(i);
+
+                refreshSecondaryRolePage();
+                spielerFrame.refreshSecondaryRoleSetupPage();
+            }
+        }
+    }
+
+    private void addSecondaryRole(ActionEvent ae) {
+        for (int i = 0; i < secondaryRoleButtons.size(); i++) {
+            if (ae.getSource() == secondaryRoleButtons.get(i)) {
+                String secondaryRoleName = secondaryRoleButtons.get(i).getText();
+                Nebenrolle newSecondaryRole = game.findNebenrolle(secondaryRoleName);
+                game.secondaryRolesInGame.add(newSecondaryRole);
+
+                refreshSecondaryRolePage();
+                spielerFrame.refreshSecondaryRoleSetupPage();
+            }
+        }
+    }
+
+    private void deleteMainRole(ActionEvent ae) {
+        for (int i = 0; i < deleteMainRoleButtons.size(); i++) {
+            if (ae.getSource() == deleteMainRoleButtons.get(i)) {
+                deleteMainRoleButtons.remove(i);
+                String mainRoleName = game.mainRolesInGame.get(i).getName();
+
+                ArrayList<String> mainRolesSpecified = game.getMainRolesSpecifiedStrings();
+
+                if(mainRolesSpecified.contains(mainRoleName)) {
+                    int index = mainRolesSpecified.indexOf(mainRoleName);
+                    removeSpecifiedPlayer(index);
+                }
+
+                game.mainRolesInGame.remove(i);
+
+                refreshMainRolePage();
+                spielerFrame.refreshMainRoleSetupPage();
+            }
+        }
+    }
+
+    private void addMainRole(ActionEvent ae) {
+        for (int i = 0; i < mainRoleButtons.size(); i++) {
+            if (ae.getSource() == mainRoleButtons.get(i)) {
+                String mainRoleName = mainRoleButtons.get(i).getText();
+                Hauptrolle newMainRole = game.findHauptrolle(mainRoleName);
+                game.mainRolesInGame.add(newMainRole);
+
+                refreshMainRolePage();
+                spielerFrame.refreshMainRoleSetupPage();
+            }
+        }
+    }
+
+    private void deletePlayer(ActionEvent ae) {
+        for (int i = 0; i < deletePlayerButtons.size(); i++) {
+            if (ae.getSource() == deletePlayerButtons.get(i)) {
+                deletePlayerButtons.remove(i);
+                String spielerName = game.spieler.get(i).name;
+
+                if(game.playersSpecified.contains(spielerName)) {
+                    int index = game.playersSpecified.indexOf(spielerName);
+                    removeSpecifiedPlayer(index);
+                }
+
+                game.spieler.remove(i);
+
+                refreshPlayerPage();
+                spielerFrame.refreshPlayerSetupPage();
+            }
+        }
+    }
+
+    private void deleteTortenesser(ActionEvent ae) {
+        for (int i = 0; i < deleteTortenPlayerButtons.size(); i++) {
+            if (ae.getSource() == deleteTortenPlayerButtons.get(i)) {
+                deleteTortenPlayerButtons.remove(i);
+
+                Torte.tortenEsser.remove(i);
+
+                refreshTortenPage();
+
+                return;
+            }
+        }
+    }
+
+    private void addTortenEsser() {
+        try {
+            String spielerName = comboBox1.getSelectedItem().toString();
+            Spieler spieler = game.findSpieler(spielerName);
+            Torte.tortenEsser.add(spieler);
+            refreshTortenPage();
+        } catch(NullPointerException e) {}
+    }
+
+    private void addNewPlayer() {
+        String newPlayerName = addPlayerTxtField.getText();
+        Spieler newPlayer = new Spieler(newPlayerName);
+        game.spieler.add(newPlayer);
+        addPlayerTxtField.setText("");
+
+        refreshPlayerPage();
+        spielerFrame.refreshPlayerSetupPage();
+    }
+
+    private boolean gameIsInDaySetupMode() {
+        return mode == ErzählerFrameMode.nachzüglerSetup || mode == ErzählerFrameMode.umbringenSetup ||
+                mode == ErzählerFrameMode.priesterSetup ||mode == ErzählerFrameMode.richterinSetup;
+    }
+
+    private boolean allPlayersSpecified() {
+        return game.playersSpecified.size() == game.spieler.size();
+    }
+
+    private void specifyPlayer() {
+        try {
+            String spielerName = (String) comboBox1.getSelectedItem();
+            Spieler spieler = game.findSpieler(spielerName);
+            game.playersSpecified.add(spieler);
+
+            String hauptrolle = (String) comboBox2.getSelectedItem();
+            spieler.hauptrolle = game.findHauptrolle(hauptrolle);
+            if(spieler.hauptrolle == null) {
+                spieler.hauptrolle = Hauptrolle.defaultHauptrolle;
+            }
+
+            String nebenrolle = (String) comboBox3.getSelectedItem();
+            spieler.nebenrolle = game.findNebenrolle(nebenrolle);
+            if(spieler.nebenrolle == null) {
+                spieler.nebenrolle = Nebenrolle.defaultNebenrolle;
+            }
+
+            refreshSpecifyPlayerPage();
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("No player in game.");
         }
     }
 
