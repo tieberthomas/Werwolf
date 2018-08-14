@@ -5,6 +5,7 @@ import root.ResourceManagement.ResourcePath;
 import root.Rollen.Fraktionen.Bürger;
 import root.Rollen.Hauptrollen.Bürger.Bestienmeister;
 import root.Rollen.Nebenrolle;
+import root.Rollen.NebenrollenTyp;
 import root.Spieler;
 
 /**
@@ -20,7 +21,7 @@ public class Archivar extends Nebenrolle
     public static final String name = "Archivar";
     public static final String imagePath = ResourcePath.ARCHIVAR_KARTE;
     public static boolean spammable = true;
-    public String type = Nebenrolle.INFORMATIV;
+    public NebenrollenTyp type = NebenrollenTyp.INFORMATIV;
 
     @Override
     public FrontendControl getDropdownOptions() {
@@ -43,16 +44,16 @@ public class Archivar extends Nebenrolle
             }
 
             switch(chosenPlayer.nebenrolle.getType()) {
-                case Nebenrolle.AKTIV:
+                case AKTIV:
                     return new FrontendControl(FrontendControl.IMAGE, AKTIV_TITLE, ResourcePath.AKTIV);
 
-                case Nebenrolle.PASSIV:
+                case PASSIV:
                     return new FrontendControl(FrontendControl.IMAGE, PASSIV_TITLE, ResourcePath.PASSIV);
 
-                case Nebenrolle.INFORMATIV:
+                case INFORMATIV:
                     return new FrontendControl(FrontendControl.IMAGE, INFORMATIV_TITLE, ResourcePath.INFORMATIV);
 
-                case Nebenrolle.TARNUMHANG:
+                case TARNUMHANG:
                     return new FrontendControl(FrontendControl.IMAGE, TARNUMHANG_TITLE, ResourcePath.TARNUMHANG);
             }
         }
@@ -76,5 +77,5 @@ public class Archivar extends Nebenrolle
     }
 
     @Override
-    public String getType() { return type; }
+    public NebenrollenTyp getType() { return type; }
 }

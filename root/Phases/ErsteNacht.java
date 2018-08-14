@@ -2,17 +2,14 @@ package root.Phases;
 
 import root.Frontend.FrontendControl;
 import root.ResourceManagement.ResourcePath;
-import root.Rollen.Fraktion;
+import root.Rollen.*;
 import root.Rollen.Fraktionen.Schattenpriester_Fraktion;
 import root.Rollen.Fraktionen.Vampire;
 import root.Rollen.Fraktionen.Werwölfe;
-import root.Rollen.Hauptrolle;
 import root.Rollen.Hauptrollen.Bürger.Bruder;
 import root.Rollen.Hauptrollen.Bürger.Seherin;
 import root.Rollen.Hauptrollen.Werwölfe.Alphawolf;
-import root.Rollen.Nebenrolle;
 import root.Rollen.Nebenrollen.*;
-import root.Rollen.Rolle;
 import root.Spieler;
 import root.mechanics.Game;
 import root.mechanics.Liebespaar;
@@ -92,7 +89,7 @@ public class ErsteNacht extends Thread {
                         rolle = ((StatementRolle) statement).getRolle();
                     }
 
-                    if (rolle != null && rolle instanceof Nebenrolle && ((Nebenrolle) rolle).getType().equals(Nebenrolle.PASSIV)) {
+                    if (rolle != null && rolle instanceof Nebenrolle && ((Nebenrolle) rolle).getType().equals(NebenrollenTyp.PASSIV)) {
                         Nebenrolle nebenrolle = ((Nebenrolle) rolle);
                         newNebenrolle = nebenrolle.getTauschErgebnis();
                         cardToDisplay = newNebenrolle.getImagePath();
@@ -147,11 +144,11 @@ public class ErsteNacht extends Thread {
                                 ArrayList<String> brüder = game.findSpielersStringsPerRolle(Bruder.name);
 
                                 if(brüder.size()==1) {
-                                    ArrayList<String> stillAvailableMainRoles = Hauptrolle.getStillAvailableMainRoleNames();
+                                    ArrayList<String> stillAvailableMainRoles = game.getStillAvailableMainRoleNames();
                                     stillAvailableMainRoles.remove(Bruder.name);
                                     dropdownOtions = new FrontendControl(FrontendControl.DROPDOWN, BRÜDER_SECOND_TITLE, stillAvailableMainRoles);
                                     chosenOption = showFrontendControl(statement, dropdownOtions);
-                                    Hauptrolle newHauptrolle = Hauptrolle.findHauptrolle(chosenOption);
+                                    Hauptrolle newHauptrolle = game.findHauptrolle(chosenOption);
                                     if(newHauptrolle!=null) {
                                         Spieler bruderSpieler = game.findSpielerPerRolle(Bruder.name);
                                         bruderSpieler.hauptrolle = newHauptrolle;
@@ -186,11 +183,11 @@ public class ErsteNacht extends Thread {
     }
 
     public void beginNight() {
-        for (Hauptrolle currentHauptrolle : Hauptrolle.mainRoles) {
+        for (Hauptrolle currentHauptrolle : game.mainRoles) {
             currentHauptrolle.besuchtLetzteNacht = null;
             currentHauptrolle.besucht = null;
         }
-        for (Nebenrolle currentNebenrolle : Nebenrolle.secondaryRoles) {
+        for (Nebenrolle currentNebenrolle : game.secondaryRoles) {
             currentNebenrolle.besuchtLetzteNacht = null;
             currentNebenrolle.besucht = null;
         }
@@ -199,7 +196,7 @@ public class ErsteNacht extends Thread {
     private ArrayList<String> getMainRolesLeft() {
         ArrayList<String> freieHauptrollen = new ArrayList<>();
 
-        for (Hauptrolle currentHauptrolle: Hauptrolle.mainRolesInGame) {
+        for (Hauptrolle currentHauptrolle: game.mainRolesInGame) {
             String hauptrolle = currentHauptrolle.getName();
 
             boolean frei = true;
@@ -222,7 +219,7 @@ public class ErsteNacht extends Thread {
     private ArrayList<String> getSecondaryRolesLeft() {
         ArrayList<String> freieNebenrollen = new ArrayList<>();
 
-        for (Nebenrolle currentNebenrolle: Nebenrolle.secondaryRolesInGame) {
+        for (Nebenrolle currentNebenrolle: game.secondaryRolesInGame) {
             String nebenrolle = currentNebenrolle.getName();
 
             boolean frei = true;

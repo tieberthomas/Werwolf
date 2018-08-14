@@ -4,6 +4,7 @@ import root.ResourceManagement.ResourcePath;
 import root.Rollen.Fraktionen.Bürger;
 import root.Rollen.Hauptrollen.Bürger.Bestienmeister;
 import root.Rollen.Nebenrolle;
+import root.Rollen.NebenrollenTyp;
 import root.Spieler;
 import root.mechanics.Liebespaar;
 
@@ -17,7 +18,7 @@ public class Analytiker extends Nebenrolle
     public static final String name = "Analytiker";
     public static final String imagePath = ResourcePath.ANALYTIKER_KARTE;
     public static boolean spammable = true;
-    public String type = Nebenrolle.INFORMATIV;
+    public NebenrollenTyp type = NebenrollenTyp.INFORMATIV;
     public static final String GLEICH = "gleich";
     public static final String UNGLEICH = "ungleich";
     public Spieler besuchtAnalysieren = null;
@@ -38,7 +39,7 @@ public class Analytiker extends Nebenrolle
     }
 
     @Override
-    public String getType() { return type; }
+    public NebenrollenTyp getType() { return type; }
 
     public boolean showTarnumhang(Spieler spieler1, Spieler spieler2){
         if(spieler1.nebenrolle.getName().equals(Tarnumhang.name) ||

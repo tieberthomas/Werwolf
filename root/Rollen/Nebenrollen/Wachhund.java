@@ -4,6 +4,7 @@ import root.Frontend.FrontendControl;
 import root.Phases.Nacht;
 import root.ResourceManagement.ResourcePath;
 import root.Rollen.Nebenrolle;
+import root.Rollen.NebenrollenTyp;
 import root.Spieler;
 
 /**
@@ -15,7 +16,7 @@ public class Wachhund extends Nebenrolle
     public static final String imagePath = ResourcePath.WACHHUND_KARTE;
     public static boolean spammable = true;
     public Spieler bewachterSpieler = null;
-    public String type = Nebenrolle.INFORMATIV;
+    public NebenrollenTyp type = NebenrollenTyp.INFORMATIV;
 
     @Override
     public FrontendControl getDropdownOptions() {
@@ -58,5 +59,5 @@ public class Wachhund extends Nebenrolle
     }
 
     @Override
-    public String getType() { return type; }
+    public NebenrollenTyp getType() { return type; }
 }

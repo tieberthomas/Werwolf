@@ -32,20 +32,18 @@ public class Spieler
     public Spieler(String name, String hauptrolleName, String nebenrolleName) {
         this(name);
 
-        Hauptrolle hauptrolle = Hauptrolle.findHauptrolle(hauptrolleName);
+        Hauptrolle hauptrolle = game.findHauptrolle(hauptrolleName);
         if(hauptrolle==null) {
             hauptrolle = new Dorfbewohner();
         }
 
-        Nebenrolle nebenrolle = Nebenrolle.findNebenrolle(nebenrolleName);
+        Nebenrolle nebenrolle = game.findNebenrolle(nebenrolleName);
         if(nebenrolle==null) {
             nebenrolle = new Schatten();
         }
 
         this.hauptrolle = hauptrolle;
         this.nebenrolle = nebenrolle;
-        Nebenrolle.secondaryRolesInGame.remove(nebenrolle);
-        this.nebenrolle = nebenrolle.getTauschErgebnis();
 
         game.spieler.add(this);
     }

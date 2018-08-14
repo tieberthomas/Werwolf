@@ -6,8 +6,6 @@ import root.Frontend.Page.Page;
 import root.Phases.PhaseMode;
 import root.Phases.Tag;
 import root.ResourceManagement.ResourcePath;
-import root.Rollen.Hauptrolle;
-import root.Rollen.Nebenrolle;
 import root.mechanics.Game;
 
 import javax.swing.*;
@@ -62,6 +60,8 @@ public class SpielerFrame extends MyFrame{
         this.setLocation(erzählerFrame.frameJpanel.getWidth() + 20,0);
 
         showFrame();
+
+        refreshPlayerSetupPage();
     }
 
     public void generateAllPages() {
@@ -96,19 +96,19 @@ public class SpielerFrame extends MyFrame{
     }
 
     public void refreshMainRoleSetupPage(){
-        buildScreenFromPage(pageFactory.generateListPage(Hauptrolle.getMainRoleInGameNames()));
+        buildScreenFromPage(pageFactory.generateListPage(game.getMainRoleInGameNames()));
     }
 
     public void refreshSecondaryRoleSetupPage(){
-        buildScreenFromPage(pageFactory.generateListPage(Nebenrolle.getSecondaryRoleInGameNames()));
+        buildScreenFromPage(pageFactory.generateListPage(game.getSecondaryRoleInGameNames()));
     }
 
     public void refreshSecondarySpecifySetupPage(){
         ArrayList<String> mainRoles = new ArrayList<>();
-        mainRoles.addAll(Hauptrolle.getMainRoleInGameNames());
+        mainRoles.addAll(game.getMainRoleInGameNames());
 
         ArrayList<String> secondaryRoles = new ArrayList<>();
-        secondaryRoles.addAll(Nebenrolle.getSecondaryRoleInGameNames());
+        secondaryRoles.addAll(game.getSecondaryRoleInGameNames());
         buildScreenFromPage(pageFactory.generateDoubleListPage(mainRoles, secondaryRoles, "Hauptrollen", "Nebenrollen"));
     }
 
@@ -118,7 +118,7 @@ public class SpielerFrame extends MyFrame{
             mode = SpielerFrameMode.freibierPage;
             this.bierPage();
         } else {
-            buildScreenFromPage(pageFactory.generateDayPage(Hauptrolle.getPossibleInGameMainRoleNames(), Nebenrolle.getPossibleInGameSecondaryRoleNames()));
+            buildScreenFromPage(pageFactory.generateDayPage(game.getPossibleInGameMainRoleNames(), game.getPossibleInGameSecondaryRoleNames()));
         }
     }
 

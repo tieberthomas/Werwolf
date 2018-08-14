@@ -6,6 +6,7 @@ import root.Rollen.Fraktionen.Bürger;
 import root.Rollen.Hauptrolle;
 import root.Rollen.Nebenrolle;
 import root.Rollen.Nebenrollen.Totengräber;
+import root.Rollen.NebenrollenTyp;
 
 /**
  * Created by Steve on 12.11.2017.
@@ -44,7 +45,7 @@ public class Sammler extends Hauptrolle
         for (Nebenrolle currentRolle : game.mitteNebenrollen) {
             if (currentRolle.getName().equals(rolle) &&
                     !currentRolle.getName().equals(Totengräber.name) &&
-                    !currentRolle.getType().equals(Nebenrolle.PASSIV)) {
+                    !currentRolle.getType().equals(NebenrollenTyp.PASSIV)) {
                 return true;
             }
         }

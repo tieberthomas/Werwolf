@@ -6,7 +6,6 @@ import root.Rollen.Fraktion;
 import root.Rollen.Fraktionen.Überläufer_Fraktion;
 import root.Rollen.Hauptrolle;
 import root.Rollen.Hauptrollen.Bürger.Dorfbewohner;
-import root.Rollen.Rolle;
 import root.Spieler;
 
 import java.util.ArrayList;
@@ -27,7 +26,7 @@ public class Überläufer extends Hauptrolle
 
     @Override
     public void processChosenOption(String chosenOption) {
-        Hauptrolle chosenHauptrolle = Hauptrolle.findHauptrolle(chosenOption);
+        Hauptrolle chosenHauptrolle = game.findHauptrolle(chosenOption);
         if (chosenHauptrolle != null) {
             try {
                 Spieler spielerHauptrolle = game.findSpielerPerRolle(chosenHauptrolle.getName());

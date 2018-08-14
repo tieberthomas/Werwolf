@@ -4,6 +4,7 @@ import root.Frontend.FrontendControl;
 import root.ResourceManagement.ResourcePath;
 import root.Rollen.Fraktion;
 import root.Rollen.Nebenrolle;
+import root.Rollen.NebenrollenTyp;
 
 import java.util.ArrayList;
 
@@ -15,7 +16,7 @@ public class Spion extends Nebenrolle
     public static final String name = "Spion";
     public static final String imagePath = ResourcePath.SPION_KARTE;
     public static boolean spammable = true;
-    public String type = Nebenrolle.INFORMATIV;
+    public NebenrollenTyp type = NebenrollenTyp.INFORMATIV;
 
     @Override
     public FrontendControl getDropdownOptions() {
@@ -53,5 +54,5 @@ public class Spion extends Nebenrolle
     }
 
     @Override
-    public String getType() { return type; }
+    public NebenrollenTyp getType() { return type; }
 }

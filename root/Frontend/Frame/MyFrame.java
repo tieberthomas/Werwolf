@@ -25,7 +25,7 @@ public class MyFrame extends JFrame {
     public static String WINDOW_TITLE;
 
     public Page currentPage;
-    public JPanel frameJpanel = null;
+    public JPanel frameJpanel = new JPanel();
 
     public void showFrame() {
         this.setTitle(WINDOW_TITLE);
@@ -63,7 +63,11 @@ public class MyFrame extends JFrame {
 
         for(PageTable table : page.pageTables) {
             for(JComponent component : table.tableElements) {
-                frameJpanel.add(component);
+                try {
+                    frameJpanel.add(component);
+                } catch (NullPointerException e) {
+                    System.out.println("some frontend component might be null");
+                }
             }
         }
 

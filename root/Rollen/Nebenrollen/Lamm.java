@@ -3,6 +3,7 @@ package root.Rollen.Nebenrollen;
 import root.ResourceManagement.ResourcePath;
 import root.Rollen.Fraktionen.Bürger;
 import root.Rollen.Nebenrolle;
+import root.Rollen.NebenrollenTyp;
 import root.Spieler;
 
 /**
@@ -13,7 +14,7 @@ public class Lamm extends Nebenrolle
     public static final String name = "Lamm";
     public static final String imagePath = ResourcePath.LAMM_KARTE;
     public static boolean spammable = false;
-    public String type = Nebenrolle.PASSIV;
+    public NebenrollenTyp type = NebenrollenTyp.PASSIV;
 
     public void tauschen(Nebenrolle nebenrolle) {
         try {
@@ -59,5 +60,5 @@ public class Lamm extends Nebenrolle
     }
 
     @Override
-    public String getType() { return type; }
+    public NebenrollenTyp getType() { return type; }
 }

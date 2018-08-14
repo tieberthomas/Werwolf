@@ -1,7 +1,5 @@
 package root.ResourceManagement;
 
-import root.Rollen.Hauptrolle;
-import root.Rollen.Nebenrolle;
 import root.Spieler;
 
 import java.io.*;
@@ -9,73 +7,39 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public class FileManager {
-    public boolean createFolderInAppdata() {
-        boolean result = false;
+    public void createFolderInAppdata() {
         File theDir = new File(ResourcePath.SAVE_FILE_PATH);
 
         if (!theDir.exists()) {
             try{
                 theDir.mkdir();
-                result = true;
             }
             catch(SecurityException se){
                 System.out.println("Programm does not have the permisson to create a Folder in Appdata.");
             }
-        } else {
-            result = true;
         }
-
-        return result;
     }
 
-    public boolean read(String filePath){
+    public CompositionDto readComposition(String filePath){
         try {
             File file = new File(filePath);
             BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8));
-            String line;
 
-            line = br.readLine();
-            int numberOfPlayers = Integer.parseInt(line);
-
-            for(int i=0; i<numberOfPlayers; i++) {
-                line = br.readLine();
-                Spieler spieler = new Spieler(line);
-                Spieler.game.spieler.add(spieler);
-            }
-
-            line = br.readLine();
-            int numberOfMainRoles = Integer.parseInt(line);
-
-            for(int i=0; i<numberOfMainRoles; i++) {
-                line = br.readLine();
-                Hauptrolle hauptrolle = Hauptrolle.findHauptrolle(line);
-                if(hauptrolle!=null) {
-                    Hauptrolle.mainRolesInGame.add(hauptrolle);
-                }
-
-            }
-
-            line = br.readLine();
-            int numberOfSecondaryRoles = Integer.parseInt(line);
-
-            for(int i=0; i<numberOfSecondaryRoles; i++) {
-                line = br.readLine();
-                Nebenrolle nebenrolle = Nebenrolle.findNebenrolle(line);
-                if(nebenrolle!=null) {
-                    Nebenrolle.secondaryRolesInGame.add(nebenrolle);
-                }
-            }
+            CompositionDto compositionDto = new CompositionDto();
+            compositionDto.spieler = readList(br);
+            compositionDto.hauptrollen = readList(br);
+            compositionDto.nebenrollen = readList(br);
 
             br.close();
+
+            return compositionDto;
         } catch (IOException e) {
             System.out.println("Something went wrong while reading the file");
-            return false;
+            return null;
         }
-
-        return true;
     }
 
-    public boolean write (String filePath, ArrayList<String> spieler, ArrayList<String> hauptrollen, ArrayList<String> nebenrollen) {
+    public boolean writeComposition(String filePath, ArrayList<String> spieler, ArrayList<String> hauptrollen, ArrayList<String> nebenrollen) {
         try {
             File file = new File(filePath);
             file.createNewFile();
@@ -95,8 +59,9 @@ public class FileManager {
         return true;
     }
 
-    public boolean readComposition(String filePath){
+    public GameDto readGame(String filePath){
         try {
+            GameDto gameDto = new GameDto();
             File file = new File(filePath);
             BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8));
             String line;
@@ -107,69 +72,28 @@ public class FileManager {
             for(int i=0; i<numberOfPlayers; i++) {
                 line = br.readLine();
                 String[] fractals = line.split(" ");
-                /*Spieler spieler = new Spieler(fractals[0].replace("*"," "));
 
-                Hauptrolle hauptrolle = Hauptrolle.findHauptrolle(fractals[1].replace("*"," "));;
-                spieler.hauptrolle = hauptrolle;
-                if(hauptrolle!=null) {
-                    Hauptrolle.mainRolesInGame.add(hauptrolle);
-                }
-
-                Nebenrolle nebenrolle = Nebenrolle.findNebenrolle(fractals[2].replace("*"," "));;
-                spieler.nebenrolle = nebenrolle;
-                if(nebenrolle!=null) {
-                    Nebenrolle.secondaryRolesInGame.add(nebenrolle);
-                }*/
                 String name = fractals[0].replace("*"," ");
                 String hauptrolleString = fractals[1].replace("*"," ");
                 String nebenrolleString = fractals[2].replace("*"," ");
 
-                Spieler spieler = new Spieler(name, hauptrolleString, nebenrolleString);
-
-                Hauptrolle hauptrolle = spieler.hauptrolle;
-                if(hauptrolle!=null) {
-                    Hauptrolle.mainRolesInGame.add(hauptrolle);
-                }
-
-                Nebenrolle nebenrolle = spieler.nebenrolle;
-                if(nebenrolle!=null) {
-                    Nebenrolle.secondaryRolesInGame.add(nebenrolle);
-                }
+                PlayerDto playerDto = new PlayerDto(name, hauptrolleString, nebenrolleString);
+                gameDto.players.add(playerDto);
             }
 
-            line = br.readLine();
-            int numberOfMainRoles = Integer.parseInt(line);
-
-            for(int i=0; i<numberOfMainRoles; i++) {
-                line = br.readLine();
-                Hauptrolle hauptrolle = Hauptrolle.findHauptrolle(line);
-                if(hauptrolle!=null) {
-                    Hauptrolle.mainRolesInGame.add(hauptrolle);
-                }
-
-            }
-
-            line = br.readLine();
-            int numberOfSecondaryRoles = Integer.parseInt(line);
-
-            for(int i=0; i<numberOfSecondaryRoles; i++) {
-                line = br.readLine();
-                Nebenrolle nebenrolle = Nebenrolle.findNebenrolle(line);
-                if(nebenrolle!=null) {
-                    Nebenrolle.secondaryRolesInGame.add(nebenrolle);
-                }
-            }
+            gameDto.compositionDto.hauptrollen = readList(br);
+            gameDto.compositionDto.nebenrollen = readList(br);
 
             br.close();
+
+            return gameDto;
         } catch (IOException e) {
             System.out.println("Something went wrong while reading the file");
-            return false;
+            return null;
         }
-
-        return true;
     }
 
-    public boolean writeComposition (String filePath, ArrayList<Spieler> spieler, ArrayList<String> mainRolesLeft, ArrayList<String> secondaryRolesLeft) {
+    public boolean writeGame(String filePath, ArrayList<Spieler> spieler, ArrayList<String> mainRolesLeft, ArrayList<String> secondaryRolesLeft) {
         try {
             File file = new File(filePath);
             file.createNewFile();
@@ -178,7 +102,7 @@ public class FileManager {
             ArrayList<String> compositionStrings = new ArrayList<>();
 
             for(Spieler currentSpieler : spieler) {
-                compositionStrings.add(buildCompositionString(currentSpieler));
+                compositionStrings.add(buildPlayerString(currentSpieler));
             }
 
             writeArrayList(writer, compositionStrings);
@@ -195,7 +119,7 @@ public class FileManager {
         return true;
     }
 
-    public String buildCompositionString(Spieler spieler) {
+    public String buildPlayerString(Spieler spieler) {
         String name = spieler.name.replace(" ","*");
         String hauptrolle = spieler.hauptrolle.getName().replace(" ","*");
         String nebenrolle = spieler.nebenrolle.getName().replace(" ","*");
@@ -210,5 +134,18 @@ public class FileManager {
             writer.write(line);
             writer.write("\n");
         }
+    }
+
+    public ArrayList<String> readList(BufferedReader br) throws IOException {
+        ArrayList<String> listStrings = new ArrayList<>();
+        String line = br.readLine();
+        int numberOfSecondaryRoles = Integer.parseInt(line);
+
+        for (int i = 0; i < numberOfSecondaryRoles; i++) {
+            line = br.readLine();
+            listStrings.add(line);
+        }
+
+        return listStrings;
     }
 }

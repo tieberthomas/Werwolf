@@ -487,14 +487,14 @@ public class Nacht extends Thread
         Opfer.possibleVictims = new ArrayList<>();
         Opfer.deadVictims = new ArrayList<>();
 
-        for (Hauptrolle currentHauptrolle : Hauptrolle.mainRoles) {
+        for (Hauptrolle currentHauptrolle : game.mainRoles) {
             currentHauptrolle.besuchtLetzteNacht = currentHauptrolle.besucht;
             currentHauptrolle.besucht = null;
         }
 
         GuteHexe.besuchtWiederbeleben = null;
 
-        for (Nebenrolle currentNebenrolle : Nebenrolle.secondaryRoles) {
+        for (Nebenrolle currentNebenrolle : game.secondaryRoles) {
             currentNebenrolle.besuchtLetzteNacht = currentNebenrolle.besucht;
             currentNebenrolle.besucht = null;
 
@@ -1099,7 +1099,7 @@ public class Nacht extends Thread
             addStatementRolle(WAHRSAGER, WAHRSAGER_TITLE, Wahrsager.name, Statement.ROLLE_CHOOSE_ONE);
         }
 
-        if (Nebenrolle.getSecondaryRoleInGameNames().contains(Konditorlehrling.name)) {
+        if (game.getSecondaryRoleInGameNames().contains(Konditorlehrling.name)) {
             addStatementRolle(KONDITOR_LEHRLING, KONDITOR_LEHRLING_TITLE, Konditorlehrling.name, Statement.ROLLE_SPECAL);
         } else {
             addStatementRolle(KONDITOR, KONDITOR_TITLE, Konditor.name, Statement.ROLLE_SPECAL);

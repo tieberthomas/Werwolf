@@ -64,11 +64,11 @@ public class Rolle {
     public static Rolle findRolle(String wantedName) {
         Rolle wantedRolle;
 
-        wantedRolle = Hauptrolle.findHauptrolle(wantedName);
+        wantedRolle = game.findHauptrolle(wantedName);
         if(wantedRolle!=null)
             return wantedRolle;
 
-        wantedRolle = Nebenrolle.findNebenrolle(wantedName);
+        wantedRolle = game.findNebenrolle(wantedName);
         if(wantedRolle!=null)
             return wantedRolle;
 
@@ -76,20 +76,20 @@ public class Rolle {
     }
 
     public static int numberOfOccurencesOfRoleInGame(Rolle rolle) {
-        Hauptrolle wantedHauptRolle = Hauptrolle.findHauptrolle(rolle.getName());
+        Hauptrolle wantedHauptRolle = game.findHauptrolle(rolle.getName());
         if(wantedHauptRolle!=null)
-            return Hauptrolle.numberOfOccurencesOfMainRoleInGame(wantedHauptRolle);
+            return game.numberOfOccurencesOfMainRoleInGame(wantedHauptRolle);
 
-        Nebenrolle wantedNebenrolleRolle = Nebenrolle.findNebenrolle(rolle.getName());
+        Nebenrolle wantedNebenrolleRolle = game.findNebenrolle(rolle.getName());
         if(wantedNebenrolleRolle!=null)
-            return Nebenrolle.numberOfOccurencesOfSecondaryRoleInGame(wantedNebenrolleRolle);
+            return game.numberOfOccurencesOfSecondaryRoleInGame(wantedNebenrolleRolle);
 
         return 0;
     }
 
 
     public static boolean hauptRolleInNachtEnthalten(String rolle) {
-        if(Hauptrolle.getMainRoleInGameNames().contains(rolle)) {
+        if(game.getMainRoleInGameNames().contains(rolle)) {
             for(Rolle currentRolle : game.mitteHauptrollen){
                 if(currentRolle.getName().equals(rolle)) {
                     return false;
@@ -102,7 +102,7 @@ public class Rolle {
     }
 
     public static boolean rolleInNachtEnthalten(String rolle) {
-        if(Hauptrolle.getMainRoleInGameNames().contains(rolle) || Nebenrolle.getSecondaryRoleInGameNames().contains(rolle)) {
+        if(game.getMainRoleInGameNames().contains(rolle) || game.getSecondaryRoleInGameNames().contains(rolle)) {
             for(Rolle currentRolle : game.mitteHauptrollen){
                 if(currentRolle.getName().equals(rolle)) {
                     return false;

@@ -2,6 +2,7 @@ package root.Rollen.Nebenrollen;
 
 import root.ResourceManagement.ResourcePath;
 import root.Rollen.Nebenrolle;
+import root.Rollen.NebenrollenTyp;
 
 import java.awt.*;
 
@@ -13,7 +14,7 @@ public class Tarnumhang extends Nebenrolle
     public static final String name = "Tarnumhang";
     public static final String imagePath = ResourcePath.TARNUMHANG_KARTE;
     public static boolean spammable = false;
-    public String type = Nebenrolle.TARNUMHANG;
+    public NebenrollenTyp type = NebenrollenTyp.TARNUMHANG;
     public Color farbe = Color.BLACK;
 
     @Override
@@ -32,7 +33,7 @@ public class Tarnumhang extends Nebenrolle
     }
 
     @Override
-    public String getType() {
+    public NebenrollenTyp getType() {
         return type;
     }
 

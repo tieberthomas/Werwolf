@@ -40,7 +40,7 @@ public class Buchhalter extends Hauptrolle
         if(chosenOption!=null) {
             if (chosenOption.equals(JA)) {
                 abilityCharges--;
-                seenRoles = Hauptrolle.getMainRolesAlive();
+                seenRoles = game.getMainRolesAlive();
                 return new FrontendControl(FrontendControl.LIST, USED_TITLE, seenRoles);
             }
         }

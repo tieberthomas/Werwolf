@@ -5,6 +5,7 @@ import root.Phases.Nacht;
 import root.ResourceManagement.ResourcePath;
 import root.Rollen.Hauptrollen.Bürger.GuteHexe;
 import root.Rollen.Nebenrolle;
+import root.Rollen.NebenrollenTyp;
 import root.Spieler;
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ public class Nachbar extends Nebenrolle
     public static final String imagePath = ResourcePath.NACHBAR_KARTE;
     public static boolean spammable = true;
     public Spieler beobachteterSpieler = null;
-    public String type = Nebenrolle.INFORMATIV;
+    public NebenrollenTyp type = NebenrollenTyp.INFORMATIV;
 
     @Override
     public FrontendControl getDropdownOptions() {
@@ -58,7 +59,7 @@ public class Nachbar extends Nebenrolle
     }
 
     @Override
-    public String getType() { return type; }
+    public NebenrollenTyp getType() { return type; }
 
     public static ArrayList<String> getBesucherStrings(Spieler beobachteterSpieler, Spieler beobachter) {
         ArrayList<String> besucher = new ArrayList<>();

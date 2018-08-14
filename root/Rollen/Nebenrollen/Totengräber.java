@@ -6,6 +6,7 @@ import root.Phases.Statement;
 import root.Phases.StatementRolle;
 import root.ResourceManagement.ResourcePath;
 import root.Rollen.Nebenrolle;
+import root.Rollen.NebenrollenTyp;
 import root.Rollen.Rolle;
 import root.Spieler;
 
@@ -27,7 +28,7 @@ public class Totengräber extends Nebenrolle
 
     @Override
     public void processChosenOption(String chosenOption) {
-        Nebenrolle chosenNebenrolle = Nebenrolle.findNebenrolle(chosenOption);
+        Nebenrolle chosenNebenrolle = game.findNebenrolle(chosenOption);
         if (chosenNebenrolle != null) {
             try {
                 Spieler deadSpieler = game.findSpielerOrDeadPerRolle(chosenNebenrolle.getName());
@@ -77,7 +78,7 @@ public class Totengräber extends Nebenrolle
         ArrayList<String> nehmbareNebenrollen = new ArrayList<>();
 
         for(Nebenrolle nebenrolle : game.mitteNebenrollen) {
-            if(!nebenrolle.getType().equals(Nebenrolle.PASSIV)) {
+            if(!nebenrolle.getType().equals(NebenrollenTyp.PASSIV)) {
                 nehmbareNebenrollen.add(nebenrolle.getName());
             }
         }
