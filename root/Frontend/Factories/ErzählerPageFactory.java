@@ -435,8 +435,7 @@ public class ErzählerPageFactory {
 
     public Page generateDefaultDayPage(ArrayList<String> livingPlayers) {
         PageElement titleLabel = pageElementFactory.generateTitleLabel(null, Tag.dayTitle);
-        ArrayList<String> dropdownOptions = livingPlayers;
-        erzählerFrame.comboBox1 = new JComboBox(dropdownOptions.toArray());
+        erzählerFrame.comboBox1 = new JComboBox(livingPlayers.toArray());
         PageElement choosePlayer1 = pageElementFactory.generateDropdown(erzählerFrame.comboBox1,
                 null, titleLabel);
 

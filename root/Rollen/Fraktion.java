@@ -117,7 +117,7 @@ public class Fraktion {
         }
 
         int numberMitteHauptrollen = 0;
-        for(Hauptrolle mitteHauptrolle : Rolle.mitteHauptrollen) {
+        for(Hauptrolle mitteHauptrolle : game.mitteHauptrollen) {
             if(mitteHauptrolle.getFraktion().getName().equals(fraktion)) {
                 numberMitteHauptrollen++;
             }

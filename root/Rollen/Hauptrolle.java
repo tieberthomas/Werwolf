@@ -107,7 +107,7 @@ public class Hauptrolle extends Rolle
     public static ArrayList<String> getPossibleInGameMainRoleNames() {
         ArrayList<String> mainRolesInGame = getMainRoleInGameNames();
 
-        for(Hauptrolle hauptrolle : Rolle.mitteHauptrollen) {
+        for(Hauptrolle hauptrolle : game.mitteHauptrollen) {
             if(!hauptrolle.getName().equals(Schattenpriester.name)) {
                 mainRolesInGame.remove(hauptrolle.getName());
             }

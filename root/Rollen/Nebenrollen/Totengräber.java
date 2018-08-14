@@ -37,8 +37,8 @@ public class Totengräber extends Nebenrolle
                 spielerTotengräber.nebenrolle = chosenNebenrolle;
                 deadSpieler.nebenrolle = new Schatten();
 
-                Rolle.mitteNebenrollen.remove(chosenNebenrolle);
-                Rolle.mitteNebenrollen.add(this);
+                game.mitteNebenrollen.remove(chosenNebenrolle);
+                game.mitteNebenrollen.add(this);
 
                 removeSammlerFlag(chosenNebenrolle.getName());
             }catch (NullPointerException e) {
@@ -76,7 +76,7 @@ public class Totengräber extends Nebenrolle
     public static ArrayList<String> getNehmbareNebenrollen() {
         ArrayList<String> nehmbareNebenrollen = new ArrayList<>();
 
-        for(Nebenrolle nebenrolle : Rolle.mitteNebenrollen) {
+        for(Nebenrolle nebenrolle : game.mitteNebenrollen) {
             if(!nebenrolle.getType().equals(Nebenrolle.PASSIV)) {
                 nehmbareNebenrollen.add(nebenrolle.getName());
             }

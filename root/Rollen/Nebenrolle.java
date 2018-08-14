@@ -66,7 +66,7 @@ public class Nebenrolle extends Rolle
     public static ArrayList<String> getPossibleInGameSecondaryRoleNames() {
         ArrayList<String> secondaryRoleInGameNames = getSecondaryRoleInGameNames();
 
-        for(Nebenrolle nebenrolle : Rolle.mitteNebenrollen) {
+        for(Nebenrolle nebenrolle : game.mitteNebenrollen) {
             secondaryRoleInGameNames.remove(nebenrolle.getName());
         }
 

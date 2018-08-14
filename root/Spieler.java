@@ -21,8 +21,7 @@ public class Spieler
     public boolean geschützt;
     public boolean ressurectable;
 
-    public Spieler(String name)
-    {
+    public Spieler(String name) {
         this.name = name;
         this.lebend = true;
         this.aktiv = true;
@@ -31,48 +30,23 @@ public class Spieler
     }
 
     public Spieler(String name, String hauptrolleName, String nebenrolleName) {
-        Spieler newPlayer = new Spieler(name);
-        game.spieler.add(newPlayer);
+        this(name);
 
         Hauptrolle hauptrolle = Hauptrolle.findHauptrolle(hauptrolleName);
-        if(hauptrolle==null)
+        if(hauptrolle==null) {
             hauptrolle = new Dorfbewohner();
-        newPlayer.hauptrolle = hauptrolle;
+        }
 
         Nebenrolle nebenrolle = Nebenrolle.findNebenrolle(nebenrolleName);
-        if(nebenrolle==null)
+        if(nebenrolle==null) {
             nebenrolle = new Schatten();
-        newPlayer.nebenrolle = nebenrolle;
+        }
+
+        this.hauptrolle = hauptrolle;
+        this.nebenrolle = nebenrolle;
         Nebenrolle.secondaryRolesInGame.remove(nebenrolle);
-        newPlayer.nebenrolle = newPlayer.nebenrolle.getTauschErgebnis();
+        this.nebenrolle = nebenrolle.getTauschErgebnis();
+
+        game.spieler.add(this);
     }
-
-    /*
-
-
-
-    public static boolean spielerExists(String name) {
-        return findSpieler(name) != null;
-    }
-
-    public static Spieler findSpielerPerRolle(String name) {
-        for(Nebenrolle nebenrolle : Rolle.mitteNebenrollen)
-        {
-            if(nebenrolle.getName().equals(name)) {
-                return findSpielerPerRolle(Sammler.name);
-            }
-        }
-
-        for(Spieler currentSpieler : spieler)
-        {
-            if(currentSpieler.hauptrolle.getName().equals(name) || currentSpieler.nebenrolle.getName().equals(name)) {
-                return currentSpieler;
-            }
-        }
-
-        return null;
-    }
-
-
-*/
 }

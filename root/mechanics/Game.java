@@ -11,6 +11,7 @@ import root.Phases.Tag;
 import root.Rollen.Fraktion;
 import root.Rollen.Fraktionen.Schattenpriester_Fraktion;
 import root.Rollen.Fraktionen.Werwölfe;
+import root.Rollen.Hauptrolle;
 import root.Rollen.Hauptrollen.Bürger.Sammler;
 import root.Rollen.Hauptrollen.Schattenpriester.Schattenpriester;
 import root.Rollen.Hauptrollen.Werwölfe.Wölfin;
@@ -28,6 +29,8 @@ public class Game {
     public Liebespaar liebespaar;
 
     public ArrayList<Spieler> spieler = new ArrayList<>();
+    public ArrayList<Hauptrolle> mitteHauptrollen = new ArrayList<>();
+    public ArrayList<Nebenrolle> mitteNebenrollen = new ArrayList<>();
 
     public Game(){
         phaseMode = PhaseMode.setup;
@@ -148,7 +151,7 @@ public class Game {
     }
 
     public Spieler findSpielerPerRolle(String name) {
-        for(Nebenrolle nebenrolle : Rolle.mitteNebenrollen)
+        for(Nebenrolle nebenrolle : mitteNebenrollen)
         {
             if(nebenrolle.getName().equals(name)) {
                 return findSpielerPerRolle(Sammler.name);
@@ -163,10 +166,6 @@ public class Game {
         }
 
         return null;
-    }
-
-    public boolean spielerExists(String name) {
-        return findSpieler(name) != null;
     }
 
     public FrontendControl getPlayerFrontendControl() {
@@ -188,8 +187,8 @@ public class Game {
     public void killSpieler(Spieler spieler) {
         if(spieler!=null) {
             spieler.lebend = false;
-            Rolle.mitteHauptrollen.add(spieler.hauptrolle);
-            Rolle.mitteNebenrollen.add(spieler.nebenrolle);
+            mitteHauptrollen.add(spieler.hauptrolle);
+            mitteNebenrollen.add(spieler.nebenrolle);
             if(spieler.hauptrolle.getName().equals(Schattenpriester.name) && !spieler.nebenrolle.getName().equals(Schatten.name)) {
                 Schattenpriester_Fraktion.deadSchattenPriester++;
             }
@@ -275,5 +274,9 @@ public class Game {
         }
 
         return spielers;
+    }
+
+    public boolean spielerExists(String name) {
+        return findSpieler(name) != null;
     }
 }

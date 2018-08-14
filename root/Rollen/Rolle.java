@@ -13,8 +13,6 @@ import java.util.ArrayList;
 public class Rolle {
     public static Game game;
 
-    public static ArrayList<Hauptrolle> mitteHauptrollen = new ArrayList<>();
-    public static ArrayList<Nebenrolle> mitteNebenrollen = new ArrayList<>();
     public Spieler besucht;
     public Spieler besuchtLetzteNacht;
     public int abilityCharges = 1;
@@ -32,7 +30,7 @@ public class Rolle {
     public static ArrayList<String> getMitteHauptrollenStrings(){
         ArrayList<String> mitteHauptrollenStrings = new ArrayList<String>();
 
-        for(Hauptrolle hauptrolle : mitteHauptrollen) {
+        for(Hauptrolle hauptrolle : game.mitteHauptrollen) {
             mitteHauptrollenStrings.add(hauptrolle.getName());
         }
 
@@ -92,7 +90,7 @@ public class Rolle {
 
     public static boolean hauptRolleInNachtEnthalten(String rolle) {
         if(Hauptrolle.getMainRoleInGameNames().contains(rolle)) {
-            for(Rolle currentRolle : Rolle.mitteHauptrollen){
+            for(Rolle currentRolle : game.mitteHauptrollen){
                 if(currentRolle.getName().equals(rolle)) {
                     return false;
                 }
@@ -105,13 +103,13 @@ public class Rolle {
 
     public static boolean rolleInNachtEnthalten(String rolle) {
         if(Hauptrolle.getMainRoleInGameNames().contains(rolle) || Nebenrolle.getSecondaryRoleInGameNames().contains(rolle)) {
-            for(Rolle currentRolle : Rolle.mitteHauptrollen){
+            for(Rolle currentRolle : game.mitteHauptrollen){
                 if(currentRolle.getName().equals(rolle)) {
                     return false;
                 }
             }
 
-            for (Rolle currentRolle : Rolle.mitteNebenrollen) {
+            for (Rolle currentRolle : game.mitteNebenrollen) {
                 if(!hauptRolleInNachtEnthalten(Sammler.name) || currentRolle.getName().equals(Totengräber.name)) {
                     if (currentRolle.getName().equals(rolle)) {
                         return false;

@@ -96,7 +96,7 @@ public class FrontendControl {
     }
 
     public static void erzählerDefaultDayPage() {
-        Page dayPage = erzählerFrame.pageFactory.generateDefaultDayPage(game.getLivingPlayerStrings());
+        Page dayPage = erzählerFrame.pageFactory.generateDefaultDayPage(game.getLivingPlayerOrNoneStrings());
         erzählerFrame.buildScreenFromPage(dayPage);
     }
 

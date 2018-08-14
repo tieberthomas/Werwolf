@@ -37,8 +37,8 @@ public class Überläufer extends Hauptrolle
                 spielerÜberläufer.hauptrolle = chosenHauptrolle;
                 spielerHauptrolle.hauptrolle = new Dorfbewohner();
 
-                Rolle.mitteHauptrollen.remove(chosenHauptrolle);
-                Rolle.mitteHauptrollen.add(this);
+                game.mitteHauptrollen.remove(chosenHauptrolle);
+                game.mitteHauptrollen.add(this);
             }catch (NullPointerException e) {
                 System.out.println(name + " nicht gefunden");
             }
