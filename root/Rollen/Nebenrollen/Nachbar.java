@@ -22,19 +22,19 @@ public class Nachbar extends Nebenrolle
 
     @Override
     public FrontendControl getDropdownOptions() {
-        return Spieler.getPlayerCheckSpammableFrontendControl(this);
+        return game.getPlayerCheckSpammableFrontendControl(this);
     }
 
     @Override
     public void processChosenOption(String chosenOption) {
-        Spieler chosenPlayer = Spieler.findSpieler(chosenOption);
+        Spieler chosenPlayer = game.findSpieler(chosenOption);
         besucht = chosenPlayer;
         beobachteterSpieler = chosenPlayer;
     }
 
     @Override
     public FrontendControl getInfo() {
-        Spieler nachbarSpieler = Spieler.findSpielerPerRolle(Nachbar.name);
+        Spieler nachbarSpieler = game.findSpielerPerRolle(Nachbar.name);
         FrontendControl info = new FrontendControl(FrontendControl.LIST, getBesucherStrings(beobachteterSpieler, nachbarSpieler));
         if(beobachteterSpieler!=null) {
             info.title = Nacht.NACHBAR_INFORMATION_TITLE + beobachteterSpieler.name;
@@ -64,7 +64,7 @@ public class Nachbar extends Nebenrolle
         ArrayList<String> besucher = new ArrayList<>();
 
         if(beobachteterSpieler!=null) {
-            for (Spieler spieler : Spieler.getLivigPlayer()) {
+            for (Spieler spieler : game.getLivingPlayer()) {
                 if (spieler.hauptrolle.besucht != null && spieler.hauptrolle.besucht.name.equals(beobachteterSpieler.name) ||
                         (spieler.nebenrolle.besucht != null && spieler.nebenrolle.besucht.name.equals(beobachteterSpieler.name))) {
                     besucher.add(spieler.name);

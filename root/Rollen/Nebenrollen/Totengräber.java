@@ -30,10 +30,10 @@ public class Totengräber extends Nebenrolle
         Nebenrolle chosenNebenrolle = Nebenrolle.findNebenrolle(chosenOption);
         if (chosenNebenrolle != null) {
             try {
-                Spieler deadSpieler = Spieler.findSpielerOrDeadPerRolle(chosenNebenrolle.getName());
+                Spieler deadSpieler = game.findSpielerOrDeadPerRolle(chosenNebenrolle.getName());
                 chosenNebenrolle = (Nebenrolle)Rolle.findRolle(deadSpieler.nebenrolle.getName());
 
-                Spieler spielerTotengräber = Spieler.findSpielerPerRolle(name);
+                Spieler spielerTotengräber = game.findSpielerPerRolle(name);
                 spielerTotengräber.nebenrolle = chosenNebenrolle;
                 deadSpieler.nebenrolle = new Schatten();
 

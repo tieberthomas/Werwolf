@@ -7,12 +7,14 @@ import root.Rollen.Fraktionen.Schattenpriester_Fraktion;
 import root.Rollen.Fraktionen.Werwölfe;
 import root.Rollen.Hauptrollen.Werwölfe.Chemiker;
 import root.Spieler;
+import root.mechanics.Game;
 import root.mechanics.Opfer;
 
 import java.awt.*;
 import java.util.ArrayList;
 
 public class Fraktion {
+    public static Game game;
 
     public FrontendControl getDropdownOptions() {
         return new FrontendControl();
@@ -35,7 +37,7 @@ public class Fraktion {
     public static ArrayList<Spieler> getFraktionsMembers(String fraktion) {
         ArrayList<Spieler> fraktionsMembers = new ArrayList<>();
 
-        for(Spieler currentSpieler : Spieler.spieler) {
+        for(Spieler currentSpieler : game.spieler) {
             if(currentSpieler.lebend && !Opfer.isOpfer(currentSpieler.name) && currentSpieler.hauptrolle.getFraktion().getName().equals(fraktion)) {
                 fraktionsMembers.add(currentSpieler);
             }
@@ -59,7 +61,7 @@ public class Fraktion {
     public static ArrayList<String> getFraktionsMemberStrings(String fraktion) {
         ArrayList<String> fraktionsMembers = new ArrayList<>();
 
-        for(Spieler currentSpieler : Spieler.spieler) {
+        for(Spieler currentSpieler : game.spieler) {
             if(currentSpieler.lebend && currentSpieler.hauptrolle.getFraktion().getName().equals(fraktion)) {
                 fraktionsMembers.add(currentSpieler.name);
             }
@@ -90,7 +92,7 @@ public class Fraktion {
     }
 
     public static boolean fraktionLebend(String fraktion) {
-        for (Spieler currentSpieler : Spieler.spieler) {
+        for (Spieler currentSpieler : game.spieler) {
             if (currentSpieler.hauptrolle.getFraktion().getName().equals(fraktion) && currentSpieler.lebend) {
                 return true;
             }
@@ -125,7 +127,7 @@ public class Fraktion {
     }
 
     public static boolean fraktionOpfer(String fraktion) {
-        for (Spieler currentSpieler : Spieler.spieler) {
+        for (Spieler currentSpieler : game.spieler) {
             String hauptrolleSpieler = currentSpieler.hauptrolle.getName();
             String fraktionSpieler = currentSpieler.hauptrolle.getFraktion().getName();
 
@@ -148,7 +150,7 @@ public class Fraktion {
     }
 
     public static boolean fraktionAktiv(String fraktion) {
-        ArrayList<Spieler> livingPlayers = Spieler.getLivigPlayer();
+        ArrayList<Spieler> livingPlayers = game.getLivingPlayer();
 
         for(Opfer opfer : Opfer.deadVictims) {
             livingPlayers.remove(opfer.opfer);
@@ -189,7 +191,7 @@ public class Fraktion {
     public static ArrayList<String> getLivingFraktionStrings() {
         ArrayList<String> allFraktionen = new ArrayList<>();
 
-        for (Spieler currentSpieler : Spieler.spieler) {
+        for (Spieler currentSpieler : game.spieler) {
             if (currentSpieler.lebend) {
                 String currentSpielerFraktion = currentSpieler.hauptrolle.getFraktion().getName();
 

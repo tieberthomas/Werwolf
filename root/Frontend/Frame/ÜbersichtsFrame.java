@@ -19,7 +19,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ÜbersichtsFrame extends MyFrame implements ActionListener{
-    Game game;
+    public Game game;
     ErzählerFrame erzählerFrame;
 
     public ÜbersichtsPageFactory pageFactory;
@@ -76,7 +76,7 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener{
 
         playerTable.add(new JLabel("Spieler"));
 
-        for(Spieler spieler : Spieler.spieler) {
+        for(Spieler spieler : game.spieler) {
             JLabel label = new JLabel(spieler.name);
             if(!spieler.lebend) {
                 label.setBackground(Color.lightGray);
@@ -93,7 +93,7 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener{
                 label.setBorder(BorderFactory.createLineBorder(borderColor, 2));
             }
 
-            if(playerTable.tableElements.size()<Spieler.spieler.size()+1) {
+            if(playerTable.tableElements.size()<game.spieler.size()+1) {
                 playerTable.add(label);
             }
         }
@@ -104,14 +104,14 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener{
 
         mainRoleTable.add(new JLabel("Hauptrolle"));
 
-        for(Spieler spieler : Spieler.spieler) {
+        for(Spieler spieler : game.spieler) {
             Rolle rolle;
             if (spieler.hauptrolle == null)
                 rolle = Hauptrolle.defaultHauptrolle;
             else
                 rolle = spieler.hauptrolle;
 
-            if(mainRoleTable.tableElements.size()<Spieler.spieler.size()+1) {
+            if(mainRoleTable.tableElements.size()<game.spieler.size()+1) {
                 mainRoleTable.add(generateColorLabel(spieler, rolle));
             }
         }
@@ -122,14 +122,14 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener{
 
         secondaryRoleTable.add(new JLabel("Nebenrolle"));
 
-        for(Spieler spieler : Spieler.spieler) {
+        for(Spieler spieler : game.spieler) {
             Rolle rolle;
             if (spieler.nebenrolle == null)
                 rolle = Nebenrolle.defaultNebenrolle;
             else
                 rolle = spieler.nebenrolle;
 
-            if(secondaryRoleTable.tableElements.size()<Spieler.spieler.size()+1) {
+            if(secondaryRoleTable.tableElements.size()<game.spieler.size()+1) {
                 secondaryRoleTable.add(generateColorLabel(spieler, rolle));
             }
         }
@@ -158,7 +158,7 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener{
 
         aliveTable.add(new JLabel("Lebend"));
 
-        for(Spieler spieler : Spieler.spieler) {
+        for(Spieler spieler : game.spieler) {
             String text="nein";
             if(spieler.lebend) {
                 text="ja";
@@ -171,7 +171,7 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener{
                 label.setBackground(Color.lightGray);
             }
             label.setOpaque(true);
-            if(aliveTable.tableElements.size()<Spieler.spieler.size()+1) {
+            if(aliveTable.tableElements.size()<game.spieler.size()+1) {
                 aliveTable.add(label);
             }
         }
@@ -182,7 +182,7 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener{
 
         activeTable.add(new JLabel("Aktiv"));
 
-        for(Spieler spieler : Spieler.spieler) {
+        for(Spieler spieler : game.spieler) {
             String text="nein";
             if(spieler.aktiv) {
                 text="ja";
@@ -195,7 +195,7 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener{
                 label.setBackground(Color.white);
             }
             label.setOpaque(true);
-            if(activeTable.tableElements.size()<Spieler.spieler.size()+1) {
+            if(activeTable.tableElements.size()<game.spieler.size()+1) {
                 activeTable.add(label);
             }
         }
@@ -206,7 +206,7 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener{
 
         protectedTable.add(new JLabel("Geschützt"));
 
-        for(Spieler spieler : Spieler.spieler) {
+        for(Spieler spieler : game.spieler) {
             String text="nein";
             if(spieler.geschützt) {
                 text="ja";
@@ -219,7 +219,7 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener{
                 label.setBackground(Color.white);
             }
             label.setOpaque(true);
-            if(protectedTable.tableElements.size()<Spieler.spieler.size()+1) {
+            if(protectedTable.tableElements.size()<game.spieler.size()+1) {
                 protectedTable.add(label);
             }
         }

@@ -9,7 +9,6 @@ import root.Rollen.Nebenrollen.ReineSeele;
 import root.Rollen.Nebenrollen.Wahrsager;
 import root.Spieler;
 import root.mechanics.Game;
-import root.mechanics.Liebespaar;
 
 import java.util.ArrayList;
 
@@ -57,7 +56,7 @@ public class Tag extends Thread {
                 killSpielerCheckLiebespaar(umbringenSpieler);
             }
 
-            Spieler chosenSpieler = Spieler.findSpieler(FrontendControl.erzählerFrame.chosenOption1);
+            Spieler chosenSpieler = game.findSpieler(FrontendControl.erzählerFrame.chosenOption1);
 
             if (chosenSpieler != null) {
                 String nebenrolleSpieler = chosenSpieler.nebenrolle.getName();
@@ -96,15 +95,15 @@ public class Tag extends Thread {
         }
     }
 
-    public static void checkVictory() {
-        String victory = Spieler.checkVictory();
+    public void checkVictory() {
+        String victory = game.checkVictory();
 
         if (victory != null) {
             showEndScreenPage(victory);
         }
     }
 
-    public static void checkRichterin(Spieler spieler) {
+    public void checkRichterin(Spieler spieler) {
         if(spieler.hauptrolle.getFraktion().getName().equals(Bürger.name)) {
             if(richterin != null && richterin.lebend && verurteilteSpieler.contains(spieler)) {
                 killSpielerCheckLiebespaar(richterin);
@@ -112,22 +111,22 @@ public class Tag extends Thread {
         }
     }
 
-    public static void killSpieler(Spieler spieler) {
+    public void killSpieler(Spieler spieler) {
         if(spieler!=null) {
-            Spieler.killSpieler(spieler);
+            game.killSpieler(spieler);
 
             FrontendControl.erzählerAnnounceVictimPage(spieler);
             FrontendControl.spielerAnnounceVictimPage(spieler);
         }
     }
 
-    public static void killSpielerCheckLiebespaar(Spieler spieler){
+    public void killSpielerCheckLiebespaar(Spieler spieler){
         killSpieler(spieler);
 
-        if(Liebespaar.getPlayerToDie()!=null) {
+        if(game.liebespaar.getPlayerToDie()!=null) {
             FrontendControl.erzählerFrame.disableButton(FrontendControl.erzählerFrame.umbringenJButton);
             waitForAnswer();
-            killSpieler(Liebespaar.getPlayerToDie());
+            killSpieler(game.liebespaar.getPlayerToDie());
         }
 
         waitForAnswer();
@@ -142,9 +141,9 @@ public class Tag extends Thread {
         waitForAnswer();
     }
 
-    public static void bürgen(String priester, String spieler) {
-        Spieler priesterSpieler = Spieler.findSpieler(priester);
-        Spieler verbürgerSpieler = Spieler.findSpieler(spieler);
+    public void bürgen(String priester, String spieler) {
+        Spieler priesterSpieler = game.findSpieler(priester);
+        Spieler verbürgerSpieler = game.findSpieler(spieler);
 
         if(priesterSpieler!=null && spieler!=null) {
             Tag.priester = priesterSpieler;
@@ -152,9 +151,9 @@ public class Tag extends Thread {
         }
     }
 
-    public static void verurteilen(String richterin, String spieler) {
-        Spieler richterinSpieler = Spieler.findSpieler(richterin);
-        Spieler verurteilterSpieler = Spieler.findSpieler(spieler);
+    public void verurteilen(String richterin, String spieler) {
+        Spieler richterinSpieler = game.findSpieler(richterin);
+        Spieler verurteilterSpieler = game.findSpieler(spieler);
 
         if(richterinSpieler!=null && spieler!=null) {
             Tag.richterin = richterinSpieler;

@@ -17,7 +17,7 @@ public class Lamm extends Nebenrolle
 
     public void tauschen(Nebenrolle nebenrolle) {
         try {
-            Spieler spieler = Spieler.findSpielerPerRolle(name);
+            Spieler spieler = game.findSpielerPerRolle(name);
             spieler.nebenrolle = nebenrolle;
         }catch (NullPointerException e) {
             System.out.println(name + " nicht gefunden");
@@ -26,7 +26,7 @@ public class Lamm extends Nebenrolle
 
     public Nebenrolle getTauschErgebnis() {
         try {
-            Spieler spieler = Spieler.findSpielerPerRolle(name);
+            Spieler spieler = game.findSpielerPerRolle(name);
             Nebenrolle nebenrolle;
 
             if(spieler.hauptrolle.getFraktion().getName().equals(Bürger.name)) {

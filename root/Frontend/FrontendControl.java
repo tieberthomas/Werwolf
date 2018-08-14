@@ -8,6 +8,7 @@ import root.Phases.Statement;
 import root.ResourceManagement.ResourcePath;
 import root.Rollen.Hauptrollen.Vampire.GrafVladimir;
 import root.Spieler;
+import root.mechanics.Game;
 
 import java.util.ArrayList;
 
@@ -15,6 +16,8 @@ import java.util.ArrayList;
  * Created by Steve on 16.05.2018.
  */
 public class FrontendControl {
+    public static Game game;
+
     public static final int SKIP = -1;
     public static final int TITLE = 0;
     public static final int DROPDOWN = 10;
@@ -93,7 +96,7 @@ public class FrontendControl {
     }
 
     public static void erzählerDefaultDayPage() {
-        Page dayPage = erzählerFrame.pageFactory.generateDefaultDayPage();
+        Page dayPage = erzählerFrame.pageFactory.generateDefaultDayPage(game.getLivingPlayerStrings());
         erzählerFrame.buildScreenFromPage(dayPage);
     }
 
@@ -102,12 +105,12 @@ public class FrontendControl {
     }
 
     public static void erzählerTortenPage() {
-        erzählerFrame.tortenPage = erzählerFrame.pageFactory.generateTortenPage();
+        erzählerFrame.tortenPage = erzählerFrame.pageFactory.generateTortenPage(game.getLivingPlayerStrings());
         erzählerFrame.buildScreenFromPage(erzählerFrame.tortenPage);
     }
 
     public static void erzählerAnnounceVictimPage(Spieler spieler) {
-        Page dayPage = erzählerFrame.pageFactory.generateAnnounceVictimsDayPage(spieler.name);
+        Page dayPage = erzählerFrame.pageFactory.generateAnnounceVictimsDayPage(spieler.name, game.getLivingPlayerStrings());
         erzählerFrame.buildScreenFromPage(dayPage);
     }
 

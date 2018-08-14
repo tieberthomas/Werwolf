@@ -10,10 +10,8 @@ import root.Phases.ErsteNacht;
 import root.Phases.Nacht;
 import root.Phases.Statement;
 import root.Phases.StatementRolle;
-import root.Rollen.Hauptrolle;
 import root.Rollen.Hauptrollen.Bürger.Sammler;
 import root.Rollen.Nebenrolle;
-import root.Spieler;
 
 import javax.swing.*;
 import java.awt.*;
@@ -160,27 +158,13 @@ public class ErzählerPageElementFactory {
         return numberOfPlayersLabel;
     }
 
-    public String generateNumberOfPLayersLabelTitle() {
-        int numberOfPlayers = Spieler.spieler.size();
+    public String generateNumberOfPLayersLabelTitle(int numberOfPlayers) {
         String numberOfPlayersLabelTitle = "Spieleranzahl: " + Integer.toString(numberOfPlayers);
 
         return numberOfPlayersLabelTitle;
     }
 
-    public String generateMainRoleCounterLabelTitle() {
-        int numberOfMainRoles = Hauptrolle.mainRolesInGame.size();
-
-        return generateCounterLabelTitle(numberOfMainRoles);
-    }
-
-    public String generateSecondaryRoleCounterLabelTitle() {
-        int numberOfSecondaryRoles = Nebenrolle.secondaryRolesInGame.size();
-
-        return generateCounterLabelTitle(numberOfSecondaryRoles);
-    }
-
-    public String generateCounterLabelTitle(int numberOfRoles) {
-        int numberOfPlayers = Spieler.spieler.size();
+    public String generateCounterLabelTitle(int numberOfPlayers, int numberOfRoles) {
         String numberOfPlayersLabelTitle = Integer.toString(numberOfRoles) + " / " + Integer.toString(numberOfPlayers);
 
         return numberOfPlayersLabelTitle;

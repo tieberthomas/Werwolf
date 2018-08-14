@@ -108,20 +108,21 @@ public class ErsteNacht extends Thread {
                     else{
                         switch (statement.beschreibung) {
                             case LIEBESPAAR:
-                                ArrayList<String> spielerOrZufällig = Spieler.getLivigPlayerStrings();
+                                ArrayList<String> spielerOrZufällig = game.getLivingPlayerStrings();
                                 spielerOrZufällig.add(Liebespaar.ZUFÄLLIG);
 
                                 showDropdown(statement, spielerOrZufällig, spielerOrZufällig);
 
-                                Liebespaar.neuesLiebespaar(FrontendControl.erzählerFrame.chosenOption1, FrontendControl.erzählerFrame.chosenOption2);
+                                game.liebespaar = new Liebespaar(FrontendControl.erzählerFrame.chosenOption1, FrontendControl.erzählerFrame.chosenOption2, game);
                                 break;
 
                             case LIEBESPAAR_FINDEN:
-                                if(Liebespaar.spieler1!=null) {
+                                Liebespaar liebespaar = game.liebespaar;
+                                if(liebespaar!=null && liebespaar.spieler1!=null) {
                                     ArrayList<String> liebespaarStrings = new ArrayList<>();
 
-                                    liebespaarStrings.add(Liebespaar.spieler1.name);
-                                    liebespaarStrings.add(Liebespaar.spieler2.name);
+                                    liebespaarStrings.add(liebespaar.spieler1.name);
+                                    liebespaarStrings.add(liebespaar.spieler2.name);
 
                                     imagePath = Liebespaar.getImagePath();
 
@@ -134,7 +135,7 @@ public class ErsteNacht extends Thread {
 
                             case ALPHAWOLF:
                                 ArrayList<Spieler> werwölfe = Fraktion.getFraktionsMembers(Werwölfe.name);
-                                werwölfe.remove(Spieler.findSpielerPerRolle(Alphawolf.name));
+                                werwölfe.remove(game.findSpielerPerRolle(Alphawolf.name));
                                 for (Spieler currentSpieler : werwölfe) {
                                     showHauptrolle(statement, currentSpieler);
                                 }
@@ -143,7 +144,7 @@ public class ErsteNacht extends Thread {
                                 break;
 
                             case BRÜDER:
-                                ArrayList<String> brüder = Spieler.findSpielersStringsPerRolle(Bruder.name);
+                                ArrayList<String> brüder = game.findSpielersStringsPerRolle(Bruder.name);
 
                                 if(brüder.size()==1) {
                                     ArrayList<String> stillAvailableMainRoles = Hauptrolle.getStillAvailableMainRoleNames();
@@ -152,7 +153,7 @@ public class ErsteNacht extends Thread {
                                     chosenOption = showFrontendControl(statement, dropdownOtions);
                                     Hauptrolle newHauptrolle = Hauptrolle.findHauptrolle(chosenOption);
                                     if(newHauptrolle!=null) {
-                                        Spieler bruderSpieler = Spieler.findSpielerPerRolle(Bruder.name);
+                                        Spieler bruderSpieler = game.findSpielerPerRolle(Bruder.name);
                                         bruderSpieler.hauptrolle = newHauptrolle;
                                         showFrontendControl(statement, new FrontendControl(FrontendControl.IMAGE, BRÜDER_SECOND_TITLE, newHauptrolle.getImagePath()));
                                     }
@@ -202,7 +203,7 @@ public class ErsteNacht extends Thread {
             String hauptrolle = currentHauptrolle.getName();
 
             boolean frei = true;
-            for (Spieler currentSpieler: Spieler.spieler) {
+            for (Spieler currentSpieler: game.spieler) {
                 String hauptrolleSpieler = currentSpieler.hauptrolle.getName();
 
                 if (Objects.equals(hauptrolle, hauptrolleSpieler)) {
@@ -225,7 +226,7 @@ public class ErsteNacht extends Thread {
             String nebenrolle = currentNebenrolle.getName();
 
             boolean frei = true;
-            for (Spieler currentSpieler: Spieler.spieler) {
+            for (Spieler currentSpieler: game.spieler) {
                 String nebenrolleSpieler = currentSpieler.nebenrolle.getName();
 
                 if (Objects.equals(nebenrolle, nebenrolleSpieler)) {
@@ -242,7 +243,7 @@ public class ErsteNacht extends Thread {
     }
 
     private void cleanUp() {
-        for (Spieler currentSpieler : Spieler.spieler) {
+        for (Spieler currentSpieler : game.spieler) {
             currentSpieler.aktiv = true;
             currentSpieler.geschützt = false;
             currentSpieler.ressurectable = true;
@@ -257,9 +258,9 @@ public class ErsteNacht extends Thread {
         } else if(statement.getClass() == StatementRolle.class) {
             StatementRolle statementRolle = (StatementRolle)statement;
             if(!statementRolle.rolle.equals(Bruder.name)) {
-                playersAwake.add(Spieler.findSpielerPerRolle(statementRolle.rolle));
+                playersAwake.add(game.findSpielerPerRolle(statementRolle.rolle));
             } else {
-                playersAwake.addAll(Spieler.findSpielersPerRolle(statementRolle.rolle));
+                playersAwake.addAll(game.findSpielersPerRolle(statementRolle.rolle));
             }
         }
     }

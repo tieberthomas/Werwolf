@@ -24,7 +24,7 @@ public class Werwölfe extends Fraktion
 
     @Override
     public void processChosenOption(String chosenOption) {
-        Spieler chosenPlayer = Spieler.findSpieler(chosenOption);
+        Spieler chosenPlayer = game.findSpieler(chosenOption);
         if (chosenPlayer != null) {
             Spieler täter = Fraktion.getFraktionsMembers(name).get(0);
             Opfer.addVictim(chosenPlayer, täter, true);
@@ -33,7 +33,7 @@ public class Werwölfe extends Fraktion
 
     @Override
     public FrontendControl getDropdownOptions() {
-        return Spieler.getPlayerFrontendControl();
+        return game.getPlayerFrontendControl();
     }
 
     @Override

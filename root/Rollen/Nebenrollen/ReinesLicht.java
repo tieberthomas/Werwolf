@@ -17,7 +17,7 @@ public class ReinesLicht extends Nebenrolle
 
     public void tauschen(Nebenrolle nebenrolle) {
         try {
-            Spieler spieler = Spieler.findSpielerPerRolle(name);
+            Spieler spieler = game.findSpielerPerRolle(name);
             spieler.nebenrolle = nebenrolle;
         }catch (NullPointerException e) {
             System.out.println(name + " nicht gefunden");
@@ -25,7 +25,7 @@ public class ReinesLicht extends Nebenrolle
     }
 
     public Nebenrolle getTauschErgebnis() {
-        Spieler spieler = Spieler.findSpielerPerRolle(name);
+        Spieler spieler = game.findSpielerPerRolle(name);
 
         if(spieler!=null) {
             Nebenrolle nebenrolle;

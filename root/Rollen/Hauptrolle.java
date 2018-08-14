@@ -59,7 +59,7 @@ public class Hauptrolle extends Rolle
         ArrayList<String> names = new ArrayList<String>();
 
         for (Hauptrolle currentHauptrolle : mainRoles) {
-            for(Spieler currentSpieler : Spieler.spieler) {
+            for(Spieler currentSpieler : game.spieler) {
                 if(currentSpieler.hauptrolle.getName().equals(currentHauptrolle.getName()) && Rolle.rolleLebend(currentSpieler.hauptrolle.getName())) {
                     names.add(currentSpieler.hauptrolle.getName());
                 }
@@ -93,7 +93,7 @@ public class Hauptrolle extends Rolle
         ArrayList<Hauptrolle> mainroles = (ArrayList)mainRolesInGame.clone();
         ArrayList<String> names = new ArrayList<String>();
 
-        for(Spieler spieler : Spieler.spieler) {
+        for(Spieler spieler : game.spieler) {
             mainroles.remove(spieler.hauptrolle);
         }
 

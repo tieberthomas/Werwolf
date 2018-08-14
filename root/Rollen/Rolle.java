@@ -5,11 +5,14 @@ import root.ResourceManagement.ResourcePath;
 import root.Rollen.Hauptrollen.Bürger.Sammler;
 import root.Rollen.Nebenrollen.Totengräber;
 import root.Spieler;
+import root.mechanics.Game;
 
 import java.awt.*;
 import java.util.ArrayList;
 
 public class Rolle {
+    public static Game game;
+
     public static ArrayList<Hauptrolle> mitteHauptrollen = new ArrayList<>();
     public static ArrayList<Nebenrolle> mitteNebenrollen = new ArrayList<>();
     public Spieler besucht;
@@ -123,7 +126,7 @@ public class Rolle {
     }
 
     public static boolean rolleLebend(String rolle) {
-        for (Spieler currentSpieler : Spieler.spieler) {
+        for (Spieler currentSpieler : game.spieler) {
             if((currentSpieler.hauptrolle.getName().equals(rolle) || currentSpieler.nebenrolle.getName().equals(rolle)) && currentSpieler.lebend) {
                 return true;
             }
@@ -133,7 +136,7 @@ public class Rolle {
     }
 
     public static boolean rolleAktiv(String rolle) {
-        for (Spieler currentSpieler : Spieler.spieler) {
+        for (Spieler currentSpieler : game.spieler) {
             if(currentSpieler.hauptrolle.getName().equals(rolle) && currentSpieler.aktiv) {
                 return true;
             }

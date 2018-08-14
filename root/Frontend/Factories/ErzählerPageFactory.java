@@ -9,7 +9,6 @@ import root.Phases.Tag;
 import root.ResourceManagement.ResourcePath;
 import root.Rollen.Hauptrolle;
 import root.Rollen.Nebenrolle;
-import root.Spieler;
 import root.mechanics.Torte;
 
 import javax.swing.*;
@@ -53,7 +52,7 @@ public class ErzählerPageFactory {
         return startPage;
     }
 
-    public Page generatePlayerSetupPage() {
+    public Page generatePlayerSetupPage(int numberOfPlayers) {
         PageElement nameLabel = pageElementFactory.generateLabel(null, "Name");
 
         PageElement addPlayerTxtField = pageElementFactory.generateAddPlayerTxtField(nameLabel);
@@ -61,7 +60,7 @@ public class ErzählerPageFactory {
         erzählerFrame.addPlayerButton = new JButton("Hinzufügen");
         PageElement addPlayerButton = pageElementFactory.generateSmallButton(erzählerFrame.addPlayerButton, addPlayerTxtField);
 
-        erzählerFrame.numberOfPlayersJLabel = new JLabel(pageElementFactory.generateNumberOfPLayersLabelTitle());
+        erzählerFrame.numberOfPlayersJLabel = new JLabel(pageElementFactory.generateNumberOfPLayersLabelTitle(numberOfPlayers));
         PageElement numberOfPlayersLabel = pageElementFactory.generateCounterLabel(erzählerFrame.numberOfPlayersJLabel, addPlayerTxtField);
 
         int tableElementHeight = 25;
@@ -101,11 +100,11 @@ public class ErzählerPageFactory {
         return playerSetupPage;
     }
 
-    public Page generateMainRoleSetupPage() {
+    public Page generateMainRoleSetupPage(int numberOfPlayers, int numberOfMainRoles) {
         PageTable mainRoleButtonTable = pageElementFactory.generateButtonTable(null);
         pageElementFactory.generateTableButtons(Hauptrolle.getMainRoleNames(), erzählerFrame.mainRoleButtons, mainRoleButtonTable);
 
-        erzählerFrame.mainRoleCounterJLabel = new JLabel(pageElementFactory.generateMainRoleCounterLabelTitle());
+        erzählerFrame.mainRoleCounterJLabel = new JLabel(pageElementFactory.generateCounterLabelTitle(numberOfPlayers, numberOfMainRoles));
         PageElement counterLabel = pageElementFactory.generateCounterLabel(erzählerFrame.mainRoleCounterJLabel, mainRoleButtonTable);
 
         int tableElementHeight = 25;
@@ -148,11 +147,11 @@ public class ErzählerPageFactory {
         return mainRoleSetupPage;
     }
 
-    public Page generateSecondaryRoleSetupPage() {
+    public Page generateSecondaryRoleSetupPage(int numberOfPlayers, int numberOfSecondaryRoles) {
         PageTable secondaryRoleButtonTable = pageElementFactory.generateButtonTable(null);
         pageElementFactory.generateTableButtons(Nebenrolle.getSecondaryRoleNames(), erzählerFrame.secondaryRoleButtons, secondaryRoleButtonTable);
 
-        erzählerFrame.secondaryRoleCounterJLabel = new JLabel(pageElementFactory.generateSecondaryRoleCounterLabelTitle());
+        erzählerFrame.secondaryRoleCounterJLabel = new JLabel(pageElementFactory.generateCounterLabelTitle(numberOfPlayers, numberOfSecondaryRoles));
         PageElement counterLabel = pageElementFactory.generateCounterLabel(erzählerFrame.secondaryRoleCounterJLabel, secondaryRoleButtonTable);
 
         int tableElementHeight = 25;
@@ -434,9 +433,9 @@ public class ErzählerPageFactory {
         return listPage;
     }
 
-    public Page generateDefaultDayPage() {
+    public Page generateDefaultDayPage(ArrayList<String> livingPlayers) {
         PageElement titleLabel = pageElementFactory.generateTitleLabel(null, Tag.dayTitle);
-        ArrayList<String> dropdownOptions = Spieler.getLivigPlayerOrNoneStrings();
+        ArrayList<String> dropdownOptions = livingPlayers;
         erzählerFrame.comboBox1 = new JComboBox(dropdownOptions.toArray());
         PageElement choosePlayer1 = pageElementFactory.generateDropdown(erzählerFrame.comboBox1,
                 null, titleLabel);
@@ -473,8 +472,8 @@ public class ErzählerPageFactory {
         return tagPage;
     }
 
-    public Page generateAnnounceVictimsDayPage(String spieler1) {
-        Page tagPage = generateDefaultDayPage();
+    public Page generateAnnounceVictimsDayPage(String spieler1, ArrayList<String> livingPlayers) {
+        Page tagPage = generateDefaultDayPage(livingPlayers);
 
         JLabel label = pageElementFactory.generateBigJLabel(new JLabel(spieler1));
 
@@ -531,12 +530,12 @@ public class ErzählerPageFactory {
         return nachtzüglerPage;
     }
 
-    public Page generateUmbringenPage() {
+    public Page generateUmbringenPage(ArrayList<String> livingPlayers) {
         PageElement titleLabel = pageElementFactory.generateTitleLabel(null, "Umbringen");
 
         PageElement nameLabel = pageElementFactory.generateLabel(titleLabel, "Name");
 
-        ArrayList<String> comboBoxOptions = Spieler.getLivigPlayerStrings();
+        ArrayList<String> comboBoxOptions =livingPlayers;
         comboBoxOptions.add("");
         erzählerFrame.comboBox1 = new JComboBox(comboBoxOptions.toArray());
         PageElement choosePlayer1 = pageElementFactory.generateDropdown(erzählerFrame.comboBox1,
@@ -560,19 +559,19 @@ public class ErzählerPageFactory {
         return umbringenPage;
     }
 
-    public Page generatePriesterPage() {
+    public Page generatePriesterPage(ArrayList<String> livingPlayers) {
         PageElement titleLabel = pageElementFactory.generateTitleLabel(null, "Bürgen");
 
         PageElement priesterLabel = pageElementFactory.generateLabel(titleLabel, "Priester");
 
-        ArrayList<String> comboBoxOptions = Spieler.getLivigPlayerStrings();
+        ArrayList<String> comboBoxOptions = livingPlayers;
         erzählerFrame.comboBox1 = new JComboBox(comboBoxOptions.toArray());
         PageElement choosePriester = pageElementFactory.generateDropdown(erzählerFrame.comboBox1,
                 null, priesterLabel, 0, 0);
 
         PageElement spielerLabel = pageElementFactory.generateLabel(choosePriester, "Spieler");
 
-        ArrayList<String> comboBox2Options = Spieler.getLivigPlayerStrings();
+        ArrayList<String> comboBox2Options = livingPlayers;
         erzählerFrame.comboBox2 = new JComboBox(comboBox2Options.toArray());
         PageElement choosePlayer = pageElementFactory.generateDropdown(erzählerFrame.comboBox2,
                 null, spielerLabel, 0, 0);
@@ -598,19 +597,19 @@ public class ErzählerPageFactory {
         return priesterPage;
     }
 
-    public Page generateRichterinPage() {
+    public Page generateRichterinPage(ArrayList<String> livingPlayers) {
         PageElement titleLabel = pageElementFactory.generateTitleLabel(null, "Verurteilen");
 
         PageElement richterinLabel = pageElementFactory.generateLabel(titleLabel, "Richterin");
 
-        ArrayList<String> comboBoxOptions = Spieler.getLivigPlayerStrings();
+        ArrayList<String> comboBoxOptions = livingPlayers;
         erzählerFrame.comboBox1 = new JComboBox(comboBoxOptions.toArray());
         PageElement chooseRichterin = pageElementFactory.generateDropdown(erzählerFrame.comboBox1,
                 null, richterinLabel, 0, 0);
 
         PageElement spielerLabel = pageElementFactory.generateLabel(chooseRichterin, "Spieler");
 
-        ArrayList<String> comboBox2Options = Spieler.getLivigPlayerStrings();
+        ArrayList<String> comboBox2Options = livingPlayers;
         erzählerFrame.comboBox2 = new JComboBox(comboBox2Options.toArray());
         PageElement choosePlayer = pageElementFactory.generateDropdown(erzählerFrame.comboBox2,
                 null, spielerLabel, 0, 0);
@@ -636,7 +635,7 @@ public class ErzählerPageFactory {
         return richterinPage;
     }
 
-    public Page generateTortenPage() {
+    public Page generateTortenPage(ArrayList<String> livingPlayers) {
         PageElement titleLabel = pageElementFactory.generateTitleLabel(null, "Torte");
 
         int tableElementHeight = 25;
@@ -645,7 +644,7 @@ public class ErzählerPageFactory {
         int spaceBetween = 10;
         int columns = 2;
 
-        ArrayList<String> comboBoxOptions = Spieler.getLivigPlayerStrings();
+        ArrayList<String> comboBoxOptions = livingPlayers;
         erzählerFrame.comboBox1 = new JComboBox(comboBoxOptions.toArray());
         PageElement choosePlayer1 = pageElementFactory.generateDropdown(erzählerFrame.comboBox1,
                 null, titleLabel, 0, 0);

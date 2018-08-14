@@ -22,12 +22,12 @@ public class GuteHexe extends Hauptrolle
 
     @Override
     public FrontendControl getDropdownOptions() {
-        return Spieler.getPlayerCheckSpammableFrontendControl(this);
+        return game.getPlayerCheckSpammableFrontendControl(this);
     }
 
     @Override
     public void processChosenOption(String chosenOption) {
-        Spieler chosenPlayer = Spieler.findSpieler(chosenOption);
+        Spieler chosenPlayer = game.findSpieler(chosenOption);
         if(chosenPlayer!=null) {
             besucht = chosenPlayer;
 

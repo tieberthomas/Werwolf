@@ -15,6 +15,8 @@ import java.util.ArrayList;
  * Created by Steve on 27.12.2017.
  */
 public class Opfer {
+    public static Game game;
+
     public static ArrayList<Opfer> possibleVictims = new ArrayList<>();
     public static ArrayList<Opfer> deadVictims = new ArrayList<>();
 
@@ -104,7 +106,7 @@ public class Opfer {
     }
 
     public static void addDeadVictim(Spieler opfer, Spieler täter, boolean fraktionsTäter, boolean riese) {
-        Spieler prostituierteSpieler = Spieler.findSpielerPerRolle(Prostituierte.name);
+        Spieler prostituierteSpieler = game.findSpielerPerRolle(Prostituierte.name);
         String hostProstituierte = "";
         if(prostituierteSpieler!=null) {
             hostProstituierte = Prostituierte.host.name;

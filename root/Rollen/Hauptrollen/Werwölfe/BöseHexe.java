@@ -21,16 +21,16 @@ public class BöseHexe extends Hauptrolle
 
     @Override
     public FrontendControl getDropdownOptions() {
-        return Spieler.getPlayerCheckSpammableFrontendControl(this);
+        return game.getPlayerCheckSpammableFrontendControl(this);
     }
 
     @Override
     public void processChosenOption(String chosenOption) {
-        Spieler chosenPlayer = Spieler.findSpieler(chosenOption);
+        Spieler chosenPlayer = game.findSpieler(chosenOption);
         if(chosenPlayer!=null) {
             besucht = chosenPlayer;
 
-            Spieler täter = Spieler.findSpielerPerRolle(name);
+            Spieler täter = game.findSpielerPerRolle(name);
             Opfer.addVictim(chosenPlayer, täter, false);
             abilityCharges--;
         }

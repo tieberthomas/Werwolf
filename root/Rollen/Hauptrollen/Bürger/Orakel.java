@@ -30,7 +30,7 @@ public class Orakel extends Hauptrolle {
         if (randomNebenrolle != null) {
             return new FrontendControl(FrontendControl.CARD, randomNebenrolle.getImagePath());
         } else {
-            Spieler orakelSpieler = Spieler.findSpielerPerRolle(name);
+            Spieler orakelSpieler = game.findSpielerPerRolle(name);
 
             if(orakelSpieler != null) {
                 ArrayList<String> nebenRolleList = (ArrayList<String>) geseheneNebenrollen.clone();
@@ -86,7 +86,7 @@ public class Orakel extends Hauptrolle {
         ArrayList<Spieler> bürgerToRemove = new ArrayList<>();
 
         if(Rolle.rolleLebend(name)) {
-            Nebenrolle orakelSpielerNebenrolle = Spieler.findSpielerPerRolle(name).nebenrolle;
+            Nebenrolle orakelSpielerNebenrolle = game.findSpielerPerRolle(name).nebenrolle;
             if (!geseheneNebenrollen.contains(orakelSpielerNebenrolle.getName())) {
                 geseheneNebenrollen.add(orakelSpielerNebenrolle.getName());
             }

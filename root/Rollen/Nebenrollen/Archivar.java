@@ -24,18 +24,18 @@ public class Archivar extends Nebenrolle
 
     @Override
     public FrontendControl getDropdownOptions() {
-        return Spieler.getPlayerCheckSpammableFrontendControl(this);
+        return game.getPlayerCheckSpammableFrontendControl(this);
     }
 
     @Override
     public FrontendControl processChosenOptionGetInfo(String chosenOption) {
-        Spieler chosenPlayer = Spieler.findSpieler(chosenOption);
+        Spieler chosenPlayer = game.findSpieler(chosenOption);
 
         if(chosenPlayer != null) {
             besucht = chosenPlayer;
 
             if(chosenPlayer.hauptrolle.getName().equals(Bestienmeister.name)) {
-                Spieler spieler = Spieler.findSpielerPerRolle(name);
+                Spieler spieler = game.findSpielerPerRolle(name);
 
                 if(!spieler.hauptrolle.getFraktion().getName().equals(Bürger.name)) {
                     return new FrontendControl(FrontendControl.IMAGE, TARNUMHANG_TITLE, ResourcePath.TARNUMHANG);

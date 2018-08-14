@@ -171,7 +171,7 @@ public class Nacht extends Thread
             schönlinge = new ArrayList<>();
             beschworenerSpieler = null;
 
-            ArrayList<String> spielerOrNon = Spieler.getLivigPlayerOrNoneStrings();
+            ArrayList<String> spielerOrNon = game.getLivingPlayerOrNoneStrings();
 
             beginNight();
 
@@ -246,10 +246,10 @@ public class Nacht extends Thread
                             break;
 
                         case ANÄSTHESIERTE_SPIELER:
-                            chosenPlayer = Spieler.findSpieler(chosenOptionLastStatement);
+                            chosenPlayer = game.findSpieler(chosenOptionLastStatement);
                             String anästesierterSpielerName = "";
                             if (chosenPlayer != null) {
-                                anästesierterSpieler = Spieler.findSpieler(chosenPlayer.name);
+                                anästesierterSpieler = game.findSpieler(chosenPlayer.name);
                                 anästesierterSpielerName = anästesierterSpieler.name;
                             }
 
@@ -263,12 +263,12 @@ public class Nacht extends Thread
                         case WÖLFIN:
                             if (chosenOption.equals(Wölfin.KILL)) {
                                 wölfinKilled = true;
-                                wölfinSpieler = Spieler.findSpielerPerRolle(Wölfin.name);
+                                wölfinSpieler = game.findSpielerPerRolle(Wölfin.name);
                             }
                             break;
 
                         case NEUER_SCHATTENPRIESTER:
-                            chosenPlayer = Spieler.findSpieler(chosenOptionLastStatement);
+                            chosenPlayer = game.findSpieler(chosenOptionLastStatement);
                             String neuerSchattenpriester = "";
                             imagePath = "";
                             if (chosenPlayer != null) {
@@ -282,7 +282,7 @@ public class Nacht extends Thread
                             break;
 
                         case NEUER_WERWOLF:
-                            chosenPlayer = Spieler.findSpieler(chosenOptionLastStatement);
+                            chosenPlayer = game.findSpieler(chosenOptionLastStatement);
                             String neuerWerwolf = "";
                             if (chosenPlayer != null) {
                                 neuerWerwolf = chosenPlayer.name;
@@ -308,7 +308,7 @@ public class Nacht extends Thread
                             break;
 
                         case ANALYTIKER:
-                            Spieler analytikerSpieler = Spieler.findSpielerPerRolle(rolle.getName());
+                            Spieler analytikerSpieler = game.findSpielerPerRolle(rolle.getName());
                             if (Rolle.rolleLebend(Analytiker.name)) {
                                 ArrayList<String> spielerOrNonWithoutAnalytiker = (ArrayList<String>) spielerOrNon.clone();
                                 spielerOrNonWithoutAnalytiker.remove(analytikerSpieler.name);
@@ -317,8 +317,8 @@ public class Nacht extends Thread
                                 showDropdownPage(statement, spielerOrNon, spielerOrNon);
                             }
 
-                            Spieler chosenSpieler1 = Spieler.findSpieler(FrontendControl.erzählerFrame.chosenOption1);
-                            Spieler chosenSpieler2 = Spieler.findSpieler(FrontendControl.erzählerFrame.chosenOption2);
+                            Spieler chosenSpieler1 = game.findSpieler(FrontendControl.erzählerFrame.chosenOption1);
+                            Spieler chosenSpieler2 = game.findSpieler(FrontendControl.erzählerFrame.chosenOption2);
 
                             if (chosenSpieler1 != null && chosenSpieler2 != null) {
                                 if (((Analytiker) rolle).showTarnumhang(chosenSpieler1, chosenSpieler2)) {
@@ -333,14 +333,14 @@ public class Nacht extends Thread
                             break;
 
                         case BESCHWÖRER:
-                            chosenPlayer = Spieler.findSpieler(chosenOption);
+                            chosenPlayer = game.findSpieler(chosenOption);
                             if (chosenPlayer != null) {
                                 beschworenerSpieler = chosenPlayer;
                             }
                             break;
 
                         case FRISÖR:
-                            chosenPlayer = Spieler.findSpieler(chosenOption);
+                            chosenPlayer = game.findSpieler(chosenOption);
                             if (chosenPlayer != null) {
                                 schönlinge.add(chosenPlayer);
                             }
@@ -348,8 +348,8 @@ public class Nacht extends Thread
 
                         case PROGRAMM_WAHRSAGER:
                             if (Wahrsager.isGuessing) {
-                                Spieler wahrsagerSpieler2 = Spieler.findSpielerPerRolle(Wahrsager.name);
-                                Spieler deadWahrsagerSpieler = Spieler.findSpielerOrDeadPerRolle(Wahrsager.name);
+                                Spieler wahrsagerSpieler2 = game.findSpielerPerRolle(Wahrsager.name);
+                                Spieler deadWahrsagerSpieler = game.findSpielerOrDeadPerRolle(Wahrsager.name);
                                 if (wahrsagerSpieler2 != null) {
                                     Wahrsager wahrsager = (Wahrsager) deadWahrsagerSpieler.nebenrolle;
                                     if (wahrsager.guessedRight()) {
@@ -360,13 +360,13 @@ public class Nacht extends Thread
                                 Wahrsager.isGuessing = true;
                             }
 
-                            if (!(Spieler.getLivigPlayer().size() > 4)) {
+                            if (!(game.getLivingPlayer().size() > 4)) {
                                 Wahrsager.isGuessing = false;
                             }
                             break;
 
                         case WAHRSAGER:
-                            Spieler wahrsagerSpieler1 = Spieler.findSpielerOrDeadPerRolle(Wahrsager.name);
+                            Spieler wahrsagerSpieler1 = game.findSpielerOrDeadPerRolle(Wahrsager.name);
                             if (wahrsagerSpieler1 != null) {
                                 Wahrsager wahrsager = (Wahrsager) wahrsagerSpieler1.nebenrolle;
 
@@ -409,7 +409,7 @@ public class Nacht extends Thread
                             //showList(statement, opferDerNacht);
                             FrontendControl.erzählerListPage(statement, OPFER_TITLE, opferDerNacht);
                             for(String opfer : opferDerNacht) {
-                                FrontendControl.spielerAnnounceVictimPage(Spieler.findSpieler(opfer));
+                                FrontendControl.spielerAnnounceVictimPage(game.findSpieler(opfer));
                                 waitForAnswer();
                             }
 
@@ -478,7 +478,7 @@ public class Nacht extends Thread
     }
 
     public void beginNight() {
-        for (Spieler currentSpieler : Spieler.spieler) {
+        for (Spieler currentSpieler : game.spieler) {
             String fraktionSpieler = currentSpieler.hauptrolle.getFraktion().getName();
 
             currentSpieler.ressurectable = !fraktionSpieler.equals(Vampire.name);
@@ -504,11 +504,11 @@ public class Nacht extends Thread
         }
 
         if(Rolle.rolleLebend(Prostituierte.name)) {
-            Spieler prostituierte = Spieler.findSpielerPerRolle(Prostituierte.name);
+            Spieler prostituierte = game.findSpielerPerRolle(Prostituierte.name);
             Prostituierte.host = prostituierte;
         }
 
-        for (Spieler currentSpieler : Spieler.spieler) {
+        for (Spieler currentSpieler : game.spieler) {
             Hauptrolle hauptrolleSpieler = currentSpieler.hauptrolle;
 
             if (hauptrolleSpieler.getName().equals(Schattenpriester.name)) {
@@ -535,7 +535,7 @@ public class Nacht extends Thread
     }
 
     public void setSchütze() {
-        for (Spieler currentSpieler : Spieler.spieler) {
+        for (Spieler currentSpieler : game.spieler) {
             String hauptrolleCurrentSpieler = currentSpieler.hauptrolle.getName();
             String nebenrolleCurrentSpieler = new Schatten().getName();
             if(currentSpieler.nebenrolle!=null) {
@@ -565,12 +565,12 @@ public class Nacht extends Thread
             playersAwake.addAll(Fraktion.getFraktionsMembers(statementFraktion.fraktion));
         } else if(statement.getClass() == StatementRolle.class) {
             StatementRolle statementRolle = (StatementRolle)statement;
-            playersAwake.add(Spieler.findSpielerPerRolle(statementRolle.rolle));
+            playersAwake.add(game.findSpielerPerRolle(statementRolle.rolle));
         }
     }
 
     private void cleanUp() {
-        for (Spieler currentSpieler : Spieler.spieler) {
+        for (Spieler currentSpieler : game.spieler) {
             currentSpieler.aktiv = true;
             currentSpieler.geschützt = false;
             currentSpieler.ressurectable = true;
@@ -588,7 +588,7 @@ public class Nacht extends Thread
                 }
             }
 
-            Spieler.killSpieler(currentVictim.opfer);
+            game.killSpieler(currentVictim.opfer);
         }
     }
 
@@ -596,30 +596,32 @@ public class Nacht extends Thread
         boolean spieler1Lebend = true;
         boolean spieler2Lebend = true;
 
-        if (Liebespaar.spieler1 != null && Liebespaar.spieler2!=null) {
+        Liebespaar liebespaar = game.liebespaar;
+
+        if (liebespaar!=null && liebespaar.spieler1 != null && liebespaar.spieler2!=null) {
 
             for (Opfer currentVictim : Opfer.deadVictims) {
-                if (currentVictim.opfer.name.equals(Liebespaar.spieler1.name)) {
+                if (currentVictim.opfer.name.equals(liebespaar.spieler1.name)) {
                     spieler1Lebend = false;
                 }
-                if (currentVictim.opfer.name.equals(Liebespaar.spieler2.name)) {
+                if (currentVictim.opfer.name.equals(liebespaar.spieler2.name)) {
                     spieler2Lebend = false;
                 }
             }
 
             if (spieler1Lebend && !spieler2Lebend) {
-                Opfer.deadVictims.add(new Opfer(Liebespaar.spieler1, Liebespaar.spieler2, false));
+                Opfer.deadVictims.add(new Opfer(liebespaar.spieler1, liebespaar.spieler2, false));
             }
 
             if (!spieler1Lebend && spieler2Lebend) {
-                Opfer.deadVictims.add(new Opfer(Liebespaar.spieler2, Liebespaar.spieler1, false));
+                Opfer.deadVictims.add(new Opfer(liebespaar.spieler2, liebespaar.spieler1, false));
             }
         }
     }
 
     public void checkWachhund() {
         boolean bewachterSpielerDied = false;
-        Spieler wachhundSpieler = Spieler.findSpielerOrDeadPerRolle(Wachhund.name);
+        Spieler wachhundSpieler = game.findSpielerOrDeadPerRolle(Wachhund.name);
         if(wachhundSpieler!=null) {
             Wachhund wachhund = (Wachhund)wachhundSpieler.nebenrolle;
             for (Opfer currentVictim : Opfer.deadVictims) {
@@ -636,7 +638,7 @@ public class Nacht extends Thread
 
     public void refreshHexenSchutz() {
         if (Rolle.rolleLebend(GuteHexe.name)) {
-            GuteHexe guteHexe = (GuteHexe) Spieler.findSpielerPerRolle(GuteHexe.name).hauptrolle;
+            GuteHexe guteHexe = (GuteHexe) game.findSpielerPerRolle(GuteHexe.name).hauptrolle;
             if (guteHexe.besucht != null) {
                 String hexenSchutzSpieler = guteHexe.besucht.name;
                 boolean refreshed = false;
@@ -680,7 +682,7 @@ public class Nacht extends Thread
     }
 
     public void checkVictory() {
-        String victory = Spieler.checkVictory();
+        String victory = game.checkVictory();
 
         if (victory != null) {
             showEndScreenPage(victory);
@@ -925,7 +927,7 @@ public class Nacht extends Thread
 
                 Rolle rolle = statementRolle.getRolle();
                 if (rolle != null) {
-                    Spieler spieler = Spieler.findSpielerPerRolle(rolle.getName());
+                    Spieler spieler = game.findSpielerPerRolle(rolle.getName());
                     if (spieler != null) {
                         if (spieler.name.equals(anästesierterSpieler.name)) {
                             return true;
@@ -1093,7 +1095,7 @@ public class Nacht extends Thread
         addStatementRolle(WACHHUND_INFORMATION, WACHHUND_INFORMATION_TITLE, Wachhund.name, Statement.ROLLE_INFO);
 
         addProgrammStatement(PROGRAMM_WAHRSAGER);
-        if(Spieler.getLivigPlayer().size()>4) {
+        if(game.getLivingPlayer().size()>4) {
             addStatementRolle(WAHRSAGER, WAHRSAGER_TITLE, Wahrsager.name, Statement.ROLLE_CHOOSE_ONE);
         }
 

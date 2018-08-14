@@ -9,47 +9,36 @@ import java.util.concurrent.ThreadLocalRandom;
 /**
  * Created by Steve on 23.11.2017.
  */
-public class Liebespaar
-{
+public class Liebespaar {
+    Game game;
+
     public static final String imagePath = ResourcePath.LIEBESPAAR;
     public static final String ZUFÄLLIG = "Zufällig";
 
-    public static Spieler spieler1;
-    public static Spieler spieler2;
+    public Spieler spieler1;
+    public Spieler spieler2;
 
-    public Liebespaar(Spieler spieler1, Spieler spieler2)
+    public Liebespaar(String spieler1Name, String spieler2Name, Game game)
     {
-        if(!spieler1.name.equals(spieler2.name)) {
-            Liebespaar.spieler1 = spieler1;
-            Liebespaar.spieler2 = spieler2;
-        }
-    }
+        this.game = game;
+        ArrayList<Spieler> spieler = (ArrayList<Spieler>)game.spieler.clone();
 
-    public static void neuesLiebespaar(String spieler1String, String spieler2String)
-    {
-        Spieler spieler1;
-        Spieler spieler2;
-
-        ArrayList<Spieler> spieler = (ArrayList<Spieler>)Spieler.spieler.clone();
-
-        if(spieler1String.equals(ZUFÄLLIG)) {
-            if(!spieler2String.equals(ZUFÄLLIG)) {
-                spieler2 = Spieler.findSpieler(spieler2String);
+        if(spieler1Name.equals(ZUFÄLLIG)) {
+            if(!spieler2Name.equals(ZUFÄLLIG)) {
+                spieler2 = game.findSpieler(spieler2Name);
                 spieler.remove(spieler2);
             }
             spieler1 = generateRandomSpieler(spieler);
         } else {
-            spieler1 = Spieler.findSpieler(spieler1String);
+            spieler1 = game.findSpieler(spieler1Name);
         }
 
-        if(spieler2String.equals(ZUFÄLLIG)) {
+        if(spieler2Name.equals(ZUFÄLLIG)) {
             spieler.remove(spieler1);
             spieler2 = generateRandomSpieler(spieler);
         } else {
-            spieler2 = Spieler.findSpieler(spieler2String);
+            spieler2 = game.findSpieler(spieler2Name);
         }
-
-        Spieler.liebespaar = new Liebespaar(spieler1,spieler2);
     }
 
     public static Spieler generateRandomSpieler(ArrayList<Spieler> spieler){
@@ -58,13 +47,13 @@ public class Liebespaar
         return spieler.get(randomNum);
     }
 
-    public static Spieler getPlayerToDie() {
+    public Spieler getPlayerToDie() {
         if(spieler1!=null && spieler2!=null) {
-            if (Liebespaar.spieler1.lebend && !Liebespaar.spieler2.lebend) {
-                return Liebespaar.spieler1;
+            if (spieler1.lebend && !spieler2.lebend) {
+                return spieler1;
             }
-            if (!Liebespaar.spieler1.lebend && Liebespaar.spieler2.lebend) {
-                return Liebespaar.spieler2;
+            if (!spieler1.lebend && spieler2.lebend) {
+                return spieler2;
             }
         }
 

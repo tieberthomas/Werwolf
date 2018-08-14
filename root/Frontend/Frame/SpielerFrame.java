@@ -8,7 +8,6 @@ import root.Phases.Tag;
 import root.ResourceManagement.ResourcePath;
 import root.Rollen.Hauptrolle;
 import root.Rollen.Nebenrolle;
-import root.Spieler;
 import root.mechanics.Game;
 
 import javax.swing.*;
@@ -93,7 +92,7 @@ public class SpielerFrame extends MyFrame{
     }
 
     public void refreshPlayerSetupPage(){
-        buildScreenFromPage(pageFactory.generateListPage(Spieler.getLivigPlayerStrings()));
+        buildScreenFromPage(pageFactory.generateListPage(game.getLivingPlayerStrings()));
     }
 
     public void refreshMainRoleSetupPage(){

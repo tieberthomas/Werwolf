@@ -30,10 +30,10 @@ public class Überläufer extends Hauptrolle
         Hauptrolle chosenHauptrolle = Hauptrolle.findHauptrolle(chosenOption);
         if (chosenHauptrolle != null) {
             try {
-                Spieler spielerHauptrolle = Spieler.findSpielerPerRolle(chosenHauptrolle.getName());
+                Spieler spielerHauptrolle = game.findSpielerPerRolle(chosenHauptrolle.getName());
                 chosenHauptrolle = spielerHauptrolle.hauptrolle;
 
-                Spieler spielerÜberläufer = Spieler.findSpielerPerRolle(name);
+                Spieler spielerÜberläufer = game.findSpielerPerRolle(name);
                 spielerÜberläufer.hauptrolle = chosenHauptrolle;
                 spielerHauptrolle.hauptrolle = new Dorfbewohner();
 

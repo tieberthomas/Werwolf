@@ -21,12 +21,12 @@ public class Seherin extends Hauptrolle {
 
     @Override
     public FrontendControl getDropdownOptions() {
-        return Spieler.getMitspielerCheckSpammableFrontendControl(this);
+        return game.getMitspielerCheckSpammableFrontendControl(this);
     }
 
     @Override
     public FrontendControl processChosenOptionGetInfo(String chosenOption) {
-        Spieler chosenPlayer = Spieler.findSpieler(chosenOption);
+        Spieler chosenPlayer = game.findSpieler(chosenOption);
 
         if(chosenPlayer != null) {
             besucht = chosenPlayer;

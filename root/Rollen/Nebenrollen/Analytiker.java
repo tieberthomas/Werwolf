@@ -54,7 +54,7 @@ public class Analytiker extends Nebenrolle
             bestienmeisterBeiSpielern = true;
         }
 
-        Spieler analytikerSpieler = Spieler.findSpielerPerRolle(name);
+        Spieler analytikerSpieler = game.findSpielerPerRolle(name);
 
         if(!analytikerSpieler.hauptrolle.getFraktion().getName().equals(Bürger.name)){
             analytikerKeinBürger = true;
@@ -75,9 +75,10 @@ public class Analytiker extends Nebenrolle
         if (Objects.equals(fraktion1, fraktion2)) {
             return GLEICH;
         } else {
-            if (Liebespaar.spieler1 != null) {
-                String liebespartner1 = Liebespaar.spieler1.name;
-                String liebespartner2 = Liebespaar.spieler2.name;
+            Liebespaar liebespaar = game.liebespaar;
+            if (liebespaar!= null && liebespaar.spieler1!=null) {
+                String liebespartner1 = liebespaar.spieler1.name;
+                String liebespartner2 = liebespaar.spieler2.name;
 
                 if (Objects.equals(name1, liebespartner1) && Objects.equals(name2, liebespartner2) ||
                         Objects.equals(name2, liebespartner1) && Objects.equals(name1, liebespartner2)) {

@@ -39,7 +39,8 @@ public class FileManager {
 
             for(int i=0; i<numberOfPlayers; i++) {
                 line = br.readLine();
-                Spieler.spieler.add(new Spieler(line));
+                Spieler spieler = new Spieler(line);
+                Spieler.game.spieler.add(spieler);
             }
 
             line = br.readLine();
@@ -106,7 +107,7 @@ public class FileManager {
             for(int i=0; i<numberOfPlayers; i++) {
                 line = br.readLine();
                 String[] fractals = line.split(" ");
-                Spieler spieler = new Spieler(fractals[0].replace("*"," "));
+                /*Spieler spieler = new Spieler(fractals[0].replace("*"," "));
 
                 Hauptrolle hauptrolle = Hauptrolle.findHauptrolle(fractals[1].replace("*"," "));;
                 spieler.hauptrolle = hauptrolle;
@@ -118,9 +119,22 @@ public class FileManager {
                 spieler.nebenrolle = nebenrolle;
                 if(nebenrolle!=null) {
                     Nebenrolle.secondaryRolesInGame.add(nebenrolle);
+                }*/
+                String name = fractals[0].replace("*"," ");
+                String hauptrolleString = fractals[1].replace("*"," ");
+                String nebenrolleString = fractals[2].replace("*"," ");
+
+                Spieler spieler = new Spieler(name, hauptrolleString, nebenrolleString);
+
+                Hauptrolle hauptrolle = spieler.hauptrolle;
+                if(hauptrolle!=null) {
+                    Hauptrolle.mainRolesInGame.add(hauptrolle);
                 }
 
-                Spieler.spieler.add(spieler);
+                Nebenrolle nebenrolle = spieler.nebenrolle;
+                if(nebenrolle!=null) {
+                    Nebenrolle.secondaryRolesInGame.add(nebenrolle);
+                }
             }
 
             line = br.readLine();

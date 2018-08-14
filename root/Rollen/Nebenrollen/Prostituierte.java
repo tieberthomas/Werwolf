@@ -18,18 +18,18 @@ public class Prostituierte extends Nebenrolle
 
     @Override
     public FrontendControl getDropdownOptions() {
-        return Spieler.getPlayerCheckSpammableFrontendControl(this);
+        return game.getPlayerCheckSpammableFrontendControl(this);
     }
 
     @Override
     public void processChosenOption(String chosenOption) {
-        Spieler chosenPlayer = Spieler.findSpieler(chosenOption);
-        if(chosenPlayer!=null && !chosenPlayer.equals(Spieler.findSpielerPerRolle(name))) {
+        Spieler chosenPlayer = game.findSpieler(chosenOption);
+        if(chosenPlayer!=null && !chosenPlayer.equals(game.findSpielerPerRolle(name))) {
             besucht = chosenPlayer;
 
             host = chosenPlayer;
         } else {
-            host = Spieler.findSpielerPerRolle(name);
+            host = game.findSpielerPerRolle(name);
         }
     }
 

@@ -19,12 +19,12 @@ public class Wachhund extends Nebenrolle
 
     @Override
     public FrontendControl getDropdownOptions() {
-        return Spieler.getPlayerCheckSpammableFrontendControl(this);
+        return game.getPlayerCheckSpammableFrontendControl(this);
     }
 
     @Override
     public void processChosenOption(String chosenOption) {
-        Spieler chosenPlayer = Spieler.findSpieler(chosenOption);
+        Spieler chosenPlayer = game.findSpieler(chosenOption);
         besucht = chosenPlayer;
         bewachterSpieler = chosenPlayer;
         if(chosenPlayer!=null) {
@@ -34,7 +34,7 @@ public class Wachhund extends Nebenrolle
 
     @Override
     public FrontendControl getInfo() {
-        Spieler wachhundSpieler = Spieler.findSpielerPerRolle(Wachhund.name);
+        Spieler wachhundSpieler = game.findSpielerPerRolle(Wachhund.name);
         FrontendControl info = new FrontendControl(FrontendControl.LIST, Nachbar.getBesucherStrings(bewachterSpieler, wachhundSpieler));
         if(bewachterSpieler!=null) {
             info.title = Nacht.WACHHUND_INFORMATION_TITLE + bewachterSpieler.name;

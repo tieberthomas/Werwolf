@@ -77,7 +77,7 @@ public class Nebenrolle extends Rolle
         ArrayList<Nebenrolle> secondaryRoles = (ArrayList)secondaryRolesInGame.clone();
         ArrayList<String> names = new ArrayList<String>();
 
-        for(Spieler spieler : Spieler.spieler) {
+        for(Spieler spieler : game.spieler) {
             secondaryRoles.remove(spieler.nebenrolle);
         }
 
@@ -110,7 +110,7 @@ public class Nebenrolle extends Rolle
 
     public void tauschen(Nebenrolle nebenrolle) {
         try {
-            Spieler spieler = Spieler.findSpielerPerRolle(this.getName());
+            Spieler spieler = game.findSpielerPerRolle(this.getName());
             spieler.nebenrolle = nebenrolle;
         }catch (NullPointerException e) {
             System.out.println(this.getName() + " nicht gefunden");
@@ -119,7 +119,7 @@ public class Nebenrolle extends Rolle
 
     public Nebenrolle getTauschErgebnis() {
         try {
-            Spieler spieler = Spieler.findSpielerPerRolle(this.getName());
+            Spieler spieler = game.findSpielerPerRolle(this.getName());
 
             return spieler.nebenrolle;
         }catch (NullPointerException e) {
