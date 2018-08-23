@@ -23,7 +23,9 @@ public class Totengräber extends Nebenrolle
 
     @Override
     public FrontendControl getDropdownOptions() {
-        return new FrontendControl(FrontendControl.DROPDOWN_LIST, getNehmbareNebenrollen());
+        ArrayList<String> nehmbareNebenrollen = getNehmbareNebenrollen();
+        nehmbareNebenrollen.add("");
+        return new FrontendControl(FrontendControl.DROPDOWN_LIST, nehmbareNebenrollen);
     }
 
     @Override
@@ -82,8 +84,6 @@ public class Totengräber extends Nebenrolle
                 nehmbareNebenrollen.add(nebenrolle.getName());
             }
         }
-
-        nehmbareNebenrollen.add("");
 
         return nehmbareNebenrollen;
     }
