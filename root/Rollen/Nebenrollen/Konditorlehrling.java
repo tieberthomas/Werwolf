@@ -6,14 +6,10 @@ import root.Rollen.Nebenrolle;
 
 import java.util.ArrayList;
 
-/**
- * Created by Steve on 21.01.2018.
- */
-public class Konditorlehrling extends Nebenrolle
-{
-    public static final String GUT = "Gut";
-    public static final String SCHLECHT = "Schlecht";
+import static root.Rollen.Constants.DropdownConstants.GUT;
+import static root.Rollen.Constants.DropdownConstants.SCHLECHT;
 
+public class Konditorlehrling extends Nebenrolle {
     public static final String name = "Konditorlehrling";
     public static final String imagePath = ImagePath.KONDITORLEHRLING_KARTE;
     public static boolean spammable = true;
@@ -24,8 +20,8 @@ public class Konditorlehrling extends Nebenrolle
 
         frontendControl.typeOfContent = FrontendControl.DROPDOWN;
         frontendControl.strings = new ArrayList<>();
-        frontendControl.strings.add(GUT);
-        frontendControl.strings.add(SCHLECHT);
+        frontendControl.addString(GUT);
+        frontendControl.addString(SCHLECHT);
 
         return frontendControl;
     }

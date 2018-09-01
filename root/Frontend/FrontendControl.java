@@ -6,6 +6,7 @@ import root.Frontend.Frame.ÜbersichtsFrame;
 import root.Frontend.Page.Page;
 import root.Phases.Statement;
 import root.ResourceManagement.ImagePath;
+import root.Rollen.Constants.DropdownConstants;
 import root.Rollen.Hauptrollen.Vampire.GrafVladimir;
 import root.Spieler;
 import root.mechanics.Game;
@@ -227,5 +228,9 @@ public class FrontendControl {
 
     public static void refreshÜbersichtsFrame(){
         übersichtsFrame.refreshÜbersichtsPage();
+    }
+
+    public void addString(DropdownConstants dropdownConstant) {
+        strings.add(dropdownConstant.name);
     }
 }

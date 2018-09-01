@@ -24,8 +24,8 @@ public class Wirt extends Hauptrolle {
 
         frontendControl.typeOfContent = FrontendControl.DROPDOWN;
         frontendControl.strings = new ArrayList<>();
-        frontendControl.strings.add(JA.name);
-        frontendControl.strings.add(NEIN.name);
+        frontendControl.addString(JA);
+        frontendControl.addString(NEIN);
 
         return frontendControl;
     }

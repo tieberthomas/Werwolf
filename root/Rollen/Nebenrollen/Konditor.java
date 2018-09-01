@@ -20,8 +20,8 @@ public class Konditor extends Nebenrolle {
 
         frontendControl.typeOfContent = FrontendControl.DROPDOWN;
         frontendControl.strings = new ArrayList<>();
-        frontendControl.strings.add(GUT.name);
-        frontendControl.strings.add(SCHLECHT.name);
+        frontendControl.addString(GUT);
+        frontendControl.addString(SCHLECHT);
 
         return frontendControl;
     }
