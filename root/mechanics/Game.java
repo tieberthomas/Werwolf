@@ -1,5 +1,6 @@
 package root.mechanics;
 
+import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.Frame.ErzählerFrame;
 import root.Frontend.Frame.ErzählerFrameMode;
 import root.Frontend.Frame.ÜbersichtsFrame;
@@ -240,7 +241,7 @@ public class Game {
     public FrontendControl getPlayerFrontendControl() {
         FrontendControl frontendControl = new FrontendControl();
 
-        frontendControl.typeOfContent = FrontendControl.DROPDOWN;
+        frontendControl.typeOfContent = FrontendControlType.DROPDOWN;
         frontendControl.strings = getLivingPlayerOrNoneStrings();
 
         return frontendControl;
@@ -273,7 +274,7 @@ public class Game {
     public FrontendControl getPlayerCheckSpammableFrontendControl(Rolle rolle) {
         FrontendControl frontendControl = new FrontendControl();
 
-        frontendControl.typeOfContent = FrontendControl.DROPDOWN;
+        frontendControl.typeOfContent = FrontendControlType.DROPDOWN;
         frontendControl.strings = getPlayerCheckSpammableStrings(rolle);
 
         return frontendControl;
@@ -313,7 +314,7 @@ public class Game {
     public FrontendControl getMitspielerCheckSpammableFrontendControl(Rolle rolle) {
         FrontendControl frontendControl = new FrontendControl();
 
-        frontendControl.typeOfContent = FrontendControl.DROPDOWN;
+        frontendControl.typeOfContent = FrontendControlType.DROPDOWN;
         frontendControl.strings = getMitspielerCheckSpammableStrings(rolle);
 
         return frontendControl;

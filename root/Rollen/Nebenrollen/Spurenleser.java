@@ -1,5 +1,6 @@
 package root.Rollen.Nebenrollen;
 
+import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.Phases.Nacht;
 import root.ResourceManagement.ImagePath;
@@ -30,7 +31,7 @@ public class Spurenleser extends Nebenrolle {
 
     @Override
     public FrontendControl getInfo() {
-        FrontendControl info = new FrontendControl(FrontendControl.LIST, getBesuchteSpielerStrings(beobachteterSpieler));
+        FrontendControl info = new FrontendControl(FrontendControlType.LIST, getBesuchteSpielerStrings(beobachteterSpieler));
         if (beobachteterSpieler != null) {
             info.title = Nacht.SPURENLESER_INFORMATION_TITLE + beobachteterSpieler.name;
         }

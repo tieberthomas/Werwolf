@@ -1,5 +1,6 @@
 package root.Rollen.Nebenrollen;
 
+import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.Phases.Nacht;
 import root.ResourceManagement.ImagePath;
@@ -31,7 +32,7 @@ public class Nachbar extends Nebenrolle {
     @Override
     public FrontendControl getInfo() {
         Spieler nachbarSpieler = game.findSpielerPerRolle(Nachbar.name);
-        FrontendControl info = new FrontendControl(FrontendControl.LIST, getBesucherStrings(beobachteterSpieler, nachbarSpieler));
+        FrontendControl info = new FrontendControl(FrontendControlType.LIST, getBesucherStrings(beobachteterSpieler, nachbarSpieler));
         if (beobachteterSpieler != null) {
             info.title = Nacht.NACHBAR_INFORMATION_TITLE + beobachteterSpieler.name;
         }

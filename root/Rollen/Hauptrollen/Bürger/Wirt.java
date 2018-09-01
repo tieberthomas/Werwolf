@@ -1,5 +1,6 @@
 package root.Rollen.Hauptrollen.Bürger;
 
+import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.ResourceManagement.ImagePath;
 import root.Rollen.Fraktion;
@@ -22,7 +23,7 @@ public class Wirt extends Hauptrolle {
     public FrontendControl getDropdownOptions() {
         FrontendControl frontendControl = new FrontendControl();
 
-        frontendControl.typeOfContent = FrontendControl.DROPDOWN;
+        frontendControl.typeOfContent = FrontendControlType.DROPDOWN;
         frontendControl.strings = new ArrayList<>();
         frontendControl.addString(JA);
         frontendControl.addString(NEIN);

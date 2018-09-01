@@ -1,5 +1,6 @@
 package root.mechanics;
 
+import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.Rollen.Fraktionen.Vampire;
 import root.Rollen.Fraktionen.Werwölfe;
@@ -47,7 +48,7 @@ public class Opfer {
     public static FrontendControl getOpferOrNonFrontendControl() {
         FrontendControl frontendControl = new FrontendControl();
 
-        frontendControl.typeOfContent = FrontendControl.DROPDOWN_LIST;
+        frontendControl.typeOfContent = FrontendControlType.DROPDOWN_LIST;
         frontendControl.strings = getOpferOrNonStrings();
 
         return frontendControl;

@@ -1,5 +1,6 @@
 package root.Rollen.Hauptrollen.Bürger;
 
+import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.ResourceManagement.ImagePath;
 import root.Rollen.Fraktion;
@@ -24,7 +25,7 @@ public class Buchhalter extends Hauptrolle {
     public FrontendControl getDropdownOptions() {
         FrontendControl frontendControl = new FrontendControl();
 
-        frontendControl.typeOfContent = FrontendControl.DROPDOWN;
+        frontendControl.typeOfContent = FrontendControlType.DROPDOWN;
         frontendControl.strings = new ArrayList<>();
         frontendControl.addString(JA);
         frontendControl.addString(NEIN);
@@ -38,7 +39,7 @@ public class Buchhalter extends Hauptrolle {
             if (chosenOption.equals(JA.name)) {
                 abilityCharges--;
                 seenRoles = game.getMainRolesAlive();
-                return new FrontendControl(FrontendControl.LIST, USED_TITLE, seenRoles);
+                return new FrontendControl(FrontendControlType.LIST, USED_TITLE, seenRoles);
             }
         }
 
@@ -66,6 +67,6 @@ public class Buchhalter extends Hauptrolle {
     }
 
     public FrontendControl getAufgebrauchtPage() {
-        return new FrontendControl(FrontendControl.LIST, USED_TITLE, seenRoles);
+        return new FrontendControl(FrontendControlType.LIST, USED_TITLE, seenRoles);
     }
 }

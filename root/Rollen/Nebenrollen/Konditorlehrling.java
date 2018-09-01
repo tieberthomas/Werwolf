@@ -1,5 +1,6 @@
 package root.Rollen.Nebenrollen;
 
+import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.ResourceManagement.ImagePath;
 import root.Rollen.Nebenrolle;
@@ -18,7 +19,7 @@ public class Konditorlehrling extends Nebenrolle {
     public FrontendControl getDropdownOptions() {
         FrontendControl frontendControl = new FrontendControl();
 
-        frontendControl.typeOfContent = FrontendControl.DROPDOWN;
+        frontendControl.typeOfContent = FrontendControlType.DROPDOWN;
         frontendControl.strings = new ArrayList<>();
         frontendControl.addString(GUT);
         frontendControl.addString(SCHLECHT);

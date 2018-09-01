@@ -612,31 +612,31 @@ public class Nacht extends Thread {
         switch (statement.getState()) {
             case Statement.NORMAL:
                 switch (frontendControl.typeOfContent) {
-                    case FrontendControl.TITLE:
+                    case TITLE:
                         showTitle(statement, frontendControl.title);
                         break;
 
-                    case FrontendControl.DROPDOWN:
+                    case DROPDOWN:
                         showDropdown(statement, frontendControl.title, frontendControl.strings);
                         return FrontendControl.erzählerFrame.chosenOption1;
 
-                    case FrontendControl.DROPDOWN_LIST:
+                    case DROPDOWN_LIST:
                         showDropdownList(statement, frontendControl.title, frontendControl.strings);
                         return FrontendControl.erzählerFrame.chosenOption1;
 
-                    case FrontendControl.LIST:
+                    case LIST:
                         showList(statement, frontendControl.title, frontendControl.strings);
                         break;
 
-                    case FrontendControl.IMAGE:
+                    case IMAGE:
                         showImage(statement, frontendControl.title, frontendControl.imagePath);
                         break;
 
-                    case FrontendControl.CARD:
+                    case CARD:
                         showCard(statement, frontendControl.title, frontendControl.imagePath);
                         break;
 
-                    case FrontendControl.LIST_IMAGE:
+                    case LIST_IMAGE:
                         showListShowImage(statement, frontendControl.title, frontendControl.strings, frontendControl.imagePath);
                 }
                 break;
@@ -745,25 +745,25 @@ public class Nacht extends Thread {
         String erzählerDeaktiviertIconPath = ImagePath.DEAKTIVIERT;
 
         switch (frontendControl.typeOfContent) {
-            case FrontendControl.DROPDOWN:
-            case FrontendControl.DROPDOWN_LIST:
+            case DROPDOWN:
+            case DROPDOWN_LIST:
                 FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), erzählerDeaktiviertIconPath);
                 FrontendControl.spielerIconPicturePage(DEAKTIVIERT_TITLE, ImagePath.DEAKTIVIERT);
 
                 waitForAnswer();
                 break;
 
-            case FrontendControl.LIST:
-            case FrontendControl.LIST_IMAGE:
+            case LIST:
+            case LIST_IMAGE:
                 FrontendControl.erzählerListPage(statement, getEmptyStringList(), erzählerDeaktiviertIconPath);
                 FrontendControl.spielerIconPicturePage(DEAKTIVIERT_TITLE, ImagePath.DEAKTIVIERT);
 
                 waitForAnswer();
                 break;
 
-            case FrontendControl.TITLE:
-            case FrontendControl.IMAGE:
-            case FrontendControl.CARD:
+            case TITLE:
+            case IMAGE:
+            case CARD:
                 FrontendControl.erzählerIconPicturePage(statement, erzählerDeaktiviertIconPath);
                 FrontendControl.spielerIconPicturePage(DEAKTIVIERT_TITLE, ImagePath.DEAKTIVIERT);
 
@@ -774,25 +774,25 @@ public class Nacht extends Thread {
 
     public void showTotPages(Statement statement, FrontendControl frontendControl) {
         switch (frontendControl.typeOfContent) {
-            case FrontendControl.DROPDOWN:
-            case FrontendControl.DROPDOWN_LIST:
+            case DROPDOWN:
+            case DROPDOWN_LIST:
                 FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), ImagePath.TOT);
                 FrontendControl.spielerIconPicturePage(TOT_TITLE, ImagePath.TOT);
 
                 waitForAnswer();
                 break;
 
-            case FrontendControl.LIST:
-            case FrontendControl.LIST_IMAGE:
+            case LIST:
+            case LIST_IMAGE:
                 FrontendControl.erzählerListPage(statement, getEmptyStringList(), ImagePath.TOT);
                 FrontendControl.spielerIconPicturePage(TOT_TITLE, ImagePath.TOT);
 
                 waitForAnswer();
                 break;
 
-            case FrontendControl.TITLE:
-            case FrontendControl.IMAGE:
-            case FrontendControl.CARD:
+            case TITLE:
+            case IMAGE:
+            case CARD:
                 FrontendControl.erzählerIconPicturePage(statement, ImagePath.TOT);
                 FrontendControl.spielerIconPicturePage(TOT_TITLE, ImagePath.TOT);
 
@@ -803,25 +803,25 @@ public class Nacht extends Thread {
 
     public void showAusDemSpielPages(Statement statement, FrontendControl frontendControl) {
         switch (frontendControl.typeOfContent) {
-            case FrontendControl.DROPDOWN:
-            case FrontendControl.DROPDOWN_LIST:
+            case DROPDOWN:
+            case DROPDOWN_LIST:
                 FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), ImagePath.AUS_DEM_SPIEL);
                 FrontendControl.spielerDropdownPage(statement.title, 1);
 
                 waitForAnswer();
                 break;
 
-            case FrontendControl.LIST:
-            case FrontendControl.LIST_IMAGE:
+            case LIST:
+            case LIST_IMAGE:
                 FrontendControl.erzählerListPage(statement, getEmptyStringList(), ImagePath.AUS_DEM_SPIEL);
                 FrontendControl.spielerListPage(statement.title, getEmptyStringList());
 
                 waitForAnswer();
                 break;
 
-            case FrontendControl.TITLE:
-            case FrontendControl.IMAGE:
-            case FrontendControl.CARD:
+            case TITLE:
+            case IMAGE:
+            case CARD:
                 FrontendControl.erzählerIconPicturePage(statement, ImagePath.AUS_DEM_SPIEL);
                 FrontendControl.spielerIconPicturePage(statement.title, "");
 

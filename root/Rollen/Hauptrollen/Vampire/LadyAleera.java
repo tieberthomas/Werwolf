@@ -1,5 +1,6 @@
 package root.Rollen.Hauptrollen.Vampire;
 
+import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.ResourceManagement.ImagePath;
 import root.Rollen.Fraktion;
@@ -19,7 +20,7 @@ public class LadyAleera extends Hauptrolle {
 
     @Override
     public FrontendControl getInfo() {
-        return new FrontendControl(FrontendControl.LIST, findGeschützeSpieler());
+        return new FrontendControl(FrontendControlType.LIST, findGeschützeSpieler());
     }
 
     @Override

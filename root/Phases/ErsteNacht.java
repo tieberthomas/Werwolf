@@ -1,5 +1,6 @@
 package root.Phases;
 
+import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.ResourceManagement.ImagePath;
 import root.Rollen.*;
@@ -145,13 +146,13 @@ public class ErsteNacht extends Thread {
                                 if(brüder.size()==1) {
                                     ArrayList<String> stillAvailableMainRoles = game.getStillAvailableMainRoleNames();
                                     stillAvailableMainRoles.remove(Bruder.name);
-                                    dropdownOtions = new FrontendControl(FrontendControl.DROPDOWN, BRÜDER_SECOND_TITLE, stillAvailableMainRoles);
+                                    dropdownOtions = new FrontendControl(FrontendControlType.DROPDOWN, BRÜDER_SECOND_TITLE, stillAvailableMainRoles);
                                     chosenOption = showFrontendControl(statement, dropdownOtions);
                                     Hauptrolle newHauptrolle = game.findHauptrolle(chosenOption);
                                     if(newHauptrolle!=null) {
                                         Spieler bruderSpieler = game.findSpielerPerRolle(Bruder.name);
                                         bruderSpieler.hauptrolle = newHauptrolle;
-                                        showFrontendControl(statement, new FrontendControl(FrontendControl.IMAGE, BRÜDER_SECOND_TITLE, newHauptrolle.getImagePath()));
+                                        showFrontendControl(statement, new FrontendControl(FrontendControlType.IMAGE, BRÜDER_SECOND_TITLE, newHauptrolle.getImagePath()));
                                     }
                                 } else {
                                     FrontendControl.erzählerListPage(statement, brüder);
@@ -281,31 +282,31 @@ public class ErsteNacht extends Thread {
 
         switch (frontendControl.typeOfContent)
         {
-            case FrontendControl.TITLE:
+            case TITLE:
                 showTitle(statement, frontendControl.title);
                 break;
 
-            case FrontendControl.DROPDOWN:
+            case DROPDOWN:
                 showDropdown(statement, frontendControl.title, frontendControl.strings);
                 return FrontendControl.erzählerFrame.chosenOption1;
 
-            case FrontendControl.DROPDOWN_LIST:
+            case DROPDOWN_LIST:
                 showDropdownList(statement, frontendControl.title, frontendControl.strings);
                 return FrontendControl.erzählerFrame.chosenOption1;
 
-            case FrontendControl.LIST:
+            case LIST:
                 showList(statement, frontendControl.title, frontendControl.strings);
                 break;
 
-            case FrontendControl.IMAGE:
+            case IMAGE:
                 showImage(statement, frontendControl.title, frontendControl.imagePath);
                 break;
 
-            case FrontendControl.CARD:
+            case CARD:
                 showCard(statement, frontendControl.title, frontendControl.imagePath);
                 break;
 
-            case FrontendControl.LIST_IMAGE:
+            case LIST_IMAGE:
                 showListShowImage(statement, frontendControl.title, frontendControl.strings, frontendControl.imagePath);
         }
 

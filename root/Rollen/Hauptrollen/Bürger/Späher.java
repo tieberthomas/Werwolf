@@ -1,5 +1,6 @@
 package root.Rollen.Hauptrollen.Bürger;
 
+import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.ResourceManagement.ImagePath;
 import root.Rollen.Fraktion;
@@ -35,15 +36,15 @@ public class Späher extends Hauptrolle
             besucht = chosenPlayer;
 
             if(chosenPlayer.nebenrolle.getName().equals(Tarnumhang.name)) {
-                return new FrontendControl(FrontendControl.IMAGE, TARNUMHANG_TITLE, ImagePath.TARNUMHANG);
+                return new FrontendControl(FrontendControlType.IMAGE, TARNUMHANG_TITLE, ImagePath.TARNUMHANG);
             }
 
             if(chosenPlayer.hauptrolle.isKilling()) {
                 abilityCharges--;
 
-                return new FrontendControl(FrontendControl.IMAGE, TÖTEND_TITLE, ImagePath.TÖTEND);
+                return new FrontendControl(FrontendControlType.IMAGE, TÖTEND_TITLE, ImagePath.TÖTEND);
             } else {
-                return new FrontendControl(FrontendControl.IMAGE, NICHT_TÖTEND_TITLE, ImagePath.NICHT_TÖTEND);
+                return new FrontendControl(FrontendControlType.IMAGE, NICHT_TÖTEND_TITLE, ImagePath.NICHT_TÖTEND);
             }
         }
 

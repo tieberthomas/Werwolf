@@ -1,5 +1,6 @@
 package root.Rollen.Hauptrollen.Bürger;
 
+import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.Phases.Nacht;
 import root.ResourceManagement.ImagePath;
@@ -28,14 +29,14 @@ public class Orakel extends Hauptrolle {
         Nebenrolle randomNebenrolle = generateRandomNebenrolle();
 
         if (randomNebenrolle != null) {
-            return new FrontendControl(FrontendControl.CARD, randomNebenrolle.getImagePath());
+            return new FrontendControl(FrontendControlType.CARD, randomNebenrolle.getImagePath());
         } else {
             Spieler orakelSpieler = game.findSpielerPerRolle(name);
 
             if(orakelSpieler != null) {
                 ArrayList<String> nebenRolleList = (ArrayList<String>) geseheneNebenrollen.clone();
                 nebenRolleList.remove(orakelSpieler.nebenrolle.getName());
-                FrontendControl info = new FrontendControl(FrontendControl.LIST, nebenRolleList);
+                FrontendControl info = new FrontendControl(FrontendControlType.LIST, nebenRolleList);
                 info.title = Nacht.ORAKEL_VERBRAUCHT_TITLE;
                 return info;
             } else {

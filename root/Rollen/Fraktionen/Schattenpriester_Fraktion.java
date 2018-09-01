@@ -1,5 +1,6 @@
 package root.Rollen.Fraktionen;
 
+import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.ResourceManagement.ImagePath;
 import root.Rollen.Fraktion;
@@ -44,7 +45,7 @@ public class Schattenpriester_Fraktion extends Fraktion
     public FrontendControl getDropdownOptions() {
         FrontendControl frontendControl = new FrontendControl();
 
-        frontendControl.typeOfContent = FrontendControl.DROPDOWN_LIST;
+        frontendControl.typeOfContent = FrontendControlType.DROPDOWN_LIST;
         frontendControl.strings = new ArrayList<>();
 
         for (Opfer currentOpfer : Opfer.deadVictims) {

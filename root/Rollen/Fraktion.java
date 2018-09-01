@@ -1,5 +1,6 @@
 package root.Rollen;
 
+import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.Frame.MyFrame;
 import root.Frontend.FrontendControl;
 import root.ResourceManagement.ImagePath;
@@ -74,7 +75,7 @@ public class Fraktion {
     public FrontendControl getFraktionsMemberOrNonFrontendControl(Hauptrolle rolle) {
         FrontendControl frontendControl = new FrontendControl();
 
-        frontendControl.typeOfContent = FrontendControl.DROPDOWN_LIST;
+        frontendControl.typeOfContent = FrontendControlType.DROPDOWN_LIST;
         frontendControl.strings = getFraktionsMemberStrings(rolle.getFraktion().getName());
         frontendControl.strings.add("");
         if (!rolle.isSpammable() && rolle.besuchtLetzteNacht != null) {
@@ -235,7 +236,7 @@ public class Fraktion {
     public static FrontendControl getLivigFraktionOrNoneFrontendControl() {
         FrontendControl frontendControl = new FrontendControl();
 
-        frontendControl.typeOfContent = FrontendControl.DROPDOWN_LIST;
+        frontendControl.typeOfContent = FrontendControlType.DROPDOWN_LIST;
         frontendControl.strings = getLivingFraktionOrNoneStrings();
 
         return frontendControl;
@@ -244,7 +245,7 @@ public class Fraktion {
     public static FrontendControl getFraktionOrNoneFrontendControl() {
         FrontendControl frontendControl = new FrontendControl();
 
-        frontendControl.typeOfContent = FrontendControl.DROPDOWN_LIST;
+        frontendControl.typeOfContent = FrontendControlType.DROPDOWN_LIST;
         frontendControl.strings = getFraktionOrNoneStrings();
 
         return frontendControl;

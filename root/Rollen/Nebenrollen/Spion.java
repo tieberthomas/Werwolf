@@ -1,5 +1,6 @@
 package root.Rollen.Nebenrollen;
 
+import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.ResourceManagement.ImagePath;
 import root.Rollen.Fraktion;
@@ -32,7 +33,7 @@ public class Spion extends Nebenrolle
             ArrayList<String> list = new ArrayList<>();
             list.add(Integer.toString(fraktionAnzahl));
 
-            return new FrontendControl(FrontendControl.LIST, fraktion.getName(), list);
+            return new FrontendControl(FrontendControlType.LIST, fraktion.getName(), list);
         }
 
         return new FrontendControl();

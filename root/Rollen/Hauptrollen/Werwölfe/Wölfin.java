@@ -1,5 +1,6 @@
 package root.Rollen.Hauptrollen.Werwölfe;
 
+import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.Phases.Nacht;
 import root.ResourceManagement.ImagePath;
@@ -45,7 +46,7 @@ public class Wölfin extends Hauptrolle {
                 if (wölfinSpieler.nebenrolle.getName().equals(Tarnumhang.name)) {
                     imagePath = ImagePath.TARNUMHANG;
                 }
-                return new FrontendControl(FrontendControl.IMAGE, imagePath);
+                return new FrontendControl(FrontendControlType.IMAGE, imagePath);
             }
         }
 

@@ -1,5 +1,6 @@
 package root.Rollen.Nebenrollen;
 
+import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.ResourceManagement.ImagePath;
 import root.Rollen.Fraktionen.Bürger;
@@ -35,22 +36,22 @@ public class Archivar extends Nebenrolle {
                 Spieler spieler = game.findSpielerPerRolle(name);
 
                 if (!spieler.hauptrolle.getFraktion().getName().equals(Bürger.name)) {
-                    return new FrontendControl(FrontendControl.IMAGE, TARNUMHANG_TITLE, ImagePath.TARNUMHANG);
+                    return new FrontendControl(FrontendControlType.IMAGE, TARNUMHANG_TITLE, ImagePath.TARNUMHANG);
                 }
             }
 
             switch (chosenPlayer.nebenrolle.getType()) {
                 case AKTIV:
-                    return new FrontendControl(FrontendControl.IMAGE, AKTIV_TITLE, ImagePath.AKTIV);
+                    return new FrontendControl(FrontendControlType.IMAGE, AKTIV_TITLE, ImagePath.AKTIV);
 
                 case PASSIV:
-                    return new FrontendControl(FrontendControl.IMAGE, PASSIV_TITLE, ImagePath.PASSIV);
+                    return new FrontendControl(FrontendControlType.IMAGE, PASSIV_TITLE, ImagePath.PASSIV);
 
                 case INFORMATIV:
-                    return new FrontendControl(FrontendControl.IMAGE, INFORMATIV_TITLE, ImagePath.INFORMATIV);
+                    return new FrontendControl(FrontendControlType.IMAGE, INFORMATIV_TITLE, ImagePath.INFORMATIV);
 
                 case TARNUMHANG:
-                    return new FrontendControl(FrontendControl.IMAGE, TARNUMHANG_TITLE, ImagePath.TARNUMHANG);
+                    return new FrontendControl(FrontendControlType.IMAGE, TARNUMHANG_TITLE, ImagePath.TARNUMHANG);
             }
         }
 

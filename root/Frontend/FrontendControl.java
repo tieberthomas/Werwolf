@@ -1,5 +1,6 @@
 package root.Frontend;
 
+import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.Frame.ErzählerFrame;
 import root.Frontend.Frame.SpielerFrame;
 import root.Frontend.Frame.ÜbersichtsFrame;
@@ -19,67 +20,58 @@ import java.util.ArrayList;
 public class FrontendControl {
     public static Game game;
 
-    public static final int SKIP = -1;
-    public static final int TITLE = 0;
-    public static final int DROPDOWN = 10;
-    public static final int DROPDOWN_LIST = 11;
-    public static final int LIST = 20;
-    public static final int IMAGE = 30;
-    public static final int CARD = 31;
-    public static final int LIST_IMAGE = 40;
-
     public static ErzählerFrame erzählerFrame;
     public static SpielerFrame spielerFrame;
     public static ÜbersichtsFrame übersichtsFrame;
 
-    public int typeOfContent;
+    public FrontendControlType typeOfContent;
     public String title;
     public ArrayList<String> strings;
     public String imagePath;
 
     public FrontendControl() {
-        this.typeOfContent = SKIP;
+        this.typeOfContent = FrontendControlType.SKIP;
     }
 
     public FrontendControl(String title) {
-        this.typeOfContent = TITLE;
+        this.typeOfContent = FrontendControlType.TITLE;
         this.title = title;
     }
 
     public FrontendControl(ArrayList<String> strings) {
-        this.typeOfContent = LIST;
+        this.typeOfContent = FrontendControlType.LIST;
         this.strings = strings;
     }
 
-    public FrontendControl(int typeOfContent, ArrayList<String> strings) {
+    public FrontendControl(FrontendControlType typeOfContent, ArrayList<String> strings) {
         this.typeOfContent = typeOfContent;
         this.strings = strings;
     }
 
-    public FrontendControl(int typeOfContent, String title, ArrayList<String> strings) {
+    public FrontendControl(FrontendControlType typeOfContent, String title, ArrayList<String> strings) {
         this.typeOfContent = typeOfContent;
         this.title = title;
         this.strings = strings;
     }
 
-    public FrontendControl(int typeOfContent, String imagePath) {
+    public FrontendControl(FrontendControlType typeOfContent, String imagePath) {
         this.typeOfContent = typeOfContent;
         this.imagePath = imagePath;
     }
 
-    public FrontendControl(int typeOfContent, String title, String imagePath) {
+    public FrontendControl(FrontendControlType typeOfContent, String title, String imagePath) {
         this.typeOfContent = typeOfContent;
         this.title = title;
         this.imagePath = imagePath;
     }
 
-    public FrontendControl(int typeOfContent, ArrayList<String> strings, String imagePath) {
+    public FrontendControl(FrontendControlType typeOfContent, ArrayList<String> strings, String imagePath) {
         this.typeOfContent = typeOfContent;
         this.strings = strings;
         this.imagePath = imagePath;
     }
 
-    public FrontendControl(int typeOfContent, String title, ArrayList<String> strings, String imagePath) {
+    public FrontendControl(FrontendControlType typeOfContent, String title, ArrayList<String> strings, String imagePath) {
         this.typeOfContent = typeOfContent;
         this.title = title;
         this.strings = strings;

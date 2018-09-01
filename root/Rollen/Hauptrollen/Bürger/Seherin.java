@@ -1,5 +1,6 @@
 package root.Rollen.Hauptrollen.Bürger;
 
+import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.ResourceManagement.ImagePath;
 import root.Rollen.Fraktion;
@@ -33,22 +34,22 @@ public class Seherin extends Hauptrolle {
 
             String nebenrolle = chosenPlayer.nebenrolle.getName();
             if (nebenrolle.equals(Lamm.name)) {
-                return new FrontendControl(FrontendControl.IMAGE, Bürger.imagePath);
+                return new FrontendControl(FrontendControlType.IMAGE, Bürger.imagePath);
             }
             if (nebenrolle.equals(Wolfspelz.name)) {
-                return new FrontendControl(FrontendControl.IMAGE, Werwölfe.imagePath);
+                return new FrontendControl(FrontendControlType.IMAGE, Werwölfe.imagePath);
             }
             if (nebenrolle.equals(Vampirumhang.name)) {
-                return new FrontendControl(FrontendControl.IMAGE, Vampire.imagePath);
+                return new FrontendControl(FrontendControlType.IMAGE, Vampire.imagePath);
             }
             if (nebenrolle.equals(Schattenkutte.name)) {
-                return new FrontendControl(FrontendControl.IMAGE, Schattenpriester_Fraktion.imagePath);
+                return new FrontendControl(FrontendControlType.IMAGE, Schattenpriester_Fraktion.imagePath);
             }
             if (nebenrolle.equals(Tarnumhang.name)) {
-                return new FrontendControl(FrontendControl.IMAGE, TARNUMHANG_TITLE, ImagePath.TARNUMHANG);
+                return new FrontendControl(FrontendControlType.IMAGE, TARNUMHANG_TITLE, ImagePath.TARNUMHANG);
             }
 
-            return new FrontendControl(FrontendControl.IMAGE, chosenOption, chosenPlayer.hauptrolle.getFraktion().getImagePath());
+            return new FrontendControl(FrontendControlType.IMAGE, chosenOption, chosenPlayer.hauptrolle.getFraktion().getImagePath());
         }
 
         return new FrontendControl();

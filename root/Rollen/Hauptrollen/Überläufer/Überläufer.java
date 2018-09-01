@@ -1,5 +1,6 @@
 package root.Rollen.Hauptrollen.Überläufer;
 
+import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.ResourceManagement.ImagePath;
 import root.Rollen.Fraktion;
@@ -20,7 +21,7 @@ public class Überläufer extends Hauptrolle {
     public FrontendControl getDropdownOptions() {
         ArrayList<String> nehmbareHauptrollen = getMitteHauptrollenStrings();
         nehmbareHauptrollen.add("");
-        return new FrontendControl(FrontendControl.DROPDOWN_LIST, nehmbareHauptrollen);
+        return new FrontendControl(FrontendControlType.DROPDOWN_LIST, nehmbareHauptrollen);
     }
 
     @Override

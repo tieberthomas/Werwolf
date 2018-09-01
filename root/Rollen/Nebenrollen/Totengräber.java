@@ -1,5 +1,6 @@
 package root.Rollen.Nebenrollen;
 
+import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.Phases.Nacht;
 import root.Phases.Statement;
@@ -25,7 +26,7 @@ public class Totengräber extends Nebenrolle
     public FrontendControl getDropdownOptions() {
         ArrayList<String> nehmbareNebenrollen = getNehmbareNebenrollen();
         nehmbareNebenrollen.add("");
-        return new FrontendControl(FrontendControl.DROPDOWN_LIST, nehmbareNebenrollen);
+        return new FrontendControl(FrontendControlType.DROPDOWN_LIST, nehmbareNebenrollen);
     }
 
     @Override

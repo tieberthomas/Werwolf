@@ -1,5 +1,6 @@
 package root.Rollen.Hauptrollen.Werwölfe;
 
+import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.ResourceManagement.ImagePath;
 import root.Rollen.Fraktion;
@@ -19,7 +20,7 @@ public class Chemiker extends Hauptrolle {
     public FrontendControl getDropdownOptions() {
         FrontendControl frontendControl = new FrontendControl();
 
-        frontendControl.typeOfContent = FrontendControl.DROPDOWN_LIST;
+        frontendControl.typeOfContent = FrontendControlType.DROPDOWN_LIST;
         frontendControl.strings = findResurrectableOpfer();
         frontendControl.strings.add("");
 
