@@ -25,10 +25,10 @@ public class DataManager {
     }
 
     public void loadLastGame() {
-        GameDto game = fileManager.readGame(ResourcePath.LAST_GAME_FILE);
-        if (game != null) {
-            evaluatePlayers(game.players);
-            evaluateComposition(game.compositionDto, false);
+        GameDto lastGame = fileManager.readGame(ResourcePath.LAST_GAME_FILE);
+        if (lastGame != null) {
+            evaluatePlayers(lastGame.players);
+            evaluateComposition(lastGame.compositionDto, false);
         } else {
             System.out.println("no last game could be found");
         }
