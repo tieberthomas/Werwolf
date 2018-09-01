@@ -2,7 +2,7 @@ package root.Rollen;
 
 import root.Frontend.Frame.MyFrame;
 import root.Frontend.FrontendControl;
-import root.ResourceManagement.ResourcePath;
+import root.ResourceManagement.ImagePath;
 import root.Rollen.Fraktionen.Schattenpriester_Fraktion;
 import root.Rollen.Fraktionen.Werwölfe;
 import root.Rollen.Hauptrollen.Werwölfe.Chemiker;
@@ -20,7 +20,8 @@ public class Fraktion {
         return new FrontendControl();
     }
 
-    public void processChosenOption(String chosenOption) { }
+    public void processChosenOption(String chosenOption) {
+    }
 
     public String getName() {
         return "";
@@ -31,14 +32,14 @@ public class Fraktion {
     }
 
     public String getImagePath() {
-        return ResourcePath.DEAKTIVIERT;
+        return ImagePath.DEAKTIVIERT;
     }
 
     public static ArrayList<Spieler> getFraktionsMembers(String fraktion) {
         ArrayList<Spieler> fraktionsMembers = new ArrayList<>();
 
-        for(Spieler currentSpieler : game.spieler) {
-            if(currentSpieler.lebend && !Opfer.isOpfer(currentSpieler.name) && currentSpieler.hauptrolle.getFraktion().getName().equals(fraktion)) {
+        for (Spieler currentSpieler : game.spieler) {
+            if (currentSpieler.lebend && !Opfer.isOpfer(currentSpieler.name) && currentSpieler.hauptrolle.getFraktion().getName().equals(fraktion)) {
                 fraktionsMembers.add(currentSpieler);
             }
         }
@@ -49,8 +50,8 @@ public class Fraktion {
     public int getNumberOfFraktionsMembersInGame() {
         int numberOfFraktionsMembersInGame = 0;
 
-        for(Hauptrolle currentHautprolle : game.mainRolesInGame) {
-            if(currentHautprolle.getFraktion().getName().equals(this.getName())) {
+        for (Hauptrolle currentHautprolle : game.mainRolesInGame) {
+            if (currentHautprolle.getFraktion().getName().equals(this.getName())) {
                 numberOfFraktionsMembersInGame++;
             }
         }
@@ -61,8 +62,8 @@ public class Fraktion {
     public static ArrayList<String> getFraktionsMemberStrings(String fraktion) {
         ArrayList<String> fraktionsMembers = new ArrayList<>();
 
-        for(Spieler currentSpieler : game.spieler) {
-            if(currentSpieler.lebend && currentSpieler.hauptrolle.getFraktion().getName().equals(fraktion)) {
+        for (Spieler currentSpieler : game.spieler) {
+            if (currentSpieler.lebend && currentSpieler.hauptrolle.getFraktion().getName().equals(fraktion)) {
                 fraktionsMembers.add(currentSpieler.name);
             }
         }
@@ -84,7 +85,7 @@ public class Fraktion {
     }
 
     public static boolean fraktionInNachtEnthalten(String fraktion) {
-        if(getFraktionStrings().contains(fraktion)) {
+        if (getFraktionStrings().contains(fraktion)) {
             return !fraktionOffenkundigTot(fraktion);
         } else {
             return false;
@@ -117,8 +118,8 @@ public class Fraktion {
         }
 
         int numberMitteHauptrollen = 0;
-        for(Hauptrolle mitteHauptrolle : game.mitteHauptrollen) {
-            if(mitteHauptrolle.getFraktion().getName().equals(fraktion)) {
+        for (Hauptrolle mitteHauptrolle : game.mitteHauptrollen) {
+            if (mitteHauptrolle.getFraktion().getName().equals(fraktion)) {
                 numberMitteHauptrollen++;
             }
         }
@@ -152,7 +153,7 @@ public class Fraktion {
     public static boolean fraktionAktiv(String fraktion) {
         ArrayList<Spieler> livingPlayers = game.getLivingPlayer();
 
-        for(Opfer opfer : Opfer.deadVictims) {
+        for (Opfer opfer : Opfer.deadVictims) {
             livingPlayers.remove(opfer.opfer);
         }
 
@@ -195,7 +196,7 @@ public class Fraktion {
             if (currentSpieler.lebend) {
                 String currentSpielerFraktion = currentSpieler.hauptrolle.getFraktion().getName();
 
-                if(!allFraktionen.contains(currentSpielerFraktion)){
+                if (!allFraktionen.contains(currentSpielerFraktion)) {
                     allFraktionen.add(currentSpielerFraktion);
                 }
             }
@@ -207,9 +208,9 @@ public class Fraktion {
     public static ArrayList<String> getFraktionStrings() {
         ArrayList<String> allFraktionen = new ArrayList<>();
 
-        for(Hauptrolle hauptrolle : game.mainRolesInGame) {
+        for (Hauptrolle hauptrolle : game.mainRolesInGame) {
             String currentFratkion = hauptrolle.getFraktion().getName();
-            if(!allFraktionen.contains(currentFratkion)) {
+            if (!allFraktionen.contains(currentFratkion)) {
                 allFraktionen.add(currentFratkion);
             }
         }
@@ -217,14 +218,14 @@ public class Fraktion {
         return allFraktionen;
     }
 
-    public static ArrayList<String> getLivingFraktionOrNoneStrings(){
+    public static ArrayList<String> getLivingFraktionOrNoneStrings() {
         ArrayList<String> allFraktionen = getLivingFraktionStrings();
         allFraktionen.add("");
 
         return allFraktionen;
     }
 
-    public static ArrayList<String> getFraktionOrNoneStrings(){
+    public static ArrayList<String> getFraktionOrNoneStrings() {
         ArrayList<String> allFraktionen = getFraktionStrings();
         allFraktionen.add("");
 
@@ -250,8 +251,8 @@ public class Fraktion {
     }
 
     public static Fraktion findFraktion(String searchedFraktion) {
-        for(Hauptrolle currentHautprolle : game.mainRoles) {
-            if(currentHautprolle.getFraktion().getName().equals(searchedFraktion)) {
+        for (Hauptrolle currentHautprolle : game.mainRoles) {
+            if (currentHautprolle.getFraktion().getName().equals(searchedFraktion)) {
                 return currentHautprolle.getFraktion();
             }
         }

@@ -1,6 +1,6 @@
 package root.Rollen.Nebenrollen;
 
-import root.ResourceManagement.ResourcePath;
+import root.ResourceManagement.ImagePath;
 import root.Rollen.Fraktionen.Bürger;
 import root.Rollen.Nebenrolle;
 import root.Rollen.NebenrollenTyp;
@@ -12,7 +12,7 @@ import root.Spieler;
 public class ReinesLicht extends Nebenrolle
 {
     public static final String name = "Reines Licht";
-    public static final String imagePath = ResourcePath.REINES_LICHT_KARTE;
+    public static final String imagePath = ImagePath.REINES_LICHT_KARTE;
     public static boolean spammable = false;
     public NebenrollenTyp type = NebenrollenTyp.PASSIV;
 

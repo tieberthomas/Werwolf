@@ -1,7 +1,7 @@
 package root.Rollen.Hauptrollen.Bürger;
 
 import root.Frontend.FrontendControl;
-import root.ResourceManagement.ResourcePath;
+import root.ResourceManagement.ImagePath;
 import root.Rollen.Fraktion;
 import root.Rollen.Fraktionen.Bürger;
 import root.Rollen.Hauptrolle;
@@ -11,7 +11,7 @@ public class HoldeMaid extends Hauptrolle
 {
     public static final String name = "Holde Maid";
     public static Fraktion fraktion = new Bürger();
-    public static final String imagePath = ResourcePath.HOLDE_MAID_KARTE;
+    public static final String imagePath = ImagePath.HOLDE_MAID_KARTE;
     public static boolean spammable = true;
 
     @Override

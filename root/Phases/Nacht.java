@@ -1,7 +1,7 @@
 package root.Phases;
 
 import root.Frontend.FrontendControl;
-import root.ResourceManagement.ResourcePath;
+import root.ResourceManagement.ImagePath;
 import root.Rollen.Fraktion;
 import root.Rollen.Fraktionen.Schattenpriester_Fraktion;
 import root.Rollen.Fraktionen.Vampire;
@@ -28,8 +28,7 @@ import root.mechanics.Torte;
 
 import java.util.ArrayList;
 
-public class Nacht extends Thread
-{
+public class Nacht extends Thread {
     Game game;
 
     public static final String ALLE_SCHLAFEN_EIN = "Alle schlafen ein";
@@ -235,13 +234,13 @@ public class Nacht extends Thread
                             break;
 
                         case SCHRECKENSWOLF:
-                            Schreckenswolf schreckenswolf = (Schreckenswolf)rolle;
-                            if(schreckenswolf.werwölfeKilledOnSchutz()) {
+                            Schreckenswolf schreckenswolf = (Schreckenswolf) rolle;
+                            if (schreckenswolf.werwölfeKilledOnSchutz()) {
                                 dropdownOtions = schreckenswolf.getDropdownOptions();
                                 chosenOption = showFrontendControl(statement, dropdownOtions);
                                 schreckenswolf.processChosenOption(chosenOption);
                             } else {
-                                showImage(statement, ResourcePath.PASSIV);
+                                showImage(statement, ImagePath.PASSIV);
                             }
                             break;
 
@@ -263,7 +262,7 @@ public class Nacht extends Thread
                                     imagePath = Schattenkutte.imagePath;
                                 }
                             }
-                            showListShowImage(statement, neuerSchattenpriester, ResourcePath.SCHATTENPRIESTER_ICON, imagePath);
+                            showListShowImage(statement, neuerSchattenpriester, ImagePath.SCHATTENPRIESTER_ICON, imagePath);
                             break;
 
                         case NEUER_WERWOLF:
@@ -273,7 +272,7 @@ public class Nacht extends Thread
                                 neuerWerwolf = chosenPlayer.name;
                             }
 
-                            showListShowImage(statement, neuerWerwolf, ResourcePath.WÖLFE_ICON);
+                            showListShowImage(statement, neuerWerwolf, ImagePath.WÖLFE_ICON);
                             break;
 
                         case ANALYTIKER:
@@ -291,7 +290,7 @@ public class Nacht extends Thread
 
                             if (chosenSpieler1 != null && chosenSpieler2 != null) {
                                 if (((Analytiker) rolle).showTarnumhang(chosenSpieler1, chosenSpieler2)) {
-                                    imagePath = ResourcePath.TARNUMHANG;
+                                    imagePath = ImagePath.TARNUMHANG;
                                     statement.title = TARNUMHANG_TITLE;
                                     showImage(statement, imagePath);
                                 } else {
@@ -354,7 +353,7 @@ public class Nacht extends Thread
 
                             for (Opfer currentOpfer : Opfer.deadVictims) {
                                 if (!opferDerNacht.contains(currentOpfer.opfer.name)) {
-                                    if(currentOpfer.opfer.nebenrolle.getName().equals(Wahrsager.name)){
+                                    if (currentOpfer.opfer.nebenrolle.getName().equals(Wahrsager.name)) {
                                         Wahrsager.isGuessing = false;
                                     }
                                     opferDerNacht.add(currentOpfer.opfer.name);
@@ -363,7 +362,7 @@ public class Nacht extends Thread
 
                             //showList(statement, opferDerNacht);
                             FrontendControl.erzählerListPage(statement, OPFER_TITLE, opferDerNacht);
-                            for(String opfer : opferDerNacht) {
+                            for (String opfer : opferDerNacht) {
                                 FrontendControl.spielerAnnounceVictimPage(game.findSpieler(opfer));
                                 waitForAnswer();
                             }
@@ -377,7 +376,7 @@ public class Nacht extends Thread
                         case VERSTUMMT:
                             if (beschworenerSpieler != null) {
                                 FrontendControl.erzählerListPage(statement, beschworenerSpieler.name);
-                                FrontendControl.spielerIconPicturePage(beschworenerSpieler.name, ResourcePath.VERSTUMMT);
+                                FrontendControl.spielerIconPicturePage(beschworenerSpieler.name, ImagePath.VERSTUMMT);
 
                                 waitForAnswer();
                             }
@@ -386,7 +385,7 @@ public class Nacht extends Thread
                         case PROGRAMM_TORTE:
                             if (Torte.torte) {
                                 FrontendControl.erzählerTortenPage();
-                                FrontendControl.spielerIconPicturePage(TORTE_TITLE, ResourcePath.TORTE);
+                                FrontendControl.spielerIconPicturePage(TORTE_TITLE, ImagePath.TORTE);
 
                                 waitForAnswer();
                             }
@@ -406,8 +405,7 @@ public class Nacht extends Thread
 
         if (freibier) {
             game.freibierDay();
-        }
-        else {
+        } else {
             game.day();
         }
     }
@@ -431,12 +429,12 @@ public class Nacht extends Thread
             currentNebenrolle.besuchtLetzteNacht = currentNebenrolle.besucht;
             currentNebenrolle.besucht = null;
 
-            if(currentNebenrolle.getName().equals(Analytiker.name)) {
-                ((Analytiker)currentNebenrolle).besuchtAnalysieren = null;
+            if (currentNebenrolle.getName().equals(Analytiker.name)) {
+                ((Analytiker) currentNebenrolle).besuchtAnalysieren = null;
             }
         }
 
-        if(Rolle.rolleLebend(Prostituierte.name)) {
+        if (Rolle.rolleLebend(Prostituierte.name)) {
             Spieler prostituierte = game.findSpielerPerRolle(Prostituierte.name);
             Prostituierte.host = prostituierte;
         }
@@ -452,7 +450,7 @@ public class Nacht extends Thread
             }
         }
 
-        if(Torte.torte) {
+        if (Torte.torte) {
             for (Spieler currentSpieler : Torte.tortenEsser) {
                 if (Torte.gut) {
                     currentSpieler.geschützt = true;
@@ -471,7 +469,7 @@ public class Nacht extends Thread
         for (Spieler currentSpieler : game.spieler) {
             String hauptrolleCurrentSpieler = currentSpieler.hauptrolle.getName();
             String nebenrolleCurrentSpieler = new Schatten().getName();
-            if(currentSpieler.nebenrolle!=null) {
+            if (currentSpieler.nebenrolle != null) {
                 nebenrolleCurrentSpieler = currentSpieler.nebenrolle.getName();
             }
 
@@ -479,7 +477,7 @@ public class Nacht extends Thread
                 currentSpieler.geschützt = true;
             }
 
-            if (hauptrolleCurrentSpieler.equals(GrafVladimir.name) && Fraktion.getFraktionsMembers(Vampire.name).size()>1) {
+            if (hauptrolleCurrentSpieler.equals(GrafVladimir.name) && Fraktion.getFraktionsMembers(Vampire.name).size() > 1) {
                 currentSpieler.geschützt = true;
             }
         }
@@ -492,11 +490,11 @@ public class Nacht extends Thread
 
     public void setPlayersAwake(Statement statement) {
         playersAwake.clear();
-        if(statement.getClass() == StatementFraktion.class) {
-            StatementFraktion statementFraktion = (StatementFraktion)statement;
+        if (statement.getClass() == StatementFraktion.class) {
+            StatementFraktion statementFraktion = (StatementFraktion) statement;
             playersAwake.addAll(Fraktion.getFraktionsMembers(statementFraktion.fraktion));
-        } else if(statement.getClass() == StatementRolle.class) {
-            StatementRolle statementRolle = (StatementRolle)statement;
+        } else if (statement.getClass() == StatementRolle.class) {
+            StatementRolle statementRolle = (StatementRolle) statement;
             playersAwake.add(game.findSpielerPerRolle(statementRolle.rolle));
         }
     }
@@ -511,10 +509,10 @@ public class Nacht extends Thread
 
     public void killVictims() {
         for (Opfer currentVictim : Opfer.deadVictims) {
-            if(Rolle.rolleLebend(Blutwolf.name)) {
-                if(currentVictim.fraktionsTäter && currentVictim.täter.hauptrolle.getFraktion().getName().equals(Werwölfe.name)) {
+            if (Rolle.rolleLebend(Blutwolf.name)) {
+                if (currentVictim.fraktionsTäter && currentVictim.täter.hauptrolle.getFraktion().getName().equals(Werwölfe.name)) {
                     Blutwolf.deadStacks++;
-                    if(Blutwolf.deadStacks>=2) {
+                    if (Blutwolf.deadStacks >= 2) {
                         Blutwolf.deadly = true;
                     }
                 }
@@ -530,7 +528,7 @@ public class Nacht extends Thread
 
         Liebespaar liebespaar = game.liebespaar;
 
-        if (liebespaar!=null && liebespaar.spieler1 != null && liebespaar.spieler2!=null) {
+        if (liebespaar != null && liebespaar.spieler1 != null && liebespaar.spieler2 != null) {
 
             for (Opfer currentVictim : Opfer.deadVictims) {
                 if (currentVictim.opfer.name.equals(liebespaar.spieler1.name)) {
@@ -609,11 +607,9 @@ public class Nacht extends Thread
             frontendControl.title = statement.title;
         }
 
-        switch (statement.getState())
-        {
+        switch (statement.getState()) {
             case Statement.NORMAL:
-                switch (frontendControl.typeOfContent)
-                {
+                switch (frontendControl.typeOfContent) {
                     case FrontendControl.TITLE:
                         showTitle(statement, frontendControl.title);
                         break;
@@ -660,25 +656,24 @@ public class Nacht extends Thread
     }
 
     public void showDropdownPage(Statement statement, ArrayList<String> dropdownOptions1, ArrayList<String> dropdownOptions2) {
-        switch (statement.getState())
-        {
+        switch (statement.getState()) {
             case Statement.NORMAL:
                 FrontendControl.erzählerDropdownPage(statement, dropdownOptions1, dropdownOptions2);
                 FrontendControl.spielerDropdownPage(statement.title, 2);
                 break;
 
             case Statement.DEAKTIV:
-                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), getEmptyStringList(), ResourcePath.DEAKTIVIERT);
-                FrontendControl.spielerIconPicturePage(DEAKTIVIERT_TITLE, ResourcePath.DEAKTIVIERT);
+                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), getEmptyStringList(), ImagePath.DEAKTIVIERT);
+                FrontendControl.spielerIconPicturePage(DEAKTIVIERT_TITLE, ImagePath.DEAKTIVIERT);
                 break;
 
             case Statement.DEAD:
-                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), getEmptyStringList(), ResourcePath.TOT);
-                FrontendControl.spielerIconPicturePage(TOT_TITLE, ResourcePath.TOT);
+                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), getEmptyStringList(), ImagePath.TOT);
+                FrontendControl.spielerIconPicturePage(TOT_TITLE, ImagePath.TOT);
                 break;
 
             case Statement.NOT_IN_GAME:
-                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), getEmptyStringList(), ResourcePath.AUS_DEM_SPIEL);
+                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), getEmptyStringList(), ImagePath.AUS_DEM_SPIEL);
                 FrontendControl.spielerDropdownPage(statement.title, 2);
                 break;
         }
@@ -692,11 +687,11 @@ public class Nacht extends Thread
                 FrontendControl.erzählerDropdownPage(statement, dropdownOptions);
                 FrontendControl.spielerDropdownListPage(statement.title, dropdownOptions);
             } else {
-                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), ResourcePath.DEAKTIVIERT);
-                FrontendControl.spielerIconPicturePage(DEAKTIVIERT_TITLE, ResourcePath.DEAKTIVIERT);
+                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), ImagePath.DEAKTIVIERT);
+                FrontendControl.spielerIconPicturePage(DEAKTIVIERT_TITLE, ImagePath.DEAKTIVIERT);
             }
         } else {
-            FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), ResourcePath.AUS_DEM_SPIEL);
+            FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), ImagePath.AUS_DEM_SPIEL);
             FrontendControl.spielerDropdownPage(statement.title, 1);
         }
 
@@ -709,8 +704,8 @@ public class Nacht extends Thread
         /*if (Rolle.rolleLebend(Konditor.name) || Rolle.rolleLebend(Konditorlehrling.name)) {
             if (!Opfer.isOpferPerRolle(Konditor.name) || !Opfer.isOpferPerRolle(Konditorlehrling.name)) {
                 if (Rolle.rolleAktiv(Konditor.name) || Rolle.rolleAktiv(Konditorlehrling.name)) {*/
-                    FrontendControl.erzählerDropdownPage(statement, frontendControl.strings);
-                    FrontendControl.spielerDropdownPage(statement.title, 1);
+        FrontendControl.erzählerDropdownPage(statement, frontendControl.strings);
+        FrontendControl.spielerDropdownPage(statement.title, 1);
                 /*} else {
                     FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), ResourcePath.DEAKTIVIERT);
                     FrontendControl.spielerIconPicturePage(DEAKTIVIERT_TITLE, ResourcePath.DEAKTIVIERT);
@@ -737,29 +732,29 @@ public class Nacht extends Thread
     }
 
     public void showAufgebrauchtPages(Statement statement) {
-        FrontendControl.erzählerIconPicturePage(statement, ResourcePath.AUFGEBRAUCHT);
-        FrontendControl.spielerIconPicturePage(AUFGEBRAUCHT_TITLE, ResourcePath.AUFGEBRAUCHT);
+        FrontendControl.erzählerIconPicturePage(statement, ImagePath.AUFGEBRAUCHT);
+        FrontendControl.spielerIconPicturePage(AUFGEBRAUCHT_TITLE, ImagePath.AUFGEBRAUCHT);
 
         waitForAnswer();
     }
 
     //TODO Cases die sowieso gleich aussehen zusammenfassen
     public void showDeaktivPages(Statement statement, FrontendControl frontendControl) {
-        String erzählerDeaktiviertIconPath = ResourcePath.DEAKTIVIERT;
+        String erzählerDeaktiviertIconPath = ImagePath.DEAKTIVIERT;
 
         switch (frontendControl.typeOfContent) {
             case FrontendControl.DROPDOWN:
             case FrontendControl.DROPDOWN_LIST:
                 FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), erzählerDeaktiviertIconPath);
-                FrontendControl.spielerIconPicturePage(DEAKTIVIERT_TITLE, ResourcePath.DEAKTIVIERT);
+                FrontendControl.spielerIconPicturePage(DEAKTIVIERT_TITLE, ImagePath.DEAKTIVIERT);
 
                 waitForAnswer();
                 break;
-                
+
             case FrontendControl.LIST:
             case FrontendControl.LIST_IMAGE:
                 FrontendControl.erzählerListPage(statement, getEmptyStringList(), erzählerDeaktiviertIconPath);
-                FrontendControl.spielerIconPicturePage(DEAKTIVIERT_TITLE, ResourcePath.DEAKTIVIERT);
+                FrontendControl.spielerIconPicturePage(DEAKTIVIERT_TITLE, ImagePath.DEAKTIVIERT);
 
                 waitForAnswer();
                 break;
@@ -768,27 +763,27 @@ public class Nacht extends Thread
             case FrontendControl.IMAGE:
             case FrontendControl.CARD:
                 FrontendControl.erzählerIconPicturePage(statement, erzählerDeaktiviertIconPath);
-                FrontendControl.spielerIconPicturePage(DEAKTIVIERT_TITLE, ResourcePath.DEAKTIVIERT);
+                FrontendControl.spielerIconPicturePage(DEAKTIVIERT_TITLE, ImagePath.DEAKTIVIERT);
 
                 waitForAnswer();
                 break;
         }
     }
-    
+
     public void showTotPages(Statement statement, FrontendControl frontendControl) {
         switch (frontendControl.typeOfContent) {
             case FrontendControl.DROPDOWN:
             case FrontendControl.DROPDOWN_LIST:
-                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), ResourcePath.TOT);
-                FrontendControl.spielerIconPicturePage(TOT_TITLE, ResourcePath.TOT);
+                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), ImagePath.TOT);
+                FrontendControl.spielerIconPicturePage(TOT_TITLE, ImagePath.TOT);
 
                 waitForAnswer();
                 break;
-                
+
             case FrontendControl.LIST:
             case FrontendControl.LIST_IMAGE:
-                FrontendControl.erzählerListPage(statement, getEmptyStringList(), ResourcePath.TOT);
-                FrontendControl.spielerIconPicturePage(TOT_TITLE, ResourcePath.TOT);
+                FrontendControl.erzählerListPage(statement, getEmptyStringList(), ImagePath.TOT);
+                FrontendControl.spielerIconPicturePage(TOT_TITLE, ImagePath.TOT);
 
                 waitForAnswer();
                 break;
@@ -796,8 +791,8 @@ public class Nacht extends Thread
             case FrontendControl.TITLE:
             case FrontendControl.IMAGE:
             case FrontendControl.CARD:
-                FrontendControl.erzählerIconPicturePage(statement, ResourcePath.TOT);
-                FrontendControl.spielerIconPicturePage(TOT_TITLE, ResourcePath.TOT);
+                FrontendControl.erzählerIconPicturePage(statement, ImagePath.TOT);
+                FrontendControl.spielerIconPicturePage(TOT_TITLE, ImagePath.TOT);
 
                 waitForAnswer();
                 break;
@@ -808,15 +803,15 @@ public class Nacht extends Thread
         switch (frontendControl.typeOfContent) {
             case FrontendControl.DROPDOWN:
             case FrontendControl.DROPDOWN_LIST:
-                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), ResourcePath.AUS_DEM_SPIEL);
-                FrontendControl.spielerDropdownPage(statement.title,1);
+                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), ImagePath.AUS_DEM_SPIEL);
+                FrontendControl.spielerDropdownPage(statement.title, 1);
 
                 waitForAnswer();
                 break;
 
             case FrontendControl.LIST:
             case FrontendControl.LIST_IMAGE:
-                FrontendControl.erzählerListPage(statement, getEmptyStringList(), ResourcePath.AUS_DEM_SPIEL);
+                FrontendControl.erzählerListPage(statement, getEmptyStringList(), ImagePath.AUS_DEM_SPIEL);
                 FrontendControl.spielerListPage(statement.title, getEmptyStringList());
 
                 waitForAnswer();
@@ -825,7 +820,7 @@ public class Nacht extends Thread
             case FrontendControl.TITLE:
             case FrontendControl.IMAGE:
             case FrontendControl.CARD:
-                FrontendControl.erzählerIconPicturePage(statement, ResourcePath.AUS_DEM_SPIEL);
+                FrontendControl.erzählerIconPicturePage(statement, ImagePath.AUS_DEM_SPIEL);
                 FrontendControl.spielerIconPicturePage(statement.title, "");
 
                 waitForAnswer();
@@ -864,7 +859,7 @@ public class Nacht extends Thread
         showList(statement, list);
     }
 
-    public void showList(Statement statement, ArrayList<String> strings){
+    public void showList(Statement statement, ArrayList<String> strings) {
         showList(statement, statement.title, strings);
     }
 
@@ -934,16 +929,16 @@ public class Nacht extends Thread
 
         addStatementIndie(ALLE_SCHLAFEN_EIN, ALLE_SCHLAFEN_EIN_TITLE, Statement.SHOW_TITLE);
 
-        if(Wirt.freibierCharges > 0) {
+        if (Wirt.freibierCharges > 0) {
             addStatementRolle(WIRT, WIRT_TITLE, Wirt.name, Statement.ROLLE_CHOOSE_ONE);
         }
 
-        if(Totengräber.getNehmbareNebenrollen().size()>0) {
+        if (Totengräber.getNehmbareNebenrollen().size() > 0) {
             addStatementRolle(TOTENGRÄBER, TOTENGRÄBER_TITLE, Totengräber.name, Statement.ROLLE_CHOOSE_ONE);
         }
         addStatementRolle(GEFÄNGNISWÄRTER, GEFÄNGNISWÄRTER_TITLE, Gefängniswärter.name, Statement.ROLLE_CHOOSE_ONE);
 
-        if(game.mitteHauptrollen.size()>0) {
+        if (game.mitteHauptrollen.size() > 0) {
             addStatementRolle(ÜBERLÄUFER, ÜBERLÄUFER_TITLE, Überläufer.name, Statement.ROLLE_CHOOSE_ONE);
         }
         addStatementRolle(HOLDE_MAID, HOLDE_MAID_TITLE, HoldeMaid.name, Statement.ROLLE_CHOOSE_ONE);
@@ -959,7 +954,7 @@ public class Nacht extends Thread
         addStatementFraktion(VAMPIRE, VAMPIRE_TITLE, Vampire.name, Statement.FRAKTION_CHOOSE_ONE);
         addStatementRolle(GRAF_VLADIMIR, GRAF_VLADIMIR_TITLE, GrafVladimir.name, Statement.ROLLE_CHOOSE_ONE);
         addStatementFraktion(WERWÖLFE, WERWÖLFE_TITLE, Werwölfe.name, Statement.FRAKTION_CHOOSE_ONE);
-        if(Wölfin.modus == Wölfin.TÖTEND) {
+        if (Wölfin.modus == Wölfin.TÖTEND) {
             addStatementRolle(WÖLFIN, WÖLFIN_TITLE, Wölfin.name, Statement.ROLLE_CHOOSE_ONE);
         }
         addStatementRolle(SCHRECKENSWOLF, SCHRECKENSWOLF_TITLE, Schreckenswolf.name, Statement.ROLLE_SPECAL);
@@ -982,7 +977,7 @@ public class Nacht extends Thread
         addStatementRolle(SPURENLESER_INFORMATION, SPURENLESER_INFORMATION_TITLE, Spurenleser.name, Statement.ROLLE_INFO);
 
         addProgrammStatement(PROGRAMM_WAHRSAGER);
-        if(game.getLivingPlayer().size()>4) {
+        if (game.getLivingPlayer().size() > 4) {
             addStatementRolle(WAHRSAGER, WAHRSAGER_TITLE, Wahrsager.name, Statement.ROLLE_CHOOSE_ONE);
         }
 
@@ -997,10 +992,10 @@ public class Nacht extends Thread
         addProgrammStatement(PROGRAMM_OPFER);
         addStatementIndie(OPFER, OPFER_TITLE, Statement.INDIE);
 
-        if(Rolle.rolleInNachtEnthalten(Schreckenswolf.name)) { //TODO useless
+        if (Rolle.rolleInNachtEnthalten(Schreckenswolf.name)) { //TODO useless
             addStatementIndie(VERSTUMMT, VERSTUMMT_TITLE, Statement.INDIE);
         }
-        if(Wölfin.modus == Wölfin.TÖTEND) {
+        if (Wölfin.modus == Wölfin.TÖTEND) {
             addStatementRolle(WÖLFIN_NEBENROLLE, WÖLFIN_NEBENROLLE_TITLE, Wölfin.name, Statement.ROLLE_INFO);
         }
 

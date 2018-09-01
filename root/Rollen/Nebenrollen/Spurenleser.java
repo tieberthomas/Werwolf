@@ -2,7 +2,7 @@ package root.Rollen.Nebenrollen;
 
 import root.Frontend.FrontendControl;
 import root.Phases.Nacht;
-import root.ResourceManagement.ResourcePath;
+import root.ResourceManagement.ImagePath;
 import root.Rollen.Nebenrolle;
 import root.Rollen.NebenrollenTyp;
 import root.Spieler;
@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class Spurenleser extends Nebenrolle {
     public static final String name = "Spurenleser";
-    public static final String imagePath = ResourcePath.SPURENLESER_KARTE;
+    public static final String imagePath = ImagePath.SPURENLESER_KARTE;
     public static boolean spammable = true;
     private Spieler beobachteterSpieler = null;
     public NebenrollenTyp type = NebenrollenTyp.INFORMATIV;

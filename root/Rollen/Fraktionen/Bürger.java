@@ -1,15 +1,14 @@
 package root.Rollen.Fraktionen;
 
-import root.ResourceManagement.ResourcePath;
+import root.ResourceManagement.ImagePath;
 import root.Rollen.Fraktion;
 
 import java.awt.*;
 
-public class Bürger extends Fraktion
-{
+public class Bürger extends Fraktion {
     public static final String name = "Bürger";
     public static Color farbe = Color.yellow;
-    public static final String imagePath = ResourcePath.BÜRGER_ICON;
+    public static final String imagePath = ImagePath.BÜRGER_ICON;
 
     @Override
     public String getName() {
@@ -17,7 +16,9 @@ public class Bürger extends Fraktion
     }
 
     @Override
-    public Color getFarbe() { return farbe; }
+    public Color getFarbe() {
+        return farbe;
+    }
 
     @Override
     public String getImagePath() {

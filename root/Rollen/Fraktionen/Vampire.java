@@ -1,7 +1,7 @@
 package root.Rollen.Fraktionen;
 
 import root.Frontend.FrontendControl;
-import root.ResourceManagement.ResourcePath;
+import root.ResourceManagement.ImagePath;
 import root.Rollen.Fraktion;
 import root.Spieler;
 import root.mechanics.Opfer;
@@ -15,7 +15,7 @@ public class Vampire extends Fraktion
 {
     public static final String name = "Vampire";
     public static final Color farbe = Color.red;
-    public static final String imagePath = ResourcePath.VAMPIERE_ICON;
+    public static final String imagePath = ImagePath.VAMPIERE_ICON;
 
     @Override
     public void processChosenOption(String chosenOption) {

@@ -2,7 +2,7 @@ package root.Rollen.Hauptrollen.Werwölfe;
 
 import root.Frontend.FrontendControl;
 import root.Phases.Nacht;
-import root.ResourceManagement.ResourcePath;
+import root.ResourceManagement.ImagePath;
 import root.Rollen.Fraktion;
 import root.Rollen.Fraktionen.Werwölfe;
 import root.Rollen.Hauptrolle;
@@ -10,11 +10,7 @@ import root.Rollen.Nebenrollen.Tarnumhang;
 import root.Spieler;
 import root.mechanics.Opfer;
 
-/**
- * Created by Steve on 12.11.2017.
- */
-public class Wölfin extends Hauptrolle
-{
+public class Wölfin extends Hauptrolle {
     public static final int WARTEND = 0;
     public static final int TÖTEND = 1;
     public static final int FERTIG = 2;
@@ -24,7 +20,7 @@ public class Wölfin extends Hauptrolle
 
     public static final String name = "Wölfin";
     public static Fraktion fraktion = new Werwölfe();
-    public static final String imagePath = ResourcePath.WÖLFIN_KARTE;
+    public static final String imagePath = ImagePath.WÖLFIN_KARTE;
     public static boolean spammable = false;
     public static boolean killing = true;
     public static int modus = WARTEND;
@@ -38,7 +34,7 @@ public class Wölfin extends Hauptrolle
     public void processChosenOption(String chosenOption) {
         Spieler chosenPlayer = game.findSpieler(chosenOption);
         modus = FERTIG;
-        if(chosenPlayer!=null) {
+        if (chosenPlayer != null) {
             besucht = chosenPlayer;
 
             Spieler täter = game.findSpielerPerRolle(name);
@@ -48,12 +44,12 @@ public class Wölfin extends Hauptrolle
 
     @Override
     public FrontendControl getInfo() {
-        if(Nacht.wölfinKilled) {
+        if (Nacht.wölfinKilled) {
             Spieler wölfinSpieler = Nacht.wölfinSpieler;
-            if(wölfinSpieler!=null) {
+            if (wölfinSpieler != null) {
                 String imagePath = wölfinSpieler.nebenrolle.getImagePath();
                 if (wölfinSpieler.nebenrolle.getName().equals(Tarnumhang.name)) {
-                    imagePath = ResourcePath.TARNUMHANG;
+                    imagePath = ImagePath.TARNUMHANG;
                 }
                 return new FrontendControl(FrontendControl.IMAGE, imagePath);
             }

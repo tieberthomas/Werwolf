@@ -1,7 +1,7 @@
 package root.Rollen.Hauptrollen.Vampire;
 
 import root.Frontend.FrontendControl;
-import root.ResourceManagement.ResourcePath;
+import root.ResourceManagement.ImagePath;
 import root.Rollen.Fraktion;
 import root.Rollen.Fraktionen.Vampire;
 import root.Rollen.Hauptrolle;
@@ -9,14 +9,10 @@ import root.mechanics.Opfer;
 
 import java.util.ArrayList;
 
-/**
- * Created by Steve on 12.11.2017.
- */
-public class MissVerona extends Hauptrolle
-{
+public class MissVerona extends Hauptrolle {
     public static final String name = "Miss Verona";
     public static Fraktion fraktion = new Vampire();
-    public static final String imagePath = ResourcePath.MISS_VERONA_KARTE;
+    public static final String imagePath = ImagePath.MISS_VERONA_KARTE;
     public static boolean spammable = false;
     public static boolean killing = true;
 
@@ -50,7 +46,7 @@ public class MissVerona extends Hauptrolle
         return killing;
     }
 
-    public ArrayList<String> findUntote(){
+    public ArrayList<String> findUntote() {
         ArrayList<String> untote = new ArrayList<>();
 
         for (Opfer possibleOpfer : Opfer.possibleVictims) {

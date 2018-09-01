@@ -1,18 +1,14 @@
 package root.Rollen.Fraktionen;
 
-import root.ResourceManagement.ResourcePath;
+import root.ResourceManagement.ImagePath;
 import root.Rollen.Fraktion;
 
 import java.awt.*;
 
-/**
- * Created by Steve on 25.11.2017.
- */
-public class Überläufer_Fraktion extends Fraktion
-{
+public class Überläufer_Fraktion extends Fraktion {
     public static final String name = "Überläufer";
     public static final Color farbe = Color.white;
-    public static final String imagePath = ResourcePath.ÜBERLÄUFER_ICON;
+    public static final String imagePath = ImagePath.ÜBERLÄUFER_ICON;
 
     @Override
     public String getName() {
@@ -20,7 +16,9 @@ public class Überläufer_Fraktion extends Fraktion
     }
 
     @Override
-    public Color getFarbe() { return farbe; }
+    public Color getFarbe() {
+        return farbe;
+    }
 
     @Override
     public String getImagePath() {

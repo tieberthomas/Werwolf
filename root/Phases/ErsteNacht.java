@@ -1,7 +1,7 @@
 package root.Phases;
 
 import root.Frontend.FrontendControl;
-import root.ResourceManagement.ResourcePath;
+import root.ResourceManagement.ImagePath;
 import root.Rollen.*;
 import root.Rollen.Fraktionen.Schattenpriester_Fraktion;
 import root.Rollen.Fraktionen.Vampire;
@@ -105,8 +105,7 @@ public class ErsteNacht extends Thread {
                     else{
                         switch (statement.beschreibung) {
                             case LIEBESPAAR:
-                                ArrayList<String> spielerOrZufällig = game.getLivingPlayerStrings();
-                                spielerOrZufällig.add(Liebespaar.ZUFÄLLIG);
+                                ArrayList<String> spielerOrZufällig = game.liebespaar.getDropdownOptions();
 
                                 showDropdown(statement, spielerOrZufällig, spielerOrZufällig);
 
@@ -137,7 +136,7 @@ public class ErsteNacht extends Thread {
                                     showHauptrolle(statement, currentSpieler);
                                 }
                                 statement.title = ALPHAWOLF_FERTIG_TITLE;
-                                showImage(statement, statement.title, ResourcePath.WÖLFE_ICON);
+                                showImage(statement, statement.title, ImagePath.WÖLFE_ICON);
                                 break;
 
                             case BRÜDER:
@@ -156,7 +155,7 @@ public class ErsteNacht extends Thread {
                                     }
                                 } else {
                                     FrontendControl.erzählerListPage(statement, brüder);
-                                    FrontendControl.spielerCardPicturePage(statement.title, ResourcePath.BRÜDER_KARTE);
+                                    FrontendControl.spielerCardPicturePage(statement.title, ImagePath.BRÜDER_KARTE);
 
                                     waitForAnswer();
                                 }
@@ -319,7 +318,7 @@ public class ErsteNacht extends Thread {
 
             String imagePath = spieler.nebenrolle.getImagePath();
             if(spieler.nebenrolle.getName().equals(Tarnumhang.name)) {
-                imagePath = ResourcePath.TARNUMHANG;
+                imagePath = ImagePath.TARNUMHANG;
                 statement.title = TARNUMHANG_TITLE;
             }
             showCard(statement, statement.title, imagePath);

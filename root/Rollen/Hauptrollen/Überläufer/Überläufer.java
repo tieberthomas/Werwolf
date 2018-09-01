@@ -1,7 +1,7 @@
 package root.Rollen.Hauptrollen.Überläufer;
 
 import root.Frontend.FrontendControl;
-import root.ResourceManagement.ResourcePath;
+import root.ResourceManagement.ImagePath;
 import root.Rollen.Fraktion;
 import root.Rollen.Fraktionen.Überläufer_Fraktion;
 import root.Rollen.Hauptrolle;
@@ -10,11 +10,10 @@ import root.Spieler;
 
 import java.util.ArrayList;
 
-public class Überläufer extends Hauptrolle
-{
+public class Überläufer extends Hauptrolle {
     public static final String name = "Überläufer";
     public static Fraktion fraktion = new Überläufer_Fraktion();
-    public static final String imagePath = ResourcePath.ÜBERLÄUFER_KARTE;
+    public static final String imagePath = ImagePath.ÜBERLÄUFER_KARTE;
     public static boolean spammable = false;
 
     @Override
@@ -38,7 +37,7 @@ public class Überläufer extends Hauptrolle
 
                 game.mitteHauptrollen.remove(chosenHauptrolle);
                 game.mitteHauptrollen.add(this);
-            }catch (NullPointerException e) {
+            } catch (NullPointerException e) {
                 System.out.println(name + " nicht gefunden");
             }
         }

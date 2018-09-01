@@ -58,6 +58,8 @@ public class Game {
         mitteHauptrollen = new ArrayList<>();
         mitteNebenrollen = new ArrayList<>();
         playersSpecified = new ArrayList<>();
+
+        liebespaar = new Liebespaar(this);
     }
 
     public void generateAllAvailableMainRoles() {

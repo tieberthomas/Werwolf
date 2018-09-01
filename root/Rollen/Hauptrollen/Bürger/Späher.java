@@ -1,7 +1,7 @@
 package root.Rollen.Hauptrollen.Bürger;
 
 import root.Frontend.FrontendControl;
-import root.ResourceManagement.ResourcePath;
+import root.ResourceManagement.ImagePath;
 import root.Rollen.Fraktion;
 import root.Rollen.Fraktionen.Bürger;
 import root.Rollen.Hauptrolle;
@@ -19,7 +19,7 @@ public class Späher extends Hauptrolle
 
     public static final String name = "Späher";
     public static Fraktion fraktion = new Bürger();
-    public static final String imagePath = ResourcePath.SPÄHER_KARTE;
+    public static final String imagePath = ImagePath.SPÄHER_KARTE;
     public static boolean spammable = true;
 
     @Override
@@ -35,15 +35,15 @@ public class Späher extends Hauptrolle
             besucht = chosenPlayer;
 
             if(chosenPlayer.nebenrolle.getName().equals(Tarnumhang.name)) {
-                return new FrontendControl(FrontendControl.IMAGE, TARNUMHANG_TITLE, ResourcePath.TARNUMHANG);
+                return new FrontendControl(FrontendControl.IMAGE, TARNUMHANG_TITLE, ImagePath.TARNUMHANG);
             }
 
             if(chosenPlayer.hauptrolle.isKilling()) {
                 abilityCharges--;
 
-                return new FrontendControl(FrontendControl.IMAGE, TÖTEND_TITLE, ResourcePath.TÖTEND);
+                return new FrontendControl(FrontendControl.IMAGE, TÖTEND_TITLE, ImagePath.TÖTEND);
             } else {
-                return new FrontendControl(FrontendControl.IMAGE, NICHT_TÖTEND_TITLE, ResourcePath.NICHT_TÖTEND);
+                return new FrontendControl(FrontendControl.IMAGE, NICHT_TÖTEND_TITLE, ImagePath.NICHT_TÖTEND);
             }
         }
 

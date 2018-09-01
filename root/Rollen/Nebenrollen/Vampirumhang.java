@@ -1,6 +1,6 @@
 package root.Rollen.Nebenrollen;
 
-import root.ResourceManagement.ResourcePath;
+import root.ResourceManagement.ImagePath;
 import root.Rollen.Fraktionen.Vampire;
 import root.Rollen.Nebenrolle;
 import root.Rollen.NebenrollenTyp;
@@ -8,13 +8,9 @@ import root.Spieler;
 
 import java.awt.*;
 
-/**
- * Created by Steve on 12.11.2017.
- */
-public class Vampirumhang extends Nebenrolle
-{
+public class Vampirumhang extends Nebenrolle {
     public static final String name = "Vampirumhang";
-    public static final String imagePath = ResourcePath.VAMPIRUMHANG_KARTE;
+    public static final String imagePath = ImagePath.VAMPIRUMHANG_KARTE;
     public static boolean unique = true;
     public static boolean spammable = false;
     public NebenrollenTyp type = NebenrollenTyp.PASSIV;
@@ -24,7 +20,7 @@ public class Vampirumhang extends Nebenrolle
         try {
             Spieler spieler = game.findSpielerPerRolle(name);
             spieler.nebenrolle = nebenrolle;
-        }catch (NullPointerException e) {
+        } catch (NullPointerException e) {
             System.out.println(name + " nicht gefunden");
         }
     }
@@ -32,7 +28,7 @@ public class Vampirumhang extends Nebenrolle
     public Nebenrolle getTauschErgebnis() {
         Spieler spieler = game.findSpielerPerRolle(name);
 
-        if(spieler!=null) {
+        if (spieler != null) {
             Nebenrolle nebenrolle;
 
             if (spieler.hauptrolle.getFraktion().getName().equals(Vampire.name)) {
@@ -43,7 +39,7 @@ public class Vampirumhang extends Nebenrolle
 
             return nebenrolle;
         } else {
-            return  this;
+            return this;
         }
     }
 
@@ -63,7 +59,9 @@ public class Vampirumhang extends Nebenrolle
     }
 
     @Override
-    public NebenrollenTyp getType() { return type; }
+    public NebenrollenTyp getType() {
+        return type;
+    }
 
     @Override
     public Color getFarbe() {

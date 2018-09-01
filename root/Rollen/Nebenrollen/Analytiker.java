@@ -1,6 +1,6 @@
 package root.Rollen.Nebenrollen;
 
-import root.ResourceManagement.ResourcePath;
+import root.ResourceManagement.ImagePath;
 import root.Rollen.Fraktionen.Bürger;
 import root.Rollen.Hauptrollen.Bürger.Bestienmeister;
 import root.Rollen.Nebenrolle;
@@ -16,7 +16,7 @@ import java.util.Objects;
 public class Analytiker extends Nebenrolle
 {
     public static final String name = "Analytiker";
-    public static final String imagePath = ResourcePath.ANALYTIKER_KARTE;
+    public static final String imagePath = ImagePath.ANALYTIKER_KARTE;
     public static boolean spammable = true;
     public NebenrollenTyp type = NebenrollenTyp.INFORMATIV;
     public static final String GLEICH = "gleich";

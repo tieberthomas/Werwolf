@@ -1,7 +1,7 @@
 package root.Rollen.Nebenrollen;
 
 import root.Frontend.FrontendControl;
-import root.ResourceManagement.ResourcePath;
+import root.ResourceManagement.ImagePath;
 import root.Rollen.Fraktion;
 import root.Rollen.Nebenrolle;
 import root.Rollen.NebenrollenTyp;
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class Spion extends Nebenrolle
 {
     public static final String name = "Spion";
-    public static final String imagePath = ResourcePath.SPION_KARTE;
+    public static final String imagePath = ImagePath.SPION_KARTE;
     public static boolean spammable = true;
     public NebenrollenTyp type = NebenrollenTyp.INFORMATIV;
 

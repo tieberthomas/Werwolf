@@ -1,25 +1,21 @@
 package root.Rollen.Nebenrollen;
 
 import root.Frontend.FrontendControl;
-import root.ResourceManagement.ResourcePath;
+import root.ResourceManagement.ImagePath;
 import root.Rollen.Fraktionen.Bürger;
 import root.Rollen.Hauptrollen.Bürger.Bestienmeister;
 import root.Rollen.Nebenrolle;
 import root.Rollen.NebenrollenTyp;
 import root.Spieler;
 
-/**
- * Created by Steve on 12.11.2017.
- */
-public class Archivar extends Nebenrolle
-{
+public class Archivar extends Nebenrolle {
     public static final String PASSIV_TITLE = "Passiv";
     public static final String AKTIV_TITLE = "Aktiv";
     public static final String INFORMATIV_TITLE = "Informativ";
     public static final String TARNUMHANG_TITLE = "Tarnumhang";
 
     public static final String name = "Archivar";
-    public static final String imagePath = ResourcePath.ARCHIVAR_KARTE;
+    public static final String imagePath = ImagePath.ARCHIVAR_KARTE;
     public static boolean spammable = true;
     public NebenrollenTyp type = NebenrollenTyp.INFORMATIV;
 
@@ -32,29 +28,29 @@ public class Archivar extends Nebenrolle
     public FrontendControl processChosenOptionGetInfo(String chosenOption) {
         Spieler chosenPlayer = game.findSpieler(chosenOption);
 
-        if(chosenPlayer != null) {
+        if (chosenPlayer != null) {
             besucht = chosenPlayer;
 
-            if(chosenPlayer.hauptrolle.getName().equals(Bestienmeister.name)) {
+            if (chosenPlayer.hauptrolle.getName().equals(Bestienmeister.name)) {
                 Spieler spieler = game.findSpielerPerRolle(name);
 
-                if(!spieler.hauptrolle.getFraktion().getName().equals(Bürger.name)) {
-                    return new FrontendControl(FrontendControl.IMAGE, TARNUMHANG_TITLE, ResourcePath.TARNUMHANG);
+                if (!spieler.hauptrolle.getFraktion().getName().equals(Bürger.name)) {
+                    return new FrontendControl(FrontendControl.IMAGE, TARNUMHANG_TITLE, ImagePath.TARNUMHANG);
                 }
             }
 
-            switch(chosenPlayer.nebenrolle.getType()) {
+            switch (chosenPlayer.nebenrolle.getType()) {
                 case AKTIV:
-                    return new FrontendControl(FrontendControl.IMAGE, AKTIV_TITLE, ResourcePath.AKTIV);
+                    return new FrontendControl(FrontendControl.IMAGE, AKTIV_TITLE, ImagePath.AKTIV);
 
                 case PASSIV:
-                    return new FrontendControl(FrontendControl.IMAGE, PASSIV_TITLE, ResourcePath.PASSIV);
+                    return new FrontendControl(FrontendControl.IMAGE, PASSIV_TITLE, ImagePath.PASSIV);
 
                 case INFORMATIV:
-                    return new FrontendControl(FrontendControl.IMAGE, INFORMATIV_TITLE, ResourcePath.INFORMATIV);
+                    return new FrontendControl(FrontendControl.IMAGE, INFORMATIV_TITLE, ImagePath.INFORMATIV);
 
                 case TARNUMHANG:
-                    return new FrontendControl(FrontendControl.IMAGE, TARNUMHANG_TITLE, ResourcePath.TARNUMHANG);
+                    return new FrontendControl(FrontendControl.IMAGE, TARNUMHANG_TITLE, ImagePath.TARNUMHANG);
             }
         }
 
@@ -77,5 +73,7 @@ public class Archivar extends Nebenrolle
     }
 
     @Override
-    public NebenrollenTyp getType() { return type; }
+    public NebenrollenTyp getType() {
+        return type;
+    }
 }

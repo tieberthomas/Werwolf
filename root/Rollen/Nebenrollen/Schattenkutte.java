@@ -1,6 +1,6 @@
 package root.Rollen.Nebenrollen;
 
-import root.ResourceManagement.ResourcePath;
+import root.ResourceManagement.ImagePath;
 import root.Rollen.Fraktionen.Schattenpriester_Fraktion;
 import root.Rollen.Nebenrolle;
 import root.Rollen.NebenrollenTyp;
@@ -13,7 +13,7 @@ import java.awt.*;
 public class Schattenkutte extends Nebenrolle
 {
     public static final String name = "Schattenkutte";
-    public static final String imagePath = ResourcePath.SCHATTENKUTTE_KARTE;
+    public static final String imagePath = ImagePath.SCHATTENKUTTE_KARTE;
     public static boolean unique = true;
     public static boolean spammable = false;
     public NebenrollenTyp type = NebenrollenTyp.PASSIV;

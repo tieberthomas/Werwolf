@@ -6,7 +6,7 @@ import root.Frontend.Page.PageElement;
 import root.Frontend.Page.PageTable;
 import root.Phases.Statement;
 import root.Phases.Tag;
-import root.ResourceManagement.ResourcePath;
+import root.ResourceManagement.ImagePath;
 import root.mechanics.Torte;
 
 import javax.swing.*;
@@ -23,7 +23,7 @@ public class ErzählerPageFactory {
     }
 
     public Page generateStartPage() {
-        PageElement werwolfIcon = pageElementFactory.generateCenteredImageLabel(ResourcePath.WÖLFE_ICON, 3, 60);
+        PageElement werwolfIcon = pageElementFactory.generateCenteredImageLabel(ImagePath.WÖLFE_ICON, 3, 60);
 
         erzählerFrame.startJButton = new JButton("Neues Spiel");
         PageElement startButton = pageElementFactory.generateCenteredBigButton(erzählerFrame.startJButton, werwolfIcon);
@@ -288,11 +288,11 @@ public class ErzählerPageFactory {
     }
 
     public Page generateDeactivatedPage(Statement statement) {
-        return generateIconPicturePage(statement, ResourcePath.DEAKTIVIERT);
+        return generateIconPicturePage(statement, ImagePath.DEAKTIVIERT);
     }
 
     public Page generateAufgebrauchtPage(Statement statement) {
-        return generateIconPicturePage(statement, ResourcePath.AUFGEBRAUCHT);
+        return generateIconPicturePage(statement, ImagePath.AUFGEBRAUCHT);
     }
 
     public Page generateIconPicturePage(Statement statement, String imagePath) {
@@ -475,7 +475,7 @@ public class ErzählerPageFactory {
         JLabel label = pageElementFactory.generateBigJLabel(new JLabel(spieler1));
 
         PageElement nameLabel = pageElementFactory.generateLeftCenteredLabel(new JLabel(spieler1));
-        PageElement deadImage = pageElementFactory.generateRightCenteredImage(ResourcePath.TOT);
+        PageElement deadImage = pageElementFactory.generateRightCenteredImage(ImagePath.TOT);
 
         tagPage.add(nameLabel);
         tagPage.add(deadImage);

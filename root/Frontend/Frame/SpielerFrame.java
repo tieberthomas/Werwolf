@@ -5,7 +5,7 @@ import root.Frontend.Factories.SpielerPageFactory;
 import root.Frontend.Page.Page;
 import root.Phases.PhaseMode;
 import root.Phases.Tag;
-import root.ResourceManagement.ResourcePath;
+import root.ResourceManagement.ImagePath;
 import root.mechanics.Game;
 
 import javax.swing.*;
@@ -67,10 +67,10 @@ public class SpielerFrame extends MyFrame{
     public void generateAllPages() {
         blankPage = new Page();
         dropDownPage = pageFactory.generateDropdownPage("",1);
-        bierPage = pageFactory.generateStaticImagePage(Tag.dayTitle, ResourcePath.FREIBIER, true);
-        deadPage = pageFactory.generateStaticImagePage("Tod", ResourcePath.TOT, true);
-        aufgebrauchtPage = pageFactory.generateStaticImagePage("Aufgebraucht", ResourcePath.AUFGEBRAUCHT, true);
-        deactivatedPage = pageFactory.generateStaticImagePage("Deaktiviert", ResourcePath.DEAKTIVIERT, true);
+        bierPage = pageFactory.generateStaticImagePage(Tag.dayTitle, ImagePath.FREIBIER, true);
+        deadPage = pageFactory.generateStaticImagePage("Tod", ImagePath.TOT, true);
+        aufgebrauchtPage = pageFactory.generateStaticImagePage("Aufgebraucht", ImagePath.AUFGEBRAUCHT, true);
+        deactivatedPage = pageFactory.generateStaticImagePage("Deaktiviert", ImagePath.DEAKTIVIERT, true);
     }
 
     public void refreshSetupPage(){

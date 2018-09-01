@@ -1,6 +1,6 @@
 package root.Rollen.Nebenrollen;
 
-import root.ResourceManagement.ResourcePath;
+import root.ResourceManagement.ImagePath;
 import root.Rollen.Fraktionen.Werwölfe;
 import root.Rollen.Nebenrolle;
 import root.Rollen.NebenrollenTyp;
@@ -14,7 +14,7 @@ import java.awt.*;
 public class Wolfspelz extends Nebenrolle
 {
     public static final String name = "Wolfspelz";
-    public static final String imagePath = ResourcePath.WOLFSPELZ_KARTE;
+    public static final String imagePath = ImagePath.WOLFSPELZ_KARTE;
     public static boolean unique = true;
     public static boolean spammable = false;
     public NebenrollenTyp type = NebenrollenTyp.PASSIV;

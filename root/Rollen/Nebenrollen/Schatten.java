@@ -1,16 +1,12 @@
 package root.Rollen.Nebenrollen;
 
-import root.ResourceManagement.ResourcePath;
+import root.ResourceManagement.ImagePath;
 import root.Rollen.Nebenrolle;
 import root.Rollen.NebenrollenTyp;
 
-/**
- * Created by Steve on 12.11.2017.
- */
-public class Schatten extends Nebenrolle
-{
+public class Schatten extends Nebenrolle {
     public static final String name = "Schatten";
-    public static final String imagePath = ResourcePath.SCHATTEN_KARTE;
+    public static final String imagePath = ImagePath.SCHATTEN_KARTE;
     public static int numberOfPossibleInstances = 100;
     public static boolean spammable = false;
     public NebenrollenTyp type = NebenrollenTyp.PASSIV;
@@ -36,5 +32,7 @@ public class Schatten extends Nebenrolle
     }
 
     @Override
-    public NebenrollenTyp getType() { return type; }
+    public NebenrollenTyp getType() {
+        return type;
+    }
 }

@@ -1,7 +1,7 @@
 package root.Rollen.Hauptrollen.Werwölfe;
 
 import root.Frontend.FrontendControl;
-import root.ResourceManagement.ResourcePath;
+import root.ResourceManagement.ImagePath;
 import root.Rollen.Fraktion;
 import root.Rollen.Fraktionen.Werwölfe;
 import root.Rollen.Hauptrolle;
@@ -16,7 +16,7 @@ public class Chemiker extends Hauptrolle
 {
     public static final String name = "Chemiker";
     public static Fraktion fraktion = new Werwölfe();
-    public static final String imagePath = ResourcePath.CHEMIKER_KARTE;
+    public static final String imagePath = ImagePath.CHEMIKER_KARTE;
     public static boolean spammable = true;
 
     @Override

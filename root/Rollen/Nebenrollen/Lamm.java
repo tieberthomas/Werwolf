@@ -1,6 +1,6 @@
 package root.Rollen.Nebenrollen;
 
-import root.ResourceManagement.ResourcePath;
+import root.ResourceManagement.ImagePath;
 import root.Rollen.Fraktionen.Bürger;
 import root.Rollen.Nebenrolle;
 import root.Rollen.NebenrollenTyp;
@@ -12,7 +12,7 @@ import root.Spieler;
 public class Lamm extends Nebenrolle
 {
     public static final String name = "Lamm";
-    public static final String imagePath = ResourcePath.LAMM_KARTE;
+    public static final String imagePath = ImagePath.LAMM_KARTE;
     public static boolean spammable = false;
     public NebenrollenTyp type = NebenrollenTyp.PASSIV;
 

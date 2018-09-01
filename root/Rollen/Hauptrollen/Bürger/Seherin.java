@@ -1,7 +1,7 @@
 package root.Rollen.Hauptrollen.Bürger;
 
 import root.Frontend.FrontendControl;
-import root.ResourceManagement.ResourcePath;
+import root.ResourceManagement.ImagePath;
 import root.Rollen.Fraktion;
 import root.Rollen.Fraktionen.Bürger;
 import root.Rollen.Fraktionen.Schattenpriester_Fraktion;
@@ -16,7 +16,7 @@ public class Seherin extends Hauptrolle {
 
     public static final String name = "Seherin";
     public static Fraktion fraktion = new Bürger();
-    public static final String imagePath = ResourcePath.SEHERIN_KARTE;
+    public static final String imagePath = ImagePath.SEHERIN_KARTE;
     public static boolean spammable = true;
 
     @Override
@@ -28,7 +28,7 @@ public class Seherin extends Hauptrolle {
     public FrontendControl processChosenOptionGetInfo(String chosenOption) {
         Spieler chosenPlayer = game.findSpieler(chosenOption);
 
-        if(chosenPlayer != null) {
+        if (chosenPlayer != null) {
             besucht = chosenPlayer;
 
             String nebenrolle = chosenPlayer.nebenrolle.getName();
@@ -45,7 +45,7 @@ public class Seherin extends Hauptrolle {
                 return new FrontendControl(FrontendControl.IMAGE, Schattenpriester_Fraktion.imagePath);
             }
             if (nebenrolle.equals(Tarnumhang.name)) {
-                return new FrontendControl(FrontendControl.IMAGE, TARNUMHANG_TITLE, ResourcePath.TARNUMHANG);
+                return new FrontendControl(FrontendControl.IMAGE, TARNUMHANG_TITLE, ImagePath.TARNUMHANG);
             }
 
             return new FrontendControl(FrontendControl.IMAGE, chosenOption, chosenPlayer.hauptrolle.getFraktion().getImagePath());

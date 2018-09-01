@@ -1,7 +1,7 @@
 package root.Rollen.Nebenrollen;
 
 import root.Frontend.FrontendControl;
-import root.ResourceManagement.ResourcePath;
+import root.ResourceManagement.ImagePath;
 import root.Rollen.Nebenrolle;
 import root.Spieler;
 
@@ -11,7 +11,7 @@ import root.Spieler;
 public class Gefängniswärter extends Nebenrolle
 {
     public static final String name = "Gefängniswärter";
-    public static final String imagePath = ResourcePath.GEFÄNGNISWÄRTER_KARTE;
+    public static final String imagePath = ImagePath.GEFÄNGNISWÄRTER_KARTE;
     public static boolean unique = true;
     public static boolean spammable = false;
 

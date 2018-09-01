@@ -1,7 +1,7 @@
 package root.Rollen.Nebenrollen;
 
 import root.Frontend.FrontendControl;
-import root.ResourceManagement.ResourcePath;
+import root.ResourceManagement.ImagePath;
 import root.Rollen.Nebenrolle;
 
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ public class Konditorlehrling extends Nebenrolle
     public static final String SCHLECHT = "Schlecht";
 
     public static final String name = "Konditorlehrling";
-    public static final String imagePath = ResourcePath.KONDITORLEHRLING_KARTE;
+    public static final String imagePath = ImagePath.KONDITORLEHRLING_KARTE;
     public static boolean spammable = true;
 
     @Override

@@ -1,21 +1,17 @@
 package root.Rollen.Hauptrollen.Bürger;
 
 import root.Frontend.FrontendControl;
-import root.ResourceManagement.ResourcePath;
+import root.ResourceManagement.ImagePath;
 import root.Rollen.Fraktion;
 import root.Rollen.Fraktionen.Bürger;
 import root.Rollen.Hauptrolle;
 import root.Spieler;
 import root.mechanics.Opfer;
 
-/**
- * Created by Steve on 12.11.2017.
- */
-public class Riese extends Hauptrolle
-{
+public class Riese extends Hauptrolle {
     public static final String name = "Riese";
     public static Fraktion fraktion = new Bürger();
-    public static final String imagePath = ResourcePath.RIESE_KARTE;
+    public static final String imagePath = ImagePath.RIESE_KARTE;
     public static boolean spammable = true;
     public static boolean killing = true;
 
@@ -27,7 +23,7 @@ public class Riese extends Hauptrolle
     @Override
     public void processChosenOption(String chosenOption) {
         Spieler chosenPlayer = game.findSpieler(chosenOption);
-        if(chosenPlayer!=null) {
+        if (chosenPlayer != null) {
             besucht = chosenPlayer;
 
             Spieler täter = game.findSpielerPerRolle(name);

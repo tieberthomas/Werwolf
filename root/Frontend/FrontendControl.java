@@ -5,7 +5,7 @@ import root.Frontend.Frame.SpielerFrame;
 import root.Frontend.Frame.ÜbersichtsFrame;
 import root.Frontend.Page.Page;
 import root.Phases.Statement;
-import root.ResourceManagement.ResourcePath;
+import root.ResourceManagement.ImagePath;
 import root.Rollen.Hauptrollen.Vampire.GrafVladimir;
 import root.Spieler;
 import root.mechanics.Game;
@@ -119,8 +119,8 @@ public class FrontendControl {
         String nebenRolleImagePath = spieler.nebenrolle.getImagePath();
         if(GrafVladimir.unerkennbarerSpieler!=null) {
             if (spieler.name.equals(GrafVladimir.unerkennbarerSpieler.name)) {
-                hauptRolleImagePath = ResourcePath.AUS_DEM_SPIEL;
-                nebenRolleImagePath = ResourcePath.AUS_DEM_SPIEL;
+                hauptRolleImagePath = ImagePath.AUS_DEM_SPIEL;
+                nebenRolleImagePath = ImagePath.AUS_DEM_SPIEL;
             }
         }
         spielerTwoImagePage(spieler.name, hauptRolleImagePath, nebenRolleImagePath);

@@ -1,7 +1,7 @@
 package root.Rollen.Fraktionen;
 
 import root.Frontend.FrontendControl;
-import root.ResourceManagement.ResourcePath;
+import root.ResourceManagement.ImagePath;
 import root.Rollen.Fraktion;
 import root.Rollen.Hauptrollen.Bürger.Riese;
 import root.Rollen.Hauptrollen.Schattenpriester.Schattenpriester;
@@ -21,7 +21,7 @@ public class Schattenpriester_Fraktion extends Fraktion
 {
     public static final String name = "Schattenpriester";
     public static final Color farbe = Color.lightGray;
-    public static final String imagePath = ResourcePath.SCHATTENPRIESTER_ICON;
+    public static final String imagePath = ImagePath.SCHATTENPRIESTER_ICON;
 
     public static int deadSchattenPriester = 0;
 

@@ -1,24 +1,20 @@
 package root.Rollen.Hauptrollen.Bürger;
 
 import root.Frontend.FrontendControl;
-import root.ResourceManagement.ResourcePath;
+import root.ResourceManagement.ImagePath;
 import root.Rollen.Fraktion;
 import root.Rollen.Fraktionen.Bürger;
 import root.Rollen.Hauptrolle;
 
 import java.util.ArrayList;
 
-/**
- * Created by Steve on 12.11.2017.
- */
-public class Wirt extends Hauptrolle
-{
+public class Wirt extends Hauptrolle {
     public static final String JA = "Ja";
     public static final String NEIN = "Nein";
 
     public static final String name = "Wirt";
     public static Fraktion fraktion = new Bürger();
-    public static final String imagePath = ResourcePath.WIRT_KARTE;
+    public static final String imagePath = ImagePath.WIRT_KARTE;
     public static boolean spammable = false;
     public static int freibierCharges = 1;
 
@@ -36,7 +32,7 @@ public class Wirt extends Hauptrolle
 
     @Override
     public void processChosenOption(String chosenOption) {
-        if(chosenOption!=null) {
+        if (chosenOption != null) {
             if (chosenOption.equals(JA)) {
                 freibierCharges--;
             }

@@ -1,7 +1,7 @@
 package root.Rollen.Fraktionen;
 
 import root.Frontend.FrontendControl;
-import root.ResourceManagement.ResourcePath;
+import root.ResourceManagement.ImagePath;
 import root.Rollen.Fraktion;
 import root.Rollen.Hauptrollen.Werwölfe.Alphawolf;
 import root.Rollen.Hauptrollen.Werwölfe.Blutwolf;
@@ -20,7 +20,7 @@ public class Werwölfe extends Fraktion
 {
     public static final String name = "Werwölfe";
     public static final Color farbe = Color.green;
-    public static final String imagePath = ResourcePath.WÖLFE_ICON;
+    public static final String imagePath = ImagePath.WÖLFE_ICON;
 
     @Override
     public void processChosenOption(String chosenOption) {

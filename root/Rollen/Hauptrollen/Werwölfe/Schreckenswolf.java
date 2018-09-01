@@ -2,7 +2,7 @@ package root.Rollen.Hauptrollen.Werwölfe;
 
 import root.Frontend.FrontendControl;
 import root.Phases.Nacht;
-import root.ResourceManagement.ResourcePath;
+import root.ResourceManagement.ImagePath;
 import root.Rollen.Fraktion;
 import root.Rollen.Fraktionen.Werwölfe;
 import root.Rollen.Hauptrolle;
@@ -11,11 +11,10 @@ import root.mechanics.Opfer;
 
 import java.util.ArrayList;
 
-public class Schreckenswolf extends Hauptrolle
-{
+public class Schreckenswolf extends Hauptrolle {
     public static final String name = "Schreckenswolf";
     public static Fraktion fraktion = new Werwölfe();
-    public static final String imagePath = ResourcePath.SCHRECKENSWOLF_KARTE;
+    public static final String imagePath = ImagePath.SCHRECKENSWOLF_KARTE;
     public static boolean spammable = false;
     public static boolean killing = true;
 
@@ -27,7 +26,7 @@ public class Schreckenswolf extends Hauptrolle
     @Override
     public void processChosenOption(String chosenOption) {
         Spieler chosenPlayer = game.findSpieler(chosenOption);
-        if(chosenPlayer != null) {
+        if (chosenPlayer != null) {
             besucht = chosenPlayer;
             Nacht.beschworenerSpieler = chosenPlayer;
         }
@@ -64,8 +63,8 @@ public class Schreckenswolf extends Hauptrolle
 
     public ArrayList<Opfer> possibleWerwolfOpfer() {
         ArrayList<Opfer> possibleWerwolfOpfer = new ArrayList<>();
-        for(Opfer opfer : Opfer.possibleVictims) {
-            if(opfer.täter!=null && opfer.täter.hauptrolle.getFraktion().getName().equals(Werwölfe.name)) {
+        for (Opfer opfer : Opfer.possibleVictims) {
+            if (opfer.täter != null && opfer.täter.hauptrolle.getFraktion().getName().equals(Werwölfe.name)) {
                 possibleWerwolfOpfer.add(opfer);
             }
         }
@@ -76,6 +75,6 @@ public class Schreckenswolf extends Hauptrolle
     public boolean didAllOpferDie(ArrayList<Opfer> possibleOpfer) {
         possibleOpfer.removeAll(Opfer.deadVictims);
 
-        return possibleOpfer.size()==0;
+        return possibleOpfer.size() == 0;
     }
 }

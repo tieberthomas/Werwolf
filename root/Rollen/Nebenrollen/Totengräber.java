@@ -4,7 +4,7 @@ import root.Frontend.FrontendControl;
 import root.Phases.Nacht;
 import root.Phases.Statement;
 import root.Phases.StatementRolle;
-import root.ResourceManagement.ResourcePath;
+import root.ResourceManagement.ImagePath;
 import root.Rollen.Nebenrolle;
 import root.Rollen.NebenrollenTyp;
 import root.Rollen.Rolle;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class Totengräber extends Nebenrolle
 {
     public static final String name = "Totengräber";
-    public static final String imagePath = ResourcePath.TOTENGRÄBER_KARTE;
+    public static final String imagePath = ImagePath.TOTENGRÄBER_KARTE;
     public static boolean spammable = false;
 
     @Override

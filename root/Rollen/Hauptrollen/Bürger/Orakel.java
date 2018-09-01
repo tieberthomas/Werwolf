@@ -2,7 +2,7 @@ package root.Rollen.Hauptrollen.Bürger;
 
 import root.Frontend.FrontendControl;
 import root.Phases.Nacht;
-import root.ResourceManagement.ResourcePath;
+import root.ResourceManagement.ImagePath;
 import root.Rollen.Fraktion;
 import root.Rollen.Fraktionen.Bürger;
 import root.Rollen.Hauptrolle;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class Orakel extends Hauptrolle {
     public static final String name = "Orakel";
     public static Fraktion fraktion = new Bürger();
-    public static final String imagePath = ResourcePath.ORAKEL_KARTE;
+    public static final String imagePath = ImagePath.ORAKEL_KARTE;
     public static boolean spammable = true;
 
     public static ArrayList<String> geseheneNebenrollen = new ArrayList<>();

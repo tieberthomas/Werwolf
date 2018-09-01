@@ -1,6 +1,6 @@
 package root.mechanics;
 
-import root.ResourceManagement.ResourcePath;
+import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
 import java.util.ArrayList;
@@ -12,19 +12,29 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Liebespaar {
     Game game;
 
-    public static final String imagePath = ResourcePath.LIEBESPAAR;
-    public static final String ZUFÄLLIG = "Zufällig";
+    public static final String imagePath = ImagePath.LIEBESPAAR;
+    private static final String ZUFÄLLIG = "Zufällig";
 
     public Spieler spieler1;
     public Spieler spieler2;
 
-    public Liebespaar(String spieler1Name, String spieler2Name, Game game)
-    {
+    public ArrayList<String> getDropdownOptions() {
         this.game = game;
-        ArrayList<Spieler> spieler = (ArrayList<Spieler>)game.spieler.clone();
+        ArrayList<String> playerStrings = game.getLivingPlayerStrings();
+        playerStrings.add(ZUFÄLLIG);
+        return playerStrings;
+    }
 
-        if(spieler1Name.equals(ZUFÄLLIG)) {
-            if(!spieler2Name.equals(ZUFÄLLIG)) {
+    public Liebespaar(Game game) {
+        this.game = game;
+    }
+
+    public Liebespaar(String spieler1Name, String spieler2Name, Game game) {
+        this.game = game;
+        ArrayList<Spieler> spieler = (ArrayList<Spieler>) game.spieler.clone();
+
+        if (spieler1Name.equals(ZUFÄLLIG)) {
+            if (!spieler2Name.equals(ZUFÄLLIG)) {
                 spieler2 = game.findSpieler(spieler2Name);
                 spieler.remove(spieler2);
             }
@@ -33,7 +43,7 @@ public class Liebespaar {
             spieler1 = game.findSpieler(spieler1Name);
         }
 
-        if(spieler2Name.equals(ZUFÄLLIG)) {
+        if (spieler2Name.equals(ZUFÄLLIG)) {
             spieler.remove(spieler1);
             spieler2 = generateRandomSpieler(spieler);
         } else {
@@ -41,14 +51,14 @@ public class Liebespaar {
         }
     }
 
-    public static Spieler generateRandomSpieler(ArrayList<Spieler> spieler){
+    public static Spieler generateRandomSpieler(ArrayList<Spieler> spieler) {
         int randomNum = ThreadLocalRandom.current().nextInt(0, spieler.size());
 
         return spieler.get(randomNum);
     }
 
     public Spieler getPlayerToDie() {
-        if(spieler1!=null && spieler2!=null) {
+        if (spieler1 != null && spieler2 != null) {
             if (spieler1.lebend && !spieler2.lebend) {
                 return spieler1;
             }

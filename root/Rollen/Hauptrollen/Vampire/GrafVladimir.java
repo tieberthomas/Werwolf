@@ -1,20 +1,16 @@
 package root.Rollen.Hauptrollen.Vampire;
 
 import root.Frontend.FrontendControl;
-import root.ResourceManagement.ResourcePath;
+import root.ResourceManagement.ImagePath;
 import root.Rollen.Fraktion;
 import root.Rollen.Fraktionen.Vampire;
 import root.Rollen.Hauptrolle;
 import root.Spieler;
 
-/**
- * Created by Steve on 12.11.2017.
- */
-public class GrafVladimir extends Hauptrolle
-{
+public class GrafVladimir extends Hauptrolle {
     public static final String name = "Graf Vladimir";
     public static Fraktion fraktion = new Vampire();
-    public static final String imagePath = ResourcePath.GRAF_VLADIMIR_KARTE;
+    public static final String imagePath = ImagePath.GRAF_VLADIMIR_KARTE;
     public static boolean spammable = false;
     public static boolean killing = true;
     public static Spieler unerkennbarerSpieler;
@@ -27,7 +23,7 @@ public class GrafVladimir extends Hauptrolle
     @Override
     public void processChosenOption(String chosenOption) {
         Spieler chosenPlayer = game.findSpieler(chosenOption);
-        if(chosenPlayer!=null) {
+        if (chosenPlayer != null) {
             besucht = chosenPlayer;
 
             unerkennbarerSpieler = chosenPlayer;
