@@ -5,11 +5,7 @@ import root.ResourceManagement.ImagePath;
 import root.Rollen.Nebenrolle;
 import root.Spieler;
 
-/**
- * Created by Steve on 12.11.2017.
- */
-public class Gefängniswärter extends Nebenrolle
-{
+public class Gefängniswärter extends Nebenrolle {
     public static final String name = "Gefängniswärter";
     public static final String imagePath = ImagePath.GEFÄNGNISWÄRTER_KARTE;
     public static boolean unique = true;
@@ -23,7 +19,7 @@ public class Gefängniswärter extends Nebenrolle
     @Override
     public void processChosenOption(String chosenOption) {
         Spieler chosenPlayer = game.findSpieler(chosenOption);
-        if(chosenPlayer!=null) {
+        if (chosenPlayer != null) {
             besucht = chosenPlayer;
 
             chosenPlayer.aktiv = false;

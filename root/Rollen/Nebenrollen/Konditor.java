@@ -6,10 +6,10 @@ import root.Rollen.Nebenrolle;
 
 import java.util.ArrayList;
 
-public class Konditor extends Nebenrolle {
-    public static final String GUT = "Gut";
-    public static final String SCHLECHT = "Schlecht";
+import static root.Rollen.Constants.DropdownConstants.GUT;
+import static root.Rollen.Constants.DropdownConstants.SCHLECHT;
 
+public class Konditor extends Nebenrolle {
     public static final String name = "Konditor";
     public static final String imagePath = ImagePath.KONDITOR_KARTE;
     public static boolean spammable = true;
@@ -20,8 +20,8 @@ public class Konditor extends Nebenrolle {
 
         frontendControl.typeOfContent = FrontendControl.DROPDOWN;
         frontendControl.strings = new ArrayList<>();
-        frontendControl.strings.add(GUT);
-        frontendControl.strings.add(SCHLECHT);
+        frontendControl.strings.add(GUT.name);
+        frontendControl.strings.add(SCHLECHT.name);
 
         return frontendControl;
     }

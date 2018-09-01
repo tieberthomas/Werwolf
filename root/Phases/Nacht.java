@@ -341,7 +341,7 @@ public class Nacht extends Thread {
                                     chosenOption = showKonditorDropdownPage(statement, dropdownOtions);
                                     rolle.processChosenOption(chosenOption);
 
-                                    Torte.gut = chosenOption.equals(Konditor.GUT);
+                                    Torte.gut = chosenOption.equals(DropdownConstants.GUT.name);
                                 }
                             }
                             break;

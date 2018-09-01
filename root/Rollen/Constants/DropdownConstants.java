@@ -2,7 +2,9 @@ package root.Rollen.Constants;
 
 public enum DropdownConstants {
     JA("Ja"),
-    NEIN("Nein");
+    NEIN("Nein"),
+    GUT("Gut"),
+    SCHLECHT("Schlecht");
 
     public String name;
 
