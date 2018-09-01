@@ -13,7 +13,6 @@ seher bamboozlekarten dem erzähler zeigen während der seher aktion damit diese
 siegüberprüfung generischer machen (tag und nacht)
 tauschkarten quasi aus secondaryRolesInGame removen (für nachzügler) aber nicht wirklich, weil ja der spielerscreen am tag anzeigen soll dass es drin war
 bei übersichtspage rahmen von mehreren personen anzeigen (die nicht die ganze fraktion sind)
-anästesiert titel
 
 bei jeder rolle als kommentar den kartentext dazuschreiben
 
@@ -29,4 +28,3 @@ in der nacht ein zurückbutton.
 Michael änderungs requests
 
 beim neuen schattenpriester werden alle SP eingerahmt
-Wachhund bekommt noch info obwohl er gestorben ist

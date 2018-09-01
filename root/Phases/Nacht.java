@@ -43,7 +43,7 @@ public class Nacht extends Thread
     public static final String ÜBERLÄUFER = "Überläufer erwacht und entscheidet ob er seine Hauptrollenkarte tauschen möchte";
     public static final String HOLDE_MAID = "Holde Maid erwacht und offenbart sich einem Mitspieler";
     public static final String NACHBAR = "Nachbar erwacht und entscheidet welchen Spieler er beobachten möchte";
-    public static final String WACHHUND = "Wachhund erwacht und entscheidet welchen Mitspieler er schützen möchte";
+    public static final String SPURENLESER = "Spurenleser erwacht und entscheidet welchen Spieler er beobachten möchte";
     public static final String GUTE_HEXE_SCHÜTZEN = "Gute Hexe erwacht und entscheidet ob sie einen Spieler schützen will";
     public static final String LADY_ALEERA = "Lady Aleera erwacht und sieht alle geschützten Spieler";
     public static final String PROSTITUIERTE = "Prostituierte legt sich zu einem Mitspieler ins Bett";
@@ -69,7 +69,7 @@ public class Nacht extends Thread
     public static final String BESCHWÖRER = "Beschwörer erwacht und wählt einen Mitspieler der verstummt";
     public static final String FRISÖR = "Frisör erwacht und wählt einen Mitspieler den er verschönert";
     public static final String NACHBAR_INFORMATION = "Nachbar erwacht und erfährt wer die Besucher seines gewählten Spielers waren";
-    public static final String WACHHUND_INFORMATION = "Wachhund erwacht und erfährt wer die Besucher seines gewählten Spielers waren";
+    public static final String SPURENLESER_INFORMATION = "Spurenleser erwacht und erfährt wen der gewählte Spieler besucht hat";
     public static final String WAHRSAGER = "Wahrsager erwacht und gibt seinen Tipp ab welche Fraktion bei der Dorfabstimmung sterben wird";
     public static final String KONDITOR = "Konditor erwacht und entscheidet sich ob es eine gute oder schlechte Torte gibt";
     public static final String KONDITOR_LEHRLING = "Konditor und Konditorlehrling erwachen und entscheiden sich ob es eine gute oder schlechte Torte gibt";
@@ -94,7 +94,7 @@ public class Nacht extends Thread
     public static final String ÜBERLÄUFER_TITLE = "Karte tauschen";
     public static final String HOLDE_MAID_TITLE = "Mitspieler offenbaren";
     public static final String NACHBAR_TITLE = "Spieler beobachten";
-    public static final String WACHHUND_TITLE = "Spieler bewachen";
+    public static final String SPURENLESER_TITLE = "Spuren lesen von";
     public static final String GUTE_HEXE_SCHÜTZEN_TITLE = "Spieler schützen";
     public static final String LADY_ALEERA_TITLE = "Geschützte Spieler";
     public static final String PROSTITUIERTE_TITLE = "Bett legen";
@@ -121,7 +121,7 @@ public class Nacht extends Thread
     public static final String BESCHWÖRER_TITLE = "Mitspieler verstummen";
     public static final String FRISÖR_TITLE = "Mitspieler verschönern";
     public static final String NACHBAR_INFORMATION_TITLE = "Besucher von ";
-    public static final String WACHHUND_INFORMATION_TITLE = "Besucher von ";
+    public static final String SPURENLESER_INFORMATION_TITLE = "Besuchte Spieler von ";
     public static final String WAHRSAGER_TITLE = "Fraktion wählen";
     public static final String KONDITOR_TITLE = "Torte";
     public static final String KONDITOR_LEHRLING_TITLE = KONDITOR_TITLE;
@@ -554,7 +554,6 @@ public class Nacht extends Thread
 
     public void setOpfer() {
         checkLiebespaar();
-        checkWachhund();
         killVictims();
     }
 
@@ -615,23 +614,6 @@ public class Nacht extends Thread
 
             if (!spieler1Lebend && spieler2Lebend) {
                 Opfer.deadVictims.add(new Opfer(liebespaar.spieler2, liebespaar.spieler1, false));
-            }
-        }
-    }
-
-    public void checkWachhund() {
-        boolean bewachterSpielerDied = false;
-        Spieler wachhundSpieler = game.findSpielerOrDeadPerRolle(Wachhund.name);
-        if(wachhundSpieler!=null) {
-            Wachhund wachhund = (Wachhund)wachhundSpieler.nebenrolle;
-            for (Opfer currentVictim : Opfer.deadVictims) {
-                if (wachhund.bewachterSpieler!=null && currentVictim.opfer.name.equals(wachhund.bewachterSpieler.name)) {
-                    bewachterSpielerDied = true;
-                }
-            }
-
-            if(bewachterSpielerDied) {
-                Opfer.deadVictims.add(new Opfer(wachhundSpieler, wachhund.bewachterSpieler, false));
             }
         }
     }
@@ -1057,7 +1039,7 @@ public class Nacht extends Thread
         }
         addStatementRolle(HOLDE_MAID, HOLDE_MAID_TITLE, HoldeMaid.name, Statement.ROLLE_CHOOSE_ONE);
         addStatementRolle(NACHBAR, NACHBAR_TITLE, Nachbar.name, Statement.ROLLE_CHOOSE_ONE);
-        addStatementRolle(WACHHUND, WACHHUND_TITLE, Wachhund.name, Statement.ROLLE_CHOOSE_ONE);
+        addStatementRolle(SPURENLESER, SPURENLESER_TITLE, Spurenleser.name, Statement.ROLLE_CHOOSE_ONE);
         addStatementRolle(GUTE_HEXE_SCHÜTZEN, GUTE_HEXE_SCHÜTZEN_TITLE, GuteHexe.name, Statement.ROLLE_CHOOSE_ONE);
 
         addProgrammStatement(PROGRAMM_SCHÜTZE);
@@ -1092,7 +1074,7 @@ public class Nacht extends Thread
         addStatementRolle(BESCHWÖRER, BESCHWÖRER_TITLE, Beschwörer.name, Statement.ROLLE_CHOOSE_ONE);
         addStatementRolle(FRISÖR, FRISÖR_TITLE, Frisör.name, Statement.ROLLE_CHOOSE_ONE);
         addStatementRolle(NACHBAR_INFORMATION, NACHBAR_INFORMATION_TITLE, Nachbar.name, Statement.ROLLE_INFO);
-        addStatementRolle(WACHHUND_INFORMATION, WACHHUND_INFORMATION_TITLE, Wachhund.name, Statement.ROLLE_INFO);
+        addStatementRolle(SPURENLESER_INFORMATION, SPURENLESER_INFORMATION_TITLE, Spurenleser.name, Statement.ROLLE_INFO);
 
         addProgrammStatement(PROGRAMM_WAHRSAGER);
         if(game.getLivingPlayer().size()>4) {

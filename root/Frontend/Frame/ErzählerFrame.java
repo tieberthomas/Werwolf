@@ -479,7 +479,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         } else if (deletePlayerButtons.contains(ae.getSource())) {
             deletePlayer(ae);
         } else if (addAllMainRolesJButton == ae.getSource()) {
-            game.addAllMainRoles();
+            game.addAllMainRolesToGame();
             refreshMainRolePage();
             spielerFrame.refreshMainRoleSetupPage();
         } else if (mainRoleButtons.contains(ae.getSource())) {

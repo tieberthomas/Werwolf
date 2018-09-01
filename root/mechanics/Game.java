@@ -100,6 +100,7 @@ public class Game {
         secondaryRoles.add(new Nachbar());
         secondaryRoles.add(new Prostituierte());
         secondaryRoles.add(new ReinesLicht());
+        secondaryRoles.add(new Spurenleser());
         secondaryRoles.add(new Schatten());
         secondaryRoles.add(new Schattenkutte());
         secondaryRoles.add(new Spion());
@@ -435,7 +436,7 @@ public class Game {
         return occurences;
     }
 
-    public void addAllMainRoles() {
+    public void addAllMainRolesToGame() {
         mainRolesInGame.addAll(mainRoles);
         mainRolesInGame.remove(findHauptrolle(Bruder.name));
         mainRolesInGame.add(new Bruder());

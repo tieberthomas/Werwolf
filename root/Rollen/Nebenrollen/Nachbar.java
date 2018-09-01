@@ -3,7 +3,6 @@ package root.Rollen.Nebenrollen;
 import root.Frontend.FrontendControl;
 import root.Phases.Nacht;
 import root.ResourceManagement.ResourcePath;
-import root.Rollen.Hauptrollen.Bürger.GuteHexe;
 import root.Rollen.Nebenrolle;
 import root.Rollen.NebenrollenTyp;
 import root.Spieler;
@@ -69,13 +68,6 @@ public class Nachbar extends Nebenrolle
                 if (spieler.hauptrolle.besucht != null && spieler.hauptrolle.besucht.name.equals(beobachteterSpieler.name) ||
                         (spieler.nebenrolle.besucht != null && spieler.nebenrolle.besucht.name.equals(beobachteterSpieler.name))) {
                     besucher.add(spieler.name);
-                }
-
-                if(!besucher.contains(spieler.name) && spieler.hauptrolle.getName().equals(GuteHexe.name)) {
-                    GuteHexe guteHexe = (GuteHexe)spieler.hauptrolle;
-                    if(guteHexe.besuchtWiederbeleben!=null && guteHexe.besuchtWiederbeleben.name.equals(beobachteterSpieler.name)) {
-                        besucher.add(spieler.name);
-                    }
                 }
 
                 if(!besucher.contains(spieler.name) && spieler.nebenrolle.getName().equals(Analytiker.name)) {
