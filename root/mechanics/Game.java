@@ -65,7 +65,6 @@ public class Game {
         mainRoles.add(new Bruder());
         mainRoles.add(new Buchhalter());
         mainRoles.add(new Dorfbewohner());
-        //mainRoles.add(new GuteHexe());
         mainRoles.add(new HoldeMaid());
         mainRoles.add(new Orakel());
         mainRoles.add(new Riese());
@@ -79,7 +78,6 @@ public class Game {
         mainRoles.add(new MissVerona());
         mainRoles.add(new Alphawolf());
         mainRoles.add(new Blutwolf());
-        //mainRoles.add(new BöseHexe());
         mainRoles.add(new Chemiker());
         mainRoles.add(new Werwolf());
         mainRoles.add(new Wölfin());
@@ -88,10 +86,7 @@ public class Game {
 
     public void generateAllAvailableSecondaryRoles(){
         secondaryRoles.add(new Analytiker());
-        secondaryRoles.add(new Anästhesist());
         secondaryRoles.add(new Archivar());
-        secondaryRoles.add(new Beschwörer());
-        secondaryRoles.add(new Frisör());
         secondaryRoles.add(new Gefängniswärter());
         //Imitator
         secondaryRoles.add(new Konditor());
@@ -107,7 +102,6 @@ public class Game {
         secondaryRoles.add(new Tarnumhang());
         secondaryRoles.add(new Totengräber());
         secondaryRoles.add(new Vampirumhang());
-        //secondaryRoles.add(new Wachhund());
         secondaryRoles.add(new Wahrsager());
         secondaryRoles.add(new Wolfspelz());
     }

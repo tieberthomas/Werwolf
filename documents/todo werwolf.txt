@@ -5,6 +5,7 @@ sammler
 totengräber
 vladimir
 opfer anzeigen am ende der nacht
+spurenleser
 
 
 CherryOnTop:

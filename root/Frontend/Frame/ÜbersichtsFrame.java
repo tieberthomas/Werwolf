@@ -87,9 +87,7 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener{
             if((game.phaseMode == PhaseMode.ersteNacht && ErsteNacht.playersAwake.contains(spieler)) ||
                 (game.phaseMode == PhaseMode.nacht && Nacht.playersAwake.contains(spieler))) {
                 Color borderColor = defaultBorderColor;
-                if(Nacht.anästesierterSpieler!=null && Nacht.anästesierterSpieler.equals(spieler)) {
-                    borderColor = anästesiertBorderColor;
-                }
+                //hier kann die rahmen farbe geändert werden wenn notwendig
                 label.setBorder(BorderFactory.createLineBorder(borderColor, 2));
             }
 
