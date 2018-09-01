@@ -3,6 +3,7 @@ package root.Rollen.Hauptrollen.Werwölfe;
 import root.Frontend.FrontendControl;
 import root.Phases.Nacht;
 import root.ResourceManagement.ImagePath;
+import root.Rollen.Constants.WölfinState;
 import root.Rollen.Fraktion;
 import root.Rollen.Fraktionen.Werwölfe;
 import root.Rollen.Hauptrolle;
@@ -11,19 +12,12 @@ import root.Spieler;
 import root.mechanics.Opfer;
 
 public class Wölfin extends Hauptrolle {
-    public static final int WARTEND = 0;
-    public static final int TÖTEND = 1;
-    public static final int FERTIG = 2;
-
-    public static final String KILL = "KILL";
-    public static final String KEIN_KILL = "Kein Kill";
-
     public static final String name = "Wölfin";
     public static Fraktion fraktion = new Werwölfe();
     public static final String imagePath = ImagePath.WÖLFIN_KARTE;
     public static boolean spammable = false;
     public static boolean killing = true;
-    public static int modus = WARTEND;
+    public static WölfinState state = WölfinState.WARTEND;
 
     @Override
     public FrontendControl getDropdownOptions() {
@@ -33,7 +27,7 @@ public class Wölfin extends Hauptrolle {
     @Override
     public void processChosenOption(String chosenOption) {
         Spieler chosenPlayer = game.findSpieler(chosenOption);
-        modus = FERTIG;
+        state = WölfinState.FERTIG;
         if (chosenPlayer != null) {
             besucht = chosenPlayer;
 

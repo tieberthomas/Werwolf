@@ -2,6 +2,8 @@ package root.Phases;
 
 import root.Frontend.FrontendControl;
 import root.ResourceManagement.ImagePath;
+import root.Rollen.Constants.DropdownConstants;
+import root.Rollen.Constants.WölfinState;
 import root.Rollen.Fraktion;
 import root.Rollen.Fraktionen.Schattenpriester_Fraktion;
 import root.Rollen.Fraktionen.Vampire;
@@ -224,7 +226,7 @@ public class Nacht extends Thread {
 
                     switch (statement.beschreibung) {
                         case WIRT:
-                            if (Wirt.JA.equals(chosenOption)) {
+                            if (DropdownConstants.JA.name.equals(chosenOption)) {
                                 freibier = true;
                             }
                             break;
@@ -245,7 +247,7 @@ public class Nacht extends Thread {
                             break;
 
                         case WÖLFIN:
-                            if (chosenOption.equals(Wölfin.KILL)) {
+                            if (!"".equals(chosenOption)) {
                                 wölfinKilled = true;
                                 wölfinSpieler = game.findSpielerPerRolle(Wölfin.name);
                             }
@@ -954,7 +956,7 @@ public class Nacht extends Thread {
         addStatementFraktion(VAMPIRE, VAMPIRE_TITLE, Vampire.name, Statement.FRAKTION_CHOOSE_ONE);
         addStatementRolle(GRAF_VLADIMIR, GRAF_VLADIMIR_TITLE, GrafVladimir.name, Statement.ROLLE_CHOOSE_ONE);
         addStatementFraktion(WERWÖLFE, WERWÖLFE_TITLE, Werwölfe.name, Statement.FRAKTION_CHOOSE_ONE);
-        if (Wölfin.modus == Wölfin.TÖTEND) {
+        if (Wölfin.state == WölfinState.TÖTEND) {
             addStatementRolle(WÖLFIN, WÖLFIN_TITLE, Wölfin.name, Statement.ROLLE_CHOOSE_ONE);
         }
         addStatementRolle(SCHRECKENSWOLF, SCHRECKENSWOLF_TITLE, Schreckenswolf.name, Statement.ROLLE_SPECAL);
@@ -995,7 +997,7 @@ public class Nacht extends Thread {
         if (Rolle.rolleInNachtEnthalten(Schreckenswolf.name)) { //TODO useless
             addStatementIndie(VERSTUMMT, VERSTUMMT_TITLE, Statement.INDIE);
         }
-        if (Wölfin.modus == Wölfin.TÖTEND) {
+        if (Wölfin.state == WölfinState.TÖTEND) {
             addStatementRolle(WÖLFIN_NEBENROLLE, WÖLFIN_NEBENROLLE_TITLE, Wölfin.name, Statement.ROLLE_INFO);
         }
 

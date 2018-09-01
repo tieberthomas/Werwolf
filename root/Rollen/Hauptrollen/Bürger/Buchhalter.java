@@ -8,13 +8,10 @@ import root.Rollen.Hauptrolle;
 
 import java.util.ArrayList;
 
-/**
- * Created by Steve on 12.11.2017.
- */
-public class Buchhalter extends Hauptrolle
-{
-    public static final String JA = "Ja";
-    public static final String NEIN = "Nein";
+import static root.Rollen.Constants.DropdownConstants.JA;
+import static root.Rollen.Constants.DropdownConstants.NEIN;
+
+public class Buchhalter extends Hauptrolle {
     public static final String USED_TITLE = "Hauptrollen im Spiel";
 
     public static final String name = "Buchhalter";
@@ -29,16 +26,16 @@ public class Buchhalter extends Hauptrolle
 
         frontendControl.typeOfContent = FrontendControl.DROPDOWN;
         frontendControl.strings = new ArrayList<>();
-        frontendControl.strings.add(JA);
-        frontendControl.strings.add(NEIN);
+        frontendControl.strings.add(JA.name);
+        frontendControl.strings.add(NEIN.name);
 
         return frontendControl;
     }
 
     @Override
     public FrontendControl processChosenOptionGetInfo(String chosenOption) {
-        if(chosenOption!=null) {
-            if (chosenOption.equals(JA)) {
+        if (chosenOption != null) {
+            if (chosenOption.equals(JA.name)) {
                 abilityCharges--;
                 seenRoles = game.getMainRolesAlive();
                 return new FrontendControl(FrontendControl.LIST, USED_TITLE, seenRoles);

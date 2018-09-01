@@ -8,10 +8,10 @@ import root.Rollen.Hauptrolle;
 
 import java.util.ArrayList;
 
-public class Wirt extends Hauptrolle {
-    public static final String JA = "Ja";
-    public static final String NEIN = "Nein";
+import static root.Rollen.Constants.DropdownConstants.JA;
+import static root.Rollen.Constants.DropdownConstants.NEIN;
 
+public class Wirt extends Hauptrolle {
     public static final String name = "Wirt";
     public static Fraktion fraktion = new Bürger();
     public static final String imagePath = ImagePath.WIRT_KARTE;
@@ -24,8 +24,8 @@ public class Wirt extends Hauptrolle {
 
         frontendControl.typeOfContent = FrontendControl.DROPDOWN;
         frontendControl.strings = new ArrayList<>();
-        frontendControl.strings.add(JA);
-        frontendControl.strings.add(NEIN);
+        frontendControl.strings.add(JA.name);
+        frontendControl.strings.add(NEIN.name);
 
         return frontendControl;
     }
@@ -33,7 +33,7 @@ public class Wirt extends Hauptrolle {
     @Override
     public void processChosenOption(String chosenOption) {
         if (chosenOption != null) {
-            if (chosenOption.equals(JA)) {
+            if (chosenOption.equals(JA.name)) {
                 freibierCharges--;
             }
         }

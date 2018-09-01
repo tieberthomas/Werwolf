@@ -9,11 +9,7 @@ import root.mechanics.Opfer;
 
 import java.util.ArrayList;
 
-/**
- * Created by Steve on 12.11.2017.
- */
-public class Chemiker extends Hauptrolle
-{
+public class Chemiker extends Hauptrolle {
     public static final String name = "Chemiker";
     public static Fraktion fraktion = new Werwölfe();
     public static final String imagePath = ImagePath.CHEMIKER_KARTE;
@@ -33,7 +29,7 @@ public class Chemiker extends Hauptrolle
     @Override
     public void processChosenOption(String chosenOption) {
         Opfer chosenOpfer = Opfer.findOpfer(chosenOption);
-        if(chosenOpfer != null) {
+        if (chosenOpfer != null) {
             besucht = chosenOpfer.opfer;
 
             Opfer.deadVictims.remove(chosenOpfer);
@@ -70,7 +66,7 @@ public class Chemiker extends Hauptrolle
             String hauptrolleTäter = currentOpfer.täter.hauptrolle.getName();
 
             if (currentOpfer.opfer.ressurectable) {
-                if(currentOpfer.fraktionsTäter && fraktionTäter.equals(Werwölfe.name) || hauptrolleTäter.equals(Wölfin.name)) {
+                if (currentOpfer.fraktionsTäter && fraktionTäter.equals(Werwölfe.name) || hauptrolleTäter.equals(Wölfin.name)) {
                     if (!fraktionOpfer.equals(Werwölfe.name)) {
                         if (!resurrectableOpfer.contains(currentOpfer.opfer.name)) {
                             resurrectableOpfer.add(currentOpfer.opfer.name);

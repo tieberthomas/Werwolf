@@ -8,6 +8,7 @@ import root.Phases.ErsteNacht;
 import root.Phases.Nacht;
 import root.Phases.PhaseMode;
 import root.Phases.Tag;
+import root.Rollen.Constants.WölfinState;
 import root.Rollen.Fraktion;
 import root.Rollen.Fraktionen.Schattenpriester_Fraktion;
 import root.Rollen.Fraktionen.Werwölfe;
@@ -261,9 +262,9 @@ public class Game {
                 Schattenpriester_Fraktion.deadSchattenPriester++;
             }
 
-            if(Rolle.rolleLebend(Wölfin.name) && Wölfin.modus==Wölfin.WARTEND) {
+            if(Rolle.rolleLebend(Wölfin.name) && Wölfin.state== WölfinState.WARTEND) {
                 if(spieler.hauptrolle.getFraktion().getName().equals(Werwölfe.name)) {
-                    Wölfin.modus = Wölfin.TÖTEND;
+                    Wölfin.state = WölfinState.TÖTEND;
                 }
             }
         }
