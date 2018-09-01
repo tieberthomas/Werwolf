@@ -105,6 +105,18 @@ public class Opfer {
         }
     }
 
+    public static void removeVictim(Spieler opfer) {
+        ArrayList<Opfer> opfersToRemove = new ArrayList<>();
+
+        for(Opfer currentVictim : deadVictims) {
+            if(currentVictim.opfer.name.equals(opfer.name)) {
+                opfersToRemove.add(currentVictim);
+            }
+        }
+
+        deadVictims.removeAll(opfersToRemove);
+    }
+
     public static void addDeadVictim(Spieler opfer, Spieler täter, boolean fraktionsTäter, boolean riese) {
         Spieler prostituierteSpieler = game.findSpielerPerRolle(Prostituierte.name);
         String hostProstituierte = "";

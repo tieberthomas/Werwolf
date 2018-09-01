@@ -8,6 +8,7 @@ import root.Rollen.Hauptrollen.Schattenpriester.Schattenpriester;
 import root.Rollen.Nebenrollen.Schatten;
 import root.Rollen.Nebenrollen.Schattenkutte;
 import root.Rollen.Rolle;
+import root.Spieler;
 import root.mechanics.Opfer;
 
 import java.awt.*;
@@ -26,15 +27,15 @@ public class Schattenpriester_Fraktion extends Fraktion
 
     @Override
     public void processChosenOption(String chosenOption) {
-        Opfer chosenOpfer = Opfer.findOpfer(chosenOption);
+        Spieler chosenOpfer = game.findSpieler(chosenOption);
         if(chosenOpfer != null) {
-            Opfer.deadVictims.remove(chosenOpfer);
+            Opfer.removeVictim(chosenOpfer);
 
-            if (!chosenOpfer.opfer.nebenrolle.getName().equals(Schattenkutte.name)) {
-                chosenOpfer.opfer.hauptrolle = new Schattenpriester();
-                ((Schattenpriester)chosenOpfer.opfer.hauptrolle).neuster = true;
+            if (!chosenOpfer.nebenrolle.getName().equals(Schattenkutte.name)) {
+                chosenOpfer.hauptrolle = new Schattenpriester();
+                ((Schattenpriester)chosenOpfer.hauptrolle).neuster = true;
             }
-            chosenOpfer.opfer.nebenrolle = new Schatten();
+            chosenOpfer.nebenrolle = new Schatten();
         }
     }
 
