@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class Spurenleser extends Nebenrolle {
     public static final String name = "Spurenleser";
-    public static final String imagePath = ResourcePath.NACHBAR_KARTE;
+    public static final String imagePath = ResourcePath.SPURENLESER_KARTE;
     public static boolean spammable = true;
     private Spieler beobachteterSpieler = null;
     public NebenrollenTyp type = NebenrollenTyp.INFORMATIV;
@@ -61,8 +61,16 @@ public class Spurenleser extends Nebenrolle {
         ArrayList<String> besucher = new ArrayList<>();
 
         if (beobachteterSpieler != null) {
-            besucher.add(beobachteterSpieler.hauptrolle.besucht.name);
-            besucher.add(beobachteterSpieler.nebenrolle.besucht.name);
+            if(beobachteterSpieler.hauptrolle.besucht!=null) {
+                String besuchterSpielerDerHauptrolle = beobachteterSpieler.hauptrolle.besucht.name;
+                besucher.add(besuchterSpielerDerHauptrolle);
+            }
+
+            if(beobachteterSpieler.nebenrolle.besucht!=null) {
+                String besuchterSpielerDerNebenrolle = beobachteterSpieler.nebenrolle.besucht.name;
+                besucher.add(besuchterSpielerDerNebenrolle);
+            }
+
             if(beobachteterSpieler.nebenrolle.getName().equals(Analytiker.name)){
                 Analytiker analytiker = (Analytiker) beobachteterSpieler.nebenrolle;
                 besucher.add(analytiker.besuchtAnalysieren.name);

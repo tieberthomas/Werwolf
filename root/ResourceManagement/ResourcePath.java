@@ -70,6 +70,7 @@ public class ResourcePath {
     public static String BÖSE_HEXE_KARTE = WÖLFE_PATH + "Böse_Hexe" + IMAGE_FILE_EXTENSION;
     public static String CHEMIKER_KARTE = WÖLFE_PATH + "Chemiker" + IMAGE_FILE_EXTENSION;
     public static String WERWOLF_KARTE = WÖLFE_PATH + "Werwolf" + IMAGE_FILE_EXTENSION;
+    public static String SCHRECKENSWOLF_KARTE = WÖLFE_PATH + "Schreckenswolf" + IMAGE_FILE_EXTENSION;
     public static String WÖLFIN_KARTE = WÖLFE_PATH + "Wölfin" + IMAGE_FILE_EXTENSION;
 
     public static String ANALYTIKER_KARTE = SECONDARY_ROLE_PATH + "Analytiker" + IMAGE_FILE_EXTENSION;
@@ -84,6 +85,7 @@ public class ResourcePath {
     public static String KONDITORLEHRLING_KARTE = SECONDARY_ROLE_PATH + "Konditorlehrling" + IMAGE_FILE_EXTENSION;
     public static String LAMM_KARTE = SECONDARY_ROLE_PATH + "Lamm" + IMAGE_FILE_EXTENSION;
     public static String NACHBAR_KARTE = SECONDARY_ROLE_PATH + "Nachbar" + IMAGE_FILE_EXTENSION;
+    public static String SPURENLESER_KARTE = SECONDARY_ROLE_PATH + "Spurenleser" + IMAGE_FILE_EXTENSION;
     public static String PROSTITUIERTE_KARTE = SECONDARY_ROLE_PATH + "Prostituierte" + IMAGE_FILE_EXTENSION;
     public static String REINE_SEELE_KARTE = SECONDARY_ROLE_PATH + "Reine_Seele" + IMAGE_FILE_EXTENSION;
     public static String REINES_LICHT_KARTE = SECONDARY_ROLE_PATH + "Reines_Licht" + IMAGE_FILE_EXTENSION;

@@ -14,6 +14,7 @@ import root.Rollen.Hauptrollen.Vampire.LadyAleera;
 import root.Rollen.Hauptrollen.Vampire.MissVerona;
 import root.Rollen.Hauptrollen.Werwölfe.Blutwolf;
 import root.Rollen.Hauptrollen.Werwölfe.Chemiker;
+import root.Rollen.Hauptrollen.Werwölfe.Schreckenswolf;
 import root.Rollen.Hauptrollen.Werwölfe.Wölfin;
 import root.Rollen.Hauptrollen.Überläufer.Überläufer;
 import root.Rollen.Nebenrolle;
@@ -49,11 +50,11 @@ public class Nacht extends Thread
     public static final String GRAF_VLADIMIR = "Graf Vladimir erwacht und macht einen Spieler unerkennbar";
     public static final String WERWÖLFE = "Die Werwölfe erwachen und die Wölfe wählen ein Opfer aus";
     public static final String WÖLFIN = "Wölfin erwacht und wählt ein Opfer aus, wenn sie das tut, erfährt das dorf ihre Bonusrolle";
+    public static final String SCHRECKENSWOLF = "Schreckenswolf erwacht und verstummt einen Spieler der am folgenden Tag nichtmehr reden darf";
     public static final String SCHATTENPRIESTER = "Die Schattenpriester erwachen und entscheiden welchen Verstorbenen dieser Nacht sie wiederbeleben und zum Kult hinzufügen möchten";
     public static final String NEUER_SCHATTENPRIESTER = "Der Wiederbelebte erwacht und tauscht seine Karten gegen Schattenkarten";
     public static final String CHEMIKER = "Chemiker erwacht und kann ein Wolfsopfer dieser Nacht wiederbeleben und zum Wolfsrudel hinzufügen";
     public static final String NEUER_WERWOLF = "Der Wiederbelebte erwacht und tauscht seine Hauptrollen- gegen eine Werwolfkarte";
-    public static final String GUTE_HEXE_WIEDERBELEBEN = "Gute Hexe erwacht und entscheidet sich ob sie ein Opfer der Nacht wiederbeleben will";
     public static final String MISS_VERONA = "Miss Verona erwacht und lässt sich Auskunft über die Spieler geben, die angegriffen wurden";
     public static final String SPION = "Spion erwacht und fragt den Erzähler nach der Anzahl der verbleibenden Spieler einer Fraktion";
     public static final String ANALYTIKER = "Analytiker erwacht und wählt zwei Spieler, der Erzähler sagt ihm ob diese in derselben Fraktion sind";
@@ -68,7 +69,7 @@ public class Nacht extends Thread
     public static final String KONDITOR = "Konditor erwacht und entscheidet sich ob es eine gute oder schlechte Torte gibt";
     public static final String KONDITOR_LEHRLING = "Konditor und Konditorlehrling erwachen und entscheiden sich ob es eine gute oder schlechte Torte gibt";
     public static final String OPFER = "Alle Opfer inklusive Liebespaaropfer werden bekannt gegeben";
-    //public static final String VERSTUMMT = "Der verstummte Spieler wird bekannt gegeben";
+    public static final String VERSTUMMT = "Der verstummte Spieler wird bekannt gegeben";
     public static final String WÖLFIN_NEBENROLLE = "Das Dorf erfährt die Bonusrolle der Wölfin";
 
     public static final String PROGRAMM_SCHÜTZE = "[Programm] Schütze";
@@ -93,11 +94,11 @@ public class Nacht extends Thread
     public static final String GRAF_VLADIMIR_TITLE = "Spieler unerkennbar machen";
     public static final String WERWÖLFE_TITLE = "Opfer wählen";
     public static final String WÖLFIN_TITLE = "Opfer wählen";
+    public static final String SCHRECKENSWOLF_TITLE = "Mitspieler verstummen";
     public static final String SCHATTENPRIESTER_TITLE = "Opfer wiederbeleben";
     public static final String NEUER_SCHATTENPRIESTER_TITLE = "Neuer Schattenpriester";
     public static final String CHEMIKER_TITLE = "Opfer wiederbeleben";
     public static final String NEUER_WERWOLF_TITLE = "Neuer Werwolf";
-    public static final String GUTE_HEXE_WIEDERBELEBEN_TITLE = "Opfer wiederbeleben";
     public static final String MISS_VERONA_TITLE = "Angegriffene Opfer";
     public static final String SPION_TITLE = "Fraktion wählen";
     public static final String ANALYTIKER_TITLE = "Spieler wählen";
@@ -107,14 +108,13 @@ public class Nacht extends Thread
     public static final String ORAKEL_VERBRAUCHT_TITLE = "Bonusrollen";
     public static final String SPÄHER_TITLE = "Spieler wählen";
     public static final String BUCHHALTER_TITLE = "Fähigkeit verbrauchen";
-    //public static final String BESCHWÖRER_TITLE = "Mitspieler verstummen";
     public static final String NACHBAR_INFORMATION_TITLE = "Besucher von ";
     public static final String SPURENLESER_INFORMATION_TITLE = "Besuchte Spieler von ";
     public static final String WAHRSAGER_TITLE = "Fraktion wählen";
     public static final String KONDITOR_TITLE = "Torte";
     public static final String KONDITOR_LEHRLING_TITLE = KONDITOR_TITLE;
     public static final String OPFER_TITLE = "Opfer der Nacht";
-    //public static final String VERSTUMMT_TITLE = "Verstummt";
+    public static final String VERSTUMMT_TITLE = "Verstummt";
     public static final String SCHÖNLINGE_TITLE = "Schönlinge";
     public static final String WÖLFIN_NEBENROLLE_TITLE = "Wölfin";
 
@@ -234,6 +234,17 @@ public class Nacht extends Thread
                             setSchütze();
                             break;
 
+                        case SCHRECKENSWOLF:
+                            Schreckenswolf schreckenswolf = (Schreckenswolf)rolle;
+                            if(schreckenswolf.werwölfeKilledOnSchutz()) {
+                                dropdownOtions = schreckenswolf.getDropdownOptions();
+                                chosenOption = showFrontendControl(statement, dropdownOtions);
+                                schreckenswolf.processChosenOption(chosenOption);
+                            } else {
+                                showImage(statement, ResourcePath.PASSIV);
+                            }
+                            break;
+
                         case WÖLFIN:
                             if (chosenOption.equals(Wölfin.KILL)) {
                                 wölfinKilled = true;
@@ -289,13 +300,6 @@ public class Nacht extends Thread
                                 }
                             }
                             break;
-
-                        /*case BESCHWÖRER:
-                            chosenPlayer = game.findSpieler(chosenOption);
-                            if (chosenPlayer != null) {
-                                beschworenerSpieler = chosenPlayer;
-                            }
-                            break;*/
 
                         case PROGRAMM_WAHRSAGER:
                             if (Wahrsager.isGuessing) {
@@ -370,14 +374,14 @@ public class Nacht extends Thread
                             checkVictory();
                             break;
 
-                        /*case VERSTUMMT:
+                        case VERSTUMMT:
                             if (beschworenerSpieler != null) {
                                 FrontendControl.erzählerListPage(statement, beschworenerSpieler.name);
                                 FrontendControl.spielerIconPicturePage(beschworenerSpieler.name, ResourcePath.VERSTUMMT);
 
                                 waitForAnswer();
                             }
-                            break;*/
+                            break;
 
                         case PROGRAMM_TORTE:
                             if (Torte.torte) {
@@ -958,6 +962,7 @@ public class Nacht extends Thread
         if(Wölfin.modus == Wölfin.TÖTEND) {
             addStatementRolle(WÖLFIN, WÖLFIN_TITLE, Wölfin.name, Statement.ROLLE_CHOOSE_ONE);
         }
+        addStatementRolle(SCHRECKENSWOLF, SCHRECKENSWOLF_TITLE, Schreckenswolf.name, Statement.ROLLE_SPECAL);
 
         addStatementFraktion(SCHATTENPRIESTER, SCHATTENPRIESTER_TITLE, Schattenpriester_Fraktion.name, Statement.FRAKTION_CHOOSE_ONE);
         addStatementFraktion(NEUER_SCHATTENPRIESTER, NEUER_SCHATTENPRIESTER_TITLE, Schattenpriester_Fraktion.name, Statement.FRAKTION_SPECAL);
@@ -992,9 +997,9 @@ public class Nacht extends Thread
         addProgrammStatement(PROGRAMM_OPFER);
         addStatementIndie(OPFER, OPFER_TITLE, Statement.INDIE);
 
-        /*if(Rolle.rolleInNachtEnthalten(Beschwörer.name)) { //TODO useless
+        if(Rolle.rolleInNachtEnthalten(Schreckenswolf.name)) { //TODO useless
             addStatementIndie(VERSTUMMT, VERSTUMMT_TITLE, Statement.INDIE);
-        }*/
+        }
         if(Wölfin.modus == Wölfin.TÖTEND) {
             addStatementRolle(WÖLFIN_NEBENROLLE, WÖLFIN_NEBENROLLE_TITLE, Wölfin.name, Statement.ROLLE_INFO);
         }
