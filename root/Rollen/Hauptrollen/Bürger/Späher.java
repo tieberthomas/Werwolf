@@ -2,6 +2,7 @@ package root.Rollen.Hauptrollen.Bürger;
 
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
+import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Rollen.Fraktion;
 import root.Rollen.Fraktionen.Bürger;
@@ -9,14 +10,15 @@ import root.Rollen.Hauptrolle;
 import root.Rollen.Nebenrollen.Tarnumhang;
 import root.Spieler;
 
-/**
- * Created by Steve on 12.11.2017.
- */
 public class Späher extends Hauptrolle
 {
-    public static final String TÖTEND_TITLE = "Tötend";
-    public static final String NICHT_TÖTEND_TITLE = "Nicht Tötend";
-    public static final String TARNUMHANG_TITLE = "Tarnumhang";
+    private static final String TÖTEND_TITLE = "Tötend";
+    private static final String NICHT_TÖTEND_TITLE = "Nicht Tötend";
+    private static final String TARNUMHANG_TITLE = "Tarnumhang";
+
+    public static String title = "Spieler wählen";
+    public static final String beschreibung = "Späher erwacht und lässt sich Auskunft über einen Mitspieler geben";
+    public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE_INFO;
 
     public static final String name = "Späher";
     public static Fraktion fraktion = new Bürger();
@@ -54,6 +56,21 @@ public class Späher extends Hauptrolle
     @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public String getTitle() {
+        return title;
+    }
+
+    @Override
+    public String getBeschreibung() {
+        return beschreibung;
+    }
+
+    @Override
+    public StatementType getStatementType() {
+        return statementType;
     }
 
     @Override

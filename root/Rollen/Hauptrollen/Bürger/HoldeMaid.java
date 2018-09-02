@@ -1,14 +1,17 @@
 package root.Rollen.Hauptrollen.Bürger;
 
 import root.Frontend.FrontendControl;
+import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Rollen.Fraktion;
 import root.Rollen.Fraktionen.Bürger;
 import root.Rollen.Hauptrolle;
 import root.Spieler;
 
-public class HoldeMaid extends Hauptrolle
-{
+public class HoldeMaid extends Hauptrolle {
+    public static String title = "Mitspieler offenbaren";
+    public static final String beschreibung = "Holde Maid erwacht und offenbart sich einem Mitspieler";
+    public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE;
     public static final String name = "Holde Maid";
     public static Fraktion fraktion = new Bürger();
     public static final String imagePath = ImagePath.HOLDE_MAID_KARTE;
@@ -22,7 +25,7 @@ public class HoldeMaid extends Hauptrolle
     @Override
     public void processChosenOption(String chosenOption) {
         Spieler chosenPlayer = game.findSpieler(chosenOption);
-        if(chosenPlayer!=null) {
+        if (chosenPlayer != null) {
             besucht = chosenPlayer;
         }
     }
@@ -30,6 +33,21 @@ public class HoldeMaid extends Hauptrolle
     @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public String getTitle() {
+        return title;
+    }
+
+    @Override
+    public String getBeschreibung() {
+        return beschreibung;
+    }
+
+    @Override
+    public StatementType getStatementType() {
+        return statementType;
     }
 
     @Override

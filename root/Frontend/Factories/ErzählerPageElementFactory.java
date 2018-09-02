@@ -12,6 +12,7 @@ import root.Phases.NightBuilding.Statement;
 import root.Phases.NightBuilding.StatementRolle;
 import root.Rollen.Hauptrollen.Bürger.Sammler;
 import root.Rollen.Nebenrolle;
+import root.Rollen.Nebenrollen.Konditorlehrling;
 
 import javax.swing.*;
 import java.awt.*;
@@ -242,14 +243,14 @@ public class ErzählerPageElementFactory {
             if(statement.isVisible()) {
                 nachtPunkte.add(statement.beschreibung);
                 if(!statement.isLebend()) {
-                    if (statement.beschreibung.contains(currentStatement) || (statement.title.equals(Nacht.KONDITOR_LEHRLING_TITLE) && currentStatement.equals(Nacht.KONDITOR_LEHRLING))) {
+                    if (statement.beschreibung.contains(currentStatement) || (statement.title.equals(Konditorlehrling.title) && currentStatement.equals(Konditorlehrling.beschreibung))) {
                         found = true;
                         nachtPunkteFarben.add(HTMLStringBuilder.blue);
                     } else {
                         nachtPunkteFarben.add(HTMLStringBuilder.gray);
                     }
                 } else {
-                    if (statement.beschreibung.contains(currentStatement) || (statement.title.equals(Nacht.KONDITOR_LEHRLING_TITLE) && currentStatement.equals(Nacht.KONDITOR_LEHRLING))) {
+                    if (statement.beschreibung.contains(currentStatement) || (statement.title.equals(Konditorlehrling.title) && currentStatement.equals(Konditorlehrling.beschreibung))) {
                         nachtPunkteFarben.add(HTMLStringBuilder.yellow);
                         found = true;
                     } else {
@@ -285,7 +286,7 @@ public class ErzählerPageElementFactory {
                 StatementRolle statementRolle = (StatementRolle)statement;
                 if(statementRolle.sammler) {
                     StatementRolle newRolleStatement = new StatementRolle(statementRolle.beschreibung, statementRolle.title, statementRolle.getRolle().getName(), statementRolle.type);
-                    if(!statementRolle.beschreibung.equals(Nacht.KONDITOR_LEHRLING)) {
+                    if(!statementRolle.beschreibung.equals(Konditorlehrling.beschreibung)) {
                         newRolleStatement.beschreibung = Sammler.beschreibungAddiditon + statement.beschreibung;
                     } else {
                         String searchString = "Konditorlehrling erwachen ";

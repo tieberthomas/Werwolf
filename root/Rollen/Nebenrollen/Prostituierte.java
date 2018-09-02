@@ -1,15 +1,15 @@
 package root.Rollen.Nebenrollen;
 
 import root.Frontend.FrontendControl;
+import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Rollen.Nebenrolle;
 import root.Spieler;
 
-/**
- * Created by Steve on 12.11.2017.
- */
-public class Prostituierte extends Nebenrolle
-{
+public class Prostituierte extends Nebenrolle {
+    public static String title = "Bett legen";
+    public static final String beschreibung = "Prostituierte legt sich zu einem Mitspieler ins Bett";
+    public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE;
     public static final String name = "Prostituierte";
     public static final String imagePath = ImagePath.PROSTITUIERTE_KARTE;
     public static boolean spammable = false;
@@ -24,7 +24,7 @@ public class Prostituierte extends Nebenrolle
     @Override
     public void processChosenOption(String chosenOption) {
         Spieler chosenPlayer = game.findSpieler(chosenOption);
-        if(chosenPlayer!=null && !chosenPlayer.equals(game.findSpielerPerRolle(name))) {
+        if (chosenPlayer != null && !chosenPlayer.equals(game.findSpielerPerRolle(name))) {
             besucht = chosenPlayer;
 
             host = chosenPlayer;
@@ -36,6 +36,21 @@ public class Prostituierte extends Nebenrolle
     @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public String getTitle() {
+        return title;
+    }
+
+    @Override
+    public String getBeschreibung() {
+        return beschreibung;
+    }
+
+    @Override
+    public StatementType getStatementType() {
+        return statementType;
     }
 
     @Override

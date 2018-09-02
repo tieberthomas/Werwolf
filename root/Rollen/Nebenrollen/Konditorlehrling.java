@@ -2,6 +2,7 @@ package root.Rollen.Nebenrollen;
 
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
+import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Rollen.Nebenrolle;
 
@@ -11,6 +12,9 @@ import static root.Rollen.Constants.DropdownConstants.GUT;
 import static root.Rollen.Constants.DropdownConstants.SCHLECHT;
 
 public class Konditorlehrling extends Nebenrolle {
+    public static String title = Konditor.title;
+    public static final String beschreibung = "Konditor und Konditorlehrling erwachen und entscheiden sich ob es eine gute oder schlechte Torte gibt";
+    public static StatementType statementType = StatementType.ROLLE_SPECAL;
     public static final String name = "Konditorlehrling";
     public static final String imagePath = ImagePath.KONDITORLEHRLING_KARTE;
     public static boolean spammable = true;
@@ -30,6 +34,21 @@ public class Konditorlehrling extends Nebenrolle {
     @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public String getTitle() {
+        return title;
+    }
+
+    @Override
+    public String getBeschreibung() {
+        return beschreibung;
+    }
+
+    @Override
+    public StatementType getStatementType() {
+        return statementType;
     }
 
     @Override

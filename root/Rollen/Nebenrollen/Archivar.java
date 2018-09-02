@@ -2,6 +2,7 @@ package root.Rollen.Nebenrollen;
 
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
+import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Rollen.Fraktionen.Bürger;
 import root.Rollen.Hauptrollen.Bürger.Bestienmeister;
@@ -10,11 +11,14 @@ import root.Rollen.NebenrollenTyp;
 import root.Spieler;
 
 public class Archivar extends Nebenrolle {
-    public static final String PASSIV_TITLE = "Passiv";
-    public static final String AKTIV_TITLE = "Aktiv";
-    public static final String INFORMATIV_TITLE = "Informativ";
-    public static final String TARNUMHANG_TITLE = "Tarnumhang";
+    private static final String PASSIV_TITLE = "Passiv";
+    private static final String AKTIV_TITLE = "Aktiv";
+    private static final String INFORMATIV_TITLE = "Informativ";
+    private static final String TARNUMHANG_TITLE = "Tarnumhang";
 
+    public static String title = "Spieler wählen";
+    public static final String beschreibung = "Archivar erwacht und lässt sich Auskunft über die Bonusrolle eines Mitspielers geben";
+    public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE_INFO;
     public static final String name = "Archivar";
     public static final String imagePath = ImagePath.ARCHIVAR_KARTE;
     public static boolean spammable = true;
@@ -61,6 +65,21 @@ public class Archivar extends Nebenrolle {
     @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public String getTitle() {
+        return title;
+    }
+
+    @Override
+    public String getBeschreibung() {
+        return beschreibung;
+    }
+
+    @Override
+    public StatementType getStatementType() {
+        return statementType;
     }
 
     @Override

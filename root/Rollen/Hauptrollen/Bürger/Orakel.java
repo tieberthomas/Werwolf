@@ -2,7 +2,7 @@ package root.Rollen.Hauptrollen.Bürger;
 
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
-import root.Phases.Nacht;
+import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Rollen.Fraktion;
 import root.Rollen.Fraktionen.Bürger;
@@ -17,6 +17,10 @@ import java.util.ArrayList;
  * Created by Steve on 15.06.2018.
  */
 public class Orakel extends Hauptrolle {
+    public static String title = "Bonusrolle";
+    public static final String beschreibung = "Orakel erwacht und lässt sich vom Erzähler die Bonusrollenkarte eines zufälligen Bürgers zeigen";
+    public static StatementType statementType = StatementType.ROLLE_INFO;
+    public static final String VERBRAUCHT_TITLE = "Bonusrollen";
     public static final String name = "Orakel";
     public static Fraktion fraktion = new Bürger();
     public static final String imagePath = ImagePath.ORAKEL_KARTE;
@@ -37,10 +41,10 @@ public class Orakel extends Hauptrolle {
                 ArrayList<String> nebenRolleList = (ArrayList<String>) geseheneNebenrollen.clone();
                 nebenRolleList.remove(orakelSpieler.nebenrolle.getName());
                 FrontendControl info = new FrontendControl(FrontendControlType.LIST, nebenRolleList);
-                info.title = Nacht.ORAKEL_VERBRAUCHT_TITLE;
+                info.title = VERBRAUCHT_TITLE;
                 return info;
             } else {
-                return new FrontendControl(Nacht.ORAKEL_VERBRAUCHT_TITLE);
+                return new FrontendControl(VERBRAUCHT_TITLE);
             }
         }
     }
@@ -48,6 +52,21 @@ public class Orakel extends Hauptrolle {
     @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public String getTitle() {
+        return title;
+    }
+
+    @Override
+    public String getBeschreibung() {
+        return beschreibung;
+    }
+
+    @Override
+    public StatementType getStatementType() {
+        return statementType;
     }
 
     @Override

@@ -1,7 +1,19 @@
 package root.Phases.NightBuilding;
 
+import root.Rollen.Constants.WölfinState;
 import root.Rollen.Fraktion;
-import root.Rollen.Hauptrollen.Bürger.Wirt;
+import root.Rollen.Fraktionen.Schattenpriester_Fraktion;
+import root.Rollen.Fraktionen.Vampire;
+import root.Rollen.Fraktionen.Werwölfe;
+import root.Rollen.Hauptrollen.Bürger.*;
+import root.Rollen.Hauptrollen.Vampire.GrafVladimir;
+import root.Rollen.Hauptrollen.Vampire.LadyAleera;
+import root.Rollen.Hauptrollen.Vampire.MissVerona;
+import root.Rollen.Hauptrollen.Werwölfe.Chemiker;
+import root.Rollen.Hauptrollen.Werwölfe.Schreckenswolf;
+import root.Rollen.Hauptrollen.Werwölfe.Wölfin;
+import root.Rollen.Hauptrollen.Überläufer.Überläufer;
+import root.Rollen.Nebenrollen.*;
 import root.Rollen.Rolle;
 import root.mechanics.Game;
 
@@ -19,7 +31,7 @@ public class NormalNightStatementBuilder {
             statements.add(getStatement(Wirt.name));
         }
 
-        /*if (Totengräber.getNehmbareNebenrollen().size() > 0) {
+        if (Totengräber.getNehmbareNebenrollen().size() > 0) {
             statements.add(getStatement(Totengräber.name));
         }
         statements.add(getStatement(Gefängniswärter.name));
@@ -51,13 +63,11 @@ public class NormalNightStatementBuilder {
         statements.add(getSecondStatement(Chemiker.name));
 
         statements.add(getStatement(MissVerona.name));
-        statements.add(getStatement(Spion.name));
         statements.add(getStatement(Analytiker.name));
         statements.add(getStatement(Archivar.name));
         statements.add(getStatement(Seherin.name));
         statements.add(getStatement(Orakel.name));
         statements.add(getStatement(Späher.name));
-        statements.add(getStatement(Buchhalter.name));
 
         statements.add(getSecondStatement(Nachbar.name));
         statements.add(getSecondStatement(Spurenleser.name));
@@ -84,7 +94,7 @@ public class NormalNightStatementBuilder {
             statements.add(getSecondStatement(Wölfin.name));
         }
 
-        //addProgrammStatement(PROGRAMM_TORTE);*/
+        //addProgrammStatement(PROGRAMM_TORTE);
 
         return statements;
     }

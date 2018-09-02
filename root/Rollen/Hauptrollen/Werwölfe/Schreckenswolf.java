@@ -2,6 +2,7 @@ package root.Rollen.Hauptrollen.Werwölfe;
 
 import root.Frontend.FrontendControl;
 import root.Phases.Nacht;
+import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Rollen.Fraktion;
 import root.Rollen.Fraktionen.Werwölfe;
@@ -12,6 +13,9 @@ import root.mechanics.Opfer;
 import java.util.ArrayList;
 
 public class Schreckenswolf extends Hauptrolle {
+    public static String title = "Mitspieler verstummen";
+    public static final String beschreibung = "Schreckenswolf erwacht und verstummt einen Spieler der am folgenden Tag nichtmehr reden darf";
+    public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE;
     public static final String name = "Schreckenswolf";
     public static Fraktion fraktion = new Werwölfe();
     public static final String imagePath = ImagePath.SCHRECKENSWOLF_KARTE;
@@ -35,6 +39,21 @@ public class Schreckenswolf extends Hauptrolle {
     @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public String getTitle() {
+        return title;
+    }
+
+    @Override
+    public String getBeschreibung() {
+        return beschreibung;
+    }
+
+    @Override
+    public StatementType getStatementType() {
+        return statementType;
     }
 
     @Override

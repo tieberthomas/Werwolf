@@ -2,6 +2,7 @@ package root.Rollen.Hauptrollen.Bürger;
 
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
+import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Rollen.Fraktion;
 import root.Rollen.Fraktionen.Bürger;
@@ -15,6 +16,9 @@ import root.Spieler;
 public class Seherin extends Hauptrolle {
     public static final String TARNUMHANG_TITLE = "Tarnumhang";
 
+    public static String title = "Spieler wählen";
+    public static final String beschreibung = "Seherin erwacht und lässt sich Auskunft über die Fraktion eines Mitspielers geben";
+    public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE_INFO;
     public static final String name = "Seherin";
     public static Fraktion fraktion = new Bürger();
     public static final String imagePath = ImagePath.SEHERIN_KARTE;
@@ -58,6 +62,21 @@ public class Seherin extends Hauptrolle {
     @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public String getTitle() {
+        return title;
+    }
+
+    @Override
+    public String getBeschreibung() {
+        return beschreibung;
+    }
+
+    @Override
+    public StatementType getStatementType() {
+        return statementType;
     }
 
     @Override

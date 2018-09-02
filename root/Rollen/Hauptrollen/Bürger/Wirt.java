@@ -50,21 +50,6 @@ public class Wirt extends Hauptrolle {
     }
 
     @Override
-    public Fraktion getFraktion() {
-        return fraktion;
-    }
-
-    @Override
-    public String getImagePath() {
-        return imagePath;
-    }
-
-    @Override
-    public boolean isSpammable() {
-        return spammable;
-    }
-
-    @Override
     public String getTitle() {
         return title;
     }
@@ -77,5 +62,20 @@ public class Wirt extends Hauptrolle {
     @Override
     public StatementType getStatementType() {
         return statementType;
+    }
+
+    @Override
+    public Fraktion getFraktion() {
+        return fraktion;
+    }
+
+    @Override
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    @Override
+    public boolean isSpammable() {
+        return spammable;
     }
 }

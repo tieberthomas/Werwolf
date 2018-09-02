@@ -2,6 +2,7 @@ package root.Rollen.Hauptrollen.Vampire;
 
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
+import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Rollen.Fraktion;
 import root.Rollen.Fraktionen.Vampire;
@@ -12,6 +13,9 @@ import root.Spieler;
 import java.util.ArrayList;
 
 public class LadyAleera extends Hauptrolle {
+    public static String title = "Geschützte Spieler";
+    public static final String beschreibung = "Lady Aleera erwacht und sieht alle geschützten Spieler";
+    public static StatementType statementType = StatementType.ROLLE_INFO;
     public static final String name = "Lady Aleera";
     public static Fraktion fraktion = new Vampire();
     public static final String imagePath = ImagePath.LADY_ALEERA_KARTE;
@@ -26,6 +30,21 @@ public class LadyAleera extends Hauptrolle {
     @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public String getTitle() {
+        return title;
+    }
+
+    @Override
+    public String getBeschreibung() {
+        return beschreibung;
+    }
+
+    @Override
+    public StatementType getStatementType() {
+        return statementType;
     }
 
     @Override

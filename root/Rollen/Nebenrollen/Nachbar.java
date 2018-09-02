@@ -3,6 +3,7 @@ package root.Rollen.Nebenrollen;
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.Phases.Nacht;
+import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Rollen.Nebenrolle;
 import root.Rollen.NebenrollenTyp;
@@ -11,6 +12,9 @@ import root.Spieler;
 import java.util.ArrayList;
 
 public class Nachbar extends Nebenrolle {
+    public static String title = "Spieler beobachten";
+    public static final String beschreibung = "Nachbar erwacht und entscheidet welchen Spieler er beobachten möchte";
+    public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE;
     public static final String name = "Nachbar";
     public static final String imagePath = ImagePath.NACHBAR_KARTE;
     public static boolean spammable = true;
@@ -42,6 +46,21 @@ public class Nachbar extends Nebenrolle {
     @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public String getTitle() {
+        return title;
+    }
+
+    @Override
+    public String getBeschreibung() {
+        return beschreibung;
+    }
+
+    @Override
+    public StatementType getStatementType() {
+        return statementType;
     }
 
     @Override

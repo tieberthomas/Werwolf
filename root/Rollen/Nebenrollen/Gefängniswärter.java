@@ -1,11 +1,15 @@
 package root.Rollen.Nebenrollen;
 
 import root.Frontend.FrontendControl;
+import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Rollen.Nebenrolle;
 import root.Spieler;
 
 public class Gefängniswärter extends Nebenrolle {
+    public static String title = "Schutzhaft";
+    public static final String beschreibung = "Gefängniswärter erwacht und stellt einen Spieler  unter Schutzhaft";
+    public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE;
     public static final String name = "Gefängniswärter";
     public static final String imagePath = ImagePath.GEFÄNGNISWÄRTER_KARTE;
     public static boolean unique = true;
@@ -33,10 +37,24 @@ public class Gefängniswärter extends Nebenrolle {
     }
 
     @Override
+    public String getTitle() {
+        return title;
+    }
+
+    @Override
+    public String getBeschreibung() {
+        return beschreibung;
+    }
+
+    @Override
+    public StatementType getStatementType() {
+        return statementType;
+    }
+
+    @Override
     public String getImagePath() {
         return imagePath;
     }
-
 
     @Override
     public boolean isSpammable() {

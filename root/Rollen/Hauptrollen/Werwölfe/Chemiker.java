@@ -2,6 +2,7 @@ package root.Rollen.Hauptrollen.Werwölfe;
 
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
+import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Rollen.Fraktion;
 import root.Rollen.Fraktionen.Werwölfe;
@@ -11,6 +12,9 @@ import root.mechanics.Opfer;
 import java.util.ArrayList;
 
 public class Chemiker extends Hauptrolle {
+    public static String title = "Opfer wiederbeleben";
+    public static final String beschreibung = "Chemiker erwacht und kann ein Wolfsopfer dieser Nacht wiederbeleben und zum Wolfsrudel hinzufügen";
+    public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE;
     public static final String name = "Chemiker";
     public static Fraktion fraktion = new Werwölfe();
     public static final String imagePath = ImagePath.CHEMIKER_KARTE;
@@ -41,6 +45,21 @@ public class Chemiker extends Hauptrolle {
     @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public String getTitle() {
+        return title;
+    }
+
+    @Override
+    public String getBeschreibung() {
+        return beschreibung;
+    }
+
+    @Override
+    public StatementType getStatementType() {
+        return statementType;
     }
 
     @Override

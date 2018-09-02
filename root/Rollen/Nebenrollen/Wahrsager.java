@@ -1,6 +1,7 @@
 package root.Rollen.Nebenrollen;
 
 import root.Frontend.FrontendControl;
+import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Rollen.Fraktion;
 import root.Rollen.Nebenrolle;
@@ -12,6 +13,9 @@ public class Wahrsager extends Nebenrolle
 {
     public static final String KEIN_OPFER = "Kein Opfer";
 
+    public static String title = "Fraktion wählen";
+    public static final String beschreibung = "Wahrsager erwacht und gibt seinen Tipp ab welche Fraktion bei der Dorfabstimmung sterben wird";
+    public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE;
     public static final String name = "Wahrsager";
     public static final String imagePath = ImagePath.WAHRSAGER_KARTE;
     public static boolean spammable = false;
@@ -32,6 +36,21 @@ public class Wahrsager extends Nebenrolle
     @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public String getTitle() {
+        return title;
+    }
+
+    @Override
+    public String getBeschreibung() {
+        return beschreibung;
+    }
+
+    @Override
+    public StatementType getStatementType() {
+        return statementType;
     }
 
     @Override

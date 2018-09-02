@@ -3,6 +3,7 @@ package root.Rollen.Nebenrollen;
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.Phases.Nacht;
+import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Rollen.Nebenrolle;
 import root.Rollen.NebenrollenTyp;
@@ -11,6 +12,9 @@ import root.Spieler;
 import java.util.ArrayList;
 
 public class Spurenleser extends Nebenrolle {
+    public static String title = "Spuren lesen von";
+    public static final String beschreibung = "Spurenleser erwacht und entscheidet welchen Spieler er beobachten möchte";
+    public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE;
     public static final String name = "Spurenleser";
     public static final String imagePath = ImagePath.SPURENLESER_KARTE;
     public static boolean spammable = true;
@@ -41,6 +45,21 @@ public class Spurenleser extends Nebenrolle {
     @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public String getTitle() {
+        return title;
+    }
+
+    @Override
+    public String getBeschreibung() {
+        return beschreibung;
+    }
+
+    @Override
+    public StatementType getStatementType() {
+        return statementType;
     }
 
     @Override

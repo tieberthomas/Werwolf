@@ -37,36 +37,18 @@ public class Nacht extends Thread {
     public static final String ALLE_SCHLAFEN_EIN = "Alle schlafen ein";
     public static final String ALLE_WACHEN_AUF = "Alle wachen auf";
 
-    public static final String WIRT = "Wirt erwacht und entscheidet sich ob er ein Freibier ausgeben will";
-    public static final String TOTENGRÄBER = "Totengräber erwacht und entscheidet ob er seine Bonusrollenkarte tauschen möchte";
-    public static final String GEFÄNGNISWÄRTER = "Gefängniswärter erwacht und stellt einen Spieler  unter Schutzhaft";
-    public static final String ÜBERLÄUFER = "Überläufer erwacht und entscheidet ob er seine Hauptrollenkarte tauschen möchte";
-    public static final String HOLDE_MAID = "Holde Maid erwacht und offenbart sich einem Mitspieler";
-    public static final String NACHBAR = "Nachbar erwacht und entscheidet welchen Spieler er beobachten möchte";
-    public static final String SPURENLESER = "Spurenleser erwacht und entscheidet welchen Spieler er beobachten möchte";
-    public static final String LADY_ALEERA = "Lady Aleera erwacht und sieht alle geschützten Spieler";
-    public static final String PROSTITUIERTE = "Prostituierte legt sich zu einem Mitspieler ins Bett";
-    public static final String RIESE = "Riese erwacht und entscheidet sich ob einen Mitspieler töten möchte";
     public static final String VAMPIRE = "Die Vampire erwachen und wählen ein Opfer aus";
-    public static final String GRAF_VLADIMIR = "Graf Vladimir erwacht und macht einen Spieler unerkennbar";
     public static final String WERWÖLFE = "Die Werwölfe erwachen und die Wölfe wählen ein Opfer aus";
-    public static final String WÖLFIN = "Wölfin erwacht und wählt ein Opfer aus, wenn sie das tut, erfährt das dorf ihre Bonusrolle";
-    public static final String SCHRECKENSWOLF = "Schreckenswolf erwacht und verstummt einen Spieler der am folgenden Tag nichtmehr reden darf";
     public static final String SCHATTENPRIESTER = "Die Schattenpriester erwachen und entscheiden welchen Verstorbenen dieser Nacht sie wiederbeleben und zum Kult hinzufügen möchten";
     public static final String NEUER_SCHATTENPRIESTER = "Der Wiederbelebte erwacht und tauscht seine Karten gegen Schattenkarten";
-    public static final String CHEMIKER = "Chemiker erwacht und kann ein Wolfsopfer dieser Nacht wiederbeleben und zum Wolfsrudel hinzufügen";
+
     public static final String NEUER_WERWOLF = "Der Wiederbelebte erwacht und tauscht seine Hauptrollen- gegen eine Werwolfkarte";
-    public static final String MISS_VERONA = "Miss Verona erwacht und lässt sich Auskunft über die Spieler geben, die angegriffen wurden";
-    public static final String ANALYTIKER = "Analytiker erwacht und wählt zwei Spieler, der Erzähler sagt ihm ob diese in derselben Fraktion sind";
-    public static final String ARCHIVAR = "Archivar erwacht und lässt sich Auskunft über die Bonusrolle eines Mitspielers geben";
-    public static final String SEHERIN = "Seherin erwacht und lässt sich Auskunft über die Fraktion eines Mitspielers geben";
-    public static final String ORAKEL = "Orakel erwacht und lässt sich vom Erzähler die Bonusrollenkarte eines zufälligen Bürgers zeigen";
-    public static final String SPÄHER = "Späher erwacht und lässt sich Auskunft über einen Mitspieler geben";
     public static final String NACHBAR_INFORMATION = "Nachbar erwacht und erfährt wer die Besucher seines gewählten Spielers waren";
     public static final String SPURENLESER_INFORMATION = "Spurenleser erwacht und erfährt wen der gewählte Spieler besucht hat";
-    public static final String WAHRSAGER = "Wahrsager erwacht und gibt seinen Tipp ab welche Fraktion bei der Dorfabstimmung sterben wird";
-    public static final String KONDITOR = "Konditor erwacht und entscheidet sich ob es eine gute oder schlechte Torte gibt";
-    public static final String KONDITOR_LEHRLING = "Konditor und Konditorlehrling erwachen und entscheiden sich ob es eine gute oder schlechte Torte gibt";
+
+
+
+
     public static final String OPFER = "Alle Opfer inklusive Liebespaaropfer werden bekannt gegeben";
     public static final String VERSTUMMT = "Der verstummte Spieler wird bekannt gegeben";
     public static final String WÖLFIN_NEBENROLLE = "Das Dorf erfährt die Bonusrolle der Wölfin";
@@ -79,37 +61,18 @@ public class Nacht extends Thread {
     public static final String ALLE_SCHLAFEN_EIN_TITLE = "Alle schlafen ein";
     public static final String ALLE_WACHEN_AUF_TITLE = "Alle wachen auf";
 
-    public static final String WIRT_TITLE = "Freibier ausgeben";
-    public static final String TOTENGRÄBER_TITLE = "Karte tauschen";
-    public static final String GEFÄNGNISWÄRTER_TITLE = "Schutzhaft";
-    public static final String ÜBERLÄUFER_TITLE = "Karte tauschen";
-    public static final String HOLDE_MAID_TITLE = "Mitspieler offenbaren";
-    public static final String NACHBAR_TITLE = "Spieler beobachten";
-    public static final String SPURENLESER_TITLE = "Spuren lesen von";
-    public static final String LADY_ALEERA_TITLE = "Geschützte Spieler";
-    public static final String PROSTITUIERTE_TITLE = "Bett legen";
-    public static final String RIESE_TITLE = "Mitspieler töten";
     public static final String VAMPIRE_TITLE = "Opfer wählen";
-    public static final String GRAF_VLADIMIR_TITLE = "Spieler unerkennbar machen";
     public static final String WERWÖLFE_TITLE = "Opfer wählen";
-    public static final String WÖLFIN_TITLE = "Opfer wählen";
-    public static final String SCHRECKENSWOLF_TITLE = "Mitspieler verstummen";
     public static final String SCHATTENPRIESTER_TITLE = "Opfer wiederbeleben";
     public static final String NEUER_SCHATTENPRIESTER_TITLE = "Neuer Schattenpriester";
-    public static final String CHEMIKER_TITLE = "Opfer wiederbeleben";
+
     public static final String NEUER_WERWOLF_TITLE = "Neuer Werwolf";
-    public static final String MISS_VERONA_TITLE = "Angegriffene Opfer";
-    public static final String ANALYTIKER_TITLE = "Spieler wählen";
-    public static final String ARCHIVAR_TITLE = "Spieler wählen";
-    public static final String SEHERIN_TITLE = "Spieler wählen";
-    public static final String ORAKEL_TITLE = "Bonusrolle";
-    public static final String ORAKEL_VERBRAUCHT_TITLE = "Bonusrollen";
-    public static final String SPÄHER_TITLE = "Spieler wählen";
     public static final String NACHBAR_INFORMATION_TITLE = "Besucher von ";
     public static final String SPURENLESER_INFORMATION_TITLE = "Besuchte Spieler von ";
-    public static final String WAHRSAGER_TITLE = "Fraktion wählen";
-    public static final String KONDITOR_TITLE = "Torte";
-    public static final String KONDITOR_LEHRLING_TITLE = KONDITOR_TITLE;
+
+
+
+
     public static final String OPFER_TITLE = "Opfer der Nacht";
     public static final String VERSTUMMT_TITLE = "Verstummt";
     public static final String SCHÖNLINGE_TITLE = "Schönlinge";
@@ -226,7 +189,7 @@ public class Nacht extends Thread {
                             setSchütze();
                             break;
 
-                        case SCHRECKENSWOLF:
+                        case Schreckenswolf.beschreibung:
                             Schreckenswolf schreckenswolf = (Schreckenswolf) rolle;
                             if (schreckenswolf.werwölfeKilledOnSchutz()) {
                                 dropdownOtions = schreckenswolf.getDropdownOptions();
@@ -237,7 +200,7 @@ public class Nacht extends Thread {
                             }
                             break;
 
-                        case WÖLFIN:
+                        case Wölfin.beschreibung:
                             if (!"".equals(chosenOption)) {
                                 wölfinKilled = true;
                                 wölfinSpieler = game.findSpielerPerRolle(Wölfin.name);
@@ -268,7 +231,7 @@ public class Nacht extends Thread {
                             showListShowImage(statement, neuerWerwolf, ImagePath.WÖLFE_ICON);
                             break;
 
-                        case ANALYTIKER:
+                        case Analytiker.beschreibung:
                             Spieler analytikerSpieler = game.findSpielerPerRolle(rolle.getName());
                             if (Rolle.rolleLebend(Analytiker.name)) {
                                 ArrayList<String> spielerOrNonWithoutAnalytiker = (ArrayList<String>) spielerOrNon.clone();
@@ -312,7 +275,7 @@ public class Nacht extends Thread {
                             }
                             break;
 
-                        case WAHRSAGER:
+                        case Wahrsager.beschreibung:
                             Spieler wahrsagerSpieler1 = game.findSpielerOrDeadPerRolle(Wahrsager.name);
                             if (wahrsagerSpieler1 != null) {
                                 Wahrsager wahrsager = (Wahrsager) wahrsagerSpieler1.nebenrolle;
@@ -321,8 +284,8 @@ public class Nacht extends Thread {
                             }
                             break;
 
-                        case KONDITOR:
-                        case KONDITOR_LEHRLING:
+                        case Konditor.beschreibung:
+                        case Konditorlehrling.beschreibung:
                             //TODO evaluieren ob Page angezeigt werden soll wenn gibtEsTorte();
                             if (Opfer.deadVictims.size() == 0) {
                                 if (gibtEsTorte()) {

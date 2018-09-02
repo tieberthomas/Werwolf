@@ -2,6 +2,7 @@ package root.Rollen.Hauptrollen.Überläufer;
 
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
+import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Rollen.Fraktion;
 import root.Rollen.Fraktionen.Überläufer_Fraktion;
@@ -12,6 +13,9 @@ import root.Spieler;
 import java.util.ArrayList;
 
 public class Überläufer extends Hauptrolle {
+    public static String title = "Karte tauschen";
+    public static final String beschreibung = "Überläufer erwacht und entscheidet ob er seine Hauptrollenkarte tauschen möchte";
+    public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE;
     public static final String name = "Überläufer";
     public static Fraktion fraktion = new Überläufer_Fraktion();
     public static final String imagePath = ImagePath.ÜBERLÄUFER_KARTE;
@@ -47,6 +51,21 @@ public class Überläufer extends Hauptrolle {
     @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public String getTitle() {
+        return title;
+    }
+
+    @Override
+    public String getBeschreibung() {
+        return beschreibung;
+    }
+
+    @Override
+    public StatementType getStatementType() {
+        return statementType;
     }
 
     @Override

@@ -7,6 +7,9 @@ vladimir
 opfer anzeigen am ende der nacht
 spurenleser
 
+tasks:
+aktiv - passiv - informativ (eigene datacluster dafür erstellen)
+
 
 CherryOnTop:
 seher bamboozlekarten dem erzähler zeigen während der seher aktion damit dieser nicht verwirrt ist
