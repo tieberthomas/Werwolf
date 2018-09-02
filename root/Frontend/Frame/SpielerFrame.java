@@ -68,7 +68,7 @@ public class SpielerFrame extends MyFrame{
         blankPage = new Page();
         dropDownPage = pageFactory.generateDropdownPage("",1);
         bierPage = pageFactory.generateStaticImagePage(Tag.dayTitle, ImagePath.FREIBIER, true);
-        deadPage = pageFactory.generateStaticImagePage("Tod", ImagePath.TOT, true);
+        deadPage = pageFactory.generateStaticImagePage("Tot", ImagePath.TOT, true);
         aufgebrauchtPage = pageFactory.generateStaticImagePage("Aufgebraucht", ImagePath.AUFGEBRAUCHT, true);
         deactivatedPage = pageFactory.generateStaticImagePage("Deaktiviert", ImagePath.DEAKTIVIERT, true);
     }

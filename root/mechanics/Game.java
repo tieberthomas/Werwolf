@@ -164,7 +164,7 @@ public class Game {
 
         switch(fraktionen.size()){
             case 0:
-                return "Tod";
+                return "Tot";
             case 1:
                 return fraktionen.get(0).getName();
             case 2:
