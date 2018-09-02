@@ -81,7 +81,6 @@ public class ImagePath {
     public static String SCHATTEN_KARTE = SECONDARY_ROLE_PATH + "Schatten" + IMAGE_FILE_EXTENSION;
     public static String SCHATTENKUTTE_KARTE = SECONDARY_ROLE_PATH + "Schattenkutte" + IMAGE_FILE_EXTENSION;
     public static String SCHWARZE_SEELE_KARTE = SECONDARY_ROLE_PATH + "Schwarze_Seele" + IMAGE_FILE_EXTENSION;
-    public static String SPION_KARTE = SECONDARY_ROLE_PATH + "Spion" + IMAGE_FILE_EXTENSION;
     public static String TARNUMHANG_KARTE = SECONDARY_ROLE_PATH + "Tarnumhang" + IMAGE_FILE_EXTENSION;
     public static String TOTENGRÄBER_KARTE = SECONDARY_ROLE_PATH + "Totengräber" + IMAGE_FILE_EXTENSION;
     public static String VAMPIRUMHANG_KARTE = SECONDARY_ROLE_PATH + "Vampirumhang" + IMAGE_FILE_EXTENSION;

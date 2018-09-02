@@ -58,7 +58,6 @@ public class Nacht extends Thread {
     public static final String CHEMIKER = "Chemiker erwacht und kann ein Wolfsopfer dieser Nacht wiederbeleben und zum Wolfsrudel hinzufügen";
     public static final String NEUER_WERWOLF = "Der Wiederbelebte erwacht und tauscht seine Hauptrollen- gegen eine Werwolfkarte";
     public static final String MISS_VERONA = "Miss Verona erwacht und lässt sich Auskunft über die Spieler geben, die angegriffen wurden";
-    public static final String SPION = "Spion erwacht und fragt den Erzähler nach der Anzahl der verbleibenden Spieler einer Fraktion";
     public static final String ANALYTIKER = "Analytiker erwacht und wählt zwei Spieler, der Erzähler sagt ihm ob diese in derselben Fraktion sind";
     public static final String ARCHIVAR = "Archivar erwacht und lässt sich Auskunft über die Bonusrolle eines Mitspielers geben";
     public static final String SEHERIN = "Seherin erwacht und lässt sich Auskunft über die Fraktion eines Mitspielers geben";
@@ -101,7 +100,6 @@ public class Nacht extends Thread {
     public static final String CHEMIKER_TITLE = "Opfer wiederbeleben";
     public static final String NEUER_WERWOLF_TITLE = "Neuer Werwolf";
     public static final String MISS_VERONA_TITLE = "Angegriffene Opfer";
-    public static final String SPION_TITLE = "Fraktion wählen";
     public static final String ANALYTIKER_TITLE = "Spieler wählen";
     public static final String ARCHIVAR_TITLE = "Spieler wählen";
     public static final String SEHERIN_TITLE = "Spieler wählen";
@@ -953,7 +951,6 @@ public class Nacht extends Thread {
         addStatementRolle(NEUER_WERWOLF, NEUER_WERWOLF_TITLE, Chemiker.name, StatementType.ROLLE_SPECAL); //vll. rolle_info
 
         addStatementRolle(MISS_VERONA, MISS_VERONA_TITLE, MissVerona.name, StatementType.ROLLE_INFO);
-        addStatementRolle(SPION, SPION_TITLE, Spion.name, StatementType.ROLLE_CHOOSE_ONE_INFO);
         addStatementRolle(ANALYTIKER, ANALYTIKER_TITLE, Analytiker.name, StatementType.ROLLE_SPECAL);
         addStatementRolle(ARCHIVAR, ARCHIVAR_TITLE, Archivar.name, StatementType.ROLLE_CHOOSE_ONE_INFO);
         addStatementRolle(SEHERIN, SEHERIN_TITLE, Seherin.name, StatementType.ROLLE_CHOOSE_ONE_INFO);

@@ -41,7 +41,6 @@ Chemiker erwacht und kann ein Wolfsopfer dieser Nacht wiederbeleben und zum Wolf
 Der Wiederbelebte erwacht und tauscht seine Hauptrollen- gegen eine Werwolfkarte
 Gute Hexe erwacht und entscheidet sich ob sie ein Opfer der Nacht wiederbeleben will
 Miss Verona erwacht und lässt sich Auskunft über die Spieler geben, die angegriffen wurden
-Spion erwacht und fragt den Erzähler nach der Anzahl der verbleibenden Spieler einer Fraktion
 Analytiker erwacht und wählt zwei Spieler, der Erzähler sagt ihm ob diese in derselben Fraktion sind
 Archivar erwacht und lässt sich Auskunft über die Bonusrolle eines Mitspielers geben
 Seherin erwacht und lässt sich Auskunft über die Fraktion eines Mitspielers geben
