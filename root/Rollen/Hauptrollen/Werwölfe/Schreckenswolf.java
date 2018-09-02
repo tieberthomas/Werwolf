@@ -32,7 +32,7 @@ public class Schreckenswolf extends Hauptrolle {
         Spieler chosenPlayer = game.findSpieler(chosenOption);
         if (chosenPlayer != null) {
             besucht = chosenPlayer;
-            Nacht.beschworenerSpieler = chosenPlayer;
+            Nacht.verstummterSpieler = chosenPlayer;
         }
     }
 

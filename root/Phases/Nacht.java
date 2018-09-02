@@ -90,7 +90,7 @@ public class Nacht extends Thread {
     public static ArrayList<Spieler> playersAwake = new ArrayList<>();
     public static boolean wölfinKilled;
     public static Spieler wölfinSpieler;
-    public static Spieler beschworenerSpieler;
+    public static Spieler verstummterSpieler;
 
     public Nacht(Game game) {
         this.game = game;
@@ -114,7 +114,7 @@ public class Nacht extends Thread {
             Spieler chosenPlayer;
             wölfinKilled = false;
             wölfinSpieler = null;
-            beschworenerSpieler = null;
+            verstummterSpieler = null;
 
             ArrayList<String> spielerOrNon = game.getLivingPlayerOrNoneStrings();
 
@@ -330,9 +330,9 @@ public class Nacht extends Thread {
                             break;
 
                         case VERSTUMMT:
-                            if (beschworenerSpieler != null) {
-                                FrontendControl.erzählerListPage(statement, beschworenerSpieler.name);
-                                FrontendControl.spielerIconPicturePage(beschworenerSpieler.name, ImagePath.VERSTUMMT);
+                            if (verstummterSpieler != null) {
+                                FrontendControl.erzählerListPage(statement, verstummterSpieler.name);
+                                FrontendControl.spielerIconPicturePage(verstummterSpieler.name, ImagePath.VERSTUMMT);
 
                                 waitForAnswer();
                             }
