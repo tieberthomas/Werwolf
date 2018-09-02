@@ -16,6 +16,8 @@ public class Rolle {
     public Spieler besucht;
     public Spieler besuchtLetzteNacht;
     public int abilityCharges = 1;
+    public String title;
+    public String statement;
 
     public FrontendControl getDropdownOptions() {
         return new FrontendControl();

@@ -5,7 +5,7 @@ import root.Frontend.Frame.ErzählerFrame;
 import root.Frontend.Frame.SpielerFrame;
 import root.Frontend.Frame.ÜbersichtsFrame;
 import root.Frontend.Page.Page;
-import root.Phases.Statement;
+import root.Phases.NightBuilding.Statement;
 import root.ResourceManagement.ImagePath;
 import root.Rollen.Constants.DropdownConstants;
 import root.Rollen.Hauptrollen.Vampire.GrafVladimir;

@@ -1,4 +1,4 @@
-package root.Phases;
+package root.Phases.NightBuilding;
 
 import root.Rollen.Fraktion;
 
@@ -6,9 +6,9 @@ import root.Rollen.Fraktion;
  * Created by Steve on 27.12.2017.
  */
 public class StatementFraktion extends Statement {
-    String fraktion;
+    public String fraktion;
 
-    public StatementFraktion(String beschreibung, String title, String fraktion, int type) {
+    public StatementFraktion(String beschreibung, String title, String fraktion, StatementType type) {
         this.beschreibung = beschreibung;
         this.title = title;
         this.fraktion = fraktion;

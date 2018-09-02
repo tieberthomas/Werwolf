@@ -4,7 +4,7 @@ import root.Frontend.Frame.ErzählerFrame;
 import root.Frontend.Page.Page;
 import root.Frontend.Page.PageElement;
 import root.Frontend.Page.PageTable;
-import root.Phases.Statement;
+import root.Phases.NightBuilding.Statement;
 import root.Phases.Tag;
 import root.ResourceManagement.ImagePath;
 import root.mechanics.Torte;

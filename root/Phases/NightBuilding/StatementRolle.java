@@ -1,4 +1,4 @@
-package root.Phases;
+package root.Phases.NightBuilding;
 
 import root.Rollen.Hauptrollen.Bürger.Sammler;
 import root.Rollen.Rolle;
@@ -8,10 +8,10 @@ import root.mechanics.Opfer;
  * Created by Steve on 27.12.2017.
  */
 public class StatementRolle extends Statement {
-    String rolle;
+    public String rolle;
     public boolean sammler;
 
-    public StatementRolle(String beschreibung, String title, String rolle, int type) {
+    public StatementRolle(String beschreibung, String title, String rolle, StatementType type) {
         this.beschreibung = beschreibung;
         this.title = title;
         this.rolle = rolle;

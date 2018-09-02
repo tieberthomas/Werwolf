@@ -1,17 +1,18 @@
-package root.Phases;
+package root.Phases.NightBuilding;
 
 /**
  * Created by Steve on 27.12.2017.
  */
-public class StatementProgramm extends Statement {
-    public StatementProgramm(String beschreibung) {
+public class StatementIndie extends Statement {
+    public StatementIndie(String beschreibung, String title, StatementType type) {
         this.beschreibung = beschreibung;
-        this.type = Statement.PROGRAMM;
+        this.title = title;
+        this.type = type;
     }
 
     @Override
     public boolean isVisible() {
-        return false;
+        return true;
     }
 
     @Override

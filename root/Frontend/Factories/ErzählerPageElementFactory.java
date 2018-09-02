@@ -8,8 +8,8 @@ import root.Frontend.Page.PageTable;
 import root.Frontend.Page.Predecessor;
 import root.Phases.ErsteNacht;
 import root.Phases.Nacht;
-import root.Phases.Statement;
-import root.Phases.StatementRolle;
+import root.Phases.NightBuilding.Statement;
+import root.Phases.NightBuilding.StatementRolle;
 import root.Rollen.Hauptrollen.Bürger.Sammler;
 import root.Rollen.Nebenrolle;
 

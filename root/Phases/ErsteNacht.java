@@ -2,6 +2,7 @@ package root.Phases;
 
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
+import root.Phases.NightBuilding.*;
 import root.ResourceManagement.ImagePath;
 import root.Rollen.*;
 import root.Rollen.Fraktionen.Schattenpriester_Fraktion;
@@ -432,19 +433,19 @@ public class ErsteNacht extends Thread {
     }
 
     public void addStatementIndie(String statement, String title) {
-        statements.add(new StatementIndie(statement, title, Statement.INDIE));
+        statements.add(new StatementIndie(statement, title, StatementType.INDIE));
     }
 
     //TODO Statement Type implementieren
 
     public void addStatementRolle(String statement, String title, String rolle) {
-        statements.add(new StatementRolle(statement, title, rolle, Statement.INDIE));
+        statements.add(new StatementRolle(statement, title, rolle, StatementType.INDIE));
     }
 
     public void addStatementFraktion(String statement, String title, String fraktionsName) {
         if (Fraktion.fraktionInNachtEnthalten(fraktionsName)) {
             if(Fraktion.getFraktionsMembers(fraktionsName).size()>1) {
-                statements.add(new StatementFraktion(statement, title, fraktionsName, Statement.INDIE));
+                statements.add(new StatementFraktion(statement, title, fraktionsName, StatementType.INDIE));
             }
         }
     }
