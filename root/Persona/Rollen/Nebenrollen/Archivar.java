@@ -14,7 +14,6 @@ public class Archivar extends Nebenrolle {
     private static final String PASSIV_TITLE = "Passiv";
     private static final String AKTIV_TITLE = "Aktiv";
     private static final String INFORMATIV_TITLE = "Informativ";
-    private static final String TARNUMHANG_TITLE = "Tarnumhang";
 
     public static String title = "Spieler wählen";
     public static final String beschreibung = "Archivar erwacht und lässt sich Auskunft über die Bonusrolle eines Mitspielers geben";
@@ -40,7 +39,7 @@ public class Archivar extends Nebenrolle {
                 Spieler spieler = game.findSpielerPerRolle(name);
 
                 if (!spieler.hauptrolle.getFraktion().getName().equals(Bürger.name)) {
-                    return new FrontendControl(FrontendControlType.IMAGE, TARNUMHANG_TITLE, ImagePath.TARNUMHANG);
+                    return new FrontendControl(FrontendControlType.IMAGE, Tarnumhang.title, ImagePath.TARNUMHANG);
                 }
             }
 
@@ -55,7 +54,7 @@ public class Archivar extends Nebenrolle {
                     return new FrontendControl(FrontendControlType.IMAGE, INFORMATIV_TITLE, ImagePath.INFORMATIV);
 
                 case TARNUMHANG:
-                    return new FrontendControl(FrontendControlType.IMAGE, TARNUMHANG_TITLE, ImagePath.TARNUMHANG);
+                    return new FrontendControl(FrontendControlType.IMAGE, Tarnumhang.title, ImagePath.TARNUMHANG);
             }
         }
 

@@ -18,6 +18,7 @@ public class Analytiker extends Nebenrolle {
     public static String title = "Spieler wählen";
     public static final String beschreibung = "Analytiker erwacht und wählt zwei Spieler, der Erzähler sagt ihm ob diese in derselben Fraktion sind";
     public static StatementType statementType = StatementType.ROLLE_SPECAL;
+
     public static final String name = "Analytiker";
     public static final String imagePath = ImagePath.ANALYTIKER_KARTE;
     public static boolean spammable = true;
