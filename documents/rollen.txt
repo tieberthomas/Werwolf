@@ -1,20 +1,19 @@
-Bestienmeister
 Bruder
-Buchhalter
 Dorfbewohner
-Gute Hexe
 Holde Maid
 Orakel
 Riese
 Sammler
+Schamanin
 Seherin
 Späher
 Wirt
 
 Alphawolf
 Blutwolf
-Böse Hexe
 Chemiker
+Geisterwolf
+Schreckenswolf
 Werwolf
 Wölfin
 
@@ -27,23 +26,23 @@ Schattenpriester
 Überläufer
 
 Analytiker
-Anästhesist
 Archivar
-Beschwörer
-Frisör
+Detektiv
+Dieb
 Gefängniswärter
-Imitator
 Konditor
 Konditorlehrling
 Lamm
 Nachbar
+Nachtfürst
 Prostituierte
 Reine Seele
-Reines Licht
 Schatten
 Schattenkutte
+Schnüffler
 Schwarze Seele
-Spion
+Seelenlicht
+Spurenleser
 Tarnumhang
 Totengräber
 Vampirumhang
