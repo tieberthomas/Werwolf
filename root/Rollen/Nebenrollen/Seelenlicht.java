@@ -9,10 +9,10 @@ import root.Spieler;
 /**
  * Created by Steve on 12.11.2017.
  */
-public class ReinesLicht extends Nebenrolle
+public class Seelenlicht extends Nebenrolle
 {
-    public static final String name = "Reines Licht";
-    public static final String imagePath = ImagePath.REINES_LICHT_KARTE;
+    public static final String name = "Seelenlicht";
+    public static final String imagePath = ImagePath.SEELENLICHT_KARTE;
     public static boolean spammable = false;
     public NebenrollenTyp type = NebenrollenTyp.PASSIV;
 

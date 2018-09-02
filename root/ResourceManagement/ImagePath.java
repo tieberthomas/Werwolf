@@ -78,7 +78,7 @@ public class ImagePath {
     public static String SPURENLESER_KARTE = SECONDARY_ROLE_PATH + "Spurenleser" + IMAGE_FILE_EXTENSION;
     public static String PROSTITUIERTE_KARTE = SECONDARY_ROLE_PATH + "Prostituierte" + IMAGE_FILE_EXTENSION;
     public static String REINE_SEELE_KARTE = SECONDARY_ROLE_PATH + "Reine_Seele" + IMAGE_FILE_EXTENSION;
-    public static String REINES_LICHT_KARTE = SECONDARY_ROLE_PATH + "Reines_Licht" + IMAGE_FILE_EXTENSION;
+    public static String SEELENLICHT_KARTE = SECONDARY_ROLE_PATH + "Reines_Licht" + IMAGE_FILE_EXTENSION; //TODO Seelenlicht
     public static String SCHATTEN_KARTE = SECONDARY_ROLE_PATH + "Schatten" + IMAGE_FILE_EXTENSION;
     public static String SCHATTENKUTTE_KARTE = SECONDARY_ROLE_PATH + "Schattenkutte" + IMAGE_FILE_EXTENSION;
     public static String SCHWARZE_SEELE_KARTE = SECONDARY_ROLE_PATH + "Schwarze_Seele" + IMAGE_FILE_EXTENSION;

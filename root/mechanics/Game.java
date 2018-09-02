@@ -99,7 +99,7 @@ public class Game {
         secondaryRoles.add(new Lamm());
         secondaryRoles.add(new Nachbar());
         secondaryRoles.add(new Prostituierte());
-        secondaryRoles.add(new ReinesLicht());
+        secondaryRoles.add(new Seelenlicht());
         secondaryRoles.add(new Spurenleser());
         secondaryRoles.add(new Schatten());
         secondaryRoles.add(new Schattenkutte());

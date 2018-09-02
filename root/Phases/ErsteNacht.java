@@ -30,7 +30,7 @@ public class ErsteNacht extends Thread {
 
     public static final String LIEBESPAAR = "Der Erzähler wählt ein Liebespaar aus";
     public static final String LIEBESPAAR_FINDEN = "Das Liebespaar erwacht, findet und verliebt sich";
-    public static final String REINES_LICHT = "Reines Licht erwacht und tauscht seine Karte je nach Hauptrolle aus";
+    public static final String SEELENLICHT = "Seelenlicht erwacht und tauscht seine Karte je nach Hauptrolle aus";
     public static final String LAMM = "Lamm erwacht und tauscht ggf. seine Karte aus";
     public static final String VAMPIRUMHANG = "Träger des Vampirumhangs erwacht und tauscht ggf. seine Karte aus";
     public static final String WOLFSPELZ = "Träger des Wolfspelzes erwacht und tauscht ggf. seine Karte aus";
@@ -47,7 +47,7 @@ public class ErsteNacht extends Thread {
 
     public static final String LIEBESPAAR_TITLE = "Liebespaar wählen";
     public static final String LIEBESPAAR_FINDEN_TITLE = "Liebespaar";
-    public static final String REINES_LICHT_TITLE = "neue Karte";
+    public static final String SEELENLICHT_TITLE = "neue Karte";
     public static final String LAMM_TITLE = "neue Karte";
     public static final String VAMPIRUMHANG_TITLE = "neue Karte";
     public static final String WOLFSPELZ_TITLE = "neue Karte";
@@ -371,7 +371,7 @@ public class ErsteNacht extends Thread {
         addStatementIndie(LIEBESPAAR, LIEBESPAAR_TITLE);
         addStatementIndie(LIEBESPAAR_FINDEN, LIEBESPAAR_FINDEN_TITLE);
 
-        addStatementRolle(REINES_LICHT, REINES_LICHT_TITLE, ReinesLicht.name);
+        addStatementRolle(SEELENLICHT, SEELENLICHT_TITLE, Seelenlicht.name);
         addStatementRolle(LAMM, LAMM_TITLE, Lamm.name);
         addStatementRolle(VAMPIRUMHANG, VAMPIRUMHANG_TITLE, Vampirumhang.name);
         addStatementRolle(WOLFSPELZ, WOLFSPELZ_TITLE, Wolfspelz.name);
