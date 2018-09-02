@@ -8,6 +8,10 @@ public class Statement {
     public String title;
     public StatementType type;
 
+    public Statement() {
+        type = StatementType.EMPTY_STATEMENT;
+    }
+
     public StatementState getState() {
         if (!isVisible()) {
             return StatementState.INVISIBLE_NOT_IN_GAME;

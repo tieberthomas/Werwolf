@@ -12,6 +12,10 @@ public class StatementRolle extends Statement {
     public String rolle;
     public boolean sammler;
 
+    public StatementRolle(Rolle rolle) {
+        this(rolle.getBeschreibung(), rolle.getTitle(), rolle.getName(), rolle.getStatementType());
+    }
+
     public StatementRolle(String beschreibung, String title, String rolle, StatementType type) {
         this.beschreibung = beschreibung;
         this.title = title;

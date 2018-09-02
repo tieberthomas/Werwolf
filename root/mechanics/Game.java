@@ -7,6 +7,7 @@ import root.Frontend.Frame.ÜbersichtsFrame;
 import root.Frontend.FrontendControl;
 import root.Phases.ErsteNacht;
 import root.Phases.Nacht;
+import root.Phases.NightBuilding.NormalNightStatementBuilder;
 import root.Phases.PhaseMode;
 import root.Phases.Tag;
 import root.Rollen.Constants.WölfinState;
@@ -49,6 +50,7 @@ public class Game {
         Spieler.game = this;
         FrontendControl.game = this;
         Opfer.game = this;
+        NormalNightStatementBuilder.game = this;
 
         phaseMode = PhaseMode.setup;
 

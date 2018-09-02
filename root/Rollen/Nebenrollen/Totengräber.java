@@ -3,6 +3,7 @@ package root.Rollen.Nebenrollen;
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.Phases.Nacht;
+import root.Phases.NightBuilding.Constants.StatementType;
 import root.Phases.NightBuilding.Statement;
 import root.Phases.NightBuilding.StatementRolle;
 import root.ResourceManagement.ImagePath;
@@ -13,11 +14,10 @@ import root.Spieler;
 
 import java.util.ArrayList;
 
-/**
- * Created by Steve on 12.11.2017.
- */
-public class Totengräber extends Nebenrolle
-{
+public class Totengräber extends Nebenrolle {
+    public static String title = "Karte tauschen";
+    public static final String beschreibung = "Totengräber erwacht und entscheidet ob er seine Bonusrollenkarte tauschen möchte";
+    public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE;
     public static final String name = "Totengräber";
     public static final String imagePath = ImagePath.TOTENGRÄBER_KARTE;
     public static boolean spammable = false;
@@ -35,7 +35,7 @@ public class Totengräber extends Nebenrolle
         if (chosenNebenrolle != null) {
             try {
                 Spieler deadSpieler = game.findSpielerOrDeadPerRolle(chosenNebenrolle.getName());
-                chosenNebenrolle = (Nebenrolle)Rolle.findRolle(deadSpieler.nebenrolle.getName());
+                chosenNebenrolle = (Nebenrolle) Rolle.findRolle(deadSpieler.nebenrolle.getName());
 
                 Spieler spielerTotengräber = game.findSpielerPerRolle(name);
                 spielerTotengräber.nebenrolle = chosenNebenrolle;
@@ -45,7 +45,7 @@ public class Totengräber extends Nebenrolle
                 game.mitteNebenrollen.add(this);
 
                 removeSammlerFlag(chosenNebenrolle.getName());
-            }catch (NullPointerException e) {
+            } catch (NullPointerException e) {
                 System.out.println(name + " nicht gefunden");
             }
         }
@@ -66,11 +66,26 @@ public class Totengräber extends Nebenrolle
         return spammable;
     }
 
+    @Override
+    public String getTitle() {
+        return title;
+    }
+
+    @Override
+    public String getBeschreibung() {
+        return beschreibung;
+    }
+
+    @Override
+    public StatementType getStatementType() {
+        return statementType;
+    }
+
     public void removeSammlerFlag(String nebenRolle) {
-        for(Statement statement : Nacht.statements) {
-            if(statement.getClass() == StatementRolle.class) {
-                StatementRolle statementRolle = (StatementRolle)statement;
-                if(statementRolle.getRolle().getName().equals(nebenRolle)){
+        for (Statement statement : Nacht.statements) {
+            if (statement.getClass() == StatementRolle.class) {
+                StatementRolle statementRolle = (StatementRolle) statement;
+                if (statementRolle.getRolle().getName().equals(nebenRolle)) {
                     statementRolle.sammler = false;
                 }
             }
@@ -80,8 +95,8 @@ public class Totengräber extends Nebenrolle
     public static ArrayList<String> getNehmbareNebenrollen() {
         ArrayList<String> nehmbareNebenrollen = new ArrayList<>();
 
-        for(Nebenrolle nebenrolle : game.mitteNebenrollen) {
-            if(!nebenrolle.getType().equals(NebenrollenTyp.PASSIV)) {
+        for (Nebenrolle nebenrolle : game.mitteNebenrollen) {
+            if (!nebenrolle.getType().equals(NebenrollenTyp.PASSIV)) {
                 nehmbareNebenrollen.add(nebenrolle.getName());
             }
         }

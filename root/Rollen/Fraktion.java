@@ -3,6 +3,7 @@ package root.Rollen;
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.Frame.MyFrame;
 import root.Frontend.FrontendControl;
+import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Rollen.Fraktionen.Schattenpriester_Fraktion;
 import root.Rollen.Fraktionen.Werwölfe;
@@ -16,6 +17,13 @@ import java.util.ArrayList;
 
 public class Fraktion {
     public static Game game;
+    public String title = "";
+    public String beschreibung = "";
+    public StatementType statementType = StatementType.EMPTY_STATEMENT;
+
+    public String secondTitle = "";
+    public String secondBeschreibung = "";
+    public StatementType secondStatementType = StatementType.EMPTY_STATEMENT;
 
     public FrontendControl getDropdownOptions() {
         return new FrontendControl();

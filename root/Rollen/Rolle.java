@@ -1,6 +1,7 @@
 package root.Rollen;
 
 import root.Frontend.FrontendControl;
+import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Rollen.Hauptrollen.Bürger.Sammler;
 import root.Rollen.Nebenrollen.Totengräber;
@@ -16,8 +17,6 @@ public class Rolle {
     public Spieler besucht;
     public Spieler besuchtLetzteNacht;
     public int abilityCharges = 1;
-    public String title;
-    public String statement;
 
     public FrontendControl getDropdownOptions() {
         return new FrontendControl();
@@ -64,6 +63,18 @@ public class Rolle {
         return Color.WHITE;
     }
 
+    public String getTitle() { return ""; }
+
+    public String getBeschreibung() { return ""; }
+
+    public StatementType getStatementType() { return StatementType.EMPTY_STATEMENT; }
+
+    public String getSecondTitle() { return ""; }
+
+    public String getSecondBeschreibung() { return ""; }
+
+    public StatementType getSecondStatementType() { return StatementType.EMPTY_STATEMENT; }
+
     public static Rolle findRolle(String wantedName) {
         Rolle wantedRolle;
 
@@ -89,7 +100,6 @@ public class Rolle {
 
         return 0;
     }
-
 
     public static boolean hauptRolleInNachtEnthalten(String rolle) {
         if (game.getMainRoleInGameNames().contains(rolle)) {

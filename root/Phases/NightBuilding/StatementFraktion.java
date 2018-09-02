@@ -9,6 +9,10 @@ import root.Rollen.Fraktion;
 public class StatementFraktion extends Statement {
     public String fraktion;
 
+    public StatementFraktion(Fraktion fraktion) {
+        new StatementFraktion(fraktion.beschreibung, fraktion.title, fraktion.getName(), fraktion.statementType);
+    }
+
     public StatementFraktion(String beschreibung, String title, String fraktion, StatementType type) {
         this.beschreibung = beschreibung;
         this.title = title;

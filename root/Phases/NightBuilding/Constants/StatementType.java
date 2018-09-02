@@ -9,5 +9,6 @@ public enum StatementType {
     ROLLE_INFO,
     ROLLE_SPECAL,
     FRAKTION_CHOOSE_ONE,
-    FRAKTION_SPECAL;
+    FRAKTION_SPECAL,
+    EMPTY_STATEMENT;
 }

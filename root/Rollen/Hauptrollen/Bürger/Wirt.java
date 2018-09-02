@@ -2,6 +2,7 @@ package root.Rollen.Hauptrollen.Bürger;
 
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
+import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Rollen.Fraktion;
 import root.Rollen.Fraktionen.Bürger;
@@ -13,6 +14,9 @@ import static root.Rollen.Constants.DropdownConstants.JA;
 import static root.Rollen.Constants.DropdownConstants.NEIN;
 
 public class Wirt extends Hauptrolle {
+    public static String title = "Freibier ausgeben";
+    public static final String beschreibung = "Wirt erwacht und entscheidet sich ob er ein Freibier ausgeben will";
+    public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE;
     public static final String name = "Wirt";
     public static Fraktion fraktion = new Bürger();
     public static final String imagePath = ImagePath.WIRT_KARTE;
@@ -58,5 +62,20 @@ public class Wirt extends Hauptrolle {
     @Override
     public boolean isSpammable() {
         return spammable;
+    }
+
+    @Override
+    public String getTitle() {
+        return title;
+    }
+
+    @Override
+    public String getBeschreibung() {
+        return beschreibung;
+    }
+
+    @Override
+    public StatementType getStatementType() {
+        return statementType;
     }
 }

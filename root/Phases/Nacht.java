@@ -2,25 +2,24 @@ package root.Phases;
 
 import root.Frontend.FrontendControl;
 import root.Phases.NightBuilding.Constants.StatementType;
-import root.Phases.NightBuilding.*;
+import root.Phases.NightBuilding.NormalNightStatementBuilder;
+import root.Phases.NightBuilding.Statement;
+import root.Phases.NightBuilding.StatementFraktion;
+import root.Phases.NightBuilding.StatementRolle;
 import root.ResourceManagement.ImagePath;
 import root.Rollen.Constants.DropdownConstants;
-import root.Rollen.Constants.WölfinState;
 import root.Rollen.Fraktion;
 import root.Rollen.Fraktionen.Schattenpriester_Fraktion;
 import root.Rollen.Fraktionen.Vampire;
 import root.Rollen.Fraktionen.Werwölfe;
 import root.Rollen.Hauptrolle;
-import root.Rollen.Hauptrollen.Bürger.*;
+import root.Rollen.Hauptrollen.Bürger.Sammler;
+import root.Rollen.Hauptrollen.Bürger.Wirt;
 import root.Rollen.Hauptrollen.Schattenpriester.Schattenpriester;
 import root.Rollen.Hauptrollen.Vampire.GrafVladimir;
-import root.Rollen.Hauptrollen.Vampire.LadyAleera;
-import root.Rollen.Hauptrollen.Vampire.MissVerona;
 import root.Rollen.Hauptrollen.Werwölfe.Blutwolf;
-import root.Rollen.Hauptrollen.Werwölfe.Chemiker;
 import root.Rollen.Hauptrollen.Werwölfe.Schreckenswolf;
 import root.Rollen.Hauptrollen.Werwölfe.Wölfin;
-import root.Rollen.Hauptrollen.Überläufer.Überläufer;
 import root.Rollen.Nebenrolle;
 import root.Rollen.Nebenrollen.*;
 import root.Rollen.Rolle;
@@ -158,7 +157,7 @@ public class Nacht extends Thread {
 
             beginNight();
 
-            normaleNachtBuildStatements();
+            statements = NormalNightStatementBuilder.normaleNachtBuildStatements();
 
             for (Statement statement : statements) {
                 chosenOption = null;
@@ -217,7 +216,7 @@ public class Nacht extends Thread {
                     }
 
                     switch (statement.beschreibung) {
-                        case WIRT:
+                        case Wirt.beschreibung:
                             if (DropdownConstants.JA.name.equals(chosenOption)) {
                                 freibier = true;
                             }
@@ -910,7 +909,7 @@ public class Nacht extends Thread {
         }
     }
 
-    public void normaleNachtBuildStatements() {
+    /*public void normaleNachtBuildStatements() {
         statements = new ArrayList<>();
 
         addStatementIndie(ALLE_SCHLAFEN_EIN, ALLE_SCHLAFEN_EIN_TITLE, StatementType.SHOW_TITLE);
@@ -999,10 +998,10 @@ public class Nacht extends Thread {
     }
 
     public void addStatementRolle(Rolle rolle, StatementType type) {
-        statements.add(new StatementRolle(rolle.statement, rolle.title, rolle.getName(), type));
+        statements.add(new StatementRolle(rolle.beschreibung, rolle.title, rolle.getName(), type));
     }
 
     public void addStatementFraktion(String statement, String title, String fraktion, StatementType type) {
         statements.add(new StatementFraktion(statement, title, fraktion, type));
-    }
+    }*/
 }
