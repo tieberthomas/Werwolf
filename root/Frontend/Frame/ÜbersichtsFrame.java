@@ -26,7 +26,6 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener{
     public ÜbersichtsPageElementFactory pageElementFactory;
 
     public Color defaultBorderColor = Color.BLUE;
-    public Color anästesiertBorderColor = Color.RED;
 
     public PageTable playerTable;
     public PageTable mainRoleTable;
