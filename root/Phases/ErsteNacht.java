@@ -21,7 +21,6 @@ import root.mechanics.Game;
 import root.mechanics.Liebespaar;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class ErsteNacht extends Thread {
     Game game;
@@ -196,52 +195,6 @@ public class ErsteNacht extends Thread {
             currentNebenrolle.besuchtLetzteNacht = null;
             currentNebenrolle.besucht = null;
         }
-    }
-
-    private ArrayList<String> getMainRolesLeft() {
-        ArrayList<String> freieHauptrollen = new ArrayList<>();
-
-        for (Hauptrolle currentHauptrolle: game.mainRolesInGame) {
-            String hauptrolle = currentHauptrolle.getName();
-
-            boolean frei = true;
-            for (Spieler currentSpieler: game.spieler) {
-                String hauptrolleSpieler = currentSpieler.hauptrolle.getName();
-
-                if (Objects.equals(hauptrolle, hauptrolleSpieler)) {
-                    frei = false;
-                }
-            }
-
-            if(frei) {
-                freieHauptrollen.add(hauptrolle);
-            }
-        }
-
-        return freieHauptrollen;
-    }
-
-    private ArrayList<String> getSecondaryRolesLeft() {
-        ArrayList<String> freieNebenrollen = new ArrayList<>();
-
-        for (Nebenrolle currentNebenrolle: game.secondaryRolesInGame) {
-            String nebenrolle = currentNebenrolle.getName();
-
-            boolean frei = true;
-            for (Spieler currentSpieler: game.spieler) {
-                String nebenrolleSpieler = currentSpieler.nebenrolle.getName();
-
-                if (Objects.equals(nebenrolle, nebenrolleSpieler)) {
-                    frei = false;
-                }
-            }
-
-            if(frei) {
-                freieNebenrollen.add(nebenrolle);
-            }
-        }
-
-        return freieNebenrollen;
     }
 
     private void cleanUp() {
