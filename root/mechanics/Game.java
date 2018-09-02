@@ -5,16 +5,10 @@ import root.Frontend.Frame.ErzählerFrame;
 import root.Frontend.Frame.ErzählerFrameMode;
 import root.Frontend.Frame.ÜbersichtsFrame;
 import root.Frontend.FrontendControl;
-import root.Phases.ErsteNacht;
-import root.Phases.Nacht;
-import root.Phases.NightBuilding.NormalNightStatementBuilder;
-import root.Phases.PhaseMode;
-import root.Phases.Tag;
-import root.Persona.Rollen.Constants.WölfinState;
-import root.Persona.Fraktion;
+import root.Persona.*;
 import root.Persona.Fraktionen.Schattenpriester_Fraktion;
 import root.Persona.Fraktionen.Werwölfe;
-import root.Persona.Hauptrolle;
+import root.Persona.Rollen.Constants.WölfinState;
 import root.Persona.Rollen.Hauptrollen.Bürger.*;
 import root.Persona.Rollen.Hauptrollen.Schattenpriester.Schattenpriester;
 import root.Persona.Rollen.Hauptrollen.Vampire.GrafVladimir;
@@ -22,9 +16,12 @@ import root.Persona.Rollen.Hauptrollen.Vampire.LadyAleera;
 import root.Persona.Rollen.Hauptrollen.Vampire.MissVerona;
 import root.Persona.Rollen.Hauptrollen.Werwölfe.*;
 import root.Persona.Rollen.Hauptrollen.Überläufer.Überläufer;
-import root.Persona.Nebenrolle;
 import root.Persona.Rollen.Nebenrollen.*;
-import root.Persona.Rolle;
+import root.Phases.ErsteNacht;
+import root.Phases.Nacht;
+import root.Phases.NightBuilding.NormalNightStatementBuilder;
+import root.Phases.PhaseMode;
+import root.Phases.Tag;
 import root.Spieler;
 
 import java.util.ArrayList;
@@ -45,8 +42,7 @@ public class Game {
     public ArrayList<Spieler> playersSpecified = new ArrayList<>();
 
     public Game(){
-        Rolle.game = this;
-        Fraktion.game = this;
+        Persona.game = this;
         Spieler.game = this;
         FrontendControl.game = this;
         Opfer.game = this;

@@ -121,7 +121,7 @@ public class NormalNightStatementBuilder {
     private static Statement getSecondStatementFraktion(String fraktionsName) {
         Fraktion fraktion = Fraktion.findFraktion(fraktionsName);
         if(fraktion!=null) {
-            return new StatementFraktion(fraktion.secondBeschreibung, fraktion.secondTitle, fraktion.getName(), fraktion.secondStatementType);
+            return new StatementFraktion(fraktion.getSecondBeschreibung(), fraktion.getSecondTitle(), fraktion.getName(), fraktion.getSecondStatementType());
         } else {
             return new Statement();
         }

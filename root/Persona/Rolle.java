@@ -1,28 +1,20 @@
 package root.Persona;
 
 import root.Frontend.FrontendControl;
-import root.Phases.NightBuilding.Constants.StatementType;
-import root.ResourceManagement.ImagePath;
 import root.Persona.Rollen.Hauptrollen.Bürger.Sammler;
 import root.Persona.Rollen.Nebenrollen.Totengräber;
 import root.Spieler;
-import root.mechanics.Game;
 
 import java.awt.*;
 import java.util.ArrayList;
 
-public class Rolle {
-    public static Game game;
-
+public class Rolle extends Persona{
     public Spieler besucht;
     public Spieler besuchtLetzteNacht;
     public int abilityCharges = 1;
 
     public FrontendControl getDropdownOptions() {
         return new FrontendControl();
-    }
-
-    public void processChosenOption(String chosenOption) {
     }
 
     public FrontendControl processChosenOptionGetInfo(String chosenOption) {
@@ -43,14 +35,6 @@ public class Rolle {
         return new FrontendControl();
     }
 
-    public String getName() {
-        return "";
-    }
-
-    public String getImagePath() {
-        return ImagePath.DEAKTIVIERT;
-    }
-
     public int getNumberOfPossibleInstances() {
         return 1;
     }
@@ -62,18 +46,6 @@ public class Rolle {
     public Color getFarbe() {
         return Color.WHITE;
     }
-
-    public String getTitle() { return ""; }
-
-    public String getBeschreibung() { return ""; }
-
-    public StatementType getStatementType() { return StatementType.EMPTY_STATEMENT; }
-
-    public String getSecondTitle() { return ""; }
-
-    public String getSecondBeschreibung() { return ""; }
-
-    public StatementType getSecondStatementType() { return StatementType.EMPTY_STATEMENT; }
 
     public static Rolle findRolle(String wantedName) {
         Rolle wantedRolle;

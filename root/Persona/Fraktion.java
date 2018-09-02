@@ -3,45 +3,22 @@ package root.Persona;
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.Frame.MyFrame;
 import root.Frontend.FrontendControl;
-import root.Phases.NightBuilding.Constants.StatementType;
-import root.ResourceManagement.ImagePath;
 import root.Persona.Fraktionen.Schattenpriester_Fraktion;
 import root.Persona.Fraktionen.Werwölfe;
 import root.Persona.Rollen.Hauptrollen.Werwölfe.Chemiker;
 import root.Spieler;
-import root.mechanics.Game;
 import root.mechanics.Opfer;
 
 import java.awt.*;
 import java.util.ArrayList;
 
-public class Fraktion {
-    public static Game game;
-    public String title = "";
-    public String beschreibung = "";
-    public StatementType statementType = StatementType.EMPTY_STATEMENT;
-
-    public String secondTitle = "";
-    public String secondBeschreibung = "";
-    public StatementType secondStatementType = StatementType.EMPTY_STATEMENT;
-
+public class Fraktion extends Persona{
     public FrontendControl getDropdownOptions() {
         return new FrontendControl();
     }
 
-    public void processChosenOption(String chosenOption) {
-    }
-
-    public String getName() {
-        return "";
-    }
-
     public Color getFarbe() {
         return MyFrame.DEFAULT_BUTTON_COLOR;
-    }
-
-    public String getImagePath() {
-        return ImagePath.DEAKTIVIERT;
     }
 
     public static ArrayList<Spieler> getFraktionsMembers(String fraktion) {
