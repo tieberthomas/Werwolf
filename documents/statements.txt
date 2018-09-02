@@ -47,7 +47,6 @@ Archivar erwacht und lässt sich Auskunft über die Bonusrolle eines Mitspielers
 Seherin erwacht und lässt sich Auskunft über die Fraktion eines Mitspielers geben
 Orakel erwacht und lässt sich vom Erzähler die Bonusrollenkarte eines zufälligen Bürgers zeigen
 Späher erwacht und lässt sich Auskunft über einen Mitspieler geben
-Buchhalter erwacht und entscheidet ob er die verbleibenden Hauptrollen erfahren möchte
 Beschwörer erwacht und wählt einen Mitspieler der verstummt
 Frisör erwacht und wählt einen Mitspieler den er verschönert
 Nachbar erwacht und erfährt wer die Besucher seines gewählten Spielers waren

@@ -67,7 +67,6 @@ public class Game {
     public void generateAllAvailableMainRoles() {
         mainRoles.add(new Bestienmeister());
         mainRoles.add(new Bruder());
-        mainRoles.add(new Buchhalter());
         mainRoles.add(new Dorfbewohner());
         mainRoles.add(new HoldeMaid());
         mainRoles.add(new Orakel());

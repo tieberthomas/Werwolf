@@ -64,7 +64,6 @@ public class Nacht extends Thread {
     public static final String SEHERIN = "Seherin erwacht und lässt sich Auskunft über die Fraktion eines Mitspielers geben";
     public static final String ORAKEL = "Orakel erwacht und lässt sich vom Erzähler die Bonusrollenkarte eines zufälligen Bürgers zeigen";
     public static final String SPÄHER = "Späher erwacht und lässt sich Auskunft über einen Mitspieler geben";
-    public static final String BUCHHALTER = "Buchhalter erwacht und entscheidet ob er die verbleibenden Hauptrollen erfahren möchte";
     public static final String NACHBAR_INFORMATION = "Nachbar erwacht und erfährt wer die Besucher seines gewählten Spielers waren";
     public static final String SPURENLESER_INFORMATION = "Spurenleser erwacht und erfährt wen der gewählte Spieler besucht hat";
     public static final String WAHRSAGER = "Wahrsager erwacht und gibt seinen Tipp ab welche Fraktion bei der Dorfabstimmung sterben wird";
@@ -109,7 +108,6 @@ public class Nacht extends Thread {
     public static final String ORAKEL_TITLE = "Bonusrolle";
     public static final String ORAKEL_VERBRAUCHT_TITLE = "Bonusrollen";
     public static final String SPÄHER_TITLE = "Spieler wählen";
-    public static final String BUCHHALTER_TITLE = "Fähigkeit verbrauchen";
     public static final String NACHBAR_INFORMATION_TITLE = "Besucher von ";
     public static final String SPURENLESER_INFORMATION_TITLE = "Besuchte Spieler von ";
     public static final String WAHRSAGER_TITLE = "Fraktion wählen";
@@ -196,12 +194,7 @@ public class Nacht extends Thread {
                                 info = rolle.processChosenOptionGetInfo(chosenOption);
                                 showFrontendControl(statement, info);
                             } else {
-                                if (rolle.getName().equals(Buchhalter.name)) {
-                                    info = ((Buchhalter) rolle).getAufgebrauchtPage();
-                                    showFrontendControl(statement, info);
-                                } else {
-                                    showAufgebrauchtPages(statement); //TODO deaktiv/tot beachten
-                                }
+                                showAufgebrauchtPages(statement); //TODO deaktiv/tot beachten
                             }
                             break;
 
@@ -966,7 +959,6 @@ public class Nacht extends Thread {
         addStatementRolle(SEHERIN, SEHERIN_TITLE, Seherin.name, StatementType.ROLLE_CHOOSE_ONE_INFO);
         addStatementRolle(ORAKEL, ORAKEL_TITLE, Orakel.name, StatementType.ROLLE_INFO);
         addStatementRolle(SPÄHER, SPÄHER_TITLE, Späher.name, StatementType.ROLLE_CHOOSE_ONE_INFO);
-        addStatementRolle(BUCHHALTER, BUCHHALTER_TITLE, Buchhalter.name, StatementType.ROLLE_CHOOSE_ONE_INFO);
 
         addStatementRolle(NACHBAR_INFORMATION, NACHBAR_INFORMATION_TITLE, Nachbar.name, StatementType.ROLLE_INFO);
         addStatementRolle(SPURENLESER_INFORMATION, SPURENLESER_INFORMATION_TITLE, Spurenleser.name, StatementType.ROLLE_INFO);
