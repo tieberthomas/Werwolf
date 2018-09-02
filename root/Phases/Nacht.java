@@ -469,17 +469,9 @@ public class Nacht extends Thread {
 
     public void setSchütze() {
         for (Spieler currentSpieler : game.spieler) {
-            String hauptrolleCurrentSpieler = currentSpieler.hauptrolle.getName();
-            String nebenrolleCurrentSpieler = new Schatten().getName();
-            if (currentSpieler.nebenrolle != null) {
-                nebenrolleCurrentSpieler = currentSpieler.nebenrolle.getName();
-            }
+            String nebenrolleCurrentSpieler = currentSpieler.nebenrolle.getName();
 
             if (nebenrolleCurrentSpieler.equals(SchwarzeSeele.name)) {
-                currentSpieler.geschützt = true;
-            }
-
-            if (hauptrolleCurrentSpieler.equals(GrafVladimir.name) && Fraktion.getFraktionsMembers(Vampire.name).size() > 1) {
                 currentSpieler.geschützt = true;
             }
         }
