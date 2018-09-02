@@ -2,11 +2,10 @@ package root.Persona.Rollen.Nebenrollen;
 
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
-import root.Phases.Nacht;
-import root.Phases.NightBuilding.Constants.StatementType;
-import root.ResourceManagement.ImagePath;
 import root.Persona.Nebenrolle;
 import root.Persona.Rollen.Constants.NebenrollenTyp;
+import root.Phases.NightBuilding.Constants.StatementType;
+import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
 import java.util.ArrayList;
@@ -15,6 +14,12 @@ public class Nachbar extends Nebenrolle {
     public static String title = "Spieler beobachten";
     public static final String beschreibung = "Nachbar erwacht und entscheidet welchen Spieler er beobachten möchte";
     public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE;
+
+    public static String secondTitle = "Besucher von ";
+    public static final String NACHBAR_INFORMATION = "Nachbar erwacht und erfährt wer die Besucher seines gewählten Spielers waren";
+    public static final String secondBeschreibung = NACHBAR_INFORMATION;
+    public static StatementType secondStatementType = StatementType.ROLLE_INFO;
+
     public static final String name = "Nachbar";
     public static final String imagePath = ImagePath.NACHBAR_KARTE;
     public static boolean spammable = true;
@@ -38,7 +43,7 @@ public class Nachbar extends Nebenrolle {
         Spieler nachbarSpieler = game.findSpielerPerRolle(Nachbar.name);
         FrontendControl info = new FrontendControl(FrontendControlType.LIST, getBesucherStrings(beobachteterSpieler, nachbarSpieler));
         if (beobachteterSpieler != null) {
-            info.title = Nacht.NACHBAR_INFORMATION_TITLE + beobachteterSpieler.name;
+            info.title = secondTitle + beobachteterSpieler.name;
         }
         return info;
     }
@@ -62,6 +67,15 @@ public class Nachbar extends Nebenrolle {
     public StatementType getStatementType() {
         return statementType;
     }
+
+    @Override
+    public String getSecondTitle() { return secondTitle; }
+
+    @Override
+    public String getSecondBeschreibung() { return secondBeschreibung; }
+
+    @Override
+    public StatementType getSecondStatementType() { return secondStatementType; }
 
     @Override
     public String getImagePath() {

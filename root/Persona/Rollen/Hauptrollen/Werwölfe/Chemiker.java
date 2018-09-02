@@ -15,6 +15,12 @@ public class Chemiker extends Hauptrolle {
     public static String title = "Opfer wiederbeleben";
     public static final String beschreibung = "Chemiker erwacht und kann ein Wolfsopfer dieser Nacht wiederbeleben und zum Wolfsrudel hinzufügen";
     public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE;
+
+    public static String secondTitle = "Neuer Werwolf";
+    public static final String NEUER_WERWOLF = "Der Wiederbelebte erwacht und tauscht seine Hauptrollen- gegen eine Werwolfkarte";
+    public static final String secondBeschreibung = NEUER_WERWOLF;
+    public static StatementType secondStatementType = StatementType.FRAKTION_SPECAL;
+
     public static final String name = "Chemiker";
     public static Fraktion fraktion = new Werwölfe();
     public static final String imagePath = ImagePath.CHEMIKER_KARTE;
@@ -61,6 +67,12 @@ public class Chemiker extends Hauptrolle {
     public StatementType getStatementType() {
         return statementType;
     }
+
+    public String getSecondTitle() { return secondTitle; }
+
+    public String getSecondBeschreibung() { return secondBeschreibung; }
+
+    public StatementType getSecondStatementType() { return secondStatementType; }
 
     @Override
     public Fraktion getFraktion() {

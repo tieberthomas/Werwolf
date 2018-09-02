@@ -1,28 +1,30 @@
 package root.Phases;
 
 import root.Frontend.FrontendControl;
+import root.Persona.Fraktion;
+import root.Persona.Fraktionen.Schattenpriester_Fraktion;
+import root.Persona.Fraktionen.Vampire;
+import root.Persona.Fraktionen.Werwölfe;
+import root.Persona.Hauptrolle;
+import root.Persona.Nebenrolle;
+import root.Persona.Rolle;
+import root.Persona.Rollen.Constants.DropdownConstants;
+import root.Persona.Rollen.Hauptrollen.Bürger.Sammler;
+import root.Persona.Rollen.Hauptrollen.Bürger.Wirt;
+import root.Persona.Rollen.Hauptrollen.Schattenpriester.Schattenpriester;
+import root.Persona.Rollen.Hauptrollen.Vampire.GrafVladimir;
+import root.Persona.Rollen.Hauptrollen.Werwölfe.Blutwolf;
+import root.Persona.Rollen.Hauptrollen.Werwölfe.Chemiker;
+import root.Persona.Rollen.Hauptrollen.Werwölfe.Schreckenswolf;
+import root.Persona.Rollen.Hauptrollen.Werwölfe.Wölfin;
+import root.Persona.Rollen.Nebenrollen.*;
+import root.Phases.NightBuilding.Constants.ProgrammStatements;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.Phases.NightBuilding.NormalNightStatementBuilder;
 import root.Phases.NightBuilding.Statement;
 import root.Phases.NightBuilding.StatementFraktion;
 import root.Phases.NightBuilding.StatementRolle;
 import root.ResourceManagement.ImagePath;
-import root.Persona.Rollen.Constants.DropdownConstants;
-import root.Persona.Fraktion;
-import root.Persona.Fraktionen.Schattenpriester_Fraktion;
-import root.Persona.Fraktionen.Vampire;
-import root.Persona.Fraktionen.Werwölfe;
-import root.Persona.Hauptrolle;
-import root.Persona.Rollen.Hauptrollen.Bürger.Sammler;
-import root.Persona.Rollen.Hauptrollen.Bürger.Wirt;
-import root.Persona.Rollen.Hauptrollen.Schattenpriester.Schattenpriester;
-import root.Persona.Rollen.Hauptrollen.Vampire.GrafVladimir;
-import root.Persona.Rollen.Hauptrollen.Werwölfe.Blutwolf;
-import root.Persona.Rollen.Hauptrollen.Werwölfe.Schreckenswolf;
-import root.Persona.Rollen.Hauptrollen.Werwölfe.Wölfin;
-import root.Persona.Nebenrolle;
-import root.Persona.Rollen.Nebenrollen.*;
-import root.Persona.Rolle;
 import root.Spieler;
 import root.mechanics.Game;
 import root.mechanics.Liebespaar;
@@ -37,48 +39,39 @@ public class Nacht extends Thread {
     public static final String ALLE_SCHLAFEN_EIN = "Alle schlafen ein";
     public static final String ALLE_WACHEN_AUF = "Alle wachen auf";
 
-    public static final String NEUER_SCHATTENPRIESTER = "Der Wiederbelebte erwacht und tauscht seine Karten gegen Schattenkarten";
-
-    public static final String NEUER_WERWOLF = "Der Wiederbelebte erwacht und tauscht seine Hauptrollen- gegen eine Werwolfkarte";
-    public static final String NACHBAR_INFORMATION = "Nachbar erwacht und erfährt wer die Besucher seines gewählten Spielers waren";
-    public static final String SPURENLESER_INFORMATION = "Spurenleser erwacht und erfährt wen der gewählte Spieler besucht hat";
-
-
-
 
     public static final String OPFER = "Alle Opfer inklusive Liebespaaropfer werden bekannt gegeben";
     public static final String VERSTUMMT = "Der verstummte Spieler wird bekannt gegeben";
-    public static final String WÖLFIN_NEBENROLLE = "Das Dorf erfährt die Bonusrolle der Wölfin";
 
-    public static final String PROGRAMM_SCHÜTZE = "[Programm] Schütze";
-    public static final String PROGRAMM_OPFER = "[Programm] Opfer";
-    public static final String PROGRAMM_TORTE = "[Programm] Torte";
-    public static final String PROGRAMM_WAHRSAGER = "[Programm] Wahrsager";
+
+
+
+
+
+
 
     public static final String ALLE_SCHLAFEN_EIN_TITLE = "Alle schlafen ein";
     public static final String ALLE_WACHEN_AUF_TITLE = "Alle wachen auf";
 
 
-
-    public static final String NEUER_SCHATTENPRIESTER_TITLE = "Neuer Schattenpriester";
-
-    public static final String NEUER_WERWOLF_TITLE = "Neuer Werwolf";
-    public static final String NACHBAR_INFORMATION_TITLE = "Besucher von ";
-    public static final String SPURENLESER_INFORMATION_TITLE = "Besuchte Spieler von ";
-
-
-
-
     public static final String OPFER_TITLE = "Opfer der Nacht";
     public static final String VERSTUMMT_TITLE = "Verstummt";
-    public static final String SCHÖNLINGE_TITLE = "Schönlinge";
-    public static final String WÖLFIN_NEBENROLLE_TITLE = "Wölfin";
+
+
+
+
+
 
     public static final String TORTE_TITLE = "";
     public static final String TARNUMHANG_TITLE = "Tarnumhang";
     public static final String TOT_TITLE = "Tot";
     public static final String DEAKTIVIERT_TITLE = "Deaktiviert";
     public static final String AUFGEBRAUCHT_TITLE = "Aufgebraucht";
+
+
+
+
+
 
     public static ArrayList<Statement> statements;
     public static Object lock;
@@ -181,7 +174,7 @@ public class Nacht extends Thread {
                             }
                             break;
 
-                        case PROGRAMM_SCHÜTZE:
+                        case ProgrammStatements.SCHÜTZE:
                             setSchütze();
                             break;
 
@@ -203,7 +196,7 @@ public class Nacht extends Thread {
                             }
                             break;
 
-                        case NEUER_SCHATTENPRIESTER:
+                        case Schattenpriester_Fraktion.NEUER_SCHATTENPRIESTER:
                             chosenPlayer = game.findSpieler(chosenOptionLastStatement);
                             String neuerSchattenpriester = "";
                             imagePath = "";
@@ -217,7 +210,7 @@ public class Nacht extends Thread {
                             showListShowImage(statement, neuerSchattenpriester, ImagePath.SCHATTENPRIESTER_ICON, imagePath);
                             break;
 
-                        case NEUER_WERWOLF:
+                        case Chemiker.NEUER_WERWOLF:
                             chosenPlayer = game.findSpieler(chosenOptionLastStatement);
                             String neuerWerwolf = "";
                             if (chosenPlayer != null) {
@@ -252,7 +245,7 @@ public class Nacht extends Thread {
                             }
                             break;
 
-                        case PROGRAMM_WAHRSAGER:
+                        case ProgrammStatements.WAHRSAGER:
                             if (Wahrsager.isGuessing) {
                                 Spieler wahrsagerSpieler2 = game.findSpielerPerRolle(Wahrsager.name);
                                 Spieler deadWahrsagerSpieler = game.findSpielerOrDeadPerRolle(Wahrsager.name);
@@ -296,7 +289,7 @@ public class Nacht extends Thread {
                             }
                             break;
 
-                        case PROGRAMM_OPFER:
+                        case ProgrammStatements.OPFER:
                             setOpfer();
                             break;
 
@@ -334,7 +327,7 @@ public class Nacht extends Thread {
                             }
                             break;
 
-                        case PROGRAMM_TORTE:
+                        case ProgrammStatements.TORTE:
                             if (Torte.torte) {
                                 FrontendControl.erzählerTortenPage();
                                 FrontendControl.spielerIconPicturePage(TORTE_TITLE, ImagePath.TORTE);

@@ -17,6 +17,12 @@ public class Wölfin extends Hauptrolle {
     public static String title = "Opfer wählen";
     public static final String beschreibung = "Wölfin erwacht und wählt ein Opfer aus, wenn sie das tut, erfährt das dorf ihre Bonusrolle";
     public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE;
+
+    public static String secondTitle = "Wölfin";
+    public static final String WÖLFIN_NEBENROLLE = "Das Dorf erfährt die Bonusrolle der Wölfin";
+    public static final String secondBeschreibung = WÖLFIN_NEBENROLLE;
+    public static StatementType secondStatementType = StatementType.ROLLE_INFO;
+
     public static final String name = "Wölfin";
     public static Fraktion fraktion = new Werwölfe();
     public static final String imagePath = ImagePath.WÖLFIN_KARTE;
@@ -76,6 +82,15 @@ public class Wölfin extends Hauptrolle {
     public StatementType getStatementType() {
         return statementType;
     }
+
+    @Override
+    public String getSecondTitle() { return secondTitle; }
+
+    @Override
+    public String getSecondBeschreibung() { return secondBeschreibung; }
+
+    @Override
+    public StatementType getSecondStatementType() { return secondStatementType; }
 
     @Override
     public Fraktion getFraktion() {

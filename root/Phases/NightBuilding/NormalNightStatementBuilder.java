@@ -15,6 +15,7 @@ import root.Persona.Rollen.Hauptrollen.Werwölfe.Wölfin;
 import root.Persona.Rollen.Hauptrollen.Überläufer.Überläufer;
 import root.Persona.Rollen.Nebenrollen.*;
 import root.Persona.Rolle;
+import root.Phases.NightBuilding.Constants.ProgrammStatements;
 import root.mechanics.Game;
 
 import java.util.ArrayList;
@@ -43,7 +44,7 @@ public class NormalNightStatementBuilder {
         statements.add(getStatement(Nachbar.name));
         statements.add(getStatement(Spurenleser.name));
 
-        //addProgrammStatement(PROGRAMM_SCHÜTZE);
+        statements.add(ProgrammStatements.getSchützeStatement());
 
         statements.add(getStatement(LadyAleera.name));
         statements.add(getStatement(Prostituierte.name));
@@ -72,7 +73,7 @@ public class NormalNightStatementBuilder {
         statements.add(getSecondStatement(Nachbar.name));
         statements.add(getSecondStatement(Spurenleser.name));
 
-        //addProgrammStatement(PROGRAMM_WAHRSAGER);
+        statements.add(ProgrammStatements.getWahrsagerProgrammStatement());
         if (game.getLivingPlayer().size() > 4) {
             statements.add(getStatement(Wahrsager.name));
         }
@@ -85,7 +86,7 @@ public class NormalNightStatementBuilder {
 
         //addStatementIndie(ALLE_WACHEN_AUF, ALLE_WACHEN_AUF_TITLE, StatementType.SHOW_TITLE);
 
-        //addProgrammStatement(PROGRAMM_OPFER);
+        statements.add(ProgrammStatements.getOferStatement());
         //addStatementIndie(OPFER, OPFER_TITLE, StatementType.INDIE);
 
         statements.add(getSecondStatement(Schreckenswolf.name));
@@ -94,7 +95,7 @@ public class NormalNightStatementBuilder {
             statements.add(getSecondStatement(Wölfin.name));
         }
 
-        //addProgrammStatement(PROGRAMM_TORTE);
+        statements.add(ProgrammStatements.getTortenProgrammStatement());
 
         return statements;
     }

@@ -20,7 +20,13 @@ public class Schattenpriester_Fraktion extends Fraktion
 {
     public static String title = "Opfer wiederbeleben";
     public static final String beschreibung = "Die Schattenpriester erwachen und entscheiden welchen Verstorbenen dieser Nacht sie wiederbeleben und zum Kult hinzufügen möchten";
-    public static StatementType statementType = StatementType.FRAKTION_SPECAL;
+    public static StatementType statementType = StatementType.FRAKTION_CHOOSE_ONE;
+
+    public static String secondTitle = "Neuer Schattenpriester";
+    public static final String NEUER_SCHATTENPRIESTER = "Der Wiederbelebte erwacht und tauscht seine Karten gegen Schattenkarten";
+    public static final String secondBeschreibung = NEUER_SCHATTENPRIESTER;
+    public static StatementType secondStatementType = StatementType.FRAKTION_SPECAL;
+
     public static final String name = "Schattenpriester";
     public static final Color farbe = Color.lightGray;
     public static final String imagePath = ImagePath.SCHATTENPRIESTER_ICON;
@@ -83,6 +89,12 @@ public class Schattenpriester_Fraktion extends Fraktion
     public StatementType getStatementType() {
         return statementType;
     }
+
+    public String getSecondTitle() { return secondTitle; }
+
+    public String getSecondBeschreibung() { return secondBeschreibung; }
+
+    public StatementType getSecondStatementType() { return secondStatementType; }
 
     @Override
     public Color getFarbe() { return farbe; }
