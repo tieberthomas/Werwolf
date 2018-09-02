@@ -1,6 +1,7 @@
 package root.Persona.Fraktionen;
 
 import root.Frontend.FrontendControl;
+import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Persona.Fraktion;
 import root.Persona.Rollen.Hauptrollen.Werwölfe.Alphawolf;
@@ -13,11 +14,10 @@ import root.mechanics.Opfer;
 import java.awt.*;
 import java.util.ArrayList;
 
-/**
- * Created by Steve on 25.11.2017.
- */
-public class Werwölfe extends Fraktion
-{
+public class Werwölfe extends Fraktion {
+    public static String title = "Opfer wählen";
+    public static final String beschreibung = "Die Werwölfe erwachen und wählen ein Opfer aus";
+    public static StatementType statementType = StatementType.FRAKTION_CHOOSE_ONE;
     public static final String name = "Werwölfe";
     public static final Color farbe = Color.green;
     public static final String imagePath = ImagePath.WÖLFE_ICON;
@@ -42,14 +42,31 @@ public class Werwölfe extends Fraktion
     }
 
     @Override
-    public Color getFarbe() { return farbe; }
+    public String getTitle() {
+        return title;
+    }
+
+    @Override
+    public String getBeschreibung() {
+        return beschreibung;
+    }
+
+    @Override
+    public StatementType getStatementType() {
+        return statementType;
+    }
+
+    @Override
+    public Color getFarbe() {
+        return farbe;
+    }
 
     @Override
     public String getImagePath() {
         return imagePath;
     }
 
-    public static boolean isTötend (String hauptrolle) {
+    public static boolean isTötend(String hauptrolle) {
         ArrayList<String> tötend = new ArrayList<>();
 
         tötend.add(Blutwolf.name);

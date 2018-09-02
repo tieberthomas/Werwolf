@@ -1,6 +1,7 @@
 package root.Persona.Fraktionen;
 
 import root.Frontend.FrontendControl;
+import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Persona.Fraktion;
 import root.Spieler;
@@ -8,11 +9,10 @@ import root.mechanics.Opfer;
 
 import java.awt.*;
 
-/**
- * Created by Steve on 25.11.2017.
- */
-public class Vampire extends Fraktion
-{
+public class Vampire extends Fraktion {
+    public static String title = "Opfer wählen";
+    public static final String beschreibung = "Die Vampire erwachen und wählen ein Opfer aus";
+    public static StatementType statementType = StatementType.FRAKTION_CHOOSE_ONE;
     public static final String name = "Vampire";
     public static final Color farbe = Color.red;
     public static final String imagePath = ImagePath.VAMPIERE_ICON;
@@ -37,7 +37,24 @@ public class Vampire extends Fraktion
     }
 
     @Override
-    public Color getFarbe() { return farbe; }
+    public String getTitle() {
+        return title;
+    }
+
+    @Override
+    public String getBeschreibung() {
+        return beschreibung;
+    }
+
+    @Override
+    public StatementType getStatementType() {
+        return statementType;
+    }
+
+    @Override
+    public Color getFarbe() {
+        return farbe;
+    }
 
     @Override
     public String getImagePath() {

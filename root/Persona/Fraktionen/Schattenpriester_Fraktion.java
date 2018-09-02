@@ -2,6 +2,7 @@ package root.Persona.Fraktionen;
 
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
+import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Persona.Fraktion;
 import root.Persona.Rollen.Hauptrollen.Bürger.Riese;
@@ -15,11 +16,11 @@ import root.mechanics.Opfer;
 import java.awt.*;
 import java.util.ArrayList;
 
-/**
- * Created by Steve on 25.11.2017.
- */
 public class Schattenpriester_Fraktion extends Fraktion
 {
+    public static String title = "Opfer wiederbeleben";
+    public static final String beschreibung = "Die Schattenpriester erwachen und entscheiden welchen Verstorbenen dieser Nacht sie wiederbeleben und zum Kult hinzufügen möchten";
+    public static StatementType statementType = StatementType.FRAKTION_SPECAL;
     public static final String name = "Schattenpriester";
     public static final Color farbe = Color.lightGray;
     public static final String imagePath = ImagePath.SCHATTENPRIESTER_ICON;
@@ -39,7 +40,6 @@ public class Schattenpriester_Fraktion extends Fraktion
             chosenOpfer.nebenrolle = new Schatten();
         }
     }
-
 
     @Override
     public FrontendControl getDropdownOptions() {
@@ -67,6 +67,21 @@ public class Schattenpriester_Fraktion extends Fraktion
     @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public String getTitle() {
+        return title;
+    }
+
+    @Override
+    public String getBeschreibung() {
+        return beschreibung;
+    }
+
+    @Override
+    public StatementType getStatementType() {
+        return statementType;
     }
 
     @Override

@@ -37,9 +37,6 @@ public class Nacht extends Thread {
     public static final String ALLE_SCHLAFEN_EIN = "Alle schlafen ein";
     public static final String ALLE_WACHEN_AUF = "Alle wachen auf";
 
-    public static final String VAMPIRE = "Die Vampire erwachen und wählen ein Opfer aus";
-    public static final String WERWÖLFE = "Die Werwölfe erwachen und die Wölfe wählen ein Opfer aus";
-    public static final String SCHATTENPRIESTER = "Die Schattenpriester erwachen und entscheiden welchen Verstorbenen dieser Nacht sie wiederbeleben und zum Kult hinzufügen möchten";
     public static final String NEUER_SCHATTENPRIESTER = "Der Wiederbelebte erwacht und tauscht seine Karten gegen Schattenkarten";
 
     public static final String NEUER_WERWOLF = "Der Wiederbelebte erwacht und tauscht seine Hauptrollen- gegen eine Werwolfkarte";
@@ -61,9 +58,8 @@ public class Nacht extends Thread {
     public static final String ALLE_SCHLAFEN_EIN_TITLE = "Alle schlafen ein";
     public static final String ALLE_WACHEN_AUF_TITLE = "Alle wachen auf";
 
-    public static final String VAMPIRE_TITLE = "Opfer wählen";
-    public static final String WERWÖLFE_TITLE = "Opfer wählen";
-    public static final String SCHATTENPRIESTER_TITLE = "Opfer wiederbeleben";
+
+
     public static final String NEUER_SCHATTENPRIESTER_TITLE = "Neuer Schattenpriester";
 
     public static final String NEUER_WERWOLF_TITLE = "Neuer Werwolf";
