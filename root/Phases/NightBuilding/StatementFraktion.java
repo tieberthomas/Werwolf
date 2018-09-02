@@ -1,5 +1,6 @@
 package root.Phases.NightBuilding;
 
+import root.Phases.NightBuilding.Constants.StatementType;
 import root.Rollen.Fraktion;
 
 /**

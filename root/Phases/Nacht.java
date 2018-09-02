@@ -1,6 +1,7 @@
 package root.Phases;
 
 import root.Frontend.FrontendControl;
+import root.Phases.NightBuilding.Constants.StatementType;
 import root.Phases.NightBuilding.*;
 import root.ResourceManagement.ImagePath;
 import root.Rollen.Constants.DropdownConstants;
@@ -602,7 +603,7 @@ public class Nacht extends Thread {
         }
 
         switch (statement.getState()) {
-            case Statement.NORMAL:
+            case NORMAL:
                 switch (frontendControl.typeOfContent) {
                     case TITLE:
                         showTitle(statement, frontendControl.title);
@@ -633,15 +634,15 @@ public class Nacht extends Thread {
                 }
                 break;
 
-            case Statement.DEAKTIV:
+            case DEAKTIV:
                 showDeaktivPages(statement, frontendControl);
                 break;
 
-            case Statement.DEAD:
+            case DEAD:
                 showTotPages(statement, frontendControl);
                 break;
 
-            case Statement.NOT_IN_GAME:
+            case NOT_IN_GAME:
                 showAusDemSpielPages(statement, frontendControl);
                 break;
         }
@@ -651,22 +652,22 @@ public class Nacht extends Thread {
 
     public void showDropdownPage(Statement statement, ArrayList<String> dropdownOptions1, ArrayList<String> dropdownOptions2) {
         switch (statement.getState()) {
-            case Statement.NORMAL:
+            case NORMAL:
                 FrontendControl.erzählerDropdownPage(statement, dropdownOptions1, dropdownOptions2);
                 FrontendControl.spielerDropdownPage(statement.title, 2);
                 break;
 
-            case Statement.DEAKTIV:
+            case DEAKTIV:
                 FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), getEmptyStringList(), ImagePath.DEAKTIVIERT);
                 FrontendControl.spielerIconPicturePage(DEAKTIVIERT_TITLE, ImagePath.DEAKTIVIERT);
                 break;
 
-            case Statement.DEAD:
+            case DEAD:
                 FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), getEmptyStringList(), ImagePath.TOT);
                 FrontendControl.spielerIconPicturePage(TOT_TITLE, ImagePath.TOT);
                 break;
 
-            case Statement.NOT_IN_GAME:
+            case NOT_IN_GAME:
                 FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), getEmptyStringList(), ImagePath.AUS_DEM_SPIEL);
                 FrontendControl.spielerDropdownPage(statement.title, 2);
                 break;

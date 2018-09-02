@@ -2,7 +2,11 @@ package root.Phases;
 
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
-import root.Phases.NightBuilding.*;
+import root.Phases.NightBuilding.Constants.StatementType;
+import root.Phases.NightBuilding.Statement;
+import root.Phases.NightBuilding.StatementFraktion;
+import root.Phases.NightBuilding.StatementIndie;
+import root.Phases.NightBuilding.StatementRolle;
 import root.ResourceManagement.ImagePath;
 import root.Rollen.*;
 import root.Rollen.Fraktionen.Schattenpriester_Fraktion;

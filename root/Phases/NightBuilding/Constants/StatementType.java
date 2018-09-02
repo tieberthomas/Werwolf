@@ -1,4 +1,4 @@
-package root.Phases.NightBuilding;
+package root.Phases.NightBuilding.Constants;
 
 public enum StatementType {
     PROGRAMM,
