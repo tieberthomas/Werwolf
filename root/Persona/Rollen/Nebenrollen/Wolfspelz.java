@@ -1,0 +1,72 @@
+package root.Persona.Rollen.Nebenrollen;
+
+import root.ResourceManagement.ImagePath;
+import root.Persona.Fraktionen.Werwölfe;
+import root.Persona.Nebenrolle;
+import root.Persona.Rollen.Constants.NebenrollenTyp;
+import root.Spieler;
+
+import java.awt.*;
+
+/**
+ * Created by Steve on 12.11.2017.
+ */
+public class Wolfspelz extends Nebenrolle
+{
+    public static final String name = "Wolfspelz";
+    public static final String imagePath = ImagePath.WOLFSPELZ_KARTE;
+    public static boolean unique = true;
+    public static boolean spammable = false;
+    public NebenrollenTyp type = NebenrollenTyp.PASSIV;
+    public Color farbe = Werwölfe.farbe;
+
+    public void tauschen(Nebenrolle nebenrolle) {
+        try {
+            Spieler spieler = game.findSpielerPerRolle(name);
+            spieler.nebenrolle = nebenrolle;
+        }catch (NullPointerException e) {
+            System.out.println(name + " nicht gefunden");
+        }
+    }
+
+    public Nebenrolle getTauschErgebnis() {
+        Spieler spieler = game.findSpielerPerRolle(name);
+
+        if(spieler!=null) {
+            Nebenrolle nebenrolle;
+
+            if (spieler.hauptrolle.getFraktion().getName().equals(Werwölfe.name)) {
+                nebenrolle = new SchwarzeSeele();
+            } else {
+                nebenrolle = spieler.nebenrolle;
+            }
+
+            return nebenrolle;
+        } else {
+            return  this;
+        }
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    @Override
+    public boolean isSpammable() {
+        return spammable;
+    }
+
+    @Override
+    public NebenrollenTyp getType() { return type; }
+
+    @Override
+    public Color getFarbe() {
+        return farbe;
+    }
+}

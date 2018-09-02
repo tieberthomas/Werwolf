@@ -1,20 +1,20 @@
 package root.Phases.NightBuilding;
 
-import root.Rollen.Constants.WölfinState;
-import root.Rollen.Fraktion;
-import root.Rollen.Fraktionen.Schattenpriester_Fraktion;
-import root.Rollen.Fraktionen.Vampire;
-import root.Rollen.Fraktionen.Werwölfe;
-import root.Rollen.Hauptrollen.Bürger.*;
-import root.Rollen.Hauptrollen.Vampire.GrafVladimir;
-import root.Rollen.Hauptrollen.Vampire.LadyAleera;
-import root.Rollen.Hauptrollen.Vampire.MissVerona;
-import root.Rollen.Hauptrollen.Werwölfe.Chemiker;
-import root.Rollen.Hauptrollen.Werwölfe.Schreckenswolf;
-import root.Rollen.Hauptrollen.Werwölfe.Wölfin;
-import root.Rollen.Hauptrollen.Überläufer.Überläufer;
-import root.Rollen.Nebenrollen.*;
-import root.Rollen.Rolle;
+import root.Persona.Rollen.Constants.WölfinState;
+import root.Persona.Fraktion;
+import root.Persona.Fraktionen.Schattenpriester_Fraktion;
+import root.Persona.Fraktionen.Vampire;
+import root.Persona.Fraktionen.Werwölfe;
+import root.Persona.Rollen.Hauptrollen.Bürger.*;
+import root.Persona.Rollen.Hauptrollen.Vampire.GrafVladimir;
+import root.Persona.Rollen.Hauptrollen.Vampire.LadyAleera;
+import root.Persona.Rollen.Hauptrollen.Vampire.MissVerona;
+import root.Persona.Rollen.Hauptrollen.Werwölfe.Chemiker;
+import root.Persona.Rollen.Hauptrollen.Werwölfe.Schreckenswolf;
+import root.Persona.Rollen.Hauptrollen.Werwölfe.Wölfin;
+import root.Persona.Rollen.Hauptrollen.Überläufer.Überläufer;
+import root.Persona.Rollen.Nebenrollen.*;
+import root.Persona.Rolle;
 import root.mechanics.Game;
 
 import java.util.ArrayList;

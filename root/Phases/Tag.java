@@ -3,10 +3,10 @@ package root.Phases;
 import root.Frontend.Frame.ErzählerFrameMode;
 import root.Frontend.Frame.SpielerFrame;
 import root.Frontend.FrontendControl;
-import root.Rollen.Fraktionen.Bürger;
-import root.Rollen.Hauptrolle;
-import root.Rollen.Nebenrollen.ReineSeele;
-import root.Rollen.Nebenrollen.Wahrsager;
+import root.Persona.Fraktionen.Bürger;
+import root.Persona.Hauptrolle;
+import root.Persona.Rollen.Nebenrollen.ReineSeele;
+import root.Persona.Rollen.Nebenrollen.Wahrsager;
 import root.Spieler;
 import root.mechanics.Game;
 

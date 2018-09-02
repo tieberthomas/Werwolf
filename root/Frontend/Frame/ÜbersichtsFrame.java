@@ -7,9 +7,9 @@ import root.Frontend.Page.PageTable;
 import root.Phases.ErsteNacht;
 import root.Phases.Nacht;
 import root.Phases.PhaseMode;
-import root.Rollen.Hauptrolle;
-import root.Rollen.Nebenrolle;
-import root.Rollen.Rolle;
+import root.Persona.Hauptrolle;
+import root.Persona.Nebenrolle;
+import root.Persona.Rolle;
 import root.Spieler;
 import root.mechanics.Game;
 

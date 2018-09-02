@@ -1,7 +1,7 @@
 package root.Phases.NightBuilding;
 
 import root.Phases.NightBuilding.Constants.StatementType;
-import root.Rollen.Fraktion;
+import root.Persona.Fraktion;
 
 /**
  * Created by Steve on 27.12.2017.

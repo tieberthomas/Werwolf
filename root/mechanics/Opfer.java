@@ -2,12 +2,12 @@ package root.mechanics;
 
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
-import root.Rollen.Fraktionen.Vampire;
-import root.Rollen.Fraktionen.Werwölfe;
-import root.Rollen.Hauptrollen.Bürger.Riese;
-import root.Rollen.Hauptrollen.Werwölfe.Blutwolf;
-import root.Rollen.Nebenrollen.*;
-import root.Rollen.Rolle;
+import root.Persona.Fraktionen.Vampire;
+import root.Persona.Fraktionen.Werwölfe;
+import root.Persona.Rollen.Hauptrollen.Bürger.Riese;
+import root.Persona.Rollen.Hauptrollen.Werwölfe.Blutwolf;
+import root.Persona.Rollen.Nebenrollen.*;
+import root.Persona.Rolle;
 import root.Spieler;
 
 import java.util.ArrayList;

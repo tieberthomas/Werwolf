@@ -6,7 +6,7 @@ import root.Frontend.Frame.SpielerFrame;
 import root.Frontend.Frame.SpielerFrameMode;
 import root.Frontend.Page.Page;
 import root.Frontend.Page.PageElement;
-import root.Rollen.Fraktion;
+import root.Persona.Fraktion;
 import root.mechanics.Liebespaar;
 
 import javax.swing.*;

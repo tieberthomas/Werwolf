@@ -1,0 +1,62 @@
+package root.Persona.Fraktionen;
+
+import root.Frontend.FrontendControl;
+import root.ResourceManagement.ImagePath;
+import root.Persona.Fraktion;
+import root.Persona.Rollen.Hauptrollen.Werwölfe.Alphawolf;
+import root.Persona.Rollen.Hauptrollen.Werwölfe.Blutwolf;
+import root.Persona.Rollen.Hauptrollen.Werwölfe.Werwolf;
+import root.Persona.Rollen.Hauptrollen.Werwölfe.Wölfin;
+import root.Spieler;
+import root.mechanics.Opfer;
+
+import java.awt.*;
+import java.util.ArrayList;
+
+/**
+ * Created by Steve on 25.11.2017.
+ */
+public class Werwölfe extends Fraktion
+{
+    public static final String name = "Werwölfe";
+    public static final Color farbe = Color.green;
+    public static final String imagePath = ImagePath.WÖLFE_ICON;
+
+    @Override
+    public void processChosenOption(String chosenOption) {
+        Spieler chosenPlayer = game.findSpieler(chosenOption);
+        if (chosenPlayer != null) {
+            Spieler täter = Fraktion.getFraktionsMembers(name).get(0);
+            Opfer.addVictim(chosenPlayer, täter, true);
+        }
+    }
+
+    @Override
+    public FrontendControl getDropdownOptions() {
+        return game.getPlayerFrontendControl();
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public Color getFarbe() { return farbe; }
+
+    @Override
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public static boolean isTötend (String hauptrolle) {
+        ArrayList<String> tötend = new ArrayList<>();
+
+        tötend.add(Blutwolf.name);
+        tötend.add(Werwolf.name);
+        tötend.add(Alphawolf.name);
+        tötend.add(Wölfin.name);
+
+        return tötend.contains(hauptrolle);
+    }
+}

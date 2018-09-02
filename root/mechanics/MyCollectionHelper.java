@@ -1,7 +1,7 @@
 package root.mechanics;
 
-import root.Rollen.Hauptrolle;
-import root.Rollen.Nebenrolle;
+import root.Persona.Hauptrolle;
+import root.Persona.Nebenrolle;
 
 import java.util.ArrayList;
 

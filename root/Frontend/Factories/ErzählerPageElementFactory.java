@@ -10,9 +10,9 @@ import root.Phases.ErsteNacht;
 import root.Phases.Nacht;
 import root.Phases.NightBuilding.Statement;
 import root.Phases.NightBuilding.StatementRolle;
-import root.Rollen.Hauptrollen.Bürger.Sammler;
-import root.Rollen.Nebenrolle;
-import root.Rollen.Nebenrollen.Konditorlehrling;
+import root.Persona.Rollen.Hauptrollen.Bürger.Sammler;
+import root.Persona.Nebenrolle;
+import root.Persona.Rollen.Nebenrollen.Konditorlehrling;
 
 import javax.swing.*;
 import java.awt.*;
