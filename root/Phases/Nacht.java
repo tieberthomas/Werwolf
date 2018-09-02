@@ -38,7 +38,6 @@ public class Nacht extends Thread {
     Game game;
 
     public static final String TORTE_TITLE = "";
-    public static final String TARNUMHANG_TITLE = "Tarnumhang";
     public static final String TOT_TITLE = "Tot";
     public static final String DEAKTIVIERT_TITLE = "Deaktiviert";
     public static final String AUFGEBRAUCHT_TITLE = "Aufgebraucht";
@@ -205,8 +204,8 @@ public class Nacht extends Thread {
 
                             if (chosenSpieler1 != null && chosenSpieler2 != null) {
                                 if (((Analytiker) rolle).showTarnumhang(chosenSpieler1, chosenSpieler2)) {
-                                    imagePath = ImagePath.TARNUMHANG;
-                                    statement.title = TARNUMHANG_TITLE;
+                                    imagePath = Tarnumhang.imagePath;
+                                    statement.title = Tarnumhang.title;
                                     showImage(statement, imagePath);
                                 } else {
                                     String answer = ((Analytiker) rolle).analysiere(chosenSpieler1, chosenSpieler2);
@@ -829,100 +828,4 @@ public class Nacht extends Thread {
             e.printStackTrace();
         }
     }
-
-    /*public void normaleNachtBuildStatements() {
-        statements = new ArrayList<>();
-
-        addStatementIndie(ALLE_SCHLAFEN_EIN, ALLE_SCHLAFEN_EIN_TITLE, StatementType.SHOW_TITLE);
-
-        if (Wirt.freibierCharges > 0) {
-            addStatementRolle(WIRT, WIRT_TITLE, Wirt.name, StatementType.ROLLE_CHOOSE_ONE);
-        }
-
-        if (Totengräber.getNehmbareNebenrollen().size() > 0) {
-            addStatementRolle(TOTENGRÄBER, TOTENGRÄBER_TITLE, Totengräber.name, StatementType.ROLLE_CHOOSE_ONE);
-        }
-        addStatementRolle(GEFÄNGNISWÄRTER, GEFÄNGNISWÄRTER_TITLE, Gefängniswärter.name, StatementType.ROLLE_CHOOSE_ONE);
-
-        if (game.mitteHauptrollen.size() > 0) {
-            addStatementRolle(ÜBERLÄUFER, ÜBERLÄUFER_TITLE, Überläufer.name, StatementType.ROLLE_CHOOSE_ONE);
-        }
-        addStatementRolle(HOLDE_MAID, HOLDE_MAID_TITLE, HoldeMaid.name, StatementType.ROLLE_CHOOSE_ONE);
-        addStatementRolle(NACHBAR, NACHBAR_TITLE, Nachbar.name, StatementType.ROLLE_CHOOSE_ONE);
-        addStatementRolle(SPURENLESER, SPURENLESER_TITLE, Spurenleser.name, StatementType.ROLLE_CHOOSE_ONE);
-
-        addProgrammStatement(PROGRAMM_SCHÜTZE);
-
-        addStatementRolle(LADY_ALEERA, LADY_ALEERA_TITLE, LadyAleera.name, StatementType.ROLLE_INFO);
-        addStatementRolle(PROSTITUIERTE, PROSTITUIERTE_TITLE, Prostituierte.name, StatementType.ROLLE_CHOOSE_ONE);
-
-        addStatementRolle(RIESE, RIESE_TITLE, Riese.name, StatementType.ROLLE_CHOOSE_ONE);
-        addStatementFraktion(VAMPIRE, VAMPIRE_TITLE, Vampire.name, StatementType.FRAKTION_CHOOSE_ONE);
-        addStatementRolle(GRAF_VLADIMIR, GRAF_VLADIMIR_TITLE, GrafVladimir.name, StatementType.ROLLE_CHOOSE_ONE);
-        addStatementFraktion(WERWÖLFE, WERWÖLFE_TITLE, Werwölfe.name, StatementType.FRAKTION_CHOOSE_ONE);
-        if (Wölfin.state == WölfinState.TÖTEND) {
-            addStatementRolle(WÖLFIN, WÖLFIN_TITLE, Wölfin.name, StatementType.ROLLE_CHOOSE_ONE);
-        }
-        addStatementRolle(SCHRECKENSWOLF, SCHRECKENSWOLF_TITLE, Schreckenswolf.name, StatementType.ROLLE_SPECAL);
-
-        addStatementFraktion(SCHATTENPRIESTER, SCHATTENPRIESTER_TITLE, Schattenpriester_Fraktion.name, StatementType.FRAKTION_CHOOSE_ONE);
-        addStatementFraktion(NEUER_SCHATTENPRIESTER, NEUER_SCHATTENPRIESTER_TITLE, Schattenpriester_Fraktion.name, StatementType.FRAKTION_SPECAL);
-        addStatementRolle(CHEMIKER, CHEMIKER_TITLE, Chemiker.name, StatementType.ROLLE_CHOOSE_ONE);
-        addStatementRolle(NEUER_WERWOLF, NEUER_WERWOLF_TITLE, Chemiker.name, StatementType.ROLLE_SPECAL); //vll. rolle_info
-
-        addStatementRolle(MISS_VERONA, MISS_VERONA_TITLE, MissVerona.name, StatementType.ROLLE_INFO);
-        addStatementRolle(ANALYTIKER, ANALYTIKER_TITLE, Analytiker.name, StatementType.ROLLE_SPECAL);
-        addStatementRolle(ARCHIVAR, ARCHIVAR_TITLE, Archivar.name, StatementType.ROLLE_CHOOSE_ONE_INFO);
-        addStatementRolle(SEHERIN, SEHERIN_TITLE, Seherin.name, StatementType.ROLLE_CHOOSE_ONE_INFO);
-        addStatementRolle(ORAKEL, ORAKEL_TITLE, Orakel.name, StatementType.ROLLE_INFO);
-        addStatementRolle(SPÄHER, SPÄHER_TITLE, Späher.name, StatementType.ROLLE_CHOOSE_ONE_INFO);
-
-        addStatementRolle(NACHBAR_INFORMATION, NACHBAR_INFORMATION_TITLE, Nachbar.name, StatementType.ROLLE_INFO);
-        addStatementRolle(SPURENLESER_INFORMATION, SPURENLESER_INFORMATION_TITLE, Spurenleser.name, StatementType.ROLLE_INFO);
-
-        addProgrammStatement(PROGRAMM_WAHRSAGER);
-        if (game.getLivingPlayer().size() > 4) {
-            addStatementRolle(WAHRSAGER, WAHRSAGER_TITLE, Wahrsager.name, StatementType.ROLLE_CHOOSE_ONE);
-        }
-
-        if (game.getSecondaryRoleInGameNames().contains(Konditorlehrling.name)) {
-            addStatementRolle(KONDITOR_LEHRLING, KONDITOR_LEHRLING_TITLE, Konditorlehrling.name, StatementType.ROLLE_SPECAL);
-        } else {
-            addStatementRolle(KONDITOR, KONDITOR_TITLE, Konditor.name, StatementType.ROLLE_SPECAL);
-        }
-
-        addStatementIndie(ALLE_WACHEN_AUF, ALLE_WACHEN_AUF_TITLE, StatementType.SHOW_TITLE);
-
-        addProgrammStatement(PROGRAMM_OPFER);
-        addStatementIndie(OPFER, OPFER_TITLE, StatementType.INDIE);
-
-        if (Rolle.rolleInNachtEnthalten(Schreckenswolf.name)) { //TODO useless
-            addStatementIndie(VERSTUMMT, VERSTUMMT_TITLE, StatementType.INDIE);
-        }
-        if (Wölfin.state == WölfinState.TÖTEND) {
-            addStatementRolle(WÖLFIN_NEBENROLLE, WÖLFIN_NEBENROLLE_TITLE, Wölfin.name, StatementType.ROLLE_INFO);
-        }
-
-        addProgrammStatement(PROGRAMM_TORTE);
-    }
-
-    public void addProgrammStatement(String statement) {
-        statements.add(new StatementProgramm(statement));
-    }
-
-    public void addStatementIndie(String statement, String title, StatementType type) {
-        statements.add(new StatementIndie(statement, title, type));
-    }
-
-    public void addStatementRolle(String statement, String title, String rolle, StatementType type) {
-        statements.add(new StatementRolle(statement, title, rolle, type));
-    }
-
-    public void addStatementRolle(Rolle rolle, StatementType type) {
-        statements.add(new StatementRolle(rolle.beschreibung, rolle.title, rolle.getName(), type));
-    }
-
-    public void addStatementFraktion(String statement, String title, String fraktion, StatementType type) {
-        statements.add(new StatementFraktion(statement, title, fraktion, type));
-    }*/
 }

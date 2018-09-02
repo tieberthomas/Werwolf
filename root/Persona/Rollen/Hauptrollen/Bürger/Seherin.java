@@ -14,8 +14,6 @@ import root.Persona.Rollen.Nebenrollen.*;
 import root.Spieler;
 
 public class Seherin extends Hauptrolle {
-    public static final String TARNUMHANG_TITLE = "Tarnumhang";
-
     public static String title = "Spieler wählen";
     public static final String beschreibung = "Seherin erwacht und lässt sich Auskunft über die Fraktion eines Mitspielers geben";
     public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE_INFO;
@@ -50,7 +48,7 @@ public class Seherin extends Hauptrolle {
                 return new FrontendControl(FrontendControlType.IMAGE, Schattenpriester_Fraktion.imagePath);
             }
             if (nebenrolle.equals(Tarnumhang.name)) {
-                return new FrontendControl(FrontendControlType.IMAGE, TARNUMHANG_TITLE, ImagePath.TARNUMHANG);
+                return new FrontendControl(FrontendControlType.IMAGE, Tarnumhang.title, ImagePath.TARNUMHANG);
             }
 
             return new FrontendControl(FrontendControlType.IMAGE, chosenOption, chosenPlayer.hauptrolle.getFraktion().getImagePath());

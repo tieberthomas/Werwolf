@@ -14,7 +14,6 @@ public class Späher extends Hauptrolle
 {
     private static final String TÖTEND_TITLE = "Tötend";
     private static final String NICHT_TÖTEND_TITLE = "Nicht Tötend";
-    private static final String TARNUMHANG_TITLE = "Tarnumhang";
 
     public static String title = "Spieler wählen";
     public static final String beschreibung = "Späher erwacht und lässt sich Auskunft über einen Mitspieler geben";
@@ -38,7 +37,7 @@ public class Späher extends Hauptrolle
             besucht = chosenPlayer;
 
             if(chosenPlayer.nebenrolle.getName().equals(Tarnumhang.name)) {
-                return new FrontendControl(FrontendControlType.IMAGE, TARNUMHANG_TITLE, ImagePath.TARNUMHANG);
+                return new FrontendControl(FrontendControlType.IMAGE, Tarnumhang.title, ImagePath.TARNUMHANG);
             }
 
             if(chosenPlayer.hauptrolle.isKilling()) {
