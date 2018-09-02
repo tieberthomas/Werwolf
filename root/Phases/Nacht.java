@@ -18,6 +18,7 @@ import root.Persona.Rollen.Hauptrollen.Werwölfe.Chemiker;
 import root.Persona.Rollen.Hauptrollen.Werwölfe.Schreckenswolf;
 import root.Persona.Rollen.Hauptrollen.Werwölfe.Wölfin;
 import root.Persona.Rollen.Nebenrollen.*;
+import root.Phases.NightBuilding.Constants.IndieStatements;
 import root.Phases.NightBuilding.Constants.ProgrammStatements;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.Phases.NightBuilding.NormalNightStatementBuilder;
@@ -36,42 +37,11 @@ import java.util.ArrayList;
 public class Nacht extends Thread {
     Game game;
 
-    public static final String ALLE_SCHLAFEN_EIN = "Alle schlafen ein";
-    public static final String ALLE_WACHEN_AUF = "Alle wachen auf";
-
-
-    public static final String OPFER = "Alle Opfer inklusive Liebespaaropfer werden bekannt gegeben";
-    public static final String VERSTUMMT = "Der verstummte Spieler wird bekannt gegeben";
-
-
-
-
-
-
-
-
-    public static final String ALLE_SCHLAFEN_EIN_TITLE = "Alle schlafen ein";
-    public static final String ALLE_WACHEN_AUF_TITLE = "Alle wachen auf";
-
-
-    public static final String OPFER_TITLE = "Opfer der Nacht";
-    public static final String VERSTUMMT_TITLE = "Verstummt";
-
-
-
-
-
-
     public static final String TORTE_TITLE = "";
     public static final String TARNUMHANG_TITLE = "Tarnumhang";
     public static final String TOT_TITLE = "Tot";
     public static final String DEAKTIVIERT_TITLE = "Deaktiviert";
     public static final String AUFGEBRAUCHT_TITLE = "Aufgebraucht";
-
-
-
-
-
 
     public static ArrayList<Statement> statements;
     public static Object lock;
@@ -293,7 +263,7 @@ public class Nacht extends Thread {
                             setOpfer();
                             break;
 
-                        case OPFER:
+                        case IndieStatements.OPFER:
                             ArrayList<String> opferDerNacht = new ArrayList<>();
 
                             for (Opfer currentOpfer : Opfer.deadVictims) {
@@ -305,8 +275,7 @@ public class Nacht extends Thread {
                                 }
                             }
 
-                            //showList(statement, opferDerNacht);
-                            FrontendControl.erzählerListPage(statement, OPFER_TITLE, opferDerNacht);
+                            FrontendControl.erzählerListPage(statement, IndieStatements.OPFER_TITLE, opferDerNacht);
                             for (String opfer : opferDerNacht) {
                                 FrontendControl.spielerAnnounceVictimPage(game.findSpieler(opfer));
                                 waitForAnswer();
@@ -318,7 +287,7 @@ public class Nacht extends Thread {
                             checkVictory();
                             break;
 
-                        case VERSTUMMT:
+                        case Schreckenswolf.VERSTUMMT:
                             if (beschworenerSpieler != null) {
                                 FrontendControl.erzählerListPage(statement, beschworenerSpieler.name);
                                 FrontendControl.spielerIconPicturePage(beschworenerSpieler.name, ImagePath.VERSTUMMT);

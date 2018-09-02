@@ -68,10 +68,13 @@ public class Chemiker extends Hauptrolle {
         return statementType;
     }
 
+    @Override
     public String getSecondTitle() { return secondTitle; }
 
+    @Override
     public String getSecondBeschreibung() { return secondBeschreibung; }
 
+    @Override
     public StatementType getSecondStatementType() { return secondStatementType; }
 
     @Override

@@ -16,6 +16,12 @@ public class Schreckenswolf extends Hauptrolle {
     public static String title = "Mitspieler verstummen";
     public static final String beschreibung = "Schreckenswolf erwacht und verstummt einen Spieler der am folgenden Tag nichtmehr reden darf";
     public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE;
+
+    public static final String secondTitle = "Verstummt";
+    public static final String VERSTUMMT = "Der verstummte Spieler wird bekannt gegeben";
+    public static final String secondBeschreibung = VERSTUMMT;
+    public static final StatementType secondStatementType = StatementType.ROLLE_INFO;
+
     public static final String name = "Schreckenswolf";
     public static Fraktion fraktion = new Werwölfe();
     public static final String imagePath = ImagePath.SCHRECKENSWOLF_KARTE;
@@ -55,6 +61,15 @@ public class Schreckenswolf extends Hauptrolle {
     public StatementType getStatementType() {
         return statementType;
     }
+
+    @Override
+    public String getSecondTitle() { return secondTitle; }
+
+    @Override
+    public String getSecondBeschreibung() { return secondBeschreibung; }
+
+    @Override
+    public StatementType getSecondStatementType() { return secondStatementType; }
 
     @Override
     public Fraktion getFraktion() {

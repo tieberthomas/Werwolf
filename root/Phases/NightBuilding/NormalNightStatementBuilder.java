@@ -15,6 +15,7 @@ import root.Persona.Rollen.Hauptrollen.Werwölfe.Wölfin;
 import root.Persona.Rollen.Hauptrollen.Überläufer.Überläufer;
 import root.Persona.Rollen.Nebenrollen.*;
 import root.Persona.Rolle;
+import root.Phases.NightBuilding.Constants.IndieStatements;
 import root.Phases.NightBuilding.Constants.ProgrammStatements;
 import root.mechanics.Game;
 
@@ -26,7 +27,7 @@ public class NormalNightStatementBuilder {
     public static ArrayList<Statement> normaleNachtBuildStatements() {
         ArrayList<Statement> statements = new ArrayList<>();
 
-        //addStatementIndie(ALLE_SCHLAFEN_EIN, ALLE_SCHLAFEN_EIN_TITLE, StatementType.SHOW_TITLE);
+        statements.add(IndieStatements.getAlleSchlafenEinStatement());
 
         if (Wirt.freibierCharges > 0) {
             statements.add(getStatement(Wirt.name));
@@ -84,10 +85,10 @@ public class NormalNightStatementBuilder {
             statements.add(getStatement(Konditor.name));
         }
 
-        //addStatementIndie(ALLE_WACHEN_AUF, ALLE_WACHEN_AUF_TITLE, StatementType.SHOW_TITLE);
+        statements.add(IndieStatements.getAlleWachenAufStatement());
 
         statements.add(ProgrammStatements.getOferStatement());
-        //addStatementIndie(OPFER, OPFER_TITLE, StatementType.INDIE);
+        statements.add(IndieStatements.getOpferStatement());
 
         statements.add(getSecondStatement(Schreckenswolf.name));
 
