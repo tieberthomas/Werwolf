@@ -1,5 +1,6 @@
 package root.Rollen;
 
+import root.Rollen.Constants.NebenrollenTyp;
 import root.Rollen.Nebenrollen.Schatten;
 import root.Spieler;
 

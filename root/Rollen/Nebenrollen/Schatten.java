@@ -2,7 +2,7 @@ package root.Rollen.Nebenrollen;
 
 import root.ResourceManagement.ImagePath;
 import root.Rollen.Nebenrolle;
-import root.Rollen.NebenrollenTyp;
+import root.Rollen.Constants.NebenrollenTyp;
 
 public class Schatten extends Nebenrolle {
     public static final String name = "Schatten";

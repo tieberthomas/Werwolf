@@ -6,7 +6,7 @@ import root.Phases.Nacht;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Rollen.Nebenrolle;
-import root.Rollen.NebenrollenTyp;
+import root.Rollen.Constants.NebenrollenTyp;
 import root.Spieler;
 
 import java.util.ArrayList;

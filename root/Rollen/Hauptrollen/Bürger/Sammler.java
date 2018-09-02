@@ -6,7 +6,7 @@ import root.Rollen.Fraktionen.Bürger;
 import root.Rollen.Hauptrolle;
 import root.Rollen.Nebenrolle;
 import root.Rollen.Nebenrollen.Totengräber;
-import root.Rollen.NebenrollenTyp;
+import root.Rollen.Constants.NebenrollenTyp;
 
 /**
  * Created by Steve on 12.11.2017.

@@ -8,7 +8,7 @@ import root.Phases.NightBuilding.Statement;
 import root.Phases.NightBuilding.StatementRolle;
 import root.ResourceManagement.ImagePath;
 import root.Rollen.Nebenrolle;
-import root.Rollen.NebenrollenTyp;
+import root.Rollen.Constants.NebenrollenTyp;
 import root.Rollen.Rolle;
 import root.Spieler;
 

@@ -7,7 +7,7 @@ import root.ResourceManagement.ImagePath;
 import root.Rollen.Fraktionen.Bürger;
 import root.Rollen.Hauptrollen.Bürger.Bestienmeister;
 import root.Rollen.Nebenrolle;
-import root.Rollen.NebenrollenTyp;
+import root.Rollen.Constants.NebenrollenTyp;
 import root.Spieler;
 
 public class Archivar extends Nebenrolle {

@@ -2,7 +2,7 @@ package root.Rollen.Nebenrollen;
 
 import root.ResourceManagement.ImagePath;
 import root.Rollen.Nebenrolle;
-import root.Rollen.NebenrollenTyp;
+import root.Rollen.Constants.NebenrollenTyp;
 
 import java.awt.*;
 
