@@ -149,7 +149,7 @@ public class Nacht extends Thread {
 
                         case Schreckenswolf.beschreibung:
                             Schreckenswolf schreckenswolf = (Schreckenswolf) rolle;
-                            if (schreckenswolf.werwölfeKilledOnSchutz()) {
+                            if (schreckenswolf!=null && schreckenswolf.werwölfeKilledOnSchutz()) {
                                 dropdownOtions = schreckenswolf.getDropdownOptions();
                                 chosenOption = showFrontendControl(statement, dropdownOtions);
                                 schreckenswolf.processChosenOption(chosenOption);

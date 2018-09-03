@@ -128,7 +128,7 @@ public class ErzählerPageFactory {
 
         erzählerFrame.addAllMainRolesJButton = new JButton();
         PageElement addAllMainRolesButton = pageElementFactory.generateLowestButton(erzählerFrame.addAllMainRolesJButton,
-                "Alle Persona", true, 1);
+                "Alle Rollen", true, 1);
 
         Page mainRoleSetupPage = new Page();
 
@@ -175,7 +175,7 @@ public class ErzählerPageFactory {
 
         erzählerFrame.addAllSecondaryRolesJButton = new JButton();
         PageElement addAllSecondaryRolesButton = pageElementFactory.generateLowestButton(erzählerFrame.addAllSecondaryRolesJButton,
-                "Alle Persona", true, 1);
+                "Alle Rollen", true, 1);
 
         Page secondaryRoleSetupPage = new Page();
 

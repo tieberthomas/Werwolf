@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class Schreckenswolf extends Hauptrolle {
     public static String title = "Mitspieler verstummen";
     public static final String beschreibung = "Schreckenswolf erwacht und verstummt einen Spieler der am folgenden Tag nichtmehr reden darf";
-    public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE;
+    public static StatementType statementType = StatementType.ROLLE_SPECAL;
 
     public static final String secondTitle = "Verstummt";
     public static final String VERSTUMMT = "Der verstummte Spieler wird bekannt gegeben";
@@ -92,10 +92,10 @@ public class Schreckenswolf extends Hauptrolle {
     }
 
     public boolean werwölfeKilledOnSchutz() {
-        return !didAllOpferDie(possibleWerwolfOpfer());
+        return didSomeoneHaveSchutz(possibleWerwolfOpfer());
     }
 
-    public ArrayList<Opfer> possibleWerwolfOpfer() {
+    private ArrayList<Opfer> possibleWerwolfOpfer() {
         ArrayList<Opfer> possibleWerwolfOpfer = new ArrayList<>();
         for (Opfer opfer : Opfer.possibleVictims) {
             if (opfer.täter != null && opfer.täter.hauptrolle.getFraktion().getName().equals(Werwölfe.name)) {
@@ -106,9 +106,15 @@ public class Schreckenswolf extends Hauptrolle {
         return possibleWerwolfOpfer;
     }
 
-    public boolean didAllOpferDie(ArrayList<Opfer> possibleOpfer) {
-        possibleOpfer.removeAll(Opfer.deadVictims);
+    private boolean didSomeoneHaveSchutz(ArrayList<Opfer> possibleOpfer) {
+        boolean someoneHadSchutz = false;
 
-        return possibleOpfer.size() == 0;
+        for(Opfer opfer : possibleOpfer) {
+            if(opfer.opfer.geschützt) {
+                someoneHadSchutz = true;
+            }
+        }
+
+        return someoneHadSchutz;
     }
 }
