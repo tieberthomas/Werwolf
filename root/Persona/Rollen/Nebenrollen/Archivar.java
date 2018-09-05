@@ -2,26 +2,23 @@ package root.Persona.Rollen.Nebenrollen;
 
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
+import root.Persona.Rollen.Constants.NebenrollenType.Informativ;
+import root.Persona.Rollen.Constants.NebenrollenType.NebenrollenType;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Persona.Fraktionen.Bürger;
 import root.Persona.Rollen.Hauptrollen.Bürger.Bestienmeister;
 import root.Persona.Nebenrolle;
-import root.Persona.Rollen.Constants.NebenrollenTyp;
 import root.Spieler;
 
 public class Archivar extends Nebenrolle {
-    private static final String PASSIV_TITLE = "Passiv";
-    private static final String AKTIV_TITLE = "Aktiv";
-    private static final String INFORMATIV_TITLE = "Informativ";
-
     public static String title = "Spieler wählen";
     public static final String beschreibung = "Archivar erwacht und lässt sich Auskunft über die Bonusrolle eines Mitspielers geben";
     public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE_INFO;
     public static final String name = "Archivar";
     public static final String imagePath = ImagePath.ARCHIVAR_KARTE;
     public static boolean spammable = true;
-    public NebenrollenTyp type = NebenrollenTyp.INFORMATIV;
+    public NebenrollenType type = new Informativ();
 
     @Override
     public FrontendControl getDropdownOptions() {
@@ -43,19 +40,9 @@ public class Archivar extends Nebenrolle {
                 }
             }
 
-            switch (chosenPlayer.nebenrolle.getType()) {
-                case AKTIV:
-                    return new FrontendControl(FrontendControlType.IMAGE, AKTIV_TITLE, ImagePath.AKTIV);
+            NebenrollenType type = chosenPlayer.nebenrolle.getType();
 
-                case PASSIV:
-                    return new FrontendControl(FrontendControlType.IMAGE, PASSIV_TITLE, ImagePath.PASSIV);
-
-                case INFORMATIV:
-                    return new FrontendControl(FrontendControlType.IMAGE, INFORMATIV_TITLE, ImagePath.INFORMATIV);
-
-                case TARNUMHANG:
-                    return new FrontendControl(FrontendControlType.IMAGE, Tarnumhang.title, ImagePath.TARNUMHANG);
-            }
+            return new FrontendControl(FrontendControlType.IMAGE, type.title, type.imagePath);
         }
 
         return new FrontendControl();
@@ -92,7 +79,7 @@ public class Archivar extends Nebenrolle {
     }
 
     @Override
-    public NebenrollenTyp getType() {
+    public NebenrollenType getType() {
         return type;
     }
 }

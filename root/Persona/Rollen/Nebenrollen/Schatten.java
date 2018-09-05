@@ -1,15 +1,16 @@
 package root.Persona.Rollen.Nebenrollen;
 
-import root.ResourceManagement.ImagePath;
 import root.Persona.Nebenrolle;
-import root.Persona.Rollen.Constants.NebenrollenTyp;
+import root.Persona.Rollen.Constants.NebenrollenType.NebenrollenType;
+import root.Persona.Rollen.Constants.NebenrollenType.Passiv;
+import root.ResourceManagement.ImagePath;
 
 public class Schatten extends Nebenrolle {
     public static final String name = "Schatten";
     public static final String imagePath = ImagePath.SCHATTEN_KARTE;
     public static int numberOfPossibleInstances = 100;
     public static boolean spammable = false;
-    public NebenrollenTyp type = NebenrollenTyp.PASSIV;
+    public NebenrollenType type = new Passiv();
 
     @Override
     public String getName() {
@@ -32,7 +33,7 @@ public class Schatten extends Nebenrolle {
     }
 
     @Override
-    public NebenrollenTyp getType() {
+    public NebenrollenType getType() {
         return type;
     }
 }

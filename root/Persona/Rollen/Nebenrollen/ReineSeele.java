@@ -1,8 +1,9 @@
 package root.Persona.Rollen.Nebenrollen;
 
-import root.ResourceManagement.ImagePath;
 import root.Persona.Nebenrolle;
-import root.Persona.Rollen.Constants.NebenrollenTyp;
+import root.Persona.Rollen.Constants.NebenrollenType.NebenrollenType;
+import root.Persona.Rollen.Constants.NebenrollenType.Passiv;
+import root.ResourceManagement.ImagePath;
 
 public class ReineSeele extends Nebenrolle {
     public static final String name = "Reine Seele";
@@ -10,7 +11,7 @@ public class ReineSeele extends Nebenrolle {
     public static boolean unique = false;
     public static boolean spammable = false;
     public boolean dayInvincibility = true;
-    public NebenrollenTyp type = NebenrollenTyp.PASSIV;
+    public NebenrollenType type = new Passiv();
 
     @Override
     public String getName() {
@@ -28,7 +29,7 @@ public class ReineSeele extends Nebenrolle {
     }
 
     @Override
-    public NebenrollenTyp getType() {
+    public NebenrollenType getType() {
         return type;
     }
 }

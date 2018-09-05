@@ -1,12 +1,12 @@
 package root.Persona.Rollen.Hauptrollen.Bürger;
 
-import root.ResourceManagement.ImagePath;
 import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Bürger;
 import root.Persona.Hauptrolle;
 import root.Persona.Nebenrolle;
+import root.Persona.Rollen.Constants.NebenrollenType.Passiv;
 import root.Persona.Rollen.Nebenrollen.Totengräber;
-import root.Persona.Rollen.Constants.NebenrollenTyp;
+import root.ResourceManagement.ImagePath;
 
 /**
  * Created by Steve on 12.11.2017.
@@ -45,7 +45,7 @@ public class Sammler extends Hauptrolle
         for (Nebenrolle currentRolle : game.mitteNebenrollen) {
             if (currentRolle.getName().equals(rolle) &&
                     !currentRolle.getName().equals(Totengräber.name) &&
-                    !currentRolle.getType().equals(NebenrollenTyp.PASSIV)) {
+                    !currentRolle.getType().equals(new Passiv())) {
                 return true;
             }
         }

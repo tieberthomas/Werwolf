@@ -1,9 +1,10 @@
 package root.Persona.Rollen.Nebenrollen;
 
-import root.ResourceManagement.ImagePath;
 import root.Persona.Fraktionen.Werwölfe;
 import root.Persona.Nebenrolle;
-import root.Persona.Rollen.Constants.NebenrollenTyp;
+import root.Persona.Rollen.Constants.NebenrollenType.NebenrollenType;
+import root.Persona.Rollen.Constants.NebenrollenType.Passiv;
+import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
 import java.awt.*;
@@ -17,7 +18,7 @@ public class Wolfspelz extends Nebenrolle
     public static final String imagePath = ImagePath.WOLFSPELZ_KARTE;
     public static boolean unique = true;
     public static boolean spammable = false;
-    public NebenrollenTyp type = NebenrollenTyp.PASSIV;
+    public NebenrollenType type = new Passiv();
     public Color farbe = Werwölfe.farbe;
 
     public void tauschen(Nebenrolle nebenrolle) {
@@ -63,7 +64,7 @@ public class Wolfspelz extends Nebenrolle
     }
 
     @Override
-    public NebenrollenTyp getType() { return type; }
+    public NebenrollenType getType() { return type; }
 
     @Override
     public Color getFarbe() {

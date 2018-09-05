@@ -4,6 +4,7 @@ neue Karte - Title
 booleans?
 deaktiviert und verbraucht - deaktiviert anzeigen
 ErsteNacht Statement Type
+Totengräber/Sammler - Tarnumhang?
 
 TH:
 Englisch-Deutsch-Gemisch

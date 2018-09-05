@@ -1,9 +1,10 @@
 package root.Persona.Rollen.Nebenrollen;
 
-import root.ResourceManagement.ImagePath;
 import root.Persona.Fraktionen.Schattenpriester_Fraktion;
 import root.Persona.Nebenrolle;
-import root.Persona.Rollen.Constants.NebenrollenTyp;
+import root.Persona.Rollen.Constants.NebenrollenType.NebenrollenType;
+import root.Persona.Rollen.Constants.NebenrollenType.Passiv;
+import root.ResourceManagement.ImagePath;
 
 import java.awt.*;
 
@@ -16,7 +17,7 @@ public class Schattenkutte extends Nebenrolle
     public static final String imagePath = ImagePath.SCHATTENKUTTE_KARTE;
     public static boolean unique = true;
     public static boolean spammable = false;
-    public NebenrollenTyp type = NebenrollenTyp.PASSIV;
+    public NebenrollenType type = new Passiv();
     public Color farbe = Schattenpriester_Fraktion.farbe;
 
     @Override
@@ -35,7 +36,7 @@ public class Schattenkutte extends Nebenrolle
     }
 
     @Override
-    public NebenrollenTyp getType() {
+    public NebenrollenType getType() {
         return type;
     }
 

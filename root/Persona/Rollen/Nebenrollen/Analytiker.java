@@ -1,11 +1,12 @@
 package root.Persona.Rollen.Nebenrollen;
 
+import root.Persona.Fraktionen.Bürger;
+import root.Persona.Nebenrolle;
+import root.Persona.Rollen.Constants.NebenrollenType.Informativ;
+import root.Persona.Rollen.Constants.NebenrollenType.NebenrollenType;
+import root.Persona.Rollen.Hauptrollen.Bürger.Bestienmeister;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
-import root.Persona.Fraktionen.Bürger;
-import root.Persona.Rollen.Hauptrollen.Bürger.Bestienmeister;
-import root.Persona.Nebenrolle;
-import root.Persona.Rollen.Constants.NebenrollenTyp;
 import root.Spieler;
 import root.mechanics.Liebespaar;
 
@@ -22,7 +23,7 @@ public class Analytiker extends Nebenrolle {
     public static final String name = "Analytiker";
     public static final String imagePath = ImagePath.ANALYTIKER_KARTE;
     public static boolean spammable = true;
-    public NebenrollenTyp type = NebenrollenTyp.INFORMATIV;
+    public NebenrollenType type = new Informativ();
     public static final String GLEICH = "gleich";
     public static final String UNGLEICH = "ungleich";
     public Spieler besuchtAnalysieren = null;
@@ -58,7 +59,7 @@ public class Analytiker extends Nebenrolle {
     }
 
     @Override
-    public NebenrollenTyp getType() {
+    public NebenrollenType getType() {
         return type;
     }
 

@@ -1,9 +1,10 @@
 package root.Persona.Rollen.Nebenrollen;
 
-import root.ResourceManagement.ImagePath;
 import root.Persona.Fraktionen.Bürger;
 import root.Persona.Nebenrolle;
-import root.Persona.Rollen.Constants.NebenrollenTyp;
+import root.Persona.Rollen.Constants.NebenrollenType.NebenrollenType;
+import root.Persona.Rollen.Constants.NebenrollenType.Passiv;
+import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
 /**
@@ -14,7 +15,7 @@ public class Seelenlicht extends Nebenrolle
     public static final String name = "Seelenlicht";
     public static final String imagePath = ImagePath.SEELENLICHT_KARTE;
     public static boolean spammable = false;
-    public NebenrollenTyp type = NebenrollenTyp.PASSIV;
+    public NebenrollenType type = new Passiv();
 
     public void tauschen(Nebenrolle nebenrolle) {
         try {
@@ -59,5 +60,5 @@ public class Seelenlicht extends Nebenrolle
     }
 
     @Override
-    public NebenrollenTyp getType() { return type; }
+    public NebenrollenType getType() { return type; }
 }

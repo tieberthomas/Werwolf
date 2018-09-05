@@ -2,24 +2,24 @@ package root.Phases;
 
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
+import root.Persona.Fraktion;
+import root.Persona.Fraktionen.Schattenpriester_Fraktion;
+import root.Persona.Fraktionen.Vampire;
+import root.Persona.Fraktionen.Werwölfe;
+import root.Persona.Hauptrolle;
+import root.Persona.Nebenrolle;
+import root.Persona.Rolle;
+import root.Persona.Rollen.Constants.NebenrollenType.Passiv;
+import root.Persona.Rollen.Hauptrollen.Bürger.Bruder;
+import root.Persona.Rollen.Hauptrollen.Bürger.Seherin;
+import root.Persona.Rollen.Hauptrollen.Werwölfe.Alphawolf;
+import root.Persona.Rollen.Nebenrollen.*;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.Phases.NightBuilding.Statement;
 import root.Phases.NightBuilding.StatementFraktion;
 import root.Phases.NightBuilding.StatementIndie;
 import root.Phases.NightBuilding.StatementRolle;
 import root.ResourceManagement.ImagePath;
-import root.Persona.Rollen.Constants.NebenrollenTyp;
-import root.Persona.Fraktion;
-import root.Persona.Fraktionen.Schattenpriester_Fraktion;
-import root.Persona.Fraktionen.Vampire;
-import root.Persona.Fraktionen.Werwölfe;
-import root.Persona.Hauptrolle;
-import root.Persona.Rollen.Hauptrollen.Bürger.Bruder;
-import root.Persona.Rollen.Hauptrollen.Bürger.Seherin;
-import root.Persona.Rollen.Hauptrollen.Werwölfe.Alphawolf;
-import root.Persona.Nebenrolle;
-import root.Persona.Rollen.Nebenrollen.*;
-import root.Persona.Rolle;
 import root.Spieler;
 import root.mechanics.Game;
 import root.mechanics.Liebespaar;
@@ -98,7 +98,7 @@ public class ErsteNacht extends Thread {
                         rolle = ((StatementRolle) statement).getRolle();
                     }
 
-                    if (rolle != null && rolle instanceof Nebenrolle && ((Nebenrolle) rolle).getType().equals(NebenrollenTyp.PASSIV)) {
+                    if (rolle != null && rolle instanceof Nebenrolle && ((Nebenrolle) rolle).getType().equals(new Passiv())) {
                         Nebenrolle nebenrolle = ((Nebenrolle) rolle);
                         newNebenrolle = nebenrolle.getTauschErgebnis();
                         cardToDisplay = newNebenrolle.getImagePath();

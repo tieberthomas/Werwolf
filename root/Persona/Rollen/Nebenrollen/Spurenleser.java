@@ -3,7 +3,8 @@ package root.Persona.Rollen.Nebenrollen;
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.Persona.Nebenrolle;
-import root.Persona.Rollen.Constants.NebenrollenTyp;
+import root.Persona.Rollen.Constants.NebenrollenType.Informativ;
+import root.Persona.Rollen.Constants.NebenrollenType.NebenrollenType;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
@@ -24,7 +25,7 @@ public class Spurenleser extends Nebenrolle {
     public static final String imagePath = ImagePath.SPURENLESER_KARTE;
     public static boolean spammable = true;
     private Spieler beobachteterSpieler = null;
-    public NebenrollenTyp type = NebenrollenTyp.INFORMATIV;
+    public NebenrollenType type = new Informativ();
 
     @Override
     public FrontendControl getDropdownOptions() {
@@ -87,7 +88,7 @@ public class Spurenleser extends Nebenrolle {
     }
 
     @Override
-    public NebenrollenTyp getType() {
+    public NebenrollenType getType() {
         return type;
     }
 

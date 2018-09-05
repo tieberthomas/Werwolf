@@ -1,6 +1,7 @@
 package root.Persona;
 
-import root.Persona.Rollen.Constants.NebenrollenTyp;
+import root.Persona.Rollen.Constants.NebenrollenType.Aktiv;
+import root.Persona.Rollen.Constants.NebenrollenType.NebenrollenType;
 import root.Persona.Rollen.Nebenrollen.Schatten;
 import root.Spieler;
 
@@ -36,8 +37,8 @@ public class Nebenrolle extends Rolle {
         return this;
     }
 
-    public NebenrollenTyp getType() {
-        return NebenrollenTyp.AKTIV;
+    public NebenrollenType getType() {
+        return new Aktiv();
     }
 
 

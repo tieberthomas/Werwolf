@@ -2,14 +2,14 @@ package root.Persona.Rollen.Nebenrollen;
 
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
+import root.Persona.Nebenrolle;
+import root.Persona.Rolle;
+import root.Persona.Rollen.Constants.NebenrollenType.Passiv;
 import root.Phases.Nacht;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.Phases.NightBuilding.Statement;
 import root.Phases.NightBuilding.StatementRolle;
 import root.ResourceManagement.ImagePath;
-import root.Persona.Nebenrolle;
-import root.Persona.Rollen.Constants.NebenrollenTyp;
-import root.Persona.Rolle;
 import root.Spieler;
 
 import java.util.ArrayList;
@@ -96,7 +96,7 @@ public class Totengräber extends Nebenrolle {
         ArrayList<String> nehmbareNebenrollen = new ArrayList<>();
 
         for (Nebenrolle nebenrolle : game.mitteNebenrollen) {
-            if (!nebenrolle.getType().equals(NebenrollenTyp.PASSIV)) {
+            if (!nebenrolle.getType().equals(new Passiv())) {
                 nehmbareNebenrollen.add(nebenrolle.getName());
             }
         }
