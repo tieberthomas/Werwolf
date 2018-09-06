@@ -66,6 +66,12 @@ public class FrontendControl {
         this.imagePath = imagePath;
     }
 
+    public FrontendControl(Zeigekarte zeigekarte) {
+        this.typeOfContent = FrontendControlType.IMAGE;
+        this.title = zeigekarte.title;
+        this.imagePath = zeigekarte.imagePath;
+    }
+
     public FrontendControl(FrontendControlType typeOfContent, ArrayList<String> strings, String imagePath) {
         this.typeOfContent = typeOfContent;
         this.strings = strings;

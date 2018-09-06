@@ -8,7 +8,7 @@ opfer anzeigen am ende der nacht
 spurenleser
 
 tasks:
-aktiv - passiv - informativ (eigene datacluster dafür erstellen)
+showDeaktivPages und showTotPages schön zusammenfassen zu einer Methode die eine Zeigekarte kriegt
 
 
 CherryOnTop:

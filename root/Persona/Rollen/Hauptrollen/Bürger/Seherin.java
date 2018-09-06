@@ -2,6 +2,7 @@ package root.Persona.Rollen.Hauptrollen.Bürger;
 
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
+import root.Persona.Rollen.Constants.NebenrollenType.Tarnumhang_NebenrollenType;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Persona.Fraktion;
@@ -48,7 +49,7 @@ public class Seherin extends Hauptrolle {
                 return new FrontendControl(FrontendControlType.IMAGE, Schattenpriester_Fraktion.imagePath);
             }
             if (nebenrolle.equals(Tarnumhang.name)) {
-                return new FrontendControl(FrontendControlType.IMAGE, Tarnumhang.title, ImagePath.TARNUMHANG);
+                return new FrontendControl(new Tarnumhang_NebenrollenType());
             }
 
             return new FrontendControl(FrontendControlType.IMAGE, chosenOption, chosenPlayer.hauptrolle.getFraktion().getImagePath());

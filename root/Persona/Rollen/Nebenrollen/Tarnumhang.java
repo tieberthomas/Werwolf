@@ -12,7 +12,7 @@ public class Tarnumhang extends Nebenrolle {
     public static final String name = "Tarnumhang";
     public static final String imagePath = ImagePath.TARNUMHANG_KARTE;
     public static boolean spammable = false;
-    public NebenrollenType type = new Tarnumhang_NebenrollenType();
+    public static NebenrollenType type = new Tarnumhang_NebenrollenType();
     public Color farbe = Color.BLACK;
 
     @Override
