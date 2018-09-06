@@ -4,6 +4,7 @@ import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.Persona.Rollen.Constants.NebenrollenType.Informativ;
 import root.Persona.Rollen.Constants.NebenrollenType.NebenrollenType;
+import root.Persona.Rollen.Constants.NebenrollenType.Tarnumhang_NebenrollenType;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Persona.Fraktionen.Bürger;
@@ -32,20 +33,27 @@ public class Archivar extends Nebenrolle {
         if (chosenPlayer != null) {
             besucht = chosenPlayer;
 
-            if (chosenPlayer.hauptrolle.getName().equals(Bestienmeister.name)) {
-                Spieler spieler = game.findSpielerPerRolle(name);
+            NebenrollenType type = chosenPlayer.nebenrolle.getType();
 
-                if (!spieler.hauptrolle.getFraktion().getName().equals(Bürger.name)) {
-                    return new FrontendControl(FrontendControlType.IMAGE, Tarnumhang.title, ImagePath.TARNUMHANG);
-                }
+            if (playerIsBestienmeister(chosenPlayer) && archivarIsNotBuerger()) {
+                type = new Tarnumhang_NebenrollenType();
             }
 
-            NebenrollenType type = chosenPlayer.nebenrolle.getType();
 
             return new FrontendControl(FrontendControlType.IMAGE, type.title, type.imagePath);
         }
 
         return new FrontendControl();
+    }
+
+    private boolean playerIsBestienmeister(Spieler player) {
+        return player.hauptrolle.getName().equals(Bestienmeister.name);
+    }
+
+    private boolean archivarIsNotBuerger() {
+        Spieler spieler = game.findSpielerPerRolle(name);
+
+        return !spieler.hauptrolle.getFraktion().getName().equals(Bürger.name);
     }
 
     @Override
