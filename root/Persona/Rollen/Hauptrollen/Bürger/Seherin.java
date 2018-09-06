@@ -4,12 +4,14 @@ import root.Frontend.FrontendControl;
 import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Bürger;
 import root.Persona.Hauptrolle;
+import root.Persona.Nebenrolle;
 import root.Persona.Rollen.Constants.NebenrollenType.Tarnumhang_NebenrollenType;
 import root.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.BürgerZeigekarte;
 import root.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.SchattenpriesterZeigekarte;
 import root.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.VampiereZeigekarte;
 import root.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.WerwölfeZeigekarte;
 import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
+import root.Persona.Rollen.Hauptrollen.Werwölfe.Wolfsmensch;
 import root.Persona.Rollen.Nebenrollen.*;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
@@ -37,8 +39,9 @@ public class Seherin extends Hauptrolle {
             besucht = chosenPlayer;
             Zeigekarte zeigekarte = chosenPlayer.hauptrolle.getFraktion().getZeigeKarte();
 
-            String nebenrolle = chosenPlayer.nebenrolle.getName();
-            if (nebenrolle.equals(Lamm.name)) {
+            Nebenrolle nebenrolle = chosenPlayer.nebenrolle;
+            Hauptrolle hauptrolle = chosenPlayer.hauptrolle;
+            if (nebenrolle.equals(Lamm.name) || hauptrolle.equals(Wolfsmensch.name)) {
                 zeigekarte = new BürgerZeigekarte();
             }
             if (nebenrolle.equals(Wolfspelz.name)) {

@@ -82,6 +82,7 @@ public class Game {
         mainRoles.add(new Chemiker());
         mainRoles.add(new Schreckenswolf());
         mainRoles.add(new Werwolf());
+        mainRoles.add(new Wolfsmensch());
         mainRoles.add(new Wölfin());
         mainRoles.add(new Überläufer());
     }
@@ -374,15 +375,24 @@ public class Game {
         return names;
     }
 
-    public ArrayList<String> getStillAvailableMainRoleNames() {
+    public ArrayList<Hauptrolle> getStillAvailableMainRoles() {
         ArrayList<Hauptrolle> mainroles = (ArrayList) mainRolesInGame.clone();
-        ArrayList<String> names = new ArrayList<String>();
+        ArrayList<Hauptrolle> stilleAvalableMainRoles = new ArrayList<>();
 
         for (Spieler spieler : spieler) {
             mainroles.remove(spieler.hauptrolle);
         }
 
-        for (Hauptrolle hauptrolle : mainroles) {
+        stilleAvalableMainRoles.addAll(mainroles);
+
+        return stilleAvalableMainRoles;
+    }
+
+    public ArrayList<String> getStillAvailableMainRoleNames() {
+        ArrayList<Hauptrolle> stilleAvalableMainRoles = getStillAvailableMainRoles();
+        ArrayList<String> names = new ArrayList<>();
+
+        for (Hauptrolle hauptrolle : stilleAvalableMainRoles) {
             names.add(hauptrolle.getName());
         }
 

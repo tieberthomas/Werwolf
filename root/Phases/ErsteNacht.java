@@ -13,6 +13,7 @@ import root.Persona.Rollen.Constants.NebenrollenType.Passiv;
 import root.Persona.Rollen.Hauptrollen.Bürger.Bruder;
 import root.Persona.Rollen.Hauptrollen.Bürger.Seherin;
 import root.Persona.Rollen.Hauptrollen.Werwölfe.Alphawolf;
+import root.Persona.Rollen.Hauptrollen.Werwölfe.Wolfsmensch;
 import root.Persona.Rollen.Nebenrollen.*;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.Phases.NightBuilding.Statement;
@@ -40,6 +41,7 @@ public class ErsteNacht extends Thread {
     public static final String WOLFSPELZ = "Träger des Wolfspelzes erwacht und tauscht ggf. seine Karte aus";
     public static final String IMITATOR = "Imitator erwacht und entscheidet welche Rolle er imitieren möchte";
     public static final String VAMPIRE = "Die Vampire erwachen und sehen einander";
+    public static final String WOLFSMENSCH = "Wolfsmensch erwacht und erfährt eine Bürgerhauptrolle die nicht ausgeteilt worden ist";
     public static final String WERWÖLFE = "Die Werwölfe erwachen und sehen einander";
     public static final String ALPHAWOLF = "Alpha Wolf erwacht und erfährt die Persona der Wolfsfraktion";
     public static final String SCHATTENPRIESTER = "Die Schattenpriester erwachen und sehen einander";
@@ -57,6 +59,7 @@ public class ErsteNacht extends Thread {
     public static final String WOLFSPELZ_TITLE = "neue Karte";
     public static final String IMITATOR_TITLE = "Imitieren";
     public static final String VAMPIRE_TITLE = "Vampire";
+    public static final String WOLFSMENSCH_TITLE = "nicht ausgeteilt";
     public static final String WERWÖLFE_TITLE = "Werwölfe";
     public static final String ALPHAWOLF_TITLE = "Werwölfe";
     public static final String ALPHAWOLF_FERTIG_TITLE = "Fertig";
@@ -136,6 +139,12 @@ public class ErsteNacht extends Thread {
 
                                     waitForAnswer();
                                 }
+                                break;
+
+                            case WOLFSMENSCH:
+                                ArrayList<Hauptrolle> hauptrollen = game.getStillAvailableMainRoles();
+                                Hauptrolle hauptrolle = pickRandomHauptrolle(hauptrollen);
+                                showCard(statement, statement.title, hauptrolle.getImagePath());
                                 break;
 
                             case ALPHAWOLF:
@@ -383,6 +392,7 @@ public class ErsteNacht extends Thread {
         //addStatementRolle(IMITATOR, IMITATOR_TITLE, Imitator.name);
 
         addStatementFraktion(VAMPIRE, VAMPIRE_TITLE, Vampire.name);
+        addStatementRolle(WOLFSMENSCH, WOLFSMENSCH_TITLE, Wolfsmensch.name);
         addStatementFraktion(WERWÖLFE, WERWÖLFE_TITLE, Werwölfe.name);
         addStatementRolle(ALPHAWOLF, ALPHAWOLF_TITLE, Alphawolf.name);
         addStatementFraktion(SCHATTENPRIESTER, SCHATTENPRIESTER_TITLE, Schattenpriester_Fraktion.name);
@@ -409,5 +419,11 @@ public class ErsteNacht extends Thread {
                 statements.add(new StatementFraktion(statement, title, fraktionsName, StatementType.INDIE));
             }
         }
+    }
+
+    private Hauptrolle pickRandomHauptrolle(ArrayList<Hauptrolle> hauptrollen) {
+        int index = (int)Math.round(Math.random() * (double)hauptrollen.size());
+
+        return hauptrollen.get(index);
     }
 }
