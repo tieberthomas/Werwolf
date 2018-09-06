@@ -5,7 +5,7 @@ public class ImagePath {
     private static String IMAGE_FILE_EXTENSION = ".png";
     private static String ICON_PATH = PICTURE_PATH + "Icons\\";
     private static String CARD_PATH = PICTURE_PATH + "Karten\\";
-    private static String SECONDARY_ROLE_PATH = CARD_PATH + "Nebenrollen\\";
+    private static String SECONDARY_ROLE_PATH = CARD_PATH + "Bonusrollen\\";
     private static String OPEN_SECONDARY_ROLE_PATH = SECONDARY_ROLE_PATH + "Augensymbolkarten\\";
 
     private static String BÜRGER_PATH = CARD_PATH + "Bürger\\";
@@ -59,25 +59,31 @@ public class ImagePath {
     public static String ALPHAWOLF_KARTE = WÖLFE_PATH + "Alphawolf" + IMAGE_FILE_EXTENSION;
     public static String BLUTWOLF_KARTE = WÖLFE_PATH + "Blutwolf" + IMAGE_FILE_EXTENSION;
     public static String CHEMIKER_KARTE = WÖLFE_PATH + "Chemiker" + IMAGE_FILE_EXTENSION;
-    public static String WERWOLF_KARTE = WÖLFE_PATH + "Werwolf" + IMAGE_FILE_EXTENSION;
+    public static String GEISTERWOLF_KARTE = WÖLFE_PATH + "Geisterwolf" + IMAGE_FILE_EXTENSION;
     public static String SCHRECKENSWOLF_KARTE = WÖLFE_PATH + "Schreckenswolf" + IMAGE_FILE_EXTENSION;
+    public static String WERWOLF_KARTE = WÖLFE_PATH + "Werwolf" + IMAGE_FILE_EXTENSION;
+    public static String WOLFSMENSCH_KARTE = WÖLFE_PATH + "Wolfsmensch" + IMAGE_FILE_EXTENSION;
     public static String WÖLFIN_KARTE = WÖLFE_PATH + "Wölfin" + IMAGE_FILE_EXTENSION;
 
     public static String ANALYTIKER_KARTE = SECONDARY_ROLE_PATH + "Analytiker" + IMAGE_FILE_EXTENSION;
     public static String ARCHIVAR_KARTE = SECONDARY_ROLE_PATH + "Archivar" + IMAGE_FILE_EXTENSION;
+    public static String DETEKTIV_KARTE = SECONDARY_ROLE_PATH + "Detektiv" + IMAGE_FILE_EXTENSION;
+    public static String DIEB_KARTE = SECONDARY_ROLE_PATH + "Dieb" + IMAGE_FILE_EXTENSION;
     public static String GEFÄNGNISWÄRTER_KARTE = SECONDARY_ROLE_PATH + "Gefängniswärter" + IMAGE_FILE_EXTENSION;
     public static String IMITATOR_KARTE = SECONDARY_ROLE_PATH + "Imitator" + IMAGE_FILE_EXTENSION;
     public static String KONDITOR_KARTE = SECONDARY_ROLE_PATH + "Konditor" + IMAGE_FILE_EXTENSION;
     public static String KONDITORLEHRLING_KARTE = SECONDARY_ROLE_PATH + "Konditorlehrling" + IMAGE_FILE_EXTENSION;
     public static String LAMM_KARTE = SECONDARY_ROLE_PATH + "Lamm" + IMAGE_FILE_EXTENSION;
     public static String NACHBAR_KARTE = SECONDARY_ROLE_PATH + "Nachbar" + IMAGE_FILE_EXTENSION;
-    public static String SPURENLESER_KARTE = SECONDARY_ROLE_PATH + "Spurenleser" + IMAGE_FILE_EXTENSION;
+    public static String NACHTFÜRST_KARTE = SECONDARY_ROLE_PATH + "Nachtfürst" + IMAGE_FILE_EXTENSION;
     public static String PROSTITUIERTE_KARTE = SECONDARY_ROLE_PATH + "Prostituierte" + IMAGE_FILE_EXTENSION;
     public static String REINE_SEELE_KARTE = SECONDARY_ROLE_PATH + "Reine_Seele" + IMAGE_FILE_EXTENSION;
-    public static String SEELENLICHT_KARTE = SECONDARY_ROLE_PATH + "Reines_Licht" + IMAGE_FILE_EXTENSION; //TODO Seelenlicht
     public static String SCHATTEN_KARTE = SECONDARY_ROLE_PATH + "Schatten" + IMAGE_FILE_EXTENSION;
     public static String SCHATTENKUTTE_KARTE = SECONDARY_ROLE_PATH + "Schattenkutte" + IMAGE_FILE_EXTENSION;
+    public static String SCHNÜFFLER_KARTE = SECONDARY_ROLE_PATH + "Schnüffler" + IMAGE_FILE_EXTENSION;
     public static String SCHWARZE_SEELE_KARTE = SECONDARY_ROLE_PATH + "Schwarze_Seele" + IMAGE_FILE_EXTENSION;
+    public static String SEELENLICHT_KARTE = SECONDARY_ROLE_PATH + "Seelenlicht" + IMAGE_FILE_EXTENSION;
+    public static String SPURENLESER_KARTE = SECONDARY_ROLE_PATH + "Spurenleser" + IMAGE_FILE_EXTENSION;
     public static String TARNUMHANG_KARTE = SECONDARY_ROLE_PATH + "Tarnumhang" + IMAGE_FILE_EXTENSION;
     public static String TOTENGRÄBER_KARTE = SECONDARY_ROLE_PATH + "Totengräber" + IMAGE_FILE_EXTENSION;
     public static String VAMPIRUMHANG_KARTE = SECONDARY_ROLE_PATH + "Vampirumhang" + IMAGE_FILE_EXTENSION;
