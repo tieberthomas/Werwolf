@@ -27,7 +27,6 @@ import root.Phases.NightBuilding.NormalNightStatementBuilder;
 import root.Phases.NightBuilding.Statement;
 import root.Phases.NightBuilding.StatementFraktion;
 import root.Phases.NightBuilding.StatementRolle;
-import root.ResourceManagement.ImagePath;
 import root.Spieler;
 import root.mechanics.Game;
 import root.mechanics.Liebespaar;
@@ -62,8 +61,7 @@ public class Nacht extends Thread {
             String chosenOptionLastStatement = null;
 
             Rolle rolle = null;
-
-            String imagePath;
+            String erzählerInfoIconImagePath;
 
             Opfer chosenOpfer;
             Spieler chosenPlayer;
@@ -165,15 +163,15 @@ public class Nacht extends Thread {
                         case Schattenpriester_Fraktion.NEUER_SCHATTENPRIESTER:
                             chosenPlayer = game.findSpieler(chosenOptionLastStatement);
                             String neuerSchattenpriester = "";
-                            imagePath = "";
+                            erzählerInfoIconImagePath = "";
                             if (chosenPlayer != null) {
                                 neuerSchattenpriester = chosenPlayer.name;
 
                                 if (!chosenPlayer.hauptrolle.getFraktion().getName().equals(Schattenpriester_Fraktion.name)) {
-                                    imagePath = Schattenkutte.imagePath;
+                                    erzählerInfoIconImagePath = Schattenkutte.imagePath;
                                 }
                             }
-                            showListShowImage(statement, neuerSchattenpriester, ImagePath.SCHATTENPRIESTER_ICON, imagePath);
+                            showListShowImage(statement, neuerSchattenpriester, Schattenpriester_Fraktion.zeigekarte.imagePath, erzählerInfoIconImagePath);
                             break;
 
                         case Chemiker.NEUER_WERWOLF:
@@ -183,7 +181,7 @@ public class Nacht extends Thread {
                                 neuerWerwolf = chosenPlayer.name;
                             }
 
-                            showListShowImage(statement, neuerWerwolf, Werwölfe.zeigekarte.imagePath);
+                            showListShowImage(statement, neuerWerwolf, Werwölfe.zeigekarte.imagePath); //TODO evalueren obs schönere lösung gibt
                             break;
 
                         case Analytiker.beschreibung:
@@ -201,9 +199,9 @@ public class Nacht extends Thread {
 
                             if (chosenSpieler1 != null && chosenSpieler2 != null) {
                                 if (((Analytiker) rolle).showTarnumhang(chosenSpieler1, chosenSpieler2)) {
-                                    imagePath = Tarnumhang.imagePath;
+                                    erzählerInfoIconImagePath = Tarnumhang.imagePath;
                                     statement.title = Tarnumhang.title;
-                                    showImage(statement, imagePath);
+                                    showImage(statement, erzählerInfoIconImagePath);
                                 } else {
                                     String answer = ((Analytiker) rolle).analysiere(chosenSpieler1, chosenSpieler2);
                                     showList(statement, answer);//TODO generisch machen

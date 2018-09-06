@@ -402,10 +402,7 @@ public class ErzählerPageFactory {
                 if (i != 0) {
                     label = pageElementFactory.generateLabel(label, string);
                     listPage.add(label);
-
-                    if (i == (stringsToDisplay.size() - 1)) {
-                        continueToGeneratePagePoint = listPage.pageElements.indexOf(label);
-                    }
+                    continueToGeneratePagePoint = listPage.pageElements.indexOf(label);
                 }
 
                 i++;
@@ -423,6 +420,8 @@ public class ErzählerPageFactory {
         Page listPage = generateListPage(statement, title, stringsToDisplay);
 
         PageElement modeIcon = pageElementFactory.generateSmallIcon(getContinueToGeneratePagePoint(listPage), imagePath);
+
+        modeIcon.addYSpace(20);
 
         listPage.add(modeIcon);
 

@@ -46,4 +46,8 @@ public class PageElement extends Predecessor {
         pageCoordY = this.coordY + pageOffsetY;
         component.setBounds( pageCoordX, pageCoordY, width, height);
     }
+
+    public void addYSpace(int space) {
+        setCoordY(coordY+space);
+    }
 }

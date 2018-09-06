@@ -22,7 +22,7 @@ public class Werwölfe extends Fraktion {
     public static StatementType statementType = StatementType.FRAKTION_CHOOSE_ONE;
     public static final String name = "Werwölfe";
     public static final Color farbe = Color.green;
-    public static final String imagePath = ImagePath.WÖLFE_ICON;
+    public static final String imagePath = ImagePath.WÖLFE_ICON; //sollte es das noch geben?
     public static final Zeigekarte zeigekarte = new WerwölfeZeigekarte();
 
     @Override

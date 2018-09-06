@@ -64,26 +64,22 @@ public class Analytiker extends Nebenrolle {
     }
 
     public boolean showTarnumhang(Spieler spieler1, Spieler spieler2) {
-        if (spieler1.nebenrolle.getName().equals(Tarnumhang.name) ||
-                spieler2.nebenrolle.getName().equals(Tarnumhang.name)) {
-            return true;
-        }
+        return tarnumhangIsUnterDenSpielern(spieler1, spieler2) ||
+                (bestienmeisterIsUnterDenSpielern(spieler1, spieler2) && analytikerIsNotBürger());
+    }
 
-        boolean bestienmeisterBeiSpielern = false;
-        boolean analytikerKeinBürger = false;
+    private boolean tarnumhangIsUnterDenSpielern(Spieler spieler1, Spieler spieler2) {
+        return spieler1.nebenrolle.equals(Tarnumhang.name) || spieler2.nebenrolle.equals(Tarnumhang.name);
+    }
 
-        if (spieler1.hauptrolle.getName().equals(Bestienmeister.name) ||
-                spieler2.hauptrolle.getName().equals(Bestienmeister.name)) {
-            bestienmeisterBeiSpielern = true;
-        }
+    private boolean bestienmeisterIsUnterDenSpielern(Spieler spieler1, Spieler spieler2) {
+        return spieler1.hauptrolle.equals(Bestienmeister.name) || spieler2.hauptrolle.equals(Bestienmeister.name);
+    }
 
+    private boolean analytikerIsNotBürger() {
         Spieler analytikerSpieler = game.findSpielerPerRolle(name);
 
-        if (!analytikerSpieler.hauptrolle.getFraktion().getName().equals(Bürger.name)) {
-            analytikerKeinBürger = true;
-        }
-
-        return bestienmeisterBeiSpielern && analytikerKeinBürger;
+        return !analytikerSpieler.hauptrolle.getFraktion().equals(Bürger.name);
     }
 
     public String analysiere(Spieler spieler1, Spieler spieler2) {
