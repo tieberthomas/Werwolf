@@ -578,7 +578,7 @@ public class Nacht extends Thread {
                 break;
 
             case NOT_IN_GAME:
-                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), getEmptyStringList(), ImagePath.AUS_DEM_SPIEL);
+                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), getEmptyStringList(), new AusDemSpiel().imagePath);
                 FrontendControl.spielerDropdownPage(statement.title, 2);
                 break;
         }
@@ -597,7 +597,7 @@ public class Nacht extends Thread {
                 FrontendControl.showZeigekarteOnSpielerScreen(deaktiviert);
             }
         } else {
-            FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), ImagePath.AUS_DEM_SPIEL);
+            FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), new AusDemSpiel().imagePath);
             FrontendControl.spielerDropdownPage(statement.title, 1);
         }
 
@@ -697,32 +697,30 @@ public class Nacht extends Thread {
     }
 
     public void showAusDemSpielPages(Statement statement, FrontendControl frontendControl) {
+        AusDemSpiel ausDemSpiel = new AusDemSpiel();
+
         switch (frontendControl.typeOfContent) {
             case DROPDOWN:
             case DROPDOWN_LIST:
-                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), ImagePath.AUS_DEM_SPIEL);
+                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), ausDemSpiel.imagePath);
                 FrontendControl.spielerDropdownPage(statement.title, 1);
-
-                waitForAnswer();
                 break;
 
             case LIST:
             case LIST_IMAGE:
-                FrontendControl.erzählerListPage(statement, getEmptyStringList(), ImagePath.AUS_DEM_SPIEL);
+                FrontendControl.erzählerListPage(statement, getEmptyStringList(), ausDemSpiel.imagePath);
                 FrontendControl.spielerListPage(statement.title, getEmptyStringList());
-
-                waitForAnswer();
                 break;
 
             case TITLE:
             case IMAGE:
             case CARD:
-                FrontendControl.erzählerIconPicturePage(statement, ImagePath.AUS_DEM_SPIEL);
+                FrontendControl.erzählerIconPicturePage(statement, ausDemSpiel.imagePath);
                 FrontendControl.spielerIconPicturePage(statement.title, "");
-
-                waitForAnswer();
                 break;
         }
+
+        waitForAnswer();
     }
 
     public void showTitle(Statement statement) {

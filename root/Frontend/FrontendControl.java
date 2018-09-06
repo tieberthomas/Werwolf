@@ -5,11 +5,11 @@ import root.Frontend.Frame.ErzählerFrame;
 import root.Frontend.Frame.SpielerFrame;
 import root.Frontend.Frame.ÜbersichtsFrame;
 import root.Frontend.Page.Page;
-import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
-import root.Phases.NightBuilding.Statement;
-import root.ResourceManagement.ImagePath;
 import root.Persona.Rollen.Constants.DropdownConstants;
+import root.Persona.Rollen.Constants.Zeigekarten.AusDemSpiel;
+import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Persona.Rollen.Hauptrollen.Vampire.GrafVladimir;
+import root.Phases.NightBuilding.Statement;
 import root.Spieler;
 import root.mechanics.Game;
 
@@ -113,8 +113,9 @@ public class FrontendControl {
         String nebenRolleImagePath = spieler.nebenrolle.getImagePath();
         if(GrafVladimir.unerkennbarerSpieler!=null) {
             if (spieler.name.equals(GrafVladimir.unerkennbarerSpieler.name)) {
-                hauptRolleImagePath = ImagePath.AUS_DEM_SPIEL;
-                nebenRolleImagePath = ImagePath.AUS_DEM_SPIEL;
+                AusDemSpiel ausDemSpiel = new AusDemSpiel();
+                hauptRolleImagePath = ausDemSpiel.imagePath;
+                nebenRolleImagePath = ausDemSpiel.imagePath;
             }
         }
         spielerTwoImagePage(spieler.name, hauptRolleImagePath, nebenRolleImagePath);
