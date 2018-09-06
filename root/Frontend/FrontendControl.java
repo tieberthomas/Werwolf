@@ -15,9 +15,6 @@ import root.mechanics.Game;
 
 import java.util.ArrayList;
 
-/**
- * Created by Steve on 16.05.2018.
- */
 public class FrontendControl {
     public static Game game;
 
@@ -117,7 +114,7 @@ public class FrontendControl {
     public static void spielerAnnounceVictimPage(Spieler spieler) {
         String hauptRolleImagePath = spieler.hauptrolle.getImagePath();
         String nebenRolleImagePath = spieler.nebenrolle.getImagePath();
-        if(GrafVladimir.unerkennbarerSpieler!=null) {
+        if (GrafVladimir.unerkennbarerSpieler != null) {
             if (spieler.name.equals(GrafVladimir.unerkennbarerSpieler.name)) {
                 AusDemSpiel ausDemSpiel = new AusDemSpiel();
                 hauptRolleImagePath = ausDemSpiel.imagePath;
@@ -231,7 +228,7 @@ public class FrontendControl {
         spielerFrame.buildScreenFromPage(nightPage);
     }
 
-    public static void refreshÜbersichtsFrame(){
+    public static void refreshÜbersichtsFrame() {
         übersichtsFrame.refreshÜbersichtsPage();
     }
 

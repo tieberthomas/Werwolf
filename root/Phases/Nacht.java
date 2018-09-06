@@ -12,6 +12,7 @@ import root.Persona.Rollen.Constants.DropdownConstants;
 import root.Persona.Rollen.Constants.NebenrollenType.Passiv;
 import root.Persona.Rollen.Constants.Zeigekarten.*;
 import root.Persona.Rollen.Hauptrollen.Bürger.Sammler;
+import root.Persona.Rollen.Hauptrollen.Bürger.Schamanin;
 import root.Persona.Rollen.Hauptrollen.Bürger.Wirt;
 import root.Persona.Rollen.Hauptrollen.Schattenpriester.Schattenpriester;
 import root.Persona.Rollen.Hauptrollen.Vampire.GrafVladimir;
@@ -276,7 +277,7 @@ public class Nacht extends Thread {
                             }
 
 
-                            refreshHexenSchutz();
+                            refreshSchamaninSchutz();
 
                             checkVictory();
                             break;
@@ -450,31 +451,37 @@ public class Nacht extends Thread {
         }
     }
 
-    public void refreshHexenSchutz() {
-        /*if (Rolle.rolleLebend(GuteHexe.name)) {
-            GuteHexe guteHexe = (GuteHexe) game.findSpielerPerRolle(GuteHexe.name).hauptrolle;
-            if (guteHexe.besucht != null) {
-                String hexenSchutzSpieler = guteHexe.besucht.name;
-                boolean refreshed = false;
+    private void refreshSchamaninSchutz() {
+        if (Rolle.rolleLebend(Schamanin.name)) {
+            Schamanin schamanin = (Schamanin) game.findSpielerPerRolle(Schamanin.name).hauptrolle;
+            if (schamanin.besucht != null) {
+                Spieler geschützerSpieler = schamanin.besucht;
 
-                for (Opfer opfer : Opfer.possibleVictims) {
-                    if (opfer.opfer.name.equals(hexenSchutzSpieler)) {
-                        guteHexe.abilityCharges++;
-                        refreshed = true;
-                        break;
-                    }
-                }
-
-                if (!refreshed) {
-                    for (Opfer opfer : Opfer.deadVictims) {
-                        if (opfer.opfer.name.equals(hexenSchutzSpieler)) {
-                            guteHexe.abilityCharges++;
-                            break;
-                        }
-                    }
+                if(spielerIsPossibleVictim(geschützerSpieler) ||spielerIsDeadVictim(geschützerSpieler)) {
+                    schamanin.abilityCharges++;
                 }
             }
-        }*/
+        }
+    }
+
+    private boolean spielerIsPossibleVictim(Spieler spieler) {
+        for (Opfer opfer : Opfer.possibleVictims) {
+            if (opfer.opfer.equals(spieler)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private boolean spielerIsDeadVictim(Spieler spieler) {
+        for (Opfer opfer : Opfer.deadVictims) {
+            if (opfer.opfer.equals(spieler)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public boolean gibtEsTorte() {

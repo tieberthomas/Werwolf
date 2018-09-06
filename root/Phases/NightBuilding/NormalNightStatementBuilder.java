@@ -41,6 +41,9 @@ public class NormalNightStatementBuilder {
         if (game.mitteHauptrollen.size() > 0) {
             statements.add(getStatement(Überläufer.name));
         }
+
+        statements.add(getStatement(Schamanin.name));
+
         statements.add(getStatement(HoldeMaid.name));
         statements.add(getStatement(Nachbar.name));
         statements.add(getStatement(Spurenleser.name));

@@ -8,6 +8,10 @@ opfer anzeigen am ende der nacht
 spurenleser
 zeigekarten
 analytiker
+schamanin
+
+task:
+werden nachbar und spurenleser von tarnumhang/schamanin bamboozeled?
 
 
 CherryOnTop:
@@ -17,6 +21,8 @@ tauschkarten quasi aus secondaryRolesInGame removen (für nachzügler) aber nich
 bei übersichtspage rahmen von mehreren personen anzeigen (die nicht die ganze fraktion sind)
 showDeaktivPages und showTotPages schön zusammenfassen zu einer Methode die eine Zeigekarte kriegt
 reineseele übersichtspage etwas für markup überlegen
+markup für vampirumhang geschützen spieler bei lady aleera überlegen
+aufgebraucht page interaktiv gestalten
 
 bei jeder rolle als kommentar den kartentext dazuschreiben
 

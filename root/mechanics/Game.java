@@ -41,7 +41,7 @@ public class Game {
     public ArrayList<Nebenrolle> mitteNebenrollen = new ArrayList<>();
     public ArrayList<Spieler> playersSpecified = new ArrayList<>();
 
-    public Game(){
+    public Game() {
         Persona.game = this;
         Spieler.game = this;
         FrontendControl.game = this;
@@ -63,13 +63,13 @@ public class Game {
     }
 
     public void generateAllAvailableMainRoles() {
-        mainRoles.add(new Bestienmeister());
         mainRoles.add(new Bruder());
         mainRoles.add(new Dorfbewohner());
         mainRoles.add(new HoldeMaid());
         mainRoles.add(new Orakel());
         mainRoles.add(new Riese());
         mainRoles.add(new Sammler());
+        mainRoles.add(new Schamanin());
         mainRoles.add(new Seherin());
         mainRoles.add(new Späher());
         mainRoles.add(new Wirt());
@@ -86,7 +86,7 @@ public class Game {
         mainRoles.add(new Überläufer());
     }
 
-    public void generateAllAvailableSecondaryRoles(){
+    public void generateAllAvailableSecondaryRoles() {
         secondaryRoles.add(new Analytiker());
         secondaryRoles.add(new Archivar());
         secondaryRoles.add(new Gefängniswärter());
@@ -108,13 +108,13 @@ public class Game {
     }
 
     public ErzählerFrameMode parsePhaseMode() {
-        if(phaseMode == PhaseMode.tag) {
+        if (phaseMode == PhaseMode.tag) {
             return ErzählerFrameMode.tag;
-        } else if(phaseMode == PhaseMode.freibierTag) {
+        } else if (phaseMode == PhaseMode.freibierTag) {
             return ErzählerFrameMode.freibierTag;
-        } else if(phaseMode == PhaseMode.ersteNacht) {
+        } else if (phaseMode == PhaseMode.ersteNacht) {
             return ErzählerFrameMode.ersteNacht;
-        } else if(phaseMode == PhaseMode.nacht) {
+        } else if (phaseMode == PhaseMode.nacht) {
             return ErzählerFrameMode.nacht;
         } else {
             return ErzählerFrameMode.setup;
@@ -158,16 +158,16 @@ public class Game {
     public String checkVictory() {
         ArrayList<Fraktion> fraktionen = Fraktion.getLivingFraktionen();
 
-        switch(fraktionen.size()){
+        switch (fraktionen.size()) {
             case 0:
                 return "Tot";
             case 1:
                 return fraktionen.get(0).getName();
             case 2:
-                if(getLivingPlayerStrings().size() == 2) {
+                if (getLivingPlayerStrings().size() == 2) {
                     Spieler spieler1 = findSpieler(getLivingPlayerStrings().get(0));
                     Spieler spieler2 = findSpieler(getLivingPlayerStrings().get(1));
-                    if(liebespaar!=null && ((liebespaar.spieler1 == spieler1 && liebespaar.spieler2 == spieler2) ||
+                    if (liebespaar != null && ((liebespaar.spieler1 == spieler1 && liebespaar.spieler2 == spieler2) ||
                             (liebespaar.spieler1 == spieler2 && liebespaar.spieler2 == spieler1))) {
                         return "Liebespaar";
                     } else {
@@ -184,8 +184,8 @@ public class Game {
     public ArrayList<String> getLivingPlayerStrings() {
         ArrayList<String> allSpieler = new ArrayList<>();
 
-        for(Spieler currentSpieler : spieler) {
-            if(currentSpieler.lebend) {
+        for (Spieler currentSpieler : spieler) {
+            if (currentSpieler.lebend) {
                 allSpieler.add(currentSpieler.name);
             }
         }
@@ -194,9 +194,8 @@ public class Game {
     }
 
     public Spieler findSpieler(String name) {
-        for(Spieler currentSpieler : spieler)
-        {
-            if(currentSpieler.name.equals(name)) {
+        for (Spieler currentSpieler : spieler) {
+            if (currentSpieler.name.equals(name)) {
                 return currentSpieler;
             }
         }
@@ -207,8 +206,8 @@ public class Game {
     public ArrayList<Spieler> getLivingPlayer() {
         ArrayList<Spieler> allSpieler = new ArrayList<>();
 
-        for(Spieler currentSpieler : spieler) {
-            if(currentSpieler.lebend) {
+        for (Spieler currentSpieler : spieler) {
+            if (currentSpieler.lebend) {
                 allSpieler.add(currentSpieler);
             }
         }
@@ -217,16 +216,14 @@ public class Game {
     }
 
     public Spieler findSpielerPerRolle(String name) {
-        for(Nebenrolle nebenrolle : mitteNebenrollen)
-        {
-            if(nebenrolle.getName().equals(name)) {
+        for (Nebenrolle nebenrolle : mitteNebenrollen) {
+            if (nebenrolle.getName().equals(name)) {
                 return findSpielerPerRolle(Sammler.name);
             }
         }
 
-        for(Spieler currentSpieler : spieler)
-        {
-            if(currentSpieler.hauptrolle.getName().equals(name) || currentSpieler.nebenrolle.getName().equals(name)) {
+        for (Spieler currentSpieler : spieler) {
+            if (currentSpieler.hauptrolle.getName().equals(name) || currentSpieler.nebenrolle.getName().equals(name)) {
                 return currentSpieler;
             }
         }
@@ -251,16 +248,16 @@ public class Game {
     }
 
     public void killSpieler(Spieler spieler) {
-        if(spieler!=null) {
+        if (spieler != null) {
             spieler.lebend = false;
             mitteHauptrollen.add(spieler.hauptrolle);
             mitteNebenrollen.add(spieler.nebenrolle);
-            if(spieler.hauptrolle.getName().equals(Schattenpriester.name) && !spieler.nebenrolle.getName().equals(Schatten.name)) {
+            if (spieler.hauptrolle.getName().equals(Schattenpriester.name) && !spieler.nebenrolle.getName().equals(Schatten.name)) {
                 Schattenpriester_Fraktion.deadSchattenPriester++;
             }
 
-            if(Rolle.rolleLebend(Wölfin.name) && Wölfin.state== WölfinState.WARTEND) {
-                if(spieler.hauptrolle.getFraktion().getName().equals(Werwölfe.name)) {
+            if (Rolle.rolleLebend(Wölfin.name) && Wölfin.state == WölfinState.WARTEND) {
+                if (spieler.hauptrolle.getFraktion().getName().equals(Werwölfe.name)) {
                     Wölfin.state = WölfinState.TÖTEND;
                 }
             }
@@ -280,7 +277,7 @@ public class Game {
         Spieler spieler = findSpielerPerRolle(rolle.getName());
 
         ArrayList<String> mitspieler = getPlayerCheckSpammableStrings(rolle);
-        if(spieler!=null) {
+        if (spieler != null) {
             mitspieler.remove(spieler.name);
         }
 
@@ -288,7 +285,7 @@ public class Game {
     }
 
     public ArrayList<String> getPlayerCheckSpammableStrings(Rolle rolle) {
-        ArrayList<String> allSpieler  = getLivingPlayerOrNoneStrings();
+        ArrayList<String> allSpieler = getLivingPlayerOrNoneStrings();
         if (!rolle.isSpammable() && rolle.besuchtLetzteNacht != null) {
             allSpieler.remove(rolle.besuchtLetzteNacht.name);
         }
@@ -297,9 +294,8 @@ public class Game {
     }
 
     public Spieler findSpielerOrDeadPerRolle(String name) {
-        for(Spieler currentSpieler : spieler)
-        {
-            if(currentSpieler.hauptrolle.getName().equals(name) || currentSpieler.nebenrolle.getName().equals(name)) {
+        for (Spieler currentSpieler : spieler) {
+            if (currentSpieler.hauptrolle.getName().equals(name) || currentSpieler.nebenrolle.getName().equals(name)) {
                 return currentSpieler;
             }
         }
@@ -319,9 +315,8 @@ public class Game {
     public ArrayList<Spieler> findSpielersPerRolle(String name) {
         ArrayList<Spieler> spielers = new ArrayList<>();
 
-        for(Spieler currentSpieler : spieler)
-        {
-            if(currentSpieler.hauptrolle.getName().equals(name) || currentSpieler.nebenrolle.getName().equals(name)) {
+        for (Spieler currentSpieler : spieler) {
+            if (currentSpieler.hauptrolle.getName().equals(name) || currentSpieler.nebenrolle.getName().equals(name)) {
                 spielers.add(currentSpieler);
             }
         }
@@ -332,9 +327,8 @@ public class Game {
     public ArrayList<String> findSpielersStringsPerRolle(String name) {
         ArrayList<String> spielers = new ArrayList<>();
 
-        for(Spieler currentSpieler : spieler)
-        {
-            if(currentSpieler.hauptrolle.getName().equals(name) || currentSpieler.nebenrolle.getName().equals(name)) {
+        for (Spieler currentSpieler : spieler) {
+            if (currentSpieler.hauptrolle.getName().equals(name) || currentSpieler.nebenrolle.getName().equals(name)) {
                 spielers.add(currentSpieler.name);
             }
         }
@@ -439,20 +433,20 @@ public class Game {
         mainRolesInGame.remove(findHauptrolle(Dorfbewohner.name));
     }
 
-    public ArrayList<String> getSecondaryRoleNames(){
+    public ArrayList<String> getSecondaryRoleNames() {
         ArrayList<String> names = new ArrayList<String>();
 
-        for(Nebenrolle nebenrolle : secondaryRoles) {
+        for (Nebenrolle nebenrolle : secondaryRoles) {
             names.add(nebenrolle.getName());
         }
 
         return names;
     }
 
-    public ArrayList<String> getSecondaryRoleInGameNames(){
+    public ArrayList<String> getSecondaryRoleInGameNames() {
         ArrayList<String> names = new ArrayList<String>();
 
-        for(Nebenrolle nebenrolle : secondaryRolesInGame) {
+        for (Nebenrolle nebenrolle : secondaryRolesInGame) {
             names.add(nebenrolle.getName());
         }
 
@@ -462,22 +456,22 @@ public class Game {
     public ArrayList<String> getPossibleInGameSecondaryRoleNames() {
         ArrayList<String> secondaryRoleInGameNames = getSecondaryRoleInGameNames();
 
-        for(Nebenrolle nebenrolle : mitteNebenrollen) {
+        for (Nebenrolle nebenrolle : mitteNebenrollen) {
             secondaryRoleInGameNames.remove(nebenrolle.getName());
         }
 
-        return  secondaryRoleInGameNames;
+        return secondaryRoleInGameNames;
     }
 
     public ArrayList<String> getStillAvailableSecondaryRoleNames() {
-        ArrayList<Nebenrolle> secondaryRoles = (ArrayList)secondaryRolesInGame.clone();
+        ArrayList<Nebenrolle> secondaryRoles = (ArrayList) secondaryRolesInGame.clone();
         ArrayList<String> names = new ArrayList<String>();
 
-        for(Spieler spieler : spieler) {
+        for (Spieler spieler : spieler) {
             secondaryRoles.remove(spieler.nebenrolle);
         }
 
-        for(Nebenrolle nebenrolle : secondaryRoles){
+        for (Nebenrolle nebenrolle : secondaryRoles) {
             names.add(nebenrolle.getName());
         }
 
@@ -485,8 +479,8 @@ public class Game {
     }
 
     public Nebenrolle findNebenrolle(String wantedName) {
-        for(Nebenrolle nebenrolle : secondaryRoles) {
-            if(nebenrolle.getName().equals(wantedName))
+        for (Nebenrolle nebenrolle : secondaryRoles) {
+            if (nebenrolle.getName().equals(wantedName))
                 return nebenrolle;
         }
 
@@ -495,8 +489,8 @@ public class Game {
 
     public int numberOfOccurencesOfSecondaryRoleInGame(Nebenrolle nebenrolle) {
         int occurences = 0;
-        for(Nebenrolle currentNebenrolle : secondaryRolesInGame) {
-            if(currentNebenrolle.getName().equals(nebenrolle.getName())) {
+        for (Nebenrolle currentNebenrolle : secondaryRolesInGame) {
+            if (currentNebenrolle.getName().equals(nebenrolle.getName())) {
                 occurences++;
             }
         }
@@ -519,7 +513,7 @@ public class Game {
     public ArrayList<String> getPlayersUnspecifiedStrings() {
         ArrayList<String> playersUnspecifiedStrings = new ArrayList<>();
 
-        for(Spieler spieler : getPlayersUnspecified()) {
+        for (Spieler spieler : getPlayersUnspecified()) {
             playersUnspecifiedStrings.add(spieler.name);
         }
 
@@ -529,7 +523,7 @@ public class Game {
     public ArrayList<Hauptrolle> getMainRolesSpecified() {
         ArrayList<Hauptrolle> mainRolesSpecified = new ArrayList<>();
 
-        for(Spieler spieler : playersSpecified) {
+        for (Spieler spieler : playersSpecified) {
             mainRolesSpecified.add(spieler.hauptrolle);
         }
 
@@ -539,8 +533,8 @@ public class Game {
     public ArrayList<String> getMainRolesSpecifiedStrings() {
         ArrayList<String> mainRolesSpecifiedStrings = new ArrayList<>();
 
-        for(Hauptrolle hauptrolle : getMainRolesSpecified()) {
-            if(hauptrolle!=null) {
+        for (Hauptrolle hauptrolle : getMainRolesSpecified()) {
+            if (hauptrolle != null) {
                 mainRolesSpecifiedStrings.add(hauptrolle.getName());
             }
         }
@@ -549,7 +543,7 @@ public class Game {
     }
 
     public ArrayList<Hauptrolle> getMainRolesUnspecified() {
-        ArrayList<Hauptrolle> mainRolesUnspecified = (ArrayList)mainRolesInGame.clone();
+        ArrayList<Hauptrolle> mainRolesUnspecified = (ArrayList) mainRolesInGame.clone();
 
         MyCollectionHelper.removeAllHauptrollen(mainRolesUnspecified, getMainRolesSpecified());
 
@@ -559,7 +553,7 @@ public class Game {
     public ArrayList<String> getMainRolesUnspecifiedStrings() {
         ArrayList<String> mainRolesUnspecifiedStrings = new ArrayList<>();
 
-        for(Hauptrolle hauptrolle : getMainRolesUnspecified()) {
+        for (Hauptrolle hauptrolle : getMainRolesUnspecified()) {
             mainRolesUnspecifiedStrings.add(hauptrolle.getName());
         }
 
@@ -569,7 +563,7 @@ public class Game {
     public ArrayList<Nebenrolle> getSecondaryRolesSpecified() {
         ArrayList<Nebenrolle> secondaryRolesSpecified = new ArrayList<>();
 
-        for(Spieler spieler : playersSpecified) {
+        for (Spieler spieler : playersSpecified) {
             secondaryRolesSpecified.add(spieler.nebenrolle);
         }
 
@@ -579,8 +573,8 @@ public class Game {
     public ArrayList<String> getSecondaryRoleSpecifiedStrings() {
         ArrayList<String> secondaryRolesSpecifiedStrings = new ArrayList<>();
 
-        for(Nebenrolle nebenrolle : getSecondaryRolesSpecified()) {
-            if(nebenrolle!=null) {
+        for (Nebenrolle nebenrolle : getSecondaryRolesSpecified()) {
+            if (nebenrolle != null) {
                 secondaryRolesSpecifiedStrings.add(nebenrolle.getName());
             }
         }
@@ -592,7 +586,7 @@ public class Game {
         ArrayList<Nebenrolle> secondaryRolesUnspecified = new ArrayList<Nebenrolle>();
         secondaryRolesUnspecified = (ArrayList) secondaryRolesInGame.clone();
 
-       MyCollectionHelper.removeAllNebenrollen(secondaryRolesUnspecified, getSecondaryRolesSpecified());
+        MyCollectionHelper.removeAllNebenrollen(secondaryRolesUnspecified, getSecondaryRolesSpecified());
 
         return secondaryRolesUnspecified;
     }
@@ -600,7 +594,7 @@ public class Game {
     public ArrayList<String> getSecondaryRolesUnspecifiedStrings() {
         ArrayList<String> secondaryRolesUnspecifiedStrings = new ArrayList<>();
 
-        for(Nebenrolle nebenrolle : getSecondaryRolesUnspecified()) {
+        for (Nebenrolle nebenrolle : getSecondaryRolesUnspecified()) {
             secondaryRolesUnspecifiedStrings.add(nebenrolle.getName());
         }
 

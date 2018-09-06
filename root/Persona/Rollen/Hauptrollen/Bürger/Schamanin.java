@@ -1,39 +1,34 @@
 package root.Persona.Rollen.Hauptrollen.Bürger;
 
 import root.Frontend.FrontendControl;
-import root.Phases.NightBuilding.Constants.StatementType;
-import root.ResourceManagement.ImagePath;
 import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Bürger;
 import root.Persona.Hauptrolle;
+import root.Phases.NightBuilding.Constants.StatementType;
+import root.ResourceManagement.ImagePath;
 import root.Spieler;
-import root.mechanics.Opfer;
 
-public class Riese extends Hauptrolle {
-    public static String title = "Mitspieler töten";
-    public static final String beschreibung = "Riese erwacht und entscheidet sich ob einen Mitspieler töten möchte";
+public class Schamanin extends Hauptrolle {
+    public static String title = "Mitspieler schützen";
+    public static final String beschreibung = "Schamanin erwacht und entscheidet sich ob einen Mitspieler schützen möchte";
     public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE;
 
-    public static final String name = "Riese";
+    public static final String name = "Schamanin";
     public static Fraktion fraktion = new Bürger();
-    public static final String imagePath = ImagePath.RIESE_KARTE;
-    public static boolean spammable = true;
+    public static final String imagePath = ImagePath.SCHAMANIN_KARTE;
+    public static boolean spammable = false;
     public static boolean killing = true;
 
     @Override
     public FrontendControl getDropdownOptions() {
         return game.getPlayerCheckSpammableFrontendControl(this);
     }
-
     @Override
     public void processChosenOption(String chosenOption) {
         Spieler chosenPlayer = game.findSpieler(chosenOption);
-        if (chosenPlayer != null) {
+        if(chosenPlayer!=null) {
             besucht = chosenPlayer;
-
-            Spieler täter = game.findSpielerPerRolle(name);
-            Opfer.addVictim(chosenPlayer, täter, false);
-
+            chosenPlayer.geschützt = true;
             abilityCharges--;
         }
     }

@@ -8,7 +8,7 @@ import root.Persona.Rollen.Constants.NebenrollenType.Tarnumhang_NebenrollenType;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Persona.Fraktionen.Bürger;
-import root.Persona.Rollen.Hauptrollen.Bürger.Bestienmeister;
+import root.Persona.Rollen.Hauptrollen.Bürger.Schamanin;
 import root.Persona.Nebenrolle;
 import root.Spieler;
 
@@ -36,7 +36,7 @@ public class Archivar extends Nebenrolle {
 
             NebenrollenType type = chosenPlayer.nebenrolle.getType();
 
-            if (playerIsBestienmeister(chosenPlayer) && archivarIsNotBuerger()) {
+            if (playerIsSchamanin(chosenPlayer) && archivarIsNotBuerger()) {
                 type = new Tarnumhang_NebenrollenType();
             }
 
@@ -47,8 +47,8 @@ public class Archivar extends Nebenrolle {
         return new FrontendControl();
     }
 
-    private boolean playerIsBestienmeister(Spieler player) {
-        return player.hauptrolle.getName().equals(Bestienmeister.name);
+    private boolean playerIsSchamanin(Spieler player) {
+        return player.hauptrolle.getName().equals(Schamanin.name);
     }
 
     private boolean archivarIsNotBuerger() {

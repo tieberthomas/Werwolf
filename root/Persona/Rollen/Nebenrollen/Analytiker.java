@@ -4,7 +4,7 @@ import root.Persona.Fraktionen.Bürger;
 import root.Persona.Nebenrolle;
 import root.Persona.Rollen.Constants.NebenrollenType.Informativ;
 import root.Persona.Rollen.Constants.NebenrollenType.NebenrollenType;
-import root.Persona.Rollen.Hauptrollen.Bürger.Bestienmeister;
+import root.Persona.Rollen.Hauptrollen.Bürger.Schamanin;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
@@ -65,15 +65,15 @@ public class Analytiker extends Nebenrolle {
 
     public boolean showTarnumhang(Spieler spieler1, Spieler spieler2) {
         return tarnumhangIsUnterDenSpielern(spieler1, spieler2) ||
-                (bestienmeisterIsUnterDenSpielern(spieler1, spieler2) && analytikerIsNotBürger());
+                (schamaninIsUnterDenSpielern(spieler1, spieler2) && analytikerIsNotBürger());
     }
 
     private boolean tarnumhangIsUnterDenSpielern(Spieler spieler1, Spieler spieler2) {
         return spieler1.nebenrolle.equals(Tarnumhang.name) || spieler2.nebenrolle.equals(Tarnumhang.name);
     }
 
-    private boolean bestienmeisterIsUnterDenSpielern(Spieler spieler1, Spieler spieler2) {
-        return spieler1.hauptrolle.equals(Bestienmeister.name) || spieler2.hauptrolle.equals(Bestienmeister.name);
+    private boolean schamaninIsUnterDenSpielern(Spieler spieler1, Spieler spieler2) {
+        return spieler1.hauptrolle.equals(Schamanin.name) || spieler2.hauptrolle.equals(Schamanin.name);
     }
 
     private boolean analytikerIsNotBürger() {
