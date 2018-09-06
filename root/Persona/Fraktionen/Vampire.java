@@ -1,9 +1,11 @@
 package root.Persona.Fraktionen;
 
 import root.Frontend.FrontendControl;
+import root.Persona.Fraktion;
+import root.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.VampiereZeigekarte;
+import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
-import root.Persona.Fraktion;
 import root.Spieler;
 import root.mechanics.Opfer;
 
@@ -16,6 +18,7 @@ public class Vampire extends Fraktion {
     public static final String name = "Vampire";
     public static final Color farbe = Color.red;
     public static final String imagePath = ImagePath.VAMPIERE_ICON;
+    public static final Zeigekarte zeigekarte = new VampiereZeigekarte();
 
     @Override
     public void processChosenOption(String chosenOption) {
@@ -54,6 +57,11 @@ public class Vampire extends Fraktion {
     @Override
     public Color getFarbe() {
         return farbe;
+    }
+
+    @Override
+    public Zeigekarte getZeigeKarte() {
+        return zeigekarte;
     }
 
     @Override

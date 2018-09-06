@@ -5,6 +5,8 @@ import root.Frontend.Frame.MyFrame;
 import root.Frontend.FrontendControl;
 import root.Persona.Fraktionen.Schattenpriester_Fraktion;
 import root.Persona.Fraktionen.Werwölfe;
+import root.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.WerwölfeZeigekarte;
+import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Persona.Rollen.Hauptrollen.Werwölfe.Chemiker;
 import root.Spieler;
 import root.mechanics.Opfer;
@@ -20,6 +22,10 @@ public class Fraktion extends Persona{
     public Color getFarbe() {
         return MyFrame.DEFAULT_BUTTON_COLOR;
     }
+
+    public Zeigekarte getZeigeKarte() {
+        return new WerwölfeZeigekarte();
+    } //TODO replace with Bürger zeigekarte
 
     public static ArrayList<Spieler> getFraktionsMembers(String fraktion) {
         ArrayList<Spieler> fraktionsMembers = new ArrayList<>();

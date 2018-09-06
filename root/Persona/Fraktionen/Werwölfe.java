@@ -1,6 +1,8 @@
 package root.Persona.Fraktionen;
 
 import root.Frontend.FrontendControl;
+import root.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.WerwölfeZeigekarte;
+import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Persona.Fraktion;
@@ -21,6 +23,7 @@ public class Werwölfe extends Fraktion {
     public static final String name = "Werwölfe";
     public static final Color farbe = Color.green;
     public static final String imagePath = ImagePath.WÖLFE_ICON;
+    public static final Zeigekarte zeigekarte = new WerwölfeZeigekarte();
 
     @Override
     public void processChosenOption(String chosenOption) {
@@ -64,6 +67,11 @@ public class Werwölfe extends Fraktion {
     @Override
     public String getImagePath() {
         return imagePath;
+    }
+
+    @Override
+    public Zeigekarte getZeigeKarte() {
+        return zeigekarte;
     }
 
     public static boolean isTötend(String hauptrolle) {

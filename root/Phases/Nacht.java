@@ -183,7 +183,7 @@ public class Nacht extends Thread {
                                 neuerWerwolf = chosenPlayer.name;
                             }
 
-                            showListShowImage(statement, neuerWerwolf, ImagePath.WÖLFE_ICON);
+                            showListShowImage(statement, neuerWerwolf, Werwölfe.zeigekarte.imagePath);
                             break;
 
                         case Analytiker.beschreibung:

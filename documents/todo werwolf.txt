@@ -6,9 +6,10 @@ totengräber
 vladimir
 opfer anzeigen am ende der nacht
 spurenleser
+zeigekarten
 
 tasks:
-showDeaktivPages und showTotPages schön zusammenfassen zu einer Methode die eine Zeigekarte kriegt
+
 
 
 CherryOnTop:
@@ -16,6 +17,8 @@ seher bamboozlekarten dem erzähler zeigen während der seher aktion damit diese
 siegüberprüfung generischer machen (tag und nacht)
 tauschkarten quasi aus secondaryRolesInGame removen (für nachzügler) aber nicht wirklich, weil ja der spielerscreen am tag anzeigen soll dass es drin war
 bei übersichtspage rahmen von mehreren personen anzeigen (die nicht die ganze fraktion sind)
+showDeaktivPages und showTotPages schön zusammenfassen zu einer Methode die eine Zeigekarte kriegt
+reineseele übersichtspage etwas für markup überlegen
 
 bei jeder rolle als kommentar den kartentext dazuschreiben
 

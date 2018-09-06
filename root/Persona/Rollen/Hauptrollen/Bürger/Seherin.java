@@ -1,17 +1,18 @@
 package root.Persona.Rollen.Hauptrollen.Bürger;
 
-import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
-import root.Persona.Rollen.Constants.NebenrollenType.Tarnumhang_NebenrollenType;
-import root.Phases.NightBuilding.Constants.StatementType;
-import root.ResourceManagement.ImagePath;
 import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Bürger;
-import root.Persona.Fraktionen.Schattenpriester_Fraktion;
-import root.Persona.Fraktionen.Vampire;
-import root.Persona.Fraktionen.Werwölfe;
 import root.Persona.Hauptrolle;
+import root.Persona.Rollen.Constants.NebenrollenType.Tarnumhang_NebenrollenType;
+import root.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.BürgerZeigekarte;
+import root.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.SchattenpriesterZeigekarte;
+import root.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.VampiereZeigekarte;
+import root.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.WerwölfeZeigekarte;
+import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Persona.Rollen.Nebenrollen.*;
+import root.Phases.NightBuilding.Constants.StatementType;
+import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
 public class Seherin extends Hauptrolle {
@@ -34,25 +35,26 @@ public class Seherin extends Hauptrolle {
 
         if (chosenPlayer != null) {
             besucht = chosenPlayer;
+            Zeigekarte zeigekarte = chosenPlayer.hauptrolle.getFraktion().getZeigeKarte();
 
             String nebenrolle = chosenPlayer.nebenrolle.getName();
             if (nebenrolle.equals(Lamm.name)) {
-                return new FrontendControl(FrontendControlType.IMAGE, Bürger.imagePath);
+                zeigekarte = new BürgerZeigekarte();
             }
             if (nebenrolle.equals(Wolfspelz.name)) {
-                return new FrontendControl(FrontendControlType.IMAGE, Werwölfe.imagePath);
+                zeigekarte = new WerwölfeZeigekarte();
             }
             if (nebenrolle.equals(Vampirumhang.name)) {
-                return new FrontendControl(FrontendControlType.IMAGE, Vampire.imagePath);
+                zeigekarte = new VampiereZeigekarte();
             }
             if (nebenrolle.equals(Schattenkutte.name)) {
-                return new FrontendControl(FrontendControlType.IMAGE, Schattenpriester_Fraktion.imagePath);
+                zeigekarte = new SchattenpriesterZeigekarte();
             }
             if (nebenrolle.equals(Tarnumhang.name)) {
-                return new FrontendControl(new Tarnumhang_NebenrollenType());
+                zeigekarte = new Tarnumhang_NebenrollenType();
             }
 
-            return new FrontendControl(FrontendControlType.IMAGE, chosenOption, chosenPlayer.hauptrolle.getFraktion().getImagePath());
+            return new FrontendControl(zeigekarte);
         }
 
         return new FrontendControl();

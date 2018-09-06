@@ -2,14 +2,16 @@ package root.Persona.Fraktionen;
 
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
-import root.Phases.NightBuilding.Constants.StatementType;
-import root.ResourceManagement.ImagePath;
 import root.Persona.Fraktion;
+import root.Persona.Rolle;
+import root.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.SchattenpriesterZeigekarte;
+import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Persona.Rollen.Hauptrollen.Bürger.Riese;
 import root.Persona.Rollen.Hauptrollen.Schattenpriester.Schattenpriester;
 import root.Persona.Rollen.Nebenrollen.Schatten;
 import root.Persona.Rollen.Nebenrollen.Schattenkutte;
-import root.Persona.Rolle;
+import root.Phases.NightBuilding.Constants.StatementType;
+import root.ResourceManagement.ImagePath;
 import root.Spieler;
 import root.mechanics.Opfer;
 
@@ -30,6 +32,7 @@ public class Schattenpriester_Fraktion extends Fraktion
     public static final String name = "Schattenpriester";
     public static final Color farbe = Color.lightGray;
     public static final String imagePath = ImagePath.SCHATTENPRIESTER_ICON;
+    public static final Zeigekarte zeigekarte = new SchattenpriesterZeigekarte();
 
     public static int deadSchattenPriester = 0;
 
@@ -102,5 +105,10 @@ public class Schattenpriester_Fraktion extends Fraktion
     @Override
     public String getImagePath() {
         return imagePath;
+    }
+
+    @Override
+    public Zeigekarte getZeigeKarte() {
+        return zeigekarte;
     }
 }
