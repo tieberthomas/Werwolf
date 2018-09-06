@@ -296,7 +296,7 @@ public class Nacht extends Thread {
                         case ProgrammStatements.TORTE:
                             if (Torte.torte) {
                                 FrontendControl.erzählerTortenPage();
-                                FrontendControl.showZeigekarte(new Torten_Zeigekarte());
+                                FrontendControl.showZeigekarteOnSpielerScreen(new Torten_Zeigekarte());
 
                                 waitForAnswer();
                             }
@@ -568,13 +568,13 @@ public class Nacht extends Thread {
             case DEAKTIV:
                 Deaktiviert deaktiviert = new Deaktiviert();
                 FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), getEmptyStringList(), deaktiviert.imagePath);
-                FrontendControl.showZeigekarte(deaktiviert);
+                FrontendControl.showZeigekarteOnSpielerScreen(deaktiviert);
                 break;
 
             case DEAD:
                 Tot tot = new Tot();
                 FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), getEmptyStringList(), tot.imagePath);
-                FrontendControl.showZeigekarte(tot);
+                FrontendControl.showZeigekarteOnSpielerScreen(tot);
                 break;
 
             case NOT_IN_GAME:
@@ -594,7 +594,7 @@ public class Nacht extends Thread {
             } else {
                 Deaktiviert deaktiviert = new Deaktiviert();
                 FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), deaktiviert.imagePath);
-                FrontendControl.showZeigekarte(deaktiviert);
+                FrontendControl.showZeigekarteOnSpielerScreen(deaktiviert);
             }
         } else {
             FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), ImagePath.AUS_DEM_SPIEL);
@@ -669,7 +669,7 @@ public class Nacht extends Thread {
                 break;
         }
 
-        FrontendControl.showZeigekarte(deaktiviert);
+        FrontendControl.showZeigekarteOnSpielerScreen(deaktiviert);
         waitForAnswer();
     }
 
@@ -692,7 +692,7 @@ public class Nacht extends Thread {
                 break;
         }
 
-        FrontendControl.showZeigekarte(tot);
+        FrontendControl.showZeigekarteOnSpielerScreen(tot);
         waitForAnswer();
     }
 

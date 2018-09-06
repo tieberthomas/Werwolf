@@ -209,7 +209,7 @@ public class FrontendControl {
         spielerFrame.buildScreenFromPage(nightPage);
     }
 
-    public static void showZeigekarte(Zeigekarte zeigekarte) {
+    public static void showZeigekarteOnSpielerScreen(Zeigekarte zeigekarte) {
         Page nightPage = spielerFrame.pageFactory.generateStaticImagePage(zeigekarte.title, zeigekarte.imagePath, true);
         spielerFrame.buildScreenFromPage(nightPage);
     }
