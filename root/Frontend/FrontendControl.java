@@ -5,6 +5,7 @@ import root.Frontend.Frame.ErzählerFrame;
 import root.Frontend.Frame.SpielerFrame;
 import root.Frontend.Frame.ÜbersichtsFrame;
 import root.Frontend.Page.Page;
+import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Phases.NightBuilding.Statement;
 import root.ResourceManagement.ImagePath;
 import root.Persona.Rollen.Constants.DropdownConstants;
@@ -205,6 +206,11 @@ public class FrontendControl {
 
     public static void spielerIconPicturePage(String title, String imagePath) {
         Page nightPage = spielerFrame.pageFactory.generateStaticImagePage(title, imagePath, true);
+        spielerFrame.buildScreenFromPage(nightPage);
+    }
+
+    public static void showZeigekarte(Zeigekarte zeigekarte) {
+        Page nightPage = spielerFrame.pageFactory.generateStaticImagePage(zeigekarte.title, zeigekarte.imagePath, true);
         spielerFrame.buildScreenFromPage(nightPage);
     }
 

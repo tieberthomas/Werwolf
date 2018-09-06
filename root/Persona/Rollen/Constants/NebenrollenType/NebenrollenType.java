@@ -1,11 +1,6 @@
 package root.Persona.Rollen.Constants.NebenrollenType;
 
-public class NebenrollenType {
-    public String name;
-    public String title;
-    public String imagePath;
+import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 
-    public boolean equals(NebenrollenType type) {
-        return name.equals(type.name);
-    }
+public class NebenrollenType extends Zeigekarte {
 }

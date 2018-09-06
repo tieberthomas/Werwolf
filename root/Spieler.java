@@ -6,11 +6,7 @@ import root.Persona.Nebenrolle;
 import root.Persona.Rollen.Nebenrollen.Schatten;
 import root.mechanics.Game;
 
-/**
- * Created by Steve on 12.11.2017.
- */
-public class Spieler
-{
+public class Spieler {
     public static Game game;
 
     public String name;
@@ -33,12 +29,12 @@ public class Spieler
         this(name);
 
         Hauptrolle hauptrolle = game.findHauptrolle(hauptrolleName);
-        if(hauptrolle==null) {
+        if (hauptrolle == null) {
             hauptrolle = new Dorfbewohner();
         }
 
         Nebenrolle nebenrolle = game.findNebenrolle(nebenrolleName);
-        if(nebenrolle==null) {
+        if (nebenrolle == null) {
             nebenrolle = new Schatten();
         }
 
@@ -49,10 +45,10 @@ public class Spieler
     }
 
     public boolean equals(Spieler spieler) {
-        return spieler!=null && this.name.equals(spieler.name);
+        return spieler != null && this.name.equals(spieler.name);
     }
 
     public boolean equals(String spielerName) {
-        return spielerName!=null && this.name.equals(spielerName);
+        return spielerName != null && this.name.equals(spielerName);
     }
 }

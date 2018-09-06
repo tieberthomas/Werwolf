@@ -9,6 +9,8 @@ import root.Persona.Hauptrolle;
 import root.Persona.Nebenrolle;
 import root.Persona.Rolle;
 import root.Persona.Rollen.Constants.DropdownConstants;
+import root.Persona.Rollen.Constants.NebenrollenType.Passiv;
+import root.Persona.Rollen.Constants.Zeigekarten.*;
 import root.Persona.Rollen.Hauptrollen.Bürger.Sammler;
 import root.Persona.Rollen.Hauptrollen.Bürger.Wirt;
 import root.Persona.Rollen.Hauptrollen.Schattenpriester.Schattenpriester;
@@ -36,11 +38,6 @@ import java.util.ArrayList;
 
 public class Nacht extends Thread {
     Game game;
-
-    public static final String TORTE_TITLE = "";
-    public static final String TOT_TITLE = "Tot";
-    public static final String DEAKTIVIERT_TITLE = "Deaktiviert";
-    public static final String AUFGEBRAUCHT_TITLE = "Aufgebraucht";
 
     public static ArrayList<Statement> statements;
     public static Object lock;
@@ -154,7 +151,7 @@ public class Nacht extends Thread {
                                 chosenOption = showFrontendControl(statement, dropdownOtions);
                                 schreckenswolf.processChosenOption(chosenOption);
                             } else {
-                                showImage(statement, ImagePath.PASSIV);
+                                showImage(statement, new Passiv().imagePath);
                             }
                             break;
 
@@ -289,7 +286,8 @@ public class Nacht extends Thread {
                         case Schreckenswolf.VERSTUMMT:
                             if (beschworenerSpieler != null) {
                                 FrontendControl.erzählerListPage(statement, beschworenerSpieler.name);
-                                FrontendControl.spielerIconPicturePage(beschworenerSpieler.name, ImagePath.VERSTUMMT);
+                                //es wird keine ZeigekartenPage gezeigt, weil der titel der name vom spieler sein soll
+                                FrontendControl.spielerIconPicturePage(beschworenerSpieler.name, new Verstummt().imagePath);
 
                                 waitForAnswer();
                             }
@@ -298,7 +296,7 @@ public class Nacht extends Thread {
                         case ProgrammStatements.TORTE:
                             if (Torte.torte) {
                                 FrontendControl.erzählerTortenPage();
-                                FrontendControl.spielerIconPicturePage(TORTE_TITLE, ImagePath.TORTE);
+                                FrontendControl.showZeigekarte(new Torten_Zeigekarte());
 
                                 waitForAnswer();
                             }
@@ -568,13 +566,15 @@ public class Nacht extends Thread {
                 break;
 
             case DEAKTIV:
-                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), getEmptyStringList(), ImagePath.DEAKTIVIERT);
-                FrontendControl.spielerIconPicturePage(DEAKTIVIERT_TITLE, ImagePath.DEAKTIVIERT);
+                Deaktiviert deaktiviert = new Deaktiviert();
+                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), getEmptyStringList(), deaktiviert.imagePath);
+                FrontendControl.showZeigekarte(deaktiviert);
                 break;
 
             case DEAD:
-                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), getEmptyStringList(), ImagePath.TOT);
-                FrontendControl.spielerIconPicturePage(TOT_TITLE, ImagePath.TOT);
+                Tot tot = new Tot();
+                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), getEmptyStringList(), tot.imagePath);
+                FrontendControl.showZeigekarte(tot);
                 break;
 
             case NOT_IN_GAME:
@@ -592,8 +592,9 @@ public class Nacht extends Thread {
                 FrontendControl.erzählerDropdownPage(statement, dropdownOptions);
                 FrontendControl.spielerDropdownListPage(statement.title, dropdownOptions);
             } else {
-                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), ImagePath.DEAKTIVIERT);
-                FrontendControl.spielerIconPicturePage(DEAKTIVIERT_TITLE, ImagePath.DEAKTIVIERT);
+                Deaktiviert deaktiviert = new Deaktiviert();
+                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), deaktiviert.imagePath);
+                FrontendControl.showZeigekarte(deaktiviert);
             }
         } else {
             FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), ImagePath.AUS_DEM_SPIEL);
@@ -636,72 +637,63 @@ public class Nacht extends Thread {
         waitForAnswer();
     }
 
-    public void showAufgebrauchtPages(Statement statement) {
-        FrontendControl.erzählerIconPicturePage(statement, ImagePath.AUFGEBRAUCHT);
-        FrontendControl.spielerIconPicturePage(AUFGEBRAUCHT_TITLE, ImagePath.AUFGEBRAUCHT);
+    private void showAufgebrauchtPages(Statement statement) {
+        showZeigekarte(statement, new Aufgebraucht());
+    }
+
+    private void showZeigekarte(Statement statement, Zeigekarte zeigekarte) {
+        FrontendControl.erzählerIconPicturePage(statement, zeigekarte.imagePath);
+        FrontendControl.spielerIconPicturePage(zeigekarte.title, zeigekarte.imagePath);
 
         waitForAnswer();
     }
 
     //TODO Cases die sowieso gleich aussehen zusammenfassen
     public void showDeaktivPages(Statement statement, FrontendControl frontendControl) {
-        String erzählerDeaktiviertIconPath = ImagePath.DEAKTIVIERT;
+        Deaktiviert deaktiviert = new Deaktiviert();
 
         switch (frontendControl.typeOfContent) {
             case DROPDOWN:
             case DROPDOWN_LIST:
-                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), erzählerDeaktiviertIconPath);
-                FrontendControl.spielerIconPicturePage(DEAKTIVIERT_TITLE, ImagePath.DEAKTIVIERT);
-
-                waitForAnswer();
+                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), deaktiviert.imagePath);
                 break;
 
             case LIST:
             case LIST_IMAGE:
-                FrontendControl.erzählerListPage(statement, getEmptyStringList(), erzählerDeaktiviertIconPath);
-                FrontendControl.spielerIconPicturePage(DEAKTIVIERT_TITLE, ImagePath.DEAKTIVIERT);
-
-                waitForAnswer();
+                FrontendControl.erzählerListPage(statement, getEmptyStringList(), deaktiviert.imagePath);
                 break;
-
             case TITLE:
             case IMAGE:
             case CARD:
-                FrontendControl.erzählerIconPicturePage(statement, erzählerDeaktiviertIconPath);
-                FrontendControl.spielerIconPicturePage(DEAKTIVIERT_TITLE, ImagePath.DEAKTIVIERT);
-
-                waitForAnswer();
+                FrontendControl.erzählerIconPicturePage(statement, deaktiviert.imagePath);
                 break;
         }
+
+        FrontendControl.showZeigekarte(deaktiviert);
+        waitForAnswer();
     }
 
     public void showTotPages(Statement statement, FrontendControl frontendControl) {
+        Tot tot = new Tot();
+
         switch (frontendControl.typeOfContent) {
             case DROPDOWN:
             case DROPDOWN_LIST:
-                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), ImagePath.TOT);
-                FrontendControl.spielerIconPicturePage(TOT_TITLE, ImagePath.TOT);
-
-                waitForAnswer();
+                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), tot.imagePath);
                 break;
-
             case LIST:
             case LIST_IMAGE:
-                FrontendControl.erzählerListPage(statement, getEmptyStringList(), ImagePath.TOT);
-                FrontendControl.spielerIconPicturePage(TOT_TITLE, ImagePath.TOT);
-
-                waitForAnswer();
+                FrontendControl.erzählerListPage(statement, getEmptyStringList(), tot.imagePath);
                 break;
-
             case TITLE:
             case IMAGE:
             case CARD:
-                FrontendControl.erzählerIconPicturePage(statement, ImagePath.TOT);
-                FrontendControl.spielerIconPicturePage(TOT_TITLE, ImagePath.TOT);
-
-                waitForAnswer();
+                FrontendControl.erzählerIconPicturePage(statement, tot.imagePath);
                 break;
         }
+
+        FrontendControl.showZeigekarte(tot);
+        waitForAnswer();
     }
 
     public void showAusDemSpielPages(Statement statement, FrontendControl frontendControl) {
