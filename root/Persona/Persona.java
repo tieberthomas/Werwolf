@@ -33,4 +33,12 @@ public class Persona {
     }
 
     public Color getFarbe() { return Color.WHITE; }
+
+    public boolean equals(Persona persona) {
+        return persona!=null && this.getName().equals(persona.getName());
+    }
+
+    public boolean equals(String personaName) {
+        return personaName!=null && this.getName().equals(personaName);
+    }
 }

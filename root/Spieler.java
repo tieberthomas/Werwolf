@@ -47,4 +47,12 @@ public class Spieler
 
         game.spieler.add(this);
     }
+
+    public boolean equals(Spieler spieler) {
+        return spieler!=null && this.name.equals(spieler.name);
+    }
+
+    public boolean equals(String spielerName) {
+        return spielerName!=null && this.name.equals(spielerName);
+    }
 }

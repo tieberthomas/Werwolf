@@ -16,6 +16,7 @@ public class Archivar extends Nebenrolle {
     public static String title = "Spieler wählen";
     public static final String beschreibung = "Archivar erwacht und lässt sich Auskunft über die Bonusrolle eines Mitspielers geben";
     public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE_INFO;
+
     public static final String name = "Archivar";
     public static final String imagePath = ImagePath.ARCHIVAR_KARTE;
     public static boolean spammable = true;
@@ -53,7 +54,7 @@ public class Archivar extends Nebenrolle {
     private boolean archivarIsNotBuerger() {
         Spieler spieler = game.findSpielerPerRolle(name);
 
-        return !spieler.hauptrolle.getFraktion().getName().equals(Bürger.name);
+        return !spieler.hauptrolle.getFraktion().equals(new Bürger());
     }
 
     @Override
