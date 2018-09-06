@@ -1,0 +1,28 @@
+wolfsmensch
+    -wird als bürger gesehen
+    -kriegt am anfang des spiels eine bürgerrolle die nicht im spiel ist
+    -ist kein wolf
+
+geisterwolf
+    -wird als nicht tötend gesehen
+
+tarnumhang
+    -erfährt jede nacht den träger eines umhangs
+
+wahrsager (nebenrolle) (informativ)
+    -ratet fraktion des dorfabstimmungsopfers. wenn richtig kriegt er gesagt wieviele in welcher fraktion noch übrig sind
+
+detektiv (nebenrolle) (informativ)
+    -versucht die anzahl der bürger zu erraten, wenn richitg bekommt er eine bürgerrolle die im spiel ist verraten
+
+nachtfürst
+    -schätzt die anzahl der opfer der nacht. wenn richtig und werwolf oder vampir bekommt er kill. sonst schutz auf ihm.
+
+schnüffler
+    -bekommt jede nacht über einen gewählten spieler 3 informationen (tötend, fraktion, nebenrollentyp) 2 davon sind falsch, eine richtig
+
+dieb
+    -stiehlt eine bonusrolle, bestohlener bekommt eine die nicht im spiel ist
+
+konditor
+    -nach guter torte gibt es nächste nacht keine torte
