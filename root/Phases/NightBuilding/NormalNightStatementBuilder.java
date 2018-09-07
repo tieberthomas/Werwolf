@@ -73,6 +73,7 @@ public class NormalNightStatementBuilder {
         statements.add(getStatement(Seherin.name));
         statements.add(getStatement(Orakel.name));
         statements.add(getStatement(Späher.name));
+        statements.add(getStatement(Tarnumhang.name));
 
         statements.add(getStatement(Nachbar.name));
         statements.add(getStatement(Spurenleser.name));
