@@ -11,13 +11,14 @@ analytiker
 schamanin
 wolfsmensch
 schnüffler
+tarnumhang
 
 bugs:
-nur ein Bruder im Spiel - neue Hauptrolle funktioniert nicht
-Nach Umbringen Button - keine leere option mehr im Dropdown
 
 task:
+Nach Umbringen Button - keine leere option mehr im Dropdown
 werden nachbar und spurenleser von tarnumhang/schamanin bamboozeled?
+listpage title fixen
 
 
 CherryOnTop:
