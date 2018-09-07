@@ -14,27 +14,32 @@ public class ImagePath {
     private static String VAMPIRE_PATH = CARD_PATH + "Vampire\\";
     private static String WÖLFE_PATH = CARD_PATH + "Werwölfe\\";
 
-    public static String DEAKTIVIERT = ICON_PATH + "Deaktiviert" + IMAGE_FILE_EXTENSION;
     public static String AKTIV = ICON_PATH + "Aktiv" + IMAGE_FILE_EXTENSION;
-    public static String PASSIV = ICON_PATH + "Passiv" + IMAGE_FILE_EXTENSION;
-    public static String INFORMATIV = ICON_PATH + "Informativ" + IMAGE_FILE_EXTENSION;
-    public static String FREIBIER = ICON_PATH + "Freibier" + IMAGE_FILE_EXTENSION;
-    public static String LIEBESPAAR = ICON_PATH + "Liebespaar" + IMAGE_FILE_EXTENSION;
-    public static String TOT = ICON_PATH + "Tot" + IMAGE_FILE_EXTENSION;
-    public static String TORTE_ICON = ICON_PATH + "Torte" + IMAGE_FILE_EXTENSION;
-    public static String TORTE = CARD_PATH + "Torte" + IMAGE_FILE_EXTENSION;
-    public static String VERSTUMMT = ICON_PATH + "Verstummt" + IMAGE_FILE_EXTENSION;
     public static String AUFGEBRAUCHT = ICON_PATH + "Aufgebraucht" + IMAGE_FILE_EXTENSION;
     public static String AUS_DEM_SPIEL = ICON_PATH + "Aus_dem_Spiel" + IMAGE_FILE_EXTENSION;
-    public static String TARNUMHANG = ICON_PATH + "Tarnumhang" + IMAGE_FILE_EXTENSION;
-    public static String TÖTEND = ICON_PATH + "Tötend" + IMAGE_FILE_EXTENSION;
+    public static String DEAKTIVIERT = ICON_PATH + "Deaktiviert" + IMAGE_FILE_EXTENSION;
+    public static String FREIBIER = ICON_PATH + "Freibier" + IMAGE_FILE_EXTENSION;
+    public static String GESCHÜTZT = ICON_PATH + "Geschützt" + IMAGE_FILE_EXTENSION;
+    public static String GUTE_TORTE = ICON_PATH + "Gute_Torte" + IMAGE_FILE_EXTENSION;
+    public static String INFORMATIV = ICON_PATH + "Informativ" + IMAGE_FILE_EXTENSION;
+    public static String LIEBESPAAR = ICON_PATH + "Liebespaar" + IMAGE_FILE_EXTENSION;
+    public static String NICHT_AKTIV = ICON_PATH + "Nicht_Aktiv" + IMAGE_FILE_EXTENSION;
     public static String NICHT_TÖTEND = ICON_PATH + "Nicht_Tötend" + IMAGE_FILE_EXTENSION;
+    public static String PASSIV = ICON_PATH + "Passiv" + IMAGE_FILE_EXTENSION;
+    public static String SCHLECHTE_TORTE = ICON_PATH + "Schlechte_Torte" + IMAGE_FILE_EXTENSION;
+    public static String TARNUMHANG = ICON_PATH + "Tarnumhang" + IMAGE_FILE_EXTENSION;
+    public static String TORTE_ICON = ICON_PATH + "Torte" + IMAGE_FILE_EXTENSION;
+    public static String TOT = ICON_PATH + "Tot" + IMAGE_FILE_EXTENSION;
+    public static String TÖTEND = ICON_PATH + "Tötend" + IMAGE_FILE_EXTENSION;
+    public static String VERSTUMMT = ICON_PATH + "Verstummt" + IMAGE_FILE_EXTENSION;
+
+    public static String TORTE = CARD_PATH + "Torte" + IMAGE_FILE_EXTENSION;
 
     public static String BÜRGER_ICON = ICON_PATH + "Bürger" + IMAGE_FILE_EXTENSION;
     public static String SCHATTENPRIESTER_ICON = ICON_PATH + "Schattenpriester" + IMAGE_FILE_EXTENSION;
+    public static String ÜBERLÄUFER_ICON = ICON_PATH + "Überläufer" + IMAGE_FILE_EXTENSION;
     public static String VAMPIERE_ICON = ICON_PATH + "Vampire" + IMAGE_FILE_EXTENSION;
     public static String WÖLFE_ICON = ICON_PATH + "Wölfe" + IMAGE_FILE_EXTENSION;
-    public static String ÜBERLÄUFER_ICON = ICON_PATH + "Überläufer" + IMAGE_FILE_EXTENSION;
 
     public static String BRUDER_KARTE = BÜRGER_PATH + "Bruder" + IMAGE_FILE_EXTENSION;
     public static String BRÜDER_KARTE = BÜRGER_PATH + "Brüder" + IMAGE_FILE_EXTENSION;
@@ -62,8 +67,8 @@ public class ImagePath {
     public static String GEISTERWOLF_KARTE = WÖLFE_PATH + "Geisterwolf" + IMAGE_FILE_EXTENSION;
     public static String SCHRECKENSWOLF_KARTE = WÖLFE_PATH + "Schreckenswolf" + IMAGE_FILE_EXTENSION;
     public static String WERWOLF_KARTE = WÖLFE_PATH + "Werwolf" + IMAGE_FILE_EXTENSION;
-    public static String WOLFSMENSCH_KARTE = WÖLFE_PATH + "Wolfsmensch" + IMAGE_FILE_EXTENSION;
     public static String WÖLFIN_KARTE = WÖLFE_PATH + "Wölfin" + IMAGE_FILE_EXTENSION;
+    public static String WOLFSMENSCH_KARTE = WÖLFE_PATH + "Wolfsmensch" + IMAGE_FILE_EXTENSION;
 
     public static String ANALYTIKER_KARTE = SECONDARY_ROLE_PATH + "Analytiker" + IMAGE_FILE_EXTENSION;
     public static String ARCHIVAR_KARTE = SECONDARY_ROLE_PATH + "Archivar" + IMAGE_FILE_EXTENSION;
