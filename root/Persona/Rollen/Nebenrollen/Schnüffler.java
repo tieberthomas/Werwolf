@@ -1,5 +1,6 @@
 package root.Persona.Rollen.Nebenrollen;
 
+import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.Persona.Nebenrolle;
 import root.Persona.Rollen.Constants.NebenrollenType.Informativ;
@@ -11,7 +12,6 @@ import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Schnüffler extends Nebenrolle {
     public static String title = "Spieler wählen";
@@ -28,7 +28,20 @@ public class Schnüffler extends Nebenrolle {
 
     @Override
     public FrontendControl getDropdownOptions() {
-        return game.getPlayerCheckSpammableFrontendControl(this);
+        FrontendControl frontendControl = new FrontendControl();
+
+        frontendControl.typeOfContent = FrontendControlType.DROPDOWN;
+        frontendControl.strings = game.getLivingPlayerOrNoneStrings();
+
+        removePreviousPlayers(frontendControl.strings);
+
+        return frontendControl;
+    }
+
+    private void removePreviousPlayers(ArrayList<String> allPlayers) {
+        for(SchnüfflerInformation information : informationen) {
+            allPlayers.remove(information.spielerName);
+        }
     }
 
     @Override
@@ -42,16 +55,12 @@ public class Schnüffler extends Nebenrolle {
             SchnüfflerInformation information = informationGenerator.generateInformation();
             informationen.add(information);
 
-            List<SchnüfflerInformation> angezeigteInformationen;
-            if (informationen.size() <= MAX_ANZAHL_AN_INFORMATIONEN) {
-                angezeigteInformationen = (List<SchnüfflerInformation>)informationen.clone();
-            } else {
-                int lastindex = informationen.size();
-                int firstIndex = lastindex-4;
-                angezeigteInformationen = informationen.subList(firstIndex, lastindex);
+            if(informationen.size()>MAX_ANZAHL_AN_INFORMATIONEN) {
+                informationen.remove(0);
             }
+
             String pageTitle = chosenPlayer.name;
-            return new FrontendControl(angezeigteInformationen, pageTitle);
+            return new FrontendControl(informationen, pageTitle);
         }
 
         return new FrontendControl();
