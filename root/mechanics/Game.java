@@ -80,6 +80,7 @@ public class Game {
         mainRoles.add(new Alphawolf());
         mainRoles.add(new Blutwolf());
         mainRoles.add(new Chemiker());
+        mainRoles.add(new Geisterwolf());
         mainRoles.add(new Schreckenswolf());
         mainRoles.add(new Werwolf());
         mainRoles.add(new Wolfsmensch());

@@ -7,6 +7,7 @@ import root.Persona.Hauptrolle;
 import root.Persona.Rollen.Constants.NebenrollenType.Tarnumhang_NebenrollenType;
 import root.Persona.Rollen.Constants.Zeigekarten.Nicht_Tötend;
 import root.Persona.Rollen.Constants.Zeigekarten.Tötend;
+import root.Persona.Rollen.Hauptrollen.Werwölfe.Geisterwolf;
 import root.Persona.Rollen.Nebenrollen.Tarnumhang;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
@@ -38,7 +39,7 @@ public class Späher extends Hauptrolle {
                 return new FrontendControl(new Tarnumhang_NebenrollenType());
             }
 
-            if (chosenPlayer.hauptrolle.isKilling()) {
+            if (chosenPlayer.hauptrolle.isKilling() && !chosenPlayer.hauptrolle.equals(Geisterwolf.name)) {
                 abilityCharges--;
 
                 return new FrontendControl(new Tötend());

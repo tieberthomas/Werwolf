@@ -12,6 +12,10 @@ schamanin
 wolfsmensch
 schnüffler
 
+bugs:
+nur ein Bruder im Spiel - neue Hauptrolle funktioniert nicht
+Nach Umbringen Button - keine leere option mehr im Dropdown
+
 task:
 werden nachbar und spurenleser von tarnumhang/schamanin bamboozeled?
 
@@ -26,6 +30,7 @@ reineseele übersichtspage etwas für markup überlegen
 markup für vampirumhang geschützen spieler bei lady aleera überlegen
 aufgebraucht page interaktiv gestalten
 bei reiner seele am tag umbringen dem erzähler was anzeigen
+im Setup Dropdown alphabetisch sortieren
 
 bei jeder rolle als kommentar den kartentext dazuschreiben
 
