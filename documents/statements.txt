@@ -45,12 +45,10 @@ Seherin erwacht und lässt sich Auskunft über die Fraktion eines Mitspielers ge
 Orakel erwacht und lässt sich vom Erzähler die Bonusrollenkarte eines zufälligen Bürgers zeigen
 Späher erwacht und lässt sich Auskunft über einen Mitspieler geben
 Nachbar erwacht und erfährt wer die Besucher seines gewählten Spielers waren
-Wachhund erwacht und erfährt wer die Besucher seines gewählten Spielers waren
 Wahrsager erwacht und gibt seinen Tipp ab welche Fraktion bei der Dorfabstimmung sterben wird
 Konditor erwacht und entscheidet sich ob es eine gute oder schlechte Torte gibt
 Konditor und Konditorlehrling erwachen und entscheiden sich ob es eine gute oder schlechte Torte gibt
 Alle wachen auf
 Alle Opfer inklusive Liebespaaropfer werden bekannt gegeben
 Der verstummte Spieler wird bekannt gegeben
-Die Schönlinge werden bekannt gegeben
 Das Dorf erfährt die Bonusrolle der Wölfin

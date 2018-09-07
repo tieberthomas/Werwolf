@@ -15,6 +15,7 @@ Chemiker
 Geisterwolf
 Schreckenswolf
 Werwolf
+Wolfsmensch
 Wölfin
 
 Graf Vladimir

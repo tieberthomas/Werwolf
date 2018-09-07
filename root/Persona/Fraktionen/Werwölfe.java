@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class Werwölfe extends Fraktion {
     public static String title = "Opfer wählen";
-    public static final String beschreibung = "Die Werwölfe erwachen und wählen ein Opfer aus";
+    public static final String beschreibung = "Die Werwölfe erwachen und die Wölfe wählen ein Opfer aus";
     public static StatementType statementType = StatementType.FRAKTION_CHOOSE_ONE;
     public static final String name = "Werwölfe";
     public static final Color farbe = Color.green;

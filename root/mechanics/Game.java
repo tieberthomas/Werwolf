@@ -98,11 +98,11 @@ public class Game {
         secondaryRoles.add(new Lamm());
         secondaryRoles.add(new Nachbar());
         secondaryRoles.add(new Prostituierte());
-        secondaryRoles.add(new Seelenlicht());
-        secondaryRoles.add(new Spurenleser());
         secondaryRoles.add(new Schatten());
         secondaryRoles.add(new Schattenkutte());
         secondaryRoles.add(new Schnüffler());
+        secondaryRoles.add(new Seelenlicht());
+        secondaryRoles.add(new Spurenleser());
         secondaryRoles.add(new Tarnumhang());
         secondaryRoles.add(new Totengräber());
         secondaryRoles.add(new Vampirumhang());

@@ -10,7 +10,7 @@ import root.Spieler;
 
 public class Schamanin extends Hauptrolle {
     public static String title = "Mitspieler schützen";
-    public static final String beschreibung = "Schamanin erwacht und entscheidet sich ob einen Mitspieler schützen möchte";
+    public static final String beschreibung = "Schamanin erwacht und entscheidet ob sie einen Spieler schützen möchte";
     public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE;
 
     public static final String name = "Schamanin";
