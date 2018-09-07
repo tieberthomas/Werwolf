@@ -2,12 +2,12 @@ package root.Persona.Rollen.Hauptrollen.Überläufer;
 
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
-import root.Phases.NightBuilding.Constants.StatementType;
-import root.ResourceManagement.ImagePath;
 import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Überläufer_Fraktion;
 import root.Persona.Hauptrolle;
 import root.Persona.Rollen.Hauptrollen.Bürger.Dorfbewohner;
+import root.Phases.NightBuilding.Constants.StatementType;
+import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
 import java.util.ArrayList;

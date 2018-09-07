@@ -1,9 +1,9 @@
 package root.Persona.Fraktionen;
 
+import root.Persona.Fraktion;
 import root.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.WerwölfeZeigekarte;
 import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.ResourceManagement.ImagePath;
-import root.Persona.Fraktion;
 
 import java.awt.*;
 

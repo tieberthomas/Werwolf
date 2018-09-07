@@ -1,10 +1,10 @@
 package root.Persona.Rollen.Nebenrollen;
 
 import root.Frontend.FrontendControl;
-import root.Phases.NightBuilding.Constants.StatementType;
-import root.ResourceManagement.ImagePath;
 import root.Persona.Fraktion;
 import root.Persona.Nebenrolle;
+import root.Phases.NightBuilding.Constants.StatementType;
+import root.ResourceManagement.ImagePath;
 
 /**
  * Created by Steve on 12.11.2017.

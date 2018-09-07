@@ -1,8 +1,8 @@
 package root;
 
 import root.Persona.Hauptrolle;
-import root.Persona.Rollen.Hauptrollen.Bürger.Dorfbewohner;
 import root.Persona.Nebenrolle;
+import root.Persona.Rollen.Hauptrollen.Bürger.Dorfbewohner;
 import root.Persona.Rollen.Nebenrollen.Schatten;
 import root.mechanics.Game;
 

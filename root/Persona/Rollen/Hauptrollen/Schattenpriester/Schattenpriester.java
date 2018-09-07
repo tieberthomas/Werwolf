@@ -1,9 +1,9 @@
 package root.Persona.Rollen.Hauptrollen.Schattenpriester;
 
-import root.ResourceManagement.ImagePath;
 import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Schattenpriester_Fraktion;
 import root.Persona.Hauptrolle;
+import root.ResourceManagement.ImagePath;
 
 public class Schattenpriester extends Hauptrolle {
     public static final String name = "Schattenpriester";

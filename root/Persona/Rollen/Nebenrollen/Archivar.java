@@ -2,14 +2,14 @@ package root.Persona.Rollen.Nebenrollen;
 
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
+import root.Persona.Fraktionen.Bürger;
+import root.Persona.Nebenrolle;
 import root.Persona.Rollen.Constants.NebenrollenType.Informativ;
 import root.Persona.Rollen.Constants.NebenrollenType.NebenrollenType;
 import root.Persona.Rollen.Constants.NebenrollenType.Tarnumhang_NebenrollenType;
+import root.Persona.Rollen.Hauptrollen.Bürger.Schamanin;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
-import root.Persona.Fraktionen.Bürger;
-import root.Persona.Rollen.Hauptrollen.Bürger.Schamanin;
-import root.Persona.Nebenrolle;
 import root.Spieler;
 
 public class Archivar extends Nebenrolle {

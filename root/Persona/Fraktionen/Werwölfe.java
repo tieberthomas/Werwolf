@@ -1,12 +1,12 @@
 package root.Persona.Fraktionen;
 
 import root.Frontend.FrontendControl;
+import root.Persona.Fraktion;
 import root.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.WerwölfeZeigekarte;
 import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Persona.Rollen.Hauptrollen.Werwölfe.*;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
-import root.Persona.Fraktion;
 import root.Spieler;
 import root.mechanics.Opfer;
 

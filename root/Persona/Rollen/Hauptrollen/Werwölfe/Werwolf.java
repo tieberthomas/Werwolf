@@ -1,9 +1,9 @@
 package root.Persona.Rollen.Hauptrollen.Werwölfe;
 
-import root.ResourceManagement.ImagePath;
 import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Werwölfe;
 import root.Persona.Hauptrolle;
+import root.ResourceManagement.ImagePath;
 
 public class Werwolf extends Hauptrolle {
     public static final String name = "Werwolf";

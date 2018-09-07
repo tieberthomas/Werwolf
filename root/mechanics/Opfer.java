@@ -4,10 +4,12 @@ import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.Persona.Fraktionen.Vampire;
 import root.Persona.Fraktionen.Werwölfe;
+import root.Persona.Rolle;
 import root.Persona.Rollen.Hauptrollen.Bürger.Riese;
 import root.Persona.Rollen.Hauptrollen.Werwölfe.Blutwolf;
-import root.Persona.Rollen.Nebenrollen.*;
-import root.Persona.Rolle;
+import root.Persona.Rollen.Nebenrollen.Prostituierte;
+import root.Persona.Rollen.Nebenrollen.Vampirumhang;
+import root.Persona.Rollen.Nebenrollen.Wolfspelz;
 import root.Spieler;
 
 import java.util.ArrayList;

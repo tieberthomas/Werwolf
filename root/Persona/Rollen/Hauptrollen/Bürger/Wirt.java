@@ -2,11 +2,11 @@ package root.Persona.Rollen.Hauptrollen.Bürger;
 
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
-import root.Phases.NightBuilding.Constants.StatementType;
-import root.ResourceManagement.ImagePath;
 import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Bürger;
 import root.Persona.Hauptrolle;
+import root.Phases.NightBuilding.Constants.StatementType;
+import root.ResourceManagement.ImagePath;
 
 import java.util.ArrayList;
 

@@ -4,12 +4,12 @@ import root.Frontend.Factories.ÜbersichtsPageElementFactory;
 import root.Frontend.Factories.ÜbersichtsPageFactory;
 import root.Frontend.Page.Page;
 import root.Frontend.Page.PageTable;
-import root.Phases.ErsteNacht;
-import root.Phases.Nacht;
-import root.Phases.PhaseMode;
 import root.Persona.Hauptrolle;
 import root.Persona.Nebenrolle;
 import root.Persona.Rolle;
+import root.Phases.ErsteNacht;
+import root.Phases.Nacht;
+import root.Phases.PhaseMode;
 import root.Spieler;
 import root.mechanics.Game;
 

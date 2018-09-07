@@ -1,9 +1,9 @@
 package root.Persona.Rollen.Nebenrollen;
 
+import root.Persona.Nebenrolle;
 import root.Persona.Rollen.Constants.NebenrollenType.NebenrollenType;
 import root.Persona.Rollen.Constants.NebenrollenType.Tarnumhang_NebenrollenType;
 import root.ResourceManagement.ImagePath;
-import root.Persona.Nebenrolle;
 
 import java.awt.*;
 

@@ -1,9 +1,9 @@
 package root.Persona.Rollen.Hauptrollen.Bürger;
 
-import root.ResourceManagement.ImagePath;
 import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Bürger;
 import root.Persona.Hauptrolle;
+import root.ResourceManagement.ImagePath;
 
 public class Bruder extends Hauptrolle {
     public static final String name = "Bruder";

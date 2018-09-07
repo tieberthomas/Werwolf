@@ -1,8 +1,8 @@
 package root.Phases.NightBuilding;
 
-import root.Phases.NightBuilding.Constants.StatementType;
-import root.Persona.Rollen.Hauptrollen.Bürger.Sammler;
 import root.Persona.Rolle;
+import root.Persona.Rollen.Hauptrollen.Bürger.Sammler;
+import root.Phases.NightBuilding.Constants.StatementType;
 import root.mechanics.Opfer;
 
 /**

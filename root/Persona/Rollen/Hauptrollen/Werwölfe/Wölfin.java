@@ -2,14 +2,14 @@ package root.Persona.Rollen.Hauptrollen.Werwölfe;
 
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
-import root.Phases.Nacht;
-import root.Phases.NightBuilding.Constants.StatementType;
-import root.ResourceManagement.ImagePath;
-import root.Persona.Rollen.Constants.WölfinState;
 import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Werwölfe;
 import root.Persona.Hauptrolle;
+import root.Persona.Rollen.Constants.WölfinState;
 import root.Persona.Rollen.Nebenrollen.Tarnumhang;
+import root.Phases.Nacht;
+import root.Phases.NightBuilding.Constants.StatementType;
+import root.ResourceManagement.ImagePath;
 import root.Spieler;
 import root.mechanics.Opfer;
 
