@@ -20,6 +20,7 @@ public class Orakel extends Hauptrolle {
     public static String title = "Bonusrolle";
     public static final String beschreibung = "Orakel erwacht und lässt sich vom Erzähler die Bonusrollenkarte eines zufälligen Bürgers zeigen";
     public static StatementType statementType = StatementType.ROLLE_INFO;
+
     public static final String VERBRAUCHT_TITLE = "Bonusrollen";
     public static final String name = "Orakel";
     public static Fraktion fraktion = new Bürger();
