@@ -2,25 +2,28 @@ package root.Persona.Rollen.Nebenrollen;
 
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
+import root.Persona.Nebenrolle;
 import root.Persona.Rollen.Constants.NebenrollenType.Informativ;
 import root.Persona.Rollen.Constants.NebenrollenType.NebenrollenType;
-import root.Persona.Rollen.Constants.NebenrollenType.Tarnumhang_NebenrollenType;
+import root.Persona.Rollen.Constants.SchnüfflerInformation;
+import root.Persona.Rollen.SchnüfflerInformationGenerator;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
-import root.Persona.Fraktionen.Bürger;
-import root.Persona.Rollen.Hauptrollen.Bürger.Schamanin;
-import root.Persona.Nebenrolle;
 import root.Spieler;
 
-public class Archivar extends Nebenrolle {
+import java.util.ArrayList;
+
+public class Schnüffler extends Nebenrolle {
     public static String title = "Spieler wählen";
-    public static final String beschreibung = "Archivar erwacht und lässt sich Auskunft über die Bonusrolle eines Mitspielers geben";
+    public static final String beschreibung = "Schnüffler erwacht und lässt sich Auskunft über einen Mitspieler geben";
     public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE_INFO;
 
-    public static final String name = "Archivar";
+    public static final String name = "Schnüffler";
     public static final String imagePath = ImagePath.ARCHIVAR_KARTE;
     public static boolean spammable = true;
     public NebenrollenType type = new Informativ();
+
+    public ArrayList<SchnüfflerInformation> informationen = new ArrayList<>(); //TODO wenn schüffler stirbt wieder neu anlegen
 
     @Override
     public FrontendControl getDropdownOptions() {
@@ -34,27 +37,15 @@ public class Archivar extends Nebenrolle {
         if (chosenPlayer != null) {
             besucht = chosenPlayer;
 
-            NebenrollenType chosenPlayerType = chosenPlayer.nebenrolle.getType();
-
-            if (playerIsSchamanin(chosenPlayer) && archivarIsNotBuerger()) {
-                chosenPlayerType = new Tarnumhang_NebenrollenType();
-            }
+            SchnüfflerInformationGenerator informationGenerator = new SchnüfflerInformationGenerator(chosenPlayer);
+            SchnüfflerInformation information = informationGenerator.generateInformation();
+            informationen.add(information);
 
 
-            return new FrontendControl(FrontendControlType.IMAGE, chosenPlayerType.title, chosenPlayerType.imagePath);
+            return new FrontendControl(FrontendControlType.IMAGE, type.title, type.imagePath);
         }
 
         return new FrontendControl();
-    }
-
-    private boolean playerIsSchamanin(Spieler player) {
-        return player.hauptrolle.getName().equals(Schamanin.name);
-    }
-
-    private boolean archivarIsNotBuerger() {
-        Spieler spieler = game.findSpielerPerRolle(name);
-
-        return !spieler.hauptrolle.getFraktion().equals(new Bürger());
     }
 
     @Override

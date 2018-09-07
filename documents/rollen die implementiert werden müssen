@@ -1,7 +1,7 @@
-geisterwolf
+geisterwolf (hauptrolle) (werwolf)
     -wird als nicht tötend gesehen
 
-tarnumhang
+tarnumhang (änderung)
     -erfährt jede nacht den träger eines umhangs
 
 wahrsager (nebenrolle) (informativ)
@@ -10,14 +10,14 @@ wahrsager (nebenrolle) (informativ)
 detektiv (nebenrolle) (informativ)
     -versucht die anzahl der bürger zu erraten, wenn richitg bekommt er eine bürgerrolle die im spiel ist verraten
 
-nachtfürst
+nachtfürst (nebenrolle)
     -schätzt die anzahl der opfer der nacht. wenn richtig und werwolf oder vampir bekommt er kill. sonst schutz auf ihm.
 
-schnüffler
+schnüffler (nebenrolle) (wird gerade implementiert, backend geht)
     -bekommt jede nacht über einen gewählten spieler 3 informationen (tötend, fraktion, nebenrollentyp) 2 davon sind falsch, eine richtig
 
-dieb
+dieb (nebenrolle)
     -stiehlt eine bonusrolle, bestohlener bekommt eine die nicht im spiel ist
 
-konditor
+konditor (änderung)
     -nach guter torte gibt es nächste nacht keine torte

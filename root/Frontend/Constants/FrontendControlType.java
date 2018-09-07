@@ -8,5 +8,6 @@ public enum FrontendControlType {
     LIST,
     IMAGE,
     CARD,
-    LIST_IMAGE
+    LIST_IMAGE,
+    SCHNÜFFLER_INFO
 }

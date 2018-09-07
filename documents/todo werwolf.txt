@@ -10,6 +10,7 @@ zeigekarten
 analytiker
 schamanin
 wolfsmensch
+schnüffler
 
 task:
 werden nachbar und spurenleser von tarnumhang/schamanin bamboozeled?

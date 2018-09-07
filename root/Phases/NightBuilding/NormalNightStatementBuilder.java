@@ -36,17 +36,16 @@ public class NormalNightStatementBuilder {
         if (Totengräber.getNehmbareNebenrollen().size() > 0) {
             statements.add(getStatement(Totengräber.name));
         }
+        //Dieb
+        //bestohlener erwacht und bekommt neue nebenrolle
         statements.add(getStatement(Gefängniswärter.name));
 
         if (game.mitteHauptrollen.size() > 0) {
             statements.add(getStatement(Überläufer.name));
         }
 
-        statements.add(getStatement(Schamanin.name));
-
         statements.add(getStatement(HoldeMaid.name));
-        statements.add(getStatement(Nachbar.name));
-        statements.add(getStatement(Spurenleser.name));
+        statements.add(getStatement(Schamanin.name));
 
         statements.add(ProgrammStatements.getSchützeStatement());
 
@@ -70,10 +69,14 @@ public class NormalNightStatementBuilder {
         statements.add(getStatement(MissVerona.name));
         statements.add(getStatement(Analytiker.name));
         statements.add(getStatement(Archivar.name));
+        statements.add(getStatement(Schnüffler.name));
         statements.add(getStatement(Seherin.name));
         statements.add(getStatement(Orakel.name));
         statements.add(getStatement(Späher.name));
 
+        statements.add(getStatement(Nachbar.name));
+        statements.add(getStatement(Spurenleser.name));
+        //zu einzelnen statements mergen
         statements.add(getSecondStatement(Nachbar.name));
         statements.add(getSecondStatement(Spurenleser.name));
 

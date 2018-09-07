@@ -26,6 +26,7 @@ import root.mechanics.Game;
 import root.mechanics.Liebespaar;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class ErsteNacht extends Thread {
     Game game;
@@ -422,7 +423,9 @@ public class ErsteNacht extends Thread {
     }
 
     private Hauptrolle pickRandomHauptrolle(ArrayList<Hauptrolle> hauptrollen) {
-        int index = (int)Math.round(Math.random() * (double)hauptrollen.size());
+        int numberOfUnassignedHauptrollen = hauptrollen.size();
+        Random random = new Random();
+        int index = random.nextInt(numberOfUnassignedHauptrollen);
 
         return hauptrollen.get(index);
     }

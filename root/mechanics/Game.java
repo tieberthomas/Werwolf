@@ -101,6 +101,7 @@ public class Game {
         secondaryRoles.add(new Spurenleser());
         secondaryRoles.add(new Schatten());
         secondaryRoles.add(new Schattenkutte());
+        secondaryRoles.add(new Schnüffler());
         secondaryRoles.add(new Tarnumhang());
         secondaryRoles.add(new Totengräber());
         secondaryRoles.add(new Vampirumhang());
