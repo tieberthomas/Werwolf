@@ -7,21 +7,28 @@ import root.Persona.Rollen.Constants.NebenrollenType.NebenrollenType;
 import root.Persona.Rollen.Constants.NebenrollenType.Tarnumhang_NebenrollenType;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
+import root.Spieler;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Random;
 
 public class Tarnumhang extends Nebenrolle {
     public static String title = "Träger eines Umhangs";
     public static final String beschreibung = "Träger des Tarnumhangs erwacht und erfährt den Träger eines Umhangs";
     public static StatementType statementType = StatementType.ROLLE_INFO;
+    public static String KEINE_UMHÄNGE = "Es sind keine Umhangträger mehr im Spiel";
 
     public static final String name = "Tarnumhang";
     public static final String imagePath = ImagePath.TARNUMHANG_KARTE;
     public static boolean spammable = false;
     public static NebenrollenType type = new Tarnumhang_NebenrollenType();
     public Color farbe = Color.BLACK;
-    public ArrayList<String> seenPlayers = new ArrayList<>();
+    private ArrayList<String> umhänge = new ArrayList<>(Arrays.asList(
+            Lamm.name, Wolfspelz.name, Vampirumhang.name, Schattenkutte.name));
+
+    public ArrayList<String> seenPlayers = new ArrayList<>(); //TODO zurücksetzen beim Tod
 
     @Override
     public FrontendControl getInfo() {
@@ -37,7 +44,36 @@ public class Tarnumhang extends Nebenrolle {
     }
 
     private String getUnseenTräger() {
-        return "Thomas";
+        ArrayList<String> allTräger = getAllTräger();
+        allTräger.removeAll(seenPlayers);
+
+        if(allTräger.size()==0) {
+            seenPlayers = new ArrayList<>();
+            allTräger = getAllTräger();
+        }
+
+        if(allTräger.size()>0) {
+
+            int numberOfTräger = allTräger.size();
+            Random random = new Random();
+            int decision = random.nextInt(numberOfTräger);
+
+            return allTräger.get(decision);
+        } else {
+            return KEINE_UMHÄNGE;
+        }
+    }
+
+    private ArrayList<String> getAllTräger() {
+        ArrayList<String> allTräger = new ArrayList<>();
+
+        for (Spieler spieler : game.spieler) {
+            if (umhänge.contains(spieler.nebenrolle.getName())) {
+                allTräger.add(spieler.name);
+            }
+        }
+
+        return allTräger;
     }
 
     @Override
