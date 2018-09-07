@@ -76,6 +76,7 @@ public class NormalNightStatementBuilder {
         addStatementRolle(statements, Seherin.name);
         addStatementRolle(statements, Orakel.name);
         addStatementRolle(statements, Späher.name);
+        addStatementRolle(statements, Tarnumhang.name);
 
         addStatementRolle(statements, Nachbar.name);
         //addStatementRolle(statements, Spurenleser.name);
