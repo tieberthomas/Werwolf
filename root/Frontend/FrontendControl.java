@@ -6,6 +6,7 @@ import root.Frontend.Frame.SpielerFrame;
 import root.Frontend.Frame.ÜbersichtsFrame;
 import root.Frontend.Page.Page;
 import root.Persona.Rollen.Constants.DropdownConstants;
+import root.Persona.Rollen.Constants.SchnüfflerInformation;
 import root.Persona.Rollen.Constants.Zeigekarten.AusDemSpiel;
 import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Persona.Rollen.Hauptrollen.Vampire.GrafVladimir;
@@ -14,6 +15,7 @@ import root.Spieler;
 import root.mechanics.Game;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class FrontendControl {
     public static Game game;
@@ -25,6 +27,7 @@ public class FrontendControl {
     public FrontendControlType typeOfContent;
     public String title;
     public ArrayList<String> strings;
+    public List<SchnüfflerInformation> informationen;
     public String imagePath;
 
     public FrontendControl() {
@@ -80,6 +83,12 @@ public class FrontendControl {
         this.title = title;
         this.strings = strings;
         this.imagePath = imagePath;
+    }
+
+    public FrontendControl(List<SchnüfflerInformation> informationen, String title) {
+        this.typeOfContent = FrontendControlType.SCHNÜFFLER_INFO;
+        this.title = title;
+        this.informationen = informationen;
     }
 
     public static void erzählerDefaultNightPage(Statement statement) {
@@ -225,6 +234,11 @@ public class FrontendControl {
 
     public static void spielerCardPicturePage(String title, String imagePath) {
         Page nightPage = spielerFrame.pageFactory.generateStaticImagePage(title, imagePath, false);
+        spielerFrame.buildScreenFromPage(nightPage);
+    }
+
+    public static void spielerSchnüfflerInfoPage(List<SchnüfflerInformation> informationen) {
+        Page nightPage = spielerFrame.pageFactory.generateSchnüfflerInformationPage(informationen);
         spielerFrame.buildScreenFromPage(nightPage);
     }
 

@@ -1,6 +1,5 @@
 package root.Persona.Rollen.Nebenrollen;
 
-import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.Persona.Nebenrolle;
 import root.Persona.Rollen.Constants.NebenrollenType.Informativ;
@@ -12,6 +11,7 @@ import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Schnüffler extends Nebenrolle {
     public static String title = "Spieler wählen";
@@ -19,9 +19,10 @@ public class Schnüffler extends Nebenrolle {
     public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE_INFO;
 
     public static final String name = "Schnüffler";
-    public static final String imagePath = ImagePath.ARCHIVAR_KARTE;
+    public static final String imagePath = ImagePath.SCHNÜFFLER_KARTE;
     public static boolean spammable = true;
     public NebenrollenType type = new Informativ();
+    public static int MAX_ANZAHL_AN_INFORMATIONEN = 4;
 
     public ArrayList<SchnüfflerInformation> informationen = new ArrayList<>(); //TODO wenn schüffler stirbt wieder neu anlegen
 
@@ -41,8 +42,16 @@ public class Schnüffler extends Nebenrolle {
             SchnüfflerInformation information = informationGenerator.generateInformation();
             informationen.add(information);
 
-
-            return new FrontendControl(FrontendControlType.IMAGE, type.title, type.imagePath);
+            List<SchnüfflerInformation> angezeigteInformationen;
+            if (informationen.size() <= MAX_ANZAHL_AN_INFORMATIONEN) {
+                angezeigteInformationen = (List<SchnüfflerInformation>)informationen.clone();
+            } else {
+                int lastindex = informationen.size()-1;
+                int firstIndex = lastindex-4;
+                angezeigteInformationen = informationen.subList(firstIndex, lastindex);
+            }
+            String pageTitle = chosenPlayer.name;
+            return new FrontendControl(angezeigteInformationen, pageTitle);
         }
 
         return new FrontendControl();

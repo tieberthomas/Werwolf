@@ -2,7 +2,7 @@ package root.Persona.Rollen.Constants.Zeigekarten;
 
 import root.ResourceManagement.ImagePath;
 
-public class Nicht_Tötend extends Zeigekarte {
+public class Nicht_Tötend extends SpäherZeigekarte {
     public Nicht_Tötend() {
         this.name = "Nicht Tötend";
         this.title = "Nicht Tötend";

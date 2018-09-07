@@ -2,13 +2,16 @@ package root.Persona.Rollen.Constants;
 
 import root.Persona.Fraktion;
 import root.Persona.Rollen.Constants.NebenrollenType.NebenrollenType;
+import root.Persona.Rollen.Constants.Zeigekarten.SpäherZeigekarte;
 
 public class SchnüfflerInformation {
+    public String spielerName;
     public Fraktion fraktion;
-    public boolean tötend;
+    public SpäherZeigekarte tötend;
     public NebenrollenType nebenrollenType;
 
-    public SchnüfflerInformation(Fraktion fraktion, boolean tötend, NebenrollenType nebenrollenType) {
+    public SchnüfflerInformation(String spielerName, Fraktion fraktion, SpäherZeigekarte tötend, NebenrollenType nebenrollenType) {
+        this.spielerName = spielerName;
         this.fraktion = fraktion;
         this.tötend = tötend;
         this.nebenrollenType = nebenrollenType;

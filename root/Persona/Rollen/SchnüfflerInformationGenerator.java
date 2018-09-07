@@ -4,6 +4,7 @@ import root.Persona.Fraktion;
 import root.Persona.Rollen.Constants.InformationType;
 import root.Persona.Rollen.Constants.NebenrollenType.*;
 import root.Persona.Rollen.Constants.SchnüfflerInformation;
+import root.Persona.Rollen.Constants.Zeigekarten.SpäherZeigekarte;
 import root.Spieler;
 
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class SchnüfflerInformationGenerator {
     public SchnüfflerInformation generateInformation() {
         InformationType correctInformation = decideCorrectInformation();
         Fraktion fraktion = null;
-        boolean tötend = false;
+        SpäherZeigekarte tötend = null;
         NebenrollenType nebenrollenType = null;
 
 
@@ -48,7 +49,7 @@ public class SchnüfflerInformationGenerator {
             }
         }
 
-        return new SchnüfflerInformation(fraktion, tötend, nebenrollenType);
+        return new SchnüfflerInformation(player.name, fraktion, tötend, nebenrollenType);
     }
 
     private InformationType decideCorrectInformation() {
@@ -94,14 +95,14 @@ public class SchnüfflerInformationGenerator {
         fraktionen.remove(fraktionInListToRemove);
     }
 
-    private boolean generateTötendInformation(boolean correctInformation) {
+    private SpäherZeigekarte generateTötendInformation(boolean correctInformation) {
         boolean isKilling = player.hauptrolle.isKilling();
 
-        if (correctInformation) {
-            return isKilling;
-        } else {
-            return !isKilling;
+        if (!correctInformation) {
+            isKilling = !isKilling;
         }
+
+        return SpäherZeigekarte.getZeigekarte(isKilling);
     }
 
     private NebenrollenType generateNebenrollenInformation(boolean correctInformation) {

@@ -10,6 +10,7 @@ import root.Persona.Nebenrolle;
 import root.Persona.Rolle;
 import root.Persona.Rollen.Constants.DropdownConstants;
 import root.Persona.Rollen.Constants.NebenrollenType.Passiv;
+import root.Persona.Rollen.Constants.SchnüfflerInformation;
 import root.Persona.Rollen.Constants.Zeigekarten.*;
 import root.Persona.Rollen.Hauptrollen.Bürger.Sammler;
 import root.Persona.Rollen.Hauptrollen.Bürger.Schamanin;
@@ -35,6 +36,7 @@ import root.mechanics.Opfer;
 import root.mechanics.Torte;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Nacht extends Thread {
     Game game;
@@ -544,6 +546,11 @@ public class Nacht extends Thread {
 
                     case LIST_IMAGE:
                         showListShowImage(statement, frontendControl.title, frontendControl.strings, frontendControl.imagePath);
+                        break;
+
+                    case SCHNÜFFLER_INFO:
+                        showSchnüfflerInfo(statement, frontendControl.informationen);
+                        break;
                 }
                 break;
 
@@ -800,6 +807,13 @@ public class Nacht extends Thread {
 
     public void showListShowImage(Statement statement, String title, ArrayList<String> strings, String spielerImagePath) {
         showListShowImage(statement, title, strings, spielerImagePath, "");
+    }
+
+    public void showSchnüfflerInfo(Statement statement, List<SchnüfflerInformation> informationen) {
+        FrontendControl.erzählerDefaultNightPage(statement);
+        FrontendControl.spielerSchnüfflerInfoPage(informationen);
+
+        waitForAnswer();
     }
 
     public void showListShowImage(Statement statement, String title, ArrayList<String> strings, String spielerImagePath, String erzählerImagePath) {
