@@ -7,6 +7,7 @@ import root.Persona.Fraktionen.Werwölfe;
 import root.Persona.Rolle;
 import root.Persona.Rollen.Constants.WölfinState;
 import root.Persona.Rollen.Hauptrollen.Bürger.*;
+import root.Persona.Rollen.Hauptrollen.Vampire.GrafVladimir;
 import root.Persona.Rollen.Hauptrollen.Vampire.LadyAleera;
 import root.Persona.Rollen.Hauptrollen.Vampire.MissVerona;
 import root.Persona.Rollen.Hauptrollen.Werwölfe.Chemiker;
@@ -55,12 +56,12 @@ public class NormalNightStatementBuilder {
 
         addStatementRolle(statements, Riese.name);
         addStatementFraktion(statements, Vampire.name);
-        //addStatementRolle(statements, GrafVladimir.name);
+        addStatementRolle(statements, GrafVladimir.name);
         addStatementFraktion(statements, Werwölfe.name);
         if (Wölfin.state == WölfinState.TÖTEND) {
             addStatementRolle(statements, Wölfin.name);
         }
-        //addStatementRolle(statements, Schreckenswolf.name);
+        addStatementRolle(statements, Schreckenswolf.name);
 
         //Nachtfürst erwacht, schätzt die Anzahl der Opfer dieser Nacht und führt ggf. seine Tötung aus
 
@@ -72,17 +73,17 @@ public class NormalNightStatementBuilder {
         addStatementRolle(statements, MissVerona.name);
         addStatementRolle(statements, Analytiker.name);
         addStatementRolle(statements, Archivar.name);
-        //addStatementRolle(statements, Schnüffler.name);
+        addStatementRolle(statements, Schnüffler.name);
         addStatementRolle(statements, Seherin.name);
         addStatementRolle(statements, Orakel.name);
         addStatementRolle(statements, Späher.name);
 
         addStatementRolle(statements, Nachbar.name);
-        //addStatementRolle(statements, Spurenleser.name);
+        addStatementRolle(statements, Spurenleser.name);
 
         //zu einzelnen statements mergen
         statements.add(getSecondStatement(Nachbar.name));
-        //statements.add(getSecondStatement(Spurenleser.name));
+        statements.add(getSecondStatement(Spurenleser.name));
 
         statements.add(ProgrammStatements.getWahrsagerProgrammStatement());
         if (game.getLivingPlayer().size() > 4) {
