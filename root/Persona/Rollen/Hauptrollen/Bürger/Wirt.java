@@ -15,7 +15,7 @@ import static root.Persona.Rollen.Constants.DropdownConstants.NEIN;
 
 public class Wirt extends Hauptrolle {
     public static String title = "Freibier ausgeben";
-    public static final String beschreibung = "Wirt erwacht und entscheidet sich ob er ein Freibier ausgeben will";
+    public static final String beschreibung = "Wirt erwacht und entscheidet sich ob er Freibier ausgeben will";
     public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE;
     public static final String name = "Wirt";
     public static Fraktion fraktion = new Bürger();

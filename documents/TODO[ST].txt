@@ -12,4 +12,4 @@ Englisch-Deutsch-Gemisch
 
 MT:
 Freigestellt - Weiß
-Bonusrolle - Nebenrolle
+Nebenrolle -> Bonusrolle

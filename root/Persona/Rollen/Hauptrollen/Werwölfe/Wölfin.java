@@ -15,7 +15,7 @@ import root.mechanics.Opfer;
 
 public class Wölfin extends Hauptrolle {
     public static String title = "Opfer wählen";
-    public static final String beschreibung = "Wölfin erwacht und wählt ein Opfer aus, wenn sie das tut, erfährt das dorf ihre Bonusrolle";
+    public static final String beschreibung = "Wölfin erwacht und wählt ein Opfer aus, wenn sie das tut, erfährt das Dorf ihre Bonusrolle";
     public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE;
 
     public static String secondTitle = "Wölfin";

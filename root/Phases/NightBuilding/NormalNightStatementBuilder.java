@@ -1,12 +1,12 @@
 package root.Phases.NightBuilding;
 
-import root.Persona.Rollen.Constants.WölfinState;
 import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Schattenpriester_Fraktion;
 import root.Persona.Fraktionen.Vampire;
 import root.Persona.Fraktionen.Werwölfe;
+import root.Persona.Rolle;
+import root.Persona.Rollen.Constants.WölfinState;
 import root.Persona.Rollen.Hauptrollen.Bürger.*;
-import root.Persona.Rollen.Hauptrollen.Vampire.GrafVladimir;
 import root.Persona.Rollen.Hauptrollen.Vampire.LadyAleera;
 import root.Persona.Rollen.Hauptrollen.Vampire.MissVerona;
 import root.Persona.Rollen.Hauptrollen.Werwölfe.Chemiker;
@@ -14,7 +14,6 @@ import root.Persona.Rollen.Hauptrollen.Werwölfe.Schreckenswolf;
 import root.Persona.Rollen.Hauptrollen.Werwölfe.Wölfin;
 import root.Persona.Rollen.Hauptrollen.Überläufer.Überläufer;
 import root.Persona.Rollen.Nebenrollen.*;
-import root.Persona.Rolle;
 import root.Phases.NightBuilding.Constants.IndieStatements;
 import root.Phases.NightBuilding.Constants.ProgrammStatements;
 import root.mechanics.Game;
@@ -30,66 +29,70 @@ public class NormalNightStatementBuilder {
         statements.add(IndieStatements.getAlleSchlafenEinStatement());
 
         if (Wirt.freibierCharges > 0) {
-            statements.add(getStatement(Wirt.name));
+            addStatementRolle(statements, Wirt.name);
         }
 
         if (Totengräber.getNehmbareNebenrollen().size() > 0) {
-            statements.add(getStatement(Totengräber.name));
+            addStatementRolle(statements, Totengräber.name);
         }
-        //Dieb
-        //bestohlener erwacht und bekommt neue nebenrolle
-        statements.add(getStatement(Gefängniswärter.name));
+        //Dieb erwacht und entscheidet ob er jemandes Bonusrolle stehlen möchte
+        //Der Bestohlene erwacht und erhält eine neue Bonusrolle
+
+        addStatementRolle(statements, Gefängniswärter.name);
 
         if (game.mitteHauptrollen.size() > 0) {
-            statements.add(getStatement(Überläufer.name));
+            addStatementRolle(statements, Überläufer.name);
         }
 
-        statements.add(getStatement(HoldeMaid.name));
-        statements.add(getStatement(Schamanin.name));
+        addStatementRolle(statements, HoldeMaid.name);
+        //Detektiv erwacht und schätzt die Anzahl der Bürger
+        addStatementRolle(statements, Schamanin.name);
 
         statements.add(ProgrammStatements.getSchützeStatement());
 
-        statements.add(getStatement(LadyAleera.name));
-        statements.add(getStatement(Prostituierte.name));
+        addStatementRolle(statements, LadyAleera.name);
+        addStatementRolle(statements, Prostituierte.name);
 
-        statements.add(getStatement(Riese.name));
-        statements.add(getStatementFraktion(Vampire.name));
-        statements.add(getStatement(GrafVladimir.name));
-        statements.add(getStatementFraktion(Werwölfe.name));
+        addStatementRolle(statements, Riese.name);
+        addStatementFraktion(statements, Vampire.name);
+        //addStatementRolle(statements, GrafVladimir.name);
+        addStatementFraktion(statements, Werwölfe.name);
         if (Wölfin.state == WölfinState.TÖTEND) {
-            statements.add(getStatement(Wölfin.name));
+            addStatementRolle(statements, Wölfin.name);
         }
-        statements.add(getStatement(Schreckenswolf.name));
+        //addStatementRolle(statements, Schreckenswolf.name);
 
-        statements.add(getStatementFraktion(Schattenpriester_Fraktion.name));
+        //Nachtfürst erwacht, schätzt die Anzahl der Opfer dieser Nacht und führt ggf. seine Tötung aus
+
+        addStatementFraktion(statements, Schattenpriester_Fraktion.name);
         statements.add(getSecondStatementFraktion(Schattenpriester_Fraktion.name));
-        statements.add(getStatement(Chemiker.name));
+        addStatementRolle(statements, Chemiker.name);
         statements.add(getSecondStatement(Chemiker.name));
 
-        statements.add(getStatement(MissVerona.name));
-        statements.add(getStatement(Analytiker.name));
-        statements.add(getStatement(Archivar.name));
-        statements.add(getStatement(Schnüffler.name));
-        statements.add(getStatement(Seherin.name));
-        statements.add(getStatement(Orakel.name));
-        statements.add(getStatement(Späher.name));
-        statements.add(getStatement(Tarnumhang.name));
+        addStatementRolle(statements, MissVerona.name);
+        addStatementRolle(statements, Analytiker.name);
+        addStatementRolle(statements, Archivar.name);
+        //addStatementRolle(statements, Schnüffler.name);
+        addStatementRolle(statements, Seherin.name);
+        addStatementRolle(statements, Orakel.name);
+        addStatementRolle(statements, Späher.name);
 
-        statements.add(getStatement(Nachbar.name));
-        statements.add(getStatement(Spurenleser.name));
+        addStatementRolle(statements, Nachbar.name);
+        //addStatementRolle(statements, Spurenleser.name);
+
         //zu einzelnen statements mergen
         statements.add(getSecondStatement(Nachbar.name));
-        statements.add(getSecondStatement(Spurenleser.name));
+        //statements.add(getSecondStatement(Spurenleser.name));
 
         statements.add(ProgrammStatements.getWahrsagerProgrammStatement());
         if (game.getLivingPlayer().size() > 4) {
-            statements.add(getStatement(Wahrsager.name));
+            addStatementRolle(statements, Wahrsager.name);
         }
 
         if (game.getSecondaryRoleInGameNames().contains(Konditorlehrling.name)) {
-            statements.add(getStatement(Konditorlehrling.name));
+            addStatementRolle(statements, Konditorlehrling.name);
         } else {
-            statements.add(getStatement(Konditor.name));
+            addStatementRolle(statements, Konditor.name);
         }
 
         statements.add(IndieStatements.getAlleWachenAufStatement());
@@ -106,6 +109,14 @@ public class NormalNightStatementBuilder {
         statements.add(ProgrammStatements.getTortenProgrammStatement());
 
         return statements;
+    }
+
+    private static void addStatementRolle(ArrayList<Statement> statements, String rolle) {
+        statements.add(getStatement(rolle));
+    }
+
+    private static void addStatementFraktion(ArrayList<Statement> statements, String fraktion) {
+        statements.add(getStatementFraktion(fraktion));
     }
 
     private static Statement getStatement(String rollenName) {
