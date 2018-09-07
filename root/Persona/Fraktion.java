@@ -125,7 +125,7 @@ public class Fraktion extends Persona{
             String fraktionSpieler = currentSpieler.hauptrolle.getFraktion().getName();
 
             if (fraktion.equals(Werwölfe.name)) {
-                if (fraktionSpieler.equals(fraktion) && Werwölfe.isTötend(hauptrolleSpieler)) {
+                if (fraktionSpieler.equals(fraktion) && Werwölfe.isTötend(hauptrolleSpieler)) { //TODO currentSpieler.hauptrolle.isKilling() ?
                     if (currentSpieler.lebend && !Opfer.isOpfer(currentSpieler.name)) {
                         return false;
                     }

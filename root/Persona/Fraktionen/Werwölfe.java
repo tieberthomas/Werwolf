@@ -3,13 +3,10 @@ package root.Persona.Fraktionen;
 import root.Frontend.FrontendControl;
 import root.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.WerwölfeZeigekarte;
 import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
+import root.Persona.Rollen.Hauptrollen.Werwölfe.*;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Persona.Fraktion;
-import root.Persona.Rollen.Hauptrollen.Werwölfe.Alphawolf;
-import root.Persona.Rollen.Hauptrollen.Werwölfe.Blutwolf;
-import root.Persona.Rollen.Hauptrollen.Werwölfe.Werwolf;
-import root.Persona.Rollen.Hauptrollen.Werwölfe.Wölfin;
 import root.Spieler;
 import root.mechanics.Opfer;
 
@@ -77,9 +74,11 @@ public class Werwölfe extends Fraktion {
     public static boolean isTötend(String hauptrolle) {
         ArrayList<String> tötend = new ArrayList<>();
 
-        tötend.add(Blutwolf.name);
-        tötend.add(Werwolf.name);
         tötend.add(Alphawolf.name);
+        tötend.add(Blutwolf.name);
+        tötend.add(Geisterwolf.name);
+        tötend.add(Schreckenswolf.name);
+        tötend.add(Werwolf.name);
         tötend.add(Wölfin.name);
 
         return tötend.contains(hauptrolle);
