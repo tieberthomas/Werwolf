@@ -1,10 +1,14 @@
 package root.Persona.Rollen;
 
 import root.Persona.Fraktion;
+import root.Persona.Fraktionen.Bürger;
 import root.Persona.Rollen.Constants.InformationType;
 import root.Persona.Rollen.Constants.NebenrollenType.*;
 import root.Persona.Rollen.Constants.SchnüfflerInformation;
 import root.Persona.Rollen.Constants.Zeigekarten.SpäherZeigekarte;
+import root.Persona.Rollen.Hauptrollen.Bürger.Schamanin;
+import root.Persona.Rollen.Nebenrollen.Schnüffler;
+import root.Persona.Rollen.Nebenrollen.Tarnumhang;
 import root.Spieler;
 
 import java.util.ArrayList;
@@ -17,18 +21,21 @@ public class SchnüfflerInformationGenerator {
     private ArrayList<InformationType> erhaltbareInformationen = new ArrayList<>(Arrays.asList(
             InformationType.FRAKTION, InformationType.TÖTEND, InformationType.NEBENROLLENTYPE));
     private ArrayList<NebenrollenType> nebenrollenTypes = new ArrayList<>(Arrays.asList(
-            new Aktiv(), new Passiv(), new Informativ(), new Tarnumhang_NebenrollenType()));
+            new Aktiv(), new Passiv(), new Informativ()));
 
     public SchnüfflerInformationGenerator(Spieler player) {
         this.player = player;
     }
 
     public SchnüfflerInformation generateInformation() {
+        if(player.nebenrolle.equals(Tarnumhang.name) || playerIsSchamanin() && schnüfflerIsNotBuerger()) {
+            return new SchnüfflerInformation(player.name);
+        }
+
         InformationType correctInformation = decideCorrectInformation();
         Fraktion fraktion = null;
         SpäherZeigekarte tötend = null;
         NebenrollenType nebenrollenType = null;
-
 
         boolean isCorrectInformation;
 
@@ -50,6 +57,16 @@ public class SchnüfflerInformationGenerator {
         }
 
         return new SchnüfflerInformation(player.name, fraktion, tötend, nebenrollenType);
+    }
+
+    private boolean playerIsSchamanin() {
+        return player.hauptrolle.getName().equals(Schamanin.name);
+    }
+
+    private boolean schnüfflerIsNotBuerger() {
+        Spieler spieler = Schnüffler.game.findSpielerPerRolle(Schnüffler.name);
+
+        return !spieler.hauptrolle.getFraktion().equals(new Bürger());
     }
 
     private InformationType decideCorrectInformation() {

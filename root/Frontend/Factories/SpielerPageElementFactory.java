@@ -3,9 +3,11 @@ package root.Frontend.Factories;
 import root.Frontend.Frame.SpielerFrame;
 import root.Frontend.Page.PageElement;
 import root.Frontend.Page.Predecessor;
+import root.Persona.Rollen.Constants.RawInformation;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class SpielerPageElementFactory {
     SpielerFrame spielerFrame;
@@ -149,18 +151,33 @@ public class SpielerPageElementFactory {
     public PageElement generateColumnCenteredLabel(JLabel label, Predecessor predecessorY, int spaceToPredecessorY, int numberOfColumns, int indexOfColumn, int size) {
         label = formatLabel(label, size);
 
-        int imageJLabelWidth = spielerFrame.getPreferredSize().width/numberOfColumns;
-        int imageJLabelHeight = getJLabelHeight(size);
+        int jLabelWidth = spielerFrame.frameJpanel.getWidth()/numberOfColumns;
+        int jLabelHeight = getJLabelHeight(size);
 
-        PageElement centeredLabel = new PageElement(label, imageJLabelWidth, imageJLabelHeight, null, predecessorY, 0, spaceToPredecessorY);
+        PageElement centeredLabel = new PageElement(label, jLabelWidth, jLabelHeight, null, predecessorY, 0, spaceToPredecessorY);
 
         int sideFrameWidth = SpielerFrame.xOffset;
         int spacePerColumn = (spielerFrame.frameJpanel.getWidth()-sideFrameWidth*2)/numberOfColumns;
-        int xCoord = (int)(spacePerColumn*(indexOfColumn+0.5)-(imageJLabelWidth/2));
+        int xCoord = (int)(spacePerColumn*(indexOfColumn+0.5)-(jLabelWidth/2));
 
         centeredLabel.setCoordX(xCoord);
 
         return centeredLabel;
+    }
+
+    public PageElement generateColumnCenteredComponent(JComponent component, Predecessor predecessorY, int spaceToPredecessorY, int numberOfColumns, int indexOfColumn) {
+        int componentWidth = (int)component.getPreferredSize().getWidth();
+        int componentHeight = (int)component.getPreferredSize().getHeight();
+
+        PageElement centeredElement = new PageElement(component, componentWidth, componentHeight, null, predecessorY, 0, spaceToPredecessorY);
+
+        int sideFrameWidth = SpielerFrame.xOffset;
+        int spacePerColumn = (spielerFrame.frameJpanel.getWidth()-sideFrameWidth*2)/numberOfColumns;
+        int xCoord = (int)(spacePerColumn*(indexOfColumn+0.5)-(componentWidth/2));
+
+        centeredElement.setCoordX(xCoord);
+
+        return centeredElement;
     }
 
     public PageElement generateTitleLabel(String title) {
@@ -228,6 +245,16 @@ public class SpielerPageElementFactory {
 
     public JLabel generateTitleJLabel(JLabel label) {
         return formatLabel(label, defaultTitleSize);
+    }
+
+    public ArrayList<JComponent> generateImages(RawInformation rawInformation) {
+        ArrayList<JComponent> images = new ArrayList<>();
+
+        for(String imagepath : rawInformation.imagePaths) {
+            images.add(generateIcon(imagepath));
+        }
+
+        return images;
     }
 
     public int getJLabelHeight(){

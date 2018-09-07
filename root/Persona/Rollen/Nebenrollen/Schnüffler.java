@@ -46,7 +46,7 @@ public class Schnüffler extends Nebenrolle {
             if (informationen.size() <= MAX_ANZAHL_AN_INFORMATIONEN) {
                 angezeigteInformationen = (List<SchnüfflerInformation>)informationen.clone();
             } else {
-                int lastindex = informationen.size()-1;
+                int lastindex = informationen.size();
                 int firstIndex = lastindex-4;
                 angezeigteInformationen = informationen.subList(firstIndex, lastindex);
             }

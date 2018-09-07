@@ -7,7 +7,8 @@ import root.Frontend.Frame.SpielerFrameMode;
 import root.Frontend.Page.Page;
 import root.Frontend.Page.PageElement;
 import root.Persona.Fraktion;
-import root.Persona.Rollen.Constants.SchnüfflerInformation;
+import root.Persona.Rollen.Constants.NebenrollenType.Tarnumhang_NebenrollenType;
+import root.Persona.Rollen.Constants.RawInformation;
 import root.mechanics.Liebespaar;
 
 import javax.swing.*;
@@ -34,9 +35,9 @@ public class SpielerPageFactory {
         PageElement titleLabel = pageElementFactory.generateTitleLabel(title);
         PageElement imageLabel;
         if (fullCentered) {
-            imageLabel = spielerFrame.pageElementFactory.generateFullCenteredImageLabel(imagePath);
+            imageLabel = pageElementFactory.generateFullCenteredImageLabel(imagePath);
         } else {
-            imageLabel = spielerFrame.pageElementFactory.generateHorizontallyCenteredImageLabel(imagePath, titleLabel);
+            imageLabel = pageElementFactory.generateHorizontallyCenteredImageLabel(imagePath, titleLabel);
         }
 
         Page imagePage = new Page(0, 10);
@@ -403,12 +404,69 @@ public class SpielerPageFactory {
         return listPage;
     }
 
-    public Page generateSchnüfflerInformationPage(List<SchnüfflerInformation> informationen) {
+    public ArrayList<PageElement> generateColumnElements(ArrayList<JComponent> elementsToDisplay, int numberOfColumns, int indexOfColumn, int offsetAbove, int offsetBelow) {
         Page listPage = new Page(0, 10);
 
-        PageElement titleLabel = pageElementFactory.generateTitleLabel("Provisiorische Schnüffler Page");
-        listPage.add(titleLabel);
+        if (elementsToDisplay.size() > 0) {
+            int frameOffset = 38;
+            int elementHeight = (int)elementsToDisplay.get(0).getPreferredSize().getHeight();
+            int spaceToUse = spielerFrame.frameJpanel.getHeight() - frameOffset - offsetAbove - offsetBelow;
+            int spacePerElement = spaceToUse / elementsToDisplay.size();
+            int spacingBetweenElements = spacePerElement - elementHeight;
+            int startpoint = ((spacePerElement / 2) - (elementHeight / 2)) + offsetAbove;
+
+            if (numberOfColumns <= 0) {
+                numberOfColumns = 1;
+            }
+
+            PageElement label;
+            label = pageElementFactory.generateColumnCenteredComponent(elementsToDisplay.get(0), null, startpoint, numberOfColumns, indexOfColumn);
+            listPage.add(label);
+
+            int i = 0;
+            for (JComponent component : elementsToDisplay) {
+                if (i != 0) {
+                    label = pageElementFactory.generateColumnCenteredComponent(component, label, spacingBetweenElements, numberOfColumns, indexOfColumn);
+                    listPage.add(label);
+                }
+
+                i++;
+            }
+        }
+
+        return listPage.pageElements;
+    }
+
+    public Page generateSchnüfflerInformationPage(List<RawInformation> informationen) {
+        Page listPage = new Page(0, 10);
+
+        int columns = informationen.size();
+        int indexOfColumn = 0;
+        for(RawInformation information : informationen) {
+            PageElement spielerTitle = pageElementFactory.generateColumnCenteredLabel(new JLabel(information.spieler), null, 0, columns, indexOfColumn);
+            listPage.add(spielerTitle);
+            int offsetAbove = spielerTitle.height;
+            ArrayList<PageElement> columnToAdd = generateSchnüfflerInformationsColumn(information, columns, indexOfColumn, offsetAbove);
+
+            for (PageElement element : columnToAdd) {
+                listPage.add(element);
+            }
+
+            indexOfColumn++;
+        }
+
 
         return listPage;
+    }
+
+    private ArrayList<PageElement> generateSchnüfflerInformationsColumn(RawInformation rawInformation, int numberOfColumns, int indexOfColumn, int offsetAbove) {
+        ArrayList<JComponent> elementsToDisplay = new ArrayList<>();
+        if(rawInformation.isTarnumhang) {
+            elementsToDisplay.add(pageElementFactory.generateIcon(new Tarnumhang_NebenrollenType().imagePath));
+        } else {
+            elementsToDisplay = pageElementFactory.generateImages(rawInformation);
+        }
+
+        return generateColumnElements(elementsToDisplay, numberOfColumns, indexOfColumn, offsetAbove, 0);
     }
 }

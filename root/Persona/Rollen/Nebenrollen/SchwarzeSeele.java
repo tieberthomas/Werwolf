@@ -13,7 +13,6 @@ public class SchwarzeSeele extends Nebenrolle
     public static final String name = "Schwarze Seele";
     public static final String imagePath = ImagePath.SCHWARZE_SEELE_KARTE;
     public static boolean unique = false;
-    public static boolean spammable = false;
     public NebenrollenType type = new Passiv();
 
     @Override
@@ -24,11 +23,6 @@ public class SchwarzeSeele extends Nebenrolle
     @Override
     public String getImagePath() {
         return imagePath;
-    }
-
-    @Override
-    public boolean isSpammable() {
-        return spammable;
     }
 
     @Override

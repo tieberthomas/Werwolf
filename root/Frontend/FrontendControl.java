@@ -6,6 +6,7 @@ import root.Frontend.Frame.SpielerFrame;
 import root.Frontend.Frame.ÜbersichtsFrame;
 import root.Frontend.Page.Page;
 import root.Persona.Rollen.Constants.DropdownConstants;
+import root.Persona.Rollen.Constants.RawInformation;
 import root.Persona.Rollen.Constants.SchnüfflerInformation;
 import root.Persona.Rollen.Constants.Zeigekarten.AusDemSpiel;
 import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
@@ -238,8 +239,21 @@ public class FrontendControl {
     }
 
     public static void spielerSchnüfflerInfoPage(List<SchnüfflerInformation> informationen) {
-        Page nightPage = spielerFrame.pageFactory.generateSchnüfflerInformationPage(informationen);
+        List<RawInformation> rawInformationen = convertToRawInformation(informationen);
+
+        Page nightPage = spielerFrame.pageFactory.generateSchnüfflerInformationPage(rawInformationen);
         spielerFrame.buildScreenFromPage(nightPage);
+    }
+
+    private static List<RawInformation> convertToRawInformation(List<SchnüfflerInformation> informationen) {
+        List<RawInformation> rawInformationen = new ArrayList<>();
+
+        for(SchnüfflerInformation information : informationen) {
+            RawInformation rawInformation = RawInformation.convertToRawInformation(information);
+            rawInformationen.add(rawInformation);
+        }
+
+        return rawInformationen;
     }
 
     public static void refreshÜbersichtsFrame() {

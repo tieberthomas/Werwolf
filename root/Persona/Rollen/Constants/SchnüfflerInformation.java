@@ -9,11 +9,17 @@ public class SchnüfflerInformation {
     public Fraktion fraktion;
     public SpäherZeigekarte tötend;
     public NebenrollenType nebenrollenType;
+    public boolean isTarnumhang = false;
 
     public SchnüfflerInformation(String spielerName, Fraktion fraktion, SpäherZeigekarte tötend, NebenrollenType nebenrollenType) {
         this.spielerName = spielerName;
         this.fraktion = fraktion;
         this.tötend = tötend;
         this.nebenrollenType = nebenrollenType;
+    }
+
+    public SchnüfflerInformation(String spielerName) {
+        this.spielerName = spielerName;
+        isTarnumhang = true;
     }
 }
