@@ -11,6 +11,7 @@ import root.Persona.Rollen.Constants.SchnüfflerInformation;
 import root.Persona.Rollen.Constants.Zeigekarten.AusDemSpiel;
 import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Persona.Rollen.Hauptrollen.Vampire.GrafVladimir;
+import root.Persona.Rollen.Nebenrollen.Schnüffler;
 import root.Phases.NightBuilding.Statement;
 import root.Spieler;
 import root.mechanics.Game;
@@ -241,7 +242,7 @@ public class FrontendControl {
     public static void spielerSchnüfflerInfoPage(List<SchnüfflerInformation> informationen) {
         List<RawInformation> rawInformationen = convertToRawInformation(informationen);
 
-        Page nightPage = spielerFrame.pageFactory.generateSchnüfflerInformationPage(rawInformationen);
+        Page nightPage = spielerFrame.pageFactory.generateSchnüfflerInformationPage(rawInformationen, Schnüffler.MAX_ANZAHL_AN_INFORMATIONEN);
         spielerFrame.buildScreenFromPage(nightPage);
     }
 

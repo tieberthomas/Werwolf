@@ -413,14 +413,14 @@ public class SpielerPageFactory {
             int spaceToUse = spielerFrame.frameJpanel.getHeight() - frameOffset - offsetAbove - offsetBelow;
             int spacePerElement = spaceToUse / elementsToDisplay.size();
             int spacingBetweenElements = spacePerElement - elementHeight;
-            int startpoint = ((spacePerElement / 2) - (elementHeight / 2)) + offsetAbove;
+            int yStartpoint = ((spacePerElement / 2) - (elementHeight / 2)) + offsetAbove;
 
             if (numberOfColumns <= 0) {
                 numberOfColumns = 1;
             }
 
             PageElement label;
-            label = pageElementFactory.generateColumnCenteredComponent(elementsToDisplay.get(0), null, startpoint, numberOfColumns, indexOfColumn);
+            label = pageElementFactory.generateColumnCenteredComponent(elementsToDisplay.get(0), null, yStartpoint, numberOfColumns, indexOfColumn);
             listPage.add(label);
 
             int i = 0;
@@ -437,7 +437,7 @@ public class SpielerPageFactory {
         return listPage.pageElements;
     }
 
-    public Page generateSchnüfflerInformationPage(List<RawInformation> informationen) {
+    public Page generateSchnüfflerInformationPage(List<RawInformation> informationen, int maxColumns) {
         Page listPage = new Page(0, 10);
 
         int columns = informationen.size();
@@ -446,7 +446,7 @@ public class SpielerPageFactory {
             PageElement spielerTitle = pageElementFactory.generateColumnCenteredLabel(new JLabel(information.spieler), null, 0, columns, indexOfColumn);
             listPage.add(spielerTitle);
             int offsetAbove = spielerTitle.height;
-            ArrayList<PageElement> columnToAdd = generateSchnüfflerInformationsColumn(information, columns, indexOfColumn, offsetAbove);
+            ArrayList<PageElement> columnToAdd = generateSchnüfflerInformationsColumn(information, maxColumns, columns, indexOfColumn, offsetAbove);
 
             for (PageElement element : columnToAdd) {
                 listPage.add(element);
@@ -459,12 +459,12 @@ public class SpielerPageFactory {
         return listPage;
     }
 
-    private ArrayList<PageElement> generateSchnüfflerInformationsColumn(RawInformation rawInformation, int numberOfColumns, int indexOfColumn, int offsetAbove) {
+    private ArrayList<PageElement> generateSchnüfflerInformationsColumn(RawInformation rawInformation, int maxColumns, int numberOfColumns, int indexOfColumn, int offsetAbove) {
         ArrayList<JComponent> elementsToDisplay = new ArrayList<>();
         if(rawInformation.isTarnumhang) {
             elementsToDisplay.add(pageElementFactory.generateIcon(new Tarnumhang_NebenrollenType().imagePath));
         } else {
-            elementsToDisplay = pageElementFactory.generateImages(rawInformation);
+            elementsToDisplay = pageElementFactory.generateImages(rawInformation, maxColumns);
         }
 
         return generateColumnElements(elementsToDisplay, numberOfColumns, indexOfColumn, offsetAbove, 0);

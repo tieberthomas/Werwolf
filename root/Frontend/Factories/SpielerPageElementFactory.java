@@ -171,8 +171,7 @@ public class SpielerPageElementFactory {
 
         PageElement centeredElement = new PageElement(component, componentWidth, componentHeight, null, predecessorY, 0, spaceToPredecessorY);
 
-        int sideFrameWidth = SpielerFrame.xOffset;
-        int spacePerColumn = (spielerFrame.frameJpanel.getWidth()-sideFrameWidth*2)/numberOfColumns;
+        int spacePerColumn = spielerFrame.frameJpanel.getWidth()/numberOfColumns;
         int xCoord = (int)(spacePerColumn*(indexOfColumn+0.5)-(componentWidth/2));
 
         centeredElement.setCoordX(xCoord);
@@ -247,14 +246,44 @@ public class SpielerPageElementFactory {
         return formatLabel(label, defaultTitleSize);
     }
 
-    public ArrayList<JComponent> generateImages(RawInformation rawInformation) {
+    public ArrayList<JComponent> generateImages(RawInformation rawInformation, int numberOfColumns) {
         ArrayList<JComponent> images = new ArrayList<>();
 
+        int columnWidth = spielerFrame.frameJpanel.getWidth()/numberOfColumns;
+
         for(String imagepath : rawInformation.imagePaths) {
-            images.add(generateIcon(imagepath));
+            //images.add(generateIcon(imagepath));
+            images.add(generateFixedWidthImage(imagepath, columnWidth));
         }
 
         return images;
+    }
+
+    public JLabel generateFixedWidthImage(String imagepath, int wantedWidth) {
+        JLabel iconJLabel = new JLabel();
+
+        ImageIcon iconLogo = new ImageIcon(imagepath);
+
+        int iconWidth = iconLogo.getIconWidth();
+        if(iconWidth>=wantedWidth) {
+            double verkleinerungsFaktor = ((double)wantedWidth)/iconWidth;
+            iconWidth = wantedWidth;
+            int iconHeight = (int) ((double)iconLogo.getIconHeight() * verkleinerungsFaktor);
+
+            if (imagepath != "") {
+                Image img = iconLogo.getImage();
+                if (img != null) {
+                    Image newimg = img.getScaledInstance(iconWidth, iconHeight, java.awt.Image.SCALE_SMOOTH);
+                    iconLogo = new ImageIcon(newimg);
+
+                    iconJLabel.setIcon(iconLogo);
+                }
+            }
+        }
+
+        iconJLabel.setIcon(iconLogo);
+
+        return iconJLabel;
     }
 
     public int getJLabelHeight(){
