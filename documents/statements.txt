@@ -34,8 +34,8 @@ Die Vampire erwachen und wählen ein Opfer aus
 Graf Vladimir erwacht und macht einen Spieler unerkennbar
 Die Werwölfe erwachen und die Wölfe wählen ein Opfer aus
 Wölfin erwacht und wählt ein Opfer aus, wenn sie das tut, erfährt das Dorf ihre Bonusrolle
-Schreckenswolf erwacht und verstummt einen Spieler der am folgenden Tag nichtmehr reden darf
 Nachtfürst erwacht, schätzt die Anzahl der Opfer dieser Nacht und führt ggf. seine Tötung aus
+Schreckenswolf erwacht und verstummt ggf. einen Spieler der am folgenden Tag nichtmehr reden darf
 Die Schattenpriester erwachen und entscheiden welchen Verstorbenen dieser Nacht sie wiederbeleben und zum Kult hinzufügen möchten
 Der Wiederbelebte erwacht und tauscht seine Karten gegen Schattenkarten
 Chemiker erwacht und kann ein Wolfsopfer dieser Nacht wiederbeleben und zum Wolfsrudel hinzufügen
@@ -44,13 +44,14 @@ Miss Verona erwacht und lässt sich Auskunft über die Spieler geben, die angegr
 Analytiker erwacht und wählt zwei Spieler, der Erzähler sagt ihm ob diese in derselben Fraktion sind
 Archivar erwacht und lässt sich Auskunft über die Bonusrolle eines Mitspielers geben
 Schnüffler erwacht und lässt sich Auskunft über einen Mitspieler geben
+Träger des Tarnumhangs erwacht und erfährt einen Mitspieler, bei dem ein Umhhang liegt
 Seherin erwacht und lässt sich Auskunft über die Fraktion eines Mitspielers geben
-Orakel erwacht und lässt sich vom Erzähler die Bonusrollenkarte eines zufälligen Bürgers zeigen
 Späher erwacht und lässt sich Auskunft über einen Mitspieler geben
-Nachbar erwacht und erfährt wer die Besucher seines gewählten Spielers waren
-Spurenleser erwacht und erfährt wen der gewählte Spieler besucht hat
-Wahrsager erwacht und erfährt die Anzahl der lebenden Mitglieder von jeder Fraktion
-Wahrsager erwacht und gibt seinen Tipp ab welche Fraktion bei der Dorfabstimmung sterben wird
+Orakel erwacht und lässt sich vom Erzähler die Bonusrollenkarte eines zufälligen Bürgers zeigen
+Graf Vladimir erwacht und veerschleiert die Identität eines Spielers
+Nachbar erwacht, wählt einen Spieler und erfährt wer diesen Spieler besucht hat
+Spurenleser erwacht, wählt einen Mitspieler und erfährt wen dieser Spieler besucht hat
+Wahrsager erwacht und schätzt, welche Frktion das Opfer der Dorfabstimmung haben wird
 Konditor erwacht und entscheidet sich ob es eine gute oder schlechte Torte gibt
 Konditor und Konditorlehrling erwachen und entscheiden sich ob es eine gute oder schlechte Torte gibt
 Alle wachen auf
