@@ -25,7 +25,7 @@ Der Bestohlene erwacht und erhält eine neue Bonusrolle
 Gefängniswärter erwacht und stellt einen Spieler  unter Schutzhaft
 Überläufer erwacht und entscheidet ob er seine Hauptrollenkarte tauschen möchte
 Holde Maid erwacht und offenbart sich einem Mitspieler
-Detektiv erwacht und schätzt die Anzahl der Bürger
+Detektiv erwacht, bekommt ggf. eine Bürgerhauptrolle die im Spiel ist gezeigt und schätzt die Anzahl der Bürger
 Schamanin erwacht und entscheidet ob sie einen Spieler schützen möchte
 Lady Aleera erwacht und sieht alle geschützten Spieler
 Prostituierte legt sich zu einem Mitspieler ins Bett
@@ -50,7 +50,7 @@ Orakel erwacht und lässt sich vom Erzähler die Bonusrollenkarte eines zufälli
 Graf Vladimir erwacht und veerschleiert die Identität eines Spielers
 Nachbar erwacht, wählt einen Spieler und erfährt wer diesen Spieler besucht hat
 Spurenleser erwacht, wählt einen Mitspieler und erfährt wen dieser Spieler besucht hat
-Wahrsager erwacht und schätzt, welche Frktion das Opfer der Dorfabstimmung haben wird
+Wahrsager erwacht, bekommt ggf. die Anzahl der Spieler in jeder Fraktion mitgeteilt und schätzt, welche Frktion das Opfer der Dorfabstimmung haben wird
 Konditor erwacht und entscheidet sich ob es eine gute oder schlechte Torte gibt
 Konditor und Konditorlehrling erwachen und entscheiden sich ob es eine gute oder schlechte Torte gibt
 Alle wachen auf
