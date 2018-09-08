@@ -19,8 +19,7 @@ task:
 wenn dieb karten stiehlt wie z.B. schnüffler oder tarnumhang, dann müssen arraylists der letzten nächte zurückgesetzt werden
 Nach Umbringen Button - keine leere option mehr im Dropdown
 werden nachbar und spurenleser von tarnumhang/schamanin bamboozeled?
-listpage title fixen
-
+getInstance (findSpielerOrDead) in game
 
 CherryOnTop:
 seher bamboozlekarten dem erzähler zeigen während der seher aktion damit dieser nicht verwirrt ist
@@ -48,3 +47,6 @@ in der nacht ein zurückbutton.
 Michael änderungs requests
 
 beim neuen schattenpriester werden alle SP eingerahmt
+
+michael fragen:
+soll sammler tarnumhang bekommen
