@@ -42,6 +42,8 @@ public class Game {
     public ArrayList<Nebenrolle> mitteNebenrollen = new ArrayList<>();
     public ArrayList<Spieler> playersSpecified = new ArrayList<>();
 
+    public boolean zweiteNacht = true;
+
     public Game() {
         Persona.game = this;
         Spieler.game = this;

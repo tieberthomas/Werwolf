@@ -401,6 +401,8 @@ public class Nacht extends Thread {
     }
 
     private void cleanUp() {
+        game.zweiteNacht = false;
+
         for (Spieler currentSpieler : game.spieler) {
             currentSpieler.aktiv = true;
             currentSpieler.geschützt = false;
