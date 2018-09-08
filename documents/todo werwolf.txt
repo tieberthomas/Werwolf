@@ -11,9 +11,7 @@ alles was tötet + prostituierten interaktion
 wahrsager
 
 bugs:
-Schreckenswolf funktioniert nicht
 wolfsmensch bekam Geisterwolf als nicht ausgeteilte Bürgerhauptrolle
-Programm kommt nicht mehr an schreckenswolf vorbei
 
 ToDo:
 Statements auf neuesten Stand fürs Programm übernehmen

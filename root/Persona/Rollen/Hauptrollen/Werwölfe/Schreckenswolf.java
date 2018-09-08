@@ -4,6 +4,7 @@ import root.Frontend.FrontendControl;
 import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Werwölfe;
 import root.Persona.Hauptrolle;
+import root.Persona.Rollen.Nebenrollen.Wolfspelz;
 import root.Phases.Nacht;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
@@ -98,7 +99,7 @@ public class Schreckenswolf extends Hauptrolle {
     private ArrayList<Opfer> possibleWerwolfOpfer() {
         ArrayList<Opfer> possibleWerwolfOpfer = new ArrayList<>();
         for (Opfer opfer : Opfer.possibleVictims) {
-            if (opfer.täter != null && opfer.täter.hauptrolle.getFraktion().getName().equals(Werwölfe.name)) {
+            if (opfer.täter != null && opfer.täterFraktion.getName().equals(Werwölfe.name)) {
                 possibleWerwolfOpfer.add(opfer);
             }
         }
@@ -110,7 +111,7 @@ public class Schreckenswolf extends Hauptrolle {
         boolean someoneHadSchutz = false;
 
         for(Opfer opfer : possibleOpfer) {
-            if(opfer.opfer.geschützt) {
+            if(opfer.opfer.geschützt || opfer.opfer.nebenrolle.equals(Wolfspelz.name)) {
                 someoneHadSchutz = true;
             }
         }
