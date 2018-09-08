@@ -28,7 +28,7 @@ public class Tarnumhang extends Nebenrolle {
     private ArrayList<String> umhänge = new ArrayList<>(Arrays.asList(
             Lamm.name, Wolfspelz.name, Vampirumhang.name, Schattenkutte.name));
 
-    public ArrayList<String> seenPlayers = new ArrayList<>(); //TODO zurücksetzen beim Tod
+    public ArrayList<String> seenPlayers = new ArrayList<>(); //TODO wenn dieb Tarnumhang nimmt dann neu anlegen
 
     @Override
     public FrontendControl getInfo() {
