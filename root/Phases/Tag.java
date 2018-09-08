@@ -64,6 +64,7 @@ public class Tag extends Thread {
 
                 if (nebenrolleSpieler.equals(ReineSeele.name) && ((ReineSeele)chosenSpieler.nebenrolle).dayInvincibility ||
                         (gebürgteSpieler.contains(chosenSpieler) && hauptrolleSpieler.getFraktion().getName().equals(Bürger.name))) {
+                    FrontendControl.erzählerAnnounceVictimPage(chosenSpieler, ReineSeele.imagePath);
                     FrontendControl.spielerCardPicturePage(chosenSpieler.name, ReineSeele.imagePath);
                     if(chosenSpieler.nebenrolle.getName().equals(ReineSeele.name)) {
                         ((ReineSeele) chosenSpieler.nebenrolle).dayInvincibility = false;

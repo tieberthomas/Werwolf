@@ -468,13 +468,13 @@ public class ErzählerPageFactory {
         return tagPage;
     }
 
-    public Page generateAnnounceVictimsDayPage(String spieler1, ArrayList<String> livingPlayers) {
+    public Page generateAnnounceVictimsDayPage(String spieler1, ArrayList<String> livingPlayers, String imagepath) {
         Page tagPage = generateDefaultDayPage(livingPlayers);
 
         JLabel label = pageElementFactory.generateBigJLabel(new JLabel(spieler1));
 
         PageElement nameLabel = pageElementFactory.generateLeftCenteredLabel(new JLabel(spieler1));
-        PageElement deadImage = pageElementFactory.generateRightCenteredImage(ImagePath.TOT);
+        PageElement deadImage = pageElementFactory.generateRightCenteredImage(imagepath);
 
         tagPage.add(nameLabel);
         tagPage.add(deadImage);

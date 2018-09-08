@@ -9,6 +9,7 @@ import root.Persona.Rollen.Constants.DropdownConstants;
 import root.Persona.Rollen.Constants.RawInformation;
 import root.Persona.Rollen.Constants.SchnüfflerInformation;
 import root.Persona.Rollen.Constants.Zeigekarten.AusDemSpiel;
+import root.Persona.Rollen.Constants.Zeigekarten.Tot;
 import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Persona.Rollen.Hauptrollen.Vampire.GrafVladimir;
 import root.Persona.Rollen.Nebenrollen.Schnüffler;
@@ -118,7 +119,12 @@ public class FrontendControl {
     }
 
     public static void erzählerAnnounceVictimPage(Spieler spieler) {
-        Page dayPage = erzählerFrame.pageFactory.generateAnnounceVictimsDayPage(spieler.name, game.getLivingPlayerOrNoneStrings());
+        Page dayPage = erzählerFrame.pageFactory.generateAnnounceVictimsDayPage(spieler.name, game.getLivingPlayerOrNoneStrings(), new Tot().imagePath);
+        erzählerFrame.buildScreenFromPage(dayPage);
+    }
+
+    public static void erzählerAnnounceVictimPage(Spieler spieler, String imagepath) {
+        Page dayPage = erzählerFrame.pageFactory.generateAnnounceVictimsDayPage(spieler.name, game.getLivingPlayerOrNoneStrings(), imagepath);
         erzählerFrame.buildScreenFromPage(dayPage);
     }
 

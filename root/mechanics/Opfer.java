@@ -15,9 +15,6 @@ import root.Spieler;
 
 import java.util.ArrayList;
 
-/**
- * Created by Steve on 27.12.2017.
- */
 public class Opfer {
     public static Game game;
 
@@ -54,7 +51,6 @@ public class Opfer {
 
         return toteOrNon;
     }
-
 
     public static FrontendControl getOpferOrNonFrontendControl() {
         FrontendControl frontendControl = new FrontendControl();
@@ -164,7 +160,7 @@ public class Opfer {
             if (opfer.opfer.name.equals(hostProstituierte)) {
                 if (!prostituierteSpieler.geschützt || riese) {
                     Opfer prostituierteOpferopfer;
-                    if(opfer.fraktionsTäter) {
+                    if (opfer.fraktionsTäter) {
                         prostituierteOpferopfer = new Opfer(prostituierteSpieler, opfer.täterFraktion);
                     } else {
                         prostituierteOpferopfer = new Opfer(prostituierteSpieler, opfer.täter);

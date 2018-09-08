@@ -28,7 +28,7 @@ showDeaktivPages und showTotPages schön zusammenfassen zu einer Methode die ein
 reineseele übersichtspage etwas für markup überlegen
 markup für vampirumhang geschützen spieler bei lady aleera überlegen
 aufgebraucht page interaktiv gestalten
-bei reiner seele am tag umbringen dem erzähler was anzeigen
+reine seele augenkarten
 im Setup Dropdown alphabetisch sortieren
 fraktionsbamboozelstatements
 getInstance (findSpielerOrDead) in game
