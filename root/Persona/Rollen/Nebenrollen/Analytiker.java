@@ -1,10 +1,8 @@
 package root.Persona.Rollen.Nebenrollen;
 
-import root.Persona.Fraktionen.Bürger;
 import root.Persona.Nebenrolle;
 import root.Persona.Rollen.Constants.NebenrollenType.Informativ;
 import root.Persona.Rollen.Constants.NebenrollenType.NebenrollenType;
-import root.Persona.Rollen.Hauptrollen.Bürger.Schamanin;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
@@ -64,22 +62,7 @@ public class Analytiker extends Nebenrolle {
     }
 
     public boolean showTarnumhang(Spieler spieler1, Spieler spieler2) {
-        return tarnumhangIsUnterDenSpielern(spieler1, spieler2) ||
-                (schamaninIsUnterDenSpielern(spieler1, spieler2) && analytikerIsNotBürger());
-    }
-
-    private boolean tarnumhangIsUnterDenSpielern(Spieler spieler1, Spieler spieler2) {
-        return spieler1.nebenrolle.equals(Tarnumhang.name) || spieler2.nebenrolle.equals(Tarnumhang.name);
-    }
-
-    private boolean schamaninIsUnterDenSpielern(Spieler spieler1, Spieler spieler2) {
-        return spieler1.hauptrolle.equals(Schamanin.name) || spieler2.hauptrolle.equals(Schamanin.name);
-    }
-
-    private boolean analytikerIsNotBürger() {
-        Spieler analytikerSpieler = game.findSpielerPerRolle(name);
-
-        return !analytikerSpieler.hauptrolle.getFraktion().equals(Bürger.name);
+        return showTarnumhang(this, spieler1) ||showTarnumhang(this, spieler2);
     }
 
     public String analysiere(Spieler spieler1, Spieler spieler2) {

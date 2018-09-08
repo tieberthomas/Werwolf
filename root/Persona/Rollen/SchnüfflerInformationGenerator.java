@@ -2,6 +2,7 @@ package root.Persona.Rollen;
 
 import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Bürger;
+import root.Persona.Nebenrolle;
 import root.Persona.Rollen.Constants.InformationType;
 import root.Persona.Rollen.Constants.NebenrollenType.Aktiv;
 import root.Persona.Rollen.Constants.NebenrollenType.Informativ;
@@ -11,7 +12,6 @@ import root.Persona.Rollen.Constants.SchnüfflerInformation;
 import root.Persona.Rollen.Constants.Zeigekarten.SpäherZeigekarte;
 import root.Persona.Rollen.Hauptrollen.Bürger.Schamanin;
 import root.Persona.Rollen.Nebenrollen.Schnüffler;
-import root.Persona.Rollen.Nebenrollen.Tarnumhang;
 import root.Spieler;
 
 import java.util.ArrayList;
@@ -31,7 +31,8 @@ public class SchnüfflerInformationGenerator {
     }
 
     public SchnüfflerInformation generateInformation() {
-        if(player.nebenrolle.equals(Tarnumhang.name) || playerIsSchamanin() && schnüfflerIsNotBuerger()) {
+        Nebenrolle schnüffler = Schnüffler.game.findSpielerPerRolle(Schnüffler.name).nebenrolle;
+        if(schnüffler.showTarnumhang(schnüffler, player)) {
             return new SchnüfflerInformation(player.name);
         }
 
