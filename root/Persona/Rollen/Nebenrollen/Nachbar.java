@@ -5,6 +5,7 @@ import root.Frontend.FrontendControl;
 import root.Persona.Nebenrolle;
 import root.Persona.Rollen.Constants.NebenrollenType.Informativ;
 import root.Persona.Rollen.Constants.NebenrollenType.NebenrollenType;
+import root.Persona.Rollen.Constants.NebenrollenType.Tarnumhang_NebenrollenType;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
@@ -41,6 +42,10 @@ public class Nachbar extends Nebenrolle {
 
     @Override
     public FrontendControl getInfo() {
+        if(showTarnumhang(this, beobachteterSpieler)) {
+            return new FrontendControl(new Tarnumhang_NebenrollenType());
+        }
+
         Spieler nachbarSpieler = game.findSpielerPerRolle(Nachbar.name);
         FrontendControl info = new FrontendControl(FrontendControlType.LIST, getBesucherStrings(beobachteterSpieler, nachbarSpieler));
         if (beobachteterSpieler != null) {
