@@ -253,12 +253,13 @@ public class Game {
     }
 
     public void killSpieler(Spieler spieler) {
-        if (spieler != null) {
+        if (spieler != null && spieler.lebend) {
             spieler.lebend = false;
             Hauptrolle hauptrolle = spieler.hauptrolle;
             Nebenrolle nebenrolle = spieler.nebenrolle;
             mitteHauptrollen.add(hauptrolle);
             mitteNebenrollen.add(nebenrolle);
+
             if (hauptrolle.getName().equals(Schattenpriester.name) && !nebenrolle.getName().equals(Schatten.name)) {
                 Schattenpriester_Fraktion.deadSchattenPriester++;
             }
