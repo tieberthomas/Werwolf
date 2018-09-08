@@ -5,14 +5,14 @@ import root.Persona.Fraktionen.Bürger;
 import root.Persona.Hauptrolle;
 import root.Persona.Nebenrolle;
 import root.Persona.Rollen.Constants.NebenrollenType.Passiv;
+import root.Persona.Rollen.Constants.NebenrollenType.Tarnumhang_NebenrollenType;
 import root.Persona.Rollen.Nebenrollen.Totengräber;
 import root.ResourceManagement.ImagePath;
 
 /**
  * Created by Steve on 12.11.2017.
  */
-public class Sammler extends Hauptrolle
-{
+public class Sammler extends Hauptrolle {
     public static final String beschreibungAddiditon = "Der Sammler als ";
     public static final String beschreibungAddiditonLowerCase = "der Sammler als ";
 
@@ -45,7 +45,8 @@ public class Sammler extends Hauptrolle
         for (Nebenrolle currentRolle : game.mitteNebenrollen) {
             if (currentRolle.getName().equals(rolle) &&
                     !currentRolle.getName().equals(Totengräber.name) &&
-                    !currentRolle.getType().equals(new Passiv())) {
+                    !currentRolle.getType().equals(new Passiv()) &&
+                    !currentRolle.getType().equals(new Tarnumhang_NebenrollenType())) {
                 return true;
             }
         }
