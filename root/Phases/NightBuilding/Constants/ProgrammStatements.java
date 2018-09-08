@@ -7,7 +7,6 @@ public class ProgrammStatements {
     public static final String SCHÜTZE = "[Programm] Schütze";
     public static final String OPFER = "[Programm] Opfer";
     public static final String TORTE = "[Programm] Torte";
-    public static final String WAHRSAGER = "[Programm] Wahrsager";
 
     public static Statement getSchützeStatement() {
         return new StatementProgramm(SCHÜTZE);
@@ -19,9 +18,5 @@ public class ProgrammStatements {
 
     public static Statement getTortenProgrammStatement() {
         return new StatementProgramm(TORTE);
-    }
-
-    public static Statement getWahrsagerProgrammStatement() {
-        return new StatementProgramm(WAHRSAGER);
     }
 }

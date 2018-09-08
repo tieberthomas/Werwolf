@@ -31,8 +31,6 @@ public class Wahrsager extends Nebenrolle
     public static final String imagePath = ImagePath.WAHRSAGER_KARTE;
     public static boolean spammable = false;
     public static Fraktion opferFraktion = null;
-    public static boolean isGuessing = false;
-    public static final int MIN_NUMBER_OF_PLAYERS = 4;
     public Fraktion tipp = null;
 
     @Override

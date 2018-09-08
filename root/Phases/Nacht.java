@@ -212,10 +212,6 @@ public class Nacht extends Thread {
                             }
                             break;
 
-                        case ProgrammStatements.WAHRSAGER:
-                            Wahrsager.isGuessing = (game.getLivingPlayer().size() > 4);
-                            break;
-
                         case Wahrsager.WAHRSAGER_INFORMATION:
                             Spieler wahrsagerSpieler2 = game.findSpielerPerRolle(Wahrsager.name);
                             Spieler deadWahrsagerSpieler = game.findSpielerOrDeadPerRolle(Wahrsager.name);
@@ -266,7 +262,8 @@ public class Nacht extends Thread {
                             for (Opfer currentOpfer : Opfer.deadVictims) {
                                 if (!opferDerNacht.contains(currentOpfer.opfer.name)) {
                                     if (currentOpfer.opfer.nebenrolle.getName().equals(Wahrsager.name)) {
-                                        Wahrsager.isGuessing = false;
+                                        //Wahrsager.isGuessing = false;
+                                        //TODO reward zurücksetzen
                                     }
                                     opferDerNacht.add(currentOpfer.opfer.name);
                                 }
