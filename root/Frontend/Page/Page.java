@@ -18,9 +18,8 @@ public class Page {
         this.yPageOffset = spaceToYBorder;
     }
 
-    public Page()
-    {
-        this(DEFAULT_SPACE,DEFAULT_SPACE);
+    public Page() {
+        this(DEFAULT_SPACE, DEFAULT_SPACE);
     }
 
     public void add(PageElement pageElement) {

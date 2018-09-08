@@ -270,12 +270,12 @@ public class Game {
                 }
             }
 
-            if(nebenrolle.equals(Schnüffler.name)) {
-                ((Schnüffler)nebenrolle).informationen = new ArrayList<>();
+            if (nebenrolle.equals(Schnüffler.name)) {
+                ((Schnüffler) nebenrolle).informationen = new ArrayList<>();
             }
 
-            if(nebenrolle.equals(Tarnumhang.name)) {
-                ((Tarnumhang)nebenrolle).seenPlayers = new ArrayList<>();
+            if (nebenrolle.equals(Tarnumhang.name)) {
+                ((Tarnumhang) nebenrolle).seenPlayers = new ArrayList<>();
             }
         }
     }
@@ -407,8 +407,8 @@ public class Game {
         ArrayList<Hauptrolle> mainroles = getStillAvailableMainRoles();
         ArrayList<Hauptrolle> mainrolesToRemove = new ArrayList<>();
 
-        for(Hauptrolle hauptrolle : mainroles) {
-            if(!hauptrolle.getFraktion().equals(Bürger.name)){
+        for (Hauptrolle hauptrolle : mainroles) {
+            if (!hauptrolle.getFraktion().equals(Bürger.name)) {
                 mainrolesToRemove.add(hauptrolle);
             }
         }

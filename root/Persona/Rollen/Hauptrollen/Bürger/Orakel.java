@@ -13,9 +13,6 @@ import root.Spieler;
 
 import java.util.ArrayList;
 
-/**
- * Created by Steve on 15.06.2018.
- */
 public class Orakel extends Hauptrolle {
     public static String title = "Bonusrolle";
     public static final String beschreibung = "Orakel erwacht und lässt sich vom Erzähler die Bonusrollenkarte eines zufälligen Bürgers zeigen";
@@ -38,7 +35,7 @@ public class Orakel extends Hauptrolle {
         } else {
             Spieler orakelSpieler = game.findSpielerPerRolle(name);
 
-            if(orakelSpieler != null) {
+            if (orakelSpieler != null) {
                 ArrayList<String> nebenRolleList = (ArrayList<String>) geseheneNebenrollen.clone();
                 nebenRolleList.remove(orakelSpieler.nebenrolle.getName());
                 FrontendControl info = new FrontendControl(FrontendControlType.LIST, nebenRolleList);
@@ -90,7 +87,7 @@ public class Orakel extends Hauptrolle {
 
         Nebenrolle nebenrolle;
 
-        if(unseenBürger.size()>0) {
+        if (unseenBürger.size() > 0) {
             int randIndex = (int) (Math.random() * unseenBürger.size());
 
             nebenrolle = unseenBürger.get(randIndex).nebenrolle;
@@ -102,19 +99,19 @@ public class Orakel extends Hauptrolle {
         return nebenrolle;
     }
 
-    public static ArrayList<Spieler> getUnseenBürger(){
+    public static ArrayList<Spieler> getUnseenBürger() {
         ArrayList<Spieler> bürger = Fraktion.getFraktionsMembers(Bürger.name);
         ArrayList<Spieler> bürgerToRemove = new ArrayList<>();
 
-        if(Rolle.rolleLebend(name)) {
+        if (Rolle.rolleLebend(name)) {
             Nebenrolle orakelSpielerNebenrolle = game.findSpielerPerRolle(name).nebenrolle;
             if (!geseheneNebenrollen.contains(orakelSpielerNebenrolle.getName())) {
                 geseheneNebenrollen.add(orakelSpielerNebenrolle.getName());
             }
         }
 
-        for(Spieler currentBürger : bürger) {
-            if(geseheneNebenrollen.contains(currentBürger.nebenrolle.getName())) {
+        for (Spieler currentBürger : bürger) {
+            if (geseheneNebenrollen.contains(currentBürger.nebenrolle.getName())) {
                 bürgerToRemove.add(currentBürger);
             }
         }

@@ -20,7 +20,7 @@ public class MyFrame extends JFrame {
     public static Color DEFAULT_BACKGROUND_COLOR = WHITE;
     public static Color BACKGROUND_COLOR = DEFAULT_BACKGROUND_COLOR;
 
-    public static Color DEFAULT_BUTTON_COLOR = new Color(240,240,240);
+    public static Color DEFAULT_BUTTON_COLOR = new Color(240, 240, 240);
 
     public static String WINDOW_TITLE;
 
@@ -44,7 +44,7 @@ public class MyFrame extends JFrame {
         }
         frameJpanel.setPreferredSize(dimension);
         try {
-        setContentPane(frameJpanel);
+            setContentPane(frameJpanel);
         } catch (IllegalArgumentException e) {
         }
         pack();
@@ -54,15 +54,15 @@ public class MyFrame extends JFrame {
     public JPanel generatePanelFromPage(Page page) {
         frameJpanel.removeAll();
 
-        for(PageElement element : page.pageElements) {
-            if(element.component.getClass() == JButton.class) {
-                ((JButton)element.component).setFocusPainted(false);
+        for (PageElement element : page.pageElements) {
+            if (element.component.getClass() == JButton.class) {
+                ((JButton) element.component).setFocusPainted(false);
             }
             frameJpanel.add(element.component);
         }
 
-        for(PageTable table : page.pageTables) {
-            for(JComponent component : table.tableElements) {
+        for (PageTable table : page.pageTables) {
+            for (JComponent component : table.tableElements) {
                 try {
                     frameJpanel.add(component);
                 } catch (NullPointerException e) {
@@ -86,7 +86,7 @@ public class MyFrame extends JFrame {
     public void calcFrameSize() {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         double width = screenSize.getWidth();
-        if(width != 1920.0) {
+        if (width != 1920.0) {
             DEFAULT_PANEL_WIDTH = 720;
             DEFAULT_PANEL_HEIGHT = 540;
             frameMode = FrameMode.small;
@@ -94,7 +94,7 @@ public class MyFrame extends JFrame {
     }
 
     public void setFrameMode(Dimension dimension) {
-        if(dimension.getWidth() >= 900) {
+        if (dimension.getWidth() >= 900) {
             frameMode = FrameMode.big;
         } else {
             frameMode = FrameMode.small;

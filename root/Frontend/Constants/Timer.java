@@ -29,7 +29,7 @@ public class Timer {
         }
     }
 
-    public static void generateTimeString(){
+    public static void generateTimeString() {
         int tmpTime = time;
         int firstDigit = 0;
         int secondDigit = 0;
@@ -38,21 +38,21 @@ public class Timer {
         int fifthDigit = 0;
         int sixthDigit = 0;
 
-        firstDigit = tmpTime%10;
-        tmpTime-=firstDigit;
-        tmpTime = tmpTime/10;
-        secondDigit = tmpTime%6;
-        tmpTime-=secondDigit;
-        tmpTime = tmpTime/6;
-        thirdDigit = tmpTime%10;
-        tmpTime-=thirdDigit;
-        tmpTime = tmpTime/10;
-        fourthDigit = tmpTime%6;
-        tmpTime-=fourthDigit;
-        tmpTime = tmpTime/6;
-        fifthDigit = tmpTime%10;
-        tmpTime-=fifthDigit;
-        tmpTime = tmpTime/10;
+        firstDigit = tmpTime % 10;
+        tmpTime -= firstDigit;
+        tmpTime = tmpTime / 10;
+        secondDigit = tmpTime % 6;
+        tmpTime -= secondDigit;
+        tmpTime = tmpTime / 6;
+        thirdDigit = tmpTime % 10;
+        tmpTime -= thirdDigit;
+        tmpTime = tmpTime / 10;
+        fourthDigit = tmpTime % 6;
+        tmpTime -= fourthDigit;
+        tmpTime = tmpTime / 6;
+        fifthDigit = tmpTime % 10;
+        tmpTime -= fifthDigit;
+        tmpTime = tmpTime / 10;
         sixthDigit = tmpTime;
 
         timestring = "" + sixthDigit + "" + fifthDigit + ":" + fourthDigit + "" + thirdDigit + ":" + secondDigit + "" + firstDigit;

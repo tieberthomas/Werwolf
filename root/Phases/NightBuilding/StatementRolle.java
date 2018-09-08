@@ -5,9 +5,6 @@ import root.Persona.Rollen.Hauptrollen.Bürger.Sammler;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.mechanics.Opfer;
 
-/**
- * Created by Steve on 27.12.2017.
- */
 public class StatementRolle extends Statement {
     public String rolle;
     public boolean sammler;
@@ -31,7 +28,7 @@ public class StatementRolle extends Statement {
 
     @Override
     public boolean isLebend() {
-        if(!sammler) {
+        if (!sammler) {
             return Rolle.rolleLebend(rolle);
         } else {
             return Rolle.rolleLebend(Sammler.name);
@@ -40,7 +37,7 @@ public class StatementRolle extends Statement {
 
     @Override
     public boolean isOpfer() {
-        if(!sammler) {
+        if (!sammler) {
             return Opfer.isOpferPerRolle(rolle);
         } else {
             return Opfer.isOpferPerRolle(Sammler.name);
@@ -49,7 +46,7 @@ public class StatementRolle extends Statement {
 
     @Override
     public boolean isAktiv() {
-        if(!sammler) {
+        if (!sammler) {
             return Rolle.rolleAktiv(rolle);
         } else {
             return Rolle.rolleAktiv(Sammler.name);

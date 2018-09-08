@@ -69,6 +69,6 @@ public class DataManager {
 
     public void writeGame() {
         fileManager.writeGame(ResourcePath.LAST_GAME_FILE, game.getLivingPlayer(),
-            game.getMainRolesUnspecifiedStrings(), game.getSecondaryRolesUnspecifiedStrings());
+                game.getMainRolesUnspecifiedStrings(), game.getSecondaryRolesUnspecifiedStrings());
     }
 }

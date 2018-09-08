@@ -10,8 +10,8 @@ import java.awt.*;
 
 public class ÜbersichtsPageElementFactory {
     ÜbersichtsFrame übersichtsFrame;
-    public ÜbersichtsPageElementFactory(ÜbersichtsFrame übersichtsFrame)
-    {
+
+    public ÜbersichtsPageElementFactory(ÜbersichtsFrame übersichtsFrame) {
         this.übersichtsFrame = übersichtsFrame;
     }
 
@@ -40,7 +40,7 @@ public class ÜbersichtsPageElementFactory {
     }
 
     public PageElement generateLowestButton(JButton button, String title, boolean right) {
-        return generateLowestButton(button, title, right,0);
+        return generateLowestButton(button, title, right, 0);
     }
 
     public PageElement generateLowestButton(JButton button, String title, boolean right, int howManyButtonsBefore) {
@@ -51,7 +51,7 @@ public class ÜbersichtsPageElementFactory {
         int spaceToPredecessorX = xOffset;
         int spaceToPredecessorY = übersichtsFrame.frameJpanel.getHeight() - elementHeight - 20;
 
-        if(right) {
+        if (right) {
             spaceToPredecessorX = (übersichtsFrame.frameJpanel.getWidth() - elementWidth - 20) - xOffset;
         }
 

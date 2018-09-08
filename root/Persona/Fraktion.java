@@ -14,7 +14,7 @@ import root.mechanics.Opfer;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class Fraktion extends Persona{
+public class Fraktion extends Persona {
     public FrontendControl getDropdownOptions() {
         return new FrontendControl();
     }

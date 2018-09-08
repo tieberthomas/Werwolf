@@ -13,10 +13,9 @@ public class HTMLStringBuilder {
         String HTMLText = openHTML();
         StringBuilder stringBuilder = new StringBuilder();
 
-        int i=0;
+        int i = 0;
 
-        for(String text : texts)
-        {
+        for (String text : texts) {
             stringBuilder.append(buildColoredParagraph(text, color.get(i)));
             i++;
         }
@@ -52,33 +51,27 @@ public class HTMLStringBuilder {
         return HTMLText;
     }
 
-    public static String openHTML()
-    {
+    public static String openHTML() {
         return "<html>";
     }
 
-    public static String closeHTML()
-    {
+    public static String closeHTML() {
         return "</html>";
     }
 
-    public static String openParagraph()
-    {
+    public static String openParagraph() {
         return "<p>";
     }
 
-    public static String openParagraphWithProperties(String properties)
-    {
+    public static String openParagraphWithProperties(String properties) {
         return "<p " + properties + " >";
     }
 
-    public static String closeParagraph()
-    {
+    public static String closeParagraph() {
         return "</p>";
     }
 
-    public static String styleColorProperty(String color)
-    {
+    public static String styleColorProperty(String color) {
         return "style=\"background-color: " + color + ";\"";
     }
 }

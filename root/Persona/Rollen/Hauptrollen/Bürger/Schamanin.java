@@ -23,10 +23,11 @@ public class Schamanin extends Hauptrolle {
     public FrontendControl getDropdownOptions() {
         return game.getPlayerCheckSpammableFrontendControl(this);
     }
+
     @Override
     public void processChosenOption(String chosenOption) {
         Spieler chosenPlayer = game.findSpieler(chosenOption);
-        if(chosenPlayer!=null) {
+        if (chosenPlayer != null) {
             besucht = chosenPlayer;
             chosenPlayer.geschützt = true;
             abilityCharges--;

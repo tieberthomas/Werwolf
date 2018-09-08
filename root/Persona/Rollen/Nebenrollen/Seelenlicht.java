@@ -7,11 +7,7 @@ import root.Persona.Rollen.Constants.NebenrollenType.Passiv;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
-/**
- * Created by Steve on 12.11.2017.
- */
-public class Seelenlicht extends Nebenrolle
-{
+public class Seelenlicht extends Nebenrolle {
     public static final String name = "Seelenlicht";
     public static final String imagePath = ImagePath.SEELENLICHT_KARTE;
     public static boolean spammable = false;
@@ -21,7 +17,7 @@ public class Seelenlicht extends Nebenrolle
         try {
             Spieler spieler = game.findSpielerPerRolle(name);
             spieler.nebenrolle = nebenrolle;
-        }catch (NullPointerException e) {
+        } catch (NullPointerException e) {
             System.out.println(name + " nicht gefunden");
         }
     }
@@ -29,10 +25,10 @@ public class Seelenlicht extends Nebenrolle
     public Nebenrolle getTauschErgebnis() {
         Spieler spieler = game.findSpielerPerRolle(name);
 
-        if(spieler!=null) {
+        if (spieler != null) {
             Nebenrolle nebenrolle;
 
-            if(spieler.hauptrolle.getFraktion().getName().equals(Bürger.name)) {
+            if (spieler.hauptrolle.getFraktion().getName().equals(Bürger.name)) {
                 nebenrolle = new ReineSeele();
             } else {
                 nebenrolle = new SchwarzeSeele();
@@ -60,5 +56,7 @@ public class Seelenlicht extends Nebenrolle
     }
 
     @Override
-    public NebenrollenType getType() { return type; }
+    public NebenrollenType getType() {
+        return type;
+    }
 }

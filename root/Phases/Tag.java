@@ -34,7 +34,7 @@ public class Tag extends Thread {
         verurteilteSpieler = new ArrayList<>();
         day();
 
-        if(FrontendControl.erzählerFrame.mode == ErzählerFrameMode.freibierTag) {
+        if (FrontendControl.erzählerFrame.mode == ErzählerFrameMode.freibierTag) {
             day();
         }
 
@@ -51,7 +51,7 @@ public class Tag extends Thread {
 
             waitForAnswer();
 
-            while(umbringenButton) {
+            while (umbringenButton) {
                 umbringenButton = false;
                 killSpielerCheckLiebespaar(umbringenSpieler);
             }
@@ -62,23 +62,22 @@ public class Tag extends Thread {
                 String nebenrolleSpieler = chosenSpieler.nebenrolle.getName();
                 Hauptrolle hauptrolleSpieler = chosenSpieler.hauptrolle;
 
-                if (nebenrolleSpieler.equals(ReineSeele.name) && ((ReineSeele)chosenSpieler.nebenrolle).dayInvincibility ||
+                if (nebenrolleSpieler.equals(ReineSeele.name) && ((ReineSeele) chosenSpieler.nebenrolle).dayInvincibility ||
                         (gebürgteSpieler.contains(chosenSpieler) && hauptrolleSpieler.getFraktion().getName().equals(Bürger.name))) {
                     FrontendControl.erzählerAnnounceVictimPage(chosenSpieler, ReineSeele.imagePath);
                     FrontendControl.spielerCardPicturePage(chosenSpieler.name, ReineSeele.imagePath);
-                    if(chosenSpieler.nebenrolle.getName().equals(ReineSeele.name)) {
+                    if (chosenSpieler.nebenrolle.getName().equals(ReineSeele.name)) {
                         ((ReineSeele) chosenSpieler.nebenrolle).dayInvincibility = false;
                     }
 
                     waitForAnswer();
 
                     checkRichterin(chosenSpieler);
-                }
-                else {
+                } else {
                     killSpielerCheckLiebespaar(chosenSpieler);
                     Wahrsager.opferFraktion = chosenSpieler.hauptrolle.getFraktion();
-                    if(!hauptrolleSpieler.getFraktion().getName().equals(Bürger.name)) {
-                        if(priester != null && priester.lebend && gebürgteSpieler.contains(chosenSpieler)) {
+                    if (!hauptrolleSpieler.getFraktion().getName().equals(Bürger.name)) {
+                        if (priester != null && priester.lebend && gebürgteSpieler.contains(chosenSpieler)) {
                             killSpielerCheckLiebespaar(priester);
                         }
                     }
@@ -89,7 +88,7 @@ public class Tag extends Thread {
                 Wahrsager.opferFraktion = null;
             }
 
-            while(umbringenButton) {
+            while (umbringenButton) {
                 umbringenButton = false;
                 killSpielerCheckLiebespaar(umbringenSpieler);
             }
@@ -105,15 +104,15 @@ public class Tag extends Thread {
     }
 
     public void checkRichterin(Spieler spieler) {
-        if(spieler.hauptrolle.getFraktion().getName().equals(Bürger.name)) {
-            if(richterin != null && richterin.lebend && verurteilteSpieler.contains(spieler)) {
+        if (spieler.hauptrolle.getFraktion().getName().equals(Bürger.name)) {
+            if (richterin != null && richterin.lebend && verurteilteSpieler.contains(spieler)) {
                 killSpielerCheckLiebespaar(richterin);
             }
         }
     }
 
     public void killSpieler(Spieler spieler) {
-        if(spieler!=null) {
+        if (spieler != null) {
             game.killSpieler(spieler);
 
             FrontendControl.erzählerAnnounceVictimPage(spieler);
@@ -121,10 +120,10 @@ public class Tag extends Thread {
         }
     }
 
-    public void killSpielerCheckLiebespaar(Spieler spieler){
+    public void killSpielerCheckLiebespaar(Spieler spieler) {
         killSpieler(spieler);
 
-        if(game.liebespaar.getPlayerToDie()!=null) {
+        if (game.liebespaar.getPlayerToDie() != null) {
             FrontendControl.erzählerFrame.disableButton(FrontendControl.erzählerFrame.umbringenJButton);
             waitForAnswer();
             killSpieler(game.liebespaar.getPlayerToDie());
@@ -146,7 +145,7 @@ public class Tag extends Thread {
         Spieler priesterSpieler = game.findSpieler(priester);
         Spieler verbürgerSpieler = game.findSpieler(spieler);
 
-        if(priesterSpieler!=null && spieler!=null) {
+        if (priesterSpieler != null && spieler != null) {
             Tag.priester = priesterSpieler;
             Tag.gebürgteSpieler.add(verbürgerSpieler);
         }
@@ -156,7 +155,7 @@ public class Tag extends Thread {
         Spieler richterinSpieler = game.findSpieler(richterin);
         Spieler verurteilterSpieler = game.findSpieler(spieler);
 
-        if(richterinSpieler!=null && spieler!=null) {
+        if (richterinSpieler != null && spieler != null) {
             Tag.richterin = richterinSpieler;
             Tag.verurteilteSpieler.add(verurteilterSpieler);
         }

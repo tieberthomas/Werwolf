@@ -3,9 +3,6 @@ package root.Phases.NightBuilding;
 import root.Persona.Fraktion;
 import root.Phases.NightBuilding.Constants.StatementType;
 
-/**
- * Created by Steve on 27.12.2017.
- */
 public class StatementFraktion extends Statement {
     public String fraktion;
 

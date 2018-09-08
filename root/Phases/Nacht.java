@@ -457,7 +457,7 @@ public class Nacht extends Thread {
             if (schamanin.besucht != null) {
                 Spieler geschützerSpieler = schamanin.besucht;
 
-                if(spielerIsPossibleVictim(geschützerSpieler) ||spielerIsDeadVictim(geschützerSpieler)) {
+                if (spielerIsPossibleVictim(geschützerSpieler) || spielerIsDeadVictim(geschützerSpieler)) {
                     schamanin.abilityCharges++;
                 }
             }
@@ -485,7 +485,7 @@ public class Nacht extends Thread {
     }
 
     public boolean gibtEsTorte() {
-        if(Torte.gut) {
+        if (Torte.gut) {
             return false;
         }
 

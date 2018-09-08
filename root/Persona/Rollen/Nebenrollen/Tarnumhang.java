@@ -47,12 +47,12 @@ public class Tarnumhang extends Nebenrolle {
         ArrayList<String> allTräger = getAllTräger();
         allTräger.removeAll(seenPlayers);
 
-        if(allTräger.size()==0) {
+        if (allTräger.size() == 0) {
             seenPlayers = new ArrayList<>();
             allTräger = getAllTräger();
         }
 
-        if(allTräger.size()>0) {
+        if (allTräger.size() > 0) {
 
             int numberOfTräger = allTräger.size();
             Random random = new Random();

@@ -36,7 +36,7 @@ public class Spurenleser extends Nebenrolle {
         if (chosenPlayer != null) {
             besucht = chosenPlayer;
 
-            if(showTarnumhang(this, chosenPlayer)) {
+            if (showTarnumhang(this, chosenPlayer)) {
                 return new FrontendControl(new Tarnumhang_NebenrollenType());
             }
 
@@ -88,17 +88,17 @@ public class Spurenleser extends Nebenrolle {
         ArrayList<String> besucher = new ArrayList<>();
 
         if (beobachteterSpieler != null) {
-            if(beobachteterSpieler.hauptrolle.besucht!=null) {
+            if (beobachteterSpieler.hauptrolle.besucht != null) {
                 String besuchterSpielerDerHauptrolle = beobachteterSpieler.hauptrolle.besucht.name;
                 besucher.add(besuchterSpielerDerHauptrolle);
             }
 
-            if(beobachteterSpieler.nebenrolle.besucht!=null) {
+            if (beobachteterSpieler.nebenrolle.besucht != null) {
                 String besuchterSpielerDerNebenrolle = beobachteterSpieler.nebenrolle.besucht.name;
                 besucher.add(besuchterSpielerDerNebenrolle);
             }
 
-            if(beobachteterSpieler.nebenrolle.getName().equals(Analytiker.name)){
+            if (beobachteterSpieler.nebenrolle.getName().equals(Analytiker.name)) {
                 Analytiker analytiker = (Analytiker) beobachteterSpieler.nebenrolle;
                 besucher.add(analytiker.besuchtAnalysieren.name);
             }

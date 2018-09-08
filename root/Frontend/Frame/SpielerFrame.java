@@ -11,7 +11,7 @@ import root.mechanics.Game;
 import javax.swing.*;
 import java.util.ArrayList;
 
-public class SpielerFrame extends MyFrame{
+public class SpielerFrame extends MyFrame {
     Game game;
     ErzählerFrame erzählerFrame;
     public SpielerPageFactory pageFactory;
@@ -33,7 +33,7 @@ public class SpielerFrame extends MyFrame{
     public int mode = SpielerFrameMode.blank;
     public String title = "";
 
-    public SpielerFrame(ErzählerFrame erzählerFrame, Game game){
+    public SpielerFrame(ErzählerFrame erzählerFrame, Game game) {
         this.game = game;
         WINDOW_TITLE = "Spieler Fenster";
         this.erzählerFrame = erzählerFrame;
@@ -52,7 +52,7 @@ public class SpielerFrame extends MyFrame{
 
         generateAllPages();
 
-        this.setLocation(erzählerFrame.frameJpanel.getWidth() + 20,0);
+        this.setLocation(erzählerFrame.frameJpanel.getWidth() + 20, 0);
 
         showFrame();
 
@@ -61,44 +61,44 @@ public class SpielerFrame extends MyFrame{
 
     public void generateAllPages() {
         blankPage = new Page();
-        dropDownPage = pageFactory.generateDropdownPage("",1);
+        dropDownPage = pageFactory.generateDropdownPage("", 1);
         bierPage = pageFactory.generateStaticImagePage(Tag.dayTitle, ImagePath.FREIBIER, true);
         deadPage = pageFactory.generateStaticImagePage("Tot", ImagePath.TOT, true);
         aufgebrauchtPage = pageFactory.generateStaticImagePage("Aufgebraucht", ImagePath.AUFGEBRAUCHT, true);
         deactivatedPage = pageFactory.generateStaticImagePage("Deaktiviert", ImagePath.DEAKTIVIERT, true);
     }
 
-    public void refreshSetupPage(){
-        if(erzählerFrame.currentPage.equals(erzählerFrame.playerSetupPage)) {
+    public void refreshSetupPage() {
+        if (erzählerFrame.currentPage.equals(erzählerFrame.playerSetupPage)) {
             refreshPlayerSetupPage();
         }
 
-        if(erzählerFrame.currentPage.equals(erzählerFrame.mainRoleSetupPage)) {
+        if (erzählerFrame.currentPage.equals(erzählerFrame.mainRoleSetupPage)) {
             refreshMainRoleSetupPage();
         }
 
-        if(erzählerFrame.currentPage.equals(erzählerFrame.secondaryRoleSetupPage)) {
+        if (erzählerFrame.currentPage.equals(erzählerFrame.secondaryRoleSetupPage)) {
             refreshSecondaryRoleSetupPage();
         }
 
-        if(erzählerFrame.currentPage.equals(erzählerFrame.playerSpecifiyPage)) {
+        if (erzählerFrame.currentPage.equals(erzählerFrame.playerSpecifiyPage)) {
             refreshSecondarySpecifySetupPage();
         }
     }
 
-    public void refreshPlayerSetupPage(){
+    public void refreshPlayerSetupPage() {
         buildScreenFromPage(pageFactory.generateListPage(game.getLivingPlayerStrings()));
     }
 
-    public void refreshMainRoleSetupPage(){
+    public void refreshMainRoleSetupPage() {
         buildScreenFromPage(pageFactory.generateListPage(game.getMainRoleInGameNames()));
     }
 
-    public void refreshSecondaryRoleSetupPage(){
+    public void refreshSecondaryRoleSetupPage() {
         buildScreenFromPage(pageFactory.generateListPage(game.getSecondaryRoleInGameNames()));
     }
 
-    public void refreshSecondarySpecifySetupPage(){
+    public void refreshSecondarySpecifySetupPage() {
         ArrayList<String> mainRoles = new ArrayList<>();
         mainRoles.addAll(game.getMainRoleInGameNames());
 
@@ -109,7 +109,7 @@ public class SpielerFrame extends MyFrame{
 
     public void generateDayPage() {
         title = Tag.dayTitle;
-        if(game.phaseMode == PhaseMode.freibierTag) {
+        if (game.phaseMode == PhaseMode.freibierTag) {
             mode = SpielerFrameMode.freibierPage;
             this.bierPage();
         } else {

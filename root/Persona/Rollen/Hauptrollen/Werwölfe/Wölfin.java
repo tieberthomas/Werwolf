@@ -84,13 +84,19 @@ public class Wölfin extends Hauptrolle {
     }
 
     @Override
-    public String getSecondTitle() { return secondTitle; }
+    public String getSecondTitle() {
+        return secondTitle;
+    }
 
     @Override
-    public String getSecondBeschreibung() { return secondBeschreibung; }
+    public String getSecondBeschreibung() {
+        return secondBeschreibung;
+    }
 
     @Override
-    public StatementType getSecondStatementType() { return secondStatementType; }
+    public StatementType getSecondStatementType() {
+        return secondStatementType;
+    }
 
     @Override
     public Fraktion getFraktion() {

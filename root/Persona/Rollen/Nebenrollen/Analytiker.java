@@ -10,9 +10,6 @@ import root.mechanics.Liebespaar;
 
 import java.util.Objects;
 
-/**
- * Created by Steve on 12.11.2017.
- */
 public class Analytiker extends Nebenrolle {
     public static String title = "Spieler wählen";
     public static final String beschreibung = "Analytiker erwacht und wählt zwei Spieler, der Erzähler sagt ihm ob diese in derselben Fraktion sind";
@@ -62,7 +59,7 @@ public class Analytiker extends Nebenrolle {
     }
 
     public boolean showTarnumhang(Spieler spieler1, Spieler spieler2) {
-        return showTarnumhang(this, spieler1) ||showTarnumhang(this, spieler2);
+        return showTarnumhang(this, spieler1) || showTarnumhang(this, spieler2);
     }
 
     public String analysiere(Spieler spieler1, Spieler spieler2) {

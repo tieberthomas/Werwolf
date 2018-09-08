@@ -409,7 +409,7 @@ public class SpielerPageFactory {
 
         if (elementsToDisplay.size() > 0) {
             int frameOffset = 38;
-            int elementHeight = (int)elementsToDisplay.get(0).getPreferredSize().getHeight();
+            int elementHeight = (int) elementsToDisplay.get(0).getPreferredSize().getHeight();
             int spaceToUse = spielerFrame.frameJpanel.getHeight() - frameOffset - offsetAbove - offsetBelow;
             int spacePerElement = spaceToUse / elementsToDisplay.size();
             int spacingBetweenElements = spacePerElement - elementHeight;
@@ -442,7 +442,7 @@ public class SpielerPageFactory {
 
         int columns = informationen.size();
         int indexOfColumn = 0;
-        for(RawInformation information : informationen) {
+        for (RawInformation information : informationen) {
             PageElement spielerTitle = pageElementFactory.generateColumnCenteredLabel(new JLabel(information.spieler), null, 0, columns, indexOfColumn);
             listPage.add(spielerTitle);
             int offsetAbove = spielerTitle.height;
@@ -461,7 +461,7 @@ public class SpielerPageFactory {
 
     private ArrayList<PageElement> generateSchnüfflerInformationsColumn(RawInformation rawInformation, int maxColumns, int numberOfColumns, int indexOfColumn, int offsetAbove) {
         ArrayList<JComponent> elementsToDisplay = new ArrayList<>();
-        if(rawInformation.isTarnumhang) {
+        if (rawInformation.isTarnumhang) {
             elementsToDisplay.add(pageElementFactory.generateIcon(new Tarnumhang_NebenrollenType().imagePath));
         } else {
             elementsToDisplay = pageElementFactory.generateImages(rawInformation, maxColumns);

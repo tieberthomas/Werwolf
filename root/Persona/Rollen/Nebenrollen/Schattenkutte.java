@@ -8,11 +8,7 @@ import root.ResourceManagement.ImagePath;
 
 import java.awt.*;
 
-/**
- * Created by Steve on 12.11.2017.
- */
-public class Schattenkutte extends Nebenrolle
-{
+public class Schattenkutte extends Nebenrolle {
     public static final String name = "Schattenkutte";
     public static final String imagePath = ImagePath.SCHATTENKUTTE_KARTE;
     public static boolean unique = true;

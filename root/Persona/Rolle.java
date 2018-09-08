@@ -8,7 +8,7 @@ import root.Spieler;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class Rolle extends Persona{
+public class Rolle extends Persona {
     public Spieler besucht;
     public Spieler besuchtLetzteNacht;
     public int abilityCharges = 1;

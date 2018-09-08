@@ -6,9 +6,6 @@ import root.Spieler;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
-/**
- * Created by Steve on 23.11.2017.
- */
 public class Liebespaar {
     Game game;
 

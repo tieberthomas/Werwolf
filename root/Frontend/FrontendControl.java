@@ -254,7 +254,7 @@ public class FrontendControl {
     private static List<RawInformation> convertToRawInformation(List<SchnüfflerInformation> informationen) {
         List<RawInformation> rawInformationen = new ArrayList<>();
 
-        for(SchnüfflerInformation information : informationen) {
+        for (SchnüfflerInformation information : informationen) {
             RawInformation rawInformation = RawInformation.convertToRawInformation(information);
             rawInformationen.add(rawInformation);
         }

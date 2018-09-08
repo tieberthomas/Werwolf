@@ -9,11 +9,7 @@ import root.Spieler;
 
 import java.awt.*;
 
-/**
- * Created by Steve on 12.11.2017.
- */
-public class Wolfspelz extends Nebenrolle
-{
+public class Wolfspelz extends Nebenrolle {
     public static final String name = "Wolfspelz";
     public static final String imagePath = ImagePath.WOLFSPELZ_KARTE;
     public static boolean unique = true;
@@ -25,7 +21,7 @@ public class Wolfspelz extends Nebenrolle
         try {
             Spieler spieler = game.findSpielerPerRolle(name);
             spieler.nebenrolle = nebenrolle;
-        }catch (NullPointerException e) {
+        } catch (NullPointerException e) {
             System.out.println(name + " nicht gefunden");
         }
     }
@@ -33,7 +29,7 @@ public class Wolfspelz extends Nebenrolle
     public Nebenrolle getTauschErgebnis() {
         Spieler spieler = game.findSpielerPerRolle(name);
 
-        if(spieler!=null) {
+        if (spieler != null) {
             Nebenrolle nebenrolle;
 
             if (spieler.hauptrolle.getFraktion().getName().equals(Werwölfe.name)) {
@@ -44,7 +40,7 @@ public class Wolfspelz extends Nebenrolle
 
             return nebenrolle;
         } else {
-            return  this;
+            return this;
         }
     }
 
@@ -64,7 +60,9 @@ public class Wolfspelz extends Nebenrolle
     }
 
     @Override
-    public NebenrollenType getType() { return type; }
+    public NebenrollenType getType() {
+        return type;
+    }
 
     @Override
     public Color getFarbe() {

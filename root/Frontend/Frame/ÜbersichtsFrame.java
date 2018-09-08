@@ -18,7 +18,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ÜbersichtsFrame extends MyFrame implements ActionListener{
+public class ÜbersichtsFrame extends MyFrame implements ActionListener {
     public Game game;
     ErzählerFrame erzählerFrame;
 
@@ -49,7 +49,7 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener{
 
         refreshJButton = new JButton();
 
-        this.setLocation(0,erzählerFrame.frameJpanel.getHeight() + 50);
+        this.setLocation(0, erzählerFrame.frameJpanel.getHeight() + 50);
 
         frameJpanel = generateDefaultPanel();
 
@@ -75,22 +75,22 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener{
 
         playerTable.add(new JLabel("Spieler"));
 
-        for(Spieler spieler : game.spieler) {
+        for (Spieler spieler : game.spieler) {
             JLabel label = new JLabel(spieler.name);
-            if(!spieler.lebend) {
+            if (!spieler.lebend) {
                 label.setBackground(Color.lightGray);
             } else {
                 label.setBackground(Color.white);
             }
             label.setOpaque(true);
-            if((game.phaseMode == PhaseMode.ersteNacht && ErsteNacht.playersAwake.contains(spieler)) ||
-                (game.phaseMode == PhaseMode.nacht && Nacht.playersAwake.contains(spieler))) {
+            if ((game.phaseMode == PhaseMode.ersteNacht && ErsteNacht.playersAwake.contains(spieler)) ||
+                    (game.phaseMode == PhaseMode.nacht && Nacht.playersAwake.contains(spieler))) {
                 Color borderColor = defaultBorderColor;
                 //hier kann die rahmen farbe geändert werden wenn notwendig
                 label.setBorder(BorderFactory.createLineBorder(borderColor, 2));
             }
 
-            if(playerTable.tableElements.size()<game.spieler.size()+1) {
+            if (playerTable.tableElements.size() < game.spieler.size() + 1) {
                 playerTable.add(label);
             }
         }
@@ -101,14 +101,14 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener{
 
         mainRoleTable.add(new JLabel("Hauptrolle"));
 
-        for(Spieler spieler : game.spieler) {
+        for (Spieler spieler : game.spieler) {
             Rolle rolle;
             if (spieler.hauptrolle == null)
                 rolle = Hauptrolle.defaultHauptrolle;
             else
                 rolle = spieler.hauptrolle;
 
-            if(mainRoleTable.tableElements.size()<game.spieler.size()+1) {
+            if (mainRoleTable.tableElements.size() < game.spieler.size() + 1) {
                 mainRoleTable.add(generateColorLabel(spieler, rolle));
             }
         }
@@ -119,14 +119,14 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener{
 
         secondaryRoleTable.add(new JLabel("Nebenrolle"));
 
-        for(Spieler spieler : game.spieler) {
+        for (Spieler spieler : game.spieler) {
             Rolle rolle;
             if (spieler.nebenrolle == null)
                 rolle = Nebenrolle.defaultNebenrolle;
             else
                 rolle = spieler.nebenrolle;
 
-            if(secondaryRoleTable.tableElements.size()<game.spieler.size()+1) {
+            if (secondaryRoleTable.tableElements.size() < game.spieler.size() + 1) {
                 secondaryRoleTable.add(generateColorLabel(spieler, rolle));
             }
         }
@@ -135,9 +135,9 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener{
     public JLabel generateColorLabel(Spieler spieler, Rolle rolle) {
         JLabel label = new JLabel(rolle.getName());
 
-        if(spieler.lebend) {
+        if (spieler.lebend) {
             Color farbe = rolle.getFarbe();
-            if(farbe.equals(Color.BLACK)) {
+            if (farbe.equals(Color.BLACK)) {
                 label.setForeground(Color.WHITE);
             }
             label.setBackground(farbe);
@@ -155,20 +155,20 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener{
 
         aliveTable.add(new JLabel("Lebend"));
 
-        for(Spieler spieler : game.spieler) {
-            String text="nein";
-            if(spieler.lebend) {
-                text="ja";
+        for (Spieler spieler : game.spieler) {
+            String text = "nein";
+            if (spieler.lebend) {
+                text = "ja";
             }
 
             JLabel label = new JLabel(text);
-            if(spieler.lebend) {
+            if (spieler.lebend) {
                 label.setBackground(Color.white);
             } else {
                 label.setBackground(Color.lightGray);
             }
             label.setOpaque(true);
-            if(aliveTable.tableElements.size()<game.spieler.size()+1) {
+            if (aliveTable.tableElements.size() < game.spieler.size() + 1) {
                 aliveTable.add(label);
             }
         }
@@ -179,20 +179,20 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener{
 
         activeTable.add(new JLabel("Aktiv"));
 
-        for(Spieler spieler : game.spieler) {
-            String text="nein";
-            if(spieler.aktiv) {
-                text="ja";
+        for (Spieler spieler : game.spieler) {
+            String text = "nein";
+            if (spieler.aktiv) {
+                text = "ja";
             }
 
             JLabel label = new JLabel(text);
-            if(!spieler.aktiv) {
+            if (!spieler.aktiv) {
                 label.setBackground(Color.red);
             } else {
                 label.setBackground(Color.white);
             }
             label.setOpaque(true);
-            if(activeTable.tableElements.size()<game.spieler.size()+1) {
+            if (activeTable.tableElements.size() < game.spieler.size() + 1) {
                 activeTable.add(label);
             }
         }
@@ -203,20 +203,20 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener{
 
         protectedTable.add(new JLabel("Geschützt"));
 
-        for(Spieler spieler : game.spieler) {
-            String text="nein";
-            if(spieler.geschützt) {
-                text="ja";
+        for (Spieler spieler : game.spieler) {
+            String text = "nein";
+            if (spieler.geschützt) {
+                text = "ja";
             }
 
             JLabel label = new JLabel(text);
-            if(spieler.geschützt) {
+            if (spieler.geschützt) {
                 label.setBackground(Color.green);
             } else {
                 label.setBackground(Color.white);
             }
             label.setOpaque(true);
-            if(protectedTable.tableElements.size()<game.spieler.size()+1) {
+            if (protectedTable.tableElements.size() < game.spieler.size() + 1) {
                 protectedTable.add(label);
             }
         }
@@ -224,7 +224,7 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        if(ae.getSource() == refreshJButton) {
+        if (ae.getSource() == refreshJButton) {
             refreshÜbersichtsPage();
         }
     }

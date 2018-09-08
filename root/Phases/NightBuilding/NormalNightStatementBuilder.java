@@ -129,7 +129,7 @@ public class NormalNightStatementBuilder {
 
     private static Statement getSecondStatement(String rollenName) {
         Rolle rolle = Rolle.findRolle(rollenName);
-        if(rolle!=null) {
+        if (rolle != null) {
             return new StatementRolle(rolle.getSecondBeschreibung(), rolle.getSecondTitle(), rolle.getName(), rolle.getSecondStatementType());
         } else {
             return new Statement();
@@ -143,7 +143,7 @@ public class NormalNightStatementBuilder {
 
     private static Statement getSecondStatementFraktion(String fraktionsName) {
         Fraktion fraktion = Fraktion.findFraktion(fraktionsName);
-        if(fraktion!=null) {
+        if (fraktion != null) {
             return new StatementFraktion(fraktion.getSecondBeschreibung(), fraktion.getSecondTitle(), fraktion.getName(), fraktion.getSecondStatementType());
         } else {
             return new Statement();

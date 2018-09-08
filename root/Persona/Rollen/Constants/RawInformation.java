@@ -15,7 +15,7 @@ public class RawInformation {
 
     public static RawInformation convertToRawInformation(SchnüfflerInformation information) {
         ArrayList<String> imagePaths = new ArrayList<>();
-        if(!information.isTarnumhang) {
+        if (!information.isTarnumhang) {
             imagePaths.add(information.fraktion.getImagePath());
             imagePaths.add(information.tötend.imagePath);
             imagePaths.add(information.nebenrollenType.imagePath);

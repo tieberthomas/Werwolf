@@ -39,7 +39,7 @@ public class Schnüffler extends Nebenrolle {
     }
 
     private void removePreviousPlayers(ArrayList<String> allPlayers) {
-        for(SchnüfflerInformation information : informationen) {
+        for (SchnüfflerInformation information : informationen) {
             allPlayers.remove(information.spielerName);
         }
     }
@@ -55,7 +55,7 @@ public class Schnüffler extends Nebenrolle {
             SchnüfflerInformation information = informationGenerator.generateInformation();
             informationen.add(information);
 
-            if(informationen.size()>MAX_ANZAHL_AN_INFORMATIONEN) {
+            if (informationen.size() > MAX_ANZAHL_AN_INFORMATIONEN) {
                 informationen.remove(0);
             }
 

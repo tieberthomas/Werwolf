@@ -26,22 +26,19 @@ public class Predecessor {
         this.space_to_predecessor_x = space_to_predecessor_x;
         this.space_to_predecessor_y = space_to_predecessor_y;
 
-        if(predecessorX==null) {
-            if(predecessorY==null) {
+        if (predecessorX == null) {
+            if (predecessorY == null) {
                 coordY = space_to_predecessor_y;
                 coordX = space_to_predecessor_x;
-            }
-            else {
+            } else {
                 coordY = predecessorY.coordY + predecessorY.height + space_to_predecessor_y;
                 coordX = predecessorY.coordX + space_to_predecessor_x;
             }
-        }
-        else {
-            if(predecessorY==null) {
+        } else {
+            if (predecessorY == null) {
                 coordY = predecessorX.coordY + space_to_predecessor_y;
                 coordX = predecessorX.coordX + predecessorX.width + space_to_predecessor_x;
-            }
-            else {
+            } else {
                 coordY = predecessorY.coordY + predecessorY.height + space_to_predecessor_y;
                 coordX = predecessorX.coordX + predecessorX.width + space_to_predecessor_x;
             }

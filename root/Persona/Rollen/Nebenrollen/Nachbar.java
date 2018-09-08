@@ -36,7 +36,7 @@ public class Nachbar extends Nebenrolle {
         if (chosenPlayer != null) {
             besucht = chosenPlayer;
 
-            if(showTarnumhang(this, chosenPlayer)) {
+            if (showTarnumhang(this, chosenPlayer)) {
                 return new FrontendControl(new Tarnumhang_NebenrollenType());
             }
 

@@ -86,7 +86,7 @@ public class ErzählerPageElementFactory {
         int buttonHeight = 25;
         int spaceToPredecessorX = 10;
 
-        if(predecessorX==null)
+        if (predecessorX == null)
             spaceToPredecessorX = 0;
 
         PageElement button = new PageElement(jbutton, buttonWidth, buttonHeight, predecessorX, spaceToPredecessorX);
@@ -106,12 +106,12 @@ public class ErzählerPageElementFactory {
     }
 
     public PageElement generateLowestButton(JButton button, String title, boolean right) {
-        return generateLowestButton(button, title, right,0);
+        return generateLowestButton(button, title, right, 0);
     }
 
     public PageElement generateLowestButton(JButton button, String title, boolean right, int howManyButtonsBefore) {
         int elementWidth = 120;
-        if(erzählerFrame.frameMode == FrameMode.small) {
+        if (erzählerFrame.frameMode == FrameMode.small) {
             elementWidth = 100;
         }
         int elementHeight = 50;
@@ -120,8 +120,8 @@ public class ErzählerPageElementFactory {
         int spaceToPredecessorX = xOffset;
         int spaceToPredecessorY = erzählerFrame.frameJpanel.getHeight() - elementHeight - 20;
 
-        if(right) {
-            spaceToPredecessorX = (erzählerFrame.frameJpanel.getWidth()  - elementWidth - 20) - xOffset;
+        if (right) {
+            spaceToPredecessorX = (erzählerFrame.frameJpanel.getWidth() - elementWidth - 20) - xOffset;
         }
 
         PageElement goNextButton = new PageElement(button, elementWidth, elementHeight, null, null, spaceToPredecessorX, spaceToPredecessorY);
@@ -233,16 +233,16 @@ public class ErzählerPageElementFactory {
 
         ArrayList<Statement> statements = new ArrayList<>();
 
-        if(erzählerFrame.mode == ErzählerFrameMode.ersteNacht){
+        if (erzählerFrame.mode == ErzählerFrameMode.ersteNacht) {
             statements = ErsteNacht.statements;
         } else if (erzählerFrame.mode == ErzählerFrameMode.nacht) {
             statements = changeStatementsToFitSammler(Nacht.statements);
         }
 
         for (Statement statement : statements) {
-            if(statement.isVisible()) {
+            if (statement.isVisible()) {
                 nachtPunkte.add(statement.beschreibung);
-                if(!statement.isLebend()) {
+                if (!statement.isLebend()) {
                     if (statement.beschreibung.contains(currentStatement) || (statement.title.equals(Konditorlehrling.title) && currentStatement.equals(Konditorlehrling.beschreibung))) {
                         found = true;
                         nachtPunkteFarben.add(HTMLStringBuilder.blue);
@@ -269,11 +269,11 @@ public class ErzählerPageElementFactory {
         JLabel nightJLabel = new JLabel(nightText);
         nightJLabel.setVerticalAlignment(SwingConstants.TOP);
         int width = nightJLabel.getPreferredSize().width;
-        if(width>400) {
+        if (width > 400) {
             width = 400;
         }
 
-        PageElement nightLabel = new PageElement(nightJLabel, width, erzählerFrame.frameJpanel.getHeight()+300);
+        PageElement nightLabel = new PageElement(nightJLabel, width, erzählerFrame.frameJpanel.getHeight() + 300);
 
         return nightLabel;
     }
@@ -281,16 +281,16 @@ public class ErzählerPageElementFactory {
     public ArrayList<Statement> changeStatementsToFitSammler(ArrayList<Statement> statements) {
         ArrayList<Statement> newStatements = new ArrayList<Statement>();
 
-        for(Statement statement : statements) {
-            if(statement.getClass() == StatementRolle.class) {
-                StatementRolle statementRolle = (StatementRolle)statement;
-                if(statementRolle.sammler) {
+        for (Statement statement : statements) {
+            if (statement.getClass() == StatementRolle.class) {
+                StatementRolle statementRolle = (StatementRolle) statement;
+                if (statementRolle.sammler) {
                     StatementRolle newRolleStatement = new StatementRolle(statementRolle.beschreibung, statementRolle.title, statementRolle.getRolle().getName(), statementRolle.type);
-                    if(!statementRolle.beschreibung.equals(Konditorlehrling.beschreibung)) {
+                    if (!statementRolle.beschreibung.equals(Konditorlehrling.beschreibung)) {
                         newRolleStatement.beschreibung = Sammler.beschreibungAddiditon + statement.beschreibung;
                     } else {
                         String searchString = "Konditorlehrling erwachen ";
-                        newRolleStatement.beschreibung = statement.beschreibung.replace(searchString, Sammler.beschreibungAddiditonLowerCase+searchString);
+                        newRolleStatement.beschreibung = statement.beschreibung.replace(searchString, Sammler.beschreibungAddiditonLowerCase + searchString);
                     }
                     statement = newRolleStatement;
                 }
@@ -322,7 +322,7 @@ public class ErzählerPageElementFactory {
 
     public PageElement generateTitleLabel(Predecessor predecessorX, String title) {
         int textSize = bigTextSize;
-        if(erzählerFrame.frameMode == FrameMode.small) {
+        if (erzählerFrame.frameMode == FrameMode.small) {
             textSize = smallTextSize;
         }
 
@@ -365,7 +365,7 @@ public class ErzählerPageElementFactory {
 
         PageElement imageLabel = new PageElement(imageJLabel, imageJLabelWidth, imageJLabelHeight, null, predecessorY, 0, 20);
 
-        int xCoord = erzählerFrame.frameJpanel.getWidth()/2-(imageJLabelWidth/2);
+        int xCoord = erzählerFrame.frameJpanel.getWidth() / 2 - (imageJLabelWidth / 2);
 
         imageLabel.setCoordX(xCoord);
 
@@ -382,11 +382,11 @@ public class ErzählerPageElementFactory {
 
         imageJLabel.setIcon(iconLogo);
 
-        int yOffset = erzählerFrame.frameJpanel.getHeight()/2 - (imageJLabelHeight+numberOfBigButtons*bigButtonHeightPlusSpace)/2;
+        int yOffset = erzählerFrame.frameJpanel.getHeight() / 2 - (imageJLabelHeight + numberOfBigButtons * bigButtonHeightPlusSpace) / 2;
 
         PageElement imageLabel = new PageElement(imageJLabel, imageJLabelWidth, imageJLabelHeight, null, null, 0, yOffset);
 
-        int xCoord = erzählerFrame.frameJpanel.getWidth()/2-(imageJLabelWidth/2);
+        int xCoord = erzählerFrame.frameJpanel.getWidth() / 2 - (imageJLabelWidth / 2);
 
         imageLabel.setCoordX(xCoord);
 
@@ -398,12 +398,12 @@ public class ErzählerPageElementFactory {
 
         ImageIcon iconLogo = new ImageIcon(filePath);
 
-        int iconWidth = (int)(iconLogo.getIconWidth()*0.7);
-        int iconHeight = (int) (iconLogo.getIconHeight()*0.7);
+        int iconWidth = (int) (iconLogo.getIconWidth() * 0.7);
+        int iconHeight = (int) (iconLogo.getIconHeight() * 0.7);
 
-        if(filePath!="") {
+        if (filePath != "") {
             Image img = iconLogo.getImage();
-            if(img!=null) {
+            if (img != null) {
                 Image newimg = img.getScaledInstance(iconWidth, iconHeight, java.awt.Image.SCALE_SMOOTH);
                 iconLogo = new ImageIcon(newimg);
 
@@ -417,12 +417,12 @@ public class ErzählerPageElementFactory {
     }
 
     public JLabel generateTitleJLabel(String text) {
-        return  generateTitleJLabel(text, bigTextSize);
+        return generateTitleJLabel(text, bigTextSize);
     }
 
     public JLabel generateTitleJLabel(String text, int textSize) {
         JLabel label = new JLabel(text);
-        label.setFont(new Font("Arial",Font.PLAIN, textSize));
+        label.setFont(new Font("Arial", Font.PLAIN, textSize));
 
         return label;
     }
@@ -430,14 +430,14 @@ public class ErzählerPageElementFactory {
     public PageElement generateLeftCenteredLabel(JLabel label) {
         label = generateBigJLabel(label);
 
-        int imageJLabelWidth = (int)label.getPreferredSize().getWidth();
-        int imageJLabelHeight = (int)label.getPreferredSize().getHeight();
+        int imageJLabelWidth = (int) label.getPreferredSize().getWidth();
+        int imageJLabelHeight = (int) label.getPreferredSize().getHeight();
 
-        int spaceToPredecessorY = erzählerFrame.frameJpanel.getHeight()/2-imageJLabelHeight/2;
+        int spaceToPredecessorY = erzählerFrame.frameJpanel.getHeight() / 2 - imageJLabelHeight / 2;
 
         PageElement centeredLabel = new PageElement(label, imageJLabelWidth, imageJLabelHeight, null, null, 0, spaceToPredecessorY);
 
-        int xCoord = erzählerFrame.frameJpanel.getWidth()/3-(imageJLabelWidth/2);
+        int xCoord = erzählerFrame.frameJpanel.getWidth() / 3 - (imageJLabelWidth / 2);
 
         centeredLabel.setCoordX(xCoord);
 
@@ -452,13 +452,13 @@ public class ErzählerPageElementFactory {
         int imageJLabelWidth = iconLogo.getIconWidth();
         int imageJLabelHeight = iconLogo.getIconHeight();
 
-        int spaceToPredecessorY = erzählerFrame.frameJpanel.getHeight()/2-imageJLabelHeight/2;
+        int spaceToPredecessorY = erzählerFrame.frameJpanel.getHeight() / 2 - imageJLabelHeight / 2;
 
         imageJLabel.setIcon(iconLogo);
 
         PageElement imageLabel = new PageElement(imageJLabel, imageJLabelWidth, imageJLabelHeight, null, null, 0, spaceToPredecessorY);
 
-        int xCoord = (erzählerFrame.frameJpanel.getWidth()/3)*2-(imageJLabelWidth/2);
+        int xCoord = (erzählerFrame.frameJpanel.getWidth() / 3) * 2 - (imageJLabelWidth / 2);
 
         imageLabel.setCoordX(xCoord);
 
@@ -467,12 +467,12 @@ public class ErzählerPageElementFactory {
 
     public JLabel generateBigJLabel(JLabel label) {
         label.setHorizontalAlignment(SwingConstants.CENTER);
-        label.setFont(new Font("Arial",Font.PLAIN, 36));
+        label.setFont(new Font("Arial", Font.PLAIN, 36));
 
         return label;
     }
 
-    public int calculateColumns(int columnWidth){
-        return (int)Math.floor((double)erzählerFrame.frameJpanel.getWidth()/(double)columnWidth);
+    public int calculateColumns(int columnWidth) {
+        return (int) Math.floor((double) erzählerFrame.frameJpanel.getWidth() / (double) columnWidth);
     }
 }

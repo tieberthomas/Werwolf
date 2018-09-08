@@ -9,9 +9,6 @@ import root.Persona.Rollen.Constants.NebenrollenType.Tarnumhang_NebenrollenType;
 import root.Persona.Rollen.Nebenrollen.Totengräber;
 import root.ResourceManagement.ImagePath;
 
-/**
- * Created by Steve on 12.11.2017.
- */
 public class Sammler extends Hauptrolle {
     public static final String beschreibungAddiditon = "Der Sammler als ";
     public static final String beschreibungAddiditonLowerCase = "der Sammler als ";

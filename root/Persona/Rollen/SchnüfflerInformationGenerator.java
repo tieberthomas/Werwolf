@@ -32,7 +32,7 @@ public class SchnüfflerInformationGenerator {
 
     public SchnüfflerInformation generateInformation() {
         Nebenrolle schnüffler = Schnüffler.game.findSpielerPerRolle(Schnüffler.name).nebenrolle;
-        if(schnüffler.showTarnumhang(schnüffler, player)) {
+        if (schnüffler.showTarnumhang(schnüffler, player)) {
             return new SchnüfflerInformation(player.name);
         }
 
@@ -107,8 +107,8 @@ public class SchnüfflerInformationGenerator {
 
     private void removeFraktion(ArrayList<Fraktion> fraktionen, Fraktion fraktionToRemove) {
         Fraktion fraktionInListToRemove = null;
-        for(Fraktion fraktion : fraktionen) {
-            if(fraktion.equals(fraktionToRemove)) {
+        for (Fraktion fraktion : fraktionen) {
+            if (fraktion.equals(fraktionToRemove)) {
                 fraktionInListToRemove = fraktion;
             }
         }
@@ -142,8 +142,8 @@ public class SchnüfflerInformationGenerator {
 
     private void removeNebenrollenType(ArrayList<NebenrollenType> nebenrollenTypes, NebenrollenType nebenrollenTypeToRemove) {
         NebenrollenType nebenrollenTypeInListToRemove = null;
-        for(NebenrollenType nebenrollenType : nebenrollenTypes) {
-            if(nebenrollenType.equals(nebenrollenTypeToRemove)) {
+        for (NebenrollenType nebenrollenType : nebenrollenTypes) {
+            if (nebenrollenType.equals(nebenrollenTypeToRemove)) {
                 nebenrollenTypeInListToRemove = nebenrollenType;
             }
         }

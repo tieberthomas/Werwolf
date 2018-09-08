@@ -10,11 +10,7 @@ import root.ResourceManagement.ImagePath;
 import java.util.ArrayList;
 import java.util.Objects;
 
-/**
- * Created by Steve on 12.11.2017.
- */
-public class Wahrsager extends Nebenrolle
-{
+public class Wahrsager extends Nebenrolle {
     public static final String KEIN_OPFER = "Kein Opfer";
 
     public static final String WAHRSAGER_INFORMATION = "Wahrsager erwacht und erfährt die Anzahl der lebenden Mitglieder von jeder Fraktion";

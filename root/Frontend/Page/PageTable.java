@@ -29,43 +29,42 @@ public class PageTable extends Predecessor {
     }
 
     public PageTable(int table_element_width, int table_element_height) {
-        this(DEFAULT_COLUMNS, table_element_width, table_element_height, null, null, DEFAULT_SPACE,DEFAULT_SPACE);
+        this(DEFAULT_COLUMNS, table_element_width, table_element_height, null, null, DEFAULT_SPACE, DEFAULT_SPACE);
     }
 
     public PageTable(int table_element_width, int table_element_height, Predecessor predecessorX) {
-        this(DEFAULT_COLUMNS, table_element_width, table_element_height, predecessorX, null, DEFAULT_SPACE,DEFAULT_SPACE);
+        this(DEFAULT_COLUMNS, table_element_width, table_element_height, predecessorX, null, DEFAULT_SPACE, DEFAULT_SPACE);
     }
 
     public PageTable(int table_element_width, int table_element_height, Predecessor predecessorX, int space_to_predecessor_x) {
-        this(DEFAULT_COLUMNS, table_element_width, table_element_height, predecessorX, null, space_to_predecessor_x,DEFAULT_SPACE);
+        this(DEFAULT_COLUMNS, table_element_width, table_element_height, predecessorX, null, space_to_predecessor_x, DEFAULT_SPACE);
     }
 
-    public void calcTableRows()
-    {
-        rows = (int)Math.ceil(((double) tableElements.size())/columns);
+    public void calcTableRows() {
+        rows = (int) Math.ceil(((double) tableElements.size()) / columns);
     }
 
     public void calcTableHeight() {
         calcTableRows();
-        int height = rows * (table_element_height+table_elements_y_distance)-table_elements_y_distance;
+        int height = rows * (table_element_height + table_elements_y_distance) - table_elements_y_distance;
 
-        if(height<0)
-            this.height =  0;
+        if (height < 0)
+            this.height = 0;
         else
             this.height = height;
     }
 
     public void calcTableWidth() {
-        int width = columns * (table_element_width+table_elements_x_distance)-table_elements_x_distance;
+        int width = columns * (table_element_width + table_elements_x_distance) - table_elements_x_distance;
 
-        if(width<0)
+        if (width < 0)
             this.width = 0;
         else
             this.width = width;
     }
 
     public void add(JComponent tableElement) {
-        int currentColumn = tableElements.size()%columns;
+        int currentColumn = tableElements.size() % columns;
         tableElements.add(tableElement);
         calcTableRows();
         calcTableWidth();
@@ -73,7 +72,7 @@ public class PageTable extends Predecessor {
 
         int elementCoordX = pageCoordX + currentColumn * (table_element_width + table_elements_x_distance);
         int elementCoordY = pageCoordY + ((rows - 1) * (table_element_height + table_elements_y_distance));
-        tableElement.setBounds(elementCoordX, elementCoordY, table_element_width,table_element_height);
+        tableElement.setBounds(elementCoordX, elementCoordY, table_element_width, table_element_height);
     }
 
     public void setTable_elements_x_distance(int table_elements_x_distance) {
@@ -95,8 +94,7 @@ public class PageTable extends Predecessor {
         ArrayList<JComponent> tmp = tableElements;
         tableElements = new ArrayList<JComponent>();
 
-        for(JComponent component : tmp)
-        {
+        for (JComponent component : tmp) {
             this.add(component);
         }
     }

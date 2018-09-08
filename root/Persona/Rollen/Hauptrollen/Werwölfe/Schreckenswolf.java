@@ -64,13 +64,19 @@ public class Schreckenswolf extends Hauptrolle {
     }
 
     @Override
-    public String getSecondTitle() { return secondTitle; }
+    public String getSecondTitle() {
+        return secondTitle;
+    }
 
     @Override
-    public String getSecondBeschreibung() { return secondBeschreibung; }
+    public String getSecondBeschreibung() {
+        return secondBeschreibung;
+    }
 
     @Override
-    public StatementType getSecondStatementType() { return secondStatementType; }
+    public StatementType getSecondStatementType() {
+        return secondStatementType;
+    }
 
     @Override
     public Fraktion getFraktion() {
@@ -110,8 +116,8 @@ public class Schreckenswolf extends Hauptrolle {
     private boolean didSomeoneHaveSchutz(ArrayList<Opfer> possibleOpfer) {
         boolean someoneHadSchutz = false;
 
-        for(Opfer opfer : possibleOpfer) {
-            if(opfer.opfer.geschützt || opfer.opfer.nebenrolle.equals(Wolfspelz.name)) {
+        for (Opfer opfer : possibleOpfer) {
+            if (opfer.opfer.geschützt || opfer.opfer.nebenrolle.equals(Wolfspelz.name)) {
                 someoneHadSchutz = true;
             }
         }

@@ -13,17 +13,29 @@ public class Persona {
         return "";
     }
 
-    public String getTitle() { return ""; }
+    public String getTitle() {
+        return "";
+    }
 
-    public String getBeschreibung() { return ""; }
+    public String getBeschreibung() {
+        return "";
+    }
 
-    public StatementType getStatementType() { return StatementType.EMPTY_STATEMENT; }
+    public StatementType getStatementType() {
+        return StatementType.EMPTY_STATEMENT;
+    }
 
-    public String getSecondTitle() { return ""; }
+    public String getSecondTitle() {
+        return "";
+    }
 
-    public String getSecondBeschreibung() { return ""; }
+    public String getSecondBeschreibung() {
+        return "";
+    }
 
-    public StatementType getSecondStatementType() { return StatementType.EMPTY_STATEMENT; }
+    public StatementType getSecondStatementType() {
+        return StatementType.EMPTY_STATEMENT;
+    }
 
     public void processChosenOption(String chosenOption) {
     }
@@ -32,13 +44,15 @@ public class Persona {
         return ImagePath.DEAKTIVIERT;
     }
 
-    public Color getFarbe() { return Color.WHITE; }
+    public Color getFarbe() {
+        return Color.WHITE;
+    }
 
     public boolean equals(Persona persona) {
-        return persona!=null && this.getName().equals(persona.getName());
+        return persona != null && this.getName().equals(persona.getName());
     }
 
     public boolean equals(String personaName) {
-        return personaName!=null && this.getName().equals(personaName);
+        return personaName != null && this.getName().equals(personaName);
     }
 }

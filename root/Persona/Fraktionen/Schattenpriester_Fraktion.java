@@ -16,8 +16,7 @@ import root.mechanics.Opfer;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class Schattenpriester_Fraktion extends Fraktion
-{
+public class Schattenpriester_Fraktion extends Fraktion {
     public static String title = "Opfer wiederbeleben";
     public static final String beschreibung = "Die Schattenpriester erwachen und entscheiden welchen Verstorbenen dieser Nacht sie wiederbeleben und zum Kult hinzufügen möchten";
     public static StatementType statementType = StatementType.FRAKTION_CHOOSE_ONE;
@@ -37,12 +36,12 @@ public class Schattenpriester_Fraktion extends Fraktion
     @Override
     public void processChosenOption(String chosenOption) {
         Spieler chosenOpfer = game.findSpieler(chosenOption);
-        if(chosenOpfer != null) {
+        if (chosenOpfer != null) {
             Opfer.removeVictim(chosenOpfer);
 
             if (!chosenOpfer.nebenrolle.getName().equals(Schattenkutte.name)) {
                 chosenOpfer.hauptrolle = new Schattenpriester();
-                ((Schattenpriester)chosenOpfer.hauptrolle).neuster = true;
+                ((Schattenpriester) chosenOpfer.hauptrolle).neuster = true;
             }
             chosenOpfer.nebenrolle = new Schatten();
         }
@@ -59,7 +58,7 @@ public class Schattenpriester_Fraktion extends Fraktion
             String fraktionOpfer = currentOpfer.opfer.hauptrolle.getFraktion().getName();
             if (currentOpfer.opfer.nebenrolle.getName().equals(Schattenkutte.name) ||
                     (currentOpfer.opfer.ressurectable && !fraktionOpfer.equals(Schattenpriester_Fraktion.name))) {
-                if(!frontendControl.strings.contains(currentOpfer.opfer.name)) {
+                if (!frontendControl.strings.contains(currentOpfer.opfer.name)) {
                     frontendControl.strings.add(currentOpfer.opfer.name);
                 }
             }
@@ -90,14 +89,22 @@ public class Schattenpriester_Fraktion extends Fraktion
         return statementType;
     }
 
-    public String getSecondTitle() { return secondTitle; }
+    public String getSecondTitle() {
+        return secondTitle;
+    }
 
-    public String getSecondBeschreibung() { return secondBeschreibung; }
+    public String getSecondBeschreibung() {
+        return secondBeschreibung;
+    }
 
-    public StatementType getSecondStatementType() { return secondStatementType; }
+    public StatementType getSecondStatementType() {
+        return secondStatementType;
+    }
 
     @Override
-    public Color getFarbe() { return farbe; }
+    public Color getFarbe() {
+        return farbe;
+    }
 
     @Override
     public String getImagePath() {

@@ -11,16 +11,15 @@ public class FileManager {
         File theDir = new File(ResourcePath.SAVE_FILE_PATH);
 
         if (!theDir.exists()) {
-            try{
+            try {
                 theDir.mkdir();
-            }
-            catch(SecurityException se){
+            } catch (SecurityException se) {
                 System.out.println("Programm does not have the permisson to create a Folder in Appdata.");
             }
         }
     }
 
-    public CompositionDto readComposition(String filePath){
+    public CompositionDto readComposition(String filePath) {
         try {
             File file = new File(filePath);
             BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8));
@@ -59,7 +58,7 @@ public class FileManager {
         return true;
     }
 
-    public GameDto readGame(String filePath){
+    public GameDto readGame(String filePath) {
         try {
             GameDto gameDto = new GameDto();
             File file = new File(filePath);
@@ -69,13 +68,13 @@ public class FileManager {
             line = br.readLine();
             int numberOfPlayers = Integer.parseInt(line);
 
-            for(int i=0; i<numberOfPlayers; i++) {
+            for (int i = 0; i < numberOfPlayers; i++) {
                 line = br.readLine();
                 String[] fractals = line.split(" ");
 
-                String name = fractals[0].replace("*"," ");
-                String hauptrolleString = fractals[1].replace("*"," ");
-                String nebenrolleString = fractals[2].replace("*"," ");
+                String name = fractals[0].replace("*", " ");
+                String hauptrolleString = fractals[1].replace("*", " ");
+                String nebenrolleString = fractals[2].replace("*", " ");
 
                 PlayerDto playerDto = new PlayerDto(name, hauptrolleString, nebenrolleString);
                 gameDto.players.add(playerDto);
@@ -101,7 +100,7 @@ public class FileManager {
 
             ArrayList<String> compositionStrings = new ArrayList<>();
 
-            for(Spieler currentSpieler : spieler) {
+            for (Spieler currentSpieler : spieler) {
                 compositionStrings.add(buildPlayerString(currentSpieler));
             }
 
@@ -120,17 +119,17 @@ public class FileManager {
     }
 
     public String buildPlayerString(Spieler spieler) {
-        String name = spieler.name.replace(" ","*");
-        String hauptrolle = spieler.hauptrolle.getName().replace(" ","*");
-        String nebenrolle = spieler.nebenrolle.getName().replace(" ","*");
+        String name = spieler.name.replace(" ", "*");
+        String hauptrolle = spieler.hauptrolle.getName().replace(" ", "*");
+        String nebenrolle = spieler.nebenrolle.getName().replace(" ", "*");
         return name + " " + hauptrolle + " " + nebenrolle;
     }
 
-    public void writeArrayList(Writer writer, ArrayList<String> arrayToWrite) throws IOException{
+    public void writeArrayList(Writer writer, ArrayList<String> arrayToWrite) throws IOException {
         int numberOfLines = arrayToWrite.size();
         writer.write(Integer.toString(numberOfLines));
         writer.write("\n");
-        for(String line : arrayToWrite) {
+        for (String line : arrayToWrite) {
             writer.write(line);
             writer.write("\n");
         }

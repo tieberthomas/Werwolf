@@ -7,11 +7,7 @@ import root.Persona.Rollen.Constants.NebenrollenType.Passiv;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
-/**
- * Created by Steve on 12.11.2017.
- */
-public class Lamm extends Nebenrolle
-{
+public class Lamm extends Nebenrolle {
     public static final String name = "Lamm";
     public static final String imagePath = ImagePath.LAMM_KARTE;
     public static boolean spammable = false;
@@ -21,7 +17,7 @@ public class Lamm extends Nebenrolle
         try {
             Spieler spieler = game.findSpielerPerRolle(name);
             spieler.nebenrolle = nebenrolle;
-        }catch (NullPointerException e) {
+        } catch (NullPointerException e) {
             System.out.println(name + " nicht gefunden");
         }
     }
@@ -31,14 +27,14 @@ public class Lamm extends Nebenrolle
             Spieler spieler = game.findSpielerPerRolle(name);
             Nebenrolle nebenrolle;
 
-            if(spieler.hauptrolle.getFraktion().getName().equals(Bürger.name)) {
+            if (spieler.hauptrolle.getFraktion().getName().equals(Bürger.name)) {
                 nebenrolle = new ReineSeele();
             } else {
                 nebenrolle = spieler.nebenrolle;
             }
 
             return nebenrolle;
-        }catch (NullPointerException e) {
+        } catch (NullPointerException e) {
             System.out.println(name + " nicht gefunden");
         }
 
@@ -61,5 +57,7 @@ public class Lamm extends Nebenrolle
     }
 
     @Override
-    public NebenrollenType getType() { return type; }
+    public NebenrollenType getType() {
+        return type;
+    }
 }

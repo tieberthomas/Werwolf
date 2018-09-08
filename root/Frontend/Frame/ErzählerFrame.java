@@ -1,5 +1,6 @@
 package root.Frontend.Frame;
 
+import root.Frontend.Constants.Timer;
 import root.Frontend.Factories.ErzählerPageFactory;
 import root.Frontend.FrontendControl;
 import root.Frontend.Page.Page;
@@ -14,7 +15,6 @@ import root.ResourceManagement.DataManager;
 import root.Spieler;
 import root.mechanics.Game;
 import root.mechanics.Torte;
-import root.Frontend.Constants.Timer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -142,7 +142,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         playerSpecifiyPage = generateSpecifyPlayerPage();
     }
 
-    public void refreshPlayerPage(){
+    public void refreshPlayerPage() {
         refreshPlayerTable();
         refreshDeletePlayerTable();
         refreshNumberOfPlayersLabel();
@@ -153,23 +153,23 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     public void refreshPlayerTable() {
         playerTable.tableElements.clear();
 
-        for(Spieler spieler : game.spieler) {
+        for (Spieler spieler : game.spieler) {
             playerTable.add(new JLabel(spieler.name));
         }
     }
 
-    public void refreshDeletePlayerTable(){
+    public void refreshDeletePlayerTable() {
         deletePlayerTable.tableElements.clear();
         deletePlayerButtons.clear();
 
-        for(Spieler spieler : game.spieler) {
+        for (Spieler spieler : game.spieler) {
             JButton deleteButton = pageFactory.pageElementFactory.generateDeleteButton();
             deletePlayerTable.add(deleteButton);
             deletePlayerButtons.add(deleteButton);
         }
     }
 
-    public void refreshMainRolePage(){
+    public void refreshMainRolePage() {
         refreshMainRoleTable();
         refreshDeleteMainRoleTable();
         refreshMainRoleCounterLabel();
@@ -177,11 +177,11 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         buildScreenFromPage(mainRoleSetupPage);
     }
 
-    public void refreshDeleteMainRoleTable(){
+    public void refreshDeleteMainRoleTable() {
         deleteMainRoleTable.tableElements.clear();
         deleteMainRoleButtons.clear();
 
-        for(Hauptrolle hauptrolle : game.mainRolesInGame) {
+        for (Hauptrolle hauptrolle : game.mainRolesInGame) {
             JButton deleteButton = pageFactory.pageElementFactory.generateDeleteButton();
             deleteMainRoleTable.add(deleteButton);
             deleteMainRoleButtons.add(deleteButton);
@@ -191,22 +191,22 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     public void refreshMainRoleTable() {
         mainRoleLabelTable.tableElements.clear();
 
-        for(Hauptrolle hauptrolle: game.mainRolesInGame) {
+        for (Hauptrolle hauptrolle : game.mainRolesInGame) {
             mainRoleLabelTable.add(new JLabel(hauptrolle.getName()));
         }
     }
 
     public void disableMainRoleButtons() {
-        for(JButton button : mainRoleButtons) {
+        for (JButton button : mainRoleButtons) {
             button.setEnabled(true);
             button.setBackground(game.findHauptrolle(button.getText()).getFraktion().getFarbe());
         }
 
-        for(Hauptrolle hauptrolle : game.mainRolesInGame) {
-            for(JButton button : mainRoleButtons) {
+        for (Hauptrolle hauptrolle : game.mainRolesInGame) {
+            for (JButton button : mainRoleButtons) {
                 int occurrences = game.numberOfOccurencesOfMainRoleInGame(hauptrolle);
-                if(button.getText().equals(hauptrolle.getName()) && hauptrolle.getNumberOfPossibleInstances()<=occurrences){
-                    if(button.isEnabled()) {
+                if (button.getText().equals(hauptrolle.getName()) && hauptrolle.getNumberOfPossibleInstances() <= occurrences) {
+                    if (button.isEnabled()) {
                         disableButton(button);
                     }
                 }
@@ -215,16 +215,16 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     }
 
     public void disableSecondaryRoleButtons() {
-        for(JButton button : secondaryRoleButtons) {
+        for (JButton button : secondaryRoleButtons) {
             button.setEnabled(true);
             button.setBackground(Nebenrolle.defaultFarbe);
         }
 
-        for(Nebenrolle nebenrolle: game.secondaryRolesInGame) {
-            for(JButton button : secondaryRoleButtons) {
+        for (Nebenrolle nebenrolle : game.secondaryRolesInGame) {
+            for (JButton button : secondaryRoleButtons) {
                 int occurrences = game.numberOfOccurencesOfSecondaryRoleInGame(nebenrolle);
-                if(button.getText().equals(nebenrolle.getName()) && nebenrolle.getNumberOfPossibleInstances()<=occurrences){
-                    if(button.isEnabled()) {
+                if (button.getText().equals(nebenrolle.getName()) && nebenrolle.getNumberOfPossibleInstances() <= occurrences) {
+                    if (button.isEnabled()) {
                         disableButton(button);
                     }
                 }
@@ -236,20 +236,20 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         button.setEnabled(false);
         Color oldColor = button.getBackground();
         int offset = 128;
-        int newRed = oldColor.getRed()+offset;
-        int newBlue = oldColor.getBlue()+offset;
-        int newGreen = oldColor.getGreen()+offset;
-        if(newRed>255)
-            newRed=255;
-        if(newBlue>255)
-            newBlue=255;
-        if(newGreen>255)
-            newGreen=255;
+        int newRed = oldColor.getRed() + offset;
+        int newBlue = oldColor.getBlue() + offset;
+        int newGreen = oldColor.getGreen() + offset;
+        if (newRed > 255)
+            newRed = 255;
+        if (newBlue > 255)
+            newBlue = 255;
+        if (newGreen > 255)
+            newGreen = 255;
         Color newColor = new Color(newRed, newGreen, newBlue);
         button.setBackground(newColor);
     }
 
-    public void refreshSecondaryRolePage(){
+    public void refreshSecondaryRolePage() {
         refreshSecondaryRoleTable();
         refreshDeleteSecondaryRoleTable();
         refreshSecondaryRoleCounterLabel();
@@ -260,16 +260,16 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     public void refreshSecondaryRoleTable() {
         secondaryRoleLabelTable.tableElements.clear();
 
-        for(Nebenrolle nebenrolle: game.secondaryRolesInGame) {
+        for (Nebenrolle nebenrolle : game.secondaryRolesInGame) {
             secondaryRoleLabelTable.add(new JLabel(nebenrolle.getName()));
         }
     }
 
-    public void refreshDeleteSecondaryRoleTable(){
+    public void refreshDeleteSecondaryRoleTable() {
         deleteSecondaryRoleTable.tableElements.clear();
         deleteSecondaryRoleButtons.clear();
 
-        for(Nebenrolle nebenrolle : game.secondaryRolesInGame) {
+        for (Nebenrolle nebenrolle : game.secondaryRolesInGame) {
             JButton deleteButton = pageFactory.pageElementFactory.generateDeleteButton();
             deleteSecondaryRoleTable.add(deleteButton);
             deleteSecondaryRoleButtons.add(deleteButton);
@@ -288,7 +288,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         secondaryRoleCounterJLabel.setText(pageFactory.pageElementFactory.generateCounterLabelTitle(game.spieler.size(), game.secondaryRolesInGame.size()));
     }
 
-    public void refreshSpecifyPlayerPage(){
+    public void refreshSpecifyPlayerPage() {
         refreshSpecifyComboBoxes();
         refreshSecifyPlayerTable();
         refreshSecifyMainRoleTable();
@@ -309,7 +309,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     public void refreshSecifyPlayerTable() {
         playerSpecifyTable.tableElements.clear();
 
-        for(Spieler spieler : game.playersSpecified) {
+        for (Spieler spieler : game.playersSpecified) {
             playerSpecifyTable.add(new JLabel(spieler.name));
         }
     }
@@ -317,8 +317,8 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     public void refreshSecifyMainRoleTable() {
         mainRoleSpecifyTable.tableElements.clear();
 
-        for(String mainRoleName : game.getMainRolesSpecifiedStrings()) {
-            if(mainRoleName == "" || mainRoleName == null) {
+        for (String mainRoleName : game.getMainRolesSpecifiedStrings()) {
+            if (mainRoleName == "" || mainRoleName == null) {
                 mainRoleName = Hauptrolle.defaultHauptrolle.getName();
             }
             mainRoleSpecifyTable.add(new JLabel(mainRoleName));
@@ -328,8 +328,8 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     public void refreshSecifySecondaryRoleTable() {
         secondaryRoleSpecifyTable.tableElements.clear();
 
-        for(String secondaryRoleName : game.getSecondaryRoleSpecifiedStrings()) {
-            if(secondaryRoleName == "" || secondaryRoleName == null) {
+        for (String secondaryRoleName : game.getSecondaryRoleSpecifiedStrings()) {
+            if (secondaryRoleName == "" || secondaryRoleName == null) {
                 secondaryRoleName = Nebenrolle.defaultNebenrolle.getName();
             }
             secondaryRoleSpecifyTable.add(new JLabel(secondaryRoleName));
@@ -340,7 +340,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         deleteSpecifyPlayerTable.tableElements.clear();
         deleteSpecifyPlayerButtons.clear();
 
-        for(Spieler spieler : game.playersSpecified) {
+        for (Spieler spieler : game.playersSpecified) {
             JButton deleteButton = pageFactory.pageElementFactory.generateDeleteButton();
             deleteSpecifyPlayerTable.add(deleteButton);
             deleteSpecifyPlayerButtons.add(deleteButton);
@@ -348,7 +348,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     }
 
     public void removeSpecifiedPlayer(int index) {
-        if(deleteSpecifyPlayerButtons.size()>index) {
+        if (deleteSpecifyPlayerButtons.size() > index) {
             deleteSpecifyPlayerButtons.remove(index);
         }
 
@@ -366,7 +366,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     public void refreshTortenPlayerTable() {
         playerTable.tableElements.clear();
 
-        for(Spieler spieler : Torte.tortenEsser) {
+        for (Spieler spieler : Torte.tortenEsser) {
             playerTable.add(new JLabel(spieler.name));
         }
     }
@@ -375,7 +375,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         deletePlayerTable.tableElements.clear();
         deleteTortenPlayerButtons.clear();
 
-        for(Spieler spieler : Torte.tortenEsser) {
+        for (Spieler spieler : Torte.tortenEsser) {
             JButton deleteButton = pageFactory.pageElementFactory.generateDeleteButton();
             deletePlayerTable.add(deleteButton);
             deleteTortenPlayerButtons.add(deleteButton);
@@ -385,7 +385,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     public void refreshTortenComboBoxes() {
         ArrayList<String> nichtTortenEsser = game.getLivingPlayerStrings();
         ArrayList<String> tortenEsser = new ArrayList<String>();
-        for(Spieler spieler : Torte.tortenEsser) {
+        for (Spieler spieler : Torte.tortenEsser) {
             tortenEsser.add(spieler.name);
         }
         nichtTortenEsser.removeAll(tortenEsser);
@@ -394,15 +394,15 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     }
 
     public void nextPage() {
-        if(currentPage!=null) {
-            if(currentPage!=playerSpecifiyPage && setupPages.contains(currentPage)) {
+        if (currentPage != null) {
+            if (currentPage != playerSpecifiyPage && setupPages.contains(currentPage)) {
                 int index = setupPages.indexOf(currentPage);
                 generateAllPages();
                 currentPage = setupPages.get(index + 1);
             }
             buildScreenFromPage(currentPage);
             refreshPage(currentPage);
-            if(mode == ErzählerFrameMode.setup) {
+            if (mode == ErzählerFrameMode.setup) {
                 spielerFrame.refreshSetupPage();
             }
         }
@@ -411,19 +411,19 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     public void prevPage() {
         int index = setupPages.indexOf(currentPage);
         generateAllPages();
-        currentPage = setupPages.get(index-1);
+        currentPage = setupPages.get(index - 1);
         buildScreenFromPage(currentPage);
         refreshPage(currentPage);
-        if(mode == ErzählerFrameMode.setup) {
+        if (mode == ErzählerFrameMode.setup) {
             spielerFrame.refreshSetupPage();
         }
-        if(currentPage.equals(startPage)){
+        if (currentPage.equals(startPage)) {
             spielerFrame.dispatchEvent(new WindowEvent(spielerFrame, WindowEvent.WINDOW_CLOSING));
         }
     }
 
-    public void refreshPage(Page page){
-        if(page == playerSetupPage)
+    public void refreshPage(Page page) {
+        if (page == playerSetupPage)
             refreshPlayerPage();
         else if (page == mainRoleSetupPage)
             refreshMainRolePage();
@@ -433,43 +433,43 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
             refreshSpecifyPlayerPage();
     }
 
-    public void actionPerformed (ActionEvent ae) {
-        if(startSetupButtons.contains(ae.getSource())) {
+    public void actionPerformed(ActionEvent ae) {
+        if (startSetupButtons.contains(ae.getSource())) {
             game = new Game();
             dataManager = new DataManager(game);
             this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
             spielerFrame = new SpielerFrame(this, game);
 
-            if(ae.getSource() == loadLastCompositionJButton) {
+            if (ae.getSource() == loadLastCompositionJButton) {
                 dataManager.loadLastComposition();
-            } else if(ae.getSource() == loadLastGameJButton) {
+            } else if (ae.getSource() == loadLastGameJButton) {
                 dataManager.loadLastGame();
-                game.playersSpecified = (ArrayList)game.spieler.clone();
+                game.playersSpecified = (ArrayList) game.spieler.clone();
             }
 
             nextPage();
-        } else if(goNextButtons.contains(ae.getSource())){
-            if(ae.getSource() == secondaryRoleGoNextJButton) {
+        } else if (goNextButtons.contains(ae.getSource())) {
+            if (ae.getSource() == secondaryRoleGoNextJButton) {
                 dataManager.writeComposition();
             }
 
-            if(ae.getSource() == playerSpecifyGoNextJButton) {
-                if(allPlayersSpecified()) {
+            if (ae.getSource() == playerSpecifyGoNextJButton) {
+                if (allPlayersSpecified()) {
                     game.firstnight(this);
                     dataManager.writeGame();
                 } else {
                     specifyPlayer();
                 }
-            } else if(ae.getSource() == secondaryRoleGoNextJButton) {
+            } else if (ae.getSource() == secondaryRoleGoNextJButton) {
                 playerSpecifiyPage = generateSpecifyPlayerPage();
             }
 
             nextPage();
-        } else if(goBackButtons.contains(ae.getSource())){
-            if(gameIsInDaySetupMode()){
+        } else if (goBackButtons.contains(ae.getSource())) {
+            if (gameIsInDaySetupMode()) {
                 mode = game.parsePhaseMode();
                 showDayPage();
-            }else {
+            } else {
                 prevPage();
             }
         } else if (ae.getSource() == addPlayerButton || ae.getSource() == addPlayerTxtField && mode == ErzählerFrameMode.setup) {
@@ -478,7 +478,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
             }
         } else if (ae.getSource() == addPlayerTortenButton) {
             addTortenEsser();
-        }else if (deleteTortenPlayerButtons.contains(ae.getSource())) {
+        } else if (deleteTortenPlayerButtons.contains(ae.getSource())) {
             deleteTortenesser(ae);
         } else if (deletePlayerButtons.contains(ae.getSource())) {
             deletePlayer(ae);
@@ -490,7 +490,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
             addMainRole(ae);
         } else if (deleteMainRoleButtons.contains(ae.getSource())) {
             deleteMainRole(ae);
-        }  else if (addAllSecondaryRolesJButton == ae.getSource()) {
+        } else if (addAllSecondaryRolesJButton == ae.getSource()) {
             game.addAllSecondaryRoles();
             refreshSecondaryRolePage();
             spielerFrame.refreshSecondaryRoleSetupPage();
@@ -502,18 +502,18 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
             deleteSpecifiedPlayer(ae);
         } else if (ae.getSource() == nextJButton) {
             try {
-                if(comboBox1 != null) {
+                if (comboBox1 != null) {
                     chosenOption1 = (String) comboBox1.getSelectedItem();
                 }
 
-                if(comboBox2 != null) {
+                if (comboBox2 != null) {
                     chosenOption2 = (String) comboBox2.getSelectedItem();
                 }
 
-                if(comboBox3 != null) {
+                if (comboBox3 != null) {
                     chosenOption3 = (String) comboBox3.getSelectedItem();
                 }
-            }catch (NullPointerException e) {
+            } catch (NullPointerException e) {
                 System.out.println("some comboboxes (1,2,3) might not be initialized.");
             }
 
@@ -522,9 +522,9 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
 
             continueThreads();
 
-            try{
-                if(übersichtsFrame != null) {
-                    if(mode == ErzählerFrameMode.ersteNacht) {
+            try {
+                if (übersichtsFrame != null) {
+                    if (mode == ErzählerFrameMode.ersteNacht) {
                         übersichtsFrame.übersichtsPage = übersichtsFrame.pageFactory.generateÜbersichtsPage();
                     }
                     übersichtsFrame.refreshÜbersichtsPage();
@@ -533,10 +533,10 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                 System.out.println("Übersichtsframe seems to be not there. (yet?)");
             }
 
-        } else if (ae.getSource() == comboBox1 && ((JComboBox)ae.getSource()).hasFocus()) {
+        } else if (ae.getSource() == comboBox1 && ((JComboBox) ae.getSource()).hasFocus()) {
             try {
-                if(spielerFrame.mode == SpielerFrameMode.dropDownText) {
-                    if(spielerFrame.comboBox1Label != null && comboBox1 != null) {
+                if (spielerFrame.mode == SpielerFrameMode.dropDownText) {
+                    if (spielerFrame.comboBox1Label != null && comboBox1 != null) {
                         spielerFrame.comboBox1Label.setText(comboBox1.getSelectedItem().toString());
                     }
                 } else if (spielerFrame.mode == SpielerFrameMode.dropDownImage) {
@@ -554,20 +554,20 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
             } catch (NullPointerException e) {
                 System.out.println("Combobox1 might not be initialized.");
             }
-        }else if (ae.getSource() == comboBox2 && ((JComboBox)ae.getSource()).hasFocus()) {
+        } else if (ae.getSource() == comboBox2 && ((JComboBox) ae.getSource()).hasFocus()) {
             try {
-                if(spielerFrame.mode == SpielerFrameMode.dropDownText) {
-                    if(spielerFrame.comboBox2Label != null && comboBox2 != null) {
+                if (spielerFrame.mode == SpielerFrameMode.dropDownText) {
+                    if (spielerFrame.comboBox2Label != null && comboBox2 != null) {
                         spielerFrame.comboBox2Label.setText(comboBox2.getSelectedItem().toString());
                     }
                 }
             } catch (NullPointerException e) {
                 System.out.println("Combobox2 might not be initialized.");
             }
-        }else if (ae.getSource() == comboBox3 && ((JComboBox)ae.getSource()).hasFocus()) {
+        } else if (ae.getSource() == comboBox3 && ((JComboBox) ae.getSource()).hasFocus()) {
             try {
-                if(spielerFrame.mode == SpielerFrameMode.dropDownText) {
-                    if(spielerFrame.comboBox3Label != null && comboBox3 != null) {
+                if (spielerFrame.mode == SpielerFrameMode.dropDownText) {
+                    if (spielerFrame.comboBox3Label != null && comboBox3 != null) {
                         spielerFrame.comboBox3Label.setText(comboBox3.getSelectedItem().toString());
                     }
                 }
@@ -575,17 +575,17 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                 System.out.println("Combobox3 might not be initialized.");
             }
         } else if (ae.getSource() == nachzüglerJButton || ae.getSource() == addPlayerTxtField && mode == ErzählerFrameMode.nachzüglerSetup) {
-            if(mode == ErzählerFrameMode.nachzüglerSetup) {
+            if (mode == ErzählerFrameMode.nachzüglerSetup) {
                 if (!addPlayerTxtField.getText().equals("") && !game.spielerExists(addPlayerTxtField.getText())) {
                     try {
-                        if(comboBox1 != null) {
+                        if (comboBox1 != null) {
                             chosenOption1 = (String) comboBox1.getSelectedItem();
                         }
 
-                        if(comboBox2 != null) {
+                        if (comboBox2 != null) {
                             chosenOption2 = (String) comboBox2.getSelectedItem();
                         }
-                    }catch (NullPointerException e) {
+                    } catch (NullPointerException e) {
                         System.out.println("some comboboxes (1,2) might not be initialized.");
                     }
 
@@ -603,7 +603,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                     mode = game.parsePhaseMode();
                     showDayPage();
 
-                    if(übersichtsFrame != null) {
+                    if (übersichtsFrame != null) {
                         übersichtsFrame.refreshÜbersichtsPage();
                     }
                 }
@@ -614,17 +614,17 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                 buildScreenFromPage(pageFactory.generateNachzüglerPage(game.getStillAvailableMainRoleNames(), game.getStillAvailableSecondaryRoleNames()));
             }
         } else if (ae.getSource() == umbringenJButton) {
-            if(mode == ErzählerFrameMode.umbringenSetup) {
+            if (mode == ErzählerFrameMode.umbringenSetup) {
                 try {
-                    if(comboBox1 != null) {
+                    if (comboBox1 != null) {
                         chosenOption1 = (String) comboBox1.getSelectedItem();
                     }
-                }catch (NullPointerException e) {
+                } catch (NullPointerException e) {
                     System.out.println("combobox1 might not be initialized.");
                 }
                 Spieler spieler = game.findSpieler(chosenOption1);
 
-                if(spieler!=null) {
+                if (spieler != null) {
                     Tag.umbringenSpieler = spieler;
                     Tag.umbringenButton = true;
                 } else {
@@ -633,11 +633,11 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
 
                 mode = game.parsePhaseMode();
 
-                if(übersichtsFrame != null) {
+                if (übersichtsFrame != null) {
                     übersichtsFrame.refreshÜbersichtsPage();
                 }
 
-                if(spieler!=null) {
+                if (spieler != null) {
                     continueThreads();
                 }
             } else {
@@ -647,16 +647,16 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                 buildScreenFromPage(pageFactory.generateUmbringenPage(game.getLivingPlayerStrings()));
             }
         } else if (ae.getSource() == priesterJButton) {
-            if(mode == ErzählerFrameMode.priesterSetup) {
+            if (mode == ErzählerFrameMode.priesterSetup) {
                 try {
-                    if(comboBox1 != null) {
+                    if (comboBox1 != null) {
                         chosenOption1 = (String) comboBox1.getSelectedItem();
                     }
 
-                    if(comboBox2 != null){
+                    if (comboBox2 != null) {
                         chosenOption2 = (String) comboBox2.getSelectedItem();
                     }
-                }catch (NullPointerException e) {
+                } catch (NullPointerException e) {
                     System.out.println("comboboxes(1,2) might not be initialized.");
                 }
                 String priester = chosenOption1;
@@ -671,17 +671,17 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                 spielerFrame.mode = SpielerFrameMode.blank;
                 buildScreenFromPage(pageFactory.generatePriesterPage(game.getLivingPlayerStrings()));
             }
-        }else if (ae.getSource() == richterinJButton) {
-            if(mode == ErzählerFrameMode.richterinSetup) {
+        } else if (ae.getSource() == richterinJButton) {
+            if (mode == ErzählerFrameMode.richterinSetup) {
                 try {
-                    if(comboBox1 != null) {
+                    if (comboBox1 != null) {
                         chosenOption1 = (String) comboBox1.getSelectedItem();
                     }
 
-                    if(comboBox2 != null){
+                    if (comboBox2 != null) {
                         chosenOption2 = (String) comboBox2.getSelectedItem();
                     }
-                }catch (NullPointerException e) {
+                } catch (NullPointerException e) {
                     System.out.println("comboboxes(1,2) might not be initialized.");
                 }
 
@@ -697,7 +697,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                 spielerFrame.mode = SpielerFrameMode.blank;
                 buildScreenFromPage(pageFactory.generateRichterinPage(game.getLivingPlayerStrings()));
             }
-        } else if(ae.getSource() == respawnFramesJButton) {
+        } else if (ae.getSource() == respawnFramesJButton) {
             respawnFrames();
         }
     }
@@ -720,7 +720,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
 
                 ArrayList<String> secondaryRolesSpecified = game.getMainRolesSpecifiedStrings();
 
-                if(secondaryRolesSpecified.contains(secondaryRoleName)) {
+                if (secondaryRolesSpecified.contains(secondaryRoleName)) {
                     int index = secondaryRolesSpecified.indexOf(secondaryRoleName);
                     removeSpecifiedPlayer(index);
                 }
@@ -754,7 +754,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
 
                 ArrayList<String> mainRolesSpecified = game.getMainRolesSpecifiedStrings();
 
-                if(mainRolesSpecified.contains(mainRoleName)) {
+                if (mainRolesSpecified.contains(mainRoleName)) {
                     int index = mainRolesSpecified.indexOf(mainRoleName);
                     removeSpecifiedPlayer(index);
                 }
@@ -786,7 +786,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                 deletePlayerButtons.remove(i);
                 String spielerName = game.spieler.get(i).name;
 
-                if(game.playersSpecified.contains(spielerName)) {
+                if (game.playersSpecified.contains(spielerName)) {
                     int index = game.playersSpecified.indexOf(spielerName);
                     removeSpecifiedPlayer(index);
                 }
@@ -819,7 +819,8 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
             Spieler spieler = game.findSpieler(spielerName);
             Torte.tortenEsser.add(spieler);
             refreshTortenPage();
-        } catch(NullPointerException e) {}
+        } catch (NullPointerException e) {
+        }
     }
 
     private void addNewPlayer() {
@@ -834,7 +835,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
 
     private boolean gameIsInDaySetupMode() {
         return mode == ErzählerFrameMode.nachzüglerSetup || mode == ErzählerFrameMode.umbringenSetup ||
-                mode == ErzählerFrameMode.priesterSetup ||mode == ErzählerFrameMode.richterinSetup;
+                mode == ErzählerFrameMode.priesterSetup || mode == ErzählerFrameMode.richterinSetup;
     }
 
     private boolean allPlayersSpecified() {
@@ -849,13 +850,13 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
 
             String hauptrolle = (String) comboBox2.getSelectedItem();
             spieler.hauptrolle = game.findHauptrolle(hauptrolle);
-            if(spieler.hauptrolle == null) {
+            if (spieler.hauptrolle == null) {
                 spieler.hauptrolle = Hauptrolle.defaultHauptrolle;
             }
 
             String nebenrolle = (String) comboBox3.getSelectedItem();
             spieler.nebenrolle = game.findNebenrolle(nebenrolle);
-            if(spieler.nebenrolle == null) {
+            if (spieler.nebenrolle == null) {
                 spieler.nebenrolle = Nebenrolle.defaultNebenrolle;
             }
 
@@ -865,7 +866,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         }
     }
 
-    public void respawnFrames(){
+    public void respawnFrames() {
         spielerFrame.dispatchEvent(new WindowEvent(spielerFrame, WindowEvent.WINDOW_CLOSING));
         übersichtsFrame.dispatchEvent(new WindowEvent(übersichtsFrame, WindowEvent.WINDOW_CLOSING));
 
@@ -878,14 +879,14 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         übersichtsFrame = new ÜbersichtsFrame(this, game);
 
         FrontendControl.spielerFrame = spielerFrame;
-        if(game.phaseMode == PhaseMode.tag || game.phaseMode == PhaseMode.freibierTag) {
+        if (game.phaseMode == PhaseMode.tag || game.phaseMode == PhaseMode.freibierTag) {
             spielerFrame.generateDayPage();
         } else if (game.phaseMode == PhaseMode.nacht || game.phaseMode == PhaseMode.ersteNacht) {
             spielerFrame.buildScreenFromPage(savePage);
         }
     }
 
-    public void continueThreads(){
+    public void continueThreads() {
         try {
             if (mode == ErzählerFrameMode.ersteNacht) {
                 synchronized (ErsteNacht.lock) {
