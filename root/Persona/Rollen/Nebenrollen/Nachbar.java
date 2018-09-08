@@ -13,19 +13,15 @@ import root.Spieler;
 import java.util.ArrayList;
 
 public class Nachbar extends Nebenrolle {
-    public static String title = "Spieler beobachten";
-    public static final String beschreibung = "Nachbar erwacht und entscheidet welchen Spieler er beobachten möchte";
-    public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE;
+    public static String title = "Spieler wählen";
+    public static final String beschreibung = "Nachbar erwacht, wählt einen Spieler und erfährt wer diesen Spieler besucht hat";
+    public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE_INFO;
 
-    public static String secondTitle = "Besucher von ";
-    public static final String NACHBAR_INFORMATION = "Nachbar erwacht und erfährt wer die Besucher seines gewählten Spielers waren";
-    public static final String secondBeschreibung = NACHBAR_INFORMATION;
-    public static StatementType secondStatementType = StatementType.ROLLE_INFO;
+    public static final String infoTitle = "Besucher von ";
 
     public static final String name = "Nachbar";
     public static final String imagePath = ImagePath.NACHBAR_KARTE;
     public static boolean spammable = true;
-    public Spieler beobachteterSpieler = null;
     public NebenrollenType type = new Informativ();
 
     @Override
@@ -34,24 +30,24 @@ public class Nachbar extends Nebenrolle {
     }
 
     @Override
-    public void processChosenOption(String chosenOption) {
+    public FrontendControl processChosenOptionGetInfo(String chosenOption) {
         Spieler chosenPlayer = game.findSpieler(chosenOption);
-        besucht = chosenPlayer;
-        beobachteterSpieler = chosenPlayer;
-    }
 
-    @Override
-    public FrontendControl getInfo() {
-        if(showTarnumhang(this, beobachteterSpieler)) {
-            return new FrontendControl(new Tarnumhang_NebenrollenType());
+        if (chosenPlayer != null) {
+            besucht = chosenPlayer;
+
+            if(showTarnumhang(this, chosenPlayer)) {
+                return new FrontendControl(new Tarnumhang_NebenrollenType());
+            }
+
+            Spieler nachbarSpieler = game.findSpielerPerRolle(Nachbar.name);
+            FrontendControl info = new FrontendControl(FrontendControlType.LIST, getBesucherStrings(chosenPlayer, nachbarSpieler));
+            info.title = infoTitle + chosenPlayer.name;
+
+            return info;
         }
 
-        Spieler nachbarSpieler = game.findSpielerPerRolle(Nachbar.name);
-        FrontendControl info = new FrontendControl(FrontendControlType.LIST, getBesucherStrings(beobachteterSpieler, nachbarSpieler));
-        if (beobachteterSpieler != null) {
-            info.title = secondTitle + beobachteterSpieler.name;
-        }
-        return info;
+        return new FrontendControl();
     }
 
     @Override
@@ -73,15 +69,6 @@ public class Nachbar extends Nebenrolle {
     public StatementType getStatementType() {
         return statementType;
     }
-
-    @Override
-    public String getSecondTitle() { return secondTitle; }
-
-    @Override
-    public String getSecondBeschreibung() { return secondBeschreibung; }
-
-    @Override
-    public StatementType getSecondStatementType() { return secondStatementType; }
 
     @Override
     public String getImagePath() {
