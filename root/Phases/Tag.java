@@ -1,7 +1,7 @@
 package root.Phases;
 
+import root.Frontend.Constants.Timer;
 import root.Frontend.Frame.ErzählerFrameMode;
-import root.Frontend.Frame.SpielerFrame;
 import root.Frontend.FrontendControl;
 import root.Persona.Fraktionen.Bürger;
 import root.Persona.Hauptrolle;
@@ -44,7 +44,7 @@ public class Tag extends Thread {
     public void day() {
         lock = new Object();
         synchronized (lock) {
-            SpielerFrame.time = 0;
+            Timer.time = 0;
 
             FrontendControl.erzählerDefaultDayPage();
             FrontendControl.spielerDayPage();

@@ -14,6 +14,7 @@ import root.ResourceManagement.DataManager;
 import root.Spieler;
 import root.mechanics.Game;
 import root.mechanics.Torte;
+import root.Frontend.Constants.Timer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,6 +25,7 @@ import java.util.ArrayList;
 
 public class ErzählerFrame extends MyFrame implements ActionListener {
     public Game game;
+    public Timer timer;
 
     public SpielerFrame spielerFrame;
     public ÜbersichtsFrame übersichtsFrame;
@@ -120,6 +122,8 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         buildScreenFromPage(startPage);
 
         showFrame();
+
+        timer = new Timer();
     }
 
     public void generateAllPages() {

@@ -131,7 +131,6 @@ public class Game {
         erzählerFrame.toFront();
         FrontendControl.erzählerFrame = erzählerFrame;
         FrontendControl.spielerFrame = erzählerFrame.spielerFrame;
-        FrontendControl.spielerFrame.startTimeUpdateThread();
         FrontendControl.übersichtsFrame = erzählerFrame.übersichtsFrame;
         ErsteNacht ersteNacht = new ErsteNacht(this);
         ersteNacht.start();

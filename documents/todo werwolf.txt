@@ -12,6 +12,7 @@ schamanin
 wolfsmensch
 schnüffler
 tarnumhang
+alles was tötet + prostituierten interaktion
 
 bugs:
 
@@ -26,13 +27,12 @@ tauschkarten quasi aus secondaryRolesInGame removen (für nachzügler) aber nich
 bei übersichtspage rahmen von mehreren personen anzeigen (die nicht die ganze fraktion sind)
 showDeaktivPages und showTotPages schön zusammenfassen zu einer Methode die eine Zeigekarte kriegt
 reineseele übersichtspage etwas für markup überlegen
-markup für vampirumhang geschützen spieler bei lady aleera überlegen
+markup für vampirumhang geschützen spieler bei lady aleera überlegen (für erzähler)
 aufgebraucht page interaktiv gestalten
 reine seele augenkarten
 im Setup Dropdown alphabetisch sortieren
 fraktionsbamboozelstatements
 getInstance (findSpielerOrDead) in game
-uhr läuft nicht bei fenster neustart
 uhr für freibier tag implementieren (freibiertag spielerscreen überarbeiten)
 
 
@@ -54,3 +54,4 @@ beim neuen schattenpriester werden alle SP eingerahmt
 michael fragen:
 soll sammler tarnumhang bekommen
 werden nachbar und spurenleser von tarnumhang/schamanin bamboozeled?
+sollen die anderen spieler erfahren dass wahrsager falschgeraten hat?
