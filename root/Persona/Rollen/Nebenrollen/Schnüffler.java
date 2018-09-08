@@ -24,7 +24,7 @@ public class Schnüffler extends Nebenrolle {
     public NebenrollenType type = new Informativ();
     public static int MAX_ANZAHL_AN_INFORMATIONEN = 4;
 
-    public ArrayList<SchnüfflerInformation> informationen = new ArrayList<>(); //TODO wenn schüffler stirbt wieder neu anlegen
+    public ArrayList<SchnüfflerInformation> informationen = new ArrayList<>(); //TODO wenn dieb schnüffler nimmt dann neu anlegen
 
     @Override
     public FrontendControl getDropdownOptions() {

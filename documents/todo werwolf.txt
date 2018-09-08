@@ -1,18 +1,14 @@
 michael testen:
-setup testen
-sammler
-überläufer
-totengräber
 vladimir
-opfer anzeigen am ende der nacht
 spurenleser
 zeigekarten
 analytiker
-schamanin
+schamanin (schutz und informations interaktionen)
 wolfsmensch
 schnüffler
 tarnumhang
 alles was tötet + prostituierten interaktion
+wahrsager
 
 bugs:
 
@@ -40,6 +36,7 @@ bei jeder rolle als kommentar den kartentext dazuschreiben
 
 
 zuviel arbeit fürs erste:
+nach jeder nacht und tag persistierung
 nocheinmal spielen button auf endscreen
 in der nacht ein zurückbutton.
 	->dann soll erzählersrceen auch mit pfeiltasten navigierbar sein

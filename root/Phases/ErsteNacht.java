@@ -70,6 +70,7 @@ public class ErsteNacht extends Thread {
     public static final String SEHERIN_TITLE = "Spieler wählen";
 
     public static final String TARNUMHANG_TITLE = "Tarnumhang";
+    public static final String NEUE_KARTE_TITLE = "neue Karte";
 
     public static ArrayList<Statement> statements;
     public static Object lock;
@@ -106,7 +107,13 @@ public class ErsteNacht extends Thread {
                         Nebenrolle nebenrolle = ((Nebenrolle) rolle);
                         newNebenrolle = nebenrolle.getTauschErgebnis();
                         cardToDisplay = newNebenrolle.getImagePath();
-                        showCard(statement, statement.title, cardToDisplay); //TODO title
+                        String title;
+                        if(newNebenrolle.equals(nebenrolle)) {
+                            title = "";
+                        } else {
+                            title = NEUE_KARTE_TITLE;
+                        }
+                        showCard(statement, title, cardToDisplay);
                         if(Rolle.rolleLebend(rolle.getName())) {
                             nebenrolle.tauschen(newNebenrolle);
                         }
