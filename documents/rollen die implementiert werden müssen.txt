@@ -1,6 +1,3 @@
-wahrsager (nebenrolle) (informativ)
-    -ratet fraktion des dorfabstimmungsopfers. wenn richtig kriegt er gesagt wieviele in welcher fraktion noch übrig sind
-
 detektiv (nebenrolle) (informativ)
     -versucht die anzahl der bürger zu erraten, wenn richitg bekommt er eine bürgerrolle die im spiel ist verraten
 
