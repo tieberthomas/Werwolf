@@ -1,6 +1,5 @@
 ST:
 deaktiv nochmal anschauen
-neue Karte - Title
 booleans?
 deaktiviert und verbraucht - deaktiviert anzeigen
 ErsteNacht Statement Type
@@ -8,7 +7,6 @@ Totengräber/Sammler - Tarnumhang?
 Alphabet Umlaute?
 
 TH:
-"Created by"
 Englisch-Deutsch-Gemisch
 
 MT:

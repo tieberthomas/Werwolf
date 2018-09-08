@@ -55,23 +55,23 @@ public class ErsteNacht extends Thread {
 
     public static final String LIEBESPAAR_TITLE = "Liebespaar wählen";
     public static final String LIEBESPAAR_FINDEN_TITLE = "Liebespaar";
-    public static final String SEELENLICHT_TITLE = "neue Karte";
-    public static final String LAMM_TITLE = "neue Karte";
-    public static final String VAMPIRUMHANG_TITLE = "neue Karte";
-    public static final String WOLFSPELZ_TITLE = "neue Karte";
+    public static final String SEELENLICHT_TITLE = "Neue Karte";
+    public static final String LAMM_TITLE = "Neue Karte";
+    public static final String VAMPIRUMHANG_TITLE = "Neue Karte";
+    public static final String WOLFSPELZ_TITLE = "Neue Karte";
     public static final String IMITATOR_TITLE = "Imitieren";
     public static final String VAMPIRE_TITLE = "Vampire";
-    public static final String WOLFSMENSCH_TITLE = "nicht ausgeteilt";
+    public static final String WOLFSMENSCH_TITLE = "Nicht ausgeteilt";
     public static final String WERWÖLFE_TITLE = "Werwölfe";
     public static final String ALPHAWOLF_TITLE = "Werwölfe";
     public static final String ALPHAWOLF_FERTIG_TITLE = "Fertig";
     public static final String SCHATTENPRIESTER_TITLE = "Schattenpriester";
     public static final String BRÜDER_TITLE = "Brüder";
-    public static final String BRÜDER_SECOND_TITLE = "neue Hauptrolle";
+    public static final String BRÜDER_SECOND_TITLE = "Neue Hauptrolle";
     public static final String SEHERIN_TITLE = "Spieler wählen";
 
     public static final String TARNUMHANG_TITLE = "Tarnumhang";
-    public static final String NEUE_KARTE_TITLE = "neue Karte";
+    public static final String NEUE_KARTE_TITLE = "Neue Karte";
 
     public static ArrayList<Statement> statements;
     public static Object lock;
