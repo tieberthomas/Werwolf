@@ -260,10 +260,6 @@ public class Nacht extends Thread {
 
                             for (Opfer currentOpfer : Opfer.deadVictims) {
                                 if (!opferDerNacht.contains(currentOpfer.opfer.name)) {
-                                    if (currentOpfer.opfer.nebenrolle.getName().equals(Wahrsager.name)) {
-                                        //Wahrsager.isGuessing = false;
-                                        //TODO reward zurücksetzen
-                                    }
                                     opferDerNacht.add(currentOpfer.opfer.name);
                                 }
                             }
