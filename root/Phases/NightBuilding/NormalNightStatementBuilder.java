@@ -83,9 +83,6 @@ public class NormalNightStatementBuilder {
         addStatementRolle(statements, Nachbar.name);
         addStatementRolle(statements, Spurenleser.name);
 
-        //zu einzelnen statements mergen
-        addSecondStatementRolle(statements, Spurenleser.name);
-
         if (!game.zweiteNacht) {
             addStatementRolle(statements, Wahrsager.name);
         }

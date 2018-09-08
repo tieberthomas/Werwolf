@@ -14,43 +14,39 @@ import java.util.ArrayList;
 
 public class Spurenleser extends Nebenrolle {
     public static String title = "Spuren lesen von";
-    public static final String beschreibung = "Spurenleser erwacht und entscheidet welchen Spieler er beobachten möchte";
-    public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE;
+    public static final String beschreibung = "Spurenleser erwacht, wählt einen Mitspieler und erfährt wen dieser Spieler besucht hat";
+    public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE_INFO;
 
-    public static String secondTitle = "Besuchte Spieler von ";
-    public static final String SPURENLESER_INFORMATION = "Spurenleser erwacht und erfährt wen der gewählte Spieler besucht hat";
-    public static final String secondBeschreibung = SPURENLESER_INFORMATION;
-    public static StatementType secondStatementType = StatementType.ROLLE_INFO;
+    public static final String infoTitle = "Besuchte Spieler von ";
 
     public static final String name = "Spurenleser";
     public static final String imagePath = ImagePath.SPURENLESER_KARTE;
     public static boolean spammable = true;
-    private Spieler beobachteterSpieler = null;
     public NebenrollenType type = new Informativ();
 
     @Override
     public FrontendControl getDropdownOptions() {
-        return game.getPlayerCheckSpammableFrontendControl(this);
+        return game.getMitspielerCheckSpammableFrontendControl(this);
     }
 
     @Override
-    public void processChosenOption(String chosenOption) {
+    public FrontendControl processChosenOptionGetInfo(String chosenOption) {
         Spieler chosenPlayer = game.findSpieler(chosenOption);
-        besucht = chosenPlayer;
-        beobachteterSpieler = chosenPlayer;
-    }
 
-    @Override
-    public FrontendControl getInfo() {
-        if(showTarnumhang(this, beobachteterSpieler)) {
-            return new FrontendControl(new Tarnumhang_NebenrollenType());
+        if (chosenPlayer != null) {
+            besucht = chosenPlayer;
+
+            if(showTarnumhang(this, chosenPlayer)) {
+                return new FrontendControl(new Tarnumhang_NebenrollenType());
+            }
+
+            FrontendControl info = new FrontendControl(FrontendControlType.LIST, getBesuchteSpielerStrings(chosenPlayer));
+            info.title = infoTitle + chosenPlayer.name;
+
+            return info;
         }
 
-        FrontendControl info = new FrontendControl(FrontendControlType.LIST, getBesuchteSpielerStrings(beobachteterSpieler));
-        if (beobachteterSpieler != null) {
-            info.title = secondTitle + beobachteterSpieler.name;
-        }
-        return info;
+        return new FrontendControl();
     }
 
     @Override
@@ -72,15 +68,6 @@ public class Spurenleser extends Nebenrolle {
     public StatementType getStatementType() {
         return statementType;
     }
-
-    @Override
-    public String getSecondTitle() { return secondTitle; }
-
-    @Override
-    public String getSecondBeschreibung() { return secondBeschreibung; }
-
-    @Override
-    public StatementType getSecondStatementType() { return secondStatementType; }
 
     @Override
     public String getImagePath() {
