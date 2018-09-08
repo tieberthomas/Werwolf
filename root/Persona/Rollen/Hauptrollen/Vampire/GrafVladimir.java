@@ -10,7 +10,7 @@ import root.Spieler;
 
 public class GrafVladimir extends Hauptrolle {
     public static String title = "Spieler unerkennbar machen";
-    public static final String beschreibung = "Graf Vladimir erwacht und macht einen Spieler unerkennbar";
+    public static final String beschreibung = "Graf Vladimir erwacht und veerschleiert die Identität eines Spielers";
     public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE;
     public static final String name = "Graf Vladimir";
     public static Fraktion fraktion = new Vampire();

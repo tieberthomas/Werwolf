@@ -56,14 +56,13 @@ public class NormalNightStatementBuilder {
 
         addStatementRolle(statements, Riese.name);
         addStatementFraktion(statements, Vampire.name);
-        addStatementRolle(statements, GrafVladimir.name);
         addStatementFraktion(statements, Werwölfe.name);
         if (Wölfin.state == WölfinState.TÖTEND) {
             addStatementRolle(statements, Wölfin.name);
         }
-        addStatementRolle(statements, Schreckenswolf.name);
 
         //Nachtfürst erwacht, schätzt die Anzahl der Opfer dieser Nacht und führt ggf. seine Tötung aus
+        addStatementRolle(statements, Schreckenswolf.name);
 
         addStatementFraktion(statements, Schattenpriester_Fraktion.name);
         statements.add(getSecondStatementFraktion(Schattenpriester_Fraktion.name));
@@ -74,10 +73,12 @@ public class NormalNightStatementBuilder {
         addStatementRolle(statements, Analytiker.name);
         addStatementRolle(statements, Archivar.name);
         addStatementRolle(statements, Schnüffler.name);
-        addStatementRolle(statements, Seherin.name);
-        addStatementRolle(statements, Orakel.name);
-        addStatementRolle(statements, Späher.name);
         addStatementRolle(statements, Tarnumhang.name);
+        addStatementRolle(statements, Seherin.name);
+        addStatementRolle(statements, Späher.name);
+        addStatementRolle(statements, Orakel.name);
+
+        addStatementRolle(statements, GrafVladimir.name);
 
         addStatementRolle(statements, Nachbar.name);
         addStatementRolle(statements, Spurenleser.name);

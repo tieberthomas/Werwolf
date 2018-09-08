@@ -16,7 +16,7 @@ import java.util.Random;
 
 public class Tarnumhang extends Nebenrolle {
     public static String title = "Träger eines Umhangs";
-    public static final String beschreibung = "Träger des Tarnumhangs erwacht und erfährt den Träger eines Umhangs";
+    public static final String beschreibung = "Träger des Tarnumhangs erwacht und erfährt einen Mitspieler, bei dem ein Umhhang liegt";
     public static StatementType statementType = StatementType.ROLLE_INFO;
     public static String KEINE_UMHÄNGE = "Es sind keine Umhangträger mehr im Spiel";
 

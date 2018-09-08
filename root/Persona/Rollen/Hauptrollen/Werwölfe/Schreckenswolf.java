@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class Schreckenswolf extends Hauptrolle {
     public static String title = "Mitspieler verstummen";
-    public static final String beschreibung = "Schreckenswolf erwacht und verstummt einen Spieler der am folgenden Tag nichtmehr reden darf";
+    public static final String beschreibung = "Schreckenswolf erwacht und verstummt ggf. einen Spieler der am folgenden Tag nichtmehr reden darf";
     public static StatementType statementType = StatementType.ROLLE_SPECAL;
 
     public static final String secondTitle = "Verstummt";
