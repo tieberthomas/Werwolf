@@ -11,16 +11,20 @@ alles was tötet + prostituierten interaktion
 wahrsager
 
 bugs:
+Analytiker bekommt titel "träger eines Umhangs" beim Tarnumhang und die Tarnumhang Karte
+Totengräber kann sich 2 Prostituierte auswählen
+Überläufer kann sich 2 Sammler auswählen (Sammler/Prostituierte wurde von Riese getötet)
+Schreckenswolf funktioniert nicht
+schnüffler anzeige (schattenpriester)
+seherin (choose get info) brauchen beim bamboozeln einen klick mehr
 
 
 ToDo:
-Statements auf neuesten Stand fürs Programm übernehmen
-Grarf Vladimir verschleiert erst am Ende der Nacht
-Nachbar und Spurenleser haben 2 statements
+
 
 task:
 wenn dieb karten stiehlt wie z.B. schnüffler oder tarnumhang, dann müssen arraylists der letzten nächte zurückgesetzt werden
-
+Blutmond icon entwerfen und implimentieren
 
 CherryOnTop:
 seher bamboozlekarten dem erzähler zeigen während der seher aktion damit dieser nicht verwirrt ist
