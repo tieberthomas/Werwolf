@@ -24,8 +24,7 @@ public class Vampire extends Fraktion {
     public void processChosenOption(String chosenOption) {
         Spieler chosenPlayer = game.findSpieler(chosenOption);
         if (chosenPlayer != null) {
-            Spieler täter = Fraktion.getFraktionsMembers(name).get(0);
-            Opfer.addVictim(chosenPlayer, täter, true);
+            Opfer.addVictim(chosenPlayer, this);
         }
     }
 

@@ -417,7 +417,7 @@ public class Nacht extends Thread {
     public void killVictims() {
         for (Opfer currentVictim : Opfer.deadVictims) {
             if (Rolle.rolleLebend(Blutwolf.name)) {
-                if (currentVictim.fraktionsTäter && currentVictim.täter.hauptrolle.getFraktion().getName().equals(Werwölfe.name)) {
+                if (currentVictim.täterFraktion.getName().equals(Werwölfe.name)) {
                     Blutwolf.deadStacks++;
                     if (Blutwolf.deadStacks >= 2) {
                         Blutwolf.deadly = true;
@@ -447,11 +447,11 @@ public class Nacht extends Thread {
             }
 
             if (spieler1Lebend && !spieler2Lebend) {
-                Opfer.deadVictims.add(new Opfer(liebespaar.spieler1, liebespaar.spieler2, false));
+                Opfer.deadVictims.add(new Opfer(liebespaar.spieler1, liebespaar.spieler2));
             }
 
             if (!spieler1Lebend && spieler2Lebend) {
-                Opfer.deadVictims.add(new Opfer(liebespaar.spieler2, liebespaar.spieler1, false));
+                Opfer.deadVictims.add(new Opfer(liebespaar.spieler2, liebespaar.spieler1));
             }
         }
     }
