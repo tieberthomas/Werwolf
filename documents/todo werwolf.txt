@@ -16,6 +16,7 @@ tarnumhang
 bugs:
 
 task:
+wenn dieb karten stiehlt wie z.B. schnüffler oder tarnumhang, dann müssen arraylists der letzten nächte zurückgesetzt werden
 Nach Umbringen Button - keine leere option mehr im Dropdown
 werden nachbar und spurenleser von tarnumhang/schamanin bamboozeled?
 listpage title fixen

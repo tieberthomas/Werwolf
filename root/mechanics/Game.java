@@ -253,16 +253,26 @@ public class Game {
     public void killSpieler(Spieler spieler) {
         if (spieler != null) {
             spieler.lebend = false;
-            mitteHauptrollen.add(spieler.hauptrolle);
-            mitteNebenrollen.add(spieler.nebenrolle);
-            if (spieler.hauptrolle.getName().equals(Schattenpriester.name) && !spieler.nebenrolle.getName().equals(Schatten.name)) {
+            Hauptrolle hauptrolle = spieler.hauptrolle;
+            Nebenrolle nebenrolle = spieler.nebenrolle;
+            mitteHauptrollen.add(hauptrolle);
+            mitteNebenrollen.add(nebenrolle);
+            if (hauptrolle.getName().equals(Schattenpriester.name) && !nebenrolle.getName().equals(Schatten.name)) {
                 Schattenpriester_Fraktion.deadSchattenPriester++;
             }
 
             if (Rolle.rolleLebend(Wölfin.name) && Wölfin.state == WölfinState.WARTEND) {
-                if (spieler.hauptrolle.getFraktion().getName().equals(Werwölfe.name)) {
+                if (hauptrolle.getFraktion().getName().equals(Werwölfe.name)) {
                     Wölfin.state = WölfinState.TÖTEND;
                 }
+            }
+
+            if(nebenrolle.equals(Schnüffler.name)) {
+                ((Schnüffler)nebenrolle).informationen = new ArrayList<>();
+            }
+
+            if(nebenrolle.equals(Tarnumhang.name)) {
+                ((Tarnumhang)nebenrolle).seenPlayers = new ArrayList<>();
             }
         }
     }
