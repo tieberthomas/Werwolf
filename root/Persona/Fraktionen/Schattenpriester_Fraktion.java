@@ -3,10 +3,8 @@ package root.Persona.Fraktionen;
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.Persona.Fraktion;
-import root.Persona.Rolle;
 import root.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.SchattenpriesterZeigekarte;
 import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
-import root.Persona.Rollen.Hauptrollen.Bürger.Riese;
 import root.Persona.Rollen.Hauptrollen.Schattenpriester.Schattenpriester;
 import root.Persona.Rollen.Nebenrollen.Schatten;
 import root.Persona.Rollen.Nebenrollen.Schattenkutte;
@@ -61,8 +59,7 @@ public class Schattenpriester_Fraktion extends Fraktion
             String fraktionOpfer = currentOpfer.opfer.hauptrolle.getFraktion().getName();
             if (currentOpfer.opfer.nebenrolle.getName().equals(Schattenkutte.name) ||
                     (currentOpfer.opfer.ressurectable && !fraktionOpfer.equals(Schattenpriester_Fraktion.name))) {
-                Rolle täter = currentOpfer.täter.hauptrolle;
-                if(!frontendControl.strings.contains(currentOpfer.opfer.name) && !täter.getName().equals(Riese.name)) {
+                if(!frontendControl.strings.contains(currentOpfer.opfer.name)) {
                     frontendControl.strings.add(currentOpfer.opfer.name);
                 }
             }
