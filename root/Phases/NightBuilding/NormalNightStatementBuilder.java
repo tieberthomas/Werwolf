@@ -68,7 +68,7 @@ public class NormalNightStatementBuilder {
         addStatementFraktion(statements, Schattenpriester_Fraktion.name);
         statements.add(getSecondStatementFraktion(Schattenpriester_Fraktion.name));
         addStatementRolle(statements, Chemiker.name);
-        statements.add(getSecondStatement(Chemiker.name));
+        addSecondStatementRolle(statements, Chemiker.name);
 
         addStatementRolle(statements, MissVerona.name);
         addStatementRolle(statements, Analytiker.name);
@@ -83,12 +83,15 @@ public class NormalNightStatementBuilder {
         addStatementRolle(statements, Spurenleser.name);
 
         //zu einzelnen statements mergen
-        statements.add(getSecondStatement(Nachbar.name));
-        statements.add(getSecondStatement(Spurenleser.name));
+        addSecondStatementRolle(statements, Nachbar.name);
+        addSecondStatementRolle(statements, Spurenleser.name);
 
         statements.add(ProgrammStatements.getWahrsagerProgrammStatement());
-        if (game.getLivingPlayer().size() > Wahrsager.MIN_NUMBER_OF_PLAYERS) {
+        if (Wahrsager.isGuessing) {
             addStatementRolle(statements, Wahrsager.name);
+        }
+        if (game.getLivingPlayer().size() > Wahrsager.MIN_NUMBER_OF_PLAYERS) {
+            addSecondStatementRolle(statements, Wahrsager.name);
         }
 
         if (game.getSecondaryRoleInGameNames().contains(Konditorlehrling.name)) {
@@ -102,10 +105,10 @@ public class NormalNightStatementBuilder {
         statements.add(ProgrammStatements.getOferStatement());
         statements.add(IndieStatements.getOpferStatement());
 
-        statements.add(getSecondStatement(Schreckenswolf.name));
+        addSecondStatementRolle(statements, Schreckenswolf.name);
 
         if (Wölfin.state == WölfinState.TÖTEND) {
-            statements.add(getSecondStatement(Wölfin.name));
+            addSecondStatementRolle(statements, Wölfin.name);
         }
 
         statements.add(ProgrammStatements.getTortenProgrammStatement());
@@ -115,6 +118,10 @@ public class NormalNightStatementBuilder {
 
     private static void addStatementRolle(ArrayList<Statement> statements, String rolle) {
         statements.add(getStatement(rolle));
+    }
+
+    private static void addSecondStatementRolle(ArrayList<Statement> statements, String rolle) {
+        statements.add(getSecondStatement(rolle));
     }
 
     private static void addStatementFraktion(ArrayList<Statement> statements, String fraktion) {

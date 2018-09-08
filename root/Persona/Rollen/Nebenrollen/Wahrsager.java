@@ -1,10 +1,14 @@
 package root.Persona.Rollen.Nebenrollen;
 
+import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.Persona.Fraktion;
 import root.Persona.Nebenrolle;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
+
+import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Created by Steve on 12.11.2017.
@@ -13,9 +17,16 @@ public class Wahrsager extends Nebenrolle
 {
     public static final String KEIN_OPFER = "Kein Opfer";
 
-    public static String title = "Fraktion wählen";
-    public static final String beschreibung = "Wahrsager erwacht und gibt seinen Tipp ab welche Fraktion bei der Dorfabstimmung sterben wird";
-    public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE;
+    public static final String WAHRSAGER_INFORMATION = "Wahrsager erwacht und erfährt die Anzahl der lebenden Mitglieder von jeder Fraktion";
+    public static String title = "Anzahl Mitglieder";
+    public static final String beschreibung = WAHRSAGER_INFORMATION;
+    public static StatementType statementType = StatementType.ROLLE_SPECAL;
+
+    public static final String WAHRSAGER_RATEN = "Wahrsager erwacht und gibt seinen Tipp ab welche Fraktion bei der Dorfabstimmung sterben wird";
+    public static String secondTitle = "Fraktion wählen";
+    public static final String secondBeschreibung = WAHRSAGER_RATEN;
+    public static StatementType secondStatementType = StatementType.ROLLE_CHOOSE_ONE;
+
     public static final String name = "Wahrsager";
     public static final String imagePath = ImagePath.WAHRSAGER_KARTE;
     public static boolean spammable = false;
@@ -32,6 +43,18 @@ public class Wahrsager extends Nebenrolle
         dropDownOptions.strings.add(KEIN_OPFER);
 
         return dropDownOptions;
+    }
+
+    @Override
+    public FrontendControl getInfo() {
+        ArrayList<String> list = new ArrayList<>();
+
+        for (String fraktion : Fraktion.getFraktionStrings()) {
+            int anzahl = Fraktion.getFraktionsMembers(fraktion).size();
+            list.add(anzahl + " " + fraktion);
+        }
+
+        return new FrontendControl(FrontendControlType.LIST, list);
     }
 
     @Override
@@ -55,6 +78,21 @@ public class Wahrsager extends Nebenrolle
     }
 
     @Override
+    public String getSecondTitle() {
+        return secondTitle;
+    }
+
+    @Override
+    public String getSecondBeschreibung() {
+        return secondBeschreibung;
+    }
+
+    @Override
+    public StatementType getSecondStatementType() {
+        return secondStatementType;
+    }
+
+    @Override
     public String getImagePath() {
         return imagePath;
     }
@@ -65,13 +103,8 @@ public class Wahrsager extends Nebenrolle
     }
 
     public boolean guessedRight() {
-        if((tipp == null && Wahrsager.opferFraktion == null) ||
-                (tipp!=null && Wahrsager.opferFraktion != null) &&
-                        tipp.getName().equals(Wahrsager.opferFraktion.getName()))
-        {
-            return true;
-        } else {
-            return false;
-        }
+        return (tipp == null && Wahrsager.opferFraktion == null) ||
+                (tipp != null && Wahrsager.opferFraktion != null) &&
+                        Objects.equals(tipp.getName(), Wahrsager.opferFraktion.getName());
     }
 }

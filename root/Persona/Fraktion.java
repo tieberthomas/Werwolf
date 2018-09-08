@@ -5,7 +5,7 @@ import root.Frontend.Frame.MyFrame;
 import root.Frontend.FrontendControl;
 import root.Persona.Fraktionen.Schattenpriester_Fraktion;
 import root.Persona.Fraktionen.Werwölfe;
-import root.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.WerwölfeZeigekarte;
+import root.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.BürgerZeigekarte;
 import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Persona.Rollen.Hauptrollen.Werwölfe.Chemiker;
 import root.Spieler;
@@ -24,14 +24,14 @@ public class Fraktion extends Persona{
     }
 
     public Zeigekarte getZeigeKarte() {
-        return new WerwölfeZeigekarte();
-    } //TODO replace with Bürger zeigekarte
+        return new BürgerZeigekarte();
+    }
 
     public static ArrayList<Spieler> getFraktionsMembers(String fraktion) {
         ArrayList<Spieler> fraktionsMembers = new ArrayList<>();
 
         for (Spieler currentSpieler : game.spieler) {
-            if (currentSpieler.lebend && !Opfer.isOpfer(currentSpieler.name) && currentSpieler.hauptrolle.getFraktion().getName().equals(fraktion)) {
+            if (currentSpieler.lebend && currentSpieler.hauptrolle.getFraktion().getName().equals(fraktion)) {
                 fraktionsMembers.add(currentSpieler);
             }
         }

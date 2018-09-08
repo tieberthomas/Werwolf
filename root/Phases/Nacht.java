@@ -213,25 +213,22 @@ public class Nacht extends Thread {
                             break;
 
                         case ProgrammStatements.WAHRSAGER:
-                            if (Wahrsager.isGuessing) {
-                                Spieler wahrsagerSpieler2 = game.findSpielerPerRolle(Wahrsager.name);
-                                Spieler deadWahrsagerSpieler = game.findSpielerOrDeadPerRolle(Wahrsager.name);
-                                if (wahrsagerSpieler2 != null) {
-                                    Wahrsager wahrsager = (Wahrsager) deadWahrsagerSpieler.nebenrolle;
-                                    if (wahrsager.guessedRight()) {
-                                        //schönlinge.add(wahrsagerSpieler2);
-                                    }
-                                }
-                            } else {
-                                Wahrsager.isGuessing = true;
-                            }
+                            Wahrsager.isGuessing = (game.getLivingPlayer().size() > 4);
+                            break;
 
-                            if (!(game.getLivingPlayer().size() > 4)) {
-                                Wahrsager.isGuessing = false;
+                        case Wahrsager.WAHRSAGER_INFORMATION:
+                            Spieler wahrsagerSpieler2 = game.findSpielerPerRolle(Wahrsager.name);
+                            Spieler deadWahrsagerSpieler = game.findSpielerOrDeadPerRolle(Wahrsager.name);
+                            if (wahrsagerSpieler2 != null) {
+                                Wahrsager wahrsager = (Wahrsager) deadWahrsagerSpieler.nebenrolle; //TODO Rolle rolle ?
+                                if (wahrsager.guessedRight()) {
+                                    info = wahrsager.getInfo();
+                                    showFrontendControl(statement, info);
+                                }
                             }
                             break;
 
-                        case Wahrsager.beschreibung:
+                        case Wahrsager.WAHRSAGER_RATEN:
                             Spieler wahrsagerSpieler1 = game.findSpielerOrDeadPerRolle(Wahrsager.name);
                             if (wahrsagerSpieler1 != null) {
                                 Wahrsager wahrsager = (Wahrsager) wahrsagerSpieler1.nebenrolle;
