@@ -118,7 +118,7 @@ public class FrontendControl {
     }
 
     public static void erzählerAnnounceVictimPage(Spieler spieler) {
-        Page dayPage = erzählerFrame.pageFactory.generateAnnounceVictimsDayPage(spieler.name, game.getLivingPlayerStrings());
+        Page dayPage = erzählerFrame.pageFactory.generateAnnounceVictimsDayPage(spieler.name, game.getLivingPlayerOrNoneStrings());
         erzählerFrame.buildScreenFromPage(dayPage);
     }
 
