@@ -116,7 +116,7 @@ public class SpielerPageFactory {
 
         int frameOffset = MyFrame.yOffset;
         int titleHeight = titleLabel.height;
-        int stringHeight = pageElementFactory.getJLabelHeight();
+        int stringHeight = pageElementFactory.getJLabelStandardHeight();
         int spaceToUse = spielerFrame.frameJpanel.getHeight() - frameOffset - titleHeight - stringHeight;
         int spacePerString;
         int startpoint;
@@ -213,7 +213,7 @@ public class SpielerPageFactory {
         if (realStringsToDisplay.size() > 0) {
             int frameOffset = MyFrame.yOffset;
             int titleHeight = titleLabel.height;
-            int stringHeight = pageElementFactory.getJLabelHeight();
+            int stringHeight = pageElementFactory.getJLabelStandardHeight();
             int spaceToUse = spielerFrame.frameJpanel.getHeight() - frameOffset - titleHeight - stringHeight;
             int spacePerString = spaceToUse / realStringsToDisplay.size();
             int spacingBetweenStrings = spacePerString - stringHeight;
@@ -375,7 +375,7 @@ public class SpielerPageFactory {
         realStringsToDisplay.remove("");
 
         if (realStringsToDisplay.size() > 0) {
-            int frameOffset = 38;
+            int frameOffset = MyFrame.yOffset;
             int stringHeight = pageElementFactory.getJLabelHeight(textSize);
             int spaceToUse = spielerFrame.frameJpanel.getHeight() - frameOffset - offsetAbove - offsetBelow;
             int spacePerString = spaceToUse / realStringsToDisplay.size();
@@ -408,29 +408,33 @@ public class SpielerPageFactory {
         Page listPage = new Page(0, 10);
 
         if (elementsToDisplay.size() > 0) {
-            int frameOffset = 38;
-            int elementHeight = (int) elementsToDisplay.get(0).getPreferredSize().getHeight();
-            int spaceToUse = spielerFrame.frameJpanel.getHeight() - frameOffset - offsetAbove - offsetBelow;
-            int spacePerElement = spaceToUse / elementsToDisplay.size();
-            int spacingBetweenElements = spacePerElement - elementHeight;
-            int yStartpoint = ((spacePerElement / 2) - (elementHeight / 2)) + offsetAbove;
-
             if (numberOfColumns <= 0) {
                 numberOfColumns = 1;
             }
 
-            PageElement label;
-            label = pageElementFactory.generateColumnCenteredComponent(elementsToDisplay.get(0), null, yStartpoint, numberOfColumns, indexOfColumn);
-            listPage.add(label);
+            int frameOffset = MyFrame.yOffset;
+            int spaceToUse = spielerFrame.frameJpanel.getHeight() - frameOffset - offsetAbove - offsetBelow;
+            int spaceLeftLastBox = 0;
 
-            int i = 0;
+            boolean isFirstElement = true;
+
+            PageElement label = null;
+
             for (JComponent component : elementsToDisplay) {
-                if (i != 0) {
-                    label = pageElementFactory.generateColumnCenteredComponent(component, label, spacingBetweenElements, numberOfColumns, indexOfColumn);
-                    listPage.add(label);
+                int elementHeight = (int) component.getPreferredSize().getHeight();
+                int spacePerElement = spaceToUse / elementsToDisplay.size();
+                int spaceLeftInBox = spacePerElement - elementHeight;
+                int spaceAboveAndBelow = (int) ((double) spaceLeftInBox) / 2;
+                int spaceToKeepFromLastBox = spaceLeftLastBox + spaceAboveAndBelow;
+                spaceLeftLastBox = spaceAboveAndBelow;
+
+                if (isFirstElement) {
+                    spaceToKeepFromLastBox += offsetAbove;
+                    isFirstElement = false;
                 }
 
-                i++;
+                label = pageElementFactory.generateColumnCenteredComponent(component, label, spaceToKeepFromLastBox, numberOfColumns, indexOfColumn);
+                listPage.add(label);
             }
         }
 
@@ -464,7 +468,11 @@ public class SpielerPageFactory {
         if (rawInformation.isTarnumhang) {
             elementsToDisplay.add(pageElementFactory.generateIcon(new Tarnumhang_NebenrollenType().imagePath));
         } else {
-            elementsToDisplay = pageElementFactory.generateImages(rawInformation, maxColumns);
+            int frameOffset = MyFrame.yOffset;
+            int spaceToUse = spielerFrame.frameJpanel.getHeight() - frameOffset - offsetAbove;
+            int columnHeight = spaceToUse / rawInformation.imagePaths.size();
+            int columnWidth = (int) ((double) spielerFrame.frameJpanel.getWidth()) / numberOfColumns;
+            elementsToDisplay = pageElementFactory.generateImages(rawInformation, columnWidth, columnHeight);
         }
 
         return generateColumnElements(elementsToDisplay, numberOfColumns, indexOfColumn, offsetAbove, 0);

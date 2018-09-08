@@ -134,7 +134,7 @@ public class SpielerPageElementFactory {
         label = generateBigJLabel(label);
 
         int imageJLabelWidth = 300;
-        int imageJLabelHeight = getJLabelHeight();
+        int imageJLabelHeight = getJLabelStandardHeight();
 
         PageElement centeredLabel = new PageElement(label, imageJLabelWidth, imageJLabelHeight, null, predecessorY, 0, spaceToPredecessorY);
 
@@ -247,31 +247,30 @@ public class SpielerPageElementFactory {
         return formatLabel(label, defaultTitleSize);
     }
 
-    public ArrayList<JComponent> generateImages(RawInformation rawInformation, int numberOfColumns) {
+    public ArrayList<JComponent> generateImages(RawInformation rawInformation, int width, int height) {
         ArrayList<JComponent> images = new ArrayList<>();
 
-        int columnWidth = spielerFrame.frameJpanel.getWidth() / numberOfColumns;
-
         for (String imagepath : rawInformation.imagePaths) {
-            //images.add(generateIcon(imagepath));
-            images.add(generateFixedWidthImage(imagepath, columnWidth));
+            images.add(generateFixedHeightImage(imagepath, width, height));
         }
 
         return images;
     }
 
-    public JLabel generateFixedWidthImage(String imagepath, int wantedWidth) {
+    public JLabel generateFixedHeightImage(String imagepath, int wantedWidth, int wantedHeight) {
         JLabel iconJLabel = new JLabel();
 
         ImageIcon iconLogo = new ImageIcon(imagepath);
 
         int iconWidth = iconLogo.getIconWidth();
-        if (iconWidth >= wantedWidth) {
-            double verkleinerungsFaktor = ((double) wantedWidth) / iconWidth;
-            iconWidth = wantedWidth;
-            int iconHeight = (int) ((double) iconLogo.getIconHeight() * verkleinerungsFaktor);
+        int iconHeight = iconLogo.getIconHeight();
+        if (iconWidth > wantedWidth || iconHeight > wantedHeight) {
+            double verkleinerunsFaktor = getVerkleinerungsFaktor(iconWidth, iconHeight, wantedWidth, wantedHeight);
 
-            if (imagepath != "") {
+            iconWidth = (int) ((double) iconLogo.getIconWidth() * verkleinerunsFaktor);
+            iconHeight = (int) ((double) iconLogo.getIconHeight() * verkleinerunsFaktor);
+
+            if (!imagepath.isEmpty()) {
                 Image img = iconLogo.getImage();
                 if (img != null) {
                     Image newimg = img.getScaledInstance(iconWidth, iconHeight, java.awt.Image.SCALE_SMOOTH);
@@ -287,7 +286,30 @@ public class SpielerPageElementFactory {
         return iconJLabel;
     }
 
-    public int getJLabelHeight() {
+    private double getVerkleinerungsFaktor(int iconWidth, int iconHeight, int wantedWidth, int wantedHeight) {
+        int bigNumber = 100;
+        double verkleinerungsFaktorWidth = bigNumber;
+        if (iconWidth > wantedWidth) {
+            verkleinerungsFaktorWidth = ((double) wantedWidth) / iconWidth;
+        }
+
+        double verkleinerungsFaktorHeight = bigNumber;
+        if (iconHeight > wantedHeight) {
+            verkleinerungsFaktorHeight = ((double) wantedHeight) / iconHeight;
+        }
+
+        return getSmallerNumber(verkleinerungsFaktorWidth, verkleinerungsFaktorHeight);
+    }
+
+    private double getSmallerNumber(double number1, double number2) {
+        if (number1 < number2) {
+            return number1;
+        } else {
+            return number2;
+        }
+    }
+
+    public int getJLabelStandardHeight() {
         JLabel jLabel = new JLabel("test");
         jLabel = generateBigJLabel(jLabel);
 
