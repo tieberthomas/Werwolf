@@ -10,6 +10,7 @@ import root.Persona.Nebenrolle;
 import root.Persona.Rolle;
 import root.Persona.Rollen.Constants.DropdownConstants;
 import root.Persona.Rollen.Constants.NebenrollenType.Passiv;
+import root.Persona.Rollen.Constants.NebenrollenType.Tarnumhang_NebenrollenType;
 import root.Persona.Rollen.Constants.SchnüfflerInformation;
 import root.Persona.Rollen.Constants.Zeigekarten.*;
 import root.Persona.Rollen.Hauptrollen.Bürger.Sammler;
@@ -202,9 +203,7 @@ public class Nacht extends Thread {
 
                             if (chosenSpieler1 != null && chosenSpieler2 != null) {
                                 if (((Analytiker) rolle).showTarnumhang(chosenSpieler1, chosenSpieler2)) {
-                                    erzählerInfoIconImagePath = Tarnumhang.imagePath;
-                                    statement.title = Tarnumhang.title;
-                                    showImage(statement, erzählerInfoIconImagePath);
+                                    showZeigekarte(statement, new Tarnumhang_NebenrollenType());
                                 } else {
                                     String answer = ((Analytiker) rolle).analysiere(chosenSpieler1, chosenSpieler2);
                                     showList(statement, answer);//TODO generisch machen
