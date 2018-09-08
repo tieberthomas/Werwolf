@@ -252,6 +252,9 @@ public class Nacht extends Thread {
                                     rolle.processChosenOption(chosenOption);
 
                                     Torte.gut = chosenOption.equals(DropdownConstants.GUT.name);
+                                } else {
+                                    Torte.torte = false;
+                                    Torte.gut = false;
                                 }
                             }
                             break;
@@ -487,6 +490,10 @@ public class Nacht extends Thread {
     }
 
     public boolean gibtEsTorte() {
+        if(Torte.gut) {
+            return false;
+        }
+
         if (Rolle.rolleLebend(Konditor.name) && !Opfer.isOpferPerRolle(Konditor.name) && Rolle.rolleAktiv(Konditor.name)) {
             return true;
         }

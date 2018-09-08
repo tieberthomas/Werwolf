@@ -87,7 +87,7 @@ public class NormalNightStatementBuilder {
         statements.add(getSecondStatement(Spurenleser.name));
 
         statements.add(ProgrammStatements.getWahrsagerProgrammStatement());
-        if (game.getLivingPlayer().size() > 4) {
+        if (game.getLivingPlayer().size() > Wahrsager.MIN_NUMBER_OF_PLAYERS) {
             addStatementRolle(statements, Wahrsager.name);
         }
 
