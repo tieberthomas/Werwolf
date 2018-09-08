@@ -11,6 +11,7 @@ import root.Persona.Nebenrolle;
 import root.Persona.Rolle;
 import root.Persona.Rollen.Constants.NebenrollenType.Passiv;
 import root.Persona.Rollen.Hauptrollen.Bürger.Bruder;
+import root.Persona.Rollen.Hauptrollen.Bürger.Dorfbewohner;
 import root.Persona.Rollen.Hauptrollen.Bürger.Seherin;
 import root.Persona.Rollen.Hauptrollen.Werwölfe.Alphawolf;
 import root.Persona.Rollen.Hauptrollen.Werwölfe.Wolfsmensch;
@@ -150,8 +151,11 @@ public class ErsteNacht extends Thread {
                                 break;
 
                             case WOLFSMENSCH:
-                                ArrayList<Hauptrolle> hauptrollen = game.getStillAvailableMainRoles();
+                                ArrayList<Hauptrolle> hauptrollen = game.getStillAvailableBürger();
                                 Hauptrolle hauptrolle = pickRandomHauptrolle(hauptrollen);
+                                if(hauptrolle == null) {
+                                    hauptrolle = new Dorfbewohner();
+                                }
                                 showCard(statement, statement.title, hauptrolle.getImagePath());
                                 break;
 

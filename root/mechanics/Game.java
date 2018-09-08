@@ -6,6 +6,7 @@ import root.Frontend.Frame.ErzählerFrameMode;
 import root.Frontend.Frame.ÜbersichtsFrame;
 import root.Frontend.FrontendControl;
 import root.Persona.*;
+import root.Persona.Fraktionen.Bürger;
 import root.Persona.Fraktionen.Schattenpriester_Fraktion;
 import root.Persona.Fraktionen.Werwölfe;
 import root.Persona.Rollen.Constants.WölfinState;
@@ -397,6 +398,21 @@ public class Game {
         stilleAvalableMainRoles.addAll(mainroles);
 
         return stilleAvalableMainRoles;
+    }
+
+    public ArrayList<Hauptrolle> getStillAvailableBürger() {
+        ArrayList<Hauptrolle> mainroles = getStillAvailableMainRoles();
+        ArrayList<Hauptrolle> mainrolesToRemove = new ArrayList<>();
+
+        for(Hauptrolle hauptrolle : mainroles) {
+            if(!hauptrolle.getFraktion().equals(Bürger.name)){
+                mainrolesToRemove.add(hauptrolle);
+            }
+        }
+
+        mainroles.removeAll(mainrolesToRemove);
+
+        return mainroles;
     }
 
     public ArrayList<String> getStillAvailableMainRoleNames() {
