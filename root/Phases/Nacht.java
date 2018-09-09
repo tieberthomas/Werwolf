@@ -402,7 +402,7 @@ public class Nacht extends Thread {
     public void killVictims() {
         for (Opfer currentVictim : Opfer.deadVictims) {
             if (Rolle.rolleLebend(Blutwolf.name)) {
-                if (currentVictim.täterFraktion.getName().equals(Werwölfe.name)) {
+                if (currentVictim.fraktionsTäter && currentVictim.täterFraktion.getName().equals(Werwölfe.name)) {
                     Blutwolf.deadStacks++;
                     if (Blutwolf.deadStacks >= 2) {
                         Blutwolf.deadly = true;
