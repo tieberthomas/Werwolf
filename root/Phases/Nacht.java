@@ -216,18 +216,14 @@ public class Nacht extends Thread {
                             Spieler deadWahrsagerSpieler = game.findSpielerOrDeadPerRolle(Wahrsager.name);
                             if (wahrsagerSpieler2 != null) {
                                 Wahrsager wahrsager = (Wahrsager) deadWahrsagerSpieler.nebenrolle; //TODO Rolle rolle ?
-                                if (wahrsager.guessedRight()) {
-                                    info = wahrsager.getInfo();
-                                    showFrontendControl(statement, info);
+                                ArrayList<String> rewardInformation = new ArrayList<>();
+                                if (wahrsager.guessedRight() && !game.zweiteNacht) {
+                                    statement.title = Wahrsager.REWARD_TITLE;
+                                    rewardInformation = wahrsager.rewardInformation();
                                 }
-                            }
-                            break;
-
-                        case Wahrsager.WAHRSAGER_RATEN:
-                            Spieler wahrsagerSpieler1 = game.findSpielerOrDeadPerRolle(Wahrsager.name);
-                            if (wahrsagerSpieler1 != null) {
-                                Wahrsager wahrsager = (Wahrsager) wahrsagerSpieler1.nebenrolle;
-
+                                FrontendControl dropdownShowReward = wahrsager.getDropdownOptions();
+                                dropdownShowReward.listStrings = rewardInformation;
+                                chosenOption = showFrontendControl(statement, dropdownShowReward);
                                 wahrsager.tipp = Fraktion.findFraktion(chosenOption);
                             }
                             break;
@@ -523,19 +519,23 @@ public class Nacht extends Thread {
                         break;
 
                     case DROPDOWN:
-                        showDropdown(statement, frontendControl.title, frontendControl.strings);
+                        showDropdown(statement, frontendControl.title, frontendControl.dropdownStrings);
                         return FrontendControl.erzählerFrame.chosenOption1;
 
                     case DROPDOWN_LIST:
-                        showDropdownList(statement, frontendControl.title, frontendControl.strings);
+                        showDropdownList(statement, frontendControl.title, frontendControl.dropdownStrings);
+                        return FrontendControl.erzählerFrame.chosenOption1;
+
+                    case DROPDOWN_SEPERATED_LIST:
+                        showDropdownSeperatedList(statement, frontendControl.title, frontendControl.dropdownStrings, frontendControl.listStrings);
                         return FrontendControl.erzählerFrame.chosenOption1;
 
                     case DROPDOWN_IMAGE:
-                        showDropdownShowImage(statement, frontendControl.title, frontendControl.strings, frontendControl.imagePath);
+                        showDropdownShowImage(statement, frontendControl.title, frontendControl.dropdownStrings, frontendControl.imagePath);
                         return FrontendControl.erzählerFrame.chosenOption1;
 
                     case LIST:
-                        showList(statement, frontendControl.title, frontendControl.strings);
+                        showList(statement, frontendControl.title, frontendControl.dropdownStrings);
                         break;
 
                     case IMAGE:
@@ -547,7 +547,7 @@ public class Nacht extends Thread {
                         break;
 
                     case LIST_IMAGE:
-                        showListShowImage(statement, frontendControl.title, frontendControl.strings, frontendControl.imagePath);
+                        showListShowImage(statement, frontendControl.title, frontendControl.dropdownStrings, frontendControl.imagePath);
                         break;
 
                     case SCHNÜFFLER_INFO:
@@ -632,7 +632,7 @@ public class Nacht extends Thread {
         /*if (Rolle.rolleLebend(Konditor.name) || Rolle.rolleLebend(Konditorlehrling.name)) {
             if (!Opfer.isOpferPerRolle(Konditor.name) || !Opfer.isOpferPerRolle(Konditorlehrling.name)) {
                 if (Rolle.rolleAktiv(Konditor.name) || Rolle.rolleAktiv(Konditorlehrling.name)) {*/
-        FrontendControl.erzählerDropdownPage(statement, frontendControl.strings);
+        FrontendControl.erzählerDropdownPage(statement, frontendControl.dropdownStrings);
         FrontendControl.spielerDropdownPage(statement.title, 1);
                 /*} else {
                     FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), ResourcePath.DEAKTIVIERT);
@@ -766,6 +766,13 @@ public class Nacht extends Thread {
     public void showDropdownList(Statement statement, String title, ArrayList<String> strings) {
         FrontendControl.erzählerDropdownPage(statement, strings);
         FrontendControl.spielerDropdownListPage(title, strings);
+
+        waitForAnswer();
+    }
+
+    public void showDropdownSeperatedList(Statement statement, String title, ArrayList<String> dropdownStrings, ArrayList<String> listStrings) {
+        FrontendControl.erzählerDropdownPage(statement, dropdownStrings);
+        FrontendControl.spielerDropdownListPage(title, listStrings);
 
         waitForAnswer();
     }

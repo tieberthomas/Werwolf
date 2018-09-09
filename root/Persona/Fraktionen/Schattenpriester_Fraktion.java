@@ -52,19 +52,19 @@ public class Schattenpriester_Fraktion extends Fraktion {
         FrontendControl frontendControl = new FrontendControl();
 
         frontendControl.typeOfContent = FrontendControlType.DROPDOWN_LIST;
-        frontendControl.strings = new ArrayList<>();
+        frontendControl.dropdownStrings = new ArrayList<>();
 
         for (Opfer currentOpfer : Opfer.deadVictims) {
             String fraktionOpfer = currentOpfer.opfer.hauptrolle.getFraktion().getName();
             if (currentOpfer.opfer.nebenrolle.getName().equals(Schattenkutte.name) ||
                     (currentOpfer.opfer.ressurectable && !fraktionOpfer.equals(Schattenpriester_Fraktion.name))) {
-                if (!frontendControl.strings.contains(currentOpfer.opfer.name)) {
-                    frontendControl.strings.add(currentOpfer.opfer.name);
+                if (!frontendControl.dropdownStrings.contains(currentOpfer.opfer.name)) {
+                    frontendControl.dropdownStrings.add(currentOpfer.opfer.name);
                 }
             }
         }
 
-        frontendControl.strings.add("");
+        frontendControl.dropdownStrings.add("");
 
         return frontendControl;
     }

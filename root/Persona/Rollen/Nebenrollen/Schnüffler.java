@@ -31,9 +31,9 @@ public class Schnüffler extends Nebenrolle {
         FrontendControl frontendControl = new FrontendControl();
 
         frontendControl.typeOfContent = FrontendControlType.DROPDOWN;
-        frontendControl.strings = game.getLivingPlayerOrNoneStrings();
+        frontendControl.dropdownStrings = game.getLivingPlayerOrNoneStrings();
 
-        removePreviousPlayers(frontendControl.strings);
+        removePreviousPlayers(frontendControl.dropdownStrings);
 
         return frontendControl;
     }

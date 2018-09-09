@@ -83,10 +83,7 @@ public class NormalNightStatementBuilder {
         addStatementRolle(statements, Nachbar.name);
         addStatementRolle(statements, Spurenleser.name);
 
-        if (!game.zweiteNacht) {
-            addStatementRolle(statements, Wahrsager.name);
-        }
-        addSecondStatementRolle(statements, Wahrsager.name);
+        addStatementRolle(statements, Wahrsager.name);
 
         if (game.getSecondaryRoleInGameNames().contains(Konditorlehrling.name)) {
             addStatementRolle(statements, Konditorlehrling.name);

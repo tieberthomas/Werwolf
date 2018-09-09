@@ -268,15 +268,15 @@ public class ErsteNacht extends Thread {
                 break;
 
             case DROPDOWN:
-                showDropdown(statement, frontendControl.title, frontendControl.strings);
+                showDropdown(statement, frontendControl.title, frontendControl.dropdownStrings);
                 return FrontendControl.erzählerFrame.chosenOption1;
 
             case DROPDOWN_LIST:
-                showDropdownList(statement, frontendControl.title, frontendControl.strings);
+                showDropdownList(statement, frontendControl.title, frontendControl.dropdownStrings);
                 return FrontendControl.erzählerFrame.chosenOption1;
 
             case LIST:
-                showList(statement, frontendControl.title, frontendControl.strings);
+                showList(statement, frontendControl.title, frontendControl.dropdownStrings);
                 break;
 
             case IMAGE:
@@ -288,7 +288,7 @@ public class ErsteNacht extends Thread {
                 break;
 
             case LIST_IMAGE:
-                showListShowImage(statement, frontendControl.title, frontendControl.strings, frontendControl.imagePath);
+                showListShowImage(statement, frontendControl.title, frontendControl.dropdownStrings, frontendControl.imagePath);
         }
 
         return null;

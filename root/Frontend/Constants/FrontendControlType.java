@@ -5,10 +5,11 @@ public enum FrontendControlType {
     TITLE,
     DROPDOWN,
     DROPDOWN_LIST,
+    DROPDOWN_SEPERATED_LIST,
+    DROPDOWN_IMAGE,
     LIST,
     IMAGE,
     CARD,
     LIST_IMAGE,
-    DROPDOWN_IMAGE,
     SCHNÜFFLER_INFO
 }

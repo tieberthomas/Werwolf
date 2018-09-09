@@ -67,10 +67,10 @@ public class Fraktion extends Persona {
         FrontendControl frontendControl = new FrontendControl();
 
         frontendControl.typeOfContent = FrontendControlType.DROPDOWN_LIST;
-        frontendControl.strings = getFraktionsMemberStrings(rolle.getFraktion().getName());
-        frontendControl.strings.add("");
+        frontendControl.dropdownStrings = getFraktionsMemberStrings(rolle.getFraktion().getName());
+        frontendControl.dropdownStrings.add("");
         if (!rolle.isSpammable() && rolle.besuchtLetzteNacht != null) {
-            frontendControl.strings.remove(rolle.besuchtLetzteNacht.name);
+            frontendControl.dropdownStrings.remove(rolle.besuchtLetzteNacht.name);
         }
 
         return frontendControl;
@@ -228,7 +228,7 @@ public class Fraktion extends Persona {
         FrontendControl frontendControl = new FrontendControl();
 
         frontendControl.typeOfContent = FrontendControlType.DROPDOWN_LIST;
-        frontendControl.strings = getLivingFraktionOrNoneStrings();
+        frontendControl.dropdownStrings = getLivingFraktionOrNoneStrings();
 
         return frontendControl;
     }
@@ -237,7 +237,7 @@ public class Fraktion extends Persona {
         FrontendControl frontendControl = new FrontendControl();
 
         frontendControl.typeOfContent = FrontendControlType.DROPDOWN_LIST;
-        frontendControl.strings = getFraktionOrNoneStrings();
+        frontendControl.dropdownStrings = getFraktionOrNoneStrings();
 
         return frontendControl;
     }

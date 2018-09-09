@@ -56,7 +56,7 @@ public class Opfer {
         FrontendControl frontendControl = new FrontendControl();
 
         frontendControl.typeOfContent = FrontendControlType.DROPDOWN_LIST;
-        frontendControl.strings = getOpferOrNonStrings();
+        frontendControl.dropdownStrings = getOpferOrNonStrings();
 
         return frontendControl;
     }

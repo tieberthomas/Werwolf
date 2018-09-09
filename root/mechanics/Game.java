@@ -240,7 +240,7 @@ public class Game {
         FrontendControl frontendControl = new FrontendControl();
 
         frontendControl.typeOfContent = FrontendControlType.DROPDOWN;
-        frontendControl.strings = getLivingPlayerOrNoneStrings();
+        frontendControl.dropdownStrings = getLivingPlayerOrNoneStrings();
 
         return frontendControl;
     }
@@ -284,7 +284,7 @@ public class Game {
         FrontendControl frontendControl = new FrontendControl();
 
         frontendControl.typeOfContent = FrontendControlType.DROPDOWN;
-        frontendControl.strings = getPlayerCheckSpammableStrings(rolle);
+        frontendControl.dropdownStrings = getPlayerCheckSpammableStrings(rolle);
 
         return frontendControl;
     }
@@ -323,7 +323,7 @@ public class Game {
         FrontendControl frontendControl = new FrontendControl();
 
         frontendControl.typeOfContent = FrontendControlType.DROPDOWN;
-        frontendControl.strings = getMitspielerCheckSpammableStrings(rolle);
+        frontendControl.dropdownStrings = getMitspielerCheckSpammableStrings(rolle);
 
         return frontendControl;
     }

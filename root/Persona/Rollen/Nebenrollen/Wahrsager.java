@@ -13,15 +13,11 @@ import java.util.Objects;
 public class Wahrsager extends Nebenrolle {
     public static final String KEIN_OPFER = "Kein Opfer";
 
-    public static final String WAHRSAGER_INFORMATION = "Wahrsager erwacht und erfährt die Anzahl der lebenden Mitglieder von jeder Fraktion";
-    public static String title = "Anzahl Mitglieder";
+    public static final String WAHRSAGER_INFORMATION = "Wahrsager erwacht, bekommt ggf. die Anzahl der Spieler in jeder Fraktion mitgeteilt und schätzt, welche Frktion das Opfer der Dorfabstimmung haben wird";
+    public static String title = "Fraktion wählen";
+    public static final String REWARD_TITLE = "Anzahl Mitglieder";
     public static final String beschreibung = WAHRSAGER_INFORMATION;
     public static StatementType statementType = StatementType.ROLLE_SPECAL;
-
-    public static final String WAHRSAGER_RATEN = "Wahrsager erwacht und gibt seinen Tipp ab welche Fraktion bei der Dorfabstimmung sterben wird";
-    public static String secondTitle = "Fraktion wählen";
-    public static final String secondBeschreibung = WAHRSAGER_RATEN;
-    public static StatementType secondStatementType = StatementType.ROLLE_CHOOSE_ONE;
 
     public static final String name = "Wahrsager";
     public static final String imagePath = ImagePath.WAHRSAGER_KARTE;
@@ -31,16 +27,21 @@ public class Wahrsager extends Nebenrolle {
 
     @Override
     public FrontendControl getDropdownOptions() {
-        FrontendControl dropDownOptions = Fraktion.getFraktionOrNoneFrontendControl();
+        ArrayList<String> strings = Fraktion.getFraktionOrNoneStrings();
 
-        dropDownOptions.strings.remove("");
-        dropDownOptions.strings.add(KEIN_OPFER);
+        strings.remove("");
+        strings.add(KEIN_OPFER);
+        FrontendControlType typeOfContent = FrontendControlType.DROPDOWN_SEPERATED_LIST;
 
-        return dropDownOptions;
+        return new FrontendControl(typeOfContent, strings);
     }
 
     @Override
     public FrontendControl getInfo() {
+        return new FrontendControl(rewardInformation());
+    }
+
+    public ArrayList<String> rewardInformation() {
         ArrayList<String> list = new ArrayList<>();
 
         for (String fraktion : Fraktion.getFraktionStrings()) {
@@ -48,7 +49,7 @@ public class Wahrsager extends Nebenrolle {
             list.add(anzahl + " " + fraktion);
         }
 
-        return new FrontendControl(FrontendControlType.LIST, list);
+        return list;
     }
 
     @Override
@@ -72,21 +73,6 @@ public class Wahrsager extends Nebenrolle {
     }
 
     @Override
-    public String getSecondTitle() {
-        return secondTitle;
-    }
-
-    @Override
-    public String getSecondBeschreibung() {
-        return secondBeschreibung;
-    }
-
-    @Override
-    public StatementType getSecondStatementType() {
-        return secondStatementType;
-    }
-
-    @Override
     public String getImagePath() {
         return imagePath;
     }
@@ -98,7 +84,7 @@ public class Wahrsager extends Nebenrolle {
 
     public boolean guessedRight() {
         return (tipp == null && Wahrsager.opferFraktion == null) ||
-                (tipp != null && Wahrsager.opferFraktion != null) &&
-                        Objects.equals(tipp.getName(), Wahrsager.opferFraktion.getName());
+                ((tipp != null && Wahrsager.opferFraktion != null) &&
+                        Objects.equals(tipp.getName(), Wahrsager.opferFraktion.getName()));
     }
 }

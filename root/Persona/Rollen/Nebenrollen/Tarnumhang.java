@@ -36,9 +36,9 @@ public class Tarnumhang extends Nebenrolle {
 
         frontendControl.typeOfContent = FrontendControlType.LIST;
         frontendControl.title = title;
-        frontendControl.strings = new ArrayList<>();
+        frontendControl.dropdownStrings = new ArrayList<>();
         String unseenTräger = getUnseenTräger();
-        frontendControl.strings.add(unseenTräger);
+        frontendControl.dropdownStrings.add(unseenTräger);
 
         return frontendControl;
     }

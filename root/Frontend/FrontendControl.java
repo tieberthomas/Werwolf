@@ -29,7 +29,8 @@ public class FrontendControl {
 
     public FrontendControlType typeOfContent;
     public String title;
-    public ArrayList<String> strings;
+    public ArrayList<String> dropdownStrings;
+    public ArrayList<String> listStrings;
     public List<SchnüfflerInformation> informationen;
     public String imagePath;
 
@@ -42,20 +43,20 @@ public class FrontendControl {
         this.title = title;
     }
 
-    public FrontendControl(ArrayList<String> strings) {
+    public FrontendControl(ArrayList<String> dropdownStrings) {
         this.typeOfContent = FrontendControlType.LIST;
-        this.strings = strings;
+        this.dropdownStrings = dropdownStrings;
     }
 
-    public FrontendControl(FrontendControlType typeOfContent, ArrayList<String> strings) {
+    public FrontendControl(FrontendControlType typeOfContent, ArrayList<String> dropdownStrings) {
         this.typeOfContent = typeOfContent;
-        this.strings = strings;
+        this.dropdownStrings = dropdownStrings;
     }
 
-    public FrontendControl(FrontendControlType typeOfContent, String title, ArrayList<String> strings) {
+    public FrontendControl(FrontendControlType typeOfContent, String title, ArrayList<String> dropdownStrings) {
         this.typeOfContent = typeOfContent;
         this.title = title;
-        this.strings = strings;
+        this.dropdownStrings = dropdownStrings;
     }
 
     public FrontendControl(FrontendControlType typeOfContent, String imagePath) {
@@ -75,16 +76,16 @@ public class FrontendControl {
         this.imagePath = zeigekarte.imagePath;
     }
 
-    public FrontendControl(FrontendControlType typeOfContent, ArrayList<String> strings, String imagePath) {
+    public FrontendControl(FrontendControlType typeOfContent, ArrayList<String> dropdownStrings, String imagePath) {
         this.typeOfContent = typeOfContent;
-        this.strings = strings;
+        this.dropdownStrings = dropdownStrings;
         this.imagePath = imagePath;
     }
 
-    public FrontendControl(FrontendControlType typeOfContent, String title, ArrayList<String> strings, String imagePath) {
+    public FrontendControl(FrontendControlType typeOfContent, String title, ArrayList<String> dropdownStrings, String imagePath) {
         this.typeOfContent = typeOfContent;
         this.title = title;
-        this.strings = strings;
+        this.dropdownStrings = dropdownStrings;
         this.imagePath = imagePath;
     }
 
@@ -272,6 +273,6 @@ public class FrontendControl {
     }
 
     public void addString(DropdownConstants dropdownConstant) {
-        strings.add(dropdownConstant.name);
+        dropdownStrings.add(dropdownConstant.name);
     }
 }
