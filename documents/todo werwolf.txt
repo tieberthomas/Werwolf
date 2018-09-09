@@ -11,7 +11,7 @@ alles was tötet + prostituierten interaktion
 wahrsager
 
 bugs:
-seherin (choose get info) brauchen beim bamboozeln einen klick mehr
+choose get info rollen wenn sie nicht im spiel sind dreht das übrsichtsfenster durch
 
 
 ToDo:
@@ -19,7 +19,6 @@ ToDo:
 
 task:
 wenn dieb karten stiehlt wie z.B. schnüffler oder tarnumhang, dann müssen arraylists der letzten nächte zurückgesetzt werden
-Blutmond icon entwerfen und implimentieren
 
 CherryOnTop:
 seher bamboozlekarten dem erzähler zeigen während der seher aktion damit dieser nicht verwirrt ist

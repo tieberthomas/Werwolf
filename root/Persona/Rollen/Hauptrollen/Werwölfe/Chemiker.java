@@ -102,13 +102,12 @@ public class Chemiker extends Hauptrolle {
         ArrayList<String> resurrectableOpfer = new ArrayList<>();
 
         for (Opfer currentOpfer : Opfer.deadVictims) {
-            String fraktionOpfer = currentOpfer.opfer.hauptrolle.getFraktion().getName();
-            String fraktionTäter = currentOpfer.täter.hauptrolle.getFraktion().getName();
-            String hauptrolleTäter = currentOpfer.täter.hauptrolle.getName();
+            String opferFraktion = currentOpfer.opfer.hauptrolle.getFraktion().getName();
+            String täterFraktion = currentOpfer.täterFraktion.getName();
 
             if (currentOpfer.opfer.ressurectable) {
-                if (currentOpfer.fraktionsTäter && fraktionTäter.equals(Werwölfe.name) || hauptrolleTäter.equals(Wölfin.name)) {
-                    if (!fraktionOpfer.equals(Werwölfe.name)) {
+                if (täterFraktion.equals(Werwölfe.name)) {
+                    if (!opferFraktion.equals(Werwölfe.name)) {
                         if (!resurrectableOpfer.contains(currentOpfer.opfer.name)) {
                             resurrectableOpfer.add(currentOpfer.opfer.name);
                         }

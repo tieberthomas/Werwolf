@@ -5,9 +5,7 @@ import root.Frontend.FrontendControl;
 import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Vampire;
 import root.Persona.Fraktionen.Werwölfe;
-import root.Persona.Rolle;
 import root.Persona.Rollen.Hauptrollen.Bürger.Riese;
-import root.Persona.Rollen.Hauptrollen.Werwölfe.Blutwolf;
 import root.Persona.Rollen.Nebenrollen.Prostituierte;
 import root.Persona.Rollen.Nebenrollen.Vampirumhang;
 import root.Persona.Rollen.Nebenrollen.Wolfspelz;
@@ -110,23 +108,13 @@ public class Opfer {
 
         String opferNebenrolle = opfer.nebenrolle.getName();
 
-        boolean blutwolfDeadly = false;
-        if (täterFraktion.equals(Werwölfe.name)) {
-            if (Rolle.rolleLebend(Blutwolf.name) && Blutwolf.deadly) {
-                blutwolfDeadly = true;
-            }
-        }
-
-        if (!opfer.geschützt || (täterFraktion.equals(Werwölfe.name) && blutwolfIsDeadly())) {
+        if (!opfer.geschützt || (täterFraktion.equals(Werwölfe.name) && Werwölfe.blutWolfIsAktiv())) {
             if (!(opferNebenrolle.equals(Vampirumhang.name) && täterFraktion.equals(Vampire.name) ||
-                    opferNebenrolle.equals(Wolfspelz.name) && täterFraktion.equals(Werwölfe.name) && !blutwolfIsDeadly())) {
+                    opferNebenrolle.equals(Wolfspelz.name) && täterFraktion.equals(Werwölfe.name) && !Werwölfe.blutWolfIsAktiv()))
+            {
                 addDeadVictim(opfer, täterFraktion);
             }
         }
-    }
-
-    private static boolean blutwolfIsDeadly() {
-        return Rolle.rolleLebend(Blutwolf.name) && Blutwolf.deadly;
     }
 
     private static void addDeadVictim(Spieler opfer, Spieler täter) {

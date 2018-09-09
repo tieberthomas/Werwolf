@@ -95,6 +95,6 @@ public class Werwölfe extends Fraktion {
     }
 
     public static boolean blutWolfIsAktiv() {
-        return Rolle.rolleAktiv(Blutwolf.name) && Blutwolf.deadly;
+        return Rolle.rolleLebend(Blutwolf.name) && Rolle.rolleAktiv(Blutwolf.name) && Blutwolf.deadly;
     }
 }
