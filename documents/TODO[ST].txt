@@ -12,3 +12,8 @@ Englisch-Deutsch-Gemisch
 MT:
 Freigestellt - Weiß
 Nebenrolle -> Bonusrolle
+
+Nach Auslieferung:
+Analytiker generisch machen
+ErsteNacht generisch machen
+FrontendControl subclassen

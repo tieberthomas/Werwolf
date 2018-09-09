@@ -4,7 +4,6 @@ import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.Persona.Nebenrolle;
 import root.Persona.Rolle;
-import root.Persona.Rollen.Constants.NebenrollenType.Passiv;
 import root.Phases.Nacht;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.Phases.NightBuilding.Statement;
@@ -96,9 +95,7 @@ public class Totengräber extends Nebenrolle {
         ArrayList<String> nehmbareNebenrollen = new ArrayList<>();
 
         for (Nebenrolle nebenrolle : game.mitteNebenrollen) {
-            if (!nebenrolle.getType().equals(new Passiv())) {
-                nehmbareNebenrollen.add(nebenrolle.getName());
-            }
+            nehmbareNebenrollen.add(nebenrolle.getName());
         }
 
         return nehmbareNebenrollen;
