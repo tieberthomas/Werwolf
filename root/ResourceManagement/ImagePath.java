@@ -17,6 +17,7 @@ public class ImagePath {
     public static String AKTIV = ICON_PATH + "Aktiv" + IMAGE_FILE_EXTENSION;
     public static String AUFGEBRAUCHT = ICON_PATH + "Aufgebraucht" + IMAGE_FILE_EXTENSION;
     public static String AUS_DEM_SPIEL = ICON_PATH + "Aus_dem_Spiel" + IMAGE_FILE_EXTENSION;
+    public static String BLUTMOND = ICON_PATH + "Blutmond" + IMAGE_FILE_EXTENSION;
     public static String DEAKTIVIERT = ICON_PATH + "Deaktiviert" + IMAGE_FILE_EXTENSION;
     public static String FREIBIER = ICON_PATH + "Freibier" + IMAGE_FILE_EXTENSION;
     public static String GESCHÜTZT = ICON_PATH + "Geschützt" + IMAGE_FILE_EXTENSION;
