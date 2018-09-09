@@ -549,6 +549,10 @@ public class Nacht extends Thread {
                     case SCHNÜFFLER_INFO:
                         showSchnüfflerInfo(statement, frontendControl.informationen);
                         break;
+
+                    case DROPDOWN_LIST_IMAGE:
+                        //
+                        break;
                 }
                 break;
 

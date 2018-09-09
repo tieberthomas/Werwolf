@@ -1,5 +1,6 @@
 package root.Persona.Fraktionen;
 
+import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.Persona.Fraktion;
 import root.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.WerwölfeZeigekarte;
@@ -32,7 +33,13 @@ public class Werwölfe extends Fraktion {
 
     @Override
     public FrontendControl getDropdownOptions() {
-        return game.getPlayerFrontendControl();
+        FrontendControl frontendControl = new FrontendControl();
+
+        frontendControl.typeOfContent = FrontendControlType.DROPDOWN_LIST_IMAGE;
+        frontendControl.strings = game.getLivingPlayerOrNoneStrings();
+        frontendControl.imagePath = zeigekarte.imagePath;
+
+        return frontendControl;
     }
 
     @Override
