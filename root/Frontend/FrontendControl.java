@@ -186,6 +186,11 @@ public class FrontendControl {
         spielerFrame.buildScreenFromPage(spielerFrame.dropDownPage);
     }
 
+    public static void spielerDropdownMirrorImagePage(String title, String imagepath) {
+        spielerFrame.dropDownPage = spielerFrame.pageFactory.generateDropdownMirrorImagePage(title, imagepath);
+        spielerFrame.buildScreenFromPage(spielerFrame.dropDownPage);
+    }
+
     public static void erzählerListPage(Statement statement, String string) {
         ArrayList<String> list = new ArrayList<>();
         list.add(string);

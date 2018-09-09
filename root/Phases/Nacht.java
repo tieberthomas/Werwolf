@@ -530,6 +530,10 @@ public class Nacht extends Thread {
                         showDropdownList(statement, frontendControl.title, frontendControl.strings);
                         return FrontendControl.erzählerFrame.chosenOption1;
 
+                    case DROPDOWN_IMAGE:
+                        showDropdownShowImage(statement, frontendControl.title, frontendControl.strings, frontendControl.imagePath);
+                        return FrontendControl.erzählerFrame.chosenOption1;
+
                     case LIST:
                         showList(statement, frontendControl.title, frontendControl.strings);
                         break;
@@ -550,9 +554,6 @@ public class Nacht extends Thread {
                         showSchnüfflerInfo(statement, frontendControl.informationen);
                         break;
 
-                    case DROPDOWN_LIST_IMAGE:
-                        //
-                        break;
                 }
                 break;
 
@@ -570,6 +571,13 @@ public class Nacht extends Thread {
         }
 
         return null;
+    }
+
+    private void showDropdownShowImage(Statement statement, String title, ArrayList<String> strings, String imagePath) {
+        FrontendControl.erzählerDropdownPage(statement, strings);
+        FrontendControl.spielerDropdownMirrorImagePage(title, imagePath);
+
+        waitForAnswer();
     }
 
     public void showDropdownPage(Statement statement, ArrayList<String> dropdownOptions1, ArrayList<String> dropdownOptions2) {

@@ -29,9 +29,13 @@ public class SpielerPageFactory {
     }
 
     public Page generateStaticImagePage(String title, String imagePath, boolean fullCentered) {
-        spielerFrame.title = title;
         spielerFrame.mode = SpielerFrameMode.staticImage;
 
+        return generateImagePage(title, imagePath, fullCentered);
+    }
+
+    private Page generateImagePage(String title, String imagePath, boolean fullCentered) {
+        spielerFrame.title = title;
         PageElement titleLabel = pageElementFactory.generateTitleLabel(title);
         PageElement imageLabel;
         if (fullCentered) {
@@ -476,5 +480,13 @@ public class SpielerPageFactory {
         }
 
         return generateColumnElements(elementsToDisplay, numberOfColumns, indexOfColumn, offsetAbove, 0);
+    }
+
+    public Page generateDropdownMirrorImagePage(String title, String imagepath) {
+        Page listPage = generateImagePage(title, imagepath, true);
+
+        spielerFrame.mode = SpielerFrameMode.listMirrorPage;
+
+        return listPage;
     }
 }
