@@ -3,6 +3,8 @@ package root.Persona.Fraktionen;
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.Persona.Fraktion;
+import root.Persona.Rolle;
+import root.Persona.Rollen.Constants.Zeigekarten.Blutmond;
 import root.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.WerwölfeZeigekarte;
 import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Persona.Rollen.Hauptrollen.Werwölfe.*;
@@ -33,13 +35,14 @@ public class Werwölfe extends Fraktion {
 
     @Override
     public FrontendControl getDropdownOptions() {
-        FrontendControl frontendControl = new FrontendControl();
+        FrontendControlType typeOfContent = FrontendControlType.DROPDOWN_IMAGE;
+        ArrayList<String> strings = game.getLivingPlayerOrNoneStrings();
+        String imagePath = zeigekarte.imagePath;
+        if(blutWolfIsAktiv()) {
+            imagePath = new Blutmond().imagePath;
+        }
 
-        frontendControl.typeOfContent = FrontendControlType.DROPDOWN_IMAGE;
-        frontendControl.strings = game.getLivingPlayerOrNoneStrings();
-        frontendControl.imagePath = zeigekarte.imagePath;
-
-        return frontendControl;
+        return new FrontendControl(typeOfContent, strings, imagePath);
     }
 
     @Override
@@ -78,6 +81,7 @@ public class Werwölfe extends Fraktion {
     }
 
     public static boolean isTötend(String hauptrolle) {
+        //TODO auf iskilling überprüfen
         ArrayList<String> tötend = new ArrayList<>();
 
         tötend.add(Alphawolf.name);
@@ -88,5 +92,9 @@ public class Werwölfe extends Fraktion {
         tötend.add(Wölfin.name);
 
         return tötend.contains(hauptrolle);
+    }
+
+    public static boolean blutWolfIsAktiv() {
+        return Rolle.rolleAktiv(Blutwolf.name) && Blutwolf.deadly;
     }
 }

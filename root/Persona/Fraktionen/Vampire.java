@@ -1,5 +1,6 @@
 package root.Persona.Fraktionen;
 
+import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.Persona.Fraktion;
 import root.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.VampiereZeigekarte;
@@ -10,6 +11,7 @@ import root.Spieler;
 import root.mechanics.Opfer;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public class Vampire extends Fraktion {
     public static String title = "Opfer wählen";
@@ -30,7 +32,11 @@ public class Vampire extends Fraktion {
 
     @Override
     public FrontendControl getDropdownOptions() {
-        return game.getPlayerFrontendControl();
+        FrontendControlType typeOfContent = FrontendControlType.DROPDOWN_IMAGE;
+        ArrayList<String> strings = game.getLivingPlayerOrNoneStrings();
+        String imagePath = zeigekarte.imagePath;
+
+        return new FrontendControl(typeOfContent, strings, imagePath);
     }
 
     @Override

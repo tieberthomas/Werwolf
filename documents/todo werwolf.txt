@@ -37,6 +37,8 @@ getInstance (findSpielerOrDead) in game
 uhr für freibier tag implementieren (freibiertag spielerscreen überarbeiten)
 analytiker aussehen generisch in showFrontend von nach inkludieren
 erste nacht generisch machen wie normale nacht
+get dropdown options von werwölfen und vampieren ist duplicated
+is tötend in werwolffraktion generische machen
 
 
 bei jeder rolle als kommentar den kartentext dazuschreiben
