@@ -9,7 +9,6 @@ import root.Persona.Hauptrolle;
 import root.Persona.Nebenrolle;
 import root.Persona.Rolle;
 import root.Persona.Rollen.Constants.DropdownConstants;
-import root.Persona.Rollen.Constants.NebenrollenType.Passiv;
 import root.Persona.Rollen.Constants.NebenrollenType.Tarnumhang_NebenrollenType;
 import root.Persona.Rollen.Constants.SchnüfflerInformation;
 import root.Persona.Rollen.Constants.Zeigekarten.*;
@@ -153,7 +152,7 @@ public class Nacht extends Thread {
                                 chosenOption = showFrontendControl(statement, dropdownOtions);
                                 schreckenswolf.processChosenOption(chosenOption);
                             } else {
-                                showImage(statement, new Passiv().imagePath);
+                                showZeigekarte(statement, new Nicht_Aktiv());
                             }
                             break;
 
@@ -275,7 +274,6 @@ public class Nacht extends Thread {
                         case Schreckenswolf.VERSTUMMT:
                             if (beschworenerSpieler != null) {
                                 FrontendControl.erzählerListPage(statement, beschworenerSpieler.name);
-                                //es wird keine ZeigekartenPage gezeigt, weil der titel der name vom spieler sein soll
                                 FrontendControl.spielerIconPicturePage(beschworenerSpieler.name, new Verstummt().imagePath);
 
                                 waitForAnswer();
