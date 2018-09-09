@@ -10,9 +10,6 @@ tarnumhang
 alles was tötet + prostituierten interaktion
 wahrsager
 
-bugs:
-choose get info rollen wenn sie nicht im spiel sind dreht das übrsichtsfenster durch
-
 
 ToDo:
 

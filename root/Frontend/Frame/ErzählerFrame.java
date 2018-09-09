@@ -527,7 +527,6 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                     if (mode == ErzählerFrameMode.ersteNacht) {
                         übersichtsFrame.übersichtsPage = übersichtsFrame.pageFactory.generateÜbersichtsPage();
                     }
-                    übersichtsFrame.refreshÜbersichtsPage();
                 }
             } catch (NullPointerException e) {
                 System.out.println("Übersichtsframe seems to be not there. (yet?)");
