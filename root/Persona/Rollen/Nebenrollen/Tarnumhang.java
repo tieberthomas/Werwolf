@@ -15,9 +15,9 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class Tarnumhang extends Nebenrolle {
-    public static String title = "Träger eines Umhangs";
-    public static final String beschreibung = "Träger des Tarnumhangs erwacht und erfährt einen Mitspieler, bei dem ein Umhhang liegt";
-    public static StatementType statementType = StatementType.ROLLE_INFO;
+    public static String STATEMENT_TITLE = "Träger eines Umhangs";
+    public static final String STATEMENT_BESCHREIBUNG = "Träger des Tarnumhangs erwacht und erfährt einen Mitspieler, bei dem ein Umhhang liegt";
+    public static StatementType STATEMENT_TYPE = StatementType.ROLLE_INFO;
     public static String KEINE_UMHÄNGE = "Es sind keine Umhangträger mehr im Spiel";
 
     public static final String NAME = "Tarnumhang";
@@ -33,6 +33,10 @@ public class Tarnumhang extends Nebenrolle {
     public Tarnumhang() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
+
+        this.statementTitle = STATEMENT_TITLE;
+        this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
+        this.statementType = STATEMENT_TYPE;
     }
 
     @Override
@@ -40,7 +44,7 @@ public class Tarnumhang extends Nebenrolle {
         FrontendControl frontendControl = new FrontendControl();
 
         frontendControl.typeOfContent = FrontendControlType.LIST;
-        frontendControl.title = title;
+        frontendControl.title = STATEMENT_TITLE;
         frontendControl.dropdownStrings = new ArrayList<>();
         String unseenTräger = getUnseenTräger();
         frontendControl.dropdownStrings.add(unseenTräger);
@@ -79,21 +83,6 @@ public class Tarnumhang extends Nebenrolle {
         }
 
         return allTräger;
-    }
-
-    @Override
-    public String getTitle() {
-        return title;
-    }
-
-    @Override
-    public String getBeschreibung() {
-        return beschreibung;
-    }
-
-    @Override
-    public StatementType getStatementType() {
-        return statementType;
     }
 
     @Override

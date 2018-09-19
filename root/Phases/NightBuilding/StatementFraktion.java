@@ -7,7 +7,7 @@ public class StatementFraktion extends Statement {
     public String fraktion;
 
     public StatementFraktion(Fraktion fraktion) {
-        this(fraktion.getBeschreibung(), fraktion.getTitle(), fraktion.name, fraktion.getStatementType());
+        this(fraktion.statementBeschreibung, fraktion.statementTitle, fraktion.name, fraktion.statementType);
     }
 
     public StatementFraktion(String beschreibung, String title, String fraktion, StatementType type) {

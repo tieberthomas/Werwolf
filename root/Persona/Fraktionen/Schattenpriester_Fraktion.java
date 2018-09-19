@@ -17,14 +17,14 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Schattenpriester_Fraktion extends Fraktion {
-    public static String title = "Opfer wiederbeleben";
-    public static final String beschreibung = "Die Schattenpriester erwachen und entscheiden welchen Verstorbenen dieser Nacht sie wiederbeleben und zum Kult hinzufügen möchten";
-    public static StatementType statementType = StatementType.FRAKTION_CHOOSE_ONE;
+    public static String STATEMENT_TITLE = "Opfer wiederbeleben";
+    public static final String STATEMENT_BESCHREIBUNG = "Die Schattenpriester erwachen und entscheiden welchen Verstorbenen dieser Nacht sie wiederbeleben und zum Kult hinzufügen möchten";
+    public static StatementType STATEMENT_TYPE = StatementType.FRAKTION_CHOOSE_ONE;
 
-    public static String secondTitle = "Neuer Schattenpriester";
+    public static String SECOND_STATEMENT_TITLE = "Neuer Schattenpriester";
     public static final String NEUER_SCHATTENPRIESTER = "Der Wiederbelebte erwacht und tauscht seine Karten gegen Schattenkarten";
-    public static final String secondBeschreibung = NEUER_SCHATTENPRIESTER;
-    public static StatementType secondStatementType = StatementType.FRAKTION_SPECAL;
+    public static final String SECOND_STATEMENT_BESCHREIBUNG = NEUER_SCHATTENPRIESTER;
+    public static StatementType SECOND_STATEMENT_TYPE = StatementType.FRAKTION_SPECAL;
 
     public static final String NAME = "Schattenpriester";
     public static final Color farbe = Color.lightGray;
@@ -36,6 +36,14 @@ public class Schattenpriester_Fraktion extends Fraktion {
     public Schattenpriester_Fraktion() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
+
+        this.statementTitle = STATEMENT_TITLE;
+        this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
+        this.statementType = STATEMENT_TYPE;
+
+        this.secondStatementTitle = SECOND_STATEMENT_TITLE;
+        this.secondStatementBeschreibung = SECOND_STATEMENT_BESCHREIBUNG;
+        this.secondStatementType = SECOND_STATEMENT_TYPE;
     }
 
     @Override
@@ -72,33 +80,6 @@ public class Schattenpriester_Fraktion extends Fraktion {
         frontendControl.dropdownStrings.add("");
 
         return frontendControl;
-    }
-
-    @Override
-    public String getTitle() {
-        return title;
-    }
-
-    @Override
-    public String getBeschreibung() {
-        return beschreibung;
-    }
-
-    @Override
-    public StatementType getStatementType() {
-        return statementType;
-    }
-
-    public String getSecondTitle() {
-        return secondTitle;
-    }
-
-    public String getSecondBeschreibung() {
-        return secondBeschreibung;
-    }
-
-    public StatementType getSecondStatementType() {
-        return secondStatementType;
     }
 
     @Override

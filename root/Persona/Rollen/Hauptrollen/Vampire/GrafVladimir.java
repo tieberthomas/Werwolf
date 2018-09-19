@@ -9,9 +9,9 @@ import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
 public class GrafVladimir extends Hauptrolle {
-    public static String title = "Spieler unerkennbar machen";
-    public static final String beschreibung = "Graf Vladimir erwacht und veerschleiert die Identität eines Spielers";
-    public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE;
+    public static String STATEMENT_TITLE = "Spieler unerkennbar machen";
+    public static final String STATEMENT_BESCHREIBUNG = "Graf Vladimir erwacht und veerschleiert die Identität eines Spielers";
+    public static StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
 
     public static final String NAME = "Graf Vladimir";
     public static Fraktion fraktion = new Vampire();
@@ -23,6 +23,10 @@ public class GrafVladimir extends Hauptrolle {
     public GrafVladimir() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
+
+        this.statementTitle = STATEMENT_TITLE;
+        this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
+        this.statementType = STATEMENT_TYPE;
     }
 
     @Override
@@ -38,21 +42,6 @@ public class GrafVladimir extends Hauptrolle {
 
             unerkennbarerSpieler = chosenPlayer;
         }
-    }
-
-    @Override
-    public String getTitle() {
-        return title;
-    }
-
-    @Override
-    public String getBeschreibung() {
-        return beschreibung;
-    }
-
-    @Override
-    public StatementType getStatementType() {
-        return statementType;
     }
 
     @Override

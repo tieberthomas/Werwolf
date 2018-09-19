@@ -14,9 +14,9 @@ import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
 public class Späher extends Hauptrolle {
-    public static String title = "Spieler wählen";
-    public static final String beschreibung = "Späher erwacht und lässt sich Auskunft über einen Mitspieler geben";
-    public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE_INFO;
+    public static String STATEMENT_TITLE = "Spieler wählen";
+    public static final String STATEMENT_BESCHREIBUNG = "Späher erwacht und lässt sich Auskunft über einen Mitspieler geben";
+    public static StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE_INFO;
 
     public static final String NAME = "Späher";
     public static Fraktion fraktion = new Bürger();
@@ -26,6 +26,10 @@ public class Späher extends Hauptrolle {
     public Späher() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
+
+        this.statementTitle = STATEMENT_TITLE;
+        this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
+        this.statementType = STATEMENT_TYPE;
     }
 
     @Override
@@ -54,21 +58,6 @@ public class Späher extends Hauptrolle {
         }
 
         return new FrontendControl();
-    }
-
-    @Override
-    public String getTitle() {
-        return title;
-    }
-
-    @Override
-    public String getBeschreibung() {
-        return beschreibung;
-    }
-
-    @Override
-    public StatementType getStatementType() {
-        return statementType;
     }
 
     @Override

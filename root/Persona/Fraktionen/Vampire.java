@@ -14,9 +14,9 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Vampire extends Fraktion {
-    public static String title = "Opfer wählen";
-    public static final String beschreibung = "Die Vampire erwachen und wählen ein Opfer aus";
-    public static StatementType statementType = StatementType.FRAKTION_CHOOSE_ONE;
+    public static String STATEMENT_TITLE = "Opfer wählen";
+    public static final String STATEMENT_BESCHREIBUNG = "Die Vampire erwachen und wählen ein Opfer aus";
+    public static StatementType STATEMENT_TYPE = StatementType.FRAKTION_CHOOSE_ONE;
 
     public static final String NAME = "Vampire";
     public static final Color farbe = Color.red;
@@ -26,6 +26,10 @@ public class Vampire extends Fraktion {
     public Vampire() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
+
+        this.statementTitle = STATEMENT_TITLE;
+        this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
+        this.statementType = STATEMENT_TYPE;
     }
 
     @Override
@@ -43,21 +47,6 @@ public class Vampire extends Fraktion {
         String imagePath = zeigekarte.imagePath;
 
         return new FrontendControl(typeOfContent, strings, imagePath);
-    }
-
-    @Override
-    public String getTitle() {
-        return title;
-    }
-
-    @Override
-    public String getBeschreibung() {
-        return beschreibung;
-    }
-
-    @Override
-    public StatementType getStatementType() {
-        return statementType;
     }
 
     @Override

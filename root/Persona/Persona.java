@@ -8,33 +8,17 @@ import java.awt.*;
 public class Persona {
     public static Game game;
 
-    //TODO default values?
+    //TODO default values? (NullPointerExeptions)
     public String name;
     public String imagePath;
 
-    public String getTitle() {
-        return "";
-    }
+    public String statementTitle;
+    public String statementBeschreibung;
+    public StatementType statementType;
 
-    public String getBeschreibung() {
-        return "";
-    }
-
-    public StatementType getStatementType() {
-        return StatementType.EMPTY_STATEMENT;
-    }
-
-    public String getSecondTitle() {
-        return "";
-    }
-
-    public String getSecondBeschreibung() {
-        return "";
-    }
-
-    public StatementType getSecondStatementType() {
-        return StatementType.EMPTY_STATEMENT;
-    }
+    public String secondStatementTitle;
+    public String secondStatementBeschreibung;
+    public StatementType secondStatementType;
 
     public void processChosenOption(String chosenOption) {
     }

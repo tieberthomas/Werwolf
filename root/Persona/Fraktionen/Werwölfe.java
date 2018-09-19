@@ -17,9 +17,9 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Werwölfe extends Fraktion {
-    public static String title = "Opfer wählen";
-    public static final String beschreibung = "Die Werwölfe erwachen und die Wölfe wählen ein Opfer aus";
-    public static StatementType statementType = StatementType.FRAKTION_CHOOSE_ONE;
+    public static String STATEMENT_TITLE = "Opfer wählen";
+    public static final String STATEMENT_BESCHREIBUNG = "Die Werwölfe erwachen und die Wölfe wählen ein Opfer aus";
+    public static StatementType STATEMENT_TYPE = StatementType.FRAKTION_CHOOSE_ONE;
 
     public static final String NAME = "Werwölfe";
     public static final Color farbe = Color.green;
@@ -29,6 +29,10 @@ public class Werwölfe extends Fraktion {
     public Werwölfe() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
+
+        this.statementTitle = STATEMENT_TITLE;
+        this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
+        this.statementType = STATEMENT_TYPE;
     }
 
     @Override
@@ -49,21 +53,6 @@ public class Werwölfe extends Fraktion {
         }
 
         return new FrontendControl(typeOfContent, strings, imagePath);
-    }
-
-    @Override
-    public String getTitle() {
-        return title;
-    }
-
-    @Override
-    public String getBeschreibung() {
-        return beschreibung;
-    }
-
-    @Override
-    public StatementType getStatementType() {
-        return statementType;
     }
 
     @Override

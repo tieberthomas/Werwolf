@@ -12,9 +12,9 @@ import root.mechanics.Opfer;
 import java.util.ArrayList;
 
 public class MissVerona extends Hauptrolle {
-    public static String title = "Angegriffene Opfer";
-    public static final String beschreibung = "Miss Verona erwacht und lässt sich Auskunft über die Spieler geben, die angegriffen wurden";
-    public static StatementType statementType = StatementType.ROLLE_INFO;
+    public static String STATEMENT_TITLE = "Angegriffene Opfer";
+    public static final String STATEMENT_BESCHREIBUNG = "Miss Verona erwacht und lässt sich Auskunft über die Spieler geben, die angegriffen wurden";
+    public static StatementType STATEMENT_TYPE = StatementType.ROLLE_INFO;
 
     public static final String NAME = "Miss Verona";
     public static Fraktion fraktion = new Vampire();
@@ -25,26 +25,15 @@ public class MissVerona extends Hauptrolle {
     public MissVerona() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
+
+        this.statementTitle = STATEMENT_TITLE;
+        this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
+        this.statementType = STATEMENT_TYPE;
     }
 
     @Override
     public FrontendControl getInfo() {
         return new FrontendControl(FrontendControlType.LIST, findUntote());
-    }
-
-    @Override
-    public String getTitle() {
-        return title;
-    }
-
-    @Override
-    public String getBeschreibung() {
-        return beschreibung;
-    }
-
-    @Override
-    public StatementType getStatementType() {
-        return statementType;
     }
 
     @Override

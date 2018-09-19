@@ -14,9 +14,9 @@ import root.Spieler;
 import java.util.ArrayList;
 
 public class Orakel extends Hauptrolle {
-    public static String title = "Bonusrolle";
-    public static final String beschreibung = "Orakel erwacht und lässt sich vom Erzähler die Bonusrollenkarte eines zufälligen Bürgers zeigen";
-    public static StatementType statementType = StatementType.ROLLE_INFO;
+    public static String STATEMENT_TITLE = "Bonusrolle";
+    public static final String STATEMENT_BESCHREIBUNG = "Orakel erwacht und lässt sich vom Erzähler die Bonusrollenkarte eines zufälligen Bürgers zeigen";
+    public static StatementType STATEMENT_TYPE = StatementType.ROLLE_INFO;
 
     public static final String VERBRAUCHT_TITLE = "Bonusrollen";
 
@@ -30,6 +30,10 @@ public class Orakel extends Hauptrolle {
     public Orakel() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
+
+        this.statementTitle = STATEMENT_TITLE;
+        this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
+        this.statementType = STATEMENT_TYPE;
     }
 
     @Override
@@ -51,21 +55,6 @@ public class Orakel extends Hauptrolle {
                 return new FrontendControl(VERBRAUCHT_TITLE);
             }
         }
-    }
-
-    @Override
-    public String getTitle() {
-        return title;
-    }
-
-    @Override
-    public String getBeschreibung() {
-        return beschreibung;
-    }
-
-    @Override
-    public StatementType getStatementType() {
-        return statementType;
     }
 
     @Override

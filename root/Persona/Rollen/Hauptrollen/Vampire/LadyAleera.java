@@ -13,9 +13,9 @@ import root.Spieler;
 import java.util.ArrayList;
 
 public class LadyAleera extends Hauptrolle {
-    public static String title = "Geschützte Spieler";
-    public static final String beschreibung = "Lady Aleera erwacht und sieht alle geschützten Spieler";
-    public static StatementType statementType = StatementType.ROLLE_INFO;
+    public static String STATEMENT_TITLE = "Geschützte Spieler";
+    public static final String STATEMENT_BESCHREIBUNG = "Lady Aleera erwacht und sieht alle geschützten Spieler";
+    public static StatementType STATEMENT_TYPE = StatementType.ROLLE_INFO;
 
     public static final String NAME = "Lady Aleera";
     public static Fraktion fraktion = new Vampire();
@@ -26,26 +26,15 @@ public class LadyAleera extends Hauptrolle {
     public LadyAleera() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
+
+        this.statementTitle = STATEMENT_TITLE;
+        this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
+        this.statementType = STATEMENT_TYPE;
     }
 
     @Override
     public FrontendControl getInfo() {
         return new FrontendControl(FrontendControlType.LIST, findGeschützeSpieler());
-    }
-
-    @Override
-    public String getTitle() {
-        return title;
-    }
-
-    @Override
-    public String getBeschreibung() {
-        return beschreibung;
-    }
-
-    @Override
-    public StatementType getStatementType() {
-        return statementType;
     }
 
     @Override

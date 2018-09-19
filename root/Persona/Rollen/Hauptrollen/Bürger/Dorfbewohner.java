@@ -17,7 +17,6 @@ public class Dorfbewohner extends Hauptrolle {
         this.imagePath = IMAGE_PATH;
     }
 
-
     @Override
     public Fraktion getFraktion() {
         return fraktion;

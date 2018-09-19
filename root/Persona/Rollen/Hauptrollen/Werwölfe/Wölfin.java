@@ -14,14 +14,14 @@ import root.Spieler;
 import root.mechanics.Opfer;
 
 public class Wölfin extends Hauptrolle {
-    public static String title = "Opfer wählen";
-    public static final String beschreibung = "Wölfin erwacht und wählt ein Opfer aus, wenn sie das tut, erfährt das Dorf ihre Bonusrolle";
-    public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE;
+    public static String STATEMENT_TITLE = "Opfer wählen";
+    public static final String STATEMENT_BESCHREIBUNG = "Wölfin erwacht und wählt ein Opfer aus, wenn sie das tut, erfährt das Dorf ihre Bonusrolle";
+    public static StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
 
-    public static String secondTitle = "Wölfin";
+    public static String SECOND_STATEMENT_TITLE = "Wölfin";
     public static final String WÖLFIN_NEBENROLLE = "Das Dorf erfährt die Bonusrolle der Wölfin";
-    public static final String secondBeschreibung = WÖLFIN_NEBENROLLE;
-    public static StatementType secondStatementType = StatementType.ROLLE_INFO;
+    public static final String SECOND_STATEMENT_BESCHREIBUNG = WÖLFIN_NEBENROLLE;
+    public static StatementType SECOND_STATEMENT_TYPE = StatementType.ROLLE_INFO;
 
     public static final String NAME = "Wölfin";
     public static Fraktion fraktion = new Werwölfe();
@@ -33,6 +33,14 @@ public class Wölfin extends Hauptrolle {
     public Wölfin() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
+
+        this.statementTitle = STATEMENT_TITLE;
+        this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
+        this.statementType = STATEMENT_TYPE;
+
+        this.secondStatementTitle = SECOND_STATEMENT_TITLE;
+        this.secondStatementBeschreibung = SECOND_STATEMENT_BESCHREIBUNG;
+        this.secondStatementType = SECOND_STATEMENT_TYPE;
     }
 
     @Override
@@ -66,36 +74,6 @@ public class Wölfin extends Hauptrolle {
         }
 
         return new FrontendControl();
-    }
-
-    @Override
-    public String getTitle() {
-        return title;
-    }
-
-    @Override
-    public String getBeschreibung() {
-        return beschreibung;
-    }
-
-    @Override
-    public StatementType getStatementType() {
-        return statementType;
-    }
-
-    @Override
-    public String getSecondTitle() {
-        return secondTitle;
-    }
-
-    @Override
-    public String getSecondBeschreibung() {
-        return secondBeschreibung;
-    }
-
-    @Override
-    public StatementType getSecondStatementType() {
-        return secondStatementType;
     }
 
     @Override

@@ -9,9 +9,9 @@ import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
 public class HoldeMaid extends Hauptrolle {
-    public static String title = "Mitspieler offenbaren";
-    public static final String beschreibung = "Holde Maid erwacht und offenbart sich einem Mitspieler";
-    public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE;
+    public static String STATEMENT_TITLE = "Mitspieler offenbaren";
+    public static final String STATEMENT_BESCHREIBUNG = "Holde Maid erwacht und offenbart sich einem Mitspieler";
+    public static StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
 
     public static final String NAME = "Holde Maid";
     public static Fraktion fraktion = new Bürger();
@@ -21,6 +21,10 @@ public class HoldeMaid extends Hauptrolle {
     public HoldeMaid() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
+
+        this.statementTitle = STATEMENT_TITLE;
+        this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
+        this.statementType = STATEMENT_TYPE;
     }
 
     @Override
@@ -34,21 +38,6 @@ public class HoldeMaid extends Hauptrolle {
         if (chosenPlayer != null) {
             besucht = chosenPlayer;
         }
-    }
-
-    @Override
-    public String getTitle() {
-        return title;
-    }
-
-    @Override
-    public String getBeschreibung() {
-        return beschreibung;
-    }
-
-    @Override
-    public StatementType getStatementType() {
-        return statementType;
     }
 
     @Override

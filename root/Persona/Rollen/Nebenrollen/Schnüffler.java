@@ -14,9 +14,9 @@ import root.Spieler;
 import java.util.ArrayList;
 
 public class Schnüffler extends Nebenrolle {
-    public static String title = "Spieler wählen";
-    public static final String beschreibung = "Schnüffler erwacht und lässt sich Auskunft über einen Mitspieler geben";
-    public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE_INFO;
+    public static String STATEMENT_TITLE = "Spieler wählen";
+    public static final String STATEMENT_BESCHREIBUNG = "Schnüffler erwacht und lässt sich Auskunft über einen Mitspieler geben";
+    public static StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE_INFO;
 
     public static final String NAME = "Schnüffler";
     public static final String IMAGE_PATH = ImagePath.SCHNÜFFLER_KARTE;
@@ -29,6 +29,10 @@ public class Schnüffler extends Nebenrolle {
     public Schnüffler() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
+
+        this.statementTitle = STATEMENT_TITLE;
+        this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
+        this.statementType = STATEMENT_TYPE;
     }
 
     @Override
@@ -69,21 +73,6 @@ public class Schnüffler extends Nebenrolle {
         }
 
         return new FrontendControl();
-    }
-
-    @Override
-    public String getTitle() {
-        return title;
-    }
-
-    @Override
-    public String getBeschreibung() {
-        return beschreibung;
-    }
-
-    @Override
-    public StatementType getStatementType() {
-        return statementType;
     }
 
     @Override

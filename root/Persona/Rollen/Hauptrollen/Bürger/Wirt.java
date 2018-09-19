@@ -14,9 +14,9 @@ import static root.Persona.Rollen.Constants.DropdownConstants.JA;
 import static root.Persona.Rollen.Constants.DropdownConstants.NEIN;
 
 public class Wirt extends Hauptrolle {
-    public static String title = "Freibier ausgeben";
-    public static final String beschreibung = "Wirt erwacht und entscheidet sich ob er Freibier ausgeben will";
-    public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE;
+    public static String STATEMENT_TITLE = "Freibier ausgeben";
+    public static final String STATEMENT_BESCHREIBUNG = "Wirt erwacht und entscheidet sich ob er Freibier ausgeben will";
+    public static StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
 
     public static final String NAME = "Wirt";
     public static Fraktion fraktion = new Bürger();
@@ -27,6 +27,10 @@ public class Wirt extends Hauptrolle {
     public Wirt() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
+
+        this.statementTitle = STATEMENT_TITLE;
+        this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
+        this.statementType = STATEMENT_TYPE;
     }
 
     @Override
@@ -48,21 +52,6 @@ public class Wirt extends Hauptrolle {
                 freibierCharges--;
             }
         }
-    }
-
-    @Override
-    public String getTitle() {
-        return title;
-    }
-
-    @Override
-    public String getBeschreibung() {
-        return beschreibung;
-    }
-
-    @Override
-    public StatementType getStatementType() {
-        return statementType;
     }
 
     @Override

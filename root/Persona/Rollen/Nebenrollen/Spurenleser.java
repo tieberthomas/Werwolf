@@ -13,9 +13,9 @@ import root.Spieler;
 import java.util.ArrayList;
 
 public class Spurenleser extends Nebenrolle {
-    public static String title = "Spuren lesen von";
-    public static final String beschreibung = "Spurenleser erwacht, wählt einen Mitspieler und erfährt wen dieser Spieler besucht hat";
-    public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE_INFO;
+    public static String STATEMENT_TITLE = "Spuren lesen von";
+    public static final String STATEMENT_BESCHREIBUNG = "Spurenleser erwacht, wählt einen Mitspieler und erfährt wen dieser Spieler besucht hat";
+    public static StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE_INFO;
 
     public static final String infoTitle = "Besuchte Spieler von ";
 
@@ -27,6 +27,10 @@ public class Spurenleser extends Nebenrolle {
     public Spurenleser() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
+
+        this.statementTitle = STATEMENT_TITLE;
+        this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
+        this.statementType = STATEMENT_TYPE;
     }
 
     @Override
@@ -52,21 +56,6 @@ public class Spurenleser extends Nebenrolle {
         }
 
         return new FrontendControl();
-    }
-
-    @Override
-    public String getTitle() {
-        return title;
-    }
-
-    @Override
-    public String getBeschreibung() {
-        return beschreibung;
-    }
-
-    @Override
-    public StatementType getStatementType() {
-        return statementType;
     }
 
     @Override

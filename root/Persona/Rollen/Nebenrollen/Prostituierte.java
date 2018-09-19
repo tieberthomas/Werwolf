@@ -7,9 +7,9 @@ import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
 public class Prostituierte extends Nebenrolle {
-    public static String title = "Bett legen";
-    public static final String beschreibung = "Prostituierte legt sich zu einem Mitspieler ins Bett";
-    public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE;
+    public static String STATEMENT_TITLE = "Bett legen";
+    public static final String STATEMENT_BESCHREIBUNG = "Prostituierte legt sich zu einem Mitspieler ins Bett";
+    public static StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
 
     public static final String NAME = "Prostituierte";
     public static final String IMAGE_PATH = ImagePath.PROSTITUIERTE_KARTE;
@@ -20,6 +20,10 @@ public class Prostituierte extends Nebenrolle {
     public Prostituierte() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
+
+        this.statementTitle = STATEMENT_TITLE;
+        this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
+        this.statementType = STATEMENT_TYPE;
     }
 
     @Override
@@ -37,21 +41,6 @@ public class Prostituierte extends Nebenrolle {
         } else {
             host = game.findSpielerPerRolle(NAME);
         }
-    }
-
-    @Override
-    public String getTitle() {
-        return title;
-    }
-
-    @Override
-    public String getBeschreibung() {
-        return beschreibung;
-    }
-
-    @Override
-    public StatementType getStatementType() {
-        return statementType;
     }
 
     @Override

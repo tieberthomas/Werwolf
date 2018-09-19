@@ -1,9 +1,10 @@
 ST:
 deaktiv nochmal anschauen
-booleans?
+getter?
 deaktiviert und verbraucht - deaktiviert anzeigen
 ErsteNacht Statement Type
 Alphabet Umlaute?
+final?
 
 TH:
 Englisch-Deutsch-Gemisch

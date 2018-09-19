@@ -10,9 +10,9 @@ import root.Spieler;
 import root.mechanics.Opfer;
 
 public class Riese extends Hauptrolle {
-    public static String title = "Mitspieler töten";
-    public static final String beschreibung = "Riese erwacht und entscheidet sich ob einen Mitspieler töten möchte";
-    public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE;
+    public static String STATEMENT_TITLE = "Mitspieler töten";
+    public static final String STATEMENT_BESCHREIBUNG = "Riese erwacht und entscheidet sich ob einen Mitspieler töten möchte";
+    public static StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
 
     public static final String NAME = "Riese";
     public static Fraktion fraktion = new Bürger();
@@ -23,6 +23,10 @@ public class Riese extends Hauptrolle {
     public Riese() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
+
+        this.statementTitle = STATEMENT_TITLE;
+        this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
+        this.statementType = STATEMENT_TYPE;
     }
 
     @Override
@@ -41,21 +45,6 @@ public class Riese extends Hauptrolle {
 
             abilityCharges--;
         }
-    }
-
-    @Override
-    public String getTitle() {
-        return title;
-    }
-
-    @Override
-    public String getBeschreibung() {
-        return beschreibung;
-    }
-
-    @Override
-    public StatementType getStatementType() {
-        return statementType;
     }
 
     @Override

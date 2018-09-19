@@ -135,7 +135,7 @@ public class Nacht extends Thread {
                     }
 
                     switch (statement.beschreibung) {
-                        case Wirt.beschreibung:
+                        case Wirt.STATEMENT_BESCHREIBUNG:
                             if (DropdownConstants.JA.name.equals(chosenOption)) {
                                 freibier = true;
                             }
@@ -145,7 +145,7 @@ public class Nacht extends Thread {
                             setSchütze();
                             break;
 
-                        case Schreckenswolf.beschreibung:
+                        case Schreckenswolf.STATEMENT_BESCHREIBUNG:
                             Schreckenswolf schreckenswolf = (Schreckenswolf) rolle;
                             if (schreckenswolf != null && schreckenswolf.werwölfeKilledOnSchutz()) {
                                 dropdownOtions = schreckenswolf.getDropdownOptions();
@@ -156,7 +156,7 @@ public class Nacht extends Thread {
                             }
                             break;
 
-                        case Wölfin.beschreibung:
+                        case Wölfin.STATEMENT_BESCHREIBUNG:
                             if (!"".equals(chosenOption)) {
                                 wölfinKilled = true;
                                 wölfinSpieler = game.findSpielerPerRolle(Wölfin.NAME);
@@ -187,7 +187,7 @@ public class Nacht extends Thread {
                             showListShowImage(statement, neuerWerwolf, Werwölfe.zeigekarte.imagePath); //TODO evalueren obs schönere lösung gibt
                             break;
 
-                        case Analytiker.beschreibung:
+                        case Analytiker.STATEMENT_BESCHREIBUNG:
                             Spieler analytikerSpieler = game.findSpielerPerRolle(rolle.name);
                             if (Rolle.rolleLebend(Analytiker.NAME)) {
                                 ArrayList<String> spielerOrNonWithoutAnalytiker = (ArrayList<String>) spielerOrNon.clone();
@@ -227,8 +227,8 @@ public class Nacht extends Thread {
                             }
                             break;
 
-                        case Konditor.beschreibung:
-                        case Konditorlehrling.beschreibung:
+                        case Konditor.STATEMENT_BESCHREIBUNG:
+                        case Konditorlehrling.STATEMENT_BESCHREIBUNG:
                             //TODO evaluieren ob Page angezeigt werden soll wenn gibtEsTorte();
                             if (Opfer.deadVictims.size() == 0) {
                                 if (gibtEsTorte()) {

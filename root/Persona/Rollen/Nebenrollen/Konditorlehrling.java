@@ -12,9 +12,9 @@ import static root.Persona.Rollen.Constants.DropdownConstants.GUT;
 import static root.Persona.Rollen.Constants.DropdownConstants.SCHLECHT;
 
 public class Konditorlehrling extends Nebenrolle {
-    public static String title = Konditor.title;
-    public static final String beschreibung = "Konditor und Konditorlehrling erwachen und entscheiden sich ob es eine gute oder schlechte Torte gibt";
-    public static StatementType statementType = StatementType.ROLLE_SPECAL;
+    public static String STATEMENT_TITLE = Konditor.STATEMENT_TITLE;
+    public static final String STATEMENT_BESCHREIBUNG = "Konditor und Konditorlehrling erwachen und entscheiden sich ob es eine gute oder schlechte Torte gibt";
+    public static StatementType STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
 
     public static final String NAME = "Konditorlehrling";
     public static final String IMAGE_PATH = ImagePath.KONDITORLEHRLING_KARTE;
@@ -23,6 +23,10 @@ public class Konditorlehrling extends Nebenrolle {
     public Konditorlehrling() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
+
+        this.statementTitle = STATEMENT_TITLE;
+        this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
+        this.statementType = STATEMENT_TYPE;
     }
 
     @Override
@@ -35,21 +39,6 @@ public class Konditorlehrling extends Nebenrolle {
         frontendControl.addString(SCHLECHT);
 
         return frontendControl;
-    }
-
-    @Override
-    public String getTitle() {
-        return title;
-    }
-
-    @Override
-    public String getBeschreibung() {
-        return beschreibung;
-    }
-
-    @Override
-    public StatementType getStatementType() {
-        return statementType;
     }
 
     @Override

@@ -9,9 +9,9 @@ import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
 public class Schamanin extends Hauptrolle {
-    public static String title = "Mitspieler schützen";
-    public static final String beschreibung = "Schamanin erwacht und entscheidet ob sie einen Spieler schützen möchte";
-    public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE;
+    public static String STATEMENT_TITLE = "Mitspieler schützen";
+    public static final String STATEMENT_BESCHREIBUNG = "Schamanin erwacht und entscheidet ob sie einen Spieler schützen möchte";
+    public static StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
 
     public static final String NAME = "Schamanin";
     public static Fraktion fraktion = new Bürger();
@@ -22,6 +22,10 @@ public class Schamanin extends Hauptrolle {
     public Schamanin() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
+
+        this.statementTitle = STATEMENT_TITLE;
+        this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
+        this.statementType = STATEMENT_TYPE;
     }
 
     @Override
@@ -37,21 +41,6 @@ public class Schamanin extends Hauptrolle {
             chosenPlayer.geschützt = true;
             abilityCharges--;
         }
-    }
-
-    @Override
-    public String getTitle() {
-        return title;
-    }
-
-    @Override
-    public String getBeschreibung() {
-        return beschreibung;
-    }
-
-    @Override
-    public StatementType getStatementType() {
-        return statementType;
     }
 
     @Override

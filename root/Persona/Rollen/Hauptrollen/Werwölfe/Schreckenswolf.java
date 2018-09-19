@@ -14,14 +14,14 @@ import root.mechanics.Opfer;
 import java.util.ArrayList;
 
 public class Schreckenswolf extends Hauptrolle {
-    public static String title = "Mitspieler verstummen";
-    public static final String beschreibung = "Schreckenswolf erwacht und verstummt ggf. einen Spieler der am folgenden Tag nichtmehr reden darf";
-    public static StatementType statementType = StatementType.ROLLE_SPECAL;
+    public static String STATEMENT_TITLE = "Mitspieler verstummen";
+    public static final String STATEMENT_BESCHREIBUNG = "Schreckenswolf erwacht und verstummt ggf. einen Spieler der am folgenden Tag nichtmehr reden darf";
+    public static StatementType STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
 
-    public static final String secondTitle = "Verstummt";
+    public static final String SECOND_STATEMENT_TITLE = "Verstummt";
     public static final String VERSTUMMT = "Der verstummte Spieler wird bekannt gegeben";
-    public static final String secondBeschreibung = VERSTUMMT;
-    public static final StatementType secondStatementType = StatementType.ROLLE_INFO;
+    public static final String SECOND_STATEMENT_BESCHREIBUNG = VERSTUMMT;
+    public static final StatementType SECOND_STATEMENT_TYPE = StatementType.ROLLE_INFO;
 
     public static final String NAME = "Schreckenswolf";
     public static Fraktion fraktion = new Werwölfe();
@@ -32,6 +32,14 @@ public class Schreckenswolf extends Hauptrolle {
     public Schreckenswolf() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
+
+        this.statementTitle = STATEMENT_TITLE;
+        this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
+        this.statementType = STATEMENT_TYPE;
+
+        this.secondStatementTitle = SECOND_STATEMENT_TITLE;
+        this.secondStatementBeschreibung = SECOND_STATEMENT_BESCHREIBUNG;
+        this.secondStatementType = SECOND_STATEMENT_TYPE;
     }
 
     @Override
@@ -46,36 +54,6 @@ public class Schreckenswolf extends Hauptrolle {
             besucht = chosenPlayer;
             Nacht.beschworenerSpieler = chosenPlayer;
         }
-    }
-
-    @Override
-    public String getTitle() {
-        return title;
-    }
-
-    @Override
-    public String getBeschreibung() {
-        return beschreibung;
-    }
-
-    @Override
-    public StatementType getStatementType() {
-        return statementType;
-    }
-
-    @Override
-    public String getSecondTitle() {
-        return secondTitle;
-    }
-
-    @Override
-    public String getSecondBeschreibung() {
-        return secondBeschreibung;
-    }
-
-    @Override
-    public StatementType getSecondStatementType() {
-        return secondStatementType;
     }
 
     @Override

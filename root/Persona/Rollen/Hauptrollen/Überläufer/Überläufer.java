@@ -13,9 +13,9 @@ import root.Spieler;
 import java.util.ArrayList;
 
 public class Überläufer extends Hauptrolle {
-    public static String title = "Karte tauschen";
-    public static final String beschreibung = "Überläufer erwacht und entscheidet ob er seine Hauptrollenkarte tauschen möchte";
-    public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE;
+    public static String STATEMENT_TITLE = "Karte tauschen";
+    public static final String STATEMENT_BESCHREIBUNG = "Überläufer erwacht und entscheidet ob er seine Hauptrollenkarte tauschen möchte";
+    public static StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
 
     public static final String NAME = "Überläufer";
     public static Fraktion fraktion = new Überläufer_Fraktion();
@@ -25,6 +25,10 @@ public class Überläufer extends Hauptrolle {
     public Überläufer() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
+
+        this.statementTitle = STATEMENT_TITLE;
+        this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
+        this.statementType = STATEMENT_TYPE;
     }
 
     @Override
@@ -52,21 +56,6 @@ public class Überläufer extends Hauptrolle {
                 System.out.println(NAME + " nicht gefunden");
             }
         }
-    }
-
-    @Override
-    public String getTitle() {
-        return title;
-    }
-
-    @Override
-    public String getBeschreibung() {
-        return beschreibung;
-    }
-
-    @Override
-    public StatementType getStatementType() {
-        return statementType;
     }
 
     @Override

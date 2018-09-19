@@ -11,9 +11,9 @@ import root.mechanics.Liebespaar;
 import java.util.Objects;
 
 public class Analytiker extends Nebenrolle {
-    public static String title = "Spieler wählen";
-    public static final String beschreibung = "Analytiker erwacht und wählt zwei Spieler, der Erzähler sagt ihm ob diese in derselben Fraktion sind";
-    public static StatementType statementType = StatementType.ROLLE_SPECAL;
+    public static String STATEMENT_TITLE = "Spieler wählen";
+    public static final String STATEMENT_BESCHREIBUNG = "Analytiker erwacht und wählt zwei Spieler, der Erzähler sagt ihm ob diese in derselben Fraktion sind";
+    public static StatementType STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
 
     public static final String NAME = "Analytiker";
     public static final String IMAGE_PATH = ImagePath.ANALYTIKER_KARTE;
@@ -26,21 +26,10 @@ public class Analytiker extends Nebenrolle {
     public Analytiker() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
-    }
 
-    @Override
-    public String getTitle() {
-        return title;
-    }
-
-    @Override
-    public String getBeschreibung() {
-        return beschreibung;
-    }
-
-    @Override
-    public StatementType getStatementType() {
-        return statementType;
+        this.statementTitle = STATEMENT_TITLE;
+        this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
+        this.statementType = STATEMENT_TYPE;
     }
 
     @Override

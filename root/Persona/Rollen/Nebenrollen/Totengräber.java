@@ -14,9 +14,9 @@ import root.Spieler;
 import java.util.ArrayList;
 
 public class Totengräber extends Nebenrolle {
-    public static String title = "Karte tauschen";
-    public static final String beschreibung = "Totengräber erwacht und entscheidet ob er seine Bonusrollenkarte tauschen möchte";
-    public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE;
+    public static String STATEMENT_TITLE = "Karte tauschen";
+    public static final String STATEMENT_BESCHREIBUNG = "Totengräber erwacht und entscheidet ob er seine Bonusrollenkarte tauschen möchte";
+    public static StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
 
     public static final String NAME = "Totengräber";
     public static final String IMAGE_PATH = ImagePath.TOTENGRÄBER_KARTE;
@@ -25,6 +25,10 @@ public class Totengräber extends Nebenrolle {
     public Totengräber() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
+
+        this.statementTitle = STATEMENT_TITLE;
+        this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
+        this.statementType = STATEMENT_TYPE;
     }
 
     @Override
@@ -59,21 +63,6 @@ public class Totengräber extends Nebenrolle {
     @Override
     public boolean isSpammable() {
         return spammable;
-    }
-
-    @Override
-    public String getTitle() {
-        return title;
-    }
-
-    @Override
-    public String getBeschreibung() {
-        return beschreibung;
-    }
-
-    @Override
-    public StatementType getStatementType() {
-        return statementType;
     }
 
     public void removeSammlerFlag(String nebenRolle) {

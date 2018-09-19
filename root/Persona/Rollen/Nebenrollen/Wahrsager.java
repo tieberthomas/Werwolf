@@ -14,10 +14,10 @@ public class Wahrsager extends Nebenrolle {
     public static final String KEIN_OPFER = "Kein Opfer";
 
     public static final String WAHRSAGER_INFORMATION = "Wahrsager erwacht, bekommt ggf. die Anzahl der Spieler in jeder Fraktion mitgeteilt und schätzt, welche Frktion das Opfer der Dorfabstimmung haben wird";
-    public static String title = "Fraktion wählen";
+    public static String STATEMENT_TITLE = "Fraktion wählen";
     public static final String REWARD_TITLE = "Anzahl Mitglieder";
-    public static final String beschreibung = WAHRSAGER_INFORMATION;
-    public static StatementType statementType = StatementType.ROLLE_SPECAL;
+    public static final String STATEMENT_BESCHREIBUNG = WAHRSAGER_INFORMATION;
+    public static StatementType STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
 
     public static final String NAME = "Wahrsager";
     public static final String IMAGE_PATH = ImagePath.WAHRSAGER_KARTE;
@@ -28,6 +28,10 @@ public class Wahrsager extends Nebenrolle {
     public Wahrsager() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
+
+        this.statementTitle = STATEMENT_TITLE;
+        this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
+        this.statementType = STATEMENT_TYPE;
     }
 
     @Override
@@ -55,21 +59,6 @@ public class Wahrsager extends Nebenrolle {
         }
 
         return list;
-    }
-
-    @Override
-    public String getTitle() {
-        return title;
-    }
-
-    @Override
-    public String getBeschreibung() {
-        return beschreibung;
-    }
-
-    @Override
-    public StatementType getStatementType() {
-        return statementType;
     }
 
     @Override

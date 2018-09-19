@@ -12,14 +12,14 @@ import root.mechanics.Opfer;
 import java.util.ArrayList;
 
 public class Chemiker extends Hauptrolle {
-    public static String title = "Opfer wiederbeleben";
-    public static final String beschreibung = "Chemiker erwacht und kann ein Wolfsopfer dieser Nacht wiederbeleben und zum Wolfsrudel hinzufügen";
-    public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE;
+    public static String STATEMENT_TITLE = "Opfer wiederbeleben";
+    public static final String STATEMENT_BESCHREIBUNG = "Chemiker erwacht und kann ein Wolfsopfer dieser Nacht wiederbeleben und zum Wolfsrudel hinzufügen";
+    public static StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
 
-    public static String secondTitle = "Neuer Werwolf";
+    public static String SECOND_STATEMENT_TITLE = "Neuer Werwolf";
     public static final String NEUER_WERWOLF = "Der Wiederbelebte erwacht und tauscht seine Hauptrollen- gegen eine Werwolfkarte";
-    public static final String secondBeschreibung = NEUER_WERWOLF;
-    public static StatementType secondStatementType = StatementType.FRAKTION_SPECAL;
+    public static final String SECOND_STATEMENT_BESCHREIBUNG = NEUER_WERWOLF;
+    public static StatementType SECOND_STATEMENT_TYPE = StatementType.FRAKTION_SPECAL;
 
     public static final String NAME = "Chemiker";
     public static Fraktion fraktion = new Werwölfe();
@@ -29,6 +29,14 @@ public class Chemiker extends Hauptrolle {
     public Chemiker() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
+
+        this.statementTitle = STATEMENT_TITLE;
+        this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
+        this.statementType = STATEMENT_TYPE;
+
+        this.secondStatementTitle = SECOND_STATEMENT_TITLE;
+        this.secondStatementBeschreibung = SECOND_STATEMENT_BESCHREIBUNG;
+        this.secondStatementType = SECOND_STATEMENT_TYPE;
     }
 
     @Override
@@ -51,36 +59,6 @@ public class Chemiker extends Hauptrolle {
             Opfer.deadVictims.remove(chosenOpfer);
             chosenOpfer.opfer.hauptrolle = new Werwolf();
         }
-    }
-
-    @Override
-    public String getTitle() {
-        return title;
-    }
-
-    @Override
-    public String getBeschreibung() {
-        return beschreibung;
-    }
-
-    @Override
-    public StatementType getStatementType() {
-        return statementType;
-    }
-
-    @Override
-    public String getSecondTitle() {
-        return secondTitle;
-    }
-
-    @Override
-    public String getSecondBeschreibung() {
-        return secondBeschreibung;
-    }
-
-    @Override
-    public StatementType getSecondStatementType() {
-        return secondStatementType;
     }
 
     @Override

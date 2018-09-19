@@ -243,14 +243,14 @@ public class ErzählerPageElementFactory {
             if (statement.isVisible()) {
                 nachtPunkte.add(statement.beschreibung);
                 if (!statement.isLebend()) {
-                    if (statement.beschreibung.contains(currentStatement) || (statement.title.equals(Konditorlehrling.title) && currentStatement.equals(Konditorlehrling.beschreibung))) {
+                    if (statement.beschreibung.contains(currentStatement) || (statement.title.equals(Konditorlehrling.STATEMENT_TITLE) && currentStatement.equals(Konditorlehrling.STATEMENT_BESCHREIBUNG))) {
                         found = true;
                         nachtPunkteFarben.add(HTMLStringBuilder.blue);
                     } else {
                         nachtPunkteFarben.add(HTMLStringBuilder.gray);
                     }
                 } else {
-                    if (statement.beschreibung.contains(currentStatement) || (statement.title.equals(Konditorlehrling.title) && currentStatement.equals(Konditorlehrling.beschreibung))) {
+                    if (statement.beschreibung.contains(currentStatement) || (statement.title.equals(Konditorlehrling.STATEMENT_TITLE) && currentStatement.equals(Konditorlehrling.STATEMENT_BESCHREIBUNG))) {
                         nachtPunkteFarben.add(HTMLStringBuilder.yellow);
                         found = true;
                     } else {
@@ -286,7 +286,7 @@ public class ErzählerPageElementFactory {
                 StatementRolle statementRolle = (StatementRolle) statement;
                 if (statementRolle.sammler) {
                     StatementRolle newRolleStatement = new StatementRolle(statementRolle.beschreibung, statementRolle.title, statementRolle.getRolle().name, statementRolle.type);
-                    if (!statementRolle.beschreibung.equals(Konditorlehrling.beschreibung)) {
+                    if (!statementRolle.beschreibung.equals(Konditorlehrling.STATEMENT_BESCHREIBUNG)) {
                         newRolleStatement.beschreibung = Sammler.beschreibungAddiditon + statement.beschreibung;
                     } else {
                         String searchString = "Konditorlehrling erwachen ";
