@@ -12,9 +12,9 @@ import root.mechanics.Opfer;
 import java.util.ArrayList;
 
 public class MissVerona extends Hauptrolle {
-    public static String STATEMENT_TITLE = "Angegriffene Opfer";
+    public static final String STATEMENT_TITLE = "Angegriffene Opfer";
     public static final String STATEMENT_BESCHREIBUNG = "Miss Verona erwacht und lässt sich Auskunft über die Spieler geben, die angegriffen wurden";
-    public static StatementType STATEMENT_TYPE = StatementType.ROLLE_INFO;
+    public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_INFO;
 
     public static final String NAME = "Miss Verona";
     public static Fraktion fraktion = new Vampire();

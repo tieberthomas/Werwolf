@@ -10,9 +10,9 @@ import root.Spieler;
 import root.mechanics.Opfer;
 
 public class Riese extends Hauptrolle {
-    public static String STATEMENT_TITLE = "Mitspieler töten";
+    public static final String STATEMENT_TITLE = "Mitspieler töten";
     public static final String STATEMENT_BESCHREIBUNG = "Riese erwacht und entscheidet sich ob einen Mitspieler töten möchte";
-    public static StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
+    public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
 
     public static final String NAME = "Riese";
     public static Fraktion fraktion = new Bürger();

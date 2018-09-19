@@ -18,9 +18,9 @@ import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
 public class Seherin extends Hauptrolle {
-    public static String STATEMENT_TITLE = "Spieler wählen";
+    public static final String STATEMENT_TITLE = "Spieler wählen";
     public static final String STATEMENT_BESCHREIBUNG = "Seherin erwacht und lässt sich Auskunft über die Fraktion eines Mitspielers geben";
-    public static StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE_INFO;
+    public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE_INFO;
 
     public static final String NAME = "Seherin";
     public static Fraktion fraktion = new Bürger();

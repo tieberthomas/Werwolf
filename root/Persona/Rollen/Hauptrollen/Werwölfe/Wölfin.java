@@ -14,14 +14,14 @@ import root.Spieler;
 import root.mechanics.Opfer;
 
 public class Wölfin extends Hauptrolle {
-    public static String STATEMENT_TITLE = "Opfer wählen";
+    public static final String STATEMENT_TITLE = "Opfer wählen";
     public static final String STATEMENT_BESCHREIBUNG = "Wölfin erwacht und wählt ein Opfer aus, wenn sie das tut, erfährt das Dorf ihre Bonusrolle";
-    public static StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
+    public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
 
-    public static String SECOND_STATEMENT_TITLE = "Wölfin";
+    public static final String SECOND_STATEMENT_TITLE = "Wölfin";
     public static final String WÖLFIN_NEBENROLLE = "Das Dorf erfährt die Bonusrolle der Wölfin";
     public static final String SECOND_STATEMENT_BESCHREIBUNG = WÖLFIN_NEBENROLLE;
-    public static StatementType SECOND_STATEMENT_TYPE = StatementType.ROLLE_INFO;
+    public static final StatementType SECOND_STATEMENT_TYPE = StatementType.ROLLE_INFO;
 
     public static final String NAME = "Wölfin";
     public static Fraktion fraktion = new Werwölfe();

@@ -13,9 +13,9 @@ import root.Spieler;
 import java.util.ArrayList;
 
 public class LadyAleera extends Hauptrolle {
-    public static String STATEMENT_TITLE = "Geschützte Spieler";
+    public static final String STATEMENT_TITLE = "Geschützte Spieler";
     public static final String STATEMENT_BESCHREIBUNG = "Lady Aleera erwacht und sieht alle geschützten Spieler";
-    public static StatementType STATEMENT_TYPE = StatementType.ROLLE_INFO;
+    public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_INFO;
 
     public static final String NAME = "Lady Aleera";
     public static Fraktion fraktion = new Vampire();

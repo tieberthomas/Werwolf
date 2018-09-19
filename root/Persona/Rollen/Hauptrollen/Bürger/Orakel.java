@@ -14,10 +14,9 @@ import root.Spieler;
 import java.util.ArrayList;
 
 public class Orakel extends Hauptrolle {
-    public static String STATEMENT_TITLE = "Bonusrolle";
+    public static final String STATEMENT_TITLE = "Bonusrolle";
     public static final String STATEMENT_BESCHREIBUNG = "Orakel erwacht und lässt sich vom Erzähler die Bonusrollenkarte eines zufälligen Bürgers zeigen";
-    public static StatementType STATEMENT_TYPE = StatementType.ROLLE_INFO;
-
+    public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_INFO;
     public static final String VERBRAUCHT_TITLE = "Bonusrollen";
 
     public static final String NAME = "Orakel";

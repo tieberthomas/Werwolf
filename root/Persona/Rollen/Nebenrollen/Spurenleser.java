@@ -13,11 +13,10 @@ import root.Spieler;
 import java.util.ArrayList;
 
 public class Spurenleser extends Nebenrolle {
-    public static String STATEMENT_TITLE = "Spuren lesen von";
+    public static final String STATEMENT_TITLE = "Spuren lesen von";
     public static final String STATEMENT_BESCHREIBUNG = "Spurenleser erwacht, wählt einen Mitspieler und erfährt wen dieser Spieler besucht hat";
-    public static StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE_INFO;
-
-    public static final String infoTitle = "Besuchte Spieler von ";
+    public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE_INFO;
+    public static final String INFO_TITLE = "Besuchte Spieler von ";
 
     public static final String NAME = "Spurenleser";
     public static final String IMAGE_PATH = ImagePath.SPURENLESER_KARTE;
@@ -50,7 +49,7 @@ public class Spurenleser extends Nebenrolle {
             }
 
             FrontendControl info = new FrontendControl(FrontendControlType.LIST, getBesuchteSpielerStrings(chosenPlayer));
-            info.title = infoTitle + chosenPlayer.name;
+            info.title = INFO_TITLE + chosenPlayer.name;
 
             return info;
         }

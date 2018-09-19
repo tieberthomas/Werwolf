@@ -11,9 +11,9 @@ import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
 public class Archivar extends Nebenrolle {
-    public static String STATEMENT_TITLE = "Spieler wählen";
+    public static final String STATEMENT_TITLE = "Spieler wählen";
     public static final String STATEMENT_BESCHREIBUNG = "Archivar erwacht und lässt sich Auskunft über die Bonusrolle eines Mitspielers geben";
-    public static StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE_INFO;
+    public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE_INFO;
 
     public static final String NAME = "Archivar";
     public static final String IMAGE_PATH = ImagePath.ARCHIVAR_KARTE;

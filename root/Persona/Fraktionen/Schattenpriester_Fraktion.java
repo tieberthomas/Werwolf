@@ -17,14 +17,14 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Schattenpriester_Fraktion extends Fraktion {
-    public static String STATEMENT_TITLE = "Opfer wiederbeleben";
+    public static final String STATEMENT_TITLE = "Opfer wiederbeleben";
     public static final String STATEMENT_BESCHREIBUNG = "Die Schattenpriester erwachen und entscheiden welchen Verstorbenen dieser Nacht sie wiederbeleben und zum Kult hinzufügen möchten";
-    public static StatementType STATEMENT_TYPE = StatementType.FRAKTION_CHOOSE_ONE;
+    public static final StatementType STATEMENT_TYPE = StatementType.FRAKTION_CHOOSE_ONE;
 
-    public static String SECOND_STATEMENT_TITLE = "Neuer Schattenpriester";
+    public static final String SECOND_STATEMENT_TITLE = "Neuer Schattenpriester";
     public static final String NEUER_SCHATTENPRIESTER = "Der Wiederbelebte erwacht und tauscht seine Karten gegen Schattenkarten";
     public static final String SECOND_STATEMENT_BESCHREIBUNG = NEUER_SCHATTENPRIESTER;
-    public static StatementType SECOND_STATEMENT_TYPE = StatementType.FRAKTION_SPECAL;
+    public static final StatementType SECOND_STATEMENT_TYPE = StatementType.FRAKTION_SPECAL;
 
     public static final String NAME = "Schattenpriester";
     public static final Color farbe = Color.lightGray;

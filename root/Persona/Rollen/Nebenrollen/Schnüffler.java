@@ -14,9 +14,9 @@ import root.Spieler;
 import java.util.ArrayList;
 
 public class Schnüffler extends Nebenrolle {
-    public static String STATEMENT_TITLE = "Spieler wählen";
+    public static final String STATEMENT_TITLE = "Spieler wählen";
     public static final String STATEMENT_BESCHREIBUNG = "Schnüffler erwacht und lässt sich Auskunft über einen Mitspieler geben";
-    public static StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE_INFO;
+    public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE_INFO;
 
     public static final String NAME = "Schnüffler";
     public static final String IMAGE_PATH = ImagePath.SCHNÜFFLER_KARTE;

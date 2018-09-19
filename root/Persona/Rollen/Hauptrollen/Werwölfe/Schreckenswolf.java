@@ -14,9 +14,9 @@ import root.mechanics.Opfer;
 import java.util.ArrayList;
 
 public class Schreckenswolf extends Hauptrolle {
-    public static String STATEMENT_TITLE = "Mitspieler verstummen";
+    public static final String STATEMENT_TITLE = "Mitspieler verstummen";
     public static final String STATEMENT_BESCHREIBUNG = "Schreckenswolf erwacht und verstummt ggf. einen Spieler der am folgenden Tag nichtmehr reden darf";
-    public static StatementType STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
+    public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
 
     public static final String SECOND_STATEMENT_TITLE = "Verstummt";
     public static final String VERSTUMMT = "Der verstummte Spieler wird bekannt gegeben";

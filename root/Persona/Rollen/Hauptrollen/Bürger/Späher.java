@@ -14,9 +14,9 @@ import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
 public class Späher extends Hauptrolle {
-    public static String STATEMENT_TITLE = "Spieler wählen";
+    public static final String STATEMENT_TITLE = "Spieler wählen";
     public static final String STATEMENT_BESCHREIBUNG = "Späher erwacht und lässt sich Auskunft über einen Mitspieler geben";
-    public static StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE_INFO;
+    public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE_INFO;
 
     public static final String NAME = "Späher";
     public static Fraktion fraktion = new Bürger();

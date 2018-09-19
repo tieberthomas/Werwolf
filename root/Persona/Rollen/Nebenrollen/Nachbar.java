@@ -13,11 +13,10 @@ import root.Spieler;
 import java.util.ArrayList;
 
 public class Nachbar extends Nebenrolle {
-    public static String STATEMENT_TITLE = "Spieler wählen";
+    public static final String STATEMENT_TITLE = "Spieler wählen";
     public static final String STATEMENT_BESCHREIBUNG = "Nachbar erwacht, wählt einen Spieler und erfährt wer diesen Spieler besucht hat";
-    public static StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE_INFO;
-
-    public static final String infoTitle = "Besucher von ";
+    public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE_INFO;
+    public static final String INFO_TITLE = "Besucher von ";
 
     public static final String NAME = "Nachbar";
     public static final String IMAGE_PATH = ImagePath.NACHBAR_KARTE;
@@ -51,7 +50,7 @@ public class Nachbar extends Nebenrolle {
 
             Spieler nachbarSpieler = game.findSpielerPerRolle(Nachbar.NAME);
             FrontendControl info = new FrontendControl(FrontendControlType.LIST, getBesucherStrings(chosenPlayer, nachbarSpieler));
-            info.title = infoTitle + chosenPlayer.name;
+            info.title = INFO_TITLE + chosenPlayer.name;
 
             return info;
         }

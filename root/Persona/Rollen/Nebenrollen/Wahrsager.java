@@ -13,11 +13,10 @@ import java.util.Objects;
 public class Wahrsager extends Nebenrolle {
     public static final String KEIN_OPFER = "Kein Opfer";
 
-    public static final String WAHRSAGER_INFORMATION = "Wahrsager erwacht, bekommt ggf. die Anzahl der Spieler in jeder Fraktion mitgeteilt und schätzt, welche Frktion das Opfer der Dorfabstimmung haben wird";
-    public static String STATEMENT_TITLE = "Fraktion wählen";
+    public static final String STATEMENT_TITLE = "Fraktion wählen";
+    public static final String STATEMENT_BESCHREIBUNG = "Wahrsager erwacht, bekommt ggf. die Anzahl der Spieler in jeder Fraktion mitgeteilt und schätzt, welche Frktion das Opfer der Dorfabstimmung haben wird";
+    public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
     public static final String REWARD_TITLE = "Anzahl Mitglieder";
-    public static final String STATEMENT_BESCHREIBUNG = WAHRSAGER_INFORMATION;
-    public static StatementType STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
 
     public static final String NAME = "Wahrsager";
     public static final String IMAGE_PATH = ImagePath.WAHRSAGER_KARTE;

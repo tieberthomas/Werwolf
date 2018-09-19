@@ -15,10 +15,10 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class Tarnumhang extends Nebenrolle {
-    public static String STATEMENT_TITLE = "Träger eines Umhangs";
+    public static final String STATEMENT_TITLE = "Träger eines Umhangs";
     public static final String STATEMENT_BESCHREIBUNG = "Träger des Tarnumhangs erwacht und erfährt einen Mitspieler, bei dem ein Umhhang liegt";
-    public static StatementType STATEMENT_TYPE = StatementType.ROLLE_INFO;
-    public static String KEINE_UMHÄNGE = "Es sind keine Umhangträger mehr im Spiel";
+    public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_INFO;
+    public static final String KEINE_UMHÄNGE = "Es sind keine Umhangträger mehr im Spiel";
 
     public static final String NAME = "Tarnumhang";
     public static final String IMAGE_PATH = ImagePath.TARNUMHANG_KARTE;

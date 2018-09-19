@@ -13,9 +13,9 @@ import root.Spieler;
 import java.util.ArrayList;
 
 public class Überläufer extends Hauptrolle {
-    public static String STATEMENT_TITLE = "Karte tauschen";
+    public static final String STATEMENT_TITLE = "Karte tauschen";
     public static final String STATEMENT_BESCHREIBUNG = "Überläufer erwacht und entscheidet ob er seine Hauptrollenkarte tauschen möchte";
-    public static StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
+    public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
 
     public static final String NAME = "Überläufer";
     public static Fraktion fraktion = new Überläufer_Fraktion();

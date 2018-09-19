@@ -7,9 +7,9 @@ import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
 public class Prostituierte extends Nebenrolle {
-    public static String STATEMENT_TITLE = "Bett legen";
+    public static final String STATEMENT_TITLE = "Bett legen";
     public static final String STATEMENT_BESCHREIBUNG = "Prostituierte legt sich zu einem Mitspieler ins Bett";
-    public static StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
+    public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
 
     public static final String NAME = "Prostituierte";
     public static final String IMAGE_PATH = ImagePath.PROSTITUIERTE_KARTE;

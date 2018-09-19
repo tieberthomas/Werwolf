@@ -11,8 +11,8 @@ import root.Spieler;
 import java.awt.*;
 
 public class Nebenrolle extends Rolle {
-    public static Nebenrolle defaultNebenrolle = new Schatten();
-    public static Color defaultFarbe = new Color(240, 240, 240);
+    public static final Nebenrolle defaultNebenrolle = new Schatten();
+    public static final Color defaultFarbe = new Color(240, 240, 240);
 
     public void tauschen(Nebenrolle nebenrolle) {
         try {

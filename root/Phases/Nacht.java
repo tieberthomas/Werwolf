@@ -210,7 +210,7 @@ public class Nacht extends Thread {
                             }
                             break;
 
-                        case Wahrsager.WAHRSAGER_INFORMATION:
+                        case Wahrsager.STATEMENT_BESCHREIBUNG:
                             Spieler wahrsagerSpieler2 = game.findSpielerPerRolle(Wahrsager.NAME);
                             Spieler deadWahrsagerSpieler = game.findSpielerOrDeadPerRolle(Wahrsager.NAME);
                             if (wahrsagerSpieler2 != null) {
