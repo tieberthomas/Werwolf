@@ -16,20 +16,20 @@ public class LadyAleera extends Hauptrolle {
     public static String title = "Geschützte Spieler";
     public static final String beschreibung = "Lady Aleera erwacht und sieht alle geschützten Spieler";
     public static StatementType statementType = StatementType.ROLLE_INFO;
-    public static final String name = "Lady Aleera";
+    public static final String NAME = "Lady Aleera";
     public static Fraktion fraktion = new Vampire();
-    public static final String imagePath = ImagePath.LADY_ALEERA_KARTE;
+    public static final String IMAGE_PATH = ImagePath.LADY_ALEERA_KARTE;
     public static boolean spammable = false;
     public static boolean killing = true;
+
+    public LadyAleera() {
+        this.name = NAME;
+        this.imagePath = IMAGE_PATH;
+    }
 
     @Override
     public FrontendControl getInfo() {
         return new FrontendControl(FrontendControlType.LIST, findGeschützeSpieler());
-    }
-
-    @Override
-    public String getName() {
-        return name;
     }
 
     @Override
@@ -53,11 +53,6 @@ public class LadyAleera extends Hauptrolle {
     }
 
     @Override
-    public String getImagePath() {
-        return imagePath;
-    }
-
-    @Override
     public boolean isSpammable() {
         return spammable;
     }
@@ -71,9 +66,9 @@ public class LadyAleera extends Hauptrolle {
         ArrayList<String> geschützte = new ArrayList<>();
 
         for (Spieler currentSpieler : game.spieler) {
-            String nebenrolleCurrentSpieler = currentSpieler.nebenrolle.getName();
+            String nebenrolleCurrentSpieler = currentSpieler.nebenrolle.name;
 
-            if ((currentSpieler.geschützt || nebenrolleCurrentSpieler.equals(Vampirumhang.name)) && currentSpieler.lebend) {
+            if ((currentSpieler.geschützt || nebenrolleCurrentSpieler.equals(Vampirumhang.NAME)) && currentSpieler.lebend) {
                 geschützte.add(currentSpieler.name);
             }
         }

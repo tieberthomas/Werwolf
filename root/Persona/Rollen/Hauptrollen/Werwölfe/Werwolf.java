@@ -6,26 +6,21 @@ import root.Persona.Hauptrolle;
 import root.ResourceManagement.ImagePath;
 
 public class Werwolf extends Hauptrolle {
-    public static final String name = "Werwolf";
+    public static final String NAME = "Werwolf";
     public static Fraktion fraktion = new Werwölfe();
-    public static final String imagePath = ImagePath.WERWOLF_KARTE;
+    public static final String IMAGE_PATH = ImagePath.WERWOLF_KARTE;
     public static int numberOfPossibleInstances = 100;
     public static boolean spammable = false;
     public static boolean killing = true;
 
-    @Override
-    public String getName() {
-        return name;
+    public Werwolf() {
+        this.name = NAME;
+        this.imagePath = IMAGE_PATH;
     }
 
     @Override
     public Fraktion getFraktion() {
         return fraktion;
-    }
-
-    @Override
-    public String getImagePath() {
-        return imagePath;
     }
 
     @Override

@@ -16,25 +16,25 @@ public class Nebenrolle extends Rolle {
 
     public void tauschen(Nebenrolle nebenrolle) {
         try {
-            Spieler spieler = game.findSpielerPerRolle(this.getName());
+            Spieler spieler = game.findSpielerPerRolle(this.name);
             if (spieler != null) {
                 spieler.nebenrolle = nebenrolle;
             }
         } catch (NullPointerException e) {
-            System.out.println(this.getName() + " nicht gefunden");
+            System.out.println(this.name + " nicht gefunden");
         }
     }
 
     public Nebenrolle getTauschErgebnis() {
         try {
-            Spieler spieler = game.findSpielerPerRolle(this.getName());
+            Spieler spieler = game.findSpielerPerRolle(this.name);
             if (spieler != null) {
                 return spieler.nebenrolle;
             } else {
                 return this;
             }
         } catch (NullPointerException e) {
-            System.out.println(this.getName() + " nicht gefunden");
+            System.out.println(this.name + " nicht gefunden");
         }
 
         return this;
@@ -45,15 +45,15 @@ public class Nebenrolle extends Rolle {
     }
 
     public boolean showTarnumhang(Nebenrolle requester, Spieler spieler) {
-        return spieler != null && (spieler.nebenrolle.equals(Tarnumhang.name) || (playerIsSchamanin(spieler) && thisRolleIsNotBuerger(requester)));
+        return spieler != null && (spieler.nebenrolle.equals(Tarnumhang.NAME) || (playerIsSchamanin(spieler) && thisRolleIsNotBuerger(requester)));
     }
 
     private boolean playerIsSchamanin(Spieler player) {
-        return player.hauptrolle.equals(Schamanin.name);
+        return player.hauptrolle.equals(Schamanin.NAME);
     }
 
     private boolean thisRolleIsNotBuerger(Nebenrolle requester) {
-        Spieler spieler = game.findSpielerPerRolle(requester.getName());
+        Spieler spieler = game.findSpielerPerRolle(requester.name);
 
         return !spieler.hauptrolle.getFraktion().equals(new Bürger());
     }

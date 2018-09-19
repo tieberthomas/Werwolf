@@ -133,7 +133,7 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener {
     }
 
     public JLabel generateColorLabel(Spieler spieler, Rolle rolle) {
-        JLabel label = new JLabel(rolle.getName());
+        JLabel label = new JLabel(rolle.name);
 
         if (spieler.lebend) {
             Color farbe = rolle.getFarbe();

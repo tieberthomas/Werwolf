@@ -23,12 +23,17 @@ public class Wölfin extends Hauptrolle {
     public static final String secondBeschreibung = WÖLFIN_NEBENROLLE;
     public static StatementType secondStatementType = StatementType.ROLLE_INFO;
 
-    public static final String name = "Wölfin";
+    public static final String NAME = "Wölfin";
     public static Fraktion fraktion = new Werwölfe();
-    public static final String imagePath = ImagePath.WÖLFIN_KARTE;
+    public static final String IMAGE_PATH = ImagePath.WÖLFIN_KARTE;
     public static boolean spammable = false;
     public static boolean killing = true;
     public static WölfinState state = WölfinState.WARTEND;
+
+    public Wölfin() {
+        this.name = NAME;
+        this.imagePath = IMAGE_PATH;
+    }
 
     @Override
     public FrontendControl getDropdownOptions() {
@@ -42,7 +47,7 @@ public class Wölfin extends Hauptrolle {
         if (chosenPlayer != null) {
             besucht = chosenPlayer;
 
-            Spieler täter = game.findSpielerPerRolle(name);
+            Spieler täter = game.findSpielerPerRolle(NAME);
             Opfer.addVictim(chosenPlayer, täter);
         }
     }
@@ -52,8 +57,8 @@ public class Wölfin extends Hauptrolle {
         if (Nacht.wölfinKilled) {
             Spieler wölfinSpieler = Nacht.wölfinSpieler;
             if (wölfinSpieler != null) {
-                String imagePath = wölfinSpieler.nebenrolle.getImagePath();
-                if (wölfinSpieler.nebenrolle.getName().equals(Tarnumhang.name)) {
+                String imagePath = wölfinSpieler.nebenrolle.imagePath;
+                if (wölfinSpieler.nebenrolle.name.equals(Tarnumhang.NAME)) {
                     imagePath = ImagePath.TARNUMHANG;
                 }
                 return new FrontendControl(FrontendControlType.IMAGE, imagePath);
@@ -61,11 +66,6 @@ public class Wölfin extends Hauptrolle {
         }
 
         return new FrontendControl();
-    }
-
-    @Override
-    public String getName() {
-        return name;
     }
 
     @Override
@@ -101,11 +101,6 @@ public class Wölfin extends Hauptrolle {
     @Override
     public Fraktion getFraktion() {
         return fraktion;
-    }
-
-    @Override
-    public String getImagePath() {
-        return imagePath;
     }
 
     @Override

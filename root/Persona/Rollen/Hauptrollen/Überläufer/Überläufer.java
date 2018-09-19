@@ -16,10 +16,15 @@ public class Überläufer extends Hauptrolle {
     public static String title = "Karte tauschen";
     public static final String beschreibung = "Überläufer erwacht und entscheidet ob er seine Hauptrollenkarte tauschen möchte";
     public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE;
-    public static final String name = "Überläufer";
+    public static final String NAME = "Überläufer";
     public static Fraktion fraktion = new Überläufer_Fraktion();
-    public static final String imagePath = ImagePath.ÜBERLÄUFER_KARTE;
+    public static final String IMAGE_PATH = ImagePath.ÜBERLÄUFER_KARTE;
     public static boolean spammable = false;
+
+    public Überläufer() {
+        this.name = NAME;
+        this.imagePath = IMAGE_PATH;
+    }
 
     @Override
     public FrontendControl getDropdownOptions() {
@@ -33,24 +38,19 @@ public class Überläufer extends Hauptrolle {
         Hauptrolle chosenHauptrolle = game.findHauptrolle(chosenOption);
         if (chosenHauptrolle != null) {
             try {
-                Spieler spielerHauptrolle = game.findSpielerPerRolle(chosenHauptrolle.getName());
+                Spieler spielerHauptrolle = game.findSpielerPerRolle(chosenHauptrolle.name);
                 chosenHauptrolle = spielerHauptrolle.hauptrolle;
 
-                Spieler spielerÜberläufer = game.findSpielerPerRolle(name);
+                Spieler spielerÜberläufer = game.findSpielerPerRolle(NAME);
                 spielerÜberläufer.hauptrolle = chosenHauptrolle;
                 spielerHauptrolle.hauptrolle = new Dorfbewohner();
 
                 game.mitteHauptrollen.remove(chosenHauptrolle);
                 game.mitteHauptrollen.add(this);
             } catch (NullPointerException e) {
-                System.out.println(name + " nicht gefunden");
+                System.out.println(NAME + " nicht gefunden");
             }
         }
-    }
-
-    @Override
-    public String getName() {
-        return name;
     }
 
     @Override
@@ -71,11 +71,6 @@ public class Überläufer extends Hauptrolle {
     @Override
     public Fraktion getFraktion() {
         return fraktion;
-    }
-
-    @Override
-    public String getImagePath() {
-        return imagePath;
     }
 
     @Override

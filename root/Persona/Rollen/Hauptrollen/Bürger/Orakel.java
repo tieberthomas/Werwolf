@@ -19,25 +19,30 @@ public class Orakel extends Hauptrolle {
     public static StatementType statementType = StatementType.ROLLE_INFO;
 
     public static final String VERBRAUCHT_TITLE = "Bonusrollen";
-    public static final String name = "Orakel";
+    public static final String NAME = "Orakel";
     public static Fraktion fraktion = new Bürger();
-    public static final String imagePath = ImagePath.ORAKEL_KARTE;
+    public static final String IMAGE_PATH = ImagePath.ORAKEL_KARTE;
     public static boolean spammable = true;
 
     public static ArrayList<String> geseheneNebenrollen = new ArrayList<>();
+
+    public Orakel() {
+        this.name = NAME;
+        this.imagePath = IMAGE_PATH;
+    }
 
     @Override
     public FrontendControl getInfo() {
         Nebenrolle randomNebenrolle = generateRandomNebenrolle();
 
         if (randomNebenrolle != null) {
-            return new FrontendControl(FrontendControlType.CARD, randomNebenrolle.getImagePath());
+            return new FrontendControl(FrontendControlType.CARD, randomNebenrolle.imagePath);
         } else {
-            Spieler orakelSpieler = game.findSpielerPerRolle(name);
+            Spieler orakelSpieler = game.findSpielerPerRolle(NAME);
 
             if (orakelSpieler != null) {
                 ArrayList<String> nebenRolleList = (ArrayList<String>) geseheneNebenrollen.clone();
-                nebenRolleList.remove(orakelSpieler.nebenrolle.getName());
+                nebenRolleList.remove(orakelSpieler.nebenrolle.name);
                 FrontendControl info = new FrontendControl(FrontendControlType.LIST, nebenRolleList);
                 info.title = VERBRAUCHT_TITLE;
                 return info;
@@ -45,11 +50,6 @@ public class Orakel extends Hauptrolle {
                 return new FrontendControl(VERBRAUCHT_TITLE);
             }
         }
-    }
-
-    @Override
-    public String getName() {
-        return name;
     }
 
     @Override
@@ -73,11 +73,6 @@ public class Orakel extends Hauptrolle {
     }
 
     @Override
-    public String getImagePath() {
-        return imagePath;
-    }
-
-    @Override
     public boolean isSpammable() {
         return spammable;
     }
@@ -91,7 +86,7 @@ public class Orakel extends Hauptrolle {
             int randIndex = (int) (Math.random() * unseenBürger.size());
 
             nebenrolle = unseenBürger.get(randIndex).nebenrolle;
-            geseheneNebenrollen.add(nebenrolle.getName());
+            geseheneNebenrollen.add(nebenrolle.name);
         } else {
             nebenrolle = null;
         }
@@ -100,18 +95,18 @@ public class Orakel extends Hauptrolle {
     }
 
     public static ArrayList<Spieler> getUnseenBürger() {
-        ArrayList<Spieler> bürger = Fraktion.getFraktionsMembers(Bürger.name);
+        ArrayList<Spieler> bürger = Fraktion.getFraktionsMembers(Bürger.NAME);
         ArrayList<Spieler> bürgerToRemove = new ArrayList<>();
 
-        if (Rolle.rolleLebend(name)) {
-            Nebenrolle orakelSpielerNebenrolle = game.findSpielerPerRolle(name).nebenrolle;
-            if (!geseheneNebenrollen.contains(orakelSpielerNebenrolle.getName())) {
-                geseheneNebenrollen.add(orakelSpielerNebenrolle.getName());
+        if (Rolle.rolleLebend(NAME)) {
+            Nebenrolle orakelSpielerNebenrolle = game.findSpielerPerRolle(NAME).nebenrolle;
+            if (!geseheneNebenrollen.contains(orakelSpielerNebenrolle.name)) {
+                geseheneNebenrollen.add(orakelSpielerNebenrolle.name);
             }
         }
 
         for (Spieler currentBürger : bürger) {
-            if (geseheneNebenrollen.contains(currentBürger.nebenrolle.getName())) {
+            if (geseheneNebenrollen.contains(currentBürger.nebenrolle.name)) {
                 bürgerToRemove.add(currentBürger);
             }
         }

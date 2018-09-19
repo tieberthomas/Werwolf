@@ -19,10 +19,15 @@ public class Nachbar extends Nebenrolle {
 
     public static final String infoTitle = "Besucher von ";
 
-    public static final String name = "Nachbar";
-    public static final String imagePath = ImagePath.NACHBAR_KARTE;
+    public static final String NAME = "Nachbar";
+    public static final String IMAGE_PATH = ImagePath.NACHBAR_KARTE;
     public static boolean spammable = true;
     public NebenrollenType type = new Informativ();
+
+    public Nachbar() {
+        this.name = NAME;
+        this.imagePath = IMAGE_PATH;
+    }
 
     @Override
     public FrontendControl getDropdownOptions() {
@@ -40,7 +45,7 @@ public class Nachbar extends Nebenrolle {
                 return new FrontendControl(new Tarnumhang_NebenrollenType());
             }
 
-            Spieler nachbarSpieler = game.findSpielerPerRolle(Nachbar.name);
+            Spieler nachbarSpieler = game.findSpielerPerRolle(Nachbar.NAME);
             FrontendControl info = new FrontendControl(FrontendControlType.LIST, getBesucherStrings(chosenPlayer, nachbarSpieler));
             info.title = infoTitle + chosenPlayer.name;
 
@@ -48,11 +53,6 @@ public class Nachbar extends Nebenrolle {
         }
 
         return new FrontendControl();
-    }
-
-    @Override
-    public String getName() {
-        return name;
     }
 
     @Override
@@ -68,11 +68,6 @@ public class Nachbar extends Nebenrolle {
     @Override
     public StatementType getStatementType() {
         return statementType;
-    }
-
-    @Override
-    public String getImagePath() {
-        return imagePath;
     }
 
     @Override
@@ -95,7 +90,7 @@ public class Nachbar extends Nebenrolle {
                     besucher.add(spieler.name);
                 }
 
-                if (!besucher.contains(spieler.name) && spieler.nebenrolle.getName().equals(Analytiker.name)) {
+                if (!besucher.contains(spieler.name) && spieler.nebenrolle.name.equals(Analytiker.NAME)) {
                     Analytiker analytiker = (Analytiker) spieler.nebenrolle;
                     if (analytiker.besuchtAnalysieren != null && analytiker.besuchtAnalysieren.name.equals(beobachteterSpieler.name)) {
                         besucher.add(spieler.name);

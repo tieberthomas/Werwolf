@@ -6,25 +6,20 @@ import root.Persona.Hauptrolle;
 import root.ResourceManagement.ImagePath;
 
 public class Bruder extends Hauptrolle {
-    public static final String name = "Bruder";
+    public static final String NAME = "Bruder";
     public static Fraktion fraktion = new Bürger();
-    public static final String imagePath = ImagePath.BRUDER_KARTE;
+    public static final String IMAGE_PATH = ImagePath.BRUDER_KARTE;
     public static int numberOfPossibleInstances = 2;
     public static boolean spammable = false;
 
-    @Override
-    public String getName() {
-        return name;
+    public Bruder() {
+        this.name = NAME;
+        this.imagePath = IMAGE_PATH;
     }
 
     @Override
     public Fraktion getFraktion() {
         return fraktion;
-    }
-
-    @Override
-    public String getImagePath() {
-        return imagePath;
     }
 
     @Override

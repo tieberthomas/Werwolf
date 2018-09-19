@@ -8,24 +8,19 @@ import root.ResourceManagement.ImagePath;
 import java.awt.*;
 
 public class Bürger extends Fraktion {
-    public static final String name = "Bürger";
+    public static final String NAME = "Bürger";
     public static Color farbe = Color.yellow;
-    public static final String imagePath = ImagePath.BÜRGER_ICON;
+    public static final String IMAGE_PATH = ImagePath.BÜRGER_ICON;
     public static final Zeigekarte zeigekarte = new BürgerZeigekarte();
 
-    @Override
-    public String getName() {
-        return name;
+    public Bürger() {
+        this.name = NAME;
+        this.imagePath = IMAGE_PATH;
     }
 
     @Override
     public Color getFarbe() {
         return farbe;
-    }
-
-    @Override
-    public String getImagePath() {
-        return imagePath;
     }
 
     @Override

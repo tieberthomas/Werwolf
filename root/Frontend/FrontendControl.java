@@ -130,8 +130,8 @@ public class FrontendControl {
     }
 
     public static void spielerAnnounceVictimPage(Spieler spieler) {
-        String hauptRolleImagePath = spieler.hauptrolle.getImagePath();
-        String nebenRolleImagePath = spieler.nebenrolle.getImagePath();
+        String hauptRolleImagePath = spieler.hauptrolle.imagePath;
+        String nebenRolleImagePath = spieler.nebenrolle.imagePath;
         if (GrafVladimir.unerkennbarerSpieler != null) {
             if (spieler.name.equals(GrafVladimir.unerkennbarerSpieler.name)) {
                 AusDemSpiel ausDemSpiel = new AusDemSpiel();

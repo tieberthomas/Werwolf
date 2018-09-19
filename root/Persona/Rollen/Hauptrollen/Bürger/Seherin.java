@@ -21,10 +21,15 @@ public class Seherin extends Hauptrolle {
     public static String title = "Spieler wählen";
     public static final String beschreibung = "Seherin erwacht und lässt sich Auskunft über die Fraktion eines Mitspielers geben";
     public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE_INFO;
-    public static final String name = "Seherin";
+    public static final String NAME = "Seherin";
     public static Fraktion fraktion = new Bürger();
-    public static final String imagePath = ImagePath.SEHERIN_KARTE;
+    public static final String IMAGE_PATH = ImagePath.SEHERIN_KARTE;
     public static boolean spammable = true;
+
+    public Seherin() {
+        this.name = NAME;
+        this.imagePath = IMAGE_PATH;
+    }
 
     @Override
     public FrontendControl getDropdownOptions() {
@@ -41,19 +46,19 @@ public class Seherin extends Hauptrolle {
 
             Nebenrolle nebenrolle = chosenPlayer.nebenrolle;
             Hauptrolle hauptrolle = chosenPlayer.hauptrolle;
-            if (nebenrolle.equals(Lamm.name) || hauptrolle.equals(Wolfsmensch.name)) {
+            if (nebenrolle.equals(Lamm.NAME) || hauptrolle.equals(Wolfsmensch.NAME)) {
                 zeigekarte = new BürgerZeigekarte();
             }
-            if (nebenrolle.equals(Wolfspelz.name)) {
+            if (nebenrolle.equals(Wolfspelz.NAME)) {
                 zeigekarte = new WerwölfeZeigekarte();
             }
-            if (nebenrolle.equals(Vampirumhang.name)) {
+            if (nebenrolle.equals(Vampirumhang.NAME)) {
                 zeigekarte = new VampiereZeigekarte();
             }
-            if (nebenrolle.equals(Schattenkutte.name)) {
+            if (nebenrolle.equals(Schattenkutte.NAME)) {
                 zeigekarte = new SchattenpriesterZeigekarte();
             }
-            if (nebenrolle.equals(Tarnumhang.name)) {
+            if (nebenrolle.equals(Tarnumhang.NAME)) {
                 zeigekarte = new Tarnumhang_NebenrollenType();
             }
 
@@ -61,11 +66,6 @@ public class Seherin extends Hauptrolle {
         }
 
         return new FrontendControl();
-    }
-
-    @Override
-    public String getName() {
-        return name;
     }
 
     @Override
@@ -86,11 +86,6 @@ public class Seherin extends Hauptrolle {
     @Override
     public Fraktion getFraktion() {
         return fraktion;
-    }
-
-    @Override
-    public String getImagePath() {
-        return imagePath;
     }
 
     @Override

@@ -31,7 +31,7 @@ public class SchnüfflerInformationGenerator {
     }
 
     public SchnüfflerInformation generateInformation() {
-        Nebenrolle schnüffler = Schnüffler.game.findSpielerPerRolle(Schnüffler.name).nebenrolle;
+        Nebenrolle schnüffler = Schnüffler.game.findSpielerPerRolle(Schnüffler.NAME).nebenrolle;
         if (schnüffler.showTarnumhang(schnüffler, player)) {
             return new SchnüfflerInformation(player.name);
         }
@@ -64,11 +64,11 @@ public class SchnüfflerInformationGenerator {
     }
 
     private boolean playerIsSchamanin() {
-        return player.hauptrolle.getName().equals(Schamanin.name);
+        return player.hauptrolle.name.equals(Schamanin.NAME);
     }
 
     private boolean schnüfflerIsNotBuerger() {
-        Spieler spieler = Schnüffler.game.findSpielerPerRolle(Schnüffler.name);
+        Spieler spieler = Schnüffler.game.findSpielerPerRolle(Schnüffler.NAME);
 
         return !spieler.hauptrolle.getFraktion().equals(new Bürger());
     }

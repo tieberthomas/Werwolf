@@ -8,24 +8,19 @@ import root.ResourceManagement.ImagePath;
 import java.awt.*;
 
 public class Überläufer_Fraktion extends Fraktion {
-    public static final String name = "Überläufer";
+    public static final String NAME = "Überläufer";
     public static final Color farbe = Color.white;
-    public static final String imagePath = ImagePath.ÜBERLÄUFER_ICON;
+    public static final String IMAGE_PATH = ImagePath.ÜBERLÄUFER_ICON;
     public static final Zeigekarte zeigekarte = new WerwölfeZeigekarte();
 
-    @Override
-    public String getName() {
-        return name;
+    public Überläufer_Fraktion() {
+        this.name = NAME;
+        this.imagePath = IMAGE_PATH;
     }
 
     @Override
     public Color getFarbe() {
         return farbe;
-    }
-
-    @Override
-    public String getImagePath() {
-        return imagePath;
     }
 
     @Override

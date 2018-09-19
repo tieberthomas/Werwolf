@@ -9,7 +9,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Liebespaar {
     Game game;
 
-    public static final String imagePath = ImagePath.LIEBESPAAR;
+    public static final String IMAGE_PATH = ImagePath.LIEBESPAAR;
     private static final String ZUFÄLLIG = "Zufällig";
 
     public Spieler spieler1;
@@ -65,9 +65,5 @@ public class Liebespaar {
         }
 
         return null;
-    }
-
-    public static String getImagePath() {
-        return imagePath;
     }
 }

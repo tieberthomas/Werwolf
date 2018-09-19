@@ -120,8 +120,8 @@ public class FileManager {
 
     public String buildPlayerString(Spieler spieler) {
         String name = spieler.name.replace(" ", "*");
-        String hauptrolle = spieler.hauptrolle.getName().replace(" ", "*");
-        String nebenrolle = spieler.nebenrolle.getName().replace(" ", "*");
+        String hauptrolle = spieler.hauptrolle.name.replace(" ", "*");
+        String nebenrolle = spieler.nebenrolle.name.replace(" ", "*");
         return name + " " + hauptrolle + " " + nebenrolle;
     }
 

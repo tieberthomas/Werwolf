@@ -15,17 +15,17 @@ public class Analytiker extends Nebenrolle {
     public static final String beschreibung = "Analytiker erwacht und wählt zwei Spieler, der Erzähler sagt ihm ob diese in derselben Fraktion sind";
     public static StatementType statementType = StatementType.ROLLE_SPECAL;
 
-    public static final String name = "Analytiker";
-    public static final String imagePath = ImagePath.ANALYTIKER_KARTE;
+    public static final String NAME = "Analytiker";
+    public static final String IMAGE_PATH = ImagePath.ANALYTIKER_KARTE;
     public static boolean spammable = true;
     public NebenrollenType type = new Informativ();
     public static final String GLEICH = "gleich";
     public static final String UNGLEICH = "ungleich";
     public Spieler besuchtAnalysieren = null;
 
-    @Override
-    public String getName() {
-        return name;
+    public Analytiker() {
+        this.name = NAME;
+        this.imagePath = IMAGE_PATH;
     }
 
     @Override
@@ -41,11 +41,6 @@ public class Analytiker extends Nebenrolle {
     @Override
     public StatementType getStatementType() {
         return statementType;
-    }
-
-    @Override
-    public String getImagePath() {
-        return imagePath;
     }
 
     @Override
@@ -68,8 +63,8 @@ public class Analytiker extends Nebenrolle {
         String name1 = spieler1.name;
         String name2 = spieler2.name;
 
-        String fraktion1 = spieler1.hauptrolle.getFraktion().getName();
-        String fraktion2 = spieler2.hauptrolle.getFraktion().getName();
+        String fraktion1 = spieler1.hauptrolle.getFraktion().name;
+        String fraktion2 = spieler2.hauptrolle.getFraktion().name;
 
         if (Objects.equals(fraktion1, fraktion2)) {
             return GLEICH;

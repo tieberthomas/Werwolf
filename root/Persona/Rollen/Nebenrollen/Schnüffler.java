@@ -18,13 +18,18 @@ public class Schnüffler extends Nebenrolle {
     public static final String beschreibung = "Schnüffler erwacht und lässt sich Auskunft über einen Mitspieler geben";
     public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE_INFO;
 
-    public static final String name = "Schnüffler";
-    public static final String imagePath = ImagePath.SCHNÜFFLER_KARTE;
+    public static final String NAME = "Schnüffler";
+    public static final String IMAGE_PATH = ImagePath.SCHNÜFFLER_KARTE;
     public static boolean spammable = true;
     public NebenrollenType type = new Informativ();
     public static int MAX_ANZAHL_AN_INFORMATIONEN = 4;
 
     public ArrayList<SchnüfflerInformation> informationen = new ArrayList<>(); //TODO wenn dieb schnüffler nimmt dann neu anlegen
+
+    public Schnüffler() {
+        this.name = NAME;
+        this.imagePath = IMAGE_PATH;
+    }
 
     @Override
     public FrontendControl getDropdownOptions() {
@@ -67,11 +72,6 @@ public class Schnüffler extends Nebenrolle {
     }
 
     @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
     public String getTitle() {
         return title;
     }
@@ -84,11 +84,6 @@ public class Schnüffler extends Nebenrolle {
     @Override
     public StatementType getStatementType() {
         return statementType;
-    }
-
-    @Override
-    public String getImagePath() {
-        return imagePath;
     }
 
     @Override

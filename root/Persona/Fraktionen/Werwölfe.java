@@ -20,10 +20,15 @@ public class Werwölfe extends Fraktion {
     public static String title = "Opfer wählen";
     public static final String beschreibung = "Die Werwölfe erwachen und die Wölfe wählen ein Opfer aus";
     public static StatementType statementType = StatementType.FRAKTION_CHOOSE_ONE;
-    public static final String name = "Werwölfe";
+    public static final String NAME = "Werwölfe";
     public static final Color farbe = Color.green;
-    public static final String imagePath = ImagePath.WÖLFE_ICON; //sollte es das noch geben?
+    public static final String IMAGE_PATH = ImagePath.WÖLFE_ICON; //sollte es das noch geben?
     public static final Zeigekarte zeigekarte = new WerwölfeZeigekarte();
+
+    public Werwölfe() {
+        this.name = NAME;
+        this.imagePath = IMAGE_PATH;
+    }
 
     @Override
     public void processChosenOption(String chosenOption) {
@@ -43,11 +48,6 @@ public class Werwölfe extends Fraktion {
         }
 
         return new FrontendControl(typeOfContent, strings, imagePath);
-    }
-
-    @Override
-    public String getName() {
-        return name;
     }
 
     @Override
@@ -71,11 +71,6 @@ public class Werwölfe extends Fraktion {
     }
 
     @Override
-    public String getImagePath() {
-        return imagePath;
-    }
-
-    @Override
     public Zeigekarte getZeigeKarte() {
         return zeigekarte;
     }
@@ -84,17 +79,17 @@ public class Werwölfe extends Fraktion {
         //TODO auf iskilling überprüfen
         ArrayList<String> tötend = new ArrayList<>();
 
-        tötend.add(Alphawolf.name);
-        tötend.add(Blutwolf.name);
-        tötend.add(Geisterwolf.name);
-        tötend.add(Schreckenswolf.name);
-        tötend.add(Werwolf.name);
-        tötend.add(Wölfin.name);
+        tötend.add(Alphawolf.NAME);
+        tötend.add(Blutwolf.NAME);
+        tötend.add(Geisterwolf.NAME);
+        tötend.add(Schreckenswolf.NAME);
+        tötend.add(Werwolf.NAME);
+        tötend.add(Wölfin.NAME);
 
         return tötend.contains(hauptrolle);
     }
 
     public static boolean blutWolfIsAktiv() {
-        return Rolle.rolleLebend(Blutwolf.name) && Rolle.rolleAktiv(Blutwolf.name) && Blutwolf.deadly;
+        return Rolle.rolleLebend(Blutwolf.NAME) && Rolle.rolleAktiv(Blutwolf.NAME) && Blutwolf.deadly;
     }
 }

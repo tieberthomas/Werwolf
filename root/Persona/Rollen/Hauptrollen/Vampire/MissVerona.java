@@ -15,20 +15,20 @@ public class MissVerona extends Hauptrolle {
     public static String title = "Angegriffene Opfer";
     public static final String beschreibung = "Miss Verona erwacht und lässt sich Auskunft über die Spieler geben, die angegriffen wurden";
     public static StatementType statementType = StatementType.ROLLE_INFO;
-    public static final String name = "Miss Verona";
+    public static final String NAME = "Miss Verona";
     public static Fraktion fraktion = new Vampire();
-    public static final String imagePath = ImagePath.MISS_VERONA_KARTE;
+    public static final String IMAGE_PATH = ImagePath.MISS_VERONA_KARTE;
     public static boolean spammable = false;
     public static boolean killing = true;
+
+    public MissVerona() {
+        this.name = NAME;
+        this.imagePath = IMAGE_PATH;
+    }
 
     @Override
     public FrontendControl getInfo() {
         return new FrontendControl(FrontendControlType.LIST, findUntote());
-    }
-
-    @Override
-    public String getName() {
-        return name;
     }
 
     @Override
@@ -49,11 +49,6 @@ public class MissVerona extends Hauptrolle {
     @Override
     public Fraktion getFraktion() {
         return fraktion;
-    }
-
-    @Override
-    public String getImagePath() {
-        return imagePath;
     }
 
     @Override

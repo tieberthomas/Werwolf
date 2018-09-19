@@ -107,7 +107,7 @@ public class ErsteNacht extends Thread {
                     if (rolle != null && rolle instanceof Nebenrolle && ((Nebenrolle) rolle).getType().equals(new Passiv())) {
                         Nebenrolle nebenrolle = ((Nebenrolle) rolle);
                         newNebenrolle = nebenrolle.getTauschErgebnis();
-                        cardToDisplay = newNebenrolle.getImagePath();
+                        cardToDisplay = newNebenrolle.imagePath;
                         String title;
                         if (newNebenrolle.equals(nebenrolle)) {
                             title = "";
@@ -115,13 +115,13 @@ public class ErsteNacht extends Thread {
                             title = NEUE_KARTE_TITLE;
                         }
                         showCard(statement, title, cardToDisplay);
-                        if (Rolle.rolleLebend(rolle.getName())) {
+                        if (Rolle.rolleLebend(rolle.name)) {
                             nebenrolle.tauschen(newNebenrolle);
                         }
 
                     } else if (statement.getClass() == StatementFraktion.class) {
                         Fraktion fraktion = Fraktion.findFraktion(((StatementFraktion) statement).fraktion);
-                        showFraktionMembers(statement, fraktion.getName());
+                        showFraktionMembers(statement, fraktion.name);
                     } else {
                         switch (statement.beschreibung) {
                             case LIEBESPAAR:
@@ -140,7 +140,7 @@ public class ErsteNacht extends Thread {
                                     liebespaarStrings.add(liebespaar.spieler1.name);
                                     liebespaarStrings.add(liebespaar.spieler2.name);
 
-                                    imagePath = Liebespaar.getImagePath();
+                                    imagePath = Liebespaar.IMAGE_PATH;
 
                                     FrontendControl.erzählerListPage(statement, liebespaarStrings);
                                     FrontendControl.spielerIconPicturePage(statement.title, imagePath);
@@ -155,12 +155,12 @@ public class ErsteNacht extends Thread {
                                 if (hauptrolle == null) {
                                     hauptrolle = new Dorfbewohner();
                                 }
-                                showCard(statement, statement.title, hauptrolle.getImagePath());
+                                showCard(statement, statement.title, hauptrolle.imagePath);
                                 break;
 
                             case ALPHAWOLF:
-                                ArrayList<Spieler> werwölfe = Fraktion.getFraktionsMembers(Werwölfe.name);
-                                werwölfe.remove(game.findSpielerPerRolle(Alphawolf.name));
+                                ArrayList<Spieler> werwölfe = Fraktion.getFraktionsMembers(Werwölfe.NAME);
+                                werwölfe.remove(game.findSpielerPerRolle(Alphawolf.NAME));
                                 for (Spieler currentSpieler : werwölfe) {
                                     showHauptrolle(statement, currentSpieler);
                                 }
@@ -169,18 +169,18 @@ public class ErsteNacht extends Thread {
                                 break;
 
                             case BRÜDER:
-                                ArrayList<String> brüder = game.findSpielersStringsPerRolle(Bruder.name);
+                                ArrayList<String> brüder = game.findSpielersStringsPerRolle(Bruder.NAME);
 
                                 if (brüder.size() == 1) {
                                     ArrayList<String> stillAvailableMainRoles = game.getStillAvailableMainRoleNames();
-                                    stillAvailableMainRoles.remove(Bruder.name);
+                                    stillAvailableMainRoles.remove(Bruder.NAME);
                                     dropdownOtions = new FrontendControl(FrontendControlType.DROPDOWN, BRÜDER_SECOND_TITLE, stillAvailableMainRoles);
                                     chosenOption = showFrontendControl(statement, dropdownOtions);
                                     Hauptrolle newHauptrolle = game.findHauptrolle(chosenOption);
                                     if (newHauptrolle != null) {
-                                        Spieler bruderSpieler = game.findSpielerPerRolle(Bruder.name);
+                                        Spieler bruderSpieler = game.findSpielerPerRolle(Bruder.NAME);
                                         bruderSpieler.hauptrolle = newHauptrolle;
-                                        showFrontendControl(statement, new FrontendControl(FrontendControlType.IMAGE, BRÜDER_SECOND_TITLE, newHauptrolle.getImagePath()));
+                                        showFrontendControl(statement, new FrontendControl(FrontendControlType.IMAGE, BRÜDER_SECOND_TITLE, newHauptrolle.imagePath));
                                     }
                                 } else {
                                     FrontendControl.erzählerListPage(statement, brüder);
@@ -236,7 +236,7 @@ public class ErsteNacht extends Thread {
             playersAwake.addAll(Fraktion.getFraktionsMembers(statementFraktion.fraktion));
         } else if (statement.getClass() == StatementRolle.class) {
             StatementRolle statementRolle = (StatementRolle) statement;
-            if (!statementRolle.rolle.equals(Bruder.name)) {
+            if (!statementRolle.rolle.equals(Bruder.NAME)) {
                 playersAwake.add(game.findSpielerPerRolle(statementRolle.rolle));
             } else {
                 playersAwake.addAll(game.findSpielersPerRolle(statementRolle.rolle));
@@ -249,7 +249,7 @@ public class ErsteNacht extends Thread {
 
         try {
             Fraktion fraktion = Fraktion.findFraktion(fraktionName);
-            String fraktionsLogoImagePath = fraktion.getImagePath();
+            String fraktionsLogoImagePath = fraktion.imagePath;
 
             showListShowImage(statement, fraktionMembers, fraktionsLogoImagePath);
         } catch (NullPointerException e) {
@@ -298,8 +298,8 @@ public class ErsteNacht extends Thread {
         if (spieler != null) {
             statement.title = spieler.name;
 
-            String imagePath = spieler.nebenrolle.getImagePath();
-            if (spieler.nebenrolle.getName().equals(Tarnumhang.name)) {
+            String imagePath = spieler.nebenrolle.imagePath;
+            if (spieler.nebenrolle.name.equals(Tarnumhang.NAME)) {
                 imagePath = ImagePath.TARNUMHANG;
                 statement.title = TARNUMHANG_TITLE;
             }
@@ -309,7 +309,7 @@ public class ErsteNacht extends Thread {
 
     public void showHauptrolle(Statement statement, Spieler spieler) {
         if (spieler != null) {
-            showCard(statement, spieler.name, spieler.hauptrolle.getImagePath());
+            showCard(statement, spieler.name, spieler.hauptrolle.imagePath);
         }
     }
 
@@ -394,21 +394,21 @@ public class ErsteNacht extends Thread {
         addStatementIndie(LIEBESPAAR, LIEBESPAAR_TITLE);
         addStatementIndie(LIEBESPAAR_FINDEN, LIEBESPAAR_FINDEN_TITLE);
 
-        addStatementRolle(SEELENLICHT, SEELENLICHT_TITLE, Seelenlicht.name);
-        addStatementRolle(LAMM, LAMM_TITLE, Lamm.name);
-        addStatementRolle(VAMPIRUMHANG, VAMPIRUMHANG_TITLE, Vampirumhang.name);
-        addStatementRolle(WOLFSPELZ, WOLFSPELZ_TITLE, Wolfspelz.name);
+        addStatementRolle(SEELENLICHT, SEELENLICHT_TITLE, Seelenlicht.NAME);
+        addStatementRolle(LAMM, LAMM_TITLE, Lamm.NAME);
+        addStatementRolle(VAMPIRUMHANG, VAMPIRUMHANG_TITLE, Vampirumhang.NAME);
+        addStatementRolle(WOLFSPELZ, WOLFSPELZ_TITLE, Wolfspelz.NAME);
 
-        //addStatementRolle(IMITATOR, IMITATOR_TITLE, Imitator.name);
+        //addStatementRolle(IMITATOR, IMITATOR_TITLE, Imitator.NAME);
 
-        addStatementFraktion(VAMPIRE, VAMPIRE_TITLE, Vampire.name);
-        addStatementRolle(WOLFSMENSCH, WOLFSMENSCH_TITLE, Wolfsmensch.name);
-        addStatementFraktion(WERWÖLFE, WERWÖLFE_TITLE, Werwölfe.name);
-        addStatementRolle(ALPHAWOLF, ALPHAWOLF_TITLE, Alphawolf.name);
-        addStatementFraktion(SCHATTENPRIESTER, SCHATTENPRIESTER_TITLE, Schattenpriester_Fraktion.name);
-        addStatementRolle(BRÜDER, BRÜDER_TITLE, Bruder.name);
+        addStatementFraktion(VAMPIRE, VAMPIRE_TITLE, Vampire.NAME);
+        addStatementRolle(WOLFSMENSCH, WOLFSMENSCH_TITLE, Wolfsmensch.NAME);
+        addStatementFraktion(WERWÖLFE, WERWÖLFE_TITLE, Werwölfe.NAME);
+        addStatementRolle(ALPHAWOLF, ALPHAWOLF_TITLE, Alphawolf.NAME);
+        addStatementFraktion(SCHATTENPRIESTER, SCHATTENPRIESTER_TITLE, Schattenpriester_Fraktion.NAME);
+        addStatementRolle(BRÜDER, BRÜDER_TITLE, Bruder.NAME);
 
-        addStatementRolle(SEHERIN, SEHERIN_TITLE, Seherin.name);
+        addStatementRolle(SEHERIN, SEHERIN_TITLE, Seherin.NAME);
 
         addStatementIndie(ALLE_WACHEN_AUF, ALLE_WACHEN_AUF_TITLE);
     }

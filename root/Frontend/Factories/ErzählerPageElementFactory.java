@@ -285,7 +285,7 @@ public class ErzählerPageElementFactory {
             if (statement.getClass() == StatementRolle.class) {
                 StatementRolle statementRolle = (StatementRolle) statement;
                 if (statementRolle.sammler) {
-                    StatementRolle newRolleStatement = new StatementRolle(statementRolle.beschreibung, statementRolle.title, statementRolle.getRolle().getName(), statementRolle.type);
+                    StatementRolle newRolleStatement = new StatementRolle(statementRolle.beschreibung, statementRolle.title, statementRolle.getRolle().name, statementRolle.type);
                     if (!statementRolle.beschreibung.equals(Konditorlehrling.beschreibung)) {
                         newRolleStatement.beschreibung = Sammler.beschreibungAddiditon + statement.beschreibung;
                     } else {

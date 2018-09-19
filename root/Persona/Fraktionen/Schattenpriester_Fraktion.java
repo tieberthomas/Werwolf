@@ -26,12 +26,17 @@ public class Schattenpriester_Fraktion extends Fraktion {
     public static final String secondBeschreibung = NEUER_SCHATTENPRIESTER;
     public static StatementType secondStatementType = StatementType.FRAKTION_SPECAL;
 
-    public static final String name = "Schattenpriester";
+    public static final String NAME = "Schattenpriester";
     public static final Color farbe = Color.lightGray;
-    public static final String imagePath = ImagePath.SCHATTENPRIESTER_ICON;
+    public static final String IMAGE_PATH = ImagePath.SCHATTENPRIESTER_ICON;
     public static final Zeigekarte zeigekarte = new SchattenpriesterZeigekarte();
 
     public static int deadSchattenPriester = 0;
+
+    public Schattenpriester_Fraktion() {
+        this.name = NAME;
+        this.imagePath = IMAGE_PATH;
+    }
 
     @Override
     public void processChosenOption(String chosenOption) {
@@ -39,7 +44,7 @@ public class Schattenpriester_Fraktion extends Fraktion {
         if (chosenOpfer != null) {
             Opfer.removeVictim(chosenOpfer);
 
-            if (!chosenOpfer.nebenrolle.getName().equals(Schattenkutte.name)) {
+            if (!chosenOpfer.nebenrolle.name.equals(Schattenkutte.NAME)) {
                 chosenOpfer.hauptrolle = new Schattenpriester();
                 ((Schattenpriester) chosenOpfer.hauptrolle).neuster = true;
             }
@@ -55,9 +60,9 @@ public class Schattenpriester_Fraktion extends Fraktion {
         frontendControl.dropdownStrings = new ArrayList<>();
 
         for (Opfer currentOpfer : Opfer.deadVictims) {
-            String fraktionOpfer = currentOpfer.opfer.hauptrolle.getFraktion().getName();
-            if (currentOpfer.opfer.nebenrolle.getName().equals(Schattenkutte.name) ||
-                    (currentOpfer.opfer.ressurectable && !fraktionOpfer.equals(Schattenpriester_Fraktion.name))) {
+            String fraktionOpfer = currentOpfer.opfer.hauptrolle.getFraktion().name;
+            if (currentOpfer.opfer.nebenrolle.name.equals(Schattenkutte.NAME) ||
+                    (currentOpfer.opfer.ressurectable && !fraktionOpfer.equals(Schattenpriester_Fraktion.NAME))) {
                 if (!frontendControl.dropdownStrings.contains(currentOpfer.opfer.name)) {
                     frontendControl.dropdownStrings.add(currentOpfer.opfer.name);
                 }
@@ -67,11 +72,6 @@ public class Schattenpriester_Fraktion extends Fraktion {
         frontendControl.dropdownStrings.add("");
 
         return frontendControl;
-    }
-
-    @Override
-    public String getName() {
-        return name;
     }
 
     @Override
@@ -104,11 +104,6 @@ public class Schattenpriester_Fraktion extends Fraktion {
     @Override
     public Color getFarbe() {
         return farbe;
-    }
-
-    @Override
-    public String getImagePath() {
-        return imagePath;
     }
 
     @Override

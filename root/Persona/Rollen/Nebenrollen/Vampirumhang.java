@@ -10,29 +10,34 @@ import root.Spieler;
 import java.awt.*;
 
 public class Vampirumhang extends Nebenrolle {
-    public static final String name = "Vampirumhang";
-    public static final String imagePath = ImagePath.VAMPIRUMHANG_KARTE;
+    public static final String NAME = "Vampirumhang";
+    public static final String IMAGE_PATH = ImagePath.VAMPIRUMHANG_KARTE;
     public static boolean unique = true;
     public static boolean spammable = false;
     public NebenrollenType type = new Passiv();
     public Color farbe = Vampire.farbe;
 
+    public Vampirumhang() {
+        this.name = NAME;
+        this.imagePath = IMAGE_PATH;
+    }
+
     public void tauschen(Nebenrolle nebenrolle) {
         try {
-            Spieler spieler = game.findSpielerPerRolle(name);
+            Spieler spieler = game.findSpielerPerRolle(NAME);
             spieler.nebenrolle = nebenrolle;
         } catch (NullPointerException e) {
-            System.out.println(name + " nicht gefunden");
+            System.out.println(NAME + " nicht gefunden");
         }
     }
 
     public Nebenrolle getTauschErgebnis() {
-        Spieler spieler = game.findSpielerPerRolle(name);
+        Spieler spieler = game.findSpielerPerRolle(NAME);
 
         if (spieler != null) {
             Nebenrolle nebenrolle;
 
-            if (spieler.hauptrolle.getFraktion().getName().equals(Vampire.name)) {
+            if (spieler.hauptrolle.getFraktion().name.equals(Vampire.NAME)) {
                 nebenrolle = new SchwarzeSeele();
             } else {
                 nebenrolle = spieler.nebenrolle;
@@ -42,16 +47,6 @@ public class Vampirumhang extends Nebenrolle {
         } else {
             return this;
         }
-    }
-
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public String getImagePath() {
-        return imagePath;
     }
 
     @Override

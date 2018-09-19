@@ -20,15 +20,20 @@ public class Tarnumhang extends Nebenrolle {
     public static StatementType statementType = StatementType.ROLLE_INFO;
     public static String KEINE_UMHÄNGE = "Es sind keine Umhangträger mehr im Spiel";
 
-    public static final String name = "Tarnumhang";
-    public static final String imagePath = ImagePath.TARNUMHANG_KARTE;
+    public static final String NAME = "Tarnumhang";
+    public static final String IMAGE_PATH = ImagePath.TARNUMHANG_KARTE;
     public static boolean spammable = false;
     public static NebenrollenType type = new Tarnumhang_NebenrollenType();
     public Color farbe = Color.BLACK;
     private ArrayList<String> umhänge = new ArrayList<>(Arrays.asList(
-            Lamm.name, Wolfspelz.name, Vampirumhang.name, Schattenkutte.name));
+            Lamm.NAME, Wolfspelz.NAME, Vampirumhang.NAME, Schattenkutte.NAME));
 
     public ArrayList<String> seenPlayers = new ArrayList<>(); //TODO wenn dieb Tarnumhang nimmt dann neu anlegen
+
+    public Tarnumhang() {
+        this.name = NAME;
+        this.imagePath = IMAGE_PATH;
+    }
 
     @Override
     public FrontendControl getInfo() {
@@ -68,17 +73,12 @@ public class Tarnumhang extends Nebenrolle {
         ArrayList<String> allTräger = new ArrayList<>();
 
         for (Spieler spieler : game.spieler) {
-            if (umhänge.contains(spieler.nebenrolle.getName())) {
+            if (umhänge.contains(spieler.nebenrolle.name)) {
                 allTräger.add(spieler.name);
             }
         }
 
         return allTräger;
-    }
-
-    @Override
-    public String getName() {
-        return name;
     }
 
     @Override
@@ -94,11 +94,6 @@ public class Tarnumhang extends Nebenrolle {
     @Override
     public StatementType getStatementType() {
         return statementType;
-    }
-
-    @Override
-    public String getImagePath() {
-        return imagePath;
     }
 
     @Override

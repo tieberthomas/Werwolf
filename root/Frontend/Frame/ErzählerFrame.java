@@ -192,7 +192,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         mainRoleLabelTable.tableElements.clear();
 
         for (Hauptrolle hauptrolle : game.mainRolesInGame) {
-            mainRoleLabelTable.add(new JLabel(hauptrolle.getName()));
+            mainRoleLabelTable.add(new JLabel(hauptrolle.name));
         }
     }
 
@@ -205,7 +205,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         for (Hauptrolle hauptrolle : game.mainRolesInGame) {
             for (JButton button : mainRoleButtons) {
                 int occurrences = game.numberOfOccurencesOfMainRoleInGame(hauptrolle);
-                if (button.getText().equals(hauptrolle.getName()) && hauptrolle.getNumberOfPossibleInstances() <= occurrences) {
+                if (button.getText().equals(hauptrolle.name) && hauptrolle.getNumberOfPossibleInstances() <= occurrences) {
                     if (button.isEnabled()) {
                         disableButton(button);
                     }
@@ -223,7 +223,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         for (Nebenrolle nebenrolle : game.secondaryRolesInGame) {
             for (JButton button : secondaryRoleButtons) {
                 int occurrences = game.numberOfOccurencesOfSecondaryRoleInGame(nebenrolle);
-                if (button.getText().equals(nebenrolle.getName()) && nebenrolle.getNumberOfPossibleInstances() <= occurrences) {
+                if (button.getText().equals(nebenrolle.name) && nebenrolle.getNumberOfPossibleInstances() <= occurrences) {
                     if (button.isEnabled()) {
                         disableButton(button);
                     }
@@ -261,7 +261,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         secondaryRoleLabelTable.tableElements.clear();
 
         for (Nebenrolle nebenrolle : game.secondaryRolesInGame) {
-            secondaryRoleLabelTable.add(new JLabel(nebenrolle.getName()));
+            secondaryRoleLabelTable.add(new JLabel(nebenrolle.name));
         }
     }
 
@@ -319,7 +319,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
 
         for (String mainRoleName : game.getMainRolesSpecifiedStrings()) {
             if (mainRoleName == "" || mainRoleName == null) {
-                mainRoleName = Hauptrolle.defaultHauptrolle.getName();
+                mainRoleName = Hauptrolle.defaultHauptrolle.name;
             }
             mainRoleSpecifyTable.add(new JLabel(mainRoleName));
         }
@@ -330,7 +330,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
 
         for (String secondaryRoleName : game.getSecondaryRoleSpecifiedStrings()) {
             if (secondaryRoleName == "" || secondaryRoleName == null) {
-                secondaryRoleName = Nebenrolle.defaultNebenrolle.getName();
+                secondaryRoleName = Nebenrolle.defaultNebenrolle.name;
             }
             secondaryRoleSpecifyTable.add(new JLabel(secondaryRoleName));
         }
@@ -540,7 +540,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                     }
                 } else if (spielerFrame.mode == SpielerFrameMode.dropDownImage) {
                     Hauptrolle hauptrolle = game.findHauptrolle((String) comboBox1.getSelectedItem());
-                    String imagePath = hauptrolle.getImagePath();
+                    String imagePath = hauptrolle.imagePath;
                     Page imagePage = spielerFrame.pageFactory.generateStaticImagePage(spielerFrame.title, imagePath);
                     spielerFrame.buildScreenFromPage(imagePage);
                     spielerFrame.mode = SpielerFrameMode.dropDownImage;
@@ -715,7 +715,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         for (int i = 0; i < deleteSecondaryRoleButtons.size(); i++) {
             if (ae.getSource() == deleteSecondaryRoleButtons.get(i)) {
                 deleteSecondaryRoleButtons.remove(i);
-                String secondaryRoleName = game.secondaryRolesInGame.get(i).getName();
+                String secondaryRoleName = game.secondaryRolesInGame.get(i).name;
 
                 ArrayList<String> secondaryRolesSpecified = game.getMainRolesSpecifiedStrings();
 
@@ -749,7 +749,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         for (int i = 0; i < deleteMainRoleButtons.size(); i++) {
             if (ae.getSource() == deleteMainRoleButtons.get(i)) {
                 deleteMainRoleButtons.remove(i);
-                String mainRoleName = game.mainRolesInGame.get(i).getName();
+                String mainRoleName = game.mainRolesInGame.get(i).name;
 
                 ArrayList<String> mainRolesSpecified = game.getMainRolesSpecifiedStrings();
 

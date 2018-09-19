@@ -19,11 +19,16 @@ public class Wahrsager extends Nebenrolle {
     public static final String beschreibung = WAHRSAGER_INFORMATION;
     public static StatementType statementType = StatementType.ROLLE_SPECAL;
 
-    public static final String name = "Wahrsager";
-    public static final String imagePath = ImagePath.WAHRSAGER_KARTE;
+    public static final String NAME = "Wahrsager";
+    public static final String IMAGE_PATH = ImagePath.WAHRSAGER_KARTE;
     public static boolean spammable = false;
     public static Fraktion opferFraktion = null;
     public Fraktion tipp = null;
+
+    public Wahrsager() {
+        this.name = NAME;
+        this.imagePath = IMAGE_PATH;
+    }
 
     @Override
     public FrontendControl getDropdownOptions() {
@@ -53,11 +58,6 @@ public class Wahrsager extends Nebenrolle {
     }
 
     @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
     public String getTitle() {
         return title;
     }
@@ -73,11 +73,6 @@ public class Wahrsager extends Nebenrolle {
     }
 
     @Override
-    public String getImagePath() {
-        return imagePath;
-    }
-
-    @Override
     public boolean isSpammable() {
         return spammable;
     }
@@ -85,6 +80,6 @@ public class Wahrsager extends Nebenrolle {
     public boolean guessedRight() {
         return (tipp == null && Wahrsager.opferFraktion == null) ||
                 ((tipp != null && Wahrsager.opferFraktion != null) &&
-                        Objects.equals(tipp.getName(), Wahrsager.opferFraktion.getName()));
+                        Objects.equals(tipp.name, Wahrsager.opferFraktion.name));
     }
 }

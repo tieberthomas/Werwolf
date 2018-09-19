@@ -30,65 +30,65 @@ public class NormalNightStatementBuilder {
         statements.add(IndieStatements.getAlleSchlafenEinStatement());
 
         if (Wirt.freibierCharges > 0) {
-            addStatementRolle(statements, Wirt.name);
+            addStatementRolle(statements, Wirt.NAME);
         }
 
         if (Totengräber.getNehmbareNebenrollen().size() > 0) {
-            addStatementRolle(statements, Totengräber.name);
+            addStatementRolle(statements, Totengräber.NAME);
         }
         //Dieb erwacht und entscheidet ob er jemandes Bonusrolle stehlen möchte
         //Der Bestohlene erwacht und erhält eine neue Bonusrolle
 
-        addStatementRolle(statements, Gefängniswärter.name);
+        addStatementRolle(statements, Gefängniswärter.NAME);
 
         if (game.mitteHauptrollen.size() > 0) {
-            addStatementRolle(statements, Überläufer.name);
+            addStatementRolle(statements, Überläufer.NAME);
         }
 
-        addStatementRolle(statements, HoldeMaid.name);
+        addStatementRolle(statements, HoldeMaid.NAME);
         //Detektiv erwacht und schätzt die Anzahl der Bürger
-        addStatementRolle(statements, Schamanin.name);
+        addStatementRolle(statements, Schamanin.NAME);
 
         statements.add(ProgrammStatements.getSchützeStatement());
 
-        addStatementRolle(statements, LadyAleera.name);
-        addStatementRolle(statements, Prostituierte.name);
+        addStatementRolle(statements, LadyAleera.NAME);
+        addStatementRolle(statements, Prostituierte.NAME);
 
-        addStatementRolle(statements, Riese.name);
-        addStatementFraktion(statements, Vampire.name);
-        addStatementFraktion(statements, Werwölfe.name);
+        addStatementRolle(statements, Riese.NAME);
+        addStatementFraktion(statements, Vampire.NAME);
+        addStatementFraktion(statements, Werwölfe.NAME);
         if (Wölfin.state == WölfinState.TÖTEND) {
-            addStatementRolle(statements, Wölfin.name);
+            addStatementRolle(statements, Wölfin.NAME);
         }
 
         //Nachtfürst erwacht, schätzt die Anzahl der Opfer dieser Nacht und führt ggf. seine Tötung aus
-        addStatementRolle(statements, Schreckenswolf.name);
+        addStatementRolle(statements, Schreckenswolf.NAME);
 
-        addStatementFraktion(statements, Schattenpriester_Fraktion.name);
-        statements.add(getSecondStatementFraktion(Schattenpriester_Fraktion.name));
-        addStatementRolle(statements, Chemiker.name);
-        addSecondStatementRolle(statements, Chemiker.name);
+        addStatementFraktion(statements, Schattenpriester_Fraktion.NAME);
+        statements.add(getSecondStatementFraktion(Schattenpriester_Fraktion.NAME));
+        addStatementRolle(statements, Chemiker.NAME);
+        addSecondStatementRolle(statements, Chemiker.NAME);
 
-        addStatementRolle(statements, MissVerona.name);
-        addStatementRolle(statements, Analytiker.name);
-        addStatementRolle(statements, Archivar.name);
-        addStatementRolle(statements, Schnüffler.name);
-        addStatementRolle(statements, Tarnumhang.name);
-        addStatementRolle(statements, Seherin.name);
-        addStatementRolle(statements, Späher.name);
-        addStatementRolle(statements, Orakel.name);
+        addStatementRolle(statements, MissVerona.NAME);
+        addStatementRolle(statements, Analytiker.NAME);
+        addStatementRolle(statements, Archivar.NAME);
+        addStatementRolle(statements, Schnüffler.NAME);
+        addStatementRolle(statements, Tarnumhang.NAME);
+        addStatementRolle(statements, Seherin.NAME);
+        addStatementRolle(statements, Späher.NAME);
+        addStatementRolle(statements, Orakel.NAME);
 
-        addStatementRolle(statements, GrafVladimir.name);
+        addStatementRolle(statements, GrafVladimir.NAME);
 
-        addStatementRolle(statements, Nachbar.name);
-        addStatementRolle(statements, Spurenleser.name);
+        addStatementRolle(statements, Nachbar.NAME);
+        addStatementRolle(statements, Spurenleser.NAME);
 
-        addStatementRolle(statements, Wahrsager.name);
+        addStatementRolle(statements, Wahrsager.NAME);
 
-        if (game.getSecondaryRoleInGameNames().contains(Konditorlehrling.name)) {
-            addStatementRolle(statements, Konditorlehrling.name);
+        if (game.getSecondaryRoleInGameNames().contains(Konditorlehrling.NAME)) {
+            addStatementRolle(statements, Konditorlehrling.NAME);
         } else {
-            addStatementRolle(statements, Konditor.name);
+            addStatementRolle(statements, Konditor.NAME);
         }
 
         statements.add(IndieStatements.getAlleWachenAufStatement());
@@ -96,10 +96,10 @@ public class NormalNightStatementBuilder {
         statements.add(ProgrammStatements.getOferStatement());
         statements.add(IndieStatements.getOpferStatement());
 
-        addSecondStatementRolle(statements, Schreckenswolf.name);
+        addSecondStatementRolle(statements, Schreckenswolf.NAME);
 
         if (Wölfin.state == WölfinState.TÖTEND) {
-            addSecondStatementRolle(statements, Wölfin.name);
+            addSecondStatementRolle(statements, Wölfin.NAME);
         }
 
         statements.add(ProgrammStatements.getTortenProgrammStatement());
@@ -127,7 +127,7 @@ public class NormalNightStatementBuilder {
     private static Statement getSecondStatement(String rollenName) {
         Rolle rolle = Rolle.findRolle(rollenName);
         if (rolle != null) {
-            return new StatementRolle(rolle.getSecondBeschreibung(), rolle.getSecondTitle(), rolle.getName(), rolle.getSecondStatementType());
+            return new StatementRolle(rolle.getSecondBeschreibung(), rolle.getSecondTitle(), rolle.name, rolle.getSecondStatementType());
         } else {
             return new Statement();
         }
@@ -141,7 +141,7 @@ public class NormalNightStatementBuilder {
     private static Statement getSecondStatementFraktion(String fraktionsName) {
         Fraktion fraktion = Fraktion.findFraktion(fraktionsName);
         if (fraktion != null) {
-            return new StatementFraktion(fraktion.getSecondBeschreibung(), fraktion.getSecondTitle(), fraktion.getName(), fraktion.getSecondStatementType());
+            return new StatementFraktion(fraktion.getSecondBeschreibung(), fraktion.getSecondTitle(), fraktion.name, fraktion.getSecondStatementType());
         } else {
             return new Statement();
         }

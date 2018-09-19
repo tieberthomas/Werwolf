@@ -18,10 +18,15 @@ public class Späher extends Hauptrolle {
     public static final String beschreibung = "Späher erwacht und lässt sich Auskunft über einen Mitspieler geben";
     public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE_INFO;
 
-    public static final String name = "Späher";
+    public static final String NAME = "Späher";
     public static Fraktion fraktion = new Bürger();
-    public static final String imagePath = ImagePath.SPÄHER_KARTE;
+    public static final String IMAGE_PATH = ImagePath.SPÄHER_KARTE;
     public static boolean spammable = true;
+
+    public Späher() {
+        this.name = NAME;
+        this.imagePath = IMAGE_PATH;
+    }
 
     @Override
     public FrontendControl getDropdownOptions() {
@@ -35,11 +40,11 @@ public class Späher extends Hauptrolle {
         if (chosenPlayer != null) {
             besucht = chosenPlayer;
 
-            if (chosenPlayer.nebenrolle.getName().equals(Tarnumhang.name)) {
+            if (chosenPlayer.nebenrolle.name.equals(Tarnumhang.NAME)) {
                 return new FrontendControl(new Tarnumhang_NebenrollenType());
             }
 
-            if (chosenPlayer.hauptrolle.isKilling() && !chosenPlayer.hauptrolle.equals(Geisterwolf.name)) {
+            if (chosenPlayer.hauptrolle.isKilling() && !chosenPlayer.hauptrolle.equals(Geisterwolf.NAME)) {
                 abilityCharges--;
 
                 return new FrontendControl(new Tötend());
@@ -49,11 +54,6 @@ public class Späher extends Hauptrolle {
         }
 
         return new FrontendControl();
-    }
-
-    @Override
-    public String getName() {
-        return name;
     }
 
     @Override
@@ -74,11 +74,6 @@ public class Späher extends Hauptrolle {
     @Override
     public Fraktion getFraktion() {
         return fraktion;
-    }
-
-    @Override
-    public String getImagePath() {
-        return imagePath;
     }
 
     @Override

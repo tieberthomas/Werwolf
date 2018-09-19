@@ -1,7 +1,6 @@
 package root.Persona;
 
 import root.Phases.NightBuilding.Constants.StatementType;
-import root.ResourceManagement.ImagePath;
 import root.mechanics.Game;
 
 import java.awt.*;
@@ -9,9 +8,9 @@ import java.awt.*;
 public class Persona {
     public static Game game;
 
-    public String getName() {
-        return "";
-    }
+    //TODO default values?
+    public String name;
+    public String imagePath;
 
     public String getTitle() {
         return "";
@@ -40,19 +39,15 @@ public class Persona {
     public void processChosenOption(String chosenOption) {
     }
 
-    public String getImagePath() {
-        return ImagePath.DEAKTIVIERT;
-    }
-
     public Color getFarbe() {
         return Color.WHITE;
     }
 
     public boolean equals(Persona persona) {
-        return persona != null && this.getName().equals(persona.getName());
+        return persona != null && this.name.equals(persona.name);
     }
 
     public boolean equals(String personaName) {
-        return personaName != null && this.getName().equals(personaName);
+        return personaName != null && this.name.equals(personaName);
     }
 }

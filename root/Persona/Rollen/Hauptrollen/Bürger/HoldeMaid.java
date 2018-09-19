@@ -12,10 +12,15 @@ public class HoldeMaid extends Hauptrolle {
     public static String title = "Mitspieler offenbaren";
     public static final String beschreibung = "Holde Maid erwacht und offenbart sich einem Mitspieler";
     public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE;
-    public static final String name = "Holde Maid";
+    public static final String NAME = "Holde Maid";
     public static Fraktion fraktion = new Bürger();
-    public static final String imagePath = ImagePath.HOLDE_MAID_KARTE;
+    public static final String IMAGE_PATH = ImagePath.HOLDE_MAID_KARTE;
     public static boolean spammable = true;
+
+    public HoldeMaid() {
+        this.name = NAME;
+        this.imagePath = IMAGE_PATH;
+    }
 
     @Override
     public FrontendControl getDropdownOptions() {
@@ -28,11 +33,6 @@ public class HoldeMaid extends Hauptrolle {
         if (chosenPlayer != null) {
             besucht = chosenPlayer;
         }
-    }
-
-    @Override
-    public String getName() {
-        return name;
     }
 
     @Override
@@ -53,11 +53,6 @@ public class HoldeMaid extends Hauptrolle {
     @Override
     public Fraktion getFraktion() {
         return fraktion;
-    }
-
-    @Override
-    public String getImagePath() {
-        return imagePath;
     }
 
     @Override

@@ -14,11 +14,16 @@ public class Riese extends Hauptrolle {
     public static final String beschreibung = "Riese erwacht und entscheidet sich ob einen Mitspieler töten möchte";
     public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE;
 
-    public static final String name = "Riese";
+    public static final String NAME = "Riese";
     public static Fraktion fraktion = new Bürger();
-    public static final String imagePath = ImagePath.RIESE_KARTE;
+    public static final String IMAGE_PATH = ImagePath.RIESE_KARTE;
     public static boolean spammable = true;
     public static boolean killing = true;
+
+    public Riese() {
+        this.name = NAME;
+        this.imagePath = IMAGE_PATH;
+    }
 
     @Override
     public FrontendControl getDropdownOptions() {
@@ -31,16 +36,11 @@ public class Riese extends Hauptrolle {
         if (chosenPlayer != null) {
             besucht = chosenPlayer;
 
-            Spieler täter = game.findSpielerPerRolle(name);
+            Spieler täter = game.findSpielerPerRolle(NAME);
             Opfer.addVictim(chosenPlayer, täter);
 
             abilityCharges--;
         }
-    }
-
-    @Override
-    public String getName() {
-        return name;
     }
 
     @Override
@@ -61,11 +61,6 @@ public class Riese extends Hauptrolle {
     @Override
     public Fraktion getFraktion() {
         return fraktion;
-    }
-
-    @Override
-    public String getImagePath() {
-        return imagePath;
     }
 
     @Override

@@ -6,22 +6,17 @@ import root.Persona.Hauptrolle;
 import root.ResourceManagement.ImagePath;
 
 public class Wolfsmensch extends Hauptrolle {
-    public static final String name = "Wolfsmensch";
+    public static final String NAME = "Wolfsmensch";
     public static Fraktion fraktion = new Werwölfe();
-    public static final String imagePath = ImagePath.WOLFSMENSCH_KARTE;
+    public static final String IMAGE_PATH = ImagePath.WOLFSMENSCH_KARTE;
 
-    @Override
-    public String getName() {
-        return name;
+    public Wolfsmensch() {
+        this.name = NAME;
+        this.imagePath = IMAGE_PATH;
     }
 
     @Override
     public Fraktion getFraktion() {
         return fraktion;
-    }
-
-    @Override
-    public String getImagePath() {
-        return imagePath;
     }
 }

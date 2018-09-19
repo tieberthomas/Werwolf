@@ -17,11 +17,16 @@ public class Wirt extends Hauptrolle {
     public static String title = "Freibier ausgeben";
     public static final String beschreibung = "Wirt erwacht und entscheidet sich ob er Freibier ausgeben will";
     public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE;
-    public static final String name = "Wirt";
+    public static final String NAME = "Wirt";
     public static Fraktion fraktion = new Bürger();
-    public static final String imagePath = ImagePath.WIRT_KARTE;
+    public static final String IMAGE_PATH = ImagePath.WIRT_KARTE;
     public static boolean spammable = false;
     public static int freibierCharges = 1;
+
+    public Wirt() {
+        this.name = NAME;
+        this.imagePath = IMAGE_PATH;
+    }
 
     @Override
     public FrontendControl getDropdownOptions() {
@@ -45,11 +50,6 @@ public class Wirt extends Hauptrolle {
     }
 
     @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
     public String getTitle() {
         return title;
     }
@@ -67,11 +67,6 @@ public class Wirt extends Hauptrolle {
     @Override
     public Fraktion getFraktion() {
         return fraktion;
-    }
-
-    @Override
-    public String getImagePath() {
-        return imagePath;
     }
 
     @Override

@@ -77,10 +77,10 @@ public class SpielerPageFactory {
         if (string == null) {
             endScreenPage = spielerFrame.deadPage;
         } else if (string == "Liebespaar") {
-            endScreenPage = generateEndScreenPage("Liebespaar", Liebespaar.getImagePath(), "gewinnt!");
+            endScreenPage = generateEndScreenPage("Liebespaar", Liebespaar.IMAGE_PATH, "gewinnt!");
         } else {
             Fraktion fraktion = Fraktion.findFraktion(string);
-            endScreenPage = generateEndScreenPage(fraktion.getName(), fraktion.getImagePath(), "gewinnen!");
+            endScreenPage = generateEndScreenPage(fraktion.name, fraktion.imagePath, "gewinnen!");
         }
 
         return endScreenPage;

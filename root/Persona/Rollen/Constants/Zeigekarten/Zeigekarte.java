@@ -5,7 +5,7 @@ public class Zeigekarte {
     public String title;
     public String imagePath;
 
-    public boolean equals(Zeigekarte Zeigekarte) {
-        return name.equals(Zeigekarte.name);
+    public boolean equals(Zeigekarte zeigekarte) {
+        return name.equals(zeigekarte.name);
     }
 }

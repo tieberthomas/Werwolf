@@ -15,9 +15,14 @@ public class Konditorlehrling extends Nebenrolle {
     public static String title = Konditor.title;
     public static final String beschreibung = "Konditor und Konditorlehrling erwachen und entscheiden sich ob es eine gute oder schlechte Torte gibt";
     public static StatementType statementType = StatementType.ROLLE_SPECAL;
-    public static final String name = "Konditorlehrling";
-    public static final String imagePath = ImagePath.KONDITORLEHRLING_KARTE;
+    public static final String NAME = "Konditorlehrling";
+    public static final String IMAGE_PATH = ImagePath.KONDITORLEHRLING_KARTE;
     public static boolean spammable = true;
+
+    public Konditorlehrling() {
+        this.name = NAME;
+        this.imagePath = IMAGE_PATH;
+    }
 
     @Override
     public FrontendControl getDropdownOptions() {
@@ -29,11 +34,6 @@ public class Konditorlehrling extends Nebenrolle {
         frontendControl.addString(SCHLECHT);
 
         return frontendControl;
-    }
-
-    @Override
-    public String getName() {
-        return name;
     }
 
     @Override
@@ -49,11 +49,6 @@ public class Konditorlehrling extends Nebenrolle {
     @Override
     public StatementType getStatementType() {
         return statementType;
-    }
-
-    @Override
-    public String getImagePath() {
-        return imagePath;
     }
 
     @Override

@@ -12,12 +12,17 @@ public class GrafVladimir extends Hauptrolle {
     public static String title = "Spieler unerkennbar machen";
     public static final String beschreibung = "Graf Vladimir erwacht und veerschleiert die Identität eines Spielers";
     public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE;
-    public static final String name = "Graf Vladimir";
+    public static final String NAME = "Graf Vladimir";
     public static Fraktion fraktion = new Vampire();
-    public static final String imagePath = ImagePath.GRAF_VLADIMIR_KARTE;
+    public static final String IMAGE_PATH = ImagePath.GRAF_VLADIMIR_KARTE;
     public static boolean spammable = false;
     public static boolean killing = true;
     public static Spieler unerkennbarerSpieler;
+
+    public GrafVladimir() {
+        this.name = NAME;
+        this.imagePath = IMAGE_PATH;
+    }
 
     @Override
     public FrontendControl getDropdownOptions() {
@@ -32,11 +37,6 @@ public class GrafVladimir extends Hauptrolle {
 
             unerkennbarerSpieler = chosenPlayer;
         }
-    }
-
-    @Override
-    public String getName() {
-        return name;
     }
 
     @Override
@@ -57,11 +57,6 @@ public class GrafVladimir extends Hauptrolle {
     @Override
     public Fraktion getFraktion() {
         return fraktion;
-    }
-
-    @Override
-    public String getImagePath() {
-        return imagePath;
     }
 
     @Override

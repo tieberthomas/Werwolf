@@ -13,11 +13,16 @@ public class Schamanin extends Hauptrolle {
     public static final String beschreibung = "Schamanin erwacht und entscheidet ob sie einen Spieler schützen möchte";
     public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE;
 
-    public static final String name = "Schamanin";
+    public static final String NAME = "Schamanin";
     public static Fraktion fraktion = new Bürger();
-    public static final String imagePath = ImagePath.SCHAMANIN_KARTE;
+    public static final String IMAGE_PATH = ImagePath.SCHAMANIN_KARTE;
     public static boolean spammable = false;
     public static boolean killing = true;
+
+    public Schamanin() {
+        this.name = NAME;
+        this.imagePath = IMAGE_PATH;
+    }
 
     @Override
     public FrontendControl getDropdownOptions() {
@@ -32,11 +37,6 @@ public class Schamanin extends Hauptrolle {
             chosenPlayer.geschützt = true;
             abilityCharges--;
         }
-    }
-
-    @Override
-    public String getName() {
-        return name;
     }
 
     @Override
@@ -57,11 +57,6 @@ public class Schamanin extends Hauptrolle {
     @Override
     public Fraktion getFraktion() {
         return fraktion;
-    }
-
-    @Override
-    public String getImagePath() {
-        return imagePath;
     }
 
     @Override

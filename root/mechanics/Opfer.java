@@ -88,15 +88,15 @@ public class Opfer {
     public static void addVictim(Spieler opfer, Spieler täter) {
         possibleVictims.add(new Opfer(opfer, täter));
 
-        String opferNebenrolle = opfer.nebenrolle.getName();
-        String täterFraktion = täter.hauptrolle.getFraktion().getName();
+        String opferNebenrolle = opfer.nebenrolle.name;
+        String täterFraktion = täter.hauptrolle.getFraktion().name;
 
-        if (täter.hauptrolle.getName().equals(Riese.name)) {
+        if (täter.hauptrolle.name.equals(Riese.NAME)) {
             addDeadVictim(opfer, täter, true);
         } else {
             if (!opfer.geschützt) {
-                if (!(opferNebenrolle.equals(Vampirumhang.name) && täterFraktion.equals(Vampire.name) ||
-                        opferNebenrolle.equals(Wolfspelz.name) && täterFraktion.equals(Werwölfe.name))) {
+                if (!(opferNebenrolle.equals(Vampirumhang.NAME) && täterFraktion.equals(Vampire.NAME) ||
+                        opferNebenrolle.equals(Wolfspelz.NAME) && täterFraktion.equals(Werwölfe.NAME))) {
                     addDeadVictim(opfer, täter);
                 }
             }
@@ -106,11 +106,11 @@ public class Opfer {
     public static void addVictim(Spieler opfer, Fraktion täterFraktion) {
         possibleVictims.add(new Opfer(opfer, täterFraktion));
 
-        String opferNebenrolle = opfer.nebenrolle.getName();
+        String opferNebenrolle = opfer.nebenrolle.name;
 
-        if (!opfer.geschützt || (täterFraktion.equals(Werwölfe.name) && Werwölfe.blutWolfIsAktiv())) {
-            if (!(opferNebenrolle.equals(Vampirumhang.name) && täterFraktion.equals(Vampire.name) ||
-                    opferNebenrolle.equals(Wolfspelz.name) && täterFraktion.equals(Werwölfe.name) && !Werwölfe.blutWolfIsAktiv()))
+        if (!opfer.geschützt || (täterFraktion.equals(Werwölfe.NAME) && Werwölfe.blutWolfIsAktiv())) {
+            if (!(opferNebenrolle.equals(Vampirumhang.NAME) && täterFraktion.equals(Vampire.NAME) ||
+                    opferNebenrolle.equals(Wolfspelz.NAME) && täterFraktion.equals(Werwölfe.NAME) && !Werwölfe.blutWolfIsAktiv()))
             {
                 addDeadVictim(opfer, täterFraktion);
             }
@@ -130,7 +130,7 @@ public class Opfer {
     }
 
     private static void addDeadVictim(Opfer opfer, boolean riese) {
-        Spieler prostituierteSpieler = game.findSpielerPerRolle(Prostituierte.name);
+        Spieler prostituierteSpieler = game.findSpielerPerRolle(Prostituierte.NAME);
         String hostProstituierte = "";
         if (prostituierteSpieler != null) {
             hostProstituierte = Prostituierte.host.name;
@@ -139,7 +139,7 @@ public class Opfer {
         if (riese) {
             opfer.opfer.ressurectable = false;
         }
-        String opferNebenrolle = opfer.opfer.nebenrolle.getName();
+        String opferNebenrolle = opfer.opfer.nebenrolle.name;
         if (!opfer.opfer.equals(prostituierteSpieler) || riese) {
             deadVictims.add(opfer);
         }
@@ -193,7 +193,7 @@ public class Opfer {
 
     public static boolean isOpferPerRolle(String name) {
         for (Opfer currentOpfer : deadVictims) {
-            if (currentOpfer.opfer.hauptrolle.getName().equals(name) || currentOpfer.opfer.nebenrolle.getName().equals(name)) {
+            if (currentOpfer.opfer.hauptrolle.name.equals(name) || currentOpfer.opfer.nebenrolle.name.equals(name)) {
                 return true;
             }
         }

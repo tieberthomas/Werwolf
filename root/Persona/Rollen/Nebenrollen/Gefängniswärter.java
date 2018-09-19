@@ -10,10 +10,15 @@ public class Gefängniswärter extends Nebenrolle {
     public static String title = "Schutzhaft";
     public static final String beschreibung = "Gefängniswärter erwacht und stellt einen Spieler  unter Schutzhaft";
     public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE;
-    public static final String name = "Gefängniswärter";
-    public static final String imagePath = ImagePath.GEFÄNGNISWÄRTER_KARTE;
+    public static final String NAME = "Gefängniswärter";
+    public static final String IMAGE_PATH = ImagePath.GEFÄNGNISWÄRTER_KARTE;
     public static boolean unique = true;
     public static boolean spammable = false;
+
+    public Gefängniswärter() {
+        this.name = NAME;
+        this.imagePath = IMAGE_PATH;
+    }
 
     @Override
     public FrontendControl getDropdownOptions() {
@@ -32,11 +37,6 @@ public class Gefängniswärter extends Nebenrolle {
     }
 
     @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
     public String getTitle() {
         return title;
     }
@@ -49,11 +49,6 @@ public class Gefängniswärter extends Nebenrolle {
     @Override
     public StatementType getStatementType() {
         return statementType;
-    }
-
-    @Override
-    public String getImagePath() {
-        return imagePath;
     }
 
     @Override

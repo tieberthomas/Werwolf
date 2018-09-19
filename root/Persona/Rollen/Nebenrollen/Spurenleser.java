@@ -19,10 +19,15 @@ public class Spurenleser extends Nebenrolle {
 
     public static final String infoTitle = "Besuchte Spieler von ";
 
-    public static final String name = "Spurenleser";
-    public static final String imagePath = ImagePath.SPURENLESER_KARTE;
+    public static final String NAME = "Spurenleser";
+    public static final String IMAGE_PATH = ImagePath.SPURENLESER_KARTE;
     public static boolean spammable = true;
     public NebenrollenType type = new Informativ();
+
+    public Spurenleser() {
+        this.name = NAME;
+        this.imagePath = IMAGE_PATH;
+    }
 
     @Override
     public FrontendControl getDropdownOptions() {
@@ -50,11 +55,6 @@ public class Spurenleser extends Nebenrolle {
     }
 
     @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
     public String getTitle() {
         return title;
     }
@@ -67,11 +67,6 @@ public class Spurenleser extends Nebenrolle {
     @Override
     public StatementType getStatementType() {
         return statementType;
-    }
-
-    @Override
-    public String getImagePath() {
-        return imagePath;
     }
 
     @Override
@@ -98,7 +93,7 @@ public class Spurenleser extends Nebenrolle {
                 besucher.add(besuchterSpielerDerNebenrolle);
             }
 
-            if (beobachteterSpieler.nebenrolle.getName().equals(Analytiker.name)) {
+            if (beobachteterSpieler.nebenrolle.name.equals(Analytiker.NAME)) {
                 Analytiker analytiker = (Analytiker) beobachteterSpieler.nebenrolle;
                 besucher.add(analytiker.besuchtAnalysieren.name);
             }

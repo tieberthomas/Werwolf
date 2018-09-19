@@ -10,11 +10,16 @@ public class Prostituierte extends Nebenrolle {
     public static String title = "Bett legen";
     public static final String beschreibung = "Prostituierte legt sich zu einem Mitspieler ins Bett";
     public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE;
-    public static final String name = "Prostituierte";
-    public static final String imagePath = ImagePath.PROSTITUIERTE_KARTE;
+    public static final String NAME = "Prostituierte";
+    public static final String IMAGE_PATH = ImagePath.PROSTITUIERTE_KARTE;
     public static boolean spammable = false;
 
     public static Spieler host;
+
+    public Prostituierte() {
+        this.name = NAME;
+        this.imagePath = IMAGE_PATH;
+    }
 
     @Override
     public FrontendControl getDropdownOptions() {
@@ -24,18 +29,13 @@ public class Prostituierte extends Nebenrolle {
     @Override
     public void processChosenOption(String chosenOption) {
         Spieler chosenPlayer = game.findSpieler(chosenOption);
-        if (chosenPlayer != null && !chosenPlayer.equals(game.findSpielerPerRolle(name))) {
+        if (chosenPlayer != null && !chosenPlayer.equals(game.findSpielerPerRolle(NAME))) {
             besucht = chosenPlayer;
 
             host = chosenPlayer;
         } else {
-            host = game.findSpielerPerRolle(name);
+            host = game.findSpielerPerRolle(NAME);
         }
-    }
-
-    @Override
-    public String getName() {
-        return name;
     }
 
     @Override
@@ -51,11 +51,6 @@ public class Prostituierte extends Nebenrolle {
     @Override
     public StatementType getStatementType() {
         return statementType;
-    }
-
-    @Override
-    public String getImagePath() {
-        return imagePath;
     }
 
     @Override

@@ -21,10 +21,15 @@ public class Chemiker extends Hauptrolle {
     public static final String secondBeschreibung = NEUER_WERWOLF;
     public static StatementType secondStatementType = StatementType.FRAKTION_SPECAL;
 
-    public static final String name = "Chemiker";
+    public static final String NAME = "Chemiker";
     public static Fraktion fraktion = new Werwölfe();
-    public static final String imagePath = ImagePath.CHEMIKER_KARTE;
+    public static final String IMAGE_PATH = ImagePath.CHEMIKER_KARTE;
     public static boolean spammable = true;
+
+    public Chemiker() {
+        this.name = NAME;
+        this.imagePath = IMAGE_PATH;
+    }
 
     @Override
     public FrontendControl getDropdownOptions() {
@@ -46,11 +51,6 @@ public class Chemiker extends Hauptrolle {
             Opfer.deadVictims.remove(chosenOpfer);
             chosenOpfer.opfer.hauptrolle = new Werwolf();
         }
-    }
-
-    @Override
-    public String getName() {
-        return name;
     }
 
     @Override
@@ -89,11 +89,6 @@ public class Chemiker extends Hauptrolle {
     }
 
     @Override
-    public String getImagePath() {
-        return imagePath;
-    }
-
-    @Override
     public boolean isSpammable() {
         return spammable;
     }
@@ -102,12 +97,12 @@ public class Chemiker extends Hauptrolle {
         ArrayList<String> resurrectableOpfer = new ArrayList<>();
 
         for (Opfer currentOpfer : Opfer.deadVictims) {
-            String opferFraktion = currentOpfer.opfer.hauptrolle.getFraktion().getName();
-            String täterFraktion = currentOpfer.täterFraktion.getName();
+            String opferFraktion = currentOpfer.opfer.hauptrolle.getFraktion().name;
+            String täterFraktion = currentOpfer.täterFraktion.name;
 
             if (currentOpfer.opfer.ressurectable) {
-                if (täterFraktion.equals(Werwölfe.name)) {
-                    if (!opferFraktion.equals(Werwölfe.name)) {
+                if (täterFraktion.equals(Werwölfe.NAME)) {
+                    if (!opferFraktion.equals(Werwölfe.NAME)) {
                         if (!resurrectableOpfer.contains(currentOpfer.opfer.name)) {
                             resurrectableOpfer.add(currentOpfer.opfer.name);
                         }

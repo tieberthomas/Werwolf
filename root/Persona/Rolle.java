@@ -25,7 +25,7 @@ public class Rolle extends Persona {
         ArrayList<String> mitteHauptrollenStrings = new ArrayList<String>();
 
         for (Hauptrolle hauptrolle : game.mitteHauptrollen) {
-            mitteHauptrollenStrings.add(hauptrolle.getName());
+            mitteHauptrollenStrings.add(hauptrolle.name);
         }
 
         return mitteHauptrollenStrings;
@@ -62,11 +62,11 @@ public class Rolle extends Persona {
     }
 
     public static int numberOfOccurencesOfRoleInGame(Rolle rolle) {
-        Hauptrolle wantedHauptRolle = game.findHauptrolle(rolle.getName());
+        Hauptrolle wantedHauptRolle = game.findHauptrolle(rolle.name);
         if (wantedHauptRolle != null)
             return game.numberOfOccurencesOfMainRoleInGame(wantedHauptRolle);
 
-        Nebenrolle wantedNebenrolleRolle = game.findNebenrolle(rolle.getName());
+        Nebenrolle wantedNebenrolleRolle = game.findNebenrolle(rolle.name);
         if (wantedNebenrolleRolle != null)
             return game.numberOfOccurencesOfSecondaryRoleInGame(wantedNebenrolleRolle);
 
@@ -76,7 +76,7 @@ public class Rolle extends Persona {
     public static boolean hauptRolleInNachtEnthalten(String rolle) {
         if (game.getMainRoleInGameNames().contains(rolle)) {
             for (Rolle currentRolle : game.mitteHauptrollen) {
-                if (currentRolle.getName().equals(rolle)) {
+                if (currentRolle.name.equals(rolle)) {
                     return false;
                 }
             }
@@ -89,14 +89,14 @@ public class Rolle extends Persona {
     public static boolean rolleInNachtEnthalten(String rolle) {
         if (game.getMainRoleInGameNames().contains(rolle) || game.getSecondaryRoleInGameNames().contains(rolle)) {
             for (Rolle currentRolle : game.mitteHauptrollen) {
-                if (currentRolle.getName().equals(rolle)) {
+                if (currentRolle.name.equals(rolle)) {
                     return false;
                 }
             }
 
             for (Rolle currentRolle : game.mitteNebenrollen) {
-                if (!hauptRolleInNachtEnthalten(Sammler.name) || currentRolle.getName().equals(Totengräber.name)) {
-                    if (currentRolle.getName().equals(rolle)) {
+                if (!hauptRolleInNachtEnthalten(Sammler.NAME) || currentRolle.name.equals(Totengräber.NAME)) {
+                    if (currentRolle.name.equals(rolle)) {
                         return false;
                     }
                 }
@@ -110,7 +110,7 @@ public class Rolle extends Persona {
 
     public static boolean rolleLebend(String rolle) {
         for (Spieler currentSpieler : game.spieler) {
-            if ((currentSpieler.hauptrolle.getName().equals(rolle) || currentSpieler.nebenrolle.getName().equals(rolle)) && currentSpieler.lebend) {
+            if ((currentSpieler.hauptrolle.name.equals(rolle) || currentSpieler.nebenrolle.name.equals(rolle)) && currentSpieler.lebend) {
                 return true;
             }
         }
@@ -120,10 +120,10 @@ public class Rolle extends Persona {
 
     public static boolean rolleAktiv(String rolle) {
         for (Spieler currentSpieler : game.spieler) {
-            if (currentSpieler.hauptrolle.getName().equals(rolle) && currentSpieler.aktiv) {
+            if (currentSpieler.hauptrolle.name.equals(rolle) && currentSpieler.aktiv) {
                 return true;
             }
-            if (currentSpieler.nebenrolle.getName().equals(rolle) && currentSpieler.aktiv) {
+            if (currentSpieler.nebenrolle.name.equals(rolle) && currentSpieler.aktiv) {
                 return true;
             }
         }

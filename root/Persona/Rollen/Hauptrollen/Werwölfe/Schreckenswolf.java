@@ -23,11 +23,16 @@ public class Schreckenswolf extends Hauptrolle {
     public static final String secondBeschreibung = VERSTUMMT;
     public static final StatementType secondStatementType = StatementType.ROLLE_INFO;
 
-    public static final String name = "Schreckenswolf";
+    public static final String NAME = "Schreckenswolf";
     public static Fraktion fraktion = new Werwölfe();
-    public static final String imagePath = ImagePath.SCHRECKENSWOLF_KARTE;
+    public static final String IMAGE_PATH = ImagePath.SCHRECKENSWOLF_KARTE;
     public static boolean spammable = false;
     public static boolean killing = true;
+
+    public Schreckenswolf() {
+        this.name = NAME;
+        this.imagePath = IMAGE_PATH;
+    }
 
     @Override
     public FrontendControl getDropdownOptions() {
@@ -41,11 +46,6 @@ public class Schreckenswolf extends Hauptrolle {
             besucht = chosenPlayer;
             Nacht.beschworenerSpieler = chosenPlayer;
         }
-    }
-
-    @Override
-    public String getName() {
-        return name;
     }
 
     @Override
@@ -84,11 +84,6 @@ public class Schreckenswolf extends Hauptrolle {
     }
 
     @Override
-    public String getImagePath() {
-        return imagePath;
-    }
-
-    @Override
     public boolean isSpammable() {
         return spammable;
     }
@@ -105,7 +100,7 @@ public class Schreckenswolf extends Hauptrolle {
     private ArrayList<Opfer> possibleWerwolfOpfer() {
         ArrayList<Opfer> possibleWerwolfOpfer = new ArrayList<>();
         for (Opfer opfer : Opfer.possibleVictims) {
-            if (opfer.täterFraktion.getName().equals(Werwölfe.name)) {
+            if (opfer.täterFraktion.name.equals(Werwölfe.NAME)) {
                 possibleWerwolfOpfer.add(opfer);
             }
         }
@@ -117,7 +112,7 @@ public class Schreckenswolf extends Hauptrolle {
         boolean someoneHadSchutz = false;
 
         for (Opfer opfer : possibleOpfer) {
-            if (opfer.opfer.geschützt || opfer.opfer.nebenrolle.equals(Wolfspelz.name)) {
+            if (opfer.opfer.geschützt || opfer.opfer.nebenrolle.equals(Wolfspelz.NAME)) {
                 someoneHadSchutz = true;
             }
         }

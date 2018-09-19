@@ -10,7 +10,7 @@ public class StatementRolle extends Statement {
     public boolean sammler;
 
     public StatementRolle(Rolle rolle) {
-        this(rolle.getBeschreibung(), rolle.getTitle(), rolle.getName(), rolle.getStatementType());
+        this(rolle.getBeschreibung(), rolle.getTitle(), rolle.name, rolle.getStatementType());
     }
 
     public StatementRolle(String beschreibung, String title, String rolle, StatementType type) {
@@ -31,7 +31,7 @@ public class StatementRolle extends Statement {
         if (!sammler) {
             return Rolle.rolleLebend(rolle);
         } else {
-            return Rolle.rolleLebend(Sammler.name);
+            return Rolle.rolleLebend(Sammler.NAME);
         }
     }
 
@@ -40,7 +40,7 @@ public class StatementRolle extends Statement {
         if (!sammler) {
             return Opfer.isOpferPerRolle(rolle);
         } else {
-            return Opfer.isOpferPerRolle(Sammler.name);
+            return Opfer.isOpferPerRolle(Sammler.NAME);
         }
     }
 
@@ -49,7 +49,7 @@ public class StatementRolle extends Statement {
         if (!sammler) {
             return Rolle.rolleAktiv(rolle);
         } else {
-            return Rolle.rolleAktiv(Sammler.name);
+            return Rolle.rolleAktiv(Sammler.NAME);
         }
     }
 
