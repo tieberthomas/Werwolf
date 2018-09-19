@@ -3,17 +3,17 @@ deaktiv nochmal anschauen
 booleans?
 deaktiviert und verbraucht - deaktiviert anzeigen
 ErsteNacht Statement Type
-Totengräber/Sammler - Tarnumhang?
 Alphabet Umlaute?
 
 TH:
 Englisch-Deutsch-Gemisch
 
 MT:
-Freigestellt - Weiß
-Nebenrolle -> Bonusrolle
+Freigestellt -> Weiß
+
 
 Nach Auslieferung:
 Analytiker generisch machen
 ErsteNacht generisch machen
 FrontendControl subclassen
+Nebenrolle -> Bonusrolle
