@@ -17,6 +17,7 @@ public class Totengräber extends Nebenrolle {
     public static String title = "Karte tauschen";
     public static final String beschreibung = "Totengräber erwacht und entscheidet ob er seine Bonusrollenkarte tauschen möchte";
     public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE;
+
     public static final String NAME = "Totengräber";
     public static final String IMAGE_PATH = ImagePath.TOTENGRÄBER_KARTE;
     public static boolean spammable = false;

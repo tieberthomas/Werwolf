@@ -15,6 +15,7 @@ public class Konditor extends Nebenrolle {
     public static String title = "Torte";
     public static final String beschreibung = "Konditor erwacht und entscheidet sich ob es eine gute oder schlechte Torte gibt";
     public static StatementType statementType = StatementType.ROLLE_SPECAL;
+
     public static final String NAME = "Konditor";
     public static final String IMAGE_PATH = ImagePath.KONDITOR_KARTE;
     public static boolean spammable = true;

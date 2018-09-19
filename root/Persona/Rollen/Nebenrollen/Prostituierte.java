@@ -10,6 +10,7 @@ public class Prostituierte extends Nebenrolle {
     public static String title = "Bett legen";
     public static final String beschreibung = "Prostituierte legt sich zu einem Mitspieler ins Bett";
     public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE;
+
     public static final String NAME = "Prostituierte";
     public static final String IMAGE_PATH = ImagePath.PROSTITUIERTE_KARTE;
     public static boolean spammable = false;

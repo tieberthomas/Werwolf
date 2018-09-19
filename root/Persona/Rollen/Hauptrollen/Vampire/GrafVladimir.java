@@ -12,6 +12,7 @@ public class GrafVladimir extends Hauptrolle {
     public static String title = "Spieler unerkennbar machen";
     public static final String beschreibung = "Graf Vladimir erwacht und veerschleiert die Identität eines Spielers";
     public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE;
+
     public static final String NAME = "Graf Vladimir";
     public static Fraktion fraktion = new Vampire();
     public static final String IMAGE_PATH = ImagePath.GRAF_VLADIMIR_KARTE;

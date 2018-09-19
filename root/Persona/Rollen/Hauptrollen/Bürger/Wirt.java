@@ -17,6 +17,7 @@ public class Wirt extends Hauptrolle {
     public static String title = "Freibier ausgeben";
     public static final String beschreibung = "Wirt erwacht und entscheidet sich ob er Freibier ausgeben will";
     public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE;
+
     public static final String NAME = "Wirt";
     public static Fraktion fraktion = new Bürger();
     public static final String IMAGE_PATH = ImagePath.WIRT_KARTE;

@@ -17,6 +17,7 @@ public class Vampire extends Fraktion {
     public static String title = "Opfer wählen";
     public static final String beschreibung = "Die Vampire erwachen und wählen ein Opfer aus";
     public static StatementType statementType = StatementType.FRAKTION_CHOOSE_ONE;
+
     public static final String NAME = "Vampire";
     public static final Color farbe = Color.red;
     public static final String IMAGE_PATH = ImagePath.VAMPIERE_ICON;

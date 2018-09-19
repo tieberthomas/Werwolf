@@ -21,6 +21,7 @@ public class Seherin extends Hauptrolle {
     public static String title = "Spieler wählen";
     public static final String beschreibung = "Seherin erwacht und lässt sich Auskunft über die Fraktion eines Mitspielers geben";
     public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE_INFO;
+
     public static final String NAME = "Seherin";
     public static Fraktion fraktion = new Bürger();
     public static final String IMAGE_PATH = ImagePath.SEHERIN_KARTE;

@@ -20,6 +20,7 @@ public class Werwölfe extends Fraktion {
     public static String title = "Opfer wählen";
     public static final String beschreibung = "Die Werwölfe erwachen und die Wölfe wählen ein Opfer aus";
     public static StatementType statementType = StatementType.FRAKTION_CHOOSE_ONE;
+
     public static final String NAME = "Werwölfe";
     public static final Color farbe = Color.green;
     public static final String IMAGE_PATH = ImagePath.WÖLFE_ICON; //sollte es das noch geben?

@@ -15,6 +15,7 @@ public class MissVerona extends Hauptrolle {
     public static String title = "Angegriffene Opfer";
     public static final String beschreibung = "Miss Verona erwacht und lässt sich Auskunft über die Spieler geben, die angegriffen wurden";
     public static StatementType statementType = StatementType.ROLLE_INFO;
+
     public static final String NAME = "Miss Verona";
     public static Fraktion fraktion = new Vampire();
     public static final String IMAGE_PATH = ImagePath.MISS_VERONA_KARTE;

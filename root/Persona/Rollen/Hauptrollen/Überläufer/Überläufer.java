@@ -16,6 +16,7 @@ public class Überläufer extends Hauptrolle {
     public static String title = "Karte tauschen";
     public static final String beschreibung = "Überläufer erwacht und entscheidet ob er seine Hauptrollenkarte tauschen möchte";
     public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE;
+
     public static final String NAME = "Überläufer";
     public static Fraktion fraktion = new Überläufer_Fraktion();
     public static final String IMAGE_PATH = ImagePath.ÜBERLÄUFER_KARTE;

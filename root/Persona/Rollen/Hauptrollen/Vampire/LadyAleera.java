@@ -16,6 +16,7 @@ public class LadyAleera extends Hauptrolle {
     public static String title = "Geschützte Spieler";
     public static final String beschreibung = "Lady Aleera erwacht und sieht alle geschützten Spieler";
     public static StatementType statementType = StatementType.ROLLE_INFO;
+
     public static final String NAME = "Lady Aleera";
     public static Fraktion fraktion = new Vampire();
     public static final String IMAGE_PATH = ImagePath.LADY_ALEERA_KARTE;

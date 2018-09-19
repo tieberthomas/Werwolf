@@ -10,6 +10,7 @@ public class Gefängniswärter extends Nebenrolle {
     public static String title = "Schutzhaft";
     public static final String beschreibung = "Gefängniswärter erwacht und stellt einen Spieler  unter Schutzhaft";
     public static StatementType statementType = StatementType.ROLLE_CHOOSE_ONE;
+
     public static final String NAME = "Gefängniswärter";
     public static final String IMAGE_PATH = ImagePath.GEFÄNGNISWÄRTER_KARTE;
     public static boolean unique = true;

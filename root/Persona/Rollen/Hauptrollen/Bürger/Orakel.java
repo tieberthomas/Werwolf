@@ -19,6 +19,7 @@ public class Orakel extends Hauptrolle {
     public static StatementType statementType = StatementType.ROLLE_INFO;
 
     public static final String VERBRAUCHT_TITLE = "Bonusrollen";
+
     public static final String NAME = "Orakel";
     public static Fraktion fraktion = new Bürger();
     public static final String IMAGE_PATH = ImagePath.ORAKEL_KARTE;
