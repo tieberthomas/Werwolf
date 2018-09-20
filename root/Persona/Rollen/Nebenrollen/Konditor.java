@@ -18,7 +18,6 @@ public class Konditor extends Nebenrolle {
 
     public static final String NAME = "Konditor";
     public static final String IMAGE_PATH = ImagePath.KONDITOR_KARTE;
-    public static boolean spammable = true;
 
     public Konditor() {
         this.name = NAME;
@@ -27,6 +26,8 @@ public class Konditor extends Nebenrolle {
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;
+
+        this.spammable = true;
     }
 
     @Override
@@ -39,10 +40,5 @@ public class Konditor extends Nebenrolle {
         frontendControl.addString(SCHLECHT);
 
         return frontendControl;
-    }
-
-    @Override
-    public boolean isSpammable() {
-        return spammable;
     }
 }

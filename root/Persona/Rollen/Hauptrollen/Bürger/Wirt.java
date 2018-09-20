@@ -21,7 +21,6 @@ public class Wirt extends Hauptrolle {
     public static final String NAME = "Wirt";
     public static Fraktion fraktion = new Bürger();
     public static final String IMAGE_PATH = ImagePath.WIRT_KARTE;
-    public static boolean spammable = false;
     public static int freibierCharges = 1;
 
     public Wirt() {
@@ -57,10 +56,5 @@ public class Wirt extends Hauptrolle {
     @Override
     public Fraktion getFraktion() {
         return fraktion;
-    }
-
-    @Override
-    public boolean isSpammable() {
-        return spammable;
     }
 }

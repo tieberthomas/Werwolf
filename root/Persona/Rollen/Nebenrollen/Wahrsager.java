@@ -20,7 +20,6 @@ public class Wahrsager extends Nebenrolle {
 
     public static final String NAME = "Wahrsager";
     public static final String IMAGE_PATH = ImagePath.WAHRSAGER_KARTE;
-    public static boolean spammable = false;
     public static Fraktion opferFraktion = null;
     public Fraktion tipp = null;
 
@@ -58,11 +57,6 @@ public class Wahrsager extends Nebenrolle {
         }
 
         return list;
-    }
-
-    @Override
-    public boolean isSpammable() {
-        return spammable;
     }
 
     public boolean guessedRight() {

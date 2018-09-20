@@ -13,7 +13,6 @@ public class Prostituierte extends Nebenrolle {
 
     public static final String NAME = "Prostituierte";
     public static final String IMAGE_PATH = ImagePath.PROSTITUIERTE_KARTE;
-    public static boolean spammable = false;
 
     public static Spieler host;
 
@@ -41,10 +40,5 @@ public class Prostituierte extends Nebenrolle {
         } else {
             host = game.findSpielerPerRolle(NAME);
         }
-    }
-
-    @Override
-    public boolean isSpammable() {
-        return spammable;
     }
 }

@@ -17,7 +17,6 @@ public class Riese extends Hauptrolle {
     public static final String NAME = "Riese";
     public static Fraktion fraktion = new Bürger();
     public static final String IMAGE_PATH = ImagePath.RIESE_KARTE;
-    public static boolean spammable = true;
     public static boolean killing = true;
 
     public Riese() {
@@ -50,11 +49,6 @@ public class Riese extends Hauptrolle {
     @Override
     public Fraktion getFraktion() {
         return fraktion;
-    }
-
-    @Override
-    public boolean isSpammable() {
-        return spammable;
     }
 
     @Override

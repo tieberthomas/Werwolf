@@ -302,7 +302,7 @@ public class Game {
 
     public ArrayList<String> getPlayerCheckSpammableStrings(Rolle rolle) {
         ArrayList<String> allSpieler = getLivingPlayerOrNoneStrings();
-        if (!rolle.isSpammable() && rolle.besuchtLetzteNacht != null) {
+        if (!rolle.spammable && rolle.besuchtLetzteNacht != null) {
             allSpieler.remove(rolle.besuchtLetzteNacht.name);
         }
 

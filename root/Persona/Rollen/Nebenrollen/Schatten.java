@@ -9,7 +9,6 @@ public class Schatten extends Nebenrolle {
     public static final String NAME = "Schatten";
     public static final String IMAGE_PATH = ImagePath.SCHATTEN_KARTE;
     public static int numberOfPossibleInstances = 100;
-    public static boolean spammable = false;
     public NebenrollenType type = new Passiv();
 
     public Schatten() {
@@ -20,11 +19,6 @@ public class Schatten extends Nebenrolle {
     @Override
     public int getNumberOfPossibleInstances() {
         return numberOfPossibleInstances;
-    }
-
-    @Override
-    public boolean isSpammable() {
-        return spammable;
     }
 
     @Override

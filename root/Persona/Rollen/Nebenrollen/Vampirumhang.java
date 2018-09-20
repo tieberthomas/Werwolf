@@ -13,7 +13,6 @@ public class Vampirumhang extends Nebenrolle {
     public static final String NAME = "Vampirumhang";
     public static final String IMAGE_PATH = ImagePath.VAMPIRUMHANG_KARTE;
     public static boolean unique = true;
-    public static boolean spammable = false;
     public NebenrollenType type = new Passiv();
     public Color farbe = Vampire.farbe;
 
@@ -47,11 +46,6 @@ public class Vampirumhang extends Nebenrolle {
         } else {
             return this;
         }
-    }
-
-    @Override
-    public boolean isSpammable() {
-        return spammable;
     }
 
     @Override

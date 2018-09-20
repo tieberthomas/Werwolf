@@ -10,7 +10,6 @@ public class Dorfbewohner extends Hauptrolle {
     public static Fraktion fraktion = new Bürger();
     public static final String IMAGE_PATH = ImagePath.DORFBEWOHNER_KARTE;
     public static int numberOfPossibleInstances = 100;
-    public static boolean spammable = false;
 
     public Dorfbewohner() {
         this.name = NAME;
@@ -25,10 +24,5 @@ public class Dorfbewohner extends Hauptrolle {
     @Override
     public int getNumberOfPossibleInstances() {
         return numberOfPossibleInstances;
-    }
-
-    @Override
-    public boolean isSpammable() {
-        return spammable;
     }
 }

@@ -20,7 +20,6 @@ public class Nachbar extends Nebenrolle {
 
     public static final String NAME = "Nachbar";
     public static final String IMAGE_PATH = ImagePath.NACHBAR_KARTE;
-    public static boolean spammable = true;
     public NebenrollenType type = new Informativ();
 
     public Nachbar() {
@@ -30,6 +29,8 @@ public class Nachbar extends Nebenrolle {
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;
+
+        this.spammable = true;
     }
 
     @Override
@@ -56,11 +57,6 @@ public class Nachbar extends Nebenrolle {
         }
 
         return new FrontendControl();
-    }
-
-    @Override
-    public boolean isSpammable() {
-        return spammable;
     }
 
     @Override

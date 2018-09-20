@@ -20,7 +20,6 @@ public class Totengräber extends Nebenrolle {
 
     public static final String NAME = "Totengräber";
     public static final String IMAGE_PATH = ImagePath.TOTENGRÄBER_KARTE;
-    public static boolean spammable = false;
 
     public Totengräber() {
         this.name = NAME;
@@ -58,11 +57,6 @@ public class Totengräber extends Nebenrolle {
                 System.out.println(NAME + " nicht gefunden");
             }
         }
-    }
-
-    @Override
-    public boolean isSpammable() {
-        return spammable;
     }
 
     public void removeSammlerFlag(String nebenRolle) {

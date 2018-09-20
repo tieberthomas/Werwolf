@@ -16,7 +16,6 @@ public class Sammler extends Hauptrolle {
     public static final String NAME = "Sammler";
     public static Fraktion fraktion = new Bürger();
     public static final String IMAGE_PATH = ImagePath.SAMMLER_KARTE;
-    public static boolean spammable = false;
 
     public Sammler() {
         this.name = NAME;
@@ -27,11 +26,6 @@ public class Sammler extends Hauptrolle {
     @Override
     public Fraktion getFraktion() {
         return fraktion;
-    }
-
-    @Override
-    public boolean isSpammable() {
-        return spammable;
     }
 
     public static boolean isSammlerRolle(String rolle) {

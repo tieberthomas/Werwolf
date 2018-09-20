@@ -10,7 +10,6 @@ public class Werwolf extends Hauptrolle {
     public static Fraktion fraktion = new Werwölfe();
     public static final String IMAGE_PATH = ImagePath.WERWOLF_KARTE;
     public static int numberOfPossibleInstances = 100;
-    public static boolean spammable = false;
     public static boolean killing = true;
 
     public Werwolf() {
@@ -26,11 +25,6 @@ public class Werwolf extends Hauptrolle {
     @Override
     public int getNumberOfPossibleInstances() {
         return numberOfPossibleInstances;
-    }
-
-    @Override
-    public boolean isSpammable() {
-        return spammable;
     }
 
     @Override

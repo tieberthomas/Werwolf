@@ -69,7 +69,7 @@ public class Fraktion extends Persona {
         frontendControl.typeOfContent = FrontendControlType.DROPDOWN_LIST;
         frontendControl.dropdownStrings = getFraktionsMemberStrings(rolle.getFraktion().name);
         frontendControl.dropdownStrings.add("");
-        if (!rolle.isSpammable() && rolle.besuchtLetzteNacht != null) {
+        if (!rolle.spammable && rolle.besuchtLetzteNacht != null) {
             frontendControl.dropdownStrings.remove(rolle.besuchtLetzteNacht.name);
         }
 

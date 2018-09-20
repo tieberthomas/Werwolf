@@ -9,7 +9,6 @@ public class Blutwolf extends Hauptrolle {
     public static final String NAME = "Blutwolf";
     public static Fraktion fraktion = new Werwölfe();
     public static final String IMAGE_PATH = ImagePath.BLUTWOLF_KARTE;
-    public static boolean spammable = false;
     public static boolean killing = true;
     public static int deadStacks = 0;
     public static boolean deadly = false;
@@ -22,11 +21,6 @@ public class Blutwolf extends Hauptrolle {
     @Override
     public Fraktion getFraktion() {
         return fraktion;
-    }
-
-    @Override
-    public boolean isSpammable() {
-        return spammable;
     }
 
     @Override

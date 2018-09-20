@@ -10,7 +10,6 @@ public class Schattenpriester extends Hauptrolle {
     public static Fraktion fraktion = new Schattenpriester_Fraktion();
     public static final String IMAGE_PATH = ImagePath.SCHATTENPRIESTER_KARTE;
     public static int numberOfPossibleInstances = 100;
-    public static boolean spammable = true;
     public boolean neuster = false;
 
     public Schattenpriester() {
@@ -26,10 +25,5 @@ public class Schattenpriester extends Hauptrolle {
     @Override
     public int getNumberOfPossibleInstances() {
         return numberOfPossibleInstances;
-    }
-
-    @Override
-    public boolean isSpammable() {
-        return spammable;
     }
 }

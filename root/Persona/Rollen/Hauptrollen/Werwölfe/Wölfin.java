@@ -26,7 +26,6 @@ public class Wölfin extends Hauptrolle {
     public static final String NAME = "Wölfin";
     public static Fraktion fraktion = new Werwölfe();
     public static final String IMAGE_PATH = ImagePath.WÖLFIN_KARTE;
-    public static boolean spammable = false;
     public static boolean killing = true;
     public static WölfinState state = WölfinState.WARTEND;
 
@@ -79,11 +78,6 @@ public class Wölfin extends Hauptrolle {
     @Override
     public Fraktion getFraktion() {
         return fraktion;
-    }
-
-    @Override
-    public boolean isSpammable() {
-        return spammable;
     }
 
     @Override

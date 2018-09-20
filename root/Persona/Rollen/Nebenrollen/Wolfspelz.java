@@ -13,7 +13,6 @@ public class Wolfspelz extends Nebenrolle {
     public static final String NAME = "Wolfspelz";
     public static final String IMAGE_PATH = ImagePath.WOLFSPELZ_KARTE;
     public static boolean unique = true;
-    public static boolean spammable = false;
     public NebenrollenType type = new Passiv();
     public Color farbe = Werwölfe.farbe;
 
@@ -47,11 +46,6 @@ public class Wolfspelz extends Nebenrolle {
         } else {
             return this;
         }
-    }
-
-    @Override
-    public boolean isSpammable() {
-        return spammable;
     }
 
     @Override

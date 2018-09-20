@@ -22,7 +22,6 @@ public class Orakel extends Hauptrolle {
     public static final String NAME = "Orakel";
     public static Fraktion fraktion = new Bürger();
     public static final String IMAGE_PATH = ImagePath.ORAKEL_KARTE;
-    public static boolean spammable = true;
 
     public static ArrayList<String> geseheneNebenrollen = new ArrayList<>();
 
@@ -59,11 +58,6 @@ public class Orakel extends Hauptrolle {
     @Override
     public Fraktion getFraktion() {
         return fraktion;
-    }
-
-    @Override
-    public boolean isSpammable() {
-        return spammable;
     }
 
     public Nebenrolle generateRandomNebenrolle() {

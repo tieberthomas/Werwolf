@@ -10,7 +10,6 @@ import root.Spieler;
 public class Lamm extends Nebenrolle {
     public static final String NAME = "Lamm";
     public static final String IMAGE_PATH = ImagePath.LAMM_KARTE;
-    public static boolean spammable = false;
     public NebenrollenType type = new Passiv();
 
     public Lamm() {
@@ -44,11 +43,6 @@ public class Lamm extends Nebenrolle {
         }
 
         return this;
-    }
-
-    @Override
-    public boolean isSpammable() {
-        return spammable;
     }
 
     @Override

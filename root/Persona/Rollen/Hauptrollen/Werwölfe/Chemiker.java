@@ -24,7 +24,6 @@ public class Chemiker extends Hauptrolle {
     public static final String NAME = "Chemiker";
     public static Fraktion fraktion = new Werwölfe();
     public static final String IMAGE_PATH = ImagePath.CHEMIKER_KARTE;
-    public static boolean spammable = true;
 
     public Chemiker() {
         this.name = NAME;
@@ -37,6 +36,8 @@ public class Chemiker extends Hauptrolle {
         this.secondStatementTitle = SECOND_STATEMENT_TITLE;
         this.secondStatementBeschreibung = SECOND_STATEMENT_BESCHREIBUNG;
         this.secondStatementType = SECOND_STATEMENT_TYPE;
+
+        this.spammable = true;
     }
 
     @Override
@@ -64,11 +65,6 @@ public class Chemiker extends Hauptrolle {
     @Override
     public Fraktion getFraktion() {
         return fraktion;
-    }
-
-    @Override
-    public boolean isSpammable() {
-        return spammable;
     }
 
     public ArrayList<String> findResurrectableOpfer() {

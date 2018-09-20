@@ -9,18 +9,12 @@ public class ReineSeele extends Nebenrolle {
     public static final String NAME = "Reine Seele";
     public static final String IMAGE_PATH = ImagePath.REINE_SEELE_KARTE;
     public static boolean unique = false;
-    public static boolean spammable = false;
     public boolean dayInvincibility = true;
     public NebenrollenType type = new Passiv();
 
     public ReineSeele() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
-    }
-
-    @Override
-    public boolean isSpammable() {
-        return spammable;
     }
 
     @Override

@@ -26,7 +26,6 @@ public class Schreckenswolf extends Hauptrolle {
     public static final String NAME = "Schreckenswolf";
     public static Fraktion fraktion = new Werwölfe();
     public static final String IMAGE_PATH = ImagePath.SCHRECKENSWOLF_KARTE;
-    public static boolean spammable = false;
     public static boolean killing = true;
 
     public Schreckenswolf() {
@@ -59,11 +58,6 @@ public class Schreckenswolf extends Hauptrolle {
     @Override
     public Fraktion getFraktion() {
         return fraktion;
-    }
-
-    @Override
-    public boolean isSpammable() {
-        return spammable;
     }
 
     @Override

@@ -14,7 +14,6 @@ public class Gefängniswärter extends Nebenrolle {
     public static final String NAME = "Gefängniswärter";
     public static final String IMAGE_PATH = ImagePath.GEFÄNGNISWÄRTER_KARTE;
     public static boolean unique = true;
-    public static boolean spammable = false;
 
     public Gefängniswärter() {
         this.name = NAME;
@@ -39,10 +38,5 @@ public class Gefängniswärter extends Nebenrolle {
             chosenPlayer.aktiv = false;
             chosenPlayer.geschützt = true;
         }
-    }
-
-    @Override
-    public boolean isSpammable() {
-        return spammable;
     }
 }

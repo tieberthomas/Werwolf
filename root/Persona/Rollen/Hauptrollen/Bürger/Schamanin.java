@@ -16,7 +16,6 @@ public class Schamanin extends Hauptrolle {
     public static final String NAME = "Schamanin";
     public static Fraktion fraktion = new Bürger();
     public static final String IMAGE_PATH = ImagePath.SCHAMANIN_KARTE;
-    public static boolean spammable = false;
     public static boolean killing = true;
 
     public Schamanin() {
@@ -46,11 +45,6 @@ public class Schamanin extends Hauptrolle {
     @Override
     public Fraktion getFraktion() {
         return fraktion;
-    }
-
-    @Override
-    public boolean isSpammable() {
-        return spammable;
     }
 
     @Override

@@ -20,7 +20,6 @@ public class LadyAleera extends Hauptrolle {
     public static final String NAME = "Lady Aleera";
     public static Fraktion fraktion = new Vampire();
     public static final String IMAGE_PATH = ImagePath.LADY_ALEERA_KARTE;
-    public static boolean spammable = false;
     public static boolean killing = true;
 
     public LadyAleera() {
@@ -40,11 +39,6 @@ public class LadyAleera extends Hauptrolle {
     @Override
     public Fraktion getFraktion() {
         return fraktion;
-    }
-
-    @Override
-    public boolean isSpammable() {
-        return spammable;
     }
 
     @Override

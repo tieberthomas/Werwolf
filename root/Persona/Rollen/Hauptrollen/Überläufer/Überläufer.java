@@ -20,7 +20,6 @@ public class Überläufer extends Hauptrolle {
     public static final String NAME = "Überläufer";
     public static Fraktion fraktion = new Überläufer_Fraktion();
     public static final String IMAGE_PATH = ImagePath.ÜBERLÄUFER_KARTE;
-    public static boolean spammable = false;
 
     public Überläufer() {
         this.name = NAME;
@@ -61,10 +60,5 @@ public class Überläufer extends Hauptrolle {
     @Override
     public Fraktion getFraktion() {
         return fraktion;
-    }
-
-    @Override
-    public boolean isSpammable() {
-        return spammable;
     }
 }

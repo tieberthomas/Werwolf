@@ -22,7 +22,6 @@ public class Tarnumhang extends Nebenrolle {
 
     public static final String NAME = "Tarnumhang";
     public static final String IMAGE_PATH = ImagePath.TARNUMHANG_KARTE;
-    public static boolean spammable = false;
     public static NebenrollenType type = new Tarnumhang_NebenrollenType();
     public Color farbe = Color.BLACK;
     private ArrayList<String> umhänge = new ArrayList<>(Arrays.asList(
@@ -83,11 +82,6 @@ public class Tarnumhang extends Nebenrolle {
         }
 
         return allTräger;
-    }
-
-    @Override
-    public boolean isSpammable() {
-        return spammable;
     }
 
     @Override

@@ -17,7 +17,6 @@ public class Analytiker extends Nebenrolle {
 
     public static final String NAME = "Analytiker";
     public static final String IMAGE_PATH = ImagePath.ANALYTIKER_KARTE;
-    public static boolean spammable = true;
     public NebenrollenType type = new Informativ();
     public static final String GLEICH = "gleich";
     public static final String UNGLEICH = "ungleich";
@@ -30,11 +29,8 @@ public class Analytiker extends Nebenrolle {
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;
-    }
 
-    @Override
-    public boolean isSpammable() {
-        return spammable;
+        this.spammable = true;
     }
 
     @Override

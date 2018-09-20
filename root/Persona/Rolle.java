@@ -13,6 +13,8 @@ public class Rolle extends Persona {
     public Spieler besuchtLetzteNacht;
     public int abilityCharges = 1;
 
+    public boolean spammable = false;
+
     public FrontendControl getDropdownOptions() {
         return new FrontendControl();
     }
@@ -37,10 +39,6 @@ public class Rolle extends Persona {
 
     public int getNumberOfPossibleInstances() {
         return 1;
-    }
-
-    public boolean isSpammable() {
-        return true;
     }
 
     public Color getFarbe() {

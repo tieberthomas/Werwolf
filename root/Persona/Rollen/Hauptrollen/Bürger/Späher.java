@@ -21,7 +21,6 @@ public class Späher extends Hauptrolle {
     public static final String NAME = "Späher";
     public static Fraktion fraktion = new Bürger();
     public static final String IMAGE_PATH = ImagePath.SPÄHER_KARTE;
-    public static boolean spammable = true;
 
     public Späher() {
         this.name = NAME;
@@ -30,6 +29,8 @@ public class Späher extends Hauptrolle {
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;
+
+        this.spammable = true;
     }
 
     @Override
@@ -63,10 +64,5 @@ public class Späher extends Hauptrolle {
     @Override
     public Fraktion getFraktion() {
         return fraktion;
-    }
-
-    @Override
-    public boolean isSpammable() {
-        return spammable;
     }
 }

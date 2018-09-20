@@ -20,7 +20,6 @@ public class Schnüffler extends Nebenrolle {
 
     public static final String NAME = "Schnüffler";
     public static final String IMAGE_PATH = ImagePath.SCHNÜFFLER_KARTE;
-    public static boolean spammable = true;
     public NebenrollenType type = new Informativ();
     public static int MAX_ANZAHL_AN_INFORMATIONEN = 4;
 
@@ -33,6 +32,8 @@ public class Schnüffler extends Nebenrolle {
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;
+
+        this.spammable = true;
     }
 
     @Override
@@ -73,11 +74,6 @@ public class Schnüffler extends Nebenrolle {
         }
 
         return new FrontendControl();
-    }
-
-    @Override
-    public boolean isSpammable() {
-        return spammable;
     }
 
     @Override

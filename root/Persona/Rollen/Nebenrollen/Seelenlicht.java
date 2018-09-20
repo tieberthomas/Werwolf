@@ -10,7 +10,6 @@ import root.Spieler;
 public class Seelenlicht extends Nebenrolle {
     public static final String NAME = "Seelenlicht";
     public static final String IMAGE_PATH = ImagePath.SEELENLICHT_KARTE;
-    public static boolean spammable = false;
     public NebenrollenType type = new Passiv();
 
     public Seelenlicht() {
@@ -43,11 +42,6 @@ public class Seelenlicht extends Nebenrolle {
         } else {
             return new ReineSeele();
         }
-    }
-
-    @Override
-    public boolean isSpammable() {
-        return spammable;
     }
 
     @Override

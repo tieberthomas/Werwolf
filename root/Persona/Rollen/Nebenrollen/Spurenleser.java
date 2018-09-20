@@ -20,7 +20,6 @@ public class Spurenleser extends Nebenrolle {
 
     public static final String NAME = "Spurenleser";
     public static final String IMAGE_PATH = ImagePath.SPURENLESER_KARTE;
-    public static boolean spammable = true;
     public NebenrollenType type = new Informativ();
 
     public Spurenleser() {
@@ -30,6 +29,8 @@ public class Spurenleser extends Nebenrolle {
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;
+
+        this.spammable = true;
     }
 
     @Override
@@ -55,11 +56,6 @@ public class Spurenleser extends Nebenrolle {
         }
 
         return new FrontendControl();
-    }
-
-    @Override
-    public boolean isSpammable() {
-        return spammable;
     }
 
     @Override

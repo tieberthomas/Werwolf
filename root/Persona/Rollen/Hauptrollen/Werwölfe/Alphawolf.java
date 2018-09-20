@@ -10,7 +10,6 @@ public class Alphawolf extends Hauptrolle {
     public static Fraktion fraktion = new Werwölfe();
     public static final String IMAGE_PATH = ImagePath.ALPHAWOLF_KARTE;
     public static boolean unique = true;
-    public static boolean spammable = false;
     public static boolean killing = true;
 
     public Alphawolf() {
@@ -21,11 +20,6 @@ public class Alphawolf extends Hauptrolle {
     @Override
     public Fraktion getFraktion() {
         return fraktion;
-    }
-
-    @Override
-    public boolean isSpammable() {
-        return spammable;
     }
 
     @Override

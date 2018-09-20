@@ -16,7 +16,6 @@ public class GrafVladimir extends Hauptrolle {
     public static final String NAME = "Graf Vladimir";
     public static Fraktion fraktion = new Vampire();
     public static final String IMAGE_PATH = ImagePath.GRAF_VLADIMIR_KARTE;
-    public static boolean spammable = false;
     public static boolean killing = true;
     public static Spieler unerkennbarerSpieler;
 
@@ -47,11 +46,6 @@ public class GrafVladimir extends Hauptrolle {
     @Override
     public Fraktion getFraktion() {
         return fraktion;
-    }
-
-    @Override
-    public boolean isSpammable() {
-        return spammable;
     }
 
     @Override
