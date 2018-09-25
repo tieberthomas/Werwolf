@@ -33,7 +33,7 @@ public class Schnüffler extends Nebenrolle {
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;
 
-        this.spammable = true;
+        this.spammable = false;
     }
 
     @Override
