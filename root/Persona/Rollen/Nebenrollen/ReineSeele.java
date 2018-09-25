@@ -8,7 +8,6 @@ import root.ResourceManagement.ImagePath;
 public class ReineSeele extends Nebenrolle {
     public static final String NAME = "Reine Seele";
     public static final String IMAGE_PATH = ImagePath.REINE_SEELE_KARTE;
-    public static boolean unique = false;
     public boolean dayInvincibility = true;
     public NebenrollenType type = new Passiv();
 

@@ -8,7 +8,6 @@ import root.ResourceManagement.ImagePath;
 public class SchwarzeSeele extends Nebenrolle {
     public static final String NAME = "Schwarze Seele";
     public static final String IMAGE_PATH = ImagePath.SCHWARZE_SEELE_KARTE;
-    public static boolean unique = false;
     public NebenrollenType type = new Passiv();
 
     public SchwarzeSeele() {

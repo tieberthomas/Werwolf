@@ -13,7 +13,6 @@ public class Gefängniswärter extends Nebenrolle {
 
     public static final String NAME = "Gefängniswärter";
     public static final String IMAGE_PATH = ImagePath.GEFÄNGNISWÄRTER_KARTE;
-    public static boolean unique = true;
 
     public Gefängniswärter() {
         this.name = NAME;

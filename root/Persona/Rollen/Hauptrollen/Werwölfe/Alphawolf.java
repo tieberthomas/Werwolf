@@ -9,7 +9,6 @@ public class Alphawolf extends Hauptrolle {
     public static final String NAME = "Alphawolf";
     public static Fraktion fraktion = new Werwölfe();
     public static final String IMAGE_PATH = ImagePath.ALPHAWOLF_KARTE;
-    public static boolean unique = true;
     public static boolean killing = true;
 
     public Alphawolf() {

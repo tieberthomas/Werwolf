@@ -12,7 +12,6 @@ import java.awt.*;
 public class Vampirumhang extends Nebenrolle {
     public static final String NAME = "Vampirumhang";
     public static final String IMAGE_PATH = ImagePath.VAMPIRUMHANG_KARTE;
-    public static boolean unique = true;
     public NebenrollenType type = new Passiv();
     public Color farbe = Vampire.farbe;
 

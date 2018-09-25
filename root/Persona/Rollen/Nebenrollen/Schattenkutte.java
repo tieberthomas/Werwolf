@@ -11,7 +11,6 @@ import java.awt.*;
 public class Schattenkutte extends Nebenrolle {
     public static final String NAME = "Schattenkutte";
     public static final String IMAGE_PATH = ImagePath.SCHATTENKUTTE_KARTE;
-    public static boolean unique = true;
     public NebenrollenType type = new Passiv();
     public Color farbe = Schattenpriester_Fraktion.farbe;
 

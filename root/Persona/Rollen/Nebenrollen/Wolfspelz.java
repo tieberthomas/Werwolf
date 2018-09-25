@@ -12,7 +12,6 @@ import java.awt.*;
 public class Wolfspelz extends Nebenrolle {
     public static final String NAME = "Wolfspelz";
     public static final String IMAGE_PATH = ImagePath.WOLFSPELZ_KARTE;
-    public static boolean unique = true;
     public NebenrollenType type = new Passiv();
     public Color farbe = Werwölfe.farbe;
 
