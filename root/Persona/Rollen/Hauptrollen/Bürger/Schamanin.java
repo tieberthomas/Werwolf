@@ -14,19 +14,20 @@ public class Schamanin extends Hauptrolle {
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
 
     public static final String NAME = "Schamanin";
-    public static Fraktion fraktion = new Bürger();
     public static final String IMAGE_PATH = ImagePath.SCHAMANIN_KARTE;
-    public static boolean killing = true;
+    public static final Fraktion FRAKTION = new Bürger();
 
     public Schamanin() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
+        this.fraktion = FRAKTION;
 
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;
 
         this.spammable = false;
+        this.killing = true;
     }
 
     @Override
@@ -42,15 +43,5 @@ public class Schamanin extends Hauptrolle {
             chosenPlayer.geschützt = true;
             abilityCharges--;
         }
-    }
-
-    @Override
-    public Fraktion getFraktion() {
-        return fraktion;
-    }
-
-    @Override
-    public boolean isKilling() {
-        return killing;
     }
 }

@@ -32,7 +32,7 @@ public class Seelenlicht extends Nebenrolle {
         if (spieler != null) {
             Nebenrolle nebenrolle;
 
-            if (spieler.hauptrolle.getFraktion().name.equals(Bürger.NAME)) {
+            if (spieler.hauptrolle.fraktion.name.equals(Bürger.NAME)) {
                 nebenrolle = new ReineSeele();
             } else {
                 nebenrolle = new SchwarzeSeele();

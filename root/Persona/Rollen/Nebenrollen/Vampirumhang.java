@@ -35,7 +35,7 @@ public class Vampirumhang extends Nebenrolle {
         if (spieler != null) {
             Nebenrolle nebenrolle;
 
-            if (spieler.hauptrolle.getFraktion().name.equals(Vampire.NAME)) {
+            if (spieler.hauptrolle.fraktion.name.equals(Vampire.NAME)) {
                 nebenrolle = new SchwarzeSeele();
             } else {
                 nebenrolle = spieler.nebenrolle;

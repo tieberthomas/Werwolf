@@ -35,7 +35,7 @@ public class Wolfspelz extends Nebenrolle {
         if (spieler != null) {
             Nebenrolle nebenrolle;
 
-            if (spieler.hauptrolle.getFraktion().name.equals(Werwölfe.NAME)) {
+            if (spieler.hauptrolle.fraktion.name.equals(Werwölfe.NAME)) {
                 nebenrolle = new SchwarzeSeele();
             } else {
                 nebenrolle = spieler.nebenrolle;

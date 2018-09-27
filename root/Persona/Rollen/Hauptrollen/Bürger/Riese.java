@@ -15,17 +15,19 @@ public class Riese extends Hauptrolle {
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
 
     public static final String NAME = "Riese";
-    public static Fraktion fraktion = new Bürger();
     public static final String IMAGE_PATH = ImagePath.RIESE_KARTE;
-    public static boolean killing = true;
+    public static final Fraktion FRAKTION = new Bürger();
 
     public Riese() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
+        this.fraktion = FRAKTION;
 
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;
+
+        this.killing = true;
     }
 
     @Override
@@ -44,15 +46,5 @@ public class Riese extends Hauptrolle {
 
             abilityCharges--;
         }
-    }
-
-    @Override
-    public Fraktion getFraktion() {
-        return fraktion;
-    }
-
-    @Override
-    public boolean isKilling() {
-        return killing;
     }
 }

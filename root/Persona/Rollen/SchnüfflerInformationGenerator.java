@@ -70,7 +70,7 @@ public class SchnüfflerInformationGenerator {
     private boolean schnüfflerIsNotBuerger() {
         Spieler spieler = Schnüffler.game.findSpielerPerRolle(Schnüffler.NAME);
 
-        return !spieler.hauptrolle.getFraktion().equals(new Bürger());
+        return !spieler.hauptrolle.fraktion.equals(new Bürger());
     }
 
     private InformationType decideCorrectInformation() {
@@ -91,7 +91,7 @@ public class SchnüfflerInformationGenerator {
     }
 
     private Fraktion generateFraktionInformation(boolean correctInformation) {
-        Fraktion playerFraktion = player.hauptrolle.getFraktion();
+        Fraktion playerFraktion = player.hauptrolle.fraktion;
         if (correctInformation) {
             return playerFraktion;
         }
@@ -117,7 +117,7 @@ public class SchnüfflerInformationGenerator {
     }
 
     private SpäherZeigekarte generateTötendInformation(boolean correctInformation) {
-        boolean isKilling = player.hauptrolle.isKilling();
+        boolean isKilling = player.hauptrolle.killing;
 
         if (!correctInformation) {
             isKilling = !isKilling;

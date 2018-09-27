@@ -31,7 +31,7 @@ public class Lamm extends Nebenrolle {
             Spieler spieler = game.findSpielerPerRolle(NAME);
             Nebenrolle nebenrolle;
 
-            if (spieler.hauptrolle.getFraktion().name.equals(Bürger.NAME)) {
+            if (spieler.hauptrolle.fraktion.name.equals(Bürger.NAME)) {
                 nebenrolle = new ReineSeele();
             } else {
                 nebenrolle = spieler.nebenrolle;

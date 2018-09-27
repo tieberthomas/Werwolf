@@ -19,12 +19,13 @@ public class Späher extends Hauptrolle {
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE_INFO;
 
     public static final String NAME = "Späher";
-    public static Fraktion fraktion = new Bürger();
     public static final String IMAGE_PATH = ImagePath.SPÄHER_KARTE;
+    public static final Fraktion FRAKTION = new Bürger();
 
     public Späher() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
+        this.fraktion = FRAKTION;
 
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
@@ -49,7 +50,7 @@ public class Späher extends Hauptrolle {
                 return new FrontendControl(new Tarnumhang_NebenrollenType());
             }
 
-            if (chosenPlayer.hauptrolle.isKilling() && !chosenPlayer.hauptrolle.equals(Geisterwolf.NAME)) {
+            if (chosenPlayer.hauptrolle.killing && !chosenPlayer.hauptrolle.equals(Geisterwolf.NAME)) {
                 abilityCharges--;
 
                 return new FrontendControl(new Tötend());
@@ -59,10 +60,5 @@ public class Späher extends Hauptrolle {
         }
 
         return new FrontendControl();
-    }
-
-    @Override
-    public Fraktion getFraktion() {
-        return fraktion;
     }
 }

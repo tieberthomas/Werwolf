@@ -24,13 +24,13 @@ public class Schreckenswolf extends Hauptrolle {
     public static final StatementType SECOND_STATEMENT_TYPE = StatementType.ROLLE_INFO;
 
     public static final String NAME = "Schreckenswolf";
-    public static Fraktion fraktion = new Werwölfe();
     public static final String IMAGE_PATH = ImagePath.SCHRECKENSWOLF_KARTE;
-    public static boolean killing = true;
+    public static final Fraktion FRAKTION = new Werwölfe();
 
     public Schreckenswolf() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
+        this.fraktion = FRAKTION;
 
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
@@ -41,6 +41,7 @@ public class Schreckenswolf extends Hauptrolle {
         this.secondStatementType = SECOND_STATEMENT_TYPE;
 
         this.spammable = false;
+        this.killing = true;
     }
 
     @Override
@@ -55,16 +56,6 @@ public class Schreckenswolf extends Hauptrolle {
             besucht = chosenPlayer;
             Nacht.beschworenerSpieler = chosenPlayer;
         }
-    }
-
-    @Override
-    public Fraktion getFraktion() {
-        return fraktion;
-    }
-
-    @Override
-    public boolean isKilling() {
-        return killing;
     }
 
     public boolean werwölfeKilledOnSchutz() {

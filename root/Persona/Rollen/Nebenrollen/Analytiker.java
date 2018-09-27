@@ -48,8 +48,8 @@ public class Analytiker extends Nebenrolle {
         String name1 = spieler1.name;
         String name2 = spieler2.name;
 
-        String fraktion1 = spieler1.hauptrolle.getFraktion().name;
-        String fraktion2 = spieler2.hauptrolle.getFraktion().name;
+        String fraktion1 = spieler1.hauptrolle.fraktion.name;
+        String fraktion2 = spieler2.hauptrolle.fraktion.name;
 
         if (Objects.equals(fraktion1, fraktion2)) {
             return GLEICH;

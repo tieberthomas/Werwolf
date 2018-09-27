@@ -27,7 +27,7 @@ public class Opfer {
     public Opfer(Spieler opfer, Spieler täter) {
         this.opfer = opfer;
         this.täter = täter;
-        this.täterFraktion = täter.hauptrolle.getFraktion();
+        this.täterFraktion = täter.hauptrolle.fraktion;
         this.fraktionsTäter = false;
     }
 
@@ -89,7 +89,7 @@ public class Opfer {
         possibleVictims.add(new Opfer(opfer, täter));
 
         String opferNebenrolle = opfer.nebenrolle.name;
-        String täterFraktion = täter.hauptrolle.getFraktion().name;
+        String täterFraktion = täter.hauptrolle.fraktion.name;
 
         if (täter.hauptrolle.name.equals(Riese.NAME)) {
             addDeadVictim(opfer, täter, true);

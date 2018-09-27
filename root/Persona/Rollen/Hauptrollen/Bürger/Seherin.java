@@ -23,12 +23,13 @@ public class Seherin extends Hauptrolle {
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE_INFO;
 
     public static final String NAME = "Seherin";
-    public static Fraktion fraktion = new Bürger();
     public static final String IMAGE_PATH = ImagePath.SEHERIN_KARTE;
+    public static final Fraktion FRAKTION = new Bürger();
 
     public Seherin() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
+        this.fraktion = FRAKTION;
 
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
@@ -48,7 +49,7 @@ public class Seherin extends Hauptrolle {
 
         if (chosenPlayer != null) {
             besucht = chosenPlayer;
-            Zeigekarte zeigekarte = chosenPlayer.hauptrolle.getFraktion().getZeigeKarte();
+            Zeigekarte zeigekarte = chosenPlayer.hauptrolle.fraktion.getZeigeKarte();
 
             Nebenrolle nebenrolle = chosenPlayer.nebenrolle;
             Hauptrolle hauptrolle = chosenPlayer.hauptrolle;
@@ -72,10 +73,5 @@ public class Seherin extends Hauptrolle {
         }
 
         return new FrontendControl();
-    }
-
-    @Override
-    public Fraktion getFraktion() {
-        return fraktion;
     }
 }

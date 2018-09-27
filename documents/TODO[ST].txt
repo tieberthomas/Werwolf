@@ -1,10 +1,9 @@
 ST:
 deaktiv nochmal anschauen
-getter?
 deaktiviert und verbraucht - deaktiviert anzeigen
 ErsteNacht Statement Type
 Alphabet Umlaute?
-final?
+killing = false?
 
 TH:
 Englisch-Deutsch-Gemisch

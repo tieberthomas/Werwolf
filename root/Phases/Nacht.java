@@ -170,7 +170,7 @@ public class Nacht extends Thread {
                             if (chosenPlayer != null) {
                                 neuerSchattenpriester = chosenPlayer.name;
 
-                                if (!chosenPlayer.hauptrolle.getFraktion().name.equals(Schattenpriester_Fraktion.NAME)) {
+                                if (!chosenPlayer.hauptrolle.fraktion.name.equals(Schattenpriester_Fraktion.NAME)) {
                                     erzählerInfoIconImagePath = Schattenkutte.IMAGE_PATH;
                                 }
                             }
@@ -310,7 +310,7 @@ public class Nacht extends Thread {
 
     public void beginNight() {
         for (Spieler currentSpieler : game.spieler) {
-            String fraktionSpieler = currentSpieler.hauptrolle.getFraktion().name;
+            String fraktionSpieler = currentSpieler.hauptrolle.fraktion.name;
 
             currentSpieler.ressurectable = !fraktionSpieler.equals(Vampire.NAME);
         }

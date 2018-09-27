@@ -7,22 +7,14 @@ import root.ResourceManagement.ImagePath;
 
 public class Alphawolf extends Hauptrolle {
     public static final String NAME = "Alphawolf";
-    public static Fraktion fraktion = new Werwölfe();
     public static final String IMAGE_PATH = ImagePath.ALPHAWOLF_KARTE;
-    public static boolean killing = true;
+    public static final Fraktion FRAKTION = new Werwölfe();
 
     public Alphawolf() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
-    }
+        this.fraktion = FRAKTION;
 
-    @Override
-    public Fraktion getFraktion() {
-        return fraktion;
-    }
-
-    @Override
-    public boolean isKilling() {
-        return killing;
+        this.killing = true;
     }
 }

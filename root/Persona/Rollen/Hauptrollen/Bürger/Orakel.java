@@ -20,14 +20,15 @@ public class Orakel extends Hauptrolle {
     public static final String VERBRAUCHT_TITLE = "Bonusrollen";
 
     public static final String NAME = "Orakel";
-    public static Fraktion fraktion = new Bürger();
     public static final String IMAGE_PATH = ImagePath.ORAKEL_KARTE;
+    public static final Fraktion FRAKTION = new Bürger();
 
     public static ArrayList<String> geseheneNebenrollen = new ArrayList<>();
 
     public Orakel() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
+        this.fraktion = FRAKTION;
 
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
@@ -53,11 +54,6 @@ public class Orakel extends Hauptrolle {
                 return new FrontendControl(VERBRAUCHT_TITLE);
             }
         }
-    }
-
-    @Override
-    public Fraktion getFraktion() {
-        return fraktion;
     }
 
     public Nebenrolle generateRandomNebenrolle() {

@@ -265,7 +265,7 @@ public class Game {
             }
 
             if (Rolle.rolleLebend(Wölfin.NAME) && Wölfin.state == WölfinState.WARTEND) {
-                if (hauptrolle.getFraktion().name.equals(Werwölfe.NAME)) {
+                if (hauptrolle.fraktion.name.equals(Werwölfe.NAME)) {
                     Wölfin.state = WölfinState.TÖTEND;
                 }
             }
@@ -408,7 +408,7 @@ public class Game {
         ArrayList<Hauptrolle> mainrolesToRemove = new ArrayList<>();
 
         for (Hauptrolle hauptrolle : mainroles) {
-            if (!hauptrolle.getFraktion().equals(Bürger.NAME)) {
+            if (!hauptrolle.fraktion.equals(Bürger.NAME)) {
                 mainrolesToRemove.add(hauptrolle);
             }
         }

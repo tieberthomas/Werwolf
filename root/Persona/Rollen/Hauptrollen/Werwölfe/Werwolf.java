@@ -7,24 +7,15 @@ import root.ResourceManagement.ImagePath;
 
 public class Werwolf extends Hauptrolle {
     public static final String NAME = "Werwolf";
-    public static Fraktion fraktion = new Werwölfe();
     public static final String IMAGE_PATH = ImagePath.WERWOLF_KARTE;
-    public static boolean killing = true;
+    public static final Fraktion FRAKTION = new Werwölfe();
 
     public Werwolf() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
+        this.fraktion = FRAKTION;
 
         this.numberOfPossibleInstances = 100;
-    }
-
-    @Override
-    public Fraktion getFraktion() {
-        return fraktion;
-    }
-
-    @Override
-    public boolean isKilling() {
-        return killing;
+        this.killing = true;
     }
 }

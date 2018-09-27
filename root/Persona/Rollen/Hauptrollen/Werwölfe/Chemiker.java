@@ -22,12 +22,13 @@ public class Chemiker extends Hauptrolle {
     public static final StatementType SECOND_STATEMENT_TYPE = StatementType.FRAKTION_SPECAL;
 
     public static final String NAME = "Chemiker";
-    public static Fraktion fraktion = new Werwölfe();
     public static final String IMAGE_PATH = ImagePath.CHEMIKER_KARTE;
+    public static final Fraktion FRAKTION = new Werwölfe();
 
     public Chemiker() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
+        this.fraktion = FRAKTION;
 
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
@@ -62,16 +63,11 @@ public class Chemiker extends Hauptrolle {
         }
     }
 
-    @Override
-    public Fraktion getFraktion() {
-        return fraktion;
-    }
-
     public ArrayList<String> findResurrectableOpfer() {
         ArrayList<String> resurrectableOpfer = new ArrayList<>();
 
         for (Opfer currentOpfer : Opfer.deadVictims) {
-            String opferFraktion = currentOpfer.opfer.hauptrolle.getFraktion().name;
+            String opferFraktion = currentOpfer.opfer.hauptrolle.fraktion.name;
             String täterFraktion = currentOpfer.täterFraktion.name;
 
             if (currentOpfer.opfer.ressurectable) {

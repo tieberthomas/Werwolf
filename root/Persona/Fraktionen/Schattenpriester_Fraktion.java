@@ -68,7 +68,7 @@ public class Schattenpriester_Fraktion extends Fraktion {
         frontendControl.dropdownStrings = new ArrayList<>();
 
         for (Opfer currentOpfer : Opfer.deadVictims) {
-            String fraktionOpfer = currentOpfer.opfer.hauptrolle.getFraktion().name;
+            String fraktionOpfer = currentOpfer.opfer.hauptrolle.fraktion.name;
             if (currentOpfer.opfer.nebenrolle.name.equals(Schattenkutte.NAME) ||
                     (currentOpfer.opfer.ressurectable && !fraktionOpfer.equals(Schattenpriester_Fraktion.NAME))) {
                 if (!frontendControl.dropdownStrings.contains(currentOpfer.opfer.name)) {

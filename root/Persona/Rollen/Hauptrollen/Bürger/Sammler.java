@@ -14,19 +14,15 @@ public class Sammler extends Hauptrolle {
     public static final String beschreibungAddiditonLowerCase = "der Sammler als ";
 
     public static final String NAME = "Sammler";
-    public static Fraktion fraktion = new Bürger();
     public static final String IMAGE_PATH = ImagePath.SAMMLER_KARTE;
+    public static final Fraktion FRAKTION = new Bürger();
 
     public Sammler() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
+        this.fraktion = FRAKTION;
     }
 
-
-    @Override
-    public Fraktion getFraktion() {
-        return fraktion;
-    }
 
     public static boolean isSammlerRolle(String rolle) {
         for (Nebenrolle currentRolle : game.mitteNebenrollen) {

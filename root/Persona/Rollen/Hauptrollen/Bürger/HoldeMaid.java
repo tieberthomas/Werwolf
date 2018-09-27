@@ -14,12 +14,13 @@ public class HoldeMaid extends Hauptrolle {
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
 
     public static final String NAME = "Holde Maid";
-    public static Fraktion fraktion = new Bürger();
     public static final String IMAGE_PATH = ImagePath.HOLDE_MAID_KARTE;
+    public static final Fraktion FRAKTION = new Bürger();
 
     public HoldeMaid() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
+        this.fraktion = FRAKTION;
 
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
@@ -39,10 +40,5 @@ public class HoldeMaid extends Hauptrolle {
         if (chosenPlayer != null) {
             besucht = chosenPlayer;
         }
-    }
-
-    @Override
-    public Fraktion getFraktion() {
-        return fraktion;
     }
 }

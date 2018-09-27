@@ -18,32 +18,24 @@ public class LadyAleera extends Hauptrolle {
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_INFO;
 
     public static final String NAME = "Lady Aleera";
-    public static Fraktion fraktion = new Vampire();
     public static final String IMAGE_PATH = ImagePath.LADY_ALEERA_KARTE;
-    public static boolean killing = true;
+    public static final Fraktion FRAKTION = new Vampire();
 
     public LadyAleera() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
+        this.fraktion = FRAKTION;
 
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;
+
+        this.killing = true;
     }
 
     @Override
     public FrontendControl getInfo() {
         return new FrontendControl(FrontendControlType.LIST, findGeschützeSpieler());
-    }
-
-    @Override
-    public Fraktion getFraktion() {
-        return fraktion;
-    }
-
-    @Override
-    public boolean isKilling() {
-        return killing;
     }
 
     public ArrayList<String> findGeschützeSpieler() {

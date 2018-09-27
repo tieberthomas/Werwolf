@@ -199,7 +199,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     public void disableMainRoleButtons() {
         for (JButton button : mainRoleButtons) {
             button.setEnabled(true);
-            button.setBackground(game.findHauptrolle(button.getText()).getFraktion().getFarbe());
+            button.setBackground(game.findHauptrolle(button.getText()).fraktion.getFarbe());
         }
 
         for (Hauptrolle hauptrolle : game.mainRolesInGame) {

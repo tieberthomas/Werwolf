@@ -55,6 +55,6 @@ public class Nebenrolle extends Rolle {
     private boolean thisRolleIsNotBuerger(Nebenrolle requester) {
         Spieler spieler = game.findSpielerPerRolle(requester.name);
 
-        return !spieler.hauptrolle.getFraktion().equals(new Bürger());
+        return !spieler.hauptrolle.fraktion.equals(new Bürger());
     }
 }

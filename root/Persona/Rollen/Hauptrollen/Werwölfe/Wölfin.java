@@ -24,14 +24,14 @@ public class Wölfin extends Hauptrolle {
     public static final StatementType SECOND_STATEMENT_TYPE = StatementType.ROLLE_INFO;
 
     public static final String NAME = "Wölfin";
-    public static Fraktion fraktion = new Werwölfe();
     public static final String IMAGE_PATH = ImagePath.WÖLFIN_KARTE;
-    public static boolean killing = true;
+    public static final Fraktion FRAKTION = new Werwölfe();
     public static WölfinState state = WölfinState.WARTEND;
 
     public Wölfin() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
+        this.fraktion = FRAKTION;
 
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
@@ -40,6 +40,8 @@ public class Wölfin extends Hauptrolle {
         this.secondStatementTitle = SECOND_STATEMENT_TITLE;
         this.secondStatementBeschreibung = SECOND_STATEMENT_BESCHREIBUNG;
         this.secondStatementType = SECOND_STATEMENT_TYPE;
+
+        this.killing = true;
     }
 
     @Override
@@ -73,15 +75,5 @@ public class Wölfin extends Hauptrolle {
         }
 
         return new FrontendControl();
-    }
-
-    @Override
-    public Fraktion getFraktion() {
-        return fraktion;
-    }
-
-    @Override
-    public boolean isKilling() {
-        return killing;
     }
 }
