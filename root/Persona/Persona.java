@@ -1,5 +1,6 @@
 package root.Persona;
 
+import root.Frontend.FrontendControl;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.mechanics.Game;
@@ -20,7 +21,19 @@ public class Persona {
     public String secondStatementBeschreibung = "";
     public StatementType secondStatementType = StatementType.EMPTY_STATEMENT;
 
+    public FrontendControl getDropdownOptions() {
+        return new FrontendControl();
+    }
+
     public void processChosenOption(String chosenOption) {
+    }
+
+    public FrontendControl processChosenOptionGetInfo(String chosenOption) {
+        return new FrontendControl();
+    }
+
+    public FrontendControl getInfo() {
+        return new FrontendControl();
     }
 
     public Color getFarbe() {

@@ -15,10 +15,6 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Fraktion extends Persona {
-    public FrontendControl getDropdownOptions() {
-        return new FrontendControl();
-    }
-
     public Color getFarbe() {
         return MyFrame.DEFAULT_BUTTON_COLOR;
     }

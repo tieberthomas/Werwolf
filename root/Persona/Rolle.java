@@ -1,6 +1,5 @@
 package root.Persona;
 
-import root.Frontend.FrontendControl;
 import root.Persona.Rollen.Hauptrollen.Bürger.Sammler;
 import root.Persona.Rollen.Nebenrollen.Totengräber;
 import root.Spieler;
@@ -16,14 +15,6 @@ public class Rolle extends Persona {
     public boolean spammable = false;
     public int numberOfPossibleInstances = 1;
 
-    public FrontendControl getDropdownOptions() {
-        return new FrontendControl();
-    }
-
-    public FrontendControl processChosenOptionGetInfo(String chosenOption) {
-        return new FrontendControl();
-    }
-
     public static ArrayList<String> getMitteHauptrollenStrings() {
         ArrayList<String> mitteHauptrollenStrings = new ArrayList<String>();
 
@@ -32,10 +23,6 @@ public class Rolle extends Persona {
         }
 
         return mitteHauptrollenStrings;
-    }
-
-    public FrontendControl getInfo() {
-        return new FrontendControl();
     }
 
     public Color getFarbe() {
