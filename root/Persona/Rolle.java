@@ -14,6 +14,7 @@ public class Rolle extends Persona {
     public int abilityCharges = 1;
 
     public boolean spammable = false;
+    public int numberOfPossibleInstances = 1;
 
     public FrontendControl getDropdownOptions() {
         return new FrontendControl();
@@ -35,10 +36,6 @@ public class Rolle extends Persona {
 
     public FrontendControl getInfo() {
         return new FrontendControl();
-    }
-
-    public int getNumberOfPossibleInstances() {
-        return 1;
     }
 
     public Color getFarbe() {

@@ -8,17 +8,13 @@ import root.ResourceManagement.ImagePath;
 public class Schatten extends Nebenrolle {
     public static final String NAME = "Schatten";
     public static final String IMAGE_PATH = ImagePath.SCHATTEN_KARTE;
-    public static int numberOfPossibleInstances = 100;
     public NebenrollenType type = new Passiv();
 
     public Schatten() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
-    }
 
-    @Override
-    public int getNumberOfPossibleInstances() {
-        return numberOfPossibleInstances;
+        this.numberOfPossibleInstances = 100;
     }
 
     @Override

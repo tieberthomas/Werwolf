@@ -205,7 +205,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         for (Hauptrolle hauptrolle : game.mainRolesInGame) {
             for (JButton button : mainRoleButtons) {
                 int occurrences = game.numberOfOccurencesOfMainRoleInGame(hauptrolle);
-                if (button.getText().equals(hauptrolle.name) && hauptrolle.getNumberOfPossibleInstances() <= occurrences) {
+                if (button.getText().equals(hauptrolle.name) && hauptrolle.numberOfPossibleInstances <= occurrences) {
                     if (button.isEnabled()) {
                         disableButton(button);
                     }
@@ -223,7 +223,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         for (Nebenrolle nebenrolle : game.secondaryRolesInGame) {
             for (JButton button : secondaryRoleButtons) {
                 int occurrences = game.numberOfOccurencesOfSecondaryRoleInGame(nebenrolle);
-                if (button.getText().equals(nebenrolle.name) && nebenrolle.getNumberOfPossibleInstances() <= occurrences) {
+                if (button.getText().equals(nebenrolle.name) && nebenrolle.numberOfPossibleInstances <= occurrences) {
                     if (button.isEnabled()) {
                         disableButton(button);
                     }
