@@ -1,13 +1,13 @@
 package root.Persona.Rollen.Nebenrollen;
 
+import root.Persona.Bonusrolle;
 import root.Persona.Fraktionen.Bürger;
-import root.Persona.Nebenrolle;
 import root.Persona.Rollen.Constants.NebenrollenType.NebenrollenType;
 import root.Persona.Rollen.Constants.NebenrollenType.Passiv;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
-public class Seelenlicht extends Nebenrolle {
+public class Seelenlicht extends Bonusrolle {
     public static final String NAME = "Seelenlicht";
     public static final String IMAGE_PATH = ImagePath.SEELENLICHT_KARTE;
     public static final NebenrollenType TYPE = new Passiv();
@@ -18,28 +18,28 @@ public class Seelenlicht extends Nebenrolle {
         this.type = TYPE;
     }
 
-    public void tauschen(Nebenrolle nebenrolle) {
+    public void tauschen(Bonusrolle bonusrolle) {
         try {
             Spieler spieler = game.findSpielerPerRolle(NAME);
-            spieler.nebenrolle = nebenrolle;
+            spieler.bonusrolle = bonusrolle;
         } catch (NullPointerException e) {
             System.out.println(NAME + " nicht gefunden");
         }
     }
 
-    public Nebenrolle getTauschErgebnis() {
+    public Bonusrolle getTauschErgebnis() {
         Spieler spieler = game.findSpielerPerRolle(NAME);
 
         if (spieler != null) {
-            Nebenrolle nebenrolle;
+            Bonusrolle bonusrolle;
 
             if (spieler.hauptrolle.fraktion.name.equals(Bürger.NAME)) {
-                nebenrolle = new ReineSeele();
+                bonusrolle = new ReineSeele();
             } else {
-                nebenrolle = new SchwarzeSeele();
+                bonusrolle = new SchwarzeSeele();
             }
 
-            return nebenrolle;
+            return bonusrolle;
         } else {
             return new ReineSeele();
         }

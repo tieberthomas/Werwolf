@@ -3,7 +3,7 @@ package root.Persona.Rollen.Nebenrollen;
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.Persona.Fraktion;
-import root.Persona.Nebenrolle;
+import root.Persona.Bonusrolle;
 import root.Persona.Rollen.Constants.NebenrollenType.Aktiv;
 import root.Persona.Rollen.Constants.NebenrollenType.NebenrollenType;
 import root.Phases.NightBuilding.Constants.StatementType;
@@ -12,7 +12,7 @@ import root.ResourceManagement.ImagePath;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Wahrsager extends Nebenrolle {
+public class Wahrsager extends Bonusrolle {
     public static final String KEIN_OPFER = "Kein Opfer";
 
     public static final String STATEMENT_TITLE = "Fraktion wählen";

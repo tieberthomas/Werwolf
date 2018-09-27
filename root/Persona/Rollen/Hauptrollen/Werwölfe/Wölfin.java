@@ -66,8 +66,8 @@ public class Wölfin extends Hauptrolle {
         if (Nacht.wölfinKilled) {
             Spieler wölfinSpieler = Nacht.wölfinSpieler;
             if (wölfinSpieler != null) {
-                String imagePath = wölfinSpieler.nebenrolle.imagePath;
-                if (wölfinSpieler.nebenrolle.name.equals(Tarnumhang.NAME)) {
+                String imagePath = wölfinSpieler.bonusrolle.imagePath;
+                if (wölfinSpieler.bonusrolle.name.equals(Tarnumhang.NAME)) {
                     imagePath = ImagePath.TARNUMHANG;
                 }
                 return new FrontendControl(FrontendControlType.IMAGE, imagePath);

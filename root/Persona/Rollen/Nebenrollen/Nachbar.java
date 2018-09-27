@@ -2,7 +2,7 @@ package root.Persona.Rollen.Nebenrollen;
 
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
-import root.Persona.Nebenrolle;
+import root.Persona.Bonusrolle;
 import root.Persona.Rollen.Constants.NebenrollenType.Informativ;
 import root.Persona.Rollen.Constants.NebenrollenType.NebenrollenType;
 import root.Persona.Rollen.Constants.NebenrollenType.Tarnumhang_NebenrollenType;
@@ -12,7 +12,7 @@ import root.Spieler;
 
 import java.util.ArrayList;
 
-public class Nachbar extends Nebenrolle {
+public class Nachbar extends Bonusrolle {
     public static final String STATEMENT_TITLE = "Spieler wählen";
     public static final String STATEMENT_BESCHREIBUNG = "Nachbar erwacht, wählt einen Spieler und erfährt wer diesen Spieler besucht hat";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE_INFO;
@@ -66,12 +66,12 @@ public class Nachbar extends Nebenrolle {
         if (beobachteterSpieler != null) {
             for (Spieler spieler : game.getLivingPlayer()) {
                 if (spieler.hauptrolle.besucht != null && spieler.hauptrolle.besucht.name.equals(beobachteterSpieler.name) ||
-                        (spieler.nebenrolle.besucht != null && spieler.nebenrolle.besucht.name.equals(beobachteterSpieler.name))) {
+                        (spieler.bonusrolle.besucht != null && spieler.bonusrolle.besucht.name.equals(beobachteterSpieler.name))) {
                     besucher.add(spieler.name);
                 }
 
-                if (!besucher.contains(spieler.name) && spieler.nebenrolle.name.equals(Analytiker.NAME)) {
-                    Analytiker analytiker = (Analytiker) spieler.nebenrolle;
+                if (!besucher.contains(spieler.name) && spieler.bonusrolle.name.equals(Analytiker.NAME)) {
+                    Analytiker analytiker = (Analytiker) spieler.bonusrolle;
                     if (analytiker.besuchtAnalysieren != null && analytiker.besuchtAnalysieren.name.equals(beobachteterSpieler.name)) {
                         besucher.add(spieler.name);
                     }

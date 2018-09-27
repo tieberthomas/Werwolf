@@ -6,7 +6,7 @@ import root.Persona.Fraktionen.Schattenpriester_Fraktion;
 import root.Persona.Fraktionen.Vampire;
 import root.Persona.Fraktionen.Werwölfe;
 import root.Persona.Hauptrolle;
-import root.Persona.Nebenrolle;
+import root.Persona.Bonusrolle;
 import root.Persona.Rolle;
 import root.Persona.Rollen.Constants.DropdownConstants;
 import root.Persona.Rollen.Constants.NebenrollenType.Tarnumhang_NebenrollenType;
@@ -214,7 +214,7 @@ public class Nacht extends Thread {
                             Spieler wahrsagerSpieler2 = game.findSpielerPerRolle(Wahrsager.NAME);
                             Spieler deadWahrsagerSpieler = game.findSpielerOrDeadPerRolle(Wahrsager.NAME);
                             if (wahrsagerSpieler2 != null) {
-                                Wahrsager wahrsager = (Wahrsager) deadWahrsagerSpieler.nebenrolle; //TODO Rolle rolle ?
+                                Wahrsager wahrsager = (Wahrsager) deadWahrsagerSpieler.bonusrolle; //TODO Rolle rolle ?
                                 ArrayList<String> rewardInformation = new ArrayList<>();
                                 if (wahrsager.guessedRight() && !game.zweiteNacht) {
                                     statement.title = Wahrsager.REWARD_TITLE;
@@ -323,12 +323,12 @@ public class Nacht extends Thread {
             currentHauptrolle.besucht = null;
         }
 
-        for (Nebenrolle currentNebenrolle : game.secondaryRoles) {
-            currentNebenrolle.besuchtLetzteNacht = currentNebenrolle.besucht;
-            currentNebenrolle.besucht = null;
+        for (Bonusrolle currentBonusrolle : game.secondaryRoles) {
+            currentBonusrolle.besuchtLetzteNacht = currentBonusrolle.besucht;
+            currentBonusrolle.besucht = null;
 
-            if (currentNebenrolle.name.equals(Analytiker.NAME)) {
-                ((Analytiker) currentNebenrolle).besuchtAnalysieren = null;
+            if (currentBonusrolle.name.equals(Analytiker.NAME)) {
+                ((Analytiker) currentBonusrolle).besuchtAnalysieren = null;
             }
         }
 
@@ -365,7 +365,7 @@ public class Nacht extends Thread {
 
     public void setSchütze() {
         for (Spieler currentSpieler : game.spieler) {
-            String nebenrolleCurrentSpieler = currentSpieler.nebenrolle.name;
+            String nebenrolleCurrentSpieler = currentSpieler.bonusrolle.name;
 
             if (nebenrolleCurrentSpieler.equals(SchwarzeSeele.NAME)) {
                 currentSpieler.geschützt = true;

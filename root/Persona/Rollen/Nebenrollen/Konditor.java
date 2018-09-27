@@ -2,7 +2,7 @@ package root.Persona.Rollen.Nebenrollen;
 
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
-import root.Persona.Nebenrolle;
+import root.Persona.Bonusrolle;
 import root.Persona.Rollen.Constants.NebenrollenType.Aktiv;
 import root.Persona.Rollen.Constants.NebenrollenType.NebenrollenType;
 import root.Phases.NightBuilding.Constants.StatementType;
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import static root.Persona.Rollen.Constants.DropdownConstants.GUT;
 import static root.Persona.Rollen.Constants.DropdownConstants.SCHLECHT;
 
-public class Konditor extends Nebenrolle {
+public class Konditor extends Bonusrolle {
     public static final String STATEMENT_TITLE = "Torte";
     public static final String STATEMENT_BESCHREIBUNG = "Konditor erwacht und entscheidet sich ob es eine gute oder schlechte Torte gibt";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_SPECAL;

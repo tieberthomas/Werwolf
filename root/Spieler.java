@@ -1,7 +1,7 @@
 package root;
 
+import root.Persona.Bonusrolle;
 import root.Persona.Hauptrolle;
-import root.Persona.Nebenrolle;
 import root.Persona.Rollen.Hauptrollen.Bürger.Dorfbewohner;
 import root.Persona.Rollen.Nebenrollen.Schatten;
 import root.mechanics.Game;
@@ -11,7 +11,7 @@ public class Spieler {
 
     public String name;
     public Hauptrolle hauptrolle;
-    public Nebenrolle nebenrolle;
+    public Bonusrolle bonusrolle;
     public boolean lebend;
     public boolean aktiv;
     public boolean geschützt;
@@ -33,13 +33,13 @@ public class Spieler {
             hauptrolle = new Dorfbewohner();
         }
 
-        Nebenrolle nebenrolle = game.findNebenrolle(nebenrolleName);
-        if (nebenrolle == null) {
-            nebenrolle = new Schatten();
+        Bonusrolle bonusrolle = game.findNebenrolle(nebenrolleName);
+        if (bonusrolle == null) {
+            bonusrolle = new Schatten();
         }
 
         this.hauptrolle = hauptrolle;
-        this.nebenrolle = nebenrolle;
+        this.bonusrolle = bonusrolle;
 
         game.spieler.add(this);
     }

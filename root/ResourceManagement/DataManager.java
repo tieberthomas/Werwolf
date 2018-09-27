@@ -58,7 +58,7 @@ public class DataManager {
         for (PlayerDto player : players) {
             Spieler newSpieler = new Spieler(player.name, player.hauptrolle, player.nebenrolle);
             game.mainRolesInGame.add(newSpieler.hauptrolle);
-            game.secondaryRolesInGame.add(newSpieler.nebenrolle);
+            game.secondaryRolesInGame.add(newSpieler.bonusrolle);
         }
     }
 

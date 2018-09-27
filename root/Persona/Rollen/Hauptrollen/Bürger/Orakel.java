@@ -2,10 +2,10 @@ package root.Persona.Rollen.Hauptrollen.Bürger;
 
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
+import root.Persona.Bonusrolle;
 import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Bürger;
 import root.Persona.Hauptrolle;
-import root.Persona.Nebenrolle;
 import root.Persona.Rolle;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
@@ -37,16 +37,16 @@ public class Orakel extends Hauptrolle {
 
     @Override
     public FrontendControl getInfo() {
-        Nebenrolle randomNebenrolle = generateRandomNebenrolle();
+        Bonusrolle randomBonusrolle = generateRandomNebenrolle();
 
-        if (randomNebenrolle != null) {
-            return new FrontendControl(FrontendControlType.CARD, randomNebenrolle.imagePath);
+        if (randomBonusrolle != null) {
+            return new FrontendControl(FrontendControlType.CARD, randomBonusrolle.imagePath);
         } else {
             Spieler orakelSpieler = game.findSpielerPerRolle(NAME);
 
             if (orakelSpieler != null) {
                 ArrayList<String> nebenRolleList = (ArrayList<String>) geseheneNebenrollen.clone();
-                nebenRolleList.remove(orakelSpieler.nebenrolle.name);
+                nebenRolleList.remove(orakelSpieler.bonusrolle.name);
                 FrontendControl info = new FrontendControl(FrontendControlType.LIST, nebenRolleList);
                 info.title = VERBRAUCHT_TITLE;
                 return info;
@@ -56,21 +56,21 @@ public class Orakel extends Hauptrolle {
         }
     }
 
-    public Nebenrolle generateRandomNebenrolle() {
+    public Bonusrolle generateRandomNebenrolle() {
         ArrayList<Spieler> unseenBürger = getUnseenBürger();
 
-        Nebenrolle nebenrolle;
+        Bonusrolle bonusrolle;
 
         if (unseenBürger.size() > 0) {
             int randIndex = (int) (Math.random() * unseenBürger.size());
 
-            nebenrolle = unseenBürger.get(randIndex).nebenrolle;
-            geseheneNebenrollen.add(nebenrolle.name);
+            bonusrolle = unseenBürger.get(randIndex).bonusrolle;
+            geseheneNebenrollen.add(bonusrolle.name);
         } else {
-            nebenrolle = null;
+            bonusrolle = null;
         }
 
-        return nebenrolle;
+        return bonusrolle;
     }
 
     public static ArrayList<Spieler> getUnseenBürger() {
@@ -78,14 +78,14 @@ public class Orakel extends Hauptrolle {
         ArrayList<Spieler> bürgerToRemove = new ArrayList<>();
 
         if (Rolle.rolleLebend(NAME)) {
-            Nebenrolle orakelSpielerNebenrolle = game.findSpielerPerRolle(NAME).nebenrolle;
-            if (!geseheneNebenrollen.contains(orakelSpielerNebenrolle.name)) {
-                geseheneNebenrollen.add(orakelSpielerNebenrolle.name);
+            Bonusrolle orakelSpielerBonusrolle = game.findSpielerPerRolle(NAME).bonusrolle;
+            if (!geseheneNebenrollen.contains(orakelSpielerBonusrolle.name)) {
+                geseheneNebenrollen.add(orakelSpielerBonusrolle.name);
             }
         }
 
         for (Spieler currentBürger : bürger) {
-            if (geseheneNebenrollen.contains(currentBürger.nebenrolle.name)) {
+            if (geseheneNebenrollen.contains(currentBürger.bonusrolle.name)) {
                 bürgerToRemove.add(currentBürger);
             }
         }

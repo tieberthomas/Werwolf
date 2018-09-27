@@ -1,14 +1,14 @@
 package root.Persona.Rollen.Nebenrollen;
 
 import root.Frontend.FrontendControl;
-import root.Persona.Nebenrolle;
+import root.Persona.Bonusrolle;
 import root.Persona.Rollen.Constants.NebenrollenType.Aktiv;
 import root.Persona.Rollen.Constants.NebenrollenType.NebenrollenType;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
-public class Prostituierte extends Nebenrolle {
+public class Prostituierte extends Bonusrolle {
     public static final String STATEMENT_TITLE = "Bett legen";
     public static final String STATEMENT_BESCHREIBUNG = "Prostituierte legt sich zu einem Mitspieler ins Bett";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;

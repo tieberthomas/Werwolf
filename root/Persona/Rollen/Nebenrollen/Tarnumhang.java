@@ -2,7 +2,7 @@ package root.Persona.Rollen.Nebenrollen;
 
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
-import root.Persona.Nebenrolle;
+import root.Persona.Bonusrolle;
 import root.Persona.Rollen.Constants.NebenrollenType.NebenrollenType;
 import root.Persona.Rollen.Constants.NebenrollenType.Tarnumhang_NebenrollenType;
 import root.Phases.NightBuilding.Constants.StatementType;
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
-public class Tarnumhang extends Nebenrolle {
+public class Tarnumhang extends Bonusrolle {
     public static final String STATEMENT_TITLE = "Träger eines Umhangs";
     public static final String STATEMENT_BESCHREIBUNG = "Träger des Tarnumhangs erwacht und erfährt einen Mitspieler, bei dem ein Umhhang liegt";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_INFO;
@@ -79,7 +79,7 @@ public class Tarnumhang extends Nebenrolle {
         ArrayList<String> allTräger = new ArrayList<>();
 
         for (Spieler spieler : game.spieler) {
-            if (umhänge.contains(spieler.nebenrolle.name)) {
+            if (umhänge.contains(spieler.bonusrolle.name)) {
                 allTräger.add(spieler.name);
             }
         }

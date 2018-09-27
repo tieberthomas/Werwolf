@@ -2,7 +2,7 @@ package root.Persona.Rollen.Nebenrollen;
 
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
-import root.Persona.Nebenrolle;
+import root.Persona.Bonusrolle;
 import root.Persona.Rolle;
 import root.Persona.Rollen.Constants.NebenrollenType.Aktiv;
 import root.Persona.Rollen.Constants.NebenrollenType.NebenrollenType;
@@ -15,7 +15,7 @@ import root.Spieler;
 
 import java.util.ArrayList;
 
-public class Totengräber extends Nebenrolle {
+public class Totengräber extends Bonusrolle {
     public static final String STATEMENT_TITLE = "Karte tauschen";
     public static final String STATEMENT_BESCHREIBUNG = "Totengräber erwacht und entscheidet ob er seine Bonusrollenkarte tauschen möchte";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
@@ -43,20 +43,20 @@ public class Totengräber extends Nebenrolle {
 
     @Override
     public void processChosenOption(String chosenOption) {
-        Nebenrolle chosenNebenrolle = game.findNebenrolle(chosenOption);
-        if (chosenNebenrolle != null) {
+        Bonusrolle chosenBonusrolle = game.findNebenrolle(chosenOption);
+        if (chosenBonusrolle != null) {
             try {
-                Spieler deadSpieler = game.findSpielerOrDeadPerRolle(chosenNebenrolle.name);
-                chosenNebenrolle = (Nebenrolle) Rolle.findRolle(deadSpieler.nebenrolle.name);
+                Spieler deadSpieler = game.findSpielerOrDeadPerRolle(chosenBonusrolle.name);
+                chosenBonusrolle = (Bonusrolle) Rolle.findRolle(deadSpieler.bonusrolle.name);
 
                 Spieler spielerTotengräber = game.findSpielerPerRolle(NAME);
-                spielerTotengräber.nebenrolle = chosenNebenrolle;
-                deadSpieler.nebenrolle = new Schatten();
+                spielerTotengräber.bonusrolle = chosenBonusrolle;
+                deadSpieler.bonusrolle = new Schatten();
 
-                game.mitteNebenrollen.remove(chosenNebenrolle);
+                game.mitteNebenrollen.remove(chosenBonusrolle);
                 game.mitteNebenrollen.add(this);
 
-                removeSammlerFlag(chosenNebenrolle.name);
+                removeSammlerFlag(chosenBonusrolle.name);
             } catch (NullPointerException e) {
                 System.out.println(NAME + " nicht gefunden");
             }
@@ -77,8 +77,8 @@ public class Totengräber extends Nebenrolle {
     public static ArrayList<String> getNehmbareNebenrollen() {
         ArrayList<String> nehmbareNebenrollen = new ArrayList<>();
 
-        for (Nebenrolle nebenrolle : game.mitteNebenrollen) {
-            nehmbareNebenrollen.add(nebenrolle.name);
+        for (Bonusrolle bonusrolle : game.mitteNebenrollen) {
+            nehmbareNebenrollen.add(bonusrolle.name);
         }
 
         return nehmbareNebenrollen;

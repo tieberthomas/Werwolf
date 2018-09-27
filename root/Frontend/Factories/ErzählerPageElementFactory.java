@@ -6,7 +6,7 @@ import root.Frontend.Frame.FrameMode;
 import root.Frontend.Page.PageElement;
 import root.Frontend.Page.PageTable;
 import root.Frontend.Page.Predecessor;
-import root.Persona.Nebenrolle;
+import root.Persona.Bonusrolle;
 import root.Persona.Rollen.Hauptrollen.Bürger.Sammler;
 import root.Persona.Rollen.Nebenrollen.Konditorlehrling;
 import root.Phases.ErsteNacht;
@@ -190,7 +190,7 @@ public class ErzählerPageElementFactory {
             JButton button = new JButton(role);
             button.addActionListener(erzählerFrame);
             button.setMargin(new Insets(0, 0, 0, 0));
-            button.setBackground(Nebenrolle.defaultFarbe);
+            button.setBackground(Bonusrolle.defaultFarbe);
             tableButtons.add(button);
             pageTable.add(button);
         }

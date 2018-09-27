@@ -4,8 +4,8 @@ import root.Frontend.Factories.ÜbersichtsPageElementFactory;
 import root.Frontend.Factories.ÜbersichtsPageFactory;
 import root.Frontend.Page.Page;
 import root.Frontend.Page.PageTable;
+import root.Persona.Bonusrolle;
 import root.Persona.Hauptrolle;
-import root.Persona.Nebenrolle;
 import root.Persona.Rolle;
 import root.Phases.ErsteNacht;
 import root.Phases.Nacht;
@@ -117,14 +117,14 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener {
     public void refreshSecondaryRoleTable() {
         secondaryRoleTable.tableElements.clear();
 
-        secondaryRoleTable.add(new JLabel("Nebenrolle"));
+        secondaryRoleTable.add(new JLabel("Bonusrolle"));
 
         for (Spieler spieler : game.spieler) {
             Rolle rolle;
-            if (spieler.nebenrolle == null)
-                rolle = Nebenrolle.defaultNebenrolle;
+            if (spieler.bonusrolle == null)
+                rolle = Bonusrolle.DEFAULT_BONUSROLLE;
             else
-                rolle = spieler.nebenrolle;
+                rolle = spieler.bonusrolle;
 
             if (secondaryRoleTable.tableElements.size() < game.spieler.size() + 1) {
                 secondaryRoleTable.add(generateColorLabel(spieler, rolle));

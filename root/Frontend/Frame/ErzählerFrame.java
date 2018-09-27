@@ -5,8 +5,8 @@ import root.Frontend.Factories.ErzählerPageFactory;
 import root.Frontend.FrontendControl;
 import root.Frontend.Page.Page;
 import root.Frontend.Page.PageTable;
+import root.Persona.Bonusrolle;
 import root.Persona.Hauptrolle;
-import root.Persona.Nebenrolle;
 import root.Phases.ErsteNacht;
 import root.Phases.Nacht;
 import root.Phases.PhaseMode;
@@ -217,13 +217,13 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     public void disableSecondaryRoleButtons() {
         for (JButton button : secondaryRoleButtons) {
             button.setEnabled(true);
-            button.setBackground(Nebenrolle.defaultFarbe);
+            button.setBackground(Bonusrolle.defaultFarbe);
         }
 
-        for (Nebenrolle nebenrolle : game.secondaryRolesInGame) {
+        for (Bonusrolle bonusrolle : game.secondaryRolesInGame) {
             for (JButton button : secondaryRoleButtons) {
-                int occurrences = game.numberOfOccurencesOfSecondaryRoleInGame(nebenrolle);
-                if (button.getText().equals(nebenrolle.name) && nebenrolle.numberOfPossibleInstances <= occurrences) {
+                int occurrences = game.numberOfOccurencesOfSecondaryRoleInGame(bonusrolle);
+                if (button.getText().equals(bonusrolle.name) && bonusrolle.numberOfPossibleInstances <= occurrences) {
                     if (button.isEnabled()) {
                         disableButton(button);
                     }
@@ -260,8 +260,8 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     public void refreshSecondaryRoleTable() {
         secondaryRoleLabelTable.tableElements.clear();
 
-        for (Nebenrolle nebenrolle : game.secondaryRolesInGame) {
-            secondaryRoleLabelTable.add(new JLabel(nebenrolle.name));
+        for (Bonusrolle bonusrolle : game.secondaryRolesInGame) {
+            secondaryRoleLabelTable.add(new JLabel(bonusrolle.name));
         }
     }
 
@@ -269,7 +269,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         deleteSecondaryRoleTable.tableElements.clear();
         deleteSecondaryRoleButtons.clear();
 
-        for (Nebenrolle nebenrolle : game.secondaryRolesInGame) {
+        for (Bonusrolle bonusrolle : game.secondaryRolesInGame) {
             JButton deleteButton = pageFactory.pageElementFactory.generateDeleteButton();
             deleteSecondaryRoleTable.add(deleteButton);
             deleteSecondaryRoleButtons.add(deleteButton);
@@ -330,7 +330,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
 
         for (String secondaryRoleName : game.getSecondaryRoleSpecifiedStrings()) {
             if (secondaryRoleName == "" || secondaryRoleName == null) {
-                secondaryRoleName = Nebenrolle.defaultNebenrolle.name;
+                secondaryRoleName = Bonusrolle.DEFAULT_BONUSROLLE.name;
             }
             secondaryRoleSpecifyTable.add(new JLabel(secondaryRoleName));
         }
@@ -593,9 +593,9 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                     String nebenrolle = chosenOption2;
 
                     Spieler newSpieler = new Spieler(name, hauptrolle, nebenrolle);
-                    game.secondaryRolesInGame.remove(newSpieler.nebenrolle);
-                    newSpieler.nebenrolle = newSpieler.nebenrolle.getTauschErgebnis();
-                    game.secondaryRolesInGame.add(newSpieler.nebenrolle);
+                    game.secondaryRolesInGame.remove(newSpieler.bonusrolle);
+                    newSpieler.bonusrolle = newSpieler.bonusrolle.getTauschErgebnis();
+                    game.secondaryRolesInGame.add(newSpieler.bonusrolle);
 
                     addPlayerTxtField.setText("");
 
@@ -736,7 +736,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         for (int i = 0; i < secondaryRoleButtons.size(); i++) {
             if (ae.getSource() == secondaryRoleButtons.get(i)) {
                 String secondaryRoleName = secondaryRoleButtons.get(i).getText();
-                Nebenrolle newSecondaryRole = game.findNebenrolle(secondaryRoleName);
+                Bonusrolle newSecondaryRole = game.findNebenrolle(secondaryRoleName);
                 game.secondaryRolesInGame.add(newSecondaryRole);
 
                 refreshSecondaryRolePage();
@@ -854,9 +854,9 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
             }
 
             String nebenrolle = (String) comboBox3.getSelectedItem();
-            spieler.nebenrolle = game.findNebenrolle(nebenrolle);
-            if (spieler.nebenrolle == null) {
-                spieler.nebenrolle = Nebenrolle.defaultNebenrolle;
+            spieler.bonusrolle = game.findNebenrolle(nebenrolle);
+            if (spieler.bonusrolle == null) {
+                spieler.bonusrolle = Bonusrolle.DEFAULT_BONUSROLLE;
             }
 
             refreshSpecifyPlayerPage();

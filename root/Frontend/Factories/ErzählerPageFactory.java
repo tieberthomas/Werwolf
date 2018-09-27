@@ -193,7 +193,7 @@ public class ErzählerPageFactory {
     }
 
     public Page generatePlayerSpecifiyPage(ArrayList<String> playersUnspecified, ArrayList<String> mainRolesUnspecified, ArrayList<String> secondaryRolesUnspecified) {
-        String title = "Wählen Sie für diesen Spieler Haupt- und Nebenrolle.";
+        String title = "Wählen Sie für diesen Spieler Haupt- und Bonusrolle.";
         String HTMLtitle = HTMLStringBuilder.buildHTMLText(title);
         PageElement titleLabel = pageElementFactory.generateLabel(null, HTMLtitle);
         titleLabel.width = 250;
@@ -209,7 +209,7 @@ public class ErzählerPageFactory {
         PageElement chooseMainRole = pageElementFactory.generateDropdown(erzählerFrame.comboBox2,
                 null, mainRoleLabel, 0, 0);
 
-        PageElement secondaryRoleLabel = pageElementFactory.generateLabel(chooseMainRole, "Nebenrolle");
+        PageElement secondaryRoleLabel = pageElementFactory.generateLabel(chooseMainRole, "Bonusrolle");
         erzählerFrame.comboBox3 = new JComboBox(secondaryRolesUnspecified.toArray());
         PageElement chooseSecondaryRole = pageElementFactory.generateDropdown(erzählerFrame.comboBox3,
                 null, secondaryRoleLabel, 0, 0);

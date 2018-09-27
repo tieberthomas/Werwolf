@@ -1,7 +1,7 @@
 package root.Persona.Rollen.Nebenrollen;
 
+import root.Persona.Bonusrolle;
 import root.Persona.Fraktionen.Vampire;
-import root.Persona.Nebenrolle;
 import root.Persona.Rollen.Constants.NebenrollenType.NebenrollenType;
 import root.Persona.Rollen.Constants.NebenrollenType.Passiv;
 import root.ResourceManagement.ImagePath;
@@ -9,7 +9,7 @@ import root.Spieler;
 
 import java.awt.*;
 
-public class Vampirumhang extends Nebenrolle {
+public class Vampirumhang extends Bonusrolle {
     public static final String NAME = "Vampirumhang";
     public static final String IMAGE_PATH = ImagePath.VAMPIRUMHANG_KARTE;
     public static final NebenrollenType TYPE = new Passiv();
@@ -23,28 +23,28 @@ public class Vampirumhang extends Nebenrolle {
         this.color = COLOR;
     }
 
-    public void tauschen(Nebenrolle nebenrolle) {
+    public void tauschen(Bonusrolle bonusrolle) {
         try {
             Spieler spieler = game.findSpielerPerRolle(NAME);
-            spieler.nebenrolle = nebenrolle;
+            spieler.bonusrolle = bonusrolle;
         } catch (NullPointerException e) {
             System.out.println(NAME + " nicht gefunden");
         }
     }
 
-    public Nebenrolle getTauschErgebnis() {
+    public Bonusrolle getTauschErgebnis() {
         Spieler spieler = game.findSpielerPerRolle(NAME);
 
         if (spieler != null) {
-            Nebenrolle nebenrolle;
+            Bonusrolle bonusrolle;
 
             if (spieler.hauptrolle.fraktion.name.equals(Vampire.NAME)) {
-                nebenrolle = new SchwarzeSeele();
+                bonusrolle = new SchwarzeSeele();
             } else {
-                nebenrolle = spieler.nebenrolle;
+                bonusrolle = spieler.bonusrolle;
             }
 
-            return nebenrolle;
+            return bonusrolle;
         } else {
             return this;
         }

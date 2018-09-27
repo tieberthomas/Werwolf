@@ -46,7 +46,7 @@ public class Späher extends Hauptrolle {
         if (chosenPlayer != null) {
             besucht = chosenPlayer;
 
-            if (chosenPlayer.nebenrolle.name.equals(Tarnumhang.NAME)) {
+            if (chosenPlayer.bonusrolle.name.equals(Tarnumhang.NAME)) {
                 return new FrontendControl(new Tarnumhang_NebenrollenType());
             }
 

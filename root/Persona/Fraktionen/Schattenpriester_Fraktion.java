@@ -54,11 +54,11 @@ public class Schattenpriester_Fraktion extends Fraktion {
         if (chosenOpfer != null) {
             Opfer.removeVictim(chosenOpfer);
 
-            if (!chosenOpfer.nebenrolle.name.equals(Schattenkutte.NAME)) {
+            if (!chosenOpfer.bonusrolle.name.equals(Schattenkutte.NAME)) {
                 chosenOpfer.hauptrolle = new Schattenpriester();
                 ((Schattenpriester) chosenOpfer.hauptrolle).neuster = true;
             }
-            chosenOpfer.nebenrolle = new Schatten();
+            chosenOpfer.bonusrolle = new Schatten();
         }
     }
 
@@ -71,7 +71,7 @@ public class Schattenpriester_Fraktion extends Fraktion {
 
         for (Opfer currentOpfer : Opfer.deadVictims) {
             String fraktionOpfer = currentOpfer.opfer.hauptrolle.fraktion.name;
-            if (currentOpfer.opfer.nebenrolle.name.equals(Schattenkutte.NAME) ||
+            if (currentOpfer.opfer.bonusrolle.name.equals(Schattenkutte.NAME) ||
                     (currentOpfer.opfer.ressurectable && !fraktionOpfer.equals(Schattenpriester_Fraktion.NAME))) {
                 if (!frontendControl.dropdownStrings.contains(currentOpfer.opfer.name)) {
                     frontendControl.dropdownStrings.add(currentOpfer.opfer.name);

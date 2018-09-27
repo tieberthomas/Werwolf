@@ -43,9 +43,9 @@ public class Rolle extends Persona {
         if (wantedHauptRolle != null)
             return game.numberOfOccurencesOfMainRoleInGame(wantedHauptRolle);
 
-        Nebenrolle wantedNebenrolleRolle = game.findNebenrolle(rolle.name);
-        if (wantedNebenrolleRolle != null)
-            return game.numberOfOccurencesOfSecondaryRoleInGame(wantedNebenrolleRolle);
+        Bonusrolle wantedBonusrolleRolle = game.findNebenrolle(rolle.name);
+        if (wantedBonusrolleRolle != null)
+            return game.numberOfOccurencesOfSecondaryRoleInGame(wantedBonusrolleRolle);
 
         return 0;
     }
@@ -87,7 +87,7 @@ public class Rolle extends Persona {
 
     public static boolean rolleLebend(String rolle) {
         for (Spieler currentSpieler : game.spieler) {
-            if ((currentSpieler.hauptrolle.name.equals(rolle) || currentSpieler.nebenrolle.name.equals(rolle)) && currentSpieler.lebend) {
+            if ((currentSpieler.hauptrolle.name.equals(rolle) || currentSpieler.bonusrolle.name.equals(rolle)) && currentSpieler.lebend) {
                 return true;
             }
         }
@@ -100,7 +100,7 @@ public class Rolle extends Persona {
             if (currentSpieler.hauptrolle.name.equals(rolle) && currentSpieler.aktiv) {
                 return true;
             }
-            if (currentSpieler.nebenrolle.name.equals(rolle) && currentSpieler.aktiv) {
+            if (currentSpieler.bonusrolle.name.equals(rolle) && currentSpieler.aktiv) {
                 return true;
             }
         }

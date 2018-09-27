@@ -1,10 +1,10 @@
 package root.Persona.Rollen.Hauptrollen.Bürger;
 
 import root.Frontend.FrontendControl;
+import root.Persona.Bonusrolle;
 import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Bürger;
 import root.Persona.Hauptrolle;
-import root.Persona.Nebenrolle;
 import root.Persona.Rollen.Constants.NebenrollenType.Tarnumhang_NebenrollenType;
 import root.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.BürgerZeigekarte;
 import root.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.SchattenpriesterZeigekarte;
@@ -51,21 +51,21 @@ public class Seherin extends Hauptrolle {
             besucht = chosenPlayer;
             Zeigekarte zeigekarte = chosenPlayer.hauptrolle.fraktion.getZeigeKarte();
 
-            Nebenrolle nebenrolle = chosenPlayer.nebenrolle;
+            Bonusrolle bonusrolle = chosenPlayer.bonusrolle;
             Hauptrolle hauptrolle = chosenPlayer.hauptrolle;
-            if (nebenrolle.equals(Lamm.NAME) || hauptrolle.equals(Wolfsmensch.NAME)) {
+            if (bonusrolle.equals(Lamm.NAME) || hauptrolle.equals(Wolfsmensch.NAME)) {
                 zeigekarte = new BürgerZeigekarte();
             }
-            if (nebenrolle.equals(Wolfspelz.NAME)) {
+            if (bonusrolle.equals(Wolfspelz.NAME)) {
                 zeigekarte = new WerwölfeZeigekarte();
             }
-            if (nebenrolle.equals(Vampirumhang.NAME)) {
+            if (bonusrolle.equals(Vampirumhang.NAME)) {
                 zeigekarte = new VampiereZeigekarte();
             }
-            if (nebenrolle.equals(Schattenkutte.NAME)) {
+            if (bonusrolle.equals(Schattenkutte.NAME)) {
                 zeigekarte = new SchattenpriesterZeigekarte();
             }
-            if (nebenrolle.equals(Tarnumhang.NAME)) {
+            if (bonusrolle.equals(Tarnumhang.NAME)) {
                 zeigekarte = new Tarnumhang_NebenrollenType();
             }
 

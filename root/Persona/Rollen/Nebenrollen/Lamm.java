@@ -1,7 +1,7 @@
 package root.Persona.Rollen.Nebenrollen;
 
+import root.Persona.Bonusrolle;
 import root.Persona.Fraktionen.Bürger;
-import root.Persona.Nebenrolle;
 import root.Persona.Rollen.Constants.NebenrollenType.NebenrollenType;
 import root.Persona.Rollen.Constants.NebenrollenType.Passiv;
 import root.ResourceManagement.ImagePath;
@@ -9,7 +9,7 @@ import root.Spieler;
 
 import java.awt.*;
 
-public class Lamm extends Nebenrolle {
+public class Lamm extends Bonusrolle {
     public static final String NAME = "Lamm";
     public static final String IMAGE_PATH = ImagePath.LAMM_KARTE;
     public static final NebenrollenType TYPE = new Passiv();
@@ -23,27 +23,27 @@ public class Lamm extends Nebenrolle {
         this.color = COLOR;
     }
 
-    public void tauschen(Nebenrolle nebenrolle) {
+    public void tauschen(Bonusrolle bonusrolle) {
         try {
             Spieler spieler = game.findSpielerPerRolle(NAME);
-            spieler.nebenrolle = nebenrolle;
+            spieler.bonusrolle = bonusrolle;
         } catch (NullPointerException e) {
             System.out.println(NAME + " nicht gefunden");
         }
     }
 
-    public Nebenrolle getTauschErgebnis() {
+    public Bonusrolle getTauschErgebnis() {
         try {
             Spieler spieler = game.findSpielerPerRolle(NAME);
-            Nebenrolle nebenrolle;
+            Bonusrolle bonusrolle;
 
             if (spieler.hauptrolle.fraktion.name.equals(Bürger.NAME)) {
-                nebenrolle = new ReineSeele();
+                bonusrolle = new ReineSeele();
             } else {
-                nebenrolle = spieler.nebenrolle;
+                bonusrolle = spieler.bonusrolle;
             }
 
-            return nebenrolle;
+            return bonusrolle;
         } catch (NullPointerException e) {
             System.out.println(NAME + " nicht gefunden");
         }

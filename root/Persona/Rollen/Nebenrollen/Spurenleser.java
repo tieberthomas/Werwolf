@@ -2,7 +2,7 @@ package root.Persona.Rollen.Nebenrollen;
 
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
-import root.Persona.Nebenrolle;
+import root.Persona.Bonusrolle;
 import root.Persona.Rollen.Constants.NebenrollenType.Informativ;
 import root.Persona.Rollen.Constants.NebenrollenType.NebenrollenType;
 import root.Persona.Rollen.Constants.NebenrollenType.Tarnumhang_NebenrollenType;
@@ -12,7 +12,7 @@ import root.Spieler;
 
 import java.util.ArrayList;
 
-public class Spurenleser extends Nebenrolle {
+public class Spurenleser extends Bonusrolle {
     public static final String STATEMENT_TITLE = "Spuren lesen von";
     public static final String STATEMENT_BESCHREIBUNG = "Spurenleser erwacht, wählt einen Mitspieler und erfährt wen dieser Spieler besucht hat";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE_INFO;
@@ -68,13 +68,13 @@ public class Spurenleser extends Nebenrolle {
                 besucher.add(besuchterSpielerDerHauptrolle);
             }
 
-            if (beobachteterSpieler.nebenrolle.besucht != null) {
-                String besuchterSpielerDerNebenrolle = beobachteterSpieler.nebenrolle.besucht.name;
+            if (beobachteterSpieler.bonusrolle.besucht != null) {
+                String besuchterSpielerDerNebenrolle = beobachteterSpieler.bonusrolle.besucht.name;
                 besucher.add(besuchterSpielerDerNebenrolle);
             }
 
-            if (beobachteterSpieler.nebenrolle.name.equals(Analytiker.NAME)) {
-                Analytiker analytiker = (Analytiker) beobachteterSpieler.nebenrolle;
+            if (beobachteterSpieler.bonusrolle.name.equals(Analytiker.NAME)) {
+                Analytiker analytiker = (Analytiker) beobachteterSpieler.bonusrolle;
                 besucher.add(analytiker.besuchtAnalysieren.name);
             }
         }

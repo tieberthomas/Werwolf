@@ -7,7 +7,7 @@ import root.Persona.Fraktionen.Schattenpriester_Fraktion;
 import root.Persona.Fraktionen.Vampire;
 import root.Persona.Fraktionen.Werwölfe;
 import root.Persona.Hauptrolle;
-import root.Persona.Nebenrolle;
+import root.Persona.Bonusrolle;
 import root.Persona.Rolle;
 import root.Persona.Rollen.Constants.NebenrollenType.Passiv;
 import root.Persona.Rollen.Hauptrollen.Bürger.Bruder;
@@ -88,7 +88,7 @@ public class ErsteNacht extends Thread {
             FrontendControl info;
             String chosenOption;
 
-            Nebenrolle newNebenrolle;
+            Bonusrolle newBonusrolle;
             String cardToDisplay;
             String imagePath;
 
@@ -104,19 +104,19 @@ public class ErsteNacht extends Thread {
                         rolle = ((StatementRolle) statement).getRolle();
                     }
 
-                    if (rolle != null && rolle instanceof Nebenrolle && ((Nebenrolle) rolle).type.equals(new Passiv())) {
-                        Nebenrolle nebenrolle = ((Nebenrolle) rolle);
-                        newNebenrolle = nebenrolle.getTauschErgebnis();
-                        cardToDisplay = newNebenrolle.imagePath;
+                    if (rolle != null && rolle instanceof Bonusrolle && ((Bonusrolle) rolle).type.equals(new Passiv())) {
+                        Bonusrolle bonusrolle = ((Bonusrolle) rolle);
+                        newBonusrolle = bonusrolle.getTauschErgebnis();
+                        cardToDisplay = newBonusrolle.imagePath;
                         String title;
-                        if (newNebenrolle.equals(nebenrolle)) {
+                        if (newBonusrolle.equals(bonusrolle)) {
                             title = "";
                         } else {
                             title = NEUE_KARTE_TITLE;
                         }
                         showCard(statement, title, cardToDisplay);
                         if (Rolle.rolleLebend(rolle.name)) {
-                            nebenrolle.tauschen(newNebenrolle);
+                            bonusrolle.tauschen(newBonusrolle);
                         }
 
                     } else if (statement.getClass() == StatementFraktion.class) {
@@ -215,9 +215,9 @@ public class ErsteNacht extends Thread {
             currentHauptrolle.besuchtLetzteNacht = null;
             currentHauptrolle.besucht = null;
         }
-        for (Nebenrolle currentNebenrolle : game.secondaryRoles) {
-            currentNebenrolle.besuchtLetzteNacht = null;
-            currentNebenrolle.besucht = null;
+        for (Bonusrolle currentBonusrolle : game.secondaryRoles) {
+            currentBonusrolle.besuchtLetzteNacht = null;
+            currentBonusrolle.besucht = null;
         }
     }
 
@@ -298,8 +298,8 @@ public class ErsteNacht extends Thread {
         if (spieler != null) {
             statement.title = spieler.name;
 
-            String imagePath = spieler.nebenrolle.imagePath;
-            if (spieler.nebenrolle.name.equals(Tarnumhang.NAME)) {
+            String imagePath = spieler.bonusrolle.imagePath;
+            if (spieler.bonusrolle.name.equals(Tarnumhang.NAME)) {
                 imagePath = ImagePath.TARNUMHANG;
                 statement.title = TARNUMHANG_TITLE;
             }

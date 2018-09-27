@@ -11,28 +11,28 @@ import root.Spieler;
 
 import java.awt.*;
 
-public class Nebenrolle extends Rolle {
+public class Bonusrolle extends Rolle {
     public NebenrollenType type = new Passiv();
 
-    public static final Nebenrolle defaultNebenrolle = new Schatten();
+    public static final Bonusrolle DEFAULT_BONUSROLLE = new Schatten();
     public static final Color defaultFarbe = MyFrame.DEFAULT_BUTTON_COLOR;
 
-    public void tauschen(Nebenrolle nebenrolle) {
+    public void tauschen(Bonusrolle bonusrolle) {
         try {
             Spieler spieler = game.findSpielerPerRolle(this.name);
             if (spieler != null) {
-                spieler.nebenrolle = nebenrolle;
+                spieler.bonusrolle = bonusrolle;
             }
         } catch (NullPointerException e) {
             System.out.println(this.name + " nicht gefunden");
         }
     }
 
-    public Nebenrolle getTauschErgebnis() {
+    public Bonusrolle getTauschErgebnis() {
         try {
             Spieler spieler = game.findSpielerPerRolle(this.name);
             if (spieler != null) {
-                return spieler.nebenrolle;
+                return spieler.bonusrolle;
             } else {
                 return this;
             }
@@ -43,15 +43,15 @@ public class Nebenrolle extends Rolle {
         return this;
     }
 
-    public boolean showTarnumhang(Nebenrolle requester, Spieler spieler) {
-        return spieler != null && (spieler.nebenrolle.equals(Tarnumhang.NAME) || (playerIsSchamanin(spieler) && thisRolleIsNotBuerger(requester)));
+    public boolean showTarnumhang(Bonusrolle requester, Spieler spieler) {
+        return spieler != null && (spieler.bonusrolle.equals(Tarnumhang.NAME) || (playerIsSchamanin(spieler) && thisRolleIsNotBuerger(requester)));
     }
 
     private boolean playerIsSchamanin(Spieler player) {
         return player.hauptrolle.equals(Schamanin.NAME);
     }
 
-    private boolean thisRolleIsNotBuerger(Nebenrolle requester) {
+    private boolean thisRolleIsNotBuerger(Bonusrolle requester) {
         Spieler spieler = game.findSpielerPerRolle(requester.name);
 
         return !spieler.hauptrolle.fraktion.equals(new Bürger());

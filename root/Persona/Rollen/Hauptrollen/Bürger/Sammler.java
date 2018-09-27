@@ -1,9 +1,9 @@
 package root.Persona.Rollen.Hauptrollen.Bürger;
 
+import root.Persona.Bonusrolle;
 import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Bürger;
 import root.Persona.Hauptrolle;
-import root.Persona.Nebenrolle;
 import root.Persona.Rollen.Constants.NebenrollenType.Passiv;
 import root.Persona.Rollen.Constants.NebenrollenType.Tarnumhang_NebenrollenType;
 import root.Persona.Rollen.Nebenrollen.Totengräber;
@@ -25,7 +25,7 @@ public class Sammler extends Hauptrolle {
 
 
     public static boolean isSammlerRolle(String rolle) {
-        for (Nebenrolle currentRolle : game.mitteNebenrollen) {
+        for (Bonusrolle currentRolle : game.mitteNebenrollen) {
             if (currentRolle.name.equals(rolle) &&
                     !currentRolle.name.equals(Totengräber.NAME) &&
                     !currentRolle.type.equals(new Passiv()) &&

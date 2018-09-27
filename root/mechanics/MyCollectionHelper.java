@@ -1,7 +1,7 @@
 package root.mechanics;
 
+import root.Persona.Bonusrolle;
 import root.Persona.Hauptrolle;
-import root.Persona.Nebenrolle;
 
 import java.util.ArrayList;
 
@@ -17,9 +17,9 @@ public class MyCollectionHelper {
         return list;
     }
 
-    public static ArrayList<Nebenrolle> removeAllNebenrollen(ArrayList<Nebenrolle> list, ArrayList<Nebenrolle> elementsToRemove) {
-        for (Nebenrolle nebenrolle : elementsToRemove) {
-            int index = list.indexOf(nebenrolle);
+    public static ArrayList<Bonusrolle> removeAllNebenrollen(ArrayList<Bonusrolle> list, ArrayList<Bonusrolle> elementsToRemove) {
+        for (Bonusrolle bonusrolle : elementsToRemove) {
+            int index = list.indexOf(bonusrolle);
             if (index != (-1))
                 list.remove(index);
         }

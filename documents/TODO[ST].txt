@@ -17,4 +17,3 @@ Nach Auslieferung:
 Analytiker generisch machen
 ErsteNacht generisch machen
 FrontendControl subclassen
-Nebenrolle -> Bonusrolle

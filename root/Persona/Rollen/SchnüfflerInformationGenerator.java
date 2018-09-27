@@ -1,8 +1,8 @@
 package root.Persona.Rollen;
 
+import root.Persona.Bonusrolle;
 import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Bürger;
-import root.Persona.Nebenrolle;
 import root.Persona.Rollen.Constants.InformationType;
 import root.Persona.Rollen.Constants.NebenrollenType.Aktiv;
 import root.Persona.Rollen.Constants.NebenrollenType.Informativ;
@@ -31,7 +31,7 @@ public class SchnüfflerInformationGenerator {
     }
 
     public SchnüfflerInformation generateInformation() {
-        Nebenrolle schnüffler = Schnüffler.game.findSpielerPerRolle(Schnüffler.NAME).nebenrolle;
+        Bonusrolle schnüffler = Schnüffler.game.findSpielerPerRolle(Schnüffler.NAME).bonusrolle;
         if (schnüffler.showTarnumhang(schnüffler, player)) {
             return new SchnüfflerInformation(player.name);
         }
@@ -127,7 +127,7 @@ public class SchnüfflerInformationGenerator {
     }
 
     private NebenrollenType generateNebenrollenInformation(boolean correctInformation) {
-        NebenrollenType playerNebenrollenType = player.nebenrolle.type;
+        NebenrollenType playerNebenrollenType = player.bonusrolle.type;
         if (correctInformation) {
             return playerNebenrollenType;
         }

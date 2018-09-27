@@ -59,15 +59,15 @@ public class Tag extends Thread {
             Spieler chosenSpieler = game.findSpieler(FrontendControl.erzählerFrame.chosenOption1);
 
             if (chosenSpieler != null) {
-                String nebenrolleSpieler = chosenSpieler.nebenrolle.name;
+                String nebenrolleSpieler = chosenSpieler.bonusrolle.name;
                 Hauptrolle hauptrolleSpieler = chosenSpieler.hauptrolle;
 
-                if (nebenrolleSpieler.equals(ReineSeele.NAME) && ((ReineSeele) chosenSpieler.nebenrolle).dayInvincibility ||
+                if (nebenrolleSpieler.equals(ReineSeele.NAME) && ((ReineSeele) chosenSpieler.bonusrolle).dayInvincibility ||
                         (gebürgteSpieler.contains(chosenSpieler) && hauptrolleSpieler.fraktion.name.equals(Bürger.NAME))) {
                     FrontendControl.erzählerAnnounceVictimPage(chosenSpieler, ReineSeele.IMAGE_PATH);
                     FrontendControl.spielerCardPicturePage(chosenSpieler.name, ReineSeele.IMAGE_PATH);
-                    if (chosenSpieler.nebenrolle.name.equals(ReineSeele.NAME)) {
-                        ((ReineSeele) chosenSpieler.nebenrolle).dayInvincibility = false;
+                    if (chosenSpieler.bonusrolle.name.equals(ReineSeele.NAME)) {
+                        ((ReineSeele) chosenSpieler.bonusrolle).dayInvincibility = false;
                     }
 
                     waitForAnswer();

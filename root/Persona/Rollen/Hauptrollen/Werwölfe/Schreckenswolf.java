@@ -77,7 +77,7 @@ public class Schreckenswolf extends Hauptrolle {
         boolean someoneHadSchutz = false;
 
         for (Opfer opfer : possibleOpfer) {
-            if (opfer.opfer.geschützt || opfer.opfer.nebenrolle.equals(Wolfspelz.NAME)) {
+            if (opfer.opfer.geschützt || opfer.opfer.bonusrolle.equals(Wolfspelz.NAME)) {
                 someoneHadSchutz = true;
             }
         }
