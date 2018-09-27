@@ -50,7 +50,7 @@ public class DataManager {
         }
 
         for (String bonusRollenName : composition.bonusrollen) {
-            game.secondaryRolesInGame.add(game.findNebenrolle(bonusRollenName));
+            game.secondaryRolesInGame.add(game.findBonusrolle(bonusRollenName));
         }
     }
 

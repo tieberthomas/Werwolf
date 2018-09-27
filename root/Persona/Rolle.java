@@ -31,7 +31,7 @@ public class Rolle extends Persona {
         if (wantedRolle != null)
             return wantedRolle;
 
-        wantedRolle = game.findNebenrolle(wantedName);
+        wantedRolle = game.findBonusrolle(wantedName);
         if (wantedRolle != null)
             return wantedRolle;
 
@@ -43,7 +43,7 @@ public class Rolle extends Persona {
         if (wantedHauptRolle != null)
             return game.numberOfOccurencesOfMainRoleInGame(wantedHauptRolle);
 
-        Bonusrolle wantedBonusrolleRolle = game.findNebenrolle(rolle.name);
+        Bonusrolle wantedBonusrolleRolle = game.findBonusrolle(rolle.name);
         if (wantedBonusrolleRolle != null)
             return game.numberOfOccurencesOfSecondaryRoleInGame(wantedBonusrolleRolle);
 
@@ -71,7 +71,7 @@ public class Rolle extends Persona {
                 }
             }
 
-            for (Rolle currentRolle : game.mitteNebenrollen) {
+            for (Rolle currentRolle : game.mitteBonusrollen) {
                 if (!hauptRolleInNachtEnthalten(Sammler.NAME) || currentRolle.name.equals(Totengräber.NAME)) {
                     if (currentRolle.name.equals(rolle)) {
                         return false;

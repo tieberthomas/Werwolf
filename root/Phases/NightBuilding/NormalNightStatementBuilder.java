@@ -33,7 +33,7 @@ public class NormalNightStatementBuilder {
             addStatementRolle(statements, Wirt.NAME);
         }
 
-        if (Totengräber.getNehmbareNebenrollen().size() > 0) {
+        if (Totengräber.getNehmbareBonusrollen().size() > 0) {
             addStatementRolle(statements, Totengräber.NAME);
         }
         //Dieb erwacht und entscheidet ob er jemandes Bonusrolle stehlen möchte

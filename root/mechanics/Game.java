@@ -39,7 +39,7 @@ public class Game {
     public ArrayList<Bonusrolle> secondaryRoles = new ArrayList<>();
     public ArrayList<Bonusrolle> secondaryRolesInGame = new ArrayList<>();
     public ArrayList<Hauptrolle> mitteHauptrollen = new ArrayList<>();
-    public ArrayList<Bonusrolle> mitteNebenrollen = new ArrayList<>();
+    public ArrayList<Bonusrolle> mitteBonusrollen = new ArrayList<>();
     public ArrayList<Spieler> playersSpecified = new ArrayList<>();
 
     public boolean zweiteNacht = true;
@@ -59,7 +59,7 @@ public class Game {
         secondaryRolesInGame = new ArrayList<>();
         generateAllAvailableSecondaryRoles();
         mitteHauptrollen = new ArrayList<>();
-        mitteNebenrollen = new ArrayList<>();
+        mitteBonusrollen = new ArrayList<>();
         playersSpecified = new ArrayList<>();
 
         liebespaar = new Liebespaar(this);
@@ -221,7 +221,7 @@ public class Game {
     }
 
     public Spieler findSpielerPerRolle(String name) {
-        for (Bonusrolle bonusrolle : mitteNebenrollen) {
+        for (Bonusrolle bonusrolle : mitteBonusrollen) {
             if (bonusrolle.name.equals(name)) {
                 return findSpielerPerRolle(Sammler.NAME);
             }
@@ -258,7 +258,7 @@ public class Game {
             Hauptrolle hauptrolle = spieler.hauptrolle;
             Bonusrolle bonusrolle = spieler.bonusrolle;
             mitteHauptrollen.add(hauptrolle);
-            mitteNebenrollen.add(bonusrolle);
+            mitteBonusrollen.add(bonusrolle);
 
             if (hauptrolle.name.equals(Schattenpriester.NAME) && !bonusrolle.name.equals(Schatten.NAME)) {
                 Schattenpriester_Fraktion.deadSchattenPriester++;
@@ -496,7 +496,7 @@ public class Game {
     public ArrayList<String> getPossibleInGameSecondaryRoleNames() {
         ArrayList<String> secondaryRoleInGameNames = getSecondaryRoleInGameNames();
 
-        for (Bonusrolle bonusrolle : mitteNebenrollen) {
+        for (Bonusrolle bonusrolle : mitteBonusrollen) {
             secondaryRoleInGameNames.remove(bonusrolle.name);
         }
 
@@ -518,7 +518,7 @@ public class Game {
         return names;
     }
 
-    public Bonusrolle findNebenrolle(String wantedName) {
+    public Bonusrolle findBonusrolle(String wantedName) {
         for (Bonusrolle bonusrolle : secondaryRoles) {
             if (bonusrolle.name.equals(wantedName))
                 return bonusrolle;
@@ -540,7 +540,7 @@ public class Game {
 
     public void addAllSecondaryRoles() {
         secondaryRolesInGame.addAll(secondaryRoles);
-        secondaryRolesInGame.remove(findNebenrolle(Schatten.NAME));
+        secondaryRolesInGame.remove(findBonusrolle(Schatten.NAME));
     }
 
     public ArrayList<Spieler> getPlayersUnspecified() {

@@ -33,7 +33,7 @@ public class Spieler {
             hauptrolle = new Dorfbewohner();
         }
 
-        Bonusrolle bonusrolle = game.findNebenrolle(bonusrolleName);
+        Bonusrolle bonusrolle = game.findBonusrolle(bonusrolleName);
         if (bonusrolle == null) {
             bonusrolle = new Schatten();
         }

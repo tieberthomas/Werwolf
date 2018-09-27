@@ -36,14 +36,14 @@ public class Totengräber extends Bonusrolle {
 
     @Override
     public FrontendControl getDropdownOptions() {
-        ArrayList<String> nehmbareNebenrollen = getNehmbareNebenrollen();
-        nehmbareNebenrollen.add("");
-        return new FrontendControl(FrontendControlType.DROPDOWN_LIST, nehmbareNebenrollen);
+        ArrayList<String> nehmbareBonusrollen = getNehmbareBonusrollen();
+        nehmbareBonusrollen.add("");
+        return new FrontendControl(FrontendControlType.DROPDOWN_LIST, nehmbareBonusrollen);
     }
 
     @Override
     public void processChosenOption(String chosenOption) {
-        Bonusrolle chosenBonusrolle = game.findNebenrolle(chosenOption);
+        Bonusrolle chosenBonusrolle = game.findBonusrolle(chosenOption);
         if (chosenBonusrolle != null) {
             try {
                 Spieler deadSpieler = game.findSpielerOrDeadPerRolle(chosenBonusrolle.name);
@@ -53,8 +53,8 @@ public class Totengräber extends Bonusrolle {
                 spielerTotengräber.bonusrolle = chosenBonusrolle;
                 deadSpieler.bonusrolle = new Schatten();
 
-                game.mitteNebenrollen.remove(chosenBonusrolle);
-                game.mitteNebenrollen.add(this);
+                game.mitteBonusrollen.remove(chosenBonusrolle);
+                game.mitteBonusrollen.add(this);
 
                 removeSammlerFlag(chosenBonusrolle.name);
             } catch (NullPointerException e) {
@@ -74,13 +74,13 @@ public class Totengräber extends Bonusrolle {
         }
     }
 
-    public static ArrayList<String> getNehmbareNebenrollen() {
-        ArrayList<String> nehmbareNebenrollen = new ArrayList<>();
+    public static ArrayList<String> getNehmbareBonusrollen() {
+        ArrayList<String> nehmbareBonusrollen = new ArrayList<>();
 
-        for (Bonusrolle bonusrolle : game.mitteNebenrollen) {
-            nehmbareNebenrollen.add(bonusrolle.name);
+        for (Bonusrolle bonusrolle : game.mitteBonusrollen) {
+            nehmbareBonusrollen.add(bonusrolle.name);
         }
 
-        return nehmbareNebenrollen;
+        return nehmbareBonusrollen;
     }
 }

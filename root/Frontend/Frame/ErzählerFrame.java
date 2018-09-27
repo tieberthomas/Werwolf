@@ -736,7 +736,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         for (int i = 0; i < secondaryRoleButtons.size(); i++) {
             if (ae.getSource() == secondaryRoleButtons.get(i)) {
                 String secondaryRoleName = secondaryRoleButtons.get(i).getText();
-                Bonusrolle newSecondaryRole = game.findNebenrolle(secondaryRoleName);
+                Bonusrolle newSecondaryRole = game.findBonusrolle(secondaryRoleName);
                 game.secondaryRolesInGame.add(newSecondaryRole);
 
                 refreshSecondaryRolePage();
@@ -854,7 +854,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
             }
 
             String bonusrolle = (String) comboBox3.getSelectedItem();
-            spieler.bonusrolle = game.findNebenrolle(bonusrolle);
+            spieler.bonusrolle = game.findBonusrolle(bonusrolle);
             if (spieler.bonusrolle == null) {
                 spieler.bonusrolle = Bonusrolle.DEFAULT_BONUSROLLE;
             }

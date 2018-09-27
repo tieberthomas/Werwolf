@@ -69,8 +69,8 @@ public class Spurenleser extends Bonusrolle {
             }
 
             if (beobachteterSpieler.bonusrolle.besucht != null) {
-                String besuchterSpielerDerNebenrolle = beobachteterSpieler.bonusrolle.besucht.name;
-                besucher.add(besuchterSpielerDerNebenrolle);
+                String besuchterSpielerDerBonusrolle = beobachteterSpieler.bonusrolle.besucht.name;
+                besucher.add(besuchterSpielerDerBonusrolle);
             }
 
             if (beobachteterSpieler.bonusrolle.name.equals(Analytiker.NAME)) {
