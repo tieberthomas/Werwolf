@@ -20,7 +20,7 @@ public class Schnüffler extends Nebenrolle {
 
     public static final String NAME = "Schnüffler";
     public static final String IMAGE_PATH = ImagePath.SCHNÜFFLER_KARTE;
-    public NebenrollenType type = new Informativ();
+    public static final NebenrollenType TYPE = new Informativ();
     public static int MAX_ANZAHL_AN_INFORMATIONEN = 4;
 
     public ArrayList<SchnüfflerInformation> informationen = new ArrayList<>(); //TODO wenn dieb schnüffler nimmt dann neu anlegen
@@ -28,6 +28,7 @@ public class Schnüffler extends Nebenrolle {
     public Schnüffler() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
+        this.type = TYPE;
 
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
@@ -74,10 +75,5 @@ public class Schnüffler extends Nebenrolle {
         }
 
         return new FrontendControl();
-    }
-
-    @Override
-    public NebenrollenType getType() {
-        return type;
     }
 }

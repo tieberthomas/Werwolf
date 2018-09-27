@@ -20,11 +20,12 @@ public class Spurenleser extends Nebenrolle {
 
     public static final String NAME = "Spurenleser";
     public static final String IMAGE_PATH = ImagePath.SPURENLESER_KARTE;
-    public NebenrollenType type = new Informativ();
+    public static final NebenrollenType TYPE = new Informativ();
 
     public Spurenleser() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
+        this.type = TYPE;
 
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
@@ -56,11 +57,6 @@ public class Spurenleser extends Nebenrolle {
         }
 
         return new FrontendControl();
-    }
-
-    @Override
-    public NebenrollenType getType() {
-        return type;
     }
 
     public static ArrayList<String> getBesuchteSpielerStrings(Spieler beobachteterSpieler) {

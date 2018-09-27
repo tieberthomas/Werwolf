@@ -12,12 +12,13 @@ import java.awt.*;
 public class Vampirumhang extends Nebenrolle {
     public static final String NAME = "Vampirumhang";
     public static final String IMAGE_PATH = ImagePath.VAMPIRUMHANG_KARTE;
-    public NebenrollenType type = new Passiv();
+    public static final NebenrollenType TYPE = new Passiv();
     public Color farbe = Vampire.farbe;
 
     public Vampirumhang() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
+        this.type = TYPE;
     }
 
     public void tauschen(Nebenrolle nebenrolle) {
@@ -45,11 +46,6 @@ public class Vampirumhang extends Nebenrolle {
         } else {
             return this;
         }
-    }
-
-    @Override
-    public NebenrollenType getType() {
-        return type;
     }
 
     @Override

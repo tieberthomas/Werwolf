@@ -3,6 +3,8 @@ package root.Persona.Rollen.Nebenrollen;
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.Persona.Nebenrolle;
+import root.Persona.Rollen.Constants.NebenrollenType.Aktiv;
+import root.Persona.Rollen.Constants.NebenrollenType.NebenrollenType;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 
@@ -18,10 +20,12 @@ public class Konditor extends Nebenrolle {
 
     public static final String NAME = "Konditor";
     public static final String IMAGE_PATH = ImagePath.KONDITOR_KARTE;
+    public static final NebenrollenType TYPE = new Aktiv();
 
     public Konditor() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
+        this.type = TYPE;
 
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;

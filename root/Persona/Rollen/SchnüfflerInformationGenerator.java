@@ -127,7 +127,7 @@ public class SchnüfflerInformationGenerator {
     }
 
     private NebenrollenType generateNebenrollenInformation(boolean correctInformation) {
-        NebenrollenType playerNebenrollenType = player.nebenrolle.getType();
+        NebenrollenType playerNebenrollenType = player.nebenrolle.type;
         if (correctInformation) {
             return playerNebenrollenType;
         }

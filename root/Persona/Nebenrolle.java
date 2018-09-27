@@ -1,8 +1,8 @@
 package root.Persona;
 
 import root.Persona.Fraktionen.Bürger;
-import root.Persona.Rollen.Constants.NebenrollenType.Aktiv;
 import root.Persona.Rollen.Constants.NebenrollenType.NebenrollenType;
+import root.Persona.Rollen.Constants.NebenrollenType.Passiv;
 import root.Persona.Rollen.Hauptrollen.Bürger.Schamanin;
 import root.Persona.Rollen.Nebenrollen.Schatten;
 import root.Persona.Rollen.Nebenrollen.Tarnumhang;
@@ -11,6 +11,8 @@ import root.Spieler;
 import java.awt.*;
 
 public class Nebenrolle extends Rolle {
+    public NebenrollenType type = new Passiv();
+
     public static final Nebenrolle defaultNebenrolle = new Schatten();
     public static final Color defaultFarbe = new Color(240, 240, 240);
 
@@ -38,10 +40,6 @@ public class Nebenrolle extends Rolle {
         }
 
         return this;
-    }
-
-    public NebenrollenType getType() {
-        return new Aktiv();
     }
 
     public boolean showTarnumhang(Nebenrolle requester, Spieler spieler) {

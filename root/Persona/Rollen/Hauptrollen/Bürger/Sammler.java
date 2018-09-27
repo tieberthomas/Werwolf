@@ -28,8 +28,8 @@ public class Sammler extends Hauptrolle {
         for (Nebenrolle currentRolle : game.mitteNebenrollen) {
             if (currentRolle.name.equals(rolle) &&
                     !currentRolle.name.equals(Totengräber.NAME) &&
-                    !currentRolle.getType().equals(new Passiv()) &&
-                    !currentRolle.getType().equals(new Tarnumhang_NebenrollenType())) {
+                    !currentRolle.type.equals(new Passiv()) &&
+                    !currentRolle.type.equals(new Tarnumhang_NebenrollenType())) {
                 return true;
             }
         }

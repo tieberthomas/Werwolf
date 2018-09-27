@@ -4,6 +4,8 @@ import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.Persona.Nebenrolle;
 import root.Persona.Rolle;
+import root.Persona.Rollen.Constants.NebenrollenType.Aktiv;
+import root.Persona.Rollen.Constants.NebenrollenType.NebenrollenType;
 import root.Phases.Nacht;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.Phases.NightBuilding.Statement;
@@ -20,10 +22,12 @@ public class Totengräber extends Nebenrolle {
 
     public static final String NAME = "Totengräber";
     public static final String IMAGE_PATH = ImagePath.TOTENGRÄBER_KARTE;
+    public static final NebenrollenType TYPE = new Aktiv();
 
     public Totengräber() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
+        this.type = TYPE;
 
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;

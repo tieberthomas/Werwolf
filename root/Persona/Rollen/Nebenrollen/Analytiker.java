@@ -17,7 +17,7 @@ public class Analytiker extends Nebenrolle {
 
     public static final String NAME = "Analytiker";
     public static final String IMAGE_PATH = ImagePath.ANALYTIKER_KARTE;
-    public NebenrollenType type = new Informativ();
+    public static final NebenrollenType TYPE = new Informativ();
     public static final String GLEICH = "gleich";
     public static final String UNGLEICH = "ungleich";
     public Spieler besuchtAnalysieren = null;
@@ -25,17 +25,13 @@ public class Analytiker extends Nebenrolle {
     public Analytiker() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
+        this.type = TYPE;
 
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;
 
         this.spammable = true;
-    }
-
-    @Override
-    public NebenrollenType getType() {
-        return type;
     }
 
     public boolean showTarnumhang(Spieler spieler1, Spieler spieler2) {

@@ -20,11 +20,12 @@ public class Nachbar extends Nebenrolle {
 
     public static final String NAME = "Nachbar";
     public static final String IMAGE_PATH = ImagePath.NACHBAR_KARTE;
-    public NebenrollenType type = new Informativ();
+    public static final NebenrollenType TYPE = new Informativ();
 
     public Nachbar() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
+        this.type = TYPE;
 
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
@@ -57,11 +58,6 @@ public class Nachbar extends Nebenrolle {
         }
 
         return new FrontendControl();
-    }
-
-    @Override
-    public NebenrollenType getType() {
-        return type;
     }
 
     public static ArrayList<String> getBesucherStrings(Spieler beobachteterSpieler, Spieler beobachter) {

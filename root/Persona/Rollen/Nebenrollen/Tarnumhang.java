@@ -22,7 +22,7 @@ public class Tarnumhang extends Nebenrolle {
 
     public static final String NAME = "Tarnumhang";
     public static final String IMAGE_PATH = ImagePath.TARNUMHANG_KARTE;
-    public static NebenrollenType type = new Tarnumhang_NebenrollenType();
+    public static final NebenrollenType TYPE = new Tarnumhang_NebenrollenType();
     public Color farbe = Color.BLACK;
     private ArrayList<String> umhänge = new ArrayList<>(Arrays.asList(
             Lamm.NAME, Wolfspelz.NAME, Vampirumhang.NAME, Schattenkutte.NAME));
@@ -32,6 +32,7 @@ public class Tarnumhang extends Nebenrolle {
     public Tarnumhang() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
+        this.type = TYPE;
 
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
@@ -82,11 +83,6 @@ public class Tarnumhang extends Nebenrolle {
         }
 
         return allTräger;
-    }
-
-    @Override
-    public NebenrollenType getType() {
-        return type;
     }
 
     @Override

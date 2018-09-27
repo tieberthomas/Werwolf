@@ -6,6 +6,7 @@ Alphabet Umlaute?
 killing = false?
 
 TH:
+NebenrollenType - Enum?
 Englisch-Deutsch-Gemisch
 
 MT:

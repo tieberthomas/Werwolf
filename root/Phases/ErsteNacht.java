@@ -104,7 +104,7 @@ public class ErsteNacht extends Thread {
                         rolle = ((StatementRolle) statement).getRolle();
                     }
 
-                    if (rolle != null && rolle instanceof Nebenrolle && ((Nebenrolle) rolle).getType().equals(new Passiv())) {
+                    if (rolle != null && rolle instanceof Nebenrolle && ((Nebenrolle) rolle).type.equals(new Passiv())) {
                         Nebenrolle nebenrolle = ((Nebenrolle) rolle);
                         newNebenrolle = nebenrolle.getTauschErgebnis();
                         cardToDisplay = newNebenrolle.imagePath;

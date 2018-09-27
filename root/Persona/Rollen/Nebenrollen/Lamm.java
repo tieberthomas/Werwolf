@@ -10,11 +10,12 @@ import root.Spieler;
 public class Lamm extends Nebenrolle {
     public static final String NAME = "Lamm";
     public static final String IMAGE_PATH = ImagePath.LAMM_KARTE;
-    public NebenrollenType type = new Passiv();
+    public static final NebenrollenType TYPE = new Passiv();
 
     public Lamm() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
+        this.type = TYPE;
     }
 
     public void tauschen(Nebenrolle nebenrolle) {
@@ -43,10 +44,5 @@ public class Lamm extends Nebenrolle {
         }
 
         return this;
-    }
-
-    @Override
-    public NebenrollenType getType() {
-        return type;
     }
 }
