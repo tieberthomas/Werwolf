@@ -217,7 +217,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     public void disableSecondaryRoleButtons() {
         for (JButton button : secondaryRoleButtons) {
             button.setEnabled(true);
-            button.setBackground(Bonusrolle.defaultFarbe);
+            button.setBackground(game.findBonusrolle(button.getText()).getColor());
         }
 
         for (Bonusrolle bonusrolle : game.secondaryRolesInGame) {
