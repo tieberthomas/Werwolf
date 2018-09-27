@@ -104,7 +104,7 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener {
         for (Spieler spieler : game.spieler) {
             Rolle rolle;
             if (spieler.hauptrolle == null)
-                rolle = Hauptrolle.defaultHauptrolle;
+                rolle = Hauptrolle.DEFAULT_HAUPTROLLE;
             else
                 rolle = spieler.hauptrolle;
 

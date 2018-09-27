@@ -319,7 +319,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
 
         for (String mainRoleName : game.getMainRolesSpecifiedStrings()) {
             if (mainRoleName == "" || mainRoleName == null) {
-                mainRoleName = Hauptrolle.defaultHauptrolle.name;
+                mainRoleName = Hauptrolle.DEFAULT_HAUPTROLLE.name;
             }
             mainRoleSpecifyTable.add(new JLabel(mainRoleName));
         }
@@ -850,7 +850,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
             String hauptrolle = (String) comboBox2.getSelectedItem();
             spieler.hauptrolle = game.findHauptrolle(hauptrolle);
             if (spieler.hauptrolle == null) {
-                spieler.hauptrolle = Hauptrolle.defaultHauptrolle;
+                spieler.hauptrolle = Hauptrolle.DEFAULT_HAUPTROLLE;
             }
 
             String bonusrolle = (String) comboBox3.getSelectedItem();

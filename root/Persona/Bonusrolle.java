@@ -15,7 +15,7 @@ public class Bonusrolle extends Rolle {
     public BonusrollenType type = new Passiv();
 
     public static final Bonusrolle DEFAULT_BONUSROLLE = new Schatten();
-    public static final Color defaultFarbe = MyFrame.DEFAULT_BUTTON_COLOR;
+    public static final Color DEFAULT_COLOR = MyFrame.DEFAULT_BUTTON_COLOR;
 
     public void tauschen(Bonusrolle bonusrolle) {
         try {

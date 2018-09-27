@@ -9,7 +9,7 @@ public class Hauptrolle extends Rolle {
     public Fraktion fraktion = new Bürger();
     public boolean killing = false;
 
-    public static Hauptrolle defaultHauptrolle = new Dorfbewohner();
+    public static final Hauptrolle DEFAULT_HAUPTROLLE = new Dorfbewohner();
 
     @Override
     public Color getColor() {

@@ -190,7 +190,7 @@ public class ErzählerPageElementFactory {
             JButton button = new JButton(role);
             button.addActionListener(erzählerFrame);
             button.setMargin(new Insets(0, 0, 0, 0));
-            button.setBackground(Bonusrolle.defaultFarbe);
+            button.setBackground(Bonusrolle.DEFAULT_COLOR);
             tableButtons.add(button);
             pageTable.add(button);
         }
