@@ -22,13 +22,15 @@ public class Werwölfe extends Fraktion {
     public static final StatementType STATEMENT_TYPE = StatementType.FRAKTION_CHOOSE_ONE;
 
     public static final String NAME = "Werwölfe";
-    public static final Color farbe = Color.green;
     public static final String IMAGE_PATH = ImagePath.WÖLFE_ICON; //sollte es das noch geben?
+    public static final Color COLOR = Color.green;
     public static final Zeigekarte zeigekarte = new WerwölfeZeigekarte();
 
     public Werwölfe() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
+
+        this.color = COLOR;
 
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
@@ -53,11 +55,6 @@ public class Werwölfe extends Fraktion {
         }
 
         return new FrontendControl(typeOfContent, strings, imagePath);
-    }
-
-    @Override
-    public Color getFarbe() {
-        return farbe;
     }
 
     @Override

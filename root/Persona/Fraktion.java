@@ -1,7 +1,6 @@
 package root.Persona;
 
 import root.Frontend.Constants.FrontendControlType;
-import root.Frontend.Frame.MyFrame;
 import root.Frontend.FrontendControl;
 import root.Persona.Fraktionen.Schattenpriester_Fraktion;
 import root.Persona.Fraktionen.Werwölfe;
@@ -11,14 +10,9 @@ import root.Persona.Rollen.Hauptrollen.Werwölfe.Chemiker;
 import root.Spieler;
 import root.mechanics.Opfer;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 public class Fraktion extends Persona {
-    public Color getFarbe() {
-        return MyFrame.DEFAULT_BUTTON_COLOR;
-    }
-
     public Zeigekarte getZeigeKarte() {
         return new BürgerZeigekarte();
     }

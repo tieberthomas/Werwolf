@@ -1,5 +1,6 @@
 package root.Persona;
 
+import root.Frontend.Frame.MyFrame;
 import root.Persona.Fraktionen.Bürger;
 import root.Persona.Rollen.Constants.NebenrollenType.NebenrollenType;
 import root.Persona.Rollen.Constants.NebenrollenType.Passiv;
@@ -14,7 +15,7 @@ public class Nebenrolle extends Rolle {
     public NebenrollenType type = new Passiv();
 
     public static final Nebenrolle defaultNebenrolle = new Schatten();
-    public static final Color defaultFarbe = new Color(240, 240, 240);
+    public static final Color defaultFarbe = MyFrame.DEFAULT_BUTTON_COLOR;
 
     public void tauschen(Nebenrolle nebenrolle) {
         try {

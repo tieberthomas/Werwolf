@@ -27,8 +27,8 @@ public class Schattenpriester_Fraktion extends Fraktion {
     public static final StatementType SECOND_STATEMENT_TYPE = StatementType.FRAKTION_SPECAL;
 
     public static final String NAME = "Schattenpriester";
-    public static final Color farbe = Color.lightGray;
     public static final String IMAGE_PATH = ImagePath.SCHATTENPRIESTER_ICON;
+    public static final Color COLOR = Color.lightGray;
     public static final Zeigekarte zeigekarte = new SchattenpriesterZeigekarte();
 
     public static int deadSchattenPriester = 0;
@@ -36,6 +36,8 @@ public class Schattenpriester_Fraktion extends Fraktion {
     public Schattenpriester_Fraktion() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
+
+        this.color = COLOR;
 
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
@@ -80,11 +82,6 @@ public class Schattenpriester_Fraktion extends Fraktion {
         frontendControl.dropdownStrings.add("");
 
         return frontendControl;
-    }
-
-    @Override
-    public Color getFarbe() {
-        return farbe;
     }
 
     @Override

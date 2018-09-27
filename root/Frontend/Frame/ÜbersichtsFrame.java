@@ -136,7 +136,7 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener {
         JLabel label = new JLabel(rolle.name);
 
         if (spieler.lebend) {
-            Color farbe = rolle.getFarbe();
+            Color farbe = rolle.getColor();
             if (farbe.equals(Color.BLACK)) {
                 label.setForeground(Color.WHITE);
             }

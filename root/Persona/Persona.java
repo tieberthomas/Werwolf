@@ -13,6 +13,8 @@ public class Persona {
     public String name = "";
     public String imagePath = ImagePath.AUS_DEM_SPIEL;
 
+    public Color color = Color.WHITE;
+
     public String statementTitle = "";
     public String statementBeschreibung = "";
     public StatementType statementType = StatementType.EMPTY_STATEMENT;
@@ -36,8 +38,8 @@ public class Persona {
         return new FrontendControl();
     }
 
-    public Color getFarbe() {
-        return Color.WHITE;
+    public Color getColor() {
+        return color;
     }
 
     public boolean equals(Persona persona) {

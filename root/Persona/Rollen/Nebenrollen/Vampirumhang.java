@@ -13,12 +13,14 @@ public class Vampirumhang extends Nebenrolle {
     public static final String NAME = "Vampirumhang";
     public static final String IMAGE_PATH = ImagePath.VAMPIRUMHANG_KARTE;
     public static final NebenrollenType TYPE = new Passiv();
-    public Color farbe = Vampire.farbe;
+    public static final Color COLOR = Vampire.COLOR;
 
     public Vampirumhang() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
         this.type = TYPE;
+
+        this.color = COLOR;
     }
 
     public void tauschen(Nebenrolle nebenrolle) {
@@ -46,10 +48,5 @@ public class Vampirumhang extends Nebenrolle {
         } else {
             return this;
         }
-    }
-
-    @Override
-    public Color getFarbe() {
-        return farbe;
     }
 }

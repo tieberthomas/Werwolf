@@ -13,12 +13,14 @@ public class Wolfspelz extends Nebenrolle {
     public static final String NAME = "Wolfspelz";
     public static final String IMAGE_PATH = ImagePath.WOLFSPELZ_KARTE;
     public static final NebenrollenType TYPE = new Passiv();
-    public Color farbe = Werwölfe.farbe;
+    public static final Color COLOR = Werwölfe.COLOR;
 
     public Wolfspelz() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
         this.type = TYPE;
+
+        this.color = COLOR;
     }
 
     public void tauschen(Nebenrolle nebenrolle) {
@@ -46,10 +48,5 @@ public class Wolfspelz extends Nebenrolle {
         } else {
             return this;
         }
-    }
-
-    @Override
-    public Color getFarbe() {
-        return farbe;
     }
 }

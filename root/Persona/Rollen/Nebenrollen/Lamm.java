@@ -7,15 +7,20 @@ import root.Persona.Rollen.Constants.NebenrollenType.Passiv;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
+import java.awt.*;
+
 public class Lamm extends Nebenrolle {
     public static final String NAME = "Lamm";
     public static final String IMAGE_PATH = ImagePath.LAMM_KARTE;
     public static final NebenrollenType TYPE = new Passiv();
+    public static final Color COLOR = Bürger.COLOR;
 
     public Lamm() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
         this.type = TYPE;
+
+        this.color = COLOR;
     }
 
     public void tauschen(Nebenrolle nebenrolle) {

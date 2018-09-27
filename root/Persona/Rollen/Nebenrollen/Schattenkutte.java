@@ -12,16 +12,13 @@ public class Schattenkutte extends Nebenrolle {
     public static final String NAME = "Schattenkutte";
     public static final String IMAGE_PATH = ImagePath.SCHATTENKUTTE_KARTE;
     public static final NebenrollenType TYPE = new Passiv();
-    public Color farbe = Schattenpriester_Fraktion.farbe;
+    public static final Color COLOR = Schattenpriester_Fraktion.COLOR;
 
     public Schattenkutte() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
         this.type = TYPE;
-    }
 
-    @Override
-    public Color getFarbe() {
-        return farbe;
+        this.color = COLOR;
     }
 }

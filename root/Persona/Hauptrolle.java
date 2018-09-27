@@ -11,7 +11,8 @@ public class Hauptrolle extends Rolle {
 
     public static Hauptrolle defaultHauptrolle = new Dorfbewohner();
 
-    public Color getFarbe() {
-        return fraktion.getFarbe();
+    @Override
+    public Color getColor() {
+        return fraktion.color;
     }
 }

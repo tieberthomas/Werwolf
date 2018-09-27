@@ -4,7 +4,6 @@ import root.Persona.Rollen.Hauptrollen.Bürger.Sammler;
 import root.Persona.Rollen.Nebenrollen.Totengräber;
 import root.Spieler;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 public class Rolle extends Persona {
@@ -23,10 +22,6 @@ public class Rolle extends Persona {
         }
 
         return mitteHauptrollenStrings;
-    }
-
-    public Color getFarbe() {
-        return Color.WHITE;
     }
 
     public static Rolle findRolle(String wantedName) {
