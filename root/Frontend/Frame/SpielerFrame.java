@@ -104,7 +104,7 @@ public class SpielerFrame extends MyFrame {
 
         ArrayList<String> secondaryRoles = new ArrayList<>();
         secondaryRoles.addAll(game.getSecondaryRoleInGameNames());
-        buildScreenFromPage(pageFactory.generateDoubleListPage(mainRoles, secondaryRoles, "Hauptrollen", "Nebenrollen"));
+        buildScreenFromPage(pageFactory.generateDoubleListPage(mainRoles, secondaryRoles, "Hauptrollen", "Bonusrollen"));
     }
 
     public void generateDayPage() {

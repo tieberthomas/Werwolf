@@ -4,7 +4,7 @@ import root.Frontend.FrontendControl;
 import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Werwölfe;
 import root.Persona.Hauptrolle;
-import root.Persona.Rollen.Nebenrollen.Wolfspelz;
+import root.Persona.Rollen.Bonusrollen.Wolfspelz;
 import root.Phases.Nacht;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;

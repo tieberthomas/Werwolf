@@ -1,21 +1,26 @@
-package root.Persona.Rollen.Nebenrollen;
+package root.Persona.Rollen.Bonusrollen;
 
 import root.Persona.Bonusrolle;
 import root.Persona.Fraktionen.Bürger;
-import root.Persona.Rollen.Constants.NebenrollenType.BonusrollenType;
-import root.Persona.Rollen.Constants.NebenrollenType.Passiv;
+import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
+import root.Persona.Rollen.Constants.BonusrollenType.Passiv;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
-public class Seelenlicht extends Bonusrolle {
-    public static final String NAME = "Seelenlicht";
-    public static final String IMAGE_PATH = ImagePath.SEELENLICHT_KARTE;
-    public static final BonusrollenType TYPE = new Passiv();
+import java.awt.*;
 
-    public Seelenlicht() {
+public class Lamm extends Bonusrolle {
+    public static final String NAME = "Lamm";
+    public static final String IMAGE_PATH = ImagePath.LAMM_KARTE;
+    public static final BonusrollenType TYPE = new Passiv();
+    public static final Color COLOR = Bürger.COLOR;
+
+    public Lamm() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
         this.type = TYPE;
+
+        this.color = COLOR;
     }
 
     public void tauschen(Bonusrolle bonusrolle) {
@@ -28,20 +33,21 @@ public class Seelenlicht extends Bonusrolle {
     }
 
     public Bonusrolle getTauschErgebnis() {
-        Spieler spieler = game.findSpielerPerRolle(NAME);
-
-        if (spieler != null) {
+        try {
+            Spieler spieler = game.findSpielerPerRolle(NAME);
             Bonusrolle bonusrolle;
 
             if (spieler.hauptrolle.fraktion.name.equals(Bürger.NAME)) {
                 bonusrolle = new ReineSeele();
             } else {
-                bonusrolle = new SchwarzeSeele();
+                bonusrolle = spieler.bonusrolle;
             }
 
             return bonusrolle;
-        } else {
-            return new ReineSeele();
+        } catch (NullPointerException e) {
+            System.out.println(NAME + " nicht gefunden");
         }
+
+        return this;
     }
 }

@@ -1,11 +1,11 @@
-package root.Persona.Rollen.Nebenrollen;
+package root.Persona.Rollen.Bonusrollen;
 
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.Persona.Bonusrolle;
-import root.Persona.Rollen.Constants.NebenrollenType.BonusrollenType;
-import root.Persona.Rollen.Constants.NebenrollenType.Informativ;
-import root.Persona.Rollen.Constants.NebenrollenType.Tarnumhang_BonusrollenType;
+import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
+import root.Persona.Rollen.Constants.BonusrollenType.Informativ;
+import root.Persona.Rollen.Constants.BonusrollenType.Tarnumhang_BonusrollenType;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;

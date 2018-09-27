@@ -6,9 +6,9 @@ import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Vampire;
 import root.Persona.Fraktionen.Werwölfe;
 import root.Persona.Rollen.Hauptrollen.Bürger.Riese;
-import root.Persona.Rollen.Nebenrollen.Prostituierte;
-import root.Persona.Rollen.Nebenrollen.Vampirumhang;
-import root.Persona.Rollen.Nebenrollen.Wolfspelz;
+import root.Persona.Rollen.Bonusrollen.Prostituierte;
+import root.Persona.Rollen.Bonusrollen.Vampirumhang;
+import root.Persona.Rollen.Bonusrollen.Wolfspelz;
 import root.Spieler;
 
 import java.util.ArrayList;

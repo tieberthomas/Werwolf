@@ -1,4 +1,4 @@
-package root.Persona.Rollen.Constants.NebenrollenType;
+package root.Persona.Rollen.Constants.BonusrollenType;
 
 import root.ResourceManagement.ImagePath;
 

@@ -1,21 +1,21 @@
-package root.Persona.Rollen.Nebenrollen;
+package root.Persona.Rollen.Bonusrollen;
 
 import root.Persona.Bonusrolle;
-import root.Persona.Fraktionen.Bürger;
-import root.Persona.Rollen.Constants.NebenrollenType.BonusrollenType;
-import root.Persona.Rollen.Constants.NebenrollenType.Passiv;
+import root.Persona.Fraktionen.Werwölfe;
+import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
+import root.Persona.Rollen.Constants.BonusrollenType.Passiv;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
 import java.awt.*;
 
-public class Lamm extends Bonusrolle {
-    public static final String NAME = "Lamm";
-    public static final String IMAGE_PATH = ImagePath.LAMM_KARTE;
+public class Wolfspelz extends Bonusrolle {
+    public static final String NAME = "Wolfspelz";
+    public static final String IMAGE_PATH = ImagePath.WOLFSPELZ_KARTE;
     public static final BonusrollenType TYPE = new Passiv();
-    public static final Color COLOR = Bürger.COLOR;
+    public static final Color COLOR = Werwölfe.COLOR;
 
-    public Lamm() {
+    public Wolfspelz() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
         this.type = TYPE;
@@ -33,21 +33,20 @@ public class Lamm extends Bonusrolle {
     }
 
     public Bonusrolle getTauschErgebnis() {
-        try {
-            Spieler spieler = game.findSpielerPerRolle(NAME);
+        Spieler spieler = game.findSpielerPerRolle(NAME);
+
+        if (spieler != null) {
             Bonusrolle bonusrolle;
 
-            if (spieler.hauptrolle.fraktion.name.equals(Bürger.NAME)) {
-                bonusrolle = new ReineSeele();
+            if (spieler.hauptrolle.fraktion.name.equals(Werwölfe.NAME)) {
+                bonusrolle = new SchwarzeSeele();
             } else {
                 bonusrolle = spieler.bonusrolle;
             }
 
             return bonusrolle;
-        } catch (NullPointerException e) {
-            System.out.println(NAME + " nicht gefunden");
+        } else {
+            return this;
         }
-
-        return this;
     }
 }

@@ -12,7 +12,7 @@ import root.Persona.Rollen.Constants.Zeigekarten.AusDemSpiel;
 import root.Persona.Rollen.Constants.Zeigekarten.Tot;
 import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Persona.Rollen.Hauptrollen.Vampire.GrafVladimir;
-import root.Persona.Rollen.Nebenrollen.Schnüffler;
+import root.Persona.Rollen.Bonusrollen.Schnüffler;
 import root.Phases.NightBuilding.Statement;
 import root.Spieler;
 import root.mechanics.Game;

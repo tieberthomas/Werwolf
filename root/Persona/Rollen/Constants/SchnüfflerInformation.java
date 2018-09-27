@@ -1,7 +1,7 @@
 package root.Persona.Rollen.Constants;
 
 import root.Persona.Fraktion;
-import root.Persona.Rollen.Constants.NebenrollenType.BonusrollenType;
+import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Persona.Rollen.Constants.Zeigekarten.SpäherZeigekarte;
 
 public class SchnüfflerInformation {

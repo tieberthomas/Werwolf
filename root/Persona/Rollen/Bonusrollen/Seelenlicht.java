@@ -1,26 +1,21 @@
-package root.Persona.Rollen.Nebenrollen;
+package root.Persona.Rollen.Bonusrollen;
 
 import root.Persona.Bonusrolle;
-import root.Persona.Fraktionen.Werwölfe;
-import root.Persona.Rollen.Constants.NebenrollenType.BonusrollenType;
-import root.Persona.Rollen.Constants.NebenrollenType.Passiv;
+import root.Persona.Fraktionen.Bürger;
+import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
+import root.Persona.Rollen.Constants.BonusrollenType.Passiv;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
-import java.awt.*;
-
-public class Wolfspelz extends Bonusrolle {
-    public static final String NAME = "Wolfspelz";
-    public static final String IMAGE_PATH = ImagePath.WOLFSPELZ_KARTE;
+public class Seelenlicht extends Bonusrolle {
+    public static final String NAME = "Seelenlicht";
+    public static final String IMAGE_PATH = ImagePath.SEELENLICHT_KARTE;
     public static final BonusrollenType TYPE = new Passiv();
-    public static final Color COLOR = Werwölfe.COLOR;
 
-    public Wolfspelz() {
+    public Seelenlicht() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
         this.type = TYPE;
-
-        this.color = COLOR;
     }
 
     public void tauschen(Bonusrolle bonusrolle) {
@@ -38,15 +33,15 @@ public class Wolfspelz extends Bonusrolle {
         if (spieler != null) {
             Bonusrolle bonusrolle;
 
-            if (spieler.hauptrolle.fraktion.name.equals(Werwölfe.NAME)) {
-                bonusrolle = new SchwarzeSeele();
+            if (spieler.hauptrolle.fraktion.name.equals(Bürger.NAME)) {
+                bonusrolle = new ReineSeele();
             } else {
-                bonusrolle = spieler.bonusrolle;
+                bonusrolle = new SchwarzeSeele();
             }
 
             return bonusrolle;
         } else {
-            return this;
+            return new ReineSeele();
         }
     }
 }

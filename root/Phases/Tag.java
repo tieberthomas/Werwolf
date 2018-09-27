@@ -5,8 +5,8 @@ import root.Frontend.Frame.ErzählerFrameMode;
 import root.Frontend.FrontendControl;
 import root.Persona.Fraktionen.Bürger;
 import root.Persona.Hauptrolle;
-import root.Persona.Rollen.Nebenrollen.ReineSeele;
-import root.Persona.Rollen.Nebenrollen.Wahrsager;
+import root.Persona.Rollen.Bonusrollen.ReineSeele;
+import root.Persona.Rollen.Bonusrollen.Wahrsager;
 import root.Spieler;
 import root.mechanics.Game;
 

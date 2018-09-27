@@ -8,7 +8,7 @@ import root.Frontend.Page.PageTable;
 import root.Frontend.Page.Predecessor;
 import root.Persona.Bonusrolle;
 import root.Persona.Rollen.Hauptrollen.Bürger.Sammler;
-import root.Persona.Rollen.Nebenrollen.Konditorlehrling;
+import root.Persona.Rollen.Bonusrollen.Konditorlehrling;
 import root.Phases.ErsteNacht;
 import root.Phases.Nacht;
 import root.Phases.NightBuilding.Statement;

@@ -6,7 +6,7 @@ import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Werwölfe;
 import root.Persona.Hauptrolle;
 import root.Persona.Rollen.Constants.WölfinState;
-import root.Persona.Rollen.Nebenrollen.Tarnumhang;
+import root.Persona.Rollen.Bonusrollen.Tarnumhang;
 import root.Phases.Nacht;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;

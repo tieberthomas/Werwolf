@@ -1,25 +1,23 @@
-package root.Persona.Rollen.Nebenrollen;
+package root.Persona.Rollen.Bonusrollen;
 
 import root.Frontend.FrontendControl;
 import root.Persona.Bonusrolle;
-import root.Persona.Rollen.Constants.NebenrollenType.Aktiv;
-import root.Persona.Rollen.Constants.NebenrollenType.BonusrollenType;
+import root.Persona.Rollen.Constants.BonusrollenType.Aktiv;
+import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
-public class Prostituierte extends Bonusrolle {
-    public static final String STATEMENT_TITLE = "Bett legen";
-    public static final String STATEMENT_BESCHREIBUNG = "Prostituierte legt sich zu einem Mitspieler ins Bett";
+public class Gefängniswärter extends Bonusrolle {
+    public static final String STATEMENT_TITLE = "Schutzhaft";
+    public static final String STATEMENT_BESCHREIBUNG = "Gefängniswärter erwacht und stellt einen Spieler  unter Schutzhaft";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
 
-    public static final String NAME = "Prostituierte";
-    public static final String IMAGE_PATH = ImagePath.PROSTITUIERTE_KARTE;
+    public static final String NAME = "Gefängniswärter";
+    public static final String IMAGE_PATH = ImagePath.GEFÄNGNISWÄRTER_KARTE;
     public static final BonusrollenType TYPE = new Aktiv();
 
-    public static Spieler host;
-
-    public Prostituierte() {
+    public Gefängniswärter() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
         this.type = TYPE;
@@ -39,12 +37,11 @@ public class Prostituierte extends Bonusrolle {
     @Override
     public void processChosenOption(String chosenOption) {
         Spieler chosenPlayer = game.findSpieler(chosenOption);
-        if (chosenPlayer != null && !chosenPlayer.equals(game.findSpielerPerRolle(NAME))) {
+        if (chosenPlayer != null) {
             besucht = chosenPlayer;
 
-            host = chosenPlayer;
-        } else {
-            host = game.findSpielerPerRolle(NAME);
+            chosenPlayer.aktiv = false;
+            chosenPlayer.geschützt = true;
         }
     }
 }

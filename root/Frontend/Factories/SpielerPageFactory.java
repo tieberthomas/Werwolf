@@ -7,7 +7,7 @@ import root.Frontend.Frame.SpielerFrameMode;
 import root.Frontend.Page.Page;
 import root.Frontend.Page.PageElement;
 import root.Persona.Fraktion;
-import root.Persona.Rollen.Constants.NebenrollenType.Tarnumhang_BonusrollenType;
+import root.Persona.Rollen.Constants.BonusrollenType.Tarnumhang_BonusrollenType;
 import root.Persona.Rollen.Constants.RawInformation;
 import root.mechanics.Liebespaar;
 
@@ -92,7 +92,7 @@ public class SpielerPageFactory {
         Page listPage = generateDoubleListPage(hauptrollen, bonusrollen, titleSpace, clockSpace - 30);
 
         PageElement title1Element = pageElementFactory.generateColumnTitleLabel("Hauptrollen", 2, 0, titleSpace);
-        PageElement title2Element = pageElementFactory.generateColumnTitleLabel("Nebenrollen", 2, 1, titleSpace);
+        PageElement title2Element = pageElementFactory.generateColumnTitleLabel("Bonusrollen", 2, 1, titleSpace);
 
         spielerFrame.clockLabel = new JLabel("00:00:00");
         PageElement counterLabel = pageElementFactory.generateClockLabel(spielerFrame.clockLabel, clockSpace);

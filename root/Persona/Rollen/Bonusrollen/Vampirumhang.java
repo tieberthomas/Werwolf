@@ -1,9 +1,9 @@
-package root.Persona.Rollen.Nebenrollen;
+package root.Persona.Rollen.Bonusrollen;
 
 import root.Persona.Bonusrolle;
 import root.Persona.Fraktionen.Vampire;
-import root.Persona.Rollen.Constants.NebenrollenType.BonusrollenType;
-import root.Persona.Rollen.Constants.NebenrollenType.Passiv;
+import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
+import root.Persona.Rollen.Constants.BonusrollenType.Passiv;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
 

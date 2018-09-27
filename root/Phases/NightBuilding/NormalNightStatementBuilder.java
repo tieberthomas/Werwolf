@@ -14,7 +14,7 @@ import root.Persona.Rollen.Hauptrollen.Werwölfe.Chemiker;
 import root.Persona.Rollen.Hauptrollen.Werwölfe.Schreckenswolf;
 import root.Persona.Rollen.Hauptrollen.Werwölfe.Wölfin;
 import root.Persona.Rollen.Hauptrollen.Überläufer.Überläufer;
-import root.Persona.Rollen.Nebenrollen.*;
+import root.Persona.Rollen.Bonusrollen.*;
 import root.Phases.NightBuilding.Constants.IndieStatements;
 import root.Phases.NightBuilding.Constants.ProgrammStatements;
 import root.mechanics.Game;

@@ -5,7 +5,7 @@ import root.Frontend.FrontendControl;
 import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Vampire;
 import root.Persona.Hauptrolle;
-import root.Persona.Rollen.Nebenrollen.Vampirumhang;
+import root.Persona.Rollen.Bonusrollen.Vampirumhang;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;

@@ -17,7 +17,7 @@ import root.Persona.Rollen.Hauptrollen.Vampire.LadyAleera;
 import root.Persona.Rollen.Hauptrollen.Vampire.MissVerona;
 import root.Persona.Rollen.Hauptrollen.Werwölfe.*;
 import root.Persona.Rollen.Hauptrollen.Überläufer.Überläufer;
-import root.Persona.Rollen.Nebenrollen.*;
+import root.Persona.Rollen.Bonusrollen.*;
 import root.Phases.ErsteNacht;
 import root.Phases.Nacht;
 import root.Phases.NightBuilding.NormalNightStatementBuilder;
