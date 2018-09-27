@@ -5,6 +5,7 @@ import root.Persona.Bonusrolle;
 import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Bürger;
 import root.Persona.Hauptrolle;
+import root.Persona.Rollen.Bonusrollen.*;
 import root.Persona.Rollen.Constants.BonusrollenType.Tarnumhang_BonusrollenType;
 import root.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.BürgerZeigekarte;
 import root.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.SchattenpriesterZeigekarte;
@@ -12,7 +13,6 @@ import root.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.VampiereZe
 import root.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.WerwölfeZeigekarte;
 import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Persona.Rollen.Hauptrollen.Werwölfe.Wolfsmensch;
-import root.Persona.Rollen.Bonusrollen.*;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;

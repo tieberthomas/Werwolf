@@ -2,11 +2,11 @@ package root.Persona;
 
 import root.Frontend.Frame.MyFrame;
 import root.Persona.Fraktionen.Bürger;
+import root.Persona.Rollen.Bonusrollen.Schatten;
+import root.Persona.Rollen.Bonusrollen.Tarnumhang;
 import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Persona.Rollen.Constants.BonusrollenType.Passiv;
 import root.Persona.Rollen.Hauptrollen.Bürger.Schamanin;
-import root.Persona.Rollen.Bonusrollen.Schatten;
-import root.Persona.Rollen.Bonusrollen.Tarnumhang;
 import root.Spieler;
 
 import java.awt.*;

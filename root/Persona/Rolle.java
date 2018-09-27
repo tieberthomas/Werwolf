@@ -1,7 +1,7 @@
 package root.Persona;
 
-import root.Persona.Rollen.Hauptrollen.Bürger.Sammler;
 import root.Persona.Rollen.Bonusrollen.Totengräber;
+import root.Persona.Rollen.Hauptrollen.Bürger.Sammler;
 import root.Spieler;
 
 import java.util.ArrayList;

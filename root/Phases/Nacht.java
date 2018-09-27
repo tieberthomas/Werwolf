@@ -1,15 +1,16 @@
 package root.Phases;
 
 import root.Frontend.FrontendControl;
+import root.Persona.Bonusrolle;
 import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Schattenpriester_Fraktion;
 import root.Persona.Fraktionen.Vampire;
 import root.Persona.Fraktionen.Werwölfe;
 import root.Persona.Hauptrolle;
-import root.Persona.Bonusrolle;
 import root.Persona.Rolle;
-import root.Persona.Rollen.Constants.DropdownConstants;
+import root.Persona.Rollen.Bonusrollen.*;
 import root.Persona.Rollen.Constants.BonusrollenType.Tarnumhang_BonusrollenType;
+import root.Persona.Rollen.Constants.DropdownConstants;
 import root.Persona.Rollen.Constants.SchnüfflerInformation;
 import root.Persona.Rollen.Constants.Zeigekarten.*;
 import root.Persona.Rollen.Hauptrollen.Bürger.Sammler;
@@ -21,7 +22,6 @@ import root.Persona.Rollen.Hauptrollen.Werwölfe.Blutwolf;
 import root.Persona.Rollen.Hauptrollen.Werwölfe.Chemiker;
 import root.Persona.Rollen.Hauptrollen.Werwölfe.Schreckenswolf;
 import root.Persona.Rollen.Hauptrollen.Werwölfe.Wölfin;
-import root.Persona.Rollen.Bonusrollen.*;
 import root.Phases.NightBuilding.Constants.IndieStatements;
 import root.Phases.NightBuilding.Constants.ProgrammStatements;
 import root.Phases.NightBuilding.Constants.StatementType;

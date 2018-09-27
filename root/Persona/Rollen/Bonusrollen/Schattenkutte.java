@@ -1,7 +1,7 @@
 package root.Persona.Rollen.Bonusrollen;
 
-import root.Persona.Fraktionen.Schattenpriester_Fraktion;
 import root.Persona.Bonusrolle;
+import root.Persona.Fraktionen.Schattenpriester_Fraktion;
 import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Persona.Rollen.Constants.BonusrollenType.Passiv;
 import root.ResourceManagement.ImagePath;

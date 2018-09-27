@@ -3,15 +3,15 @@ package root.Persona.Rollen;
 import root.Persona.Bonusrolle;
 import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Bürger;
-import root.Persona.Rollen.Constants.InformationType;
+import root.Persona.Rollen.Bonusrollen.Schnüffler;
 import root.Persona.Rollen.Constants.BonusrollenType.Aktiv;
 import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Persona.Rollen.Constants.BonusrollenType.Informativ;
 import root.Persona.Rollen.Constants.BonusrollenType.Passiv;
+import root.Persona.Rollen.Constants.InformationType;
 import root.Persona.Rollen.Constants.SchnüfflerInformation;
 import root.Persona.Rollen.Constants.Zeigekarten.SpäherZeigekarte;
 import root.Persona.Rollen.Hauptrollen.Bürger.Schamanin;
-import root.Persona.Rollen.Bonusrollen.Schnüffler;
 import root.Spieler;
 
 import java.util.ArrayList;

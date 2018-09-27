@@ -2,8 +2,8 @@ package root.Persona.Rollen.Bonusrollen;
 
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
-import root.Persona.Fraktion;
 import root.Persona.Bonusrolle;
+import root.Persona.Fraktion;
 import root.Persona.Rollen.Constants.BonusrollenType.Aktiv;
 import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Phases.NightBuilding.Constants.StatementType;

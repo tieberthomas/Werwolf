@@ -2,8 +2,8 @@ package root;
 
 import root.Persona.Bonusrolle;
 import root.Persona.Hauptrolle;
-import root.Persona.Rollen.Hauptrollen.Bürger.Dorfbewohner;
 import root.Persona.Rollen.Bonusrollen.Schatten;
+import root.Persona.Rollen.Hauptrollen.Bürger.Dorfbewohner;
 import root.mechanics.Game;
 
 public class Spieler {

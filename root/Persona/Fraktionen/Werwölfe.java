@@ -50,7 +50,7 @@ public class Werwölfe extends Fraktion {
         FrontendControlType typeOfContent = FrontendControlType.DROPDOWN_IMAGE;
         ArrayList<String> strings = game.getLivingPlayerOrNoneStrings();
         String imagePath = zeigekarte.imagePath;
-        if(blutWolfIsAktiv()) {
+        if (blutWolfIsAktiv()) {
             imagePath = new Blutmond().imagePath;
         }
 

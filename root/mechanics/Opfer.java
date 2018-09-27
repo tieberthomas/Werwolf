@@ -5,10 +5,10 @@ import root.Frontend.FrontendControl;
 import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Vampire;
 import root.Persona.Fraktionen.Werwölfe;
-import root.Persona.Rollen.Hauptrollen.Bürger.Riese;
 import root.Persona.Rollen.Bonusrollen.Prostituierte;
 import root.Persona.Rollen.Bonusrollen.Vampirumhang;
 import root.Persona.Rollen.Bonusrollen.Wolfspelz;
+import root.Persona.Rollen.Hauptrollen.Bürger.Riese;
 import root.Spieler;
 
 import java.util.ArrayList;
@@ -110,8 +110,7 @@ public class Opfer {
 
         if (!opfer.geschützt || (täterFraktion.equals(Werwölfe.NAME) && Werwölfe.blutWolfIsAktiv())) {
             if (!(opferNebenrolle.equals(Vampirumhang.NAME) && täterFraktion.equals(Vampire.NAME) ||
-                    opferNebenrolle.equals(Wolfspelz.NAME) && täterFraktion.equals(Werwölfe.NAME) && !Werwölfe.blutWolfIsAktiv()))
-            {
+                    opferNebenrolle.equals(Wolfspelz.NAME) && täterFraktion.equals(Werwölfe.NAME) && !Werwölfe.blutWolfIsAktiv())) {
                 addDeadVictim(opfer, täterFraktion);
             }
         }
