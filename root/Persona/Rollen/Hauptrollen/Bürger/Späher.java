@@ -4,7 +4,7 @@ import root.Frontend.FrontendControl;
 import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Bürger;
 import root.Persona.Hauptrolle;
-import root.Persona.Rollen.Constants.NebenrollenType.Tarnumhang_NebenrollenType;
+import root.Persona.Rollen.Constants.NebenrollenType.Tarnumhang_BonusrollenType;
 import root.Persona.Rollen.Constants.Zeigekarten.Nicht_Tötend;
 import root.Persona.Rollen.Constants.Zeigekarten.Tötend;
 import root.Persona.Rollen.Hauptrollen.Werwölfe.Geisterwolf;
@@ -47,7 +47,7 @@ public class Späher extends Hauptrolle {
             besucht = chosenPlayer;
 
             if (chosenPlayer.bonusrolle.name.equals(Tarnumhang.NAME)) {
-                return new FrontendControl(new Tarnumhang_NebenrollenType());
+                return new FrontendControl(new Tarnumhang_BonusrollenType());
             }
 
             if (chosenPlayer.hauptrolle.killing && !chosenPlayer.hauptrolle.equals(Geisterwolf.NAME)) {

@@ -9,7 +9,7 @@ import root.Persona.Hauptrolle;
 import root.Persona.Bonusrolle;
 import root.Persona.Rolle;
 import root.Persona.Rollen.Constants.DropdownConstants;
-import root.Persona.Rollen.Constants.NebenrollenType.Tarnumhang_NebenrollenType;
+import root.Persona.Rollen.Constants.NebenrollenType.Tarnumhang_BonusrollenType;
 import root.Persona.Rollen.Constants.SchnüfflerInformation;
 import root.Persona.Rollen.Constants.Zeigekarten.*;
 import root.Persona.Rollen.Hauptrollen.Bürger.Sammler;
@@ -202,7 +202,7 @@ public class Nacht extends Thread {
 
                             if (chosenSpieler1 != null && chosenSpieler2 != null) {
                                 if (((Analytiker) rolle).showTarnumhang(chosenSpieler1, chosenSpieler2)) {
-                                    showZeigekarte(statement, new Tarnumhang_NebenrollenType());
+                                    showZeigekarte(statement, new Tarnumhang_BonusrollenType());
                                 } else {
                                     String answer = ((Analytiker) rolle).analysiere(chosenSpieler1, chosenSpieler2);
                                     showList(statement, answer);//TODO generisch machen
@@ -365,9 +365,9 @@ public class Nacht extends Thread {
 
     public void setSchütze() {
         for (Spieler currentSpieler : game.spieler) {
-            String nebenrolleCurrentSpieler = currentSpieler.bonusrolle.name;
+            String bonusrolleCurrentSpieler = currentSpieler.bonusrolle.name;
 
-            if (nebenrolleCurrentSpieler.equals(SchwarzeSeele.NAME)) {
+            if (bonusrolleCurrentSpieler.equals(SchwarzeSeele.NAME)) {
                 currentSpieler.geschützt = true;
             }
         }

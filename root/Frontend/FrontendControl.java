@@ -131,15 +131,15 @@ public class FrontendControl {
 
     public static void spielerAnnounceVictimPage(Spieler spieler) {
         String hauptRolleImagePath = spieler.hauptrolle.imagePath;
-        String nebenRolleImagePath = spieler.bonusrolle.imagePath;
+        String bonusRolleImagePath = spieler.bonusrolle.imagePath;
         if (GrafVladimir.unerkennbarerSpieler != null) {
             if (spieler.name.equals(GrafVladimir.unerkennbarerSpieler.name)) {
                 AusDemSpiel ausDemSpiel = new AusDemSpiel();
                 hauptRolleImagePath = ausDemSpiel.imagePath;
-                nebenRolleImagePath = ausDemSpiel.imagePath;
+                bonusRolleImagePath = ausDemSpiel.imagePath;
             }
         }
-        spielerTwoImagePage(spieler.name, hauptRolleImagePath, nebenRolleImagePath);
+        spielerTwoImagePage(spieler.name, hauptRolleImagePath, bonusRolleImagePath);
     }
 
     public static void spielerTwoImagePage(String title, String imagePath1, String imagePath2) {

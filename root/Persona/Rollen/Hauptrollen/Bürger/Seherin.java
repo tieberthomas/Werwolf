@@ -5,7 +5,7 @@ import root.Persona.Bonusrolle;
 import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Bürger;
 import root.Persona.Hauptrolle;
-import root.Persona.Rollen.Constants.NebenrollenType.Tarnumhang_NebenrollenType;
+import root.Persona.Rollen.Constants.NebenrollenType.Tarnumhang_BonusrollenType;
 import root.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.BürgerZeigekarte;
 import root.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.SchattenpriesterZeigekarte;
 import root.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.VampiereZeigekarte;
@@ -66,7 +66,7 @@ public class Seherin extends Hauptrolle {
                 zeigekarte = new SchattenpriesterZeigekarte();
             }
             if (bonusrolle.equals(Tarnumhang.NAME)) {
-                zeigekarte = new Tarnumhang_NebenrollenType();
+                zeigekarte = new Tarnumhang_BonusrollenType();
             }
 
             return new FrontendControl(zeigekarte);

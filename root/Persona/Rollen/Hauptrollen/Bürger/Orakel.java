@@ -45,9 +45,9 @@ public class Orakel extends Hauptrolle {
             Spieler orakelSpieler = game.findSpielerPerRolle(NAME);
 
             if (orakelSpieler != null) {
-                ArrayList<String> nebenRolleList = (ArrayList<String>) geseheneNebenrollen.clone();
-                nebenRolleList.remove(orakelSpieler.bonusrolle.name);
-                FrontendControl info = new FrontendControl(FrontendControlType.LIST, nebenRolleList);
+                ArrayList<String> bonusRolleList = (ArrayList<String>) geseheneNebenrollen.clone();
+                bonusRolleList.remove(orakelSpieler.bonusrolle.name);
+                FrontendControl info = new FrontendControl(FrontendControlType.LIST, bonusRolleList);
                 info.title = VERBRAUCHT_TITLE;
                 return info;
             } else {

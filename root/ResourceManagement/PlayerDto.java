@@ -3,11 +3,11 @@ package root.ResourceManagement;
 public class PlayerDto {
     String name;
     String hauptrolle;
-    String nebenrolle;
+    String bonusrolle;
 
-    public PlayerDto(String name, String hauptrolle, String nebenrolle) {
+    public PlayerDto(String name, String hauptrolle, String bonusrolle) {
         this.name = name;
         this.hauptrolle = hauptrolle;
-        this.nebenrolle = nebenrolle;
+        this.bonusrolle = bonusrolle;
     }
 }

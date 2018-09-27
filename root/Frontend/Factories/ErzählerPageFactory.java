@@ -495,11 +495,11 @@ public class ErzählerPageFactory {
         PageElement choosePlayer1 = pageElementFactory.generateDropdown(erzählerFrame.comboBox1,
                 null, hauptRolleLabel, 0, 0);
 
-        PageElement nebenRolleLabel = pageElementFactory.generateLabel(choosePlayer1, "Hauptrolle");
+        PageElement bonusRolleLabel = pageElementFactory.generateLabel(choosePlayer1, "Hauptrolle");
 
         erzählerFrame.comboBox2 = new JComboBox(secondaryRoles.toArray());
         PageElement choosePlayer2 = pageElementFactory.generateDropdown(erzählerFrame.comboBox2,
-                null, nebenRolleLabel, 0, 0);
+                null, bonusRolleLabel, 0, 0);
 
 
         erzählerFrame.nachzüglerJButton = new JButton();
@@ -516,7 +516,7 @@ public class ErzählerPageFactory {
         nachtzüglerPage.add(nameTxtField);
         nachtzüglerPage.add(hauptRolleLabel);
         nachtzüglerPage.add(choosePlayer1);
-        nachtzüglerPage.add(nebenRolleLabel);
+        nachtzüglerPage.add(bonusRolleLabel);
         nachtzüglerPage.add(choosePlayer2);
         nachtzüglerPage.add(nextButton);
         nachtzüglerPage.add(goBackButton);

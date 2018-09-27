@@ -3,9 +3,9 @@ package root.Persona.Rollen.Nebenrollen;
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.Persona.Bonusrolle;
+import root.Persona.Rollen.Constants.NebenrollenType.BonusrollenType;
 import root.Persona.Rollen.Constants.NebenrollenType.Informativ;
-import root.Persona.Rollen.Constants.NebenrollenType.NebenrollenType;
-import root.Persona.Rollen.Constants.NebenrollenType.Tarnumhang_NebenrollenType;
+import root.Persona.Rollen.Constants.NebenrollenType.Tarnumhang_BonusrollenType;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
@@ -17,7 +17,7 @@ public class Archivar extends Bonusrolle {
 
     public static final String NAME = "Archivar";
     public static final String IMAGE_PATH = ImagePath.ARCHIVAR_KARTE;
-    public static final NebenrollenType TYPE = new Informativ();
+    public static final BonusrollenType TYPE = new Informativ();
 
     public Archivar() {
         this.name = NAME;
@@ -43,10 +43,10 @@ public class Archivar extends Bonusrolle {
         if (chosenPlayer != null) {
             besucht = chosenPlayer;
 
-            NebenrollenType chosenPlayerType = chosenPlayer.bonusrolle.type;
+            BonusrollenType chosenPlayerType = chosenPlayer.bonusrolle.type;
 
             if (showTarnumhang(this, chosenPlayer)) {
-                chosenPlayerType = new Tarnumhang_NebenrollenType();
+                chosenPlayerType = new Tarnumhang_BonusrollenType();
             }
 
 

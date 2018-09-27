@@ -18,7 +18,7 @@ public class RawInformation {
         if (!information.isTarnumhang) {
             imagePaths.add(information.fraktion.imagePath);
             imagePaths.add(information.tötend.imagePath);
-            imagePaths.add(information.nebenrollenType.imagePath);
+            imagePaths.add(information.bonusrollenType.imagePath);
         }
 
         return new RawInformation(information.spielerName, information.isTarnumhang, imagePaths);

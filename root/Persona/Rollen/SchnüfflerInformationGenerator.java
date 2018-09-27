@@ -5,8 +5,8 @@ import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Bürger;
 import root.Persona.Rollen.Constants.InformationType;
 import root.Persona.Rollen.Constants.NebenrollenType.Aktiv;
+import root.Persona.Rollen.Constants.NebenrollenType.BonusrollenType;
 import root.Persona.Rollen.Constants.NebenrollenType.Informativ;
-import root.Persona.Rollen.Constants.NebenrollenType.NebenrollenType;
 import root.Persona.Rollen.Constants.NebenrollenType.Passiv;
 import root.Persona.Rollen.Constants.SchnüfflerInformation;
 import root.Persona.Rollen.Constants.Zeigekarten.SpäherZeigekarte;
@@ -23,7 +23,7 @@ public class SchnüfflerInformationGenerator {
     private Random random = new Random();
     private ArrayList<InformationType> erhaltbareInformationen = new ArrayList<>(Arrays.asList(
             InformationType.FRAKTION, InformationType.TÖTEND, InformationType.NEBENROLLENTYPE));
-    private ArrayList<NebenrollenType> nebenrollenTypes = new ArrayList<>(Arrays.asList(
+    private ArrayList<BonusrollenType> bonusrollenTypes = new ArrayList<>(Arrays.asList(
             new Aktiv(), new Passiv(), new Informativ()));
 
     public SchnüfflerInformationGenerator(Spieler player) {
@@ -39,7 +39,7 @@ public class SchnüfflerInformationGenerator {
         InformationType correctInformation = decideCorrectInformation();
         Fraktion fraktion = null;
         SpäherZeigekarte tötend = null;
-        NebenrollenType nebenrollenType = null;
+        BonusrollenType bonusrollenType = null;
 
         boolean isCorrectInformation;
 
@@ -55,12 +55,12 @@ public class SchnüfflerInformationGenerator {
                     break;
                 case NEBENROLLENTYPE:
                     isCorrectInformation = correctInformation.equals(InformationType.NEBENROLLENTYPE);
-                    nebenrollenType = generateNebenrollenInformation(isCorrectInformation);
+                    bonusrollenType = generateNebenrollenInformation(isCorrectInformation);
                     break;
             }
         }
 
-        return new SchnüfflerInformation(player.name, fraktion, tötend, nebenrollenType);
+        return new SchnüfflerInformation(player.name, fraktion, tötend, bonusrollenType);
     }
 
     private boolean playerIsSchamanin() {
@@ -126,29 +126,29 @@ public class SchnüfflerInformationGenerator {
         return SpäherZeigekarte.getZeigekarte(isKilling);
     }
 
-    private NebenrollenType generateNebenrollenInformation(boolean correctInformation) {
-        NebenrollenType playerNebenrollenType = player.bonusrolle.type;
+    private BonusrollenType generateNebenrollenInformation(boolean correctInformation) {
+        BonusrollenType playerBonusrollenType = player.bonusrolle.type;
         if (correctInformation) {
-            return playerNebenrollenType;
+            return playerBonusrollenType;
         }
 
-        removeNebenrollenType(nebenrollenTypes, playerNebenrollenType);
+        removeNebenrollenType(bonusrollenTypes, playerBonusrollenType);
 
-        int numberOfNebenrollenTypes = nebenrollenTypes.size();
+        int numberOfNebenrollenTypes = bonusrollenTypes.size();
         int decision = random.nextInt(numberOfNebenrollenTypes);
 
-        return nebenrollenTypes.get(decision);
+        return bonusrollenTypes.get(decision);
     }
 
-    private void removeNebenrollenType(ArrayList<NebenrollenType> nebenrollenTypes, NebenrollenType nebenrollenTypeToRemove) {
-        NebenrollenType nebenrollenTypeInListToRemove = null;
-        for (NebenrollenType nebenrollenType : nebenrollenTypes) {
-            if (nebenrollenType.equals(nebenrollenTypeToRemove)) {
-                nebenrollenTypeInListToRemove = nebenrollenType;
+    private void removeNebenrollenType(ArrayList<BonusrollenType> bonusrollenTypes, BonusrollenType bonusrollenTypeToRemove) {
+        BonusrollenType bonusrollenTypeInListToRemove = null;
+        for (BonusrollenType bonusrollenType : bonusrollenTypes) {
+            if (bonusrollenType.equals(bonusrollenTypeToRemove)) {
+                bonusrollenTypeInListToRemove = bonusrollenType;
             }
         }
 
-        nebenrollenTypes.remove(nebenrollenTypeInListToRemove);
+        bonusrollenTypes.remove(bonusrollenTypeInListToRemove);
     }
 }
 

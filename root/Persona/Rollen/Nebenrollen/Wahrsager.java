@@ -5,7 +5,7 @@ import root.Frontend.FrontendControl;
 import root.Persona.Fraktion;
 import root.Persona.Bonusrolle;
 import root.Persona.Rollen.Constants.NebenrollenType.Aktiv;
-import root.Persona.Rollen.Constants.NebenrollenType.NebenrollenType;
+import root.Persona.Rollen.Constants.NebenrollenType.BonusrollenType;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 
@@ -22,7 +22,7 @@ public class Wahrsager extends Bonusrolle {
 
     public static final String NAME = "Wahrsager";
     public static final String IMAGE_PATH = ImagePath.WAHRSAGER_KARTE;
-    public static final NebenrollenType TYPE = new Aktiv();
+    public static final BonusrollenType TYPE = new Aktiv();
     public static Fraktion opferFraktion = null;
     public Fraktion tipp = null;
 

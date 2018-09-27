@@ -2,7 +2,7 @@ package root.Persona;
 
 import root.Frontend.Frame.MyFrame;
 import root.Persona.Fraktionen.Bürger;
-import root.Persona.Rollen.Constants.NebenrollenType.NebenrollenType;
+import root.Persona.Rollen.Constants.NebenrollenType.BonusrollenType;
 import root.Persona.Rollen.Constants.NebenrollenType.Passiv;
 import root.Persona.Rollen.Hauptrollen.Bürger.Schamanin;
 import root.Persona.Rollen.Nebenrollen.Schatten;
@@ -12,7 +12,7 @@ import root.Spieler;
 import java.awt.*;
 
 public class Bonusrolle extends Rolle {
-    public NebenrollenType type = new Passiv();
+    public BonusrollenType type = new Passiv();
 
     public static final Bonusrolle DEFAULT_BONUSROLLE = new Schatten();
     public static final Color defaultFarbe = MyFrame.DEFAULT_BUTTON_COLOR;

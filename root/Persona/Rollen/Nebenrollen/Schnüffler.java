@@ -3,8 +3,8 @@ package root.Persona.Rollen.Nebenrollen;
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.Persona.Bonusrolle;
+import root.Persona.Rollen.Constants.NebenrollenType.BonusrollenType;
 import root.Persona.Rollen.Constants.NebenrollenType.Informativ;
-import root.Persona.Rollen.Constants.NebenrollenType.NebenrollenType;
 import root.Persona.Rollen.Constants.SchnüfflerInformation;
 import root.Persona.Rollen.SchnüfflerInformationGenerator;
 import root.Phases.NightBuilding.Constants.StatementType;
@@ -20,7 +20,7 @@ public class Schnüffler extends Bonusrolle {
 
     public static final String NAME = "Schnüffler";
     public static final String IMAGE_PATH = ImagePath.SCHNÜFFLER_KARTE;
-    public static final NebenrollenType TYPE = new Informativ();
+    public static final BonusrollenType TYPE = new Informativ();
     public static int MAX_ANZAHL_AN_INFORMATIONEN = 4;
 
     public ArrayList<SchnüfflerInformation> informationen = new ArrayList<>(); //TODO wenn dieb schnüffler nimmt dann neu anlegen

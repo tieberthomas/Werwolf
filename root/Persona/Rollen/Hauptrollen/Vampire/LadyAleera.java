@@ -42,9 +42,9 @@ public class LadyAleera extends Hauptrolle {
         ArrayList<String> geschützte = new ArrayList<>();
 
         for (Spieler currentSpieler : game.spieler) {
-            String nebenrolleCurrentSpieler = currentSpieler.bonusrolle.name;
+            String bonusrolleCurrentSpieler = currentSpieler.bonusrolle.name;
 
-            if ((currentSpieler.geschützt || nebenrolleCurrentSpieler.equals(Vampirumhang.NAME)) && currentSpieler.lebend) {
+            if ((currentSpieler.geschützt || bonusrolleCurrentSpieler.equals(Vampirumhang.NAME)) && currentSpieler.lebend) {
                 geschützte.add(currentSpieler.name);
             }
         }

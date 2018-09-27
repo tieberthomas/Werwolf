@@ -25,7 +25,7 @@ public class Spieler {
         this.ressurectable = true;
     }
 
-    public Spieler(String name, String hauptrolleName, String nebenrolleName) {
+    public Spieler(String name, String hauptrolleName, String bonusrolleName) {
         this(name);
 
         Hauptrolle hauptrolle = game.findHauptrolle(hauptrolleName);
@@ -33,7 +33,7 @@ public class Spieler {
             hauptrolle = new Dorfbewohner();
         }
 
-        Bonusrolle bonusrolle = game.findNebenrolle(nebenrolleName);
+        Bonusrolle bonusrolle = game.findNebenrolle(bonusrolleName);
         if (bonusrolle == null) {
             bonusrolle = new Schatten();
         }

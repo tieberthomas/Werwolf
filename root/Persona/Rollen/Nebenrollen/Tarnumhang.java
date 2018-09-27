@@ -3,8 +3,8 @@ package root.Persona.Rollen.Nebenrollen;
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.Persona.Bonusrolle;
-import root.Persona.Rollen.Constants.NebenrollenType.NebenrollenType;
-import root.Persona.Rollen.Constants.NebenrollenType.Tarnumhang_NebenrollenType;
+import root.Persona.Rollen.Constants.NebenrollenType.BonusrollenType;
+import root.Persona.Rollen.Constants.NebenrollenType.Tarnumhang_BonusrollenType;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
@@ -22,7 +22,7 @@ public class Tarnumhang extends Bonusrolle {
 
     public static final String NAME = "Tarnumhang";
     public static final String IMAGE_PATH = ImagePath.TARNUMHANG_KARTE;
-    public static final NebenrollenType TYPE = new Tarnumhang_NebenrollenType();
+    public static final BonusrollenType TYPE = new Tarnumhang_BonusrollenType();
     public static final Color COLOR = Color.BLACK;
     private ArrayList<String> umhänge = new ArrayList<>(Arrays.asList(
             Lamm.NAME, Wolfspelz.NAME, Vampirumhang.NAME, Schattenkutte.NAME));

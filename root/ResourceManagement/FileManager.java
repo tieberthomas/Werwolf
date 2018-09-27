@@ -27,7 +27,7 @@ public class FileManager {
             CompositionDto compositionDto = new CompositionDto();
             compositionDto.spieler = readList(br);
             compositionDto.hauptrollen = readList(br);
-            compositionDto.nebenrollen = readList(br);
+            compositionDto.bonusrollen = readList(br);
 
             br.close();
 
@@ -38,7 +38,7 @@ public class FileManager {
         }
     }
 
-    public boolean writeComposition(String filePath, ArrayList<String> spieler, ArrayList<String> hauptrollen, ArrayList<String> nebenrollen) {
+    public boolean writeComposition(String filePath, ArrayList<String> spieler, ArrayList<String> hauptrollen, ArrayList<String> bonusrollen) {
         try {
             File file = new File(filePath);
             file.createNewFile();
@@ -46,7 +46,7 @@ public class FileManager {
 
             writeArrayList(writer, spieler);
             writeArrayList(writer, hauptrollen);
-            writeArrayList(writer, nebenrollen);
+            writeArrayList(writer, bonusrollen);
 
             writer.flush();
             writer.close();
@@ -74,14 +74,14 @@ public class FileManager {
 
                 String name = fractals[0].replace("*", " ");
                 String hauptrolleString = fractals[1].replace("*", " ");
-                String nebenrolleString = fractals[2].replace("*", " ");
+                String bonusrolleString = fractals[2].replace("*", " ");
 
-                PlayerDto playerDto = new PlayerDto(name, hauptrolleString, nebenrolleString);
+                PlayerDto playerDto = new PlayerDto(name, hauptrolleString, bonusrolleString);
                 gameDto.players.add(playerDto);
             }
 
             gameDto.compositionDto.hauptrollen = readList(br);
-            gameDto.compositionDto.nebenrollen = readList(br);
+            gameDto.compositionDto.bonusrollen = readList(br);
 
             br.close();
 
@@ -121,8 +121,8 @@ public class FileManager {
     public String buildPlayerString(Spieler spieler) {
         String name = spieler.name.replace(" ", "*");
         String hauptrolle = spieler.hauptrolle.name.replace(" ", "*");
-        String nebenrolle = spieler.bonusrolle.name.replace(" ", "*");
-        return name + " " + hauptrolle + " " + nebenrolle;
+        String bonusrolle = spieler.bonusrolle.name.replace(" ", "*");
+        return name + " " + hauptrolle + " " + bonusrolle;
     }
 
     public void writeArrayList(Writer writer, ArrayList<String> arrayToWrite) throws IOException {

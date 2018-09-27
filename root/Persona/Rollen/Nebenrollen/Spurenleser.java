@@ -3,9 +3,9 @@ package root.Persona.Rollen.Nebenrollen;
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.Persona.Bonusrolle;
+import root.Persona.Rollen.Constants.NebenrollenType.BonusrollenType;
 import root.Persona.Rollen.Constants.NebenrollenType.Informativ;
-import root.Persona.Rollen.Constants.NebenrollenType.NebenrollenType;
-import root.Persona.Rollen.Constants.NebenrollenType.Tarnumhang_NebenrollenType;
+import root.Persona.Rollen.Constants.NebenrollenType.Tarnumhang_BonusrollenType;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
@@ -20,7 +20,7 @@ public class Spurenleser extends Bonusrolle {
 
     public static final String NAME = "Spurenleser";
     public static final String IMAGE_PATH = ImagePath.SPURENLESER_KARTE;
-    public static final NebenrollenType TYPE = new Informativ();
+    public static final BonusrollenType TYPE = new Informativ();
 
     public Spurenleser() {
         this.name = NAME;
@@ -47,7 +47,7 @@ public class Spurenleser extends Bonusrolle {
             besucht = chosenPlayer;
 
             if (showTarnumhang(this, chosenPlayer)) {
-                return new FrontendControl(new Tarnumhang_NebenrollenType());
+                return new FrontendControl(new Tarnumhang_BonusrollenType());
             }
 
             FrontendControl info = new FrontendControl(FrontendControlType.LIST, getBesuchteSpielerStrings(chosenPlayer));

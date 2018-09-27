@@ -2,7 +2,7 @@ package root.Persona.Rollen.Nebenrollen;
 
 import root.Persona.Bonusrolle;
 import root.Persona.Rollen.Constants.NebenrollenType.Informativ;
-import root.Persona.Rollen.Constants.NebenrollenType.NebenrollenType;
+import root.Persona.Rollen.Constants.NebenrollenType.BonusrollenType;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
@@ -17,7 +17,7 @@ public class Analytiker extends Bonusrolle {
 
     public static final String NAME = "Analytiker";
     public static final String IMAGE_PATH = ImagePath.ANALYTIKER_KARTE;
-    public static final NebenrollenType TYPE = new Informativ();
+    public static final BonusrollenType TYPE = new Informativ();
     public static final String GLEICH = "gleich";
     public static final String UNGLEICH = "ungleich";
     public Spieler besuchtAnalysieren = null;

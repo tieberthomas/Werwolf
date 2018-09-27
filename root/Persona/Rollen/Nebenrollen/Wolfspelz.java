@@ -2,7 +2,7 @@ package root.Persona.Rollen.Nebenrollen;
 
 import root.Persona.Bonusrolle;
 import root.Persona.Fraktionen.Werwölfe;
-import root.Persona.Rollen.Constants.NebenrollenType.NebenrollenType;
+import root.Persona.Rollen.Constants.NebenrollenType.BonusrollenType;
 import root.Persona.Rollen.Constants.NebenrollenType.Passiv;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
@@ -12,7 +12,7 @@ import java.awt.*;
 public class Wolfspelz extends Bonusrolle {
     public static final String NAME = "Wolfspelz";
     public static final String IMAGE_PATH = ImagePath.WOLFSPELZ_KARTE;
-    public static final NebenrollenType TYPE = new Passiv();
+    public static final BonusrollenType TYPE = new Passiv();
     public static final Color COLOR = Werwölfe.COLOR;
 
     public Wolfspelz() {

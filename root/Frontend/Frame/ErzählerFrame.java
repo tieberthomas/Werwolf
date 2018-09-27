@@ -590,9 +590,9 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
 
                     String name = addPlayerTxtField.getText();
                     String hauptrolle = chosenOption1;
-                    String nebenrolle = chosenOption2;
+                    String bonusrolle = chosenOption2;
 
-                    Spieler newSpieler = new Spieler(name, hauptrolle, nebenrolle);
+                    Spieler newSpieler = new Spieler(name, hauptrolle, bonusrolle);
                     game.secondaryRolesInGame.remove(newSpieler.bonusrolle);
                     newSpieler.bonusrolle = newSpieler.bonusrolle.getTauschErgebnis();
                     game.secondaryRolesInGame.add(newSpieler.bonusrolle);
@@ -853,8 +853,8 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                 spieler.hauptrolle = Hauptrolle.defaultHauptrolle;
             }
 
-            String nebenrolle = (String) comboBox3.getSelectedItem();
-            spieler.bonusrolle = game.findNebenrolle(nebenrolle);
+            String bonusrolle = (String) comboBox3.getSelectedItem();
+            spieler.bonusrolle = game.findNebenrolle(bonusrolle);
             if (spieler.bonusrolle == null) {
                 spieler.bonusrolle = Bonusrolle.DEFAULT_BONUSROLLE;
             }

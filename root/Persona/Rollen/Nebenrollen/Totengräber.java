@@ -5,7 +5,7 @@ import root.Frontend.FrontendControl;
 import root.Persona.Bonusrolle;
 import root.Persona.Rolle;
 import root.Persona.Rollen.Constants.NebenrollenType.Aktiv;
-import root.Persona.Rollen.Constants.NebenrollenType.NebenrollenType;
+import root.Persona.Rollen.Constants.NebenrollenType.BonusrollenType;
 import root.Phases.Nacht;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.Phases.NightBuilding.Statement;
@@ -22,7 +22,7 @@ public class Totengräber extends Bonusrolle {
 
     public static final String NAME = "Totengräber";
     public static final String IMAGE_PATH = ImagePath.TOTENGRÄBER_KARTE;
-    public static final NebenrollenType TYPE = new Aktiv();
+    public static final BonusrollenType TYPE = new Aktiv();
 
     public Totengräber() {
         this.name = NAME;
@@ -63,11 +63,11 @@ public class Totengräber extends Bonusrolle {
         }
     }
 
-    public void removeSammlerFlag(String nebenRolle) {
+    public void removeSammlerFlag(String bonusRolle) {
         for (Statement statement : Nacht.statements) {
             if (statement.getClass() == StatementRolle.class) {
                 StatementRolle statementRolle = (StatementRolle) statement;
-                if (statementRolle.getRolle().name.equals(nebenRolle)) {
+                if (statementRolle.getRolle().name.equals(bonusRolle)) {
                     statementRolle.sammler = false;
                 }
             }

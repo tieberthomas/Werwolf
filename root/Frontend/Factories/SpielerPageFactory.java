@@ -7,7 +7,7 @@ import root.Frontend.Frame.SpielerFrameMode;
 import root.Frontend.Page.Page;
 import root.Frontend.Page.PageElement;
 import root.Persona.Fraktion;
-import root.Persona.Rollen.Constants.NebenrollenType.Tarnumhang_NebenrollenType;
+import root.Persona.Rollen.Constants.NebenrollenType.Tarnumhang_BonusrollenType;
 import root.Persona.Rollen.Constants.RawInformation;
 import root.mechanics.Liebespaar;
 
@@ -86,10 +86,10 @@ public class SpielerPageFactory {
         return endScreenPage;
     }
 
-    public Page generateDayPage(ArrayList<String> hauptrollen, ArrayList<String> nebenrollen) {
+    public Page generateDayPage(ArrayList<String> hauptrollen, ArrayList<String> bonusrollen) {
         int titleSpace = 80;
         int clockSpace = 150;
-        Page listPage = generateDoubleListPage(hauptrollen, nebenrollen, titleSpace, clockSpace - 30);
+        Page listPage = generateDoubleListPage(hauptrollen, bonusrollen, titleSpace, clockSpace - 30);
 
         PageElement title1Element = pageElementFactory.generateColumnTitleLabel("Hauptrollen", 2, 0, titleSpace);
         PageElement title2Element = pageElementFactory.generateColumnTitleLabel("Nebenrollen", 2, 1, titleSpace);
@@ -470,7 +470,7 @@ public class SpielerPageFactory {
     private ArrayList<PageElement> generateSchnüfflerInformationsColumn(RawInformation rawInformation, int maxColumns, int numberOfColumns, int indexOfColumn, int offsetAbove) {
         ArrayList<JComponent> elementsToDisplay = new ArrayList<>();
         if (rawInformation.isTarnumhang) {
-            elementsToDisplay.add(pageElementFactory.generateIcon(new Tarnumhang_NebenrollenType().imagePath));
+            elementsToDisplay.add(pageElementFactory.generateIcon(new Tarnumhang_BonusrollenType().imagePath));
         } else {
             int frameOffset = MyFrame.yOffset;
             int spaceToUse = spielerFrame.frameJpanel.getHeight() - frameOffset - offsetAbove;

@@ -2,7 +2,7 @@ package root.Persona.Rollen.Constants.NebenrollenType;
 
 import root.ResourceManagement.ImagePath;
 
-public class Aktiv extends NebenrollenType {
+public class Aktiv extends BonusrollenType {
     public Aktiv() {
         this.name = "Aktiv";
         this.title = "Aktiv";

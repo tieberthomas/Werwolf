@@ -4,7 +4,7 @@ import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.Persona.Bonusrolle;
 import root.Persona.Rollen.Constants.NebenrollenType.Aktiv;
-import root.Persona.Rollen.Constants.NebenrollenType.NebenrollenType;
+import root.Persona.Rollen.Constants.NebenrollenType.BonusrollenType;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 
@@ -20,7 +20,7 @@ public class Konditor extends Bonusrolle {
 
     public static final String NAME = "Konditor";
     public static final String IMAGE_PATH = ImagePath.KONDITOR_KARTE;
-    public static final NebenrollenType TYPE = new Aktiv();
+    public static final BonusrollenType TYPE = new Aktiv();
 
     public Konditor() {
         this.name = NAME;

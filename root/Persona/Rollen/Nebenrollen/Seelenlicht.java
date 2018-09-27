@@ -2,7 +2,7 @@ package root.Persona.Rollen.Nebenrollen;
 
 import root.Persona.Bonusrolle;
 import root.Persona.Fraktionen.Bürger;
-import root.Persona.Rollen.Constants.NebenrollenType.NebenrollenType;
+import root.Persona.Rollen.Constants.NebenrollenType.BonusrollenType;
 import root.Persona.Rollen.Constants.NebenrollenType.Passiv;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
@@ -10,7 +10,7 @@ import root.Spieler;
 public class Seelenlicht extends Bonusrolle {
     public static final String NAME = "Seelenlicht";
     public static final String IMAGE_PATH = ImagePath.SEELENLICHT_KARTE;
-    public static final NebenrollenType TYPE = new Passiv();
+    public static final BonusrollenType TYPE = new Passiv();
 
     public Seelenlicht() {
         this.name = NAME;

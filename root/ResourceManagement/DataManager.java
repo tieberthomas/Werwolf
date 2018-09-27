@@ -49,14 +49,14 @@ public class DataManager {
             game.mainRolesInGame.add(game.findHauptrolle(hauptRollenName));
         }
 
-        for (String nebenRollenName : composition.nebenrollen) {
-            game.secondaryRolesInGame.add(game.findNebenrolle(nebenRollenName));
+        for (String bonusRollenName : composition.bonusrollen) {
+            game.secondaryRolesInGame.add(game.findNebenrolle(bonusRollenName));
         }
     }
 
     private void evaluatePlayers(ArrayList<PlayerDto> players) {
         for (PlayerDto player : players) {
-            Spieler newSpieler = new Spieler(player.name, player.hauptrolle, player.nebenrolle);
+            Spieler newSpieler = new Spieler(player.name, player.hauptrolle, player.bonusrolle);
             game.mainRolesInGame.add(newSpieler.hauptrolle);
             game.secondaryRolesInGame.add(newSpieler.bonusrolle);
         }
