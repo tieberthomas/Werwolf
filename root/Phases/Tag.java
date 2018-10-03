@@ -1,7 +1,6 @@
 package root.Phases;
 
 import root.Frontend.Constants.Timer;
-import root.Frontend.Frame.ErzählerFrameMode;
 import root.Frontend.FrontendControl;
 import root.Persona.Fraktionen.Bürger;
 import root.Persona.Hauptrolle;
@@ -34,11 +33,12 @@ public class Tag extends Thread {
         verurteilteSpieler = new ArrayList<>();
         day();
 
-        if (FrontendControl.erzählerFrame.mode == ErzählerFrameMode.freibierTag) {
+        if (game.freibier) {
             day();
+            game.freibier = false;
         }
 
-        game.night();
+        game.night();//TODO remove
     }
 
     public void day() {

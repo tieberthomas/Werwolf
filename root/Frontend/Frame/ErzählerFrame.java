@@ -455,7 +455,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
 
             if (ae.getSource() == playerSpecifyGoNextJButton) {
                 if (allPlayersSpecified()) {
-                    game.firstnight(this);
+                    game.startGame(this);
                     dataManager.writeGame();
                 } else {
                     specifyPlayer();

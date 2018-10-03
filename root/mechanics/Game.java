@@ -31,6 +31,8 @@ public class Game {
     public PhaseMode phaseMode;
     public Tag tag;
 
+    public boolean freibier = false;
+
     public Liebespaar liebespaar;
 
     public ArrayList<Spieler> spieler = new ArrayList<>();
@@ -128,18 +130,41 @@ public class Game {
         }
     }
 
-    //TODO Phase manager
-
-    public void firstnight(ErzählerFrame erzählerFrame) {
-        phaseMode = PhaseMode.ersteNacht;
-        erzählerFrame.mode = ErzählerFrameMode.ersteNacht;
+    public void startGame(ErzählerFrame erzählerFrame) {
         erzählerFrame.übersichtsFrame = new ÜbersichtsFrame(erzählerFrame, this);
         erzählerFrame.toFront();
+
         FrontendControl.erzählerFrame = erzählerFrame;
         FrontendControl.spielerFrame = erzählerFrame.spielerFrame;
         FrontendControl.übersichtsFrame = erzählerFrame.übersichtsFrame;
+
+        firstnight(erzählerFrame);
+
+        //TODO structure below doesn't work because of multiThreading
+//        while (true) {
+//            if(freibier) {
+//                freibierDay();
+//                freibier = false;
+//            } else {
+//                day();
+//            }
+//
+//            night();
+//        }
+    }
+
+    public void firstnight(ErzählerFrame erzählerFrame) {
+        erzählerFrame.mode = ErzählerFrameMode.ersteNacht;
+        phaseMode = PhaseMode.ersteNacht;
         ErsteNacht ersteNacht = new ErsteNacht(this);
         ersteNacht.start();
+    }
+
+    public void night() {
+        FrontendControl.erzählerFrame.mode = ErzählerFrameMode.nacht;
+        phaseMode = PhaseMode.nacht;
+        Nacht nacht = new Nacht(this);
+        nacht.start();
     }
 
     public void day() {
@@ -154,13 +179,6 @@ public class Game {
         phaseMode = PhaseMode.freibierTag;
         tag = new Tag(this);
         tag.start();
-    }
-
-    public void night() {
-        FrontendControl.erzählerFrame.mode = ErzählerFrameMode.nacht;
-        phaseMode = PhaseMode.nacht;
-        Nacht nacht = new Nacht(this);
-        nacht.start();
     }
 
     public String checkVictory() {

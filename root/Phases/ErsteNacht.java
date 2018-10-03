@@ -207,7 +207,7 @@ public class ErsteNacht extends Thread {
         }
 
         cleanUp();
-        game.day();
+        game.day();//TODO remove
     }
 
     public void beginNight() {

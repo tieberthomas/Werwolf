@@ -54,8 +54,6 @@ public class Nacht extends Thread {
     }
 
     public void run() {
-        boolean freibier = false;
-
         lock = new Object();
         synchronized (lock) {
             FrontendControl dropdownOtions;
@@ -66,7 +64,6 @@ public class Nacht extends Thread {
             Rolle rolle = null;
             String erzählerInfoIconImagePath;
 
-            Opfer chosenOpfer;
             Spieler chosenPlayer;
             wölfinKilled = false;
             wölfinSpieler = null;
@@ -137,7 +134,7 @@ public class Nacht extends Thread {
                     switch (statement.beschreibung) {
                         case Wirt.STATEMENT_BESCHREIBUNG:
                             if (DropdownConstants.JA.name.equals(chosenOption)) {
-                                freibier = true;
+                                game.freibier = true;
                             }
                             break;
 
@@ -292,7 +289,7 @@ public class Nacht extends Thread {
 
                     chosenOptionLastStatement = chosenOption;
 
-                    if (freibier) {
+                    if (game.freibier) {
                         break;
                     }
                 }
@@ -301,7 +298,7 @@ public class Nacht extends Thread {
 
         cleanUp();
 
-        if (freibier) {
+        if (game.freibier) {//TODO remove
             game.freibierDay();
         } else {
             game.day();
