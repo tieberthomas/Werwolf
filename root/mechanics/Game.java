@@ -127,6 +127,8 @@ public class Game {
         }
     }
 
+    //TODO Phase manager
+
     public void firstnight(ErzählerFrame erzählerFrame) {
         phaseMode = PhaseMode.ersteNacht;
         erzählerFrame.mode = ErzählerFrameMode.ersteNacht;
@@ -186,72 +188,6 @@ public class Game {
         }
     }
 
-    public ArrayList<String> getLivingPlayerStrings() {
-        ArrayList<String> allSpieler = new ArrayList<>();
-
-        for (Spieler currentSpieler : spieler) {
-            if (currentSpieler.lebend) {
-                allSpieler.add(currentSpieler.name);
-            }
-        }
-
-        return allSpieler;
-    }
-
-    public Spieler findSpieler(String name) {
-        for (Spieler currentSpieler : spieler) {
-            if (currentSpieler.name.equals(name)) {
-                return currentSpieler;
-            }
-        }
-
-        return null;
-    }
-
-    public ArrayList<Spieler> getLivingPlayer() {
-        ArrayList<Spieler> allSpieler = new ArrayList<>();
-
-        for (Spieler currentSpieler : spieler) {
-            if (currentSpieler.lebend) {
-                allSpieler.add(currentSpieler);
-            }
-        }
-
-        return allSpieler;
-    }
-
-    public Spieler findSpielerPerRolle(String name) {
-        for (Bonusrolle bonusrolle : mitteBonusrollen) {
-            if (bonusrolle.name.equals(name)) {
-                return findSpielerPerRolle(Sammler.NAME);
-            }
-        }
-
-        for (Spieler currentSpieler : spieler) {
-            if (currentSpieler.hauptrolle.name.equals(name) || currentSpieler.bonusrolle.name.equals(name)) {
-                return currentSpieler;
-            }
-        }
-
-        return null;
-    }
-
-    public FrontendControl getPlayerFrontendControl() {
-        FrontendControl frontendControl = new FrontendControl();
-
-        frontendControl.typeOfContent = FrontendControlType.DROPDOWN;
-        frontendControl.dropdownStrings = getLivingPlayerOrNoneStrings();
-
-        return frontendControl;
-    }
-
-    public ArrayList<String> getLivingPlayerOrNoneStrings() {
-        ArrayList<String> allSpieler = getLivingPlayerStrings();
-        allSpieler.add("");
-
-        return allSpieler;
-    }
-
     public void killSpieler(Spieler spieler) {
         if (spieler != null && spieler.lebend) {
             spieler.lebend = false;
@@ -280,33 +216,34 @@ public class Game {
         }
     }
 
-    public FrontendControl getPlayerCheckSpammableFrontendControl(Rolle rolle) {
-        FrontendControl frontendControl = new FrontendControl();
-
-        frontendControl.typeOfContent = FrontendControlType.DROPDOWN;
-        frontendControl.dropdownStrings = getPlayerCheckSpammableStrings(rolle);
-
-        return frontendControl;
-    }
-
-    public ArrayList<String> getMitspielerCheckSpammableStrings(Rolle rolle) {
-        Spieler spieler = findSpielerPerRolle(rolle.name);
-
-        ArrayList<String> mitspieler = getPlayerCheckSpammableStrings(rolle);
-        if (spieler != null) {
-            mitspieler.remove(spieler.name);
+    public Spieler findSpieler(String name) {
+        for (Spieler currentSpieler : spieler) {
+            if (currentSpieler.name.equals(name)) {
+                return currentSpieler;
+            }
         }
 
-        return mitspieler;
+        return null;
     }
 
-    public ArrayList<String> getPlayerCheckSpammableStrings(Rolle rolle) {
-        ArrayList<String> allSpieler = getLivingPlayerOrNoneStrings();
-        if (!rolle.spammable && rolle.besuchtLetzteNacht != null) {
-            allSpieler.remove(rolle.besuchtLetzteNacht.name);
+    public boolean spielerExists(String name) {
+        return findSpieler(name) != null;
+    }
+
+    public Spieler findSpielerPerRolle(String name) {
+        for (Bonusrolle bonusrolle : mitteBonusrollen) {
+            if (bonusrolle.name.equals(name)) {
+                return findSpielerPerRolle(Sammler.NAME);
+            }
         }
 
-        return allSpieler;
+        for (Spieler currentSpieler : spieler) {
+            if (currentSpieler.hauptrolle.name.equals(name) || currentSpieler.bonusrolle.name.equals(name)) {
+                return currentSpieler;
+            }
+        }
+
+        return null;
     }
 
     public Spieler findSpielerOrDeadPerRolle(String name) {
@@ -317,15 +254,6 @@ public class Game {
         }
 
         return null;
-    }
-
-    public FrontendControl getMitspielerCheckSpammableFrontendControl(Rolle rolle) {
-        FrontendControl frontendControl = new FrontendControl();
-
-        frontendControl.typeOfContent = FrontendControlType.DROPDOWN;
-        frontendControl.dropdownStrings = getMitspielerCheckSpammableStrings(rolle);
-
-        return frontendControl;
     }
 
     public ArrayList<Spieler> findSpielersPerRolle(String name) {
@@ -352,22 +280,82 @@ public class Game {
         return spielers;
     }
 
-    public boolean spielerExists(String name) {
-        return findSpieler(name) != null;
-    }
+    public ArrayList<Spieler> getLivingPlayer() {
+        ArrayList<Spieler> allSpieler = new ArrayList<>();
 
-    public ArrayList<String> getMainRolesAlive() {
-        ArrayList<String> names = new ArrayList<String>();
-
-        for (Hauptrolle currentHauptrolle : mainRoles) {
-            for (Spieler currentSpieler : spieler) {
-                if (currentSpieler.hauptrolle.name.equals(currentHauptrolle.name) && Rolle.rolleLebend(currentSpieler.hauptrolle.name)) {
-                    names.add(currentSpieler.hauptrolle.name);
-                }
+        for (Spieler currentSpieler : spieler) {
+            if (currentSpieler.lebend) {
+                allSpieler.add(currentSpieler);
             }
         }
 
-        return names;
+        return allSpieler;
+    }
+
+    public ArrayList<String> getLivingPlayerStrings() {
+        ArrayList<String> allSpieler = new ArrayList<>();
+
+        for (Spieler currentSpieler : spieler) {
+            if (currentSpieler.lebend) {
+                allSpieler.add(currentSpieler.name);
+            }
+        }
+
+        return allSpieler;
+    }
+
+    public ArrayList<String> getLivingPlayerOrNoneStrings() {
+        ArrayList<String> allSpieler = getLivingPlayerStrings();
+        allSpieler.add("");
+
+        return allSpieler;
+    }
+
+    public FrontendControl getPlayerFrontendControl() {
+        FrontendControl frontendControl = new FrontendControl();
+
+        frontendControl.typeOfContent = FrontendControlType.DROPDOWN;
+        frontendControl.dropdownStrings = getLivingPlayerOrNoneStrings();
+
+        return frontendControl;
+    }
+
+    public ArrayList<String> getPlayerCheckSpammableStrings(Rolle rolle) {
+        ArrayList<String> allSpieler = getLivingPlayerOrNoneStrings();
+        if (!rolle.spammable && rolle.besuchtLetzteNacht != null) {
+            allSpieler.remove(rolle.besuchtLetzteNacht.name);
+        }
+
+        return allSpieler;
+    }
+
+    public FrontendControl getPlayerCheckSpammableFrontendControl(Rolle rolle) {
+        FrontendControl frontendControl = new FrontendControl();
+
+        frontendControl.typeOfContent = FrontendControlType.DROPDOWN;
+        frontendControl.dropdownStrings = getPlayerCheckSpammableStrings(rolle);
+
+        return frontendControl;
+    }
+
+    public ArrayList<String> getMitspielerCheckSpammableStrings(Rolle rolle) {
+        Spieler spieler = findSpielerPerRolle(rolle.name);
+
+        ArrayList<String> mitspieler = getPlayerCheckSpammableStrings(rolle);
+        if (spieler != null) {
+            mitspieler.remove(spieler.name);
+        }
+
+        return mitspieler;
+    }
+
+    public FrontendControl getMitspielerCheckSpammableFrontendControl(Rolle rolle) {
+        FrontendControl frontendControl = new FrontendControl();
+
+        frontendControl.typeOfContent = FrontendControlType.DROPDOWN;
+        frontendControl.dropdownStrings = getMitspielerCheckSpammableStrings(rolle);
+
+        return frontendControl;
     }
 
     public ArrayList<String> getMainRoleNames() {
@@ -390,45 +378,6 @@ public class Game {
         return names;
     }
 
-    public ArrayList<Hauptrolle> getStillAvailableMainRoles() {
-        ArrayList<Hauptrolle> mainroles = (ArrayList) mainRolesInGame.clone();
-        ArrayList<Hauptrolle> stilleAvalableMainRoles = new ArrayList<>();
-
-        for (Spieler spieler : spieler) {
-            mainroles.remove(spieler.hauptrolle);
-        }
-
-        stilleAvalableMainRoles.addAll(mainroles);
-
-        return stilleAvalableMainRoles;
-    }
-
-    public ArrayList<Hauptrolle> getStillAvailableBürger() {
-        ArrayList<Hauptrolle> mainroles = getStillAvailableMainRoles();
-        ArrayList<Hauptrolle> mainrolesToRemove = new ArrayList<>();
-
-        for (Hauptrolle hauptrolle : mainroles) {
-            if (!hauptrolle.fraktion.equals(Bürger.NAME)) {
-                mainrolesToRemove.add(hauptrolle);
-            }
-        }
-
-        mainroles.removeAll(mainrolesToRemove);
-
-        return mainroles;
-    }
-
-    public ArrayList<String> getStillAvailableMainRoleNames() {
-        ArrayList<Hauptrolle> stilleAvalableMainRoles = getStillAvailableMainRoles();
-        ArrayList<String> names = new ArrayList<>();
-
-        for (Hauptrolle hauptrolle : stilleAvalableMainRoles) {
-            names.add(hauptrolle.name);
-        }
-
-        return names;
-    }
-
     public ArrayList<String> getPossibleInGameMainRoleNames() {
         ArrayList<String> mainRolesInGame = getMainRoleInGameNames();
 
@@ -443,6 +392,42 @@ public class Game {
         }
 
         return mainRolesInGame;
+    }
+
+    public ArrayList<Hauptrolle> getStillAvailableMainRoles() {
+        ArrayList<Hauptrolle> stilleAvalableMainRoles = new ArrayList<>();
+
+        stilleAvalableMainRoles.addAll(mainRolesInGame);
+
+        for (Spieler spieler : spieler) {
+            stilleAvalableMainRoles.remove(spieler.hauptrolle);
+        }
+
+        return stilleAvalableMainRoles;
+    }
+
+    public ArrayList<Hauptrolle> getStillAvailableBürger() {
+        ArrayList<Hauptrolle> mainroles = getStillAvailableMainRoles();
+        ArrayList<Hauptrolle> bürger = new ArrayList<>();
+
+        for (Hauptrolle hauptrolle : mainroles) {
+            if (hauptrolle.fraktion.equals(Bürger.NAME)) {
+                bürger.add(hauptrolle);
+            }
+        }
+
+        return bürger;
+    }
+
+    public ArrayList<String> getStillAvailableMainRoleNames() {
+        ArrayList<Hauptrolle> stilleAvalableMainRoles = getStillAvailableMainRoles();
+        ArrayList<String> names = new ArrayList<>();
+
+        for (Hauptrolle hauptrolle : stilleAvalableMainRoles) {
+            names.add(hauptrolle.name);
+        }
+
+        return names;
     }
 
     public Hauptrolle findHauptrolle(String wantedName) {
@@ -503,15 +488,24 @@ public class Game {
         return secondaryRoleInGameNames;
     }
 
-    public ArrayList<String> getStillAvailableSecondaryRoleNames() {
-        ArrayList<Bonusrolle> secondaryRoles = (ArrayList) secondaryRolesInGame.clone();
-        ArrayList<String> names = new ArrayList<String>();
+    public ArrayList<Bonusrolle> getStillAvailableSecondaryRoles() {
+        ArrayList<Bonusrolle> stilleAvalableSecondaryRoles = new ArrayList<>();
+
+        stilleAvalableSecondaryRoles.addAll(secondaryRolesInGame);
 
         for (Spieler spieler : spieler) {
-            secondaryRoles.remove(spieler.bonusrolle);
+            stilleAvalableSecondaryRoles.remove(spieler.bonusrolle);
         }
 
-        for (Bonusrolle bonusrolle : secondaryRoles) {
+
+        return stilleAvalableSecondaryRoles;
+    }
+
+    public ArrayList<String> getStillAvailableSecondaryRoleNames() {
+        ArrayList<Bonusrolle> stilleAvalableSecondaryRoles = getStillAvailableSecondaryRoles();
+        ArrayList<String> names = new ArrayList<>();
+
+        for (Bonusrolle bonusrolle : stilleAvalableSecondaryRoles) {
             names.add(bonusrolle.name);
         }
 

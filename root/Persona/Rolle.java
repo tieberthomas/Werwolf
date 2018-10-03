@@ -24,7 +24,7 @@ public class Rolle extends Persona {
         return mitteHauptrollenStrings;
     }
 
-    public static Rolle findRolle(String wantedName) {
+    public static Rolle findRolle(String wantedName) { //TODO move to Game
         Rolle wantedRolle;
 
         wantedRolle = game.findHauptrolle(wantedName);

@@ -12,7 +12,8 @@ wahrsager
 
 
 ToDo:
-
+new Rolle vermeiden: immer von Liste in Game holen
+Liste für buttons Liste für Rollen
 
 task:
 wenn dieb karten stiehlt wie z.B. schnüffler oder tarnumhang, dann müssen arraylists der letzten nächte zurückgesetzt werden
