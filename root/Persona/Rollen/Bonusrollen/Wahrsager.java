@@ -44,7 +44,7 @@ public class Wahrsager extends Bonusrolle {
 
         strings.remove("");
         strings.add(KEIN_OPFER);
-        FrontendControlType typeOfContent = FrontendControlType.DROPDOWN_SEPERATED_LIST;
+        FrontendControlType typeOfContent = FrontendControlType.DROPDOWN_SEPARATED_LIST;
 
         return new FrontendControl(typeOfContent, strings);
     }

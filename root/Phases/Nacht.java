@@ -524,7 +524,7 @@ public class Nacht extends Thread {
                         showDropdownList(statement, frontendControl.title, frontendControl.dropdownStrings);
                         return FrontendControl.erzählerFrame.chosenOption1;
 
-                    case DROPDOWN_SEPERATED_LIST:
+                    case DROPDOWN_SEPARATED_LIST:
                         showDropdownSeperatedList(statement, frontendControl.title, frontendControl.dropdownStrings, frontendControl.listStrings);
                         return FrontendControl.erzählerFrame.chosenOption1;
 
