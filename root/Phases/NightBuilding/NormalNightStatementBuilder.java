@@ -36,8 +36,8 @@ public class NormalNightStatementBuilder {
         if (Totengräber.getNehmbareBonusrollen().size() > 0) {
             addStatementRolle(statements, Totengräber.NAME);
         }
-        //Dieb erwacht und entscheidet ob er jemandes Bonusrolle stehlen möchte
-        //Der Bestohlene erwacht und erhält eine neue Bonusrolle
+        addStatementRolle(statements, Dieb.NAME);
+        addSecondStatementRolle(statements, Dieb.NAME);
 
         addStatementRolle(statements, Gefängniswärter.NAME);
 

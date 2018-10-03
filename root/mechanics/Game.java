@@ -94,6 +94,7 @@ public class Game {
     public void generateAllAvailableSecondaryRoles() {
         secondaryRoles.add(new Analytiker());
         secondaryRoles.add(new Archivar());
+        secondaryRoles.add(new Dieb());
         secondaryRoles.add(new Gefängniswärter());
         //Imitator
         secondaryRoles.add(new Konditor());

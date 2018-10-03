@@ -3,7 +3,6 @@ package root.Persona.Rollen.Bonusrollen;
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.Persona.Bonusrolle;
-import root.Persona.Rolle;
 import root.Persona.Rollen.Constants.BonusrollenType.Aktiv;
 import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Phases.Nacht;
@@ -47,9 +46,8 @@ public class Totengräber extends Bonusrolle {
         if (chosenBonusrolle != null) {
             try {
                 Spieler deadSpieler = game.findSpielerOrDeadPerRolle(chosenBonusrolle.name);
-                chosenBonusrolle = (Bonusrolle) Rolle.findRolle(deadSpieler.bonusrolle.name);
-
                 Spieler spielerTotengräber = game.findSpielerPerRolle(NAME);
+
                 spielerTotengräber.bonusrolle = chosenBonusrolle;
                 deadSpieler.bonusrolle = new Schatten();
 
