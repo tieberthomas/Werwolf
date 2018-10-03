@@ -3,6 +3,7 @@ package root.Frontend.Factories;
 import root.Frontend.Frame.ErzählerFrame;
 import root.Frontend.Frame.ErzählerFrameMode;
 import root.Frontend.Frame.FrameMode;
+import root.Frontend.Frame.MyFrame;
 import root.Frontend.Page.PageElement;
 import root.Frontend.Page.PageTable;
 import root.Frontend.Page.Predecessor;
@@ -19,7 +20,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class ErzählerPageElementFactory {
-    ErzählerFrame erzählerFrame;
+    static ErzählerFrame erzählerFrame;
     public static final int bigTextSize = 36;
     public static final int smallTextSize = 28;
 
@@ -216,11 +217,11 @@ public class ErzählerPageElementFactory {
         return labelTable;
     }
 
-    public JButton generateDeleteButton() {
+    public static JButton generateDeleteButton() {
         JButton deleteButton = new JButton("X");
         deleteButton.setMargin(new Insets(0, 0, 0, 0));
         deleteButton.addActionListener(erzählerFrame);
-        deleteButton.setBackground(erzählerFrame.DEFAULT_BUTTON_COLOR);
+        deleteButton.setBackground(MyFrame.DEFAULT_BUTTON_COLOR);
 
         return deleteButton;
     }

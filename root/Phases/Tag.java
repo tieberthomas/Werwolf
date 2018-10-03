@@ -1,6 +1,7 @@
 package root.Phases;
 
-import root.Frontend.Constants.Timer;
+import root.Frontend.Utils.JButtonStyler;
+import root.Frontend.Utils.Timer;
 import root.Frontend.FrontendControl;
 import root.Persona.Fraktionen.Bürger;
 import root.Persona.Hauptrolle;
@@ -124,7 +125,7 @@ public class Tag extends Thread {
         killSpieler(spieler);
 
         if (game.liebespaar.getPlayerToDie() != null) {
-            FrontendControl.erzählerFrame.disableButton(FrontendControl.erzählerFrame.umbringenJButton);
+            JButtonStyler.disableButton(FrontendControl.erzählerFrame.umbringenJButton);
             waitForAnswer();
             killSpieler(game.liebespaar.getPlayerToDie());
         }

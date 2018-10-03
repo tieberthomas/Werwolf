@@ -1,4 +1,4 @@
-package root.Frontend.Constants;
+package root.Frontend.Utils;
 
 import root.Frontend.Frame.SpielerFrame;
 

@@ -1,10 +1,12 @@
 package root.Frontend.Frame;
 
-import root.Frontend.Constants.Timer;
+import root.Frontend.Factories.ErzählerPageElementFactory;
 import root.Frontend.Factories.ErzählerPageFactory;
 import root.Frontend.FrontendControl;
 import root.Frontend.Page.Page;
 import root.Frontend.Page.PageTable;
+import root.Frontend.Utils.JButtonStyler;
+import root.Frontend.Utils.Timer;
 import root.Persona.Bonusrolle;
 import root.Persona.Hauptrolle;
 import root.Phases.ErsteNacht;
@@ -17,7 +19,6 @@ import root.mechanics.Game;
 import root.mechanics.Torte;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
@@ -95,7 +96,6 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     public JComboBox comboBox1 = new JComboBox();
     public JComboBox comboBox2 = new JComboBox();
     public JComboBox comboBox3 = new JComboBox();
-    public JButton okButton;
     public JButton nextJButton;
     public JButton goBackJButton;
     public JButton nachzüglerJButton;
@@ -169,11 +169,11 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         }
     }
 
-    public void refreshMainRolePage() {
-        refreshMainRoleTable();
+    private void refreshMainRolePage() {
+        refreshLabelTable(mainRoleLabelTable, game.getMainRoleInGameNames());
         refreshDeleteMainRoleTable();
         refreshMainRoleCounterLabel();
-        disableMainRoleButtons();
+        JButtonStyler.styleAndDisableButtons(mainRoleButtons);
         buildScreenFromPage(mainRoleSetupPage);
     }
 
@@ -182,86 +182,25 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         deleteMainRoleButtons.clear();
 
         for (Hauptrolle hauptrolle : game.mainRolesInGame) {
-            JButton deleteButton = pageFactory.pageElementFactory.generateDeleteButton();
+            JButton deleteButton = ErzählerPageElementFactory.generateDeleteButton();
             deleteMainRoleTable.add(deleteButton);
             deleteMainRoleButtons.add(deleteButton);
         }
     }
 
-    public void refreshMainRoleTable() {
-        mainRoleLabelTable.tableElements.clear();
-
-        for (Hauptrolle hauptrolle : game.mainRolesInGame) {
-            mainRoleLabelTable.add(new JLabel(hauptrolle.name));
-        }
-    }
-
-    public void disableMainRoleButtons() {
-        for (JButton button : mainRoleButtons) {
-            button.setEnabled(true);
-            button.setBackground(game.findHauptrolle(button.getText()).getColor());
-        }
-
-        for (Hauptrolle hauptrolle : game.mainRolesInGame) {
-            for (JButton button : mainRoleButtons) {
-                int occurrences = game.numberOfOccurencesOfMainRoleInGame(hauptrolle);
-                if (button.getText().equals(hauptrolle.name) && hauptrolle.numberOfPossibleInstances <= occurrences) {
-                    if (button.isEnabled()) {
-                        disableButton(button);
-                    }
-                }
-            }
-        }
-    }
-
-    public void disableSecondaryRoleButtons() {
-        for (JButton button : secondaryRoleButtons) {
-            button.setEnabled(true);
-            button.setBackground(game.findBonusrolle(button.getText()).getColor());
-        }
-
-        for (Bonusrolle bonusrolle : game.secondaryRolesInGame) {
-            for (JButton button : secondaryRoleButtons) {
-                int occurrences = game.numberOfOccurencesOfSecondaryRoleInGame(bonusrolle);
-                if (button.getText().equals(bonusrolle.name) && bonusrolle.numberOfPossibleInstances <= occurrences) {
-                    if (button.isEnabled()) {
-                        disableButton(button);
-                    }
-                }
-            }
-        }
-    }
-
-    public void disableButton(JButton button) {
-        button.setEnabled(false);
-        Color oldColor = button.getBackground();
-        int offset = 128;
-        int newRed = oldColor.getRed() + offset;
-        int newBlue = oldColor.getBlue() + offset;
-        int newGreen = oldColor.getGreen() + offset;
-        if (newRed > 255)
-            newRed = 255;
-        if (newBlue > 255)
-            newBlue = 255;
-        if (newGreen > 255)
-            newGreen = 255;
-        Color newColor = new Color(newRed, newGreen, newBlue);
-        button.setBackground(newColor);
-    }
-
-    public void refreshSecondaryRolePage() {
-        refreshSecondaryRoleTable();
+    private void refreshSecondaryRolePage() {
+        refreshLabelTable(secondaryRoleLabelTable, game.getSecondaryRoleInGameNames());
         refreshDeleteSecondaryRoleTable();
         refreshSecondaryRoleCounterLabel();
-        disableSecondaryRoleButtons();
+        JButtonStyler.styleAndDisableButtons(secondaryRoleButtons);
         buildScreenFromPage(secondaryRoleSetupPage);
     }
 
-    public void refreshSecondaryRoleTable() {
-        secondaryRoleLabelTable.tableElements.clear();
+    private void refreshLabelTable(PageTable labels, ArrayList<String> texts) {
+        labels.tableElements.clear();
 
-        for (Bonusrolle bonusrolle : game.secondaryRolesInGame) {
-            secondaryRoleLabelTable.add(new JLabel(bonusrolle.name));
+        for (String roleName : texts) {
+            labels.add(new JLabel(roleName));
         }
     }
 
