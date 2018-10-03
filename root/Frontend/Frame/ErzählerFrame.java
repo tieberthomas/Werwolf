@@ -142,9 +142,9 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         playerSpecifiyPage = generateSpecifyPlayerPage();
     }
 
-    public void refreshPlayerPage() {
+    private void refreshPlayerPage() {
         refreshPlayerTable();
-        refreshDeletePlayerTable();
+        refreshDeleteButtons(deletePlayerTable, deletePlayerButtons, game.spieler.size());
         refreshNumberOfPlayersLabel();
         buildScreenFromPage(playerSetupPage);
         addPlayerTxtField.requestFocusInWindow();
@@ -158,39 +158,28 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         }
     }
 
-    public void refreshDeletePlayerTable() {
-        deletePlayerTable.tableElements.clear();
-        deletePlayerButtons.clear();
-
-        for (Spieler spieler : game.spieler) {
-            JButton deleteButton = pageFactory.pageElementFactory.generateDeleteButton();
-            deletePlayerTable.add(deleteButton);
-            deletePlayerButtons.add(deleteButton);
-        }
-    }
-
     private void refreshMainRolePage() {
         refreshLabelTable(mainRoleLabelTable, game.getMainRoleInGameNames());
-        refreshDeleteMainRoleTable();
+        refreshDeleteButtons(deleteMainRoleTable, deleteMainRoleButtons, game.mainRolesInGame.size());
         refreshMainRoleCounterLabel();
         JButtonStyler.styleAndDisableButtons(mainRoleButtons);
         buildScreenFromPage(mainRoleSetupPage);
     }
 
-    public void refreshDeleteMainRoleTable() {
-        deleteMainRoleTable.tableElements.clear();
-        deleteMainRoleButtons.clear();
+    private void refreshDeleteButtons(PageTable table, ArrayList<JButton> buttons, int numberOfButtons) {
+        table.tableElements.clear();
+        buttons.clear();
 
-        for (Hauptrolle hauptrolle : game.mainRolesInGame) {
+        for (int i=0; i<numberOfButtons; i++) {
             JButton deleteButton = ErzählerPageElementFactory.generateDeleteButton();
-            deleteMainRoleTable.add(deleteButton);
-            deleteMainRoleButtons.add(deleteButton);
+            table.add(deleteButton);
+            buttons.add(deleteButton);
         }
     }
 
     private void refreshSecondaryRolePage() {
         refreshLabelTable(secondaryRoleLabelTable, game.getSecondaryRoleInGameNames());
-        refreshDeleteSecondaryRoleTable();
+        refreshDeleteButtons(deleteSecondaryRoleTable, deleteSecondaryRoleButtons, game.secondaryRolesInGame.size());
         refreshSecondaryRoleCounterLabel();
         JButtonStyler.styleAndDisableButtons(secondaryRoleButtons);
         buildScreenFromPage(secondaryRoleSetupPage);
