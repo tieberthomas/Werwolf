@@ -22,12 +22,12 @@ public class StatementRolle extends Statement {
     }
 
     @Override
-    public boolean isVisible() {
+    public boolean isVisibleNow() {
         return Rolle.rolleInNachtEnthalten(rolle);
     }
 
     @Override
-    public boolean isLebend() {
+    public boolean isLebendNow() {
         if (!sammler) {
             return Rolle.rolleLebend(rolle);
         } else {
@@ -36,7 +36,7 @@ public class StatementRolle extends Statement {
     }
 
     @Override
-    public boolean isOpfer() {
+    public boolean isOpferNow() {
         if (!sammler) {
             return Opfer.isOpferPerRolle(rolle);
         } else {
@@ -45,7 +45,7 @@ public class StatementRolle extends Statement {
     }
 
     @Override
-    public boolean isAktiv() {
+    public boolean isAktivNow() {
         if (!sammler) {
             return Rolle.rolleAktiv(rolle);
         } else {

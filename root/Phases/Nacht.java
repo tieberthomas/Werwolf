@@ -76,6 +76,8 @@ public class Nacht extends Thread {
             statements = NormalNightStatementBuilder.normaleNachtBuildStatements();
 
             for (Statement statement : statements) {
+                refreshStatementStates();
+
                 chosenOption = null;
 
                 if (statement.isVisible() || statement.type == StatementType.PROGRAMM) {
@@ -293,6 +295,8 @@ public class Nacht extends Thread {
                         break;
                     }
                 }
+
+                statement.alreadyOver = true;
             }
         }
 
@@ -358,6 +362,14 @@ public class Nacht extends Thread {
         Torte.torte = false;
 
         GrafVladimir.unerkennbarerSpieler = null;
+    }
+
+    private void refreshStatementStates() {
+        for (Statement statement : statements) {
+            if(!statement.alreadyOver) {
+                statement.refreshState();
+            }
+        }
     }
 
     public void setSchütze() {
@@ -601,26 +613,6 @@ public class Nacht extends Thread {
         }
 
         waitForAnswer();
-    }
-
-    public String showAfterDeathDropdownListPage(Statement statement, ArrayList<String> dropdownOptions) {
-        if (statement.isLebend()) {
-            if (statement.isAktiv()) {
-                FrontendControl.erzählerDropdownPage(statement, dropdownOptions);
-                FrontendControl.spielerDropdownListPage(statement.title, dropdownOptions);
-            } else {
-                Deaktiviert deaktiviert = new Deaktiviert();
-                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), deaktiviert.imagePath);
-                FrontendControl.showZeigekarteOnSpielerScreen(deaktiviert);
-            }
-        } else {
-            FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), new AusDemSpiel().imagePath);
-            FrontendControl.spielerDropdownPage(statement.title, 1);
-        }
-
-        waitForAnswer();
-
-        return FrontendControl.erzählerFrame.chosenOption1;
     }
 
     public String showKonditorDropdownPage(Statement statement, FrontendControl frontendControl) {

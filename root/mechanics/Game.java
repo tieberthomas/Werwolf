@@ -116,7 +116,7 @@ public class Game {
         secondaryRoles.add(new Wolfspelz());
     }
 
-    public ErzählerFrameMode parsePhaseMode() {
+    public ErzählerFrameMode parsePhaseMode() { //TODO automapper?
         if (phaseMode == PhaseMode.tag) {
             return ErzählerFrameMode.tag;
         } else if (phaseMode == PhaseMode.freibierTag) {

@@ -7,40 +7,69 @@ public class Statement {
     public String beschreibung;
     public String title;
     public StatementType type;
+    private StatementState state = StatementState.INVISIBLE_NOT_IN_GAME;
+    public boolean alreadyOver = false;
 
     public Statement() {
         type = StatementType.EMPTY_STATEMENT;
     }
 
     public StatementState getState() {
-        if (!isVisible()) {
+        return state;
+    }
+
+    public void refreshState() {
+        state = getStateNow();
+    }
+
+    public StatementState getStateNow() {
+        if (!isVisibleNow()) {
             return StatementState.INVISIBLE_NOT_IN_GAME;
         }
-        if (!isLebend()) {
+        if (!isLebendNow()) {
             return StatementState.NOT_IN_GAME;
         }
-        if (isOpfer()) {
+        if (isOpferNow()) {
             return StatementState.DEAD;
         }
-        if (!isAktiv()) {
+        if (!isAktivNow()) {
             return StatementState.DEAKTIV;
         }
         return StatementState.NORMAL;
     }
 
     public boolean isVisible() {
-        return true;
+        switch (state) {
+            case INVISIBLE_NOT_IN_GAME:
+                return false;
+            default:
+                return true;
+        }
     }
 
     public boolean isLebend() {
+        switch (state) {
+            case INVISIBLE_NOT_IN_GAME:
+            case NOT_IN_GAME:
+                return false;
+            default:
+                return true;
+        }
+    }
+
+    public boolean isVisibleNow() {
         return true;
     }
 
-    public boolean isOpfer() {
+    public boolean isLebendNow() {
+        return true;
+    }
+
+    public boolean isOpferNow() {
         return false;
     }
 
-    public boolean isAktiv() {
+    public boolean isAktivNow() {
         return true;
     }
 }
