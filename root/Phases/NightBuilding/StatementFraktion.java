@@ -18,22 +18,22 @@ public class StatementFraktion extends Statement {
     }
 
     @Override
-    public boolean isVisible() {
+    public boolean isVisibleNow() {
         return Fraktion.fraktionInNachtEnthalten(fraktion);
     }
 
     @Override
-    public boolean isLebend() {
+    public boolean isLebendNow() {
         return Fraktion.fraktionLebend(fraktion);
     }
 
     @Override
-    public boolean isOpfer() {
+    public boolean isOpferNow() {
         return Fraktion.fraktionOpfer(fraktion);
     }
 
     @Override
-    public boolean isAktiv() {
+    public boolean isAktivNow() {
         return Fraktion.fraktionAktiv(fraktion);
     }
 

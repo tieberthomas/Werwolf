@@ -12,6 +12,7 @@ wahrsager
 
 
 ToDo:
+Dropdown auf totPage entfernen
 Fix Problem Dieb
 new Rolle vermeiden: immer von Liste in Game holen
 Liste für buttons Liste für Rollen

@@ -9,22 +9,22 @@ public class StatementProgramm extends Statement {
     }
 
     @Override
-    public boolean isVisible() {
+    public boolean isVisibleNow() {
         return false;
     }
 
     @Override
-    public boolean isLebend() {
+    public boolean isLebendNow() {
         return true;
     }
 
     @Override
-    public boolean isOpfer() {
+    public boolean isOpferNow() {
         return false;
     }
 
     @Override
-    public boolean isAktiv() {
+    public boolean isAktivNow() {
         return true;
     }
 }
