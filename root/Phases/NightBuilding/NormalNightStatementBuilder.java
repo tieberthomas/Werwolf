@@ -65,7 +65,7 @@ public class NormalNightStatementBuilder {
         addStatementRolle(statements, Schreckenswolf.NAME);
 
         addStatementFraktion(statements, Schattenpriester_Fraktion.NAME);
-        statements.add(getSecondStatementFraktion(Schattenpriester_Fraktion.NAME));
+        addSecondStatementFraktion(statements, Schattenpriester_Fraktion.NAME);
         addStatementRolle(statements, Chemiker.NAME);
         addSecondStatementRolle(statements, Chemiker.NAME);
 
@@ -107,43 +107,31 @@ public class NormalNightStatementBuilder {
         return statements;
     }
 
-    private static void addStatementRolle(ArrayList<Statement> statements, String rolle) {
-        statements.add(getStatement(rolle));
-    }
-
-    private static void addSecondStatementRolle(ArrayList<Statement> statements, String rolle) {
-        statements.add(getSecondStatement(rolle));
-    }
-
-    private static void addStatementFraktion(ArrayList<Statement> statements, String fraktion) {
-        statements.add(getStatementFraktion(fraktion));
-    }
-
-    private static Statement getStatement(String rollenName) {
+    private static void addStatementRolle(ArrayList<Statement> statements, String rollenName) {
         Rolle rolle = Rolle.findRolle(rollenName);
-        return new StatementRolle(rolle);
+        Statement statement = new StatementRolle(rolle);
+        statements.add(statement);
     }
 
-    private static Statement getSecondStatement(String rollenName) {
+    private static void addSecondStatementRolle(ArrayList<Statement> statements, String rollenName) {
         Rolle rolle = Rolle.findRolle(rollenName);
         if (rolle != null) {
-            return new StatementRolle(rolle.secondStatementBeschreibung, rolle.secondStatementTitle, rolle.name, rolle.secondStatementType);
-        } else {
-            return new Statement();
+            Statement statement = new StatementRolle(rolle.secondStatementBeschreibung, rolle.secondStatementTitle, rolle.name, rolle.secondStatementType);
+            statements.add(statement);
         }
     }
 
-    private static Statement getStatementFraktion(String fraktionsName) {
+    private static void addStatementFraktion(ArrayList<Statement> statements, String fraktionsName) {
         Fraktion fraktion = Fraktion.findFraktion(fraktionsName);
-        return new StatementFraktion(fraktion);
+        Statement statement = new StatementFraktion(fraktion);
+        statements.add(statement);
     }
 
-    private static Statement getSecondStatementFraktion(String fraktionsName) {
+    private static void addSecondStatementFraktion(ArrayList<Statement> statements, String fraktionsName) {
         Fraktion fraktion = Fraktion.findFraktion(fraktionsName);
         if (fraktion != null) {
-            return new StatementFraktion(fraktion.secondStatementBeschreibung, fraktion.secondStatementTitle, fraktion.name, fraktion.secondStatementType);
-        } else {
-            return new Statement();
+            Statement statement = new StatementFraktion(fraktion.secondStatementBeschreibung, fraktion.secondStatementTitle, fraktion.name, fraktion.secondStatementType);
+            statements.add(statement);
         }
     }
 }
