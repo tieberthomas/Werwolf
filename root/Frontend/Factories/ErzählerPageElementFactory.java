@@ -18,14 +18,15 @@ import root.Phases.NightBuilding.StatementRolle;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class ErzählerPageElementFactory {
     static ErzählerFrame erzählerFrame;
-    public static final int bigTextSize = 36;
-    public static final int smallTextSize = 28;
+    private static final int bigTextSize = 36;
+    private static final int smallTextSize = 28;
 
     public ErzählerPageElementFactory(ErzählerFrame erzählerFrame) {
-        this.erzählerFrame = erzählerFrame;
+        ErzählerPageElementFactory.erzählerFrame = erzählerFrame;
     }
 
     public PageElement generateLabel(Predecessor predecessorY, String title) {
@@ -50,7 +51,7 @@ public class ErzählerPageElementFactory {
 
         button.setText(startButtonTitle);
         button.addActionListener(erzählerFrame);
-        button.setBackground(erzählerFrame.DEFAULT_BUTTON_COLOR);
+        button.setBackground(MyFrame.DEFAULT_BUTTON_COLOR);
 
         PageElement startButton = new PageElement(button, startButtonWidth, startButtonHeight, null, null, 0, 0);
 
@@ -67,7 +68,7 @@ public class ErzählerPageElementFactory {
         int bigButtonHeight = 50;
 
         button.addActionListener(erzählerFrame);
-        button.setBackground(erzählerFrame.DEFAULT_BUTTON_COLOR);
+        button.setBackground(MyFrame.DEFAULT_BUTTON_COLOR);
 
         PageElement bigButton = new PageElement(button, bigButtonWidth, bigButtonHeight, null, predecessorY, 0, 10);
 
@@ -76,10 +77,6 @@ public class ErzählerPageElementFactory {
         bigButton.setCoordX(xCoord);
 
         return bigButton;
-    }
-
-    public PageElement generateSmallButton(JButton jbutton) {
-        return generateSmallButton(jbutton, null);
     }
 
     public PageElement generateSmallButton(JButton jbutton, Predecessor predecessorX) {
@@ -92,7 +89,7 @@ public class ErzählerPageElementFactory {
 
         PageElement button = new PageElement(jbutton, buttonWidth, buttonHeight, predecessorX, spaceToPredecessorX);
 
-        jbutton.setBackground(erzählerFrame.DEFAULT_BUTTON_COLOR);
+        jbutton.setBackground(MyFrame.DEFAULT_BUTTON_COLOR);
         jbutton.addActionListener(erzählerFrame);
 
         return button;
@@ -130,7 +127,7 @@ public class ErzählerPageElementFactory {
         button.setText(title);
         button.setMargin(new Insets(0, 0, 0, 0));
         button.addActionListener(erzählerFrame);
-        button.setBackground(erzählerFrame.DEFAULT_BUTTON_COLOR);
+        button.setBackground(MyFrame.DEFAULT_BUTTON_COLOR);
 
         return goNextButton;
     }
@@ -155,21 +152,15 @@ public class ErzählerPageElementFactory {
         int labelHeight = 25;
         int spaceToPredecessorY = 10;
 
-        PageElement numberOfPlayersLabel = new PageElement(label, labelWidth, labelHeight, null, predecessorY, Predecessor.DEFAULT_SPACE, spaceToPredecessorY);
-
-        return numberOfPlayersLabel;
+        return new PageElement(label, labelWidth, labelHeight, null, predecessorY, Predecessor.DEFAULT_SPACE, spaceToPredecessorY);
     }
 
     public String generateNumberOfPLayersLabelTitle(int numberOfPlayers) {
-        String numberOfPlayersLabelTitle = "Spieleranzahl: " + Integer.toString(numberOfPlayers);
-
-        return numberOfPlayersLabelTitle;
+        return "Spieleranzahl: " + Integer.toString(numberOfPlayers);
     }
 
     public String generateCounterLabelTitle(int numberOfPlayers, int numberOfRoles) {
-        String numberOfPlayersLabelTitle = Integer.toString(numberOfRoles) + " / " + Integer.toString(numberOfPlayers);
-
-        return numberOfPlayersLabelTitle;
+        return Integer.toString(numberOfRoles) + " / " + Integer.toString(numberOfPlayers);
     }
 
     public PageTable generateButtonTable(PageTable buttonTable, Predecessor predecessorY) {
@@ -209,14 +200,14 @@ public class ErzählerPageElementFactory {
         return table;
     }
 
-    public PageTable generatePageTable(Predecessor predecessorX, Predecessor predecessorY, int columns, int tableElementWidth, int tableElementHeight,
+    public PageTable generatePageTable(PageTable table, Predecessor predecessorX, Predecessor predecessorY, int columns, int tableElementWidth, int tableElementHeight,
                                        int tableElementsXDistance, int tableElementsYDistance, int spaceToPredecessorX, int spaceToPredecessorY) {
 
-        PageTable labelTable = new PageTable(columns, tableElementWidth, tableElementHeight, predecessorX, predecessorY, spaceToPredecessorX, spaceToPredecessorY);
-        labelTable.setTable_elements_x_distance(tableElementsXDistance);
-        labelTable.setTable_elements_y_distance(tableElementsYDistance);
+        table.setupTable(columns, tableElementWidth, tableElementHeight, predecessorX, predecessorY, spaceToPredecessorX, spaceToPredecessorY);
+        table.setTable_elements_x_distance(tableElementsXDistance);
+        table.setTable_elements_y_distance(tableElementsYDistance);
 
-        return labelTable;
+        return table;
     }
 
     public static JButton generateDeleteButton() {
@@ -308,7 +299,7 @@ public class ErzählerPageElementFactory {
                                         int width, int height, int spaceToPredecessorX, int spaceToPredecessorY) {
         jComboBox.addActionListener(erzählerFrame);
         jComboBox.setSelectedIndex(jComboBox.getItemCount() - 1);
-        jComboBox.setBackground(erzählerFrame.DEFAULT_BUTTON_COLOR);
+        jComboBox.setBackground(MyFrame.DEFAULT_BUTTON_COLOR);
 
         PageElement comboBox = new PageElement(jComboBox, width, height, predecessorX, predecessorY, spaceToPredecessorX, spaceToPredecessorY);
 
@@ -336,9 +327,7 @@ public class ErzählerPageElementFactory {
         int spaceToPredecessorY = 0;
         int spaceToPredecessorX = 20;
 
-        PageElement titleLabel = new PageElement(titleJLabel, titleLabelWidth, titleLabelHeight, predecessorX, null, spaceToPredecessorX, spaceToPredecessorY);
-
-        return titleLabel;
+        return new PageElement(titleJLabel, titleLabelWidth, titleLabelHeight, predecessorX, null, spaceToPredecessorX, spaceToPredecessorY);
     }
 
     public PageElement generateIcon(Predecessor predecessorY, String filePath) {
@@ -351,9 +340,7 @@ public class ErzählerPageElementFactory {
 
         iconJLabel.setIcon(iconLogo);
 
-        PageElement iconLabel = new PageElement(iconJLabel, iconWidth, iconHeight, null, predecessorY, PageElement.DEFAULT_SPACE, 20);
-
-        return iconLabel;
+        return new PageElement(iconJLabel, iconWidth, iconHeight, null, predecessorY, PageElement.DEFAULT_SPACE, 20);
     }
 
     public PageElement generateCenteredImageLabel(String imagePath, Predecessor predecessorY) {
@@ -404,7 +391,7 @@ public class ErzählerPageElementFactory {
         int iconWidth = (int) (iconLogo.getIconWidth() * 0.7);
         int iconHeight = (int) (iconLogo.getIconHeight() * 0.7);
 
-        if (filePath != "") {
+        if (!Objects.equals(filePath, "")) {
             Image img = iconLogo.getImage();
             if (img != null) {
                 Image newimg = img.getScaledInstance(iconWidth, iconHeight, java.awt.Image.SCALE_SMOOTH);
@@ -414,9 +401,7 @@ public class ErzählerPageElementFactory {
             }
         }
 
-        PageElement iconLabel = new PageElement(iconJLabel, iconWidth, iconHeight, null, predecessorY, PageElement.DEFAULT_SPACE, 20);
-
-        return iconLabel;
+        return new PageElement(iconJLabel, iconWidth, iconHeight, null, predecessorY, PageElement.DEFAULT_SPACE, 20);
     }
 
     public JLabel generateTitleJLabel(String text) {

@@ -7,7 +7,6 @@ import root.Frontend.Page.PageTable;
 import root.Phases.NightBuilding.Statement;
 import root.Phases.Tag;
 import root.ResourceManagement.ImagePath;
-import root.mechanics.Torte;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -222,19 +221,19 @@ public class ErzählerPageFactory {
         int spaceBetween = 5;
         int columns = 1;
 
-        erzählerFrame.deleteSpecifyPlayerTable = pageElementFactory.generatePageTable(titleLabel, null, columns, deleteButtonWidth,
+        erzählerFrame.deleteSpecifyPlayerTable = pageElementFactory.generatePageTable(erzählerFrame.deleteSpecifyPlayerTable, titleLabel, null, columns, deleteButtonWidth,
                 tableElementHeight, nameLabelWidth + mainRoleLabelWidth + secondaryRoleLabelWidth, spaceBetween,
                 0, spaceBetween);
 
-        erzählerFrame.playerSpecifyTable = pageElementFactory.generatePageTable(titleLabel, null, columns, nameLabelWidth,
+        erzählerFrame.playerSpecifyLabelTable = pageElementFactory.generatePageTable(erzählerFrame.playerSpecifyLabelTable, titleLabel, null, columns, nameLabelWidth,
                 tableElementHeight, deleteButtonWidth + mainRoleLabelWidth + secondaryRoleLabelWidth, spaceBetween,
                 deleteButtonWidth + spaceBetween, spaceBetween);
 
-        erzählerFrame.mainRoleSpecifyTable = pageElementFactory.generatePageTable(titleLabel, null, columns, mainRoleLabelWidth,
+        erzählerFrame.mainRoleSpecifyLabelTable = pageElementFactory.generatePageTable(erzählerFrame.mainRoleSpecifyLabelTable, titleLabel, null, columns, mainRoleLabelWidth,
                 tableElementHeight, deleteButtonWidth + nameLabelWidth + secondaryRoleLabelWidth, spaceBetween,
                 deleteButtonWidth + spaceBetween * 2 + nameLabelWidth, spaceBetween);
 
-        erzählerFrame.secondaryRoleSpecifyTable = pageElementFactory.generatePageTable(titleLabel, null, columns, secondaryRoleLabelWidth,
+        erzählerFrame.secondaryRoleSpecifyLabelTable = pageElementFactory.generatePageTable(erzählerFrame.secondaryRoleSpecifyLabelTable, titleLabel, null, columns, secondaryRoleLabelWidth,
                 tableElementHeight, deleteButtonWidth + nameLabelWidth + mainRoleLabelWidth, spaceBetween,
                 deleteButtonWidth + spaceBetween * 3 + nameLabelWidth + mainRoleLabelWidth, spaceBetween);
 
@@ -255,9 +254,9 @@ public class ErzählerPageFactory {
         playerSpecifyPage.add(chooseMainRole);
         playerSpecifyPage.add(secondaryRoleLabel);
         playerSpecifyPage.add(chooseSecondaryRole);
-        playerSpecifyPage.addTable(erzählerFrame.playerSpecifyTable);
-        playerSpecifyPage.addTable(erzählerFrame.mainRoleSpecifyTable);
-        playerSpecifyPage.addTable(erzählerFrame.secondaryRoleSpecifyTable);
+        playerSpecifyPage.addTable(erzählerFrame.playerSpecifyLabelTable);
+        playerSpecifyPage.addTable(erzählerFrame.mainRoleSpecifyLabelTable);
+        playerSpecifyPage.addTable(erzählerFrame.secondaryRoleSpecifyLabelTable);
         playerSpecifyPage.addTable(erzählerFrame.deleteSpecifyPlayerTable);
         playerSpecifyPage.add(goNextButton);
         playerSpecifyPage.add(goBackButton);
@@ -649,21 +648,19 @@ public class ErzählerPageFactory {
         erzählerFrame.deleteTortenPlayerTable = pageElementFactory.generatePageTable(erzählerFrame.deleteTortenPlayerTable, choosePlayer1,
                 columns, deleteButtonWidth, tableElementHeight, nameLabelWidth, spaceBetween, 0, spaceBetween);
 
-        erzählerFrame.playerLabelTable = pageElementFactory.generatePageTable(erzählerFrame.playerLabelTable, choosePlayer1,
+        erzählerFrame.tortenPlayerLabelTable = pageElementFactory.generatePageTable(erzählerFrame.tortenPlayerLabelTable, choosePlayer1,
                 columns, nameLabelWidth, tableElementHeight, deleteButtonWidth, spaceBetween, deleteButtonWidth + spaceBetween, spaceBetween);
 
         erzählerFrame.nextJButton = new JButton();
         PageElement nextButton = pageElementFactory.generateLowestButton(erzählerFrame.nextJButton);
-
-        Torte.tortenEsser = new ArrayList<>();
 
         Page tortenPage = new Page();
 
         tortenPage.add(titleLabel);
         tortenPage.add(choosePlayer1);
         tortenPage.add(addPlayerButton);
-        tortenPage.addTable(erzählerFrame.deletePlayerTable);
-        tortenPage.addTable(erzählerFrame.playerLabelTable);
+        tortenPage.addTable(erzählerFrame.deleteTortenPlayerTable);
+        tortenPage.addTable(erzählerFrame.tortenPlayerLabelTable);
         tortenPage.add(nextButton);
 
         return tortenPage;

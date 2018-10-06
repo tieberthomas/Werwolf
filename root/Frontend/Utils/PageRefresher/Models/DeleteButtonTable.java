@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.util.function.IntSupplier;
 
-public class DeleteButtonTable extends RefreshObject{
+public class DeleteButtonTable implements RefreshObject{
     private PageTable table;
     private ArrayList<JButton> buttons;
     private IntSupplier numberOfButtons;

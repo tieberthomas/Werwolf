@@ -1,12 +1,12 @@
 package root.Frontend.Frame;
 
-import root.Frontend.Factories.ErzählerPageElementFactory;
 import root.Frontend.Factories.ErzählerPageFactory;
 import root.Frontend.FrontendControl;
 import root.Frontend.Page.Page;
 import root.Frontend.Page.PageTable;
 import root.Frontend.Utils.JButtonStyler;
 import root.Frontend.Utils.PageRefresher.Models.DeleteButtonTable;
+import root.Frontend.Utils.PageRefresher.Models.LabelTable;
 import root.Frontend.Utils.PageRefresher.PageRefresher;
 import root.Frontend.Utils.Timer;
 import root.Persona.Bonusrolle;
@@ -25,7 +25,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 public class ErzählerFrame extends MyFrame implements ActionListener {
     public static Game game;
@@ -88,9 +87,9 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     public Page playerSpecifiyPage;
     public JButton playerSpecifyGoNextJButton;
     public JButton playerSpecifyGoBackJButton;
-    public PageTable playerSpecifyTable;
-    public PageTable mainRoleSpecifyTable;
-    public PageTable secondaryRoleSpecifyTable;
+    public PageTable playerSpecifyLabelTable;
+    public PageTable mainRoleSpecifyLabelTable;
+    public PageTable secondaryRoleSpecifyLabelTable;
     public PageTable deleteSpecifyPlayerTable;
     public ArrayList<JButton> deleteSpecifyPlayerButtons = new ArrayList<>();
 
@@ -111,6 +110,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
 
     public Page tortenPage;
     public JButton addPlayerTortenButton;
+    public PageTable tortenPlayerLabelTable;
     public PageTable deleteTortenPlayerTable;
     public ArrayList<JButton> deleteTortenPlayerButtons = new ArrayList<>();
 
@@ -118,6 +118,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     private PageRefresher mainRolePageRefresher;
     private PageRefresher secondaryRolePageRefresher;
     private PageRefresher tortenPageRefresher;
+    private PageRefresher specifyPageRefresher;
 
     public ErzählerFrame() {
         calcFrameSize();
@@ -134,7 +135,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
 
         showFrame();
 
-        timer = new Timer();
+        timer = new Timer(); //TODO move into spielerframe/make static
 
         initializePageTables();
     }
@@ -146,12 +147,16 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         playerLabelTable = new PageTable();
         mainRoleLabelTable = new PageTable();
         secondaryRoleLabelTable = new PageTable();
+        tortenPlayerLabelTable = new PageTable();
+        playerSpecifyLabelTable = new PageTable();
+        mainRoleSpecifyLabelTable = new PageTable();
+        secondaryRoleSpecifyLabelTable = new PageTable();
 
         deletePlayerTable = new PageTable();
         deleteMainRoleTable = new PageTable();
         deleteSecondaryRoleTable = new PageTable();
-        deleteSpecifyPlayerTable = new PageTable();
         deleteTortenPlayerTable = new PageTable();
+        deleteSpecifyPlayerTable = new PageTable();
     }
 
     private void generateAllPageRefreshers() {
@@ -159,26 +164,36 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         generateMainRolePageRefresher();
         generateSecondaryRolePageRefresher();
         generateTortenPageRefresher();
+        generateSpecifyPageRefresher();
     }
 
     private void generatePlayerPageRefresher() {
         playerPageRefresher = new PageRefresher();
+        playerPageRefresher.add(new LabelTable(playerLabelTable, game::getLivingPlayerStrings));
         playerPageRefresher.add(new DeleteButtonTable(deletePlayerTable, deletePlayerButtons, game.spieler::size));
     }
 
     private void generateMainRolePageRefresher() {
         mainRolePageRefresher = new PageRefresher();
+        mainRolePageRefresher.add(new LabelTable(mainRoleLabelTable, game::getMainRoleInGameNames));
         mainRolePageRefresher.add(new DeleteButtonTable(deleteMainRoleTable, deleteMainRoleButtons, game.mainRolesInGame::size));
     }
 
     private void generateSecondaryRolePageRefresher() {
         secondaryRolePageRefresher = new PageRefresher();
+        secondaryRolePageRefresher.add(new LabelTable(secondaryRoleLabelTable, game::getSecondaryRoleInGameNames));
         secondaryRolePageRefresher.add(new DeleteButtonTable(deleteSecondaryRoleTable, deleteSecondaryRoleButtons, game.secondaryRolesInGame::size));
     }
 
     private void generateTortenPageRefresher() {
         tortenPageRefresher = new PageRefresher();
+        tortenPageRefresher.add(new LabelTable(tortenPlayerLabelTable, Torte::getTortenesserNames));
         tortenPageRefresher.add(new DeleteButtonTable(deleteTortenPlayerTable, deleteTortenPlayerButtons, Torte.tortenEsser::size));
+    }
+
+    private void generateSpecifyPageRefresher() {
+        specifyPageRefresher = new PageRefresher();
+        specifyPageRefresher.add(new DeleteButtonTable(deleteSpecifyPlayerTable, deleteSpecifyPlayerButtons, game.playersSpecified::size));
     }
 
     private void generateAllPages() {
@@ -198,54 +213,24 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     }
 
     private void refreshPlayerPage() {
-        refreshPlayerTable();
         playerPageRefresher.refreshAll();
         refreshNumberOfPlayersLabel();
         buildScreenFromPage(playerSetupPage);
         addPlayerTxtField.requestFocusInWindow();
     }
 
-    public void refreshPlayerTable() {
-        playerLabelTable.tableElements.clear();
-
-        for (Spieler spieler : game.spieler) {
-            playerLabelTable.add(new JLabel(spieler.name));
-        }
-    }
-
     private void refreshMainRolePage() {
-        refreshLabelTable(mainRoleLabelTable, game.getMainRoleInGameNames());
         mainRolePageRefresher.refreshAll();
         refreshMainRoleCounterLabel();
         JButtonStyler.styleAndDisableButtons(mainRoleButtons);
         buildScreenFromPage(mainRoleSetupPage);
     }
 
-    private void refreshDeleteButtons(PageTable table, ArrayList<JButton> buttons, int numberOfButtons) {
-        table.tableElements.clear();
-        buttons.clear();
-
-        for (int i=0; i<numberOfButtons; i++) {
-            JButton deleteButton = ErzählerPageElementFactory.generateDeleteButton();
-            table.add(deleteButton);
-            buttons.add(deleteButton);
-        }
-    }
-
     private void refreshSecondaryRolePage() {
-        refreshLabelTable(secondaryRoleLabelTable, game.getSecondaryRoleInGameNames());
         secondaryRolePageRefresher.refreshAll();
         refreshSecondaryRoleCounterLabel();
         JButtonStyler.styleAndDisableButtons(secondaryRoleButtons);
         buildScreenFromPage(secondaryRoleSetupPage);
-    }
-
-    private void refreshLabelTable(PageTable labels, ArrayList<String> texts) {
-        labels.tableElements.clear();
-
-        for (String roleName : texts) {
-            labels.add(new JLabel(roleName));
-        }
     }
 
     public void refreshNumberOfPlayersLabel() {
@@ -265,7 +250,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         refreshSecifyPlayerTable();
         refreshSecifyMainRoleTable();
         refreshSecifySecondaryRoleTable();
-        refreshDeleteButtons(deleteSpecifyPlayerTable, deleteSpecifyPlayerButtons, game.playersSpecified.size());
+        specifyPageRefresher.refreshAll();
         buildScreenFromPage(playerSpecifiyPage);
     }
 
@@ -279,32 +264,32 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     }
 
     public void refreshSecifyPlayerTable() {
-        playerSpecifyTable.tableElements.clear();
+        playerSpecifyLabelTable.tableElements.clear();
 
         for (Spieler spieler : game.playersSpecified) {
-            playerSpecifyTable.add(new JLabel(spieler.name));
+            playerSpecifyLabelTable.add(new JLabel(spieler.name));
         }
     }
 
     public void refreshSecifyMainRoleTable() {
-        mainRoleSpecifyTable.tableElements.clear();
+        mainRoleSpecifyLabelTable.tableElements.clear();
 
         for (String mainRoleName : game.getMainRolesSpecifiedStrings()) {
             if (mainRoleName == "" || mainRoleName == null) {
                 mainRoleName = Hauptrolle.DEFAULT_HAUPTROLLE.name;
             }
-            mainRoleSpecifyTable.add(new JLabel(mainRoleName));
+            mainRoleSpecifyLabelTable.add(new JLabel(mainRoleName));
         }
     }
 
     public void refreshSecifySecondaryRoleTable() {
-        secondaryRoleSpecifyTable.tableElements.clear();
+        secondaryRoleSpecifyLabelTable.tableElements.clear();
 
         for (String secondaryRoleName : game.getSecondaryRoleSpecifiedStrings()) {
             if (secondaryRoleName == "" || secondaryRoleName == null) {
                 secondaryRoleName = Bonusrolle.DEFAULT_BONUSROLLE.name;
             }
-            secondaryRoleSpecifyTable.add(new JLabel(secondaryRoleName));
+            secondaryRoleSpecifyLabelTable.add(new JLabel(secondaryRoleName));
         }
     }
 
@@ -317,17 +302,10 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     }
 
     private void refreshTortenPage() {
-        refreshTortenPlayerTable();
         tortenPageRefresher.refreshAll();
         refreshTortenComboBoxes();
 
         buildScreenFromPage(tortenPage);
-    }
-
-    public void refreshTortenPlayerTable() {
-        ArrayList<Spieler> tortenEsser = Torte.tortenEsser;
-        ArrayList<String> tortenEsserNames = (ArrayList<String>)tortenEsser.stream().map(esser -> esser.name).collect(Collectors.toList());
-        refreshLabelTable(playerLabelTable, tortenEsserNames);
     }
 
     public void refreshTortenComboBoxes() {
@@ -861,7 +839,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         FrontendControl.spielerDayPage();
     }
 
-    public Page generateSpecifyPlayerPage() {
+    private Page generateSpecifyPlayerPage() {
         return pageFactory.generatePlayerSpecifiyPage(game.getPlayersUnspecifiedStrings(), game.getMainRolesUnspecifiedStrings(), game.getSecondaryRolesUnspecifiedStrings());
     }
 }

@@ -65,6 +65,7 @@ public class Game {
         playersSpecified = new ArrayList<>();
 
         liebespaar = new Liebespaar(this);
+        Torte.tortenEsser = new ArrayList<>();
     }
 
     public void generateAllAvailableMainRoles() {
