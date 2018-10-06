@@ -172,7 +172,7 @@ public class ErzählerPageElementFactory {
         return numberOfPlayersLabelTitle;
     }
 
-    public PageTable generateButtonTable(Predecessor predecessorY) {
+    public PageTable generateButtonTable(PageTable buttonTable, Predecessor predecessorY) {
         int tableElementWidth = 120;
         int tableElementHeight = 30;
         int tableElementsXDistance = 10;
@@ -182,11 +182,13 @@ public class ErzählerPageElementFactory {
 
         int columns = calculateColumns(120 + 10);
 
-        return generatePageTable(predecessorY, columns, tableElementWidth, tableElementHeight, tableElementsXDistance, tableElementsYDistance, spaceToPredecessorX, spaceToPredecessorY);
+        return generatePageTable(buttonTable, predecessorY, columns, tableElementWidth, tableElementHeight, tableElementsXDistance, tableElementsYDistance, spaceToPredecessorX, spaceToPredecessorY);
 
     }
 
     public void generateTableButtons(ArrayList<String> stringsToFillIn, ArrayList<JButton> tableButtons, PageTable pageTable) {
+        tableButtons.clear();
+        pageTable.tableElements.clear();
         for (String role : stringsToFillIn) {
             JButton button = new JButton(role);
             button.addActionListener(erzählerFrame);
@@ -197,14 +199,14 @@ public class ErzählerPageElementFactory {
         }
     }
 
-    public PageTable generatePageTable(Predecessor predecessorY, int columns, int tableElementWidth, int tableElementHeight,
+    public PageTable generatePageTable(PageTable table, Predecessor predecessorY, int columns, int tableElementWidth, int tableElementHeight,
                                        int tableElementsXDistance, int tableElementsYDistance, int spaceToPredecessorX, int spaceToPredecessorY) {
 
-        PageTable labelTable = new PageTable(columns, tableElementWidth, tableElementHeight, null, predecessorY, spaceToPredecessorX, spaceToPredecessorY);
-        labelTable.setTable_elements_x_distance(tableElementsXDistance);
-        labelTable.setTable_elements_y_distance(tableElementsYDistance);
+        table.setupTable(columns, tableElementWidth, tableElementHeight, null, predecessorY, spaceToPredecessorX, spaceToPredecessorY);
+        table.setTable_elements_x_distance(tableElementsXDistance);
+        table.setTable_elements_y_distance(tableElementsYDistance);
 
-        return labelTable;
+        return table;
     }
 
     public PageTable generatePageTable(Predecessor predecessorX, Predecessor predecessorY, int columns, int tableElementWidth, int tableElementHeight,

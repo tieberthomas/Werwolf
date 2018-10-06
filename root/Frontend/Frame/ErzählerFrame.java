@@ -36,7 +36,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     public Page savePage;
     public ArrayList<Page> setupPages = new ArrayList<>();
 
-    DataManager dataManager;
+    private DataManager dataManager;
 
     public static Object lock;
 
@@ -55,7 +55,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
 
     public Page playerSetupPage;
     public JLabel mainRoleCounterJLabel;
-    public PageTable playerTable;
+    public PageTable playerLabelTable;
     public PageTable deletePlayerTable;
     public ArrayList<JButton> deletePlayerButtons = new ArrayList<>();
     public JButton playerGoBackJButton;
@@ -68,6 +68,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     public JLabel numberOfPlayersJLabel;
     public JButton mainRoleGoBackJButton;
     public JButton mainRoleGoNextJButton;
+    public PageTable mainRoleButtonTable;
     public ArrayList<JButton> mainRoleButtons = new ArrayList<>();
     public PageTable mainRoleLabelTable;
     public PageTable deleteMainRoleTable;
@@ -77,6 +78,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     public Page secondaryRoleSetupPage;
     public JButton secondaryRoleGoBackJButton;
     public JButton secondaryRoleGoNextJButton;
+    public PageTable secondaryRoleButtonTable;
     public ArrayList<JButton> secondaryRoleButtons = new ArrayList<>();
     public PageTable secondaryRoleLabelTable;
     public PageTable deleteSecondaryRoleTable;
@@ -109,6 +111,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
 
     public Page tortenPage;
     public JButton addPlayerTortenButton;
+    public PageTable deleteTortenPlayerTable;
     public ArrayList<JButton> deleteTortenPlayerButtons = new ArrayList<>();
 
     private PageRefresher playerPageRefresher;
@@ -132,6 +135,19 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         showFrame();
 
         timer = new Timer();
+
+        mainRoleButtonTable = new PageTable();
+        secondaryRoleButtonTable = new PageTable();
+
+        playerLabelTable = new PageTable();
+        mainRoleLabelTable = new PageTable();
+        secondaryRoleLabelTable = new PageTable();
+
+        deletePlayerTable = new PageTable();
+        deleteMainRoleTable = new PageTable();
+        deleteSecondaryRoleTable = new PageTable();
+        deleteSpecifyPlayerTable = new PageTable();
+        deleteTortenPlayerTable = new PageTable();
     }
 
     private void generateAllPageRefreshers() {
@@ -158,7 +174,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
 
     private void generateTortenPageRefresher() {
         tortenPageRefresher = new PageRefresher(Torte.tortenEsser.size());
-        tortenPageRefresher.add(new DeleteButtonTable(deletePlayerTable, deleteTortenPlayerButtons));
+        tortenPageRefresher.add(new DeleteButtonTable(deleteTortenPlayerTable, deleteTortenPlayerButtons));
     }
 
     private void generateAllPagesAndRefreshers() {
@@ -189,10 +205,10 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     }
 
     public void refreshPlayerTable() {
-        playerTable.tableElements.clear();
+        playerLabelTable.tableElements.clear();
 
         for (Spieler spieler : game.spieler) {
-            playerTable.add(new JLabel(spieler.name));
+            playerLabelTable.add(new JLabel(spieler.name));
         }
     }
 
@@ -313,7 +329,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     public void refreshTortenPlayerTable() {
         ArrayList<Spieler> tortenEsser = Torte.tortenEsser;
         ArrayList<String> tortenEsserNames = (ArrayList<String>)tortenEsser.stream().map(esser -> esser.name).collect(Collectors.toList());
-        refreshLabelTable(playerTable, tortenEsserNames);
+        refreshLabelTable(playerLabelTable, tortenEsserNames);
     }
 
     public void refreshTortenComboBoxes() {

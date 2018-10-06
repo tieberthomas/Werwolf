@@ -17,6 +17,10 @@ public class Predecessor {
     public static int DEFAULT_SPACE = 0;
 
     public Predecessor(int width, int height, Predecessor predecessorX, Predecessor predecessorY, int space_to_predecessor_x, int space_to_predecessor_y) {
+        setup(width, height, predecessorX, predecessorY, space_to_predecessor_x, space_to_predecessor_y);
+    }
+
+    public void setup(int width, int height, Predecessor predecessorX, Predecessor predecessorY, int space_to_predecessor_x, int space_to_predecessor_y) {
         this.width = width;
         this.height = height;
         pageOffsetX = 0;

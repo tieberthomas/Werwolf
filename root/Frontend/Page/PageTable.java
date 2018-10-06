@@ -15,9 +15,21 @@ public class PageTable extends Predecessor {
     public static int DEFAULT_COLUMNS = 4;
     public static int DEFAULT_TABLE_ELEMENTS_DISTANCE = 10;
 
+    public PageTable() {
+        super(0, 0, null, null, DEFAULT_TABLE_ELEMENTS_DISTANCE, DEFAULT_TABLE_ELEMENTS_DISTANCE);
+    }
 
     public PageTable(int columns, int table_element_width, int table_element_height, Predecessor predecessorX, Predecessor predecessorY, int space_to_predecessor_x, int space_to_predecessor_y) {
         super(0, 0, predecessorX, predecessorY, space_to_predecessor_x, space_to_predecessor_y);
+        performSetupSteps(columns, table_element_width, table_element_height, predecessorX, predecessorY, space_to_predecessor_x, space_to_predecessor_y);
+    }
+
+    public void setupTable(int columns, int table_element_width, int table_element_height, Predecessor predecessorX, Predecessor predecessorY, int space_to_predecessor_x, int space_to_predecessor_y) {
+        setup(0, 0, predecessorX, predecessorY, space_to_predecessor_x, space_to_predecessor_y);
+        performSetupSteps(columns, table_element_width, table_element_height, predecessorX, predecessorY, space_to_predecessor_x, space_to_predecessor_y);
+    }
+
+    private void performSetupSteps(int columns, int table_element_width, int table_element_height, Predecessor predecessorX, Predecessor predecessorY, int space_to_predecessor_x, int space_to_predecessor_y) {
         this.columns = columns;
         this.table_element_width = table_element_width;
         this.table_element_height = table_element_height;
