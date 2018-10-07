@@ -27,4 +27,8 @@ public class StatementProgramm extends Statement {
     public boolean isAktivNow() {
         return true;
     }
+
+    public boolean isAufgebrauchtNow() {
+        return false;
+    }
 }

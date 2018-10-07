@@ -87,7 +87,10 @@ public class Rolle extends Persona {
 
     public static boolean rolleLebend(String rolle) {
         for (Spieler currentSpieler : game.spieler) {
-            if ((currentSpieler.hauptrolle.name.equals(rolle) || currentSpieler.bonusrolle.name.equals(rolle)) && currentSpieler.lebend) {
+            if (currentSpieler.hauptrolle.name.equals(rolle) && currentSpieler.lebend) {
+                return true;
+            }
+            if (currentSpieler.bonusrolle.name.equals(rolle) && currentSpieler.lebend) {
                 return true;
             }
         }
@@ -106,5 +109,18 @@ public class Rolle extends Persona {
         }
 
         return false;
+    }
+
+    public static boolean rolleAufgebraucht(String rolle) {
+        for (Spieler currentSpieler : game.spieler) {
+            if (currentSpieler.hauptrolle.name.equals(rolle) && currentSpieler.hauptrolle.abilityCharges > 0) {
+                return false;
+            }
+            if (currentSpieler.bonusrolle.name.equals(rolle) && currentSpieler.hauptrolle.abilityCharges > 0) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }
