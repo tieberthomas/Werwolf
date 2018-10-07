@@ -8,7 +8,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class JButtonStyler {
-    public static void styleAndDisableButtons(ArrayList<JButton> buttons) {
+    public static void refreshRoleButtons(ArrayList<JButton> buttons) {
         styleButtons(buttons);
         disableButtons(buttons);
     }

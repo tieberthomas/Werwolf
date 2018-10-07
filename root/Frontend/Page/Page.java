@@ -5,14 +5,14 @@ import java.util.ArrayList;
 public class Page {
     public ArrayList<PageElement> pageElements;
     public ArrayList<PageTable> pageTables;
-    public int xPageOffset;
-    public int yPageOffset;
+    private int xPageOffset;
+    private int yPageOffset;
 
-    public static int DEFAULT_SPACE = 10;
+    private static int DEFAULT_SPACE = 10;
 
     public Page(int spaceToXBorder, int spaceToYBorder) {
-        pageElements = new ArrayList<PageElement>();
-        pageTables = new ArrayList<PageTable>();
+        pageElements = new ArrayList<>();
+        pageTables = new ArrayList<>();
 
         this.xPageOffset = spaceToXBorder;
         this.yPageOffset = spaceToYBorder;
