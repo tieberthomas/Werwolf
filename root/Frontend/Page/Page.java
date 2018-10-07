@@ -31,4 +31,9 @@ public class Page {
         pageTable.setPageOffset(xPageOffset, yPageOffset);
         pageTables.add(pageTable);
     }
+
+    public void clearPage() {
+        pageElements.clear();
+        pageTables.clear();
+    }
 }

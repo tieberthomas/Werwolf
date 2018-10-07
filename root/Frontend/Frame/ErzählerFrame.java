@@ -139,10 +139,18 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
 
         timer = new Timer(); //TODO move into spielerframe/make static
 
-        initializePageTables();
+        initializePages();
+
+        PageRefresher.erzählerFrame = this;
     }
 
-    private void initializePageTables() {
+    private void initializePages() {
+        playerSetupPage = new Page();
+        mainRoleSetupPage = new Page();
+        secondaryRoleSetupPage = new Page();
+        tortenPage = new Page();
+        playerSpecifiyPage = new Page();
+
         mainRoleButtonTable = new PageTable();
         secondaryRoleButtonTable = new PageTable();
 
@@ -170,33 +178,33 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     }
 
     private void generatePlayerPageRefresher() {
-        playerPageRefresher = new PageRefresher();
+        playerPageRefresher = new PageRefresher(playerSetupPage);
         playerPageRefresher.add(new LabelTable(playerLabelTable, game::getLivingPlayerStrings));
         playerPageRefresher.add(new DeleteButtonTable(deletePlayerTable, deletePlayerButtons, game.spieler::size));
     }
 
     private void generateMainRolePageRefresher() {
-        mainRolePageRefresher = new PageRefresher();
+        mainRolePageRefresher = new PageRefresher(mainRoleSetupPage);
         mainRolePageRefresher.add(new ButtonTable(mainRoleButtons));
         mainRolePageRefresher.add(new LabelTable(mainRoleLabelTable, game::getMainRoleInGameNames));
         mainRolePageRefresher.add(new DeleteButtonTable(deleteMainRoleTable, deleteMainRoleButtons, game.mainRolesInGame::size));
     }
 
     private void generateSecondaryRolePageRefresher() {
-        secondaryRolePageRefresher = new PageRefresher();
+        secondaryRolePageRefresher = new PageRefresher(secondaryRoleSetupPage);
         secondaryRolePageRefresher.add(new ButtonTable(secondaryRoleButtons));
         secondaryRolePageRefresher.add(new LabelTable(secondaryRoleLabelTable, game::getSecondaryRoleInGameNames));
         secondaryRolePageRefresher.add(new DeleteButtonTable(deleteSecondaryRoleTable, deleteSecondaryRoleButtons, game.secondaryRolesInGame::size));
     }
 
     private void generateTortenPageRefresher() {
-        tortenPageRefresher = new PageRefresher();
+        tortenPageRefresher = new PageRefresher(tortenPage);
         tortenPageRefresher.add(new LabelTable(tortenPlayerLabelTable, Torte::getTortenesserNames));
         tortenPageRefresher.add(new DeleteButtonTable(deleteTortenPlayerTable, deleteTortenPlayerButtons, Torte.tortenEsser::size));
     }
 
     private void generateSpecifyPageRefresher() {
-        specifyPageRefresher = new PageRefresher();
+        specifyPageRefresher = new PageRefresher(playerSpecifiyPage);
         specifyPageRefresher.add(new LabelTable(playerSpecifyLabelTable,
                 new Supplier<ArrayList<String>>() {
                     public ArrayList<String> get() {
@@ -234,29 +242,26 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         ArrayList<String> mainRoles = game.getMainRoleNames();
         ArrayList<String> secondaryRoles = game.getSecondaryRoleNames();
 
-        playerSetupPage = pageFactory.generatePlayerSetupPage(numberOfplayers);
-        mainRoleSetupPage = pageFactory.generateMainRoleSetupPage(numberOfplayers, numberOfmainRoles, mainRoles);
-        secondaryRoleSetupPage = pageFactory.generateSecondaryRoleSetupPage(numberOfplayers, numberOfbonusRoles, secondaryRoles);
+        pageFactory.generatePlayerSetupPage(playerSetupPage, numberOfplayers);
+        pageFactory.generateMainRoleSetupPage(mainRoleSetupPage, numberOfplayers, numberOfmainRoles, mainRoles);
+        pageFactory.generateSecondaryRoleSetupPage(secondaryRoleSetupPage, numberOfplayers, numberOfbonusRoles, secondaryRoles);
         playerSpecifiyPage = generateSpecifyPlayerPage();
     }
 
     private void refreshPlayerPage() {
-        playerPageRefresher.refreshAll();
         refreshNumberOfPlayersLabel();
-        buildScreenFromPage(playerSetupPage);
+        playerPageRefresher.refreshPage();
         addPlayerTxtField.requestFocusInWindow();
     }
 
     private void refreshMainRolePage() {
-        mainRolePageRefresher.refreshAll();
         refreshMainRoleCounterLabel();
-        buildScreenFromPage(mainRoleSetupPage);
+        mainRolePageRefresher.refreshPage();
     }
 
     private void refreshSecondaryRolePage() {
-        secondaryRolePageRefresher.refreshAll();
         refreshSecondaryRoleCounterLabel();
-        buildScreenFromPage(secondaryRoleSetupPage);
+        secondaryRolePageRefresher.refreshPage();
     }
 
     public void refreshNumberOfPlayersLabel() {
@@ -273,8 +278,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
 
     private void refreshSpecifyPlayerPage() {
         refreshSpecifyComboBoxes();
-        specifyPageRefresher.refreshAll();
-        buildScreenFromPage(playerSpecifiyPage);
+        specifyPageRefresher.refreshPage();
     }
 
     public void refreshSpecifyComboBoxes() {
@@ -295,15 +299,13 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     }
 
     private void refreshTortenPage() {
-        tortenPageRefresher.refreshAll();
         refreshTortenComboBoxes();
-
-        buildScreenFromPage(tortenPage);
+        tortenPageRefresher.refreshPage();
     }
 
     public void refreshTortenComboBoxes() {
         ArrayList<String> nichtTortenEsser = game.getLivingPlayerStrings();
-        ArrayList<String> tortenEsser = new ArrayList<String>();
+        ArrayList<String> tortenEsser = new ArrayList<>();
         for (Spieler spieler : Torte.tortenEsser) {
             tortenEsser.add(spieler.name);
         }
@@ -833,6 +835,6 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     }
 
     private Page generateSpecifyPlayerPage() {
-        return pageFactory.generatePlayerSpecifiyPage(game.getPlayersUnspecifiedStrings(), game.getMainRolesUnspecifiedStrings(), game.getSecondaryRolesUnspecifiedStrings());
+        return pageFactory.generatePlayerSpecifiyPage(playerSpecifiyPage, game.getPlayersUnspecifiedStrings(), game.getMainRolesUnspecifiedStrings(), game.getSecondaryRolesUnspecifiedStrings());
     }
 }

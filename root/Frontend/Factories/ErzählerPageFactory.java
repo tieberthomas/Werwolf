@@ -12,9 +12,9 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 public class ErzählerPageFactory {
-    ErzählerFrame erzählerFrame;
+    private ErzählerFrame erzählerFrame;
     public ErzählerPageElementFactory pageElementFactory;
-    static int continueToGeneratePagePoint = 0;
+    private static int continueToGeneratePagePoint = 0;
 
     public ErzählerPageFactory(ErzählerFrame frame) {
         erzählerFrame = frame;
@@ -49,7 +49,7 @@ public class ErzählerPageFactory {
         return startPage;
     }
 
-    public Page generatePlayerSetupPage(int numberOfPlayers) {
+    public Page generatePlayerSetupPage(Page playerSetupPage, int numberOfPlayers) {
         PageElement nameLabel = pageElementFactory.generateLabel(null, "Name");
 
         PageElement addPlayerTxtField = pageElementFactory.generateAddPlayerTxtField(nameLabel);
@@ -80,8 +80,7 @@ public class ErzählerPageFactory {
         PageElement goNextButton = pageElementFactory.generateLowestButton(erzählerFrame.playerGoNextJButton);
         erzählerFrame.goNextButtons.add(erzählerFrame.playerGoNextJButton);
 
-
-        Page playerSetupPage = new Page();
+        playerSetupPage.clearPage();
 
         playerSetupPage.add(nameLabel);
         playerSetupPage.add(addPlayerButton);
@@ -97,7 +96,7 @@ public class ErzählerPageFactory {
         return playerSetupPage;
     }
 
-    public Page generateMainRoleSetupPage(int numberOfPlayers, int numberOfMainRoles, ArrayList<String> mainRoles) {
+    public Page generateMainRoleSetupPage(Page mainRoleSetupPage, int numberOfPlayers, int numberOfMainRoles, ArrayList<String> mainRoles) {
         PageTable mainRoleButtonTable = pageElementFactory.generateButtonTable(erzählerFrame.mainRoleButtonTable, null);
         pageElementFactory.generateTableButtons(mainRoles, erzählerFrame.mainRoleButtons, mainRoleButtonTable);
 
@@ -129,7 +128,7 @@ public class ErzählerPageFactory {
         PageElement addAllMainRolesButton = pageElementFactory.generateLowestButton(erzählerFrame.addAllMainRolesJButton,
                 "Alle Rollen", true, 1);
 
-        Page mainRoleSetupPage = new Page();
+        mainRoleSetupPage.clearPage();
 
         mainRoleSetupPage.add(goNextButton);
         mainRoleSetupPage.add(goBackButton);
@@ -144,7 +143,7 @@ public class ErzählerPageFactory {
         return mainRoleSetupPage;
     }
 
-    public Page generateSecondaryRoleSetupPage(int numberOfPlayers, int numberOfSecondaryRoles, ArrayList<String> secondaryRoles) {
+    public Page generateSecondaryRoleSetupPage(Page secondaryRoleSetupPage, int numberOfPlayers, int numberOfSecondaryRoles, ArrayList<String> secondaryRoles) {
         PageTable secondaryRoleButtonTable = pageElementFactory.generateButtonTable(erzählerFrame.secondaryRoleButtonTable, null);
         pageElementFactory.generateTableButtons(secondaryRoles, erzählerFrame.secondaryRoleButtons, secondaryRoleButtonTable);
 
@@ -176,7 +175,7 @@ public class ErzählerPageFactory {
         PageElement addAllSecondaryRolesButton = pageElementFactory.generateLowestButton(erzählerFrame.addAllSecondaryRolesJButton,
                 "Alle Rollen", true, 1);
 
-        Page secondaryRoleSetupPage = new Page();
+        secondaryRoleSetupPage.clearPage();
 
         secondaryRoleSetupPage.add(goBackButton);
         secondaryRoleSetupPage.add(goNextButton);
@@ -191,7 +190,7 @@ public class ErzählerPageFactory {
         return secondaryRoleSetupPage;
     }
 
-    public Page generatePlayerSpecifiyPage(ArrayList<String> playersUnspecified, ArrayList<String> mainRolesUnspecified, ArrayList<String> secondaryRolesUnspecified) {
+    public Page generatePlayerSpecifiyPage(Page playerSpecifyPage, ArrayList<String> playersUnspecified, ArrayList<String> mainRolesUnspecified, ArrayList<String> secondaryRolesUnspecified) {
         String title = "Wählen Sie für diesen Spieler Haupt- und Bonusrolle.";
         String HTMLtitle = HTMLStringBuilder.buildHTMLText(title);
         PageElement titleLabel = pageElementFactory.generateLabel(null, HTMLtitle);
@@ -245,7 +244,7 @@ public class ErzählerPageFactory {
         PageElement goBackButton = pageElementFactory.generateLowestButton(erzählerFrame.playerSpecifyGoBackJButton, "Zurück", false);
         erzählerFrame.goBackButtons.add(erzählerFrame.playerSpecifyGoBackJButton);
 
-        Page playerSpecifyPage = new Page();
+        playerSpecifyPage.clearPage();
 
         playerSpecifyPage.add(titleLabel);
         playerSpecifyPage.add(playerLabel);
@@ -628,7 +627,7 @@ public class ErzählerPageFactory {
         return richterinPage;
     }
 
-    public Page generateTortenPage(ArrayList<String> livingPlayers) {
+    public Page generateTortenPage(Page tortenPage, ArrayList<String> livingPlayers) {
         PageElement titleLabel = pageElementFactory.generateTitleLabel(null, "Torte");
 
         int tableElementHeight = 25;
@@ -654,7 +653,7 @@ public class ErzählerPageFactory {
         erzählerFrame.nextJButton = new JButton();
         PageElement nextButton = pageElementFactory.generateLowestButton(erzählerFrame.nextJButton);
 
-        Page tortenPage = new Page();
+        tortenPage.clearPage();
 
         tortenPage.add(titleLabel);
         tortenPage.add(choosePlayer1);

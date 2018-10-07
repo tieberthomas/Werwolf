@@ -115,7 +115,7 @@ public class FrontendControl {
     }
 
     public static void erzählerTortenPage() {
-        erzählerFrame.tortenPage = erzählerFrame.pageFactory.generateTortenPage(game.getLivingPlayerStrings());
+        erzählerFrame.pageFactory.generateTortenPage(erzählerFrame.tortenPage, game.getLivingPlayerStrings());
         erzählerFrame.buildScreenFromPage(erzählerFrame.tortenPage);
     }
 
