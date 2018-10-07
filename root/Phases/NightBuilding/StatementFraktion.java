@@ -37,6 +37,10 @@ public class StatementFraktion extends Statement {
         return Fraktion.fraktionAktiv(fraktion);
     }
 
+    public boolean isAufgebrauchtNow() {
+        return false;
+    }
+
     public Fraktion getFraktion() {
         return Fraktion.findFraktion(fraktion);
     }

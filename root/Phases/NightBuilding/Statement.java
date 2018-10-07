@@ -35,6 +35,9 @@ public class Statement {
         if (!isAktivNow()) {
             return StatementState.DEAKTIV;
         }
+        if (isAufgebrauchtNow()) {
+            return StatementState.AUFGEBRAUCHT;
+        }
         return StatementState.NORMAL;
     }
 
@@ -71,5 +74,9 @@ public class Statement {
 
     public boolean isAktivNow() {
         return true;
+    }
+
+    public boolean isAufgebrauchtNow() {
+        return false;
     }
 }

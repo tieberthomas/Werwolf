@@ -91,26 +91,18 @@ public class Nacht extends Thread {
                         case ROLLE_CHOOSE_ONE:
                             rolle = ((StatementRolle) statement).getRolle();
 
-                            if (rolle.abilityCharges > 0) {
-                                dropdownOtions = rolle.getDropdownOptions();
-                                chosenOption = showFrontendControl(statement, dropdownOtions);
-                                rolle.processChosenOption(chosenOption);
-                            } else {
-                                showAufgebrauchtPages(statement); //TODO deaktiv/tot beachten
-                            }
+                            dropdownOtions = rolle.getDropdownOptions();
+                            chosenOption = showFrontendControl(statement, dropdownOtions);
+                            rolle.processChosenOption(chosenOption);
                             break;
 
                         case ROLLE_CHOOSE_ONE_INFO:
                             rolle = ((StatementRolle) statement).getRolle();
 
-                            if (rolle.abilityCharges > 0) {
-                                dropdownOtions = rolle.getDropdownOptions();
-                                chosenOption = showFrontendControl(statement, dropdownOtions);
-                                info = rolle.processChosenOptionGetInfo(chosenOption);
-                                showFrontendControl(statement, info);
-                            } else {
-                                showAufgebrauchtPages(statement); //TODO deaktiv/tot beachten
-                            }
+                            dropdownOtions = rolle.getDropdownOptions();
+                            chosenOption = showFrontendControl(statement, dropdownOtions);
+                            info = rolle.processChosenOptionGetInfo(chosenOption);
+                            showFrontendControl(statement, info);
                             break;
 
                         case ROLLE_INFO:
@@ -564,6 +556,10 @@ public class Nacht extends Thread {
                 }
                 break;
 
+            case AUFGEBRAUCHT:
+                showAufgebrauchtPages(statement, frontendControl);
+                break;
+
             case DEAKTIV:
                 showDeaktivPages(statement, frontendControl);
                 break;
@@ -646,10 +642,6 @@ public class Nacht extends Thread {
         waitForAnswer();
     }
 
-    private void showAufgebrauchtPages(Statement statement) {
-        showZeigekarte(statement, new Aufgebraucht());
-    }
-
     private void showZeigekarte(Statement statement, Zeigekarte zeigekarte) {
         FrontendControl.erzählerIconPicturePage(statement, zeigekarte.imagePath);
         FrontendControl.spielerIconPicturePage(zeigekarte.title, zeigekarte.imagePath);
@@ -658,8 +650,32 @@ public class Nacht extends Thread {
     }
 
     //TODO Cases die sowieso gleich aussehen zusammenfassen
+    public void showAufgebrauchtPages(Statement statement, FrontendControl frontendControl) {
+        Zeigekarte aufgebraucht = new Aufgebraucht();
+
+        switch (frontendControl.typeOfContent) {
+            case DROPDOWN:
+            case DROPDOWN_LIST:
+                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), aufgebraucht.imagePath);
+                break;
+
+            case LIST:
+            case LIST_IMAGE:
+                FrontendControl.erzählerListPage(statement, getEmptyStringList(), aufgebraucht.imagePath);
+                break;
+            case TITLE:
+            case IMAGE:
+            case CARD:
+                FrontendControl.erzählerIconPicturePage(statement, aufgebraucht.imagePath);
+                break;
+        }
+
+        FrontendControl.showZeigekarteOnSpielerScreen(aufgebraucht);
+        waitForAnswer();
+    }
+
     public void showDeaktivPages(Statement statement, FrontendControl frontendControl) {
-        Deaktiviert deaktiviert = new Deaktiviert();
+        Zeigekarte deaktiviert = new Deaktiviert();
 
         switch (frontendControl.typeOfContent) {
             case DROPDOWN:
@@ -683,7 +699,7 @@ public class Nacht extends Thread {
     }
 
     public void showTotPages(Statement statement, FrontendControl frontendControl) {
-        Tot tot = new Tot();
+        Zeigekarte tot = new Tot();
 
         switch (frontendControl.typeOfContent) {
             case DROPDOWN:
@@ -706,7 +722,7 @@ public class Nacht extends Thread {
     }
 
     public void showAusDemSpielPages(Statement statement, FrontendControl frontendControl) {
-        AusDemSpiel ausDemSpiel = new AusDemSpiel();
+        Zeigekarte ausDemSpiel = new AusDemSpiel();
 
         switch (frontendControl.typeOfContent) {
             case DROPDOWN:

@@ -53,6 +53,10 @@ public class StatementRolle extends Statement {
         }
     }
 
+    public boolean isAufgebrauchtNow() {
+        return Rolle.rolleAufgebraucht(rolle);
+    }
+
     public Rolle getRolle() {
         return Rolle.findRolle(rolle);
     }
