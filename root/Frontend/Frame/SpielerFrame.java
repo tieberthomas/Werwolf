@@ -5,7 +5,6 @@ import root.Frontend.Factories.SpielerPageFactory;
 import root.Frontend.Page.Page;
 import root.Phases.PhaseMode;
 import root.Phases.Tag;
-import root.ResourceManagement.ImagePath;
 import root.mechanics.Game;
 
 import javax.swing.*;
@@ -24,11 +23,7 @@ public class SpielerFrame extends MyFrame {
     public JLabel clockLabel;
 
     public Page blankPage;
-    public Page deactivatedPage;
     public Page dropDownPage;
-    public Page bierPage;
-    public Page aufgebrauchtPage;
-    public Page deadPage;
 
     public int mode = SpielerFrameMode.blank;
     public String title = "";
@@ -62,10 +57,6 @@ public class SpielerFrame extends MyFrame {
     public void generateAllPages() {
         blankPage = new Page();
         dropDownPage = pageFactory.generateDropdownPage("", 1);
-        bierPage = pageFactory.generateStaticImagePage(Tag.dayTitle, ImagePath.FREIBIER, true);
-        deadPage = pageFactory.generateStaticImagePage("Tot", ImagePath.TOT, true);
-        aufgebrauchtPage = pageFactory.generateStaticImagePage("Aufgebraucht", ImagePath.AUFGEBRAUCHT, true);
-        deactivatedPage = pageFactory.generateStaticImagePage("Deaktiviert", ImagePath.DEAKTIVIERT, true);
     }
 
     public void refreshSetupPage() {
@@ -108,28 +99,14 @@ public class SpielerFrame extends MyFrame {
     }
 
     public void generateDayPage() {
+        boolean freibierTag = false;
         title = Tag.dayTitle;
         if (game.phaseMode == PhaseMode.freibierTag) {
             mode = SpielerFrameMode.freibierPage;
-            this.bierPage();
-        } else {
-            buildScreenFromPage(pageFactory.generateDayPage(game.getPossibleInGameMainRoleNames(), game.getPossibleInGameSecondaryRoleNames()));
+            freibierTag = true;
         }
-    }
 
-    public void deadPage() {
-        buildScreenFromPage(deadPage);
-    }
-
-    public void aufgebrauchtPage() {
-        buildScreenFromPage(aufgebrauchtPage);
-    }
-
-    public void bierPage() {
-        buildScreenFromPage(bierPage);
-    }
-
-    public void deactivatedPage() {
-        buildScreenFromPage(deactivatedPage);
+        currentPage = pageFactory.generateDayPage(game.getPossibleInGameMainRoleNames(), game.getPossibleInGameSecondaryRoleNames(), freibierTag);
+        buildScreenFromPage(currentPage);
     }
 }

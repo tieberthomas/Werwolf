@@ -9,11 +9,13 @@ import root.Frontend.Page.PageElement;
 import root.Persona.Fraktion;
 import root.Persona.Rollen.Constants.BonusrollenType.Tarnumhang_BonusrollenType;
 import root.Persona.Rollen.Constants.RawInformation;
+import root.Persona.Rollen.Constants.Zeigekarten.Tot;
 import root.mechanics.Liebespaar;
 
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class SpielerPageFactory {
     SpielerFrame spielerFrame;
@@ -74,9 +76,9 @@ public class SpielerPageFactory {
 
     public Page generateEndScreenPage(String string) {
         Page endScreenPage;
-        if (string == null) {
-            endScreenPage = spielerFrame.deadPage;
-        } else if (string == "Liebespaar") {
+        if (string == null) { //TODO make string to generic victory type enum
+            endScreenPage = generateDeadPage();
+        } else if (Objects.equals(string, "Liebespaar")) {
             endScreenPage = generateEndScreenPage("Liebespaar", Liebespaar.IMAGE_PATH, "gewinnt!");
         } else {
             Fraktion fraktion = Fraktion.findFraktion(string);
@@ -86,7 +88,12 @@ public class SpielerPageFactory {
         return endScreenPage;
     }
 
-    public Page generateDayPage(ArrayList<String> hauptrollen, ArrayList<String> bonusrollen) {
+    public Page generateDeadPage() {
+        Tot tot = new Tot();
+        return generateStaticImagePage(tot.title, tot.imagePath, true);
+    }
+
+    public Page generateDayPage(ArrayList<String> hauptrollen, ArrayList<String> bonusrollen, boolean freibier) {
         int titleSpace = 80;
         int clockSpace = 150;
         Page listPage = generateDoubleListPage(hauptrollen, bonusrollen, titleSpace, clockSpace - 30);
@@ -94,12 +101,17 @@ public class SpielerPageFactory {
         PageElement title1Element = pageElementFactory.generateColumnTitleLabel("Hauptrollen", 2, 0, titleSpace);
         PageElement title2Element = pageElementFactory.generateColumnTitleLabel("Bonusrollen", 2, 1, titleSpace);
 
-        spielerFrame.clockLabel = new JLabel("00:00:00");
+        spielerFrame.clockLabel = new JLabel("00:00:00"); ///TODO remove or make generic
         PageElement counterLabel = pageElementFactory.generateClockLabel(spielerFrame.clockLabel, clockSpace);
+
+        PageElement freibierWatermark = pageElementFactory.generateBierLabel();
 
         listPage.add(title1Element);
         listPage.add(title2Element);
         listPage.add(counterLabel);
+        if(freibier) {
+            listPage.add(freibierWatermark);
+        }
 
         return listPage;
     }

@@ -4,6 +4,7 @@ import root.Frontend.Frame.SpielerFrame;
 import root.Frontend.Page.PageElement;
 import root.Frontend.Page.Predecessor;
 import root.Persona.Rollen.Constants.RawInformation;
+import root.ResourceManagement.ImagePath;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,7 +23,7 @@ public class SpielerPageElementFactory {
     public PageElement generateBierLabel() {
         JLabel bierJLabel = new JLabel();
 
-        ImageIcon iconLogo = new ImageIcon("D:\\tmp\\bier.png");
+        ImageIcon iconLogo = new ImageIcon(ImagePath.FREIBIER);
 
         int bierLabelWidth = iconLogo.getIconWidth();
         int bierLabelHeight = iconLogo.getIconHeight();
@@ -31,8 +32,8 @@ public class SpielerPageElementFactory {
 
         PageElement bierLabel = new PageElement(bierJLabel, bierLabelWidth, bierLabelHeight, null, null, 0, 0);
 
-        int xCoord = spielerFrame.frameJpanel.getWidth() / 2 - (bierLabelWidth / 2);
-        int yCoord = spielerFrame.frameJpanel.getHeight() / 2 - (bierLabelHeight / 2);
+        int xCoord = spielerFrame.frameJpanel.getWidth() - bierLabelWidth;
+        int yCoord = spielerFrame.frameJpanel.getHeight() - bierLabelHeight;
 
         bierLabel.setCoords(xCoord, yCoord);
 
