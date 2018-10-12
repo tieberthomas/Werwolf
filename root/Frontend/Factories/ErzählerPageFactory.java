@@ -15,6 +15,7 @@ public class ErzählerPageFactory {
     private ErzählerFrame erzählerFrame;
     public ErzählerPageElementFactory pageElementFactory;
     private static int continueToGeneratePagePoint = 0;
+    private static PageElement continueToGenerateElement = null;
 
     public ErzählerPageFactory(ErzählerFrame frame) {
         erzählerFrame = frame;
@@ -428,11 +429,33 @@ public class ErzählerPageFactory {
         return listPage;
     }
 
-    public Page generateDefaultDayPage(ArrayList<String> livingPlayers) {
-        PageElement titleLabel = pageElementFactory.generateTitleLabel(null, Tag.dayTitle);
+    public Page generateDayPage(ArrayList<String> livingPlayers) {
+        Page dayPage = generateDefaultDayPage();
+
         erzählerFrame.comboBox1 = new JComboBox(livingPlayers.toArray());
-        PageElement choosePlayer1 = pageElementFactory.generateDropdown(erzählerFrame.comboBox1,
-                null, titleLabel);
+        PageElement choosePlayer = pageElementFactory.generateDropdown(erzählerFrame.comboBox1,
+                null, continueToGenerateElement);
+
+        dayPage.add(choosePlayer);
+
+        return dayPage;
+    }
+
+    public Page generateAnnounceVictimsDayPage(String spieler1, String imagepath) {
+        Page tagPage = generateDefaultDayPage();
+
+        PageElement nameLabel = pageElementFactory.generateLeftCenteredLabel(new JLabel(spieler1));
+        PageElement deadImage = pageElementFactory.generateRightCenteredImage(imagepath);
+
+        tagPage.add(nameLabel);
+        tagPage.add(deadImage);
+
+        return tagPage;
+    }
+
+    private Page generateDefaultDayPage() {
+        PageElement titleLabel = pageElementFactory.generateTitleLabel(null, Tag.dayTitle);
+        continueToGenerateElement = titleLabel;
 
         erzählerFrame.nextJButton = new JButton();
         PageElement nextButton = pageElementFactory.generateLowestButton(erzählerFrame.nextJButton);
@@ -455,27 +478,12 @@ public class ErzählerPageFactory {
         Page tagPage = new Page();
 
         tagPage.add(titleLabel);
-        tagPage.add(choosePlayer1);
         tagPage.add(nextButton);
         tagPage.add(nachzüglerButton);
         tagPage.add(umbringenButton);
         tagPage.add(priesterButton);
         tagPage.add(richterinButton);
         tagPage.add(respawnFramesButton);
-
-        return tagPage;
-    }
-
-    public Page generateAnnounceVictimsDayPage(String spieler1, ArrayList<String> livingPlayers, String imagepath) {
-        Page tagPage = generateDefaultDayPage(livingPlayers);
-
-        JLabel label = pageElementFactory.generateBigJLabel(new JLabel(spieler1));
-
-        PageElement nameLabel = pageElementFactory.generateLeftCenteredLabel(new JLabel(spieler1));
-        PageElement deadImage = pageElementFactory.generateRightCenteredImage(imagepath);
-
-        tagPage.add(nameLabel);
-        tagPage.add(deadImage);
 
         return tagPage;
     }

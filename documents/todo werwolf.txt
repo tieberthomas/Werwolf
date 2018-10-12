@@ -29,7 +29,6 @@ showDeaktivPages und showTotPages schön zusammenfassen zu einer Methode die ein
 reineseele übersichtspage etwas für markup überlegen dass erzähler sieht dass die person nicht die karten aufdrehen soll
 markup für vampirumhang geschützen spieler bei lady aleera überlegen (für erzähler)
 aufgebraucht page interaktiv gestalten
-reine seele augenkarten
 im Setup Dropdown alphabetisch sortieren
 fraktionsbamboozelstatements
 getInstance (findSpielerOrDead) in game

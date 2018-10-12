@@ -825,7 +825,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     }
 
     public void showDayPage() {
-        //buildScreenFromPage(pageFactory.generateDefaultDayPage(game.getLivingPlayerOrNoneStrings()));
+        //buildScreenFromPage(pageFactory.generateDayPage(game.getLivingPlayerOrNoneStrings()));
         FrontendControl.erzählerDefaultDayPage();
         FrontendControl.spielerDayPage();
     }

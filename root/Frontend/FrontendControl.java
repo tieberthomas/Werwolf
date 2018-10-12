@@ -107,7 +107,7 @@ public class FrontendControl {
     }
 
     public static void erzählerDefaultDayPage() {
-        Page dayPage = erzählerFrame.pageFactory.generateDefaultDayPage(game.getLivingPlayerOrNoneStrings());
+        Page dayPage = erzählerFrame.pageFactory.generateDayPage(game.getLivingPlayerOrNoneStrings());
         erzählerFrame.buildScreenFromPage(dayPage);
     }
 
@@ -121,12 +121,12 @@ public class FrontendControl {
     }
 
     public static void erzählerAnnounceVictimPage(Spieler spieler) {
-        Page dayPage = erzählerFrame.pageFactory.generateAnnounceVictimsDayPage(spieler.name, game.getLivingPlayerOrNoneStrings(), new Tot().imagePath);
+        Page dayPage = erzählerFrame.pageFactory.generateAnnounceVictimsDayPage(spieler.name, new Tot().imagePath);
         erzählerFrame.buildScreenFromPage(dayPage);
     }
 
     public static void erzählerAnnounceVictimPage(Spieler spieler, String imagepath) {
-        Page dayPage = erzählerFrame.pageFactory.generateAnnounceVictimsDayPage(spieler.name, game.getLivingPlayerOrNoneStrings(), imagepath);
+        Page dayPage = erzählerFrame.pageFactory.generateAnnounceVictimsDayPage(spieler.name, imagepath);
         erzählerFrame.buildScreenFromPage(dayPage);
     }
 
