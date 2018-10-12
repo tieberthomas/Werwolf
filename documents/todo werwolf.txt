@@ -26,7 +26,7 @@ siegüberprüfung generischer machen (tag und nacht)
 tauschkarten quasi aus secondaryRolesInGame removen (für nachzügler) aber nicht wirklich, weil ja der spielerscreen am tag anzeigen soll dass es drin war
 bei übersichtspage rahmen von mehreren personen anzeigen (die nicht die ganze fraktion sind)
 showDeaktivPages und showTotPages schön zusammenfassen zu einer Methode die eine Zeigekarte kriegt
-reineseele übersichtspage etwas für markup überlegen
+reineseele übersichtspage etwas für markup überlegen dass erzähler sieht dass die person nicht die karten aufdrehen soll
 markup für vampirumhang geschützen spieler bei lady aleera überlegen (für erzähler)
 aufgebraucht page interaktiv gestalten
 reine seele augenkarten
