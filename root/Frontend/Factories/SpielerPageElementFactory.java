@@ -11,14 +11,15 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class SpielerPageElementFactory {
-    SpielerFrame spielerFrame;
+    public static final int defaultTextSize = 36;
+    public static final int defaultTitleSize = 48;
+
+    private SpielerFrame spielerFrame;
 
     public SpielerPageElementFactory(SpielerFrame spielerFrame) {
         this.spielerFrame = spielerFrame;
     }
 
-    public static final int defaultTextSize = 36;
-    public static final int defaultTitleSize = 48;
 
     public PageElement generateBierImage(Corner corner, int heigth) {
         int xSpace = 10;
@@ -52,8 +53,8 @@ public class SpielerPageElementFactory {
     }
 
     private Point generateCornerStarpoint(Corner corner) {
-        int x = corner.xDirection == Direction.POSITIVE.modificatior ? 0 : spielerFrame.getWidth();
-        int y = corner.yDirection == Direction.POSITIVE.modificatior ? 0 : spielerFrame.getHeight();;
+        int x = corner.xDirection == Direction.POSITIVE.modificatior ? 0 : getSpielerFrameWidth();
+        int y = corner.yDirection == Direction.POSITIVE.modificatior ? 0 : getSpielerFrameHeight();
 
         return new Point(x,y);
     }
@@ -81,7 +82,7 @@ public class SpielerPageElementFactory {
         PageElement imageLabel = new PageElement(imageJLabel, imageJLabelWidth, imageJLabelHeight, null,
                 predecessorY, 0, 0);
 
-        int xCoord = spielerFrame.getWidth() / 2 - (imageJLabelWidth / 2);
+        int xCoord = getSpielerFrameWidth() / 2 - (imageJLabelWidth / 2);
 
         imageLabel.setCoordX(xCoord);
 
@@ -100,8 +101,8 @@ public class SpielerPageElementFactory {
 
         PageElement imageLabel = new PageElement(imageJLabel, imageJLabelWidth, imageJLabelHeight);
 
-        int xCoord = spielerFrame.getWidth() / 2 - (imageJLabelWidth / 2);
-        int yCoord = spielerFrame.getHeight() / 2 - (imageJLabelHeight / 2);
+        int xCoord = getSpielerFrameWidth() / 2 - (imageJLabelWidth / 2);
+        int yCoord = getSpielerFrameHeight() / 2 - (imageJLabelHeight / 2);
 
         imageLabel.setCoords(xCoord, yCoord);
 
@@ -120,7 +121,7 @@ public class SpielerPageElementFactory {
 
         PageElement imageLabel = new PageElement(imageJLabel, imageJLabelWidth, imageJLabelHeight, null, predecessorY, 0, 0);
 
-        int xCoord = spielerFrame.getWidth() / 2 - imageJLabelWidth;
+        int xCoord = getSpielerFrameWidth() / 2 - imageJLabelWidth;
 
         imageLabel.setCoordX(xCoord);
 
@@ -167,7 +168,7 @@ public class SpielerPageElementFactory {
 
         PageElement centeredLabel = new PageElement(label, imageJLabelWidth, imageJLabelHeight, null, predecessorY, 0, spaceToPredecessorY);
 
-        int xCoord = spielerFrame.frameJpanel.getWidth() / 2 - (imageJLabelWidth / 2);
+        int xCoord = getSpielerFrameWidth() / 2 - (imageJLabelWidth / 2);
 
         centeredLabel.setCoordX(xCoord);
 
@@ -181,13 +182,12 @@ public class SpielerPageElementFactory {
     public PageElement generateColumnCenteredLabel(JLabel label, Predecessor predecessorY, int spaceToPredecessorY, int numberOfColumns, int indexOfColumn, int size) {
         label = formatLabel(label, size);
 
-        int jLabelWidth = spielerFrame.frameJpanel.getWidth() / numberOfColumns;
+        int jLabelWidth = getSpielerFrameWidth() / numberOfColumns;
         int jLabelHeight = getJLabelHeight(size);
 
         PageElement centeredLabel = new PageElement(label, jLabelWidth, jLabelHeight, null, predecessorY, 0, spaceToPredecessorY);
 
-        int sideFrameWidth = SpielerFrame.xOffset;
-        int spacePerColumn = (spielerFrame.frameJpanel.getWidth() - sideFrameWidth * 2) / numberOfColumns;
+        int spacePerColumn = getSpielerFrameWidth() / numberOfColumns;
         int xCoord = (int) (spacePerColumn * (indexOfColumn + 0.5) - (jLabelWidth / 2));
 
         centeredLabel.setCoordX(xCoord);
@@ -201,7 +201,7 @@ public class SpielerPageElementFactory {
 
         PageElement centeredElement = new PageElement(component, componentWidth, componentHeight, null, predecessorY, 0, spaceToPredecessorY);
 
-        int spacePerColumn = spielerFrame.frameJpanel.getWidth() / numberOfColumns;
+        int spacePerColumn = getSpielerFrameWidth() / numberOfColumns;
         int xCoord = (int) (spacePerColumn * (indexOfColumn + 0.5) - (componentWidth / 2));
 
         centeredElement.setCoordX(xCoord);
@@ -220,13 +220,12 @@ public class SpielerPageElementFactory {
     public PageElement generateColumnTitleLabel(String title, int numberOfColumns, int indexOfColumn, int spaceToUse) {
         JLabel titleJLabel = generateTitleJLabel(title);
 
-        int numberOfPlayersLabelWidth = spielerFrame.getPreferredSize().width;
+        int numberOfPlayersLabelWidth = getSpielerFrameWidth();
         int numberOfPlayersLabelHeight = spaceToUse + 10;
 
         PageElement titleLabel = new PageElement(titleJLabel, numberOfPlayersLabelWidth, numberOfPlayersLabelHeight, null, null);
 
-        int sideFrameWidth = SpielerFrame.xOffset;
-        int spacePerColumn = (spielerFrame.frameJpanel.getWidth() - sideFrameWidth * 2) / numberOfColumns;
+        int spacePerColumn = getSpielerFrameWidth()  / numberOfColumns;
         int xCoord = (int) (spacePerColumn * (indexOfColumn + 0.5) - (numberOfPlayersLabelWidth / 2));
 
         titleLabel.setCoordX(xCoord);
@@ -237,13 +236,12 @@ public class SpielerPageElementFactory {
     public PageElement generateClockLabel(JLabel label, int spaceToUse) {
         JLabel clockJLabel = formatLabel(label, 100);
 
-        int sideFrameWidth = SpielerFrame.xOffset;
-        int clockLabelWidth = (spielerFrame.frameJpanel.getWidth() - sideFrameWidth * 2);
+        int clockLabelWidth = getSpielerFrameWidth();
         int clockLabelHeight = spaceToUse;
 
         PageElement clockLabel = new PageElement(clockJLabel, clockLabelWidth, clockLabelHeight, null, null);
 
-        int yCoord = spielerFrame.frameJpanel.getHeight() - spaceToUse;
+        int yCoord = getSpielerFrameHeight() - spaceToUse;
         clockLabel.setCoordY(yCoord);
 
         return clockLabel;
@@ -374,5 +372,13 @@ public class SpielerPageElementFactory {
         jLabel = formatLabel(jLabel, size);
 
         return (int) jLabel.getPreferredSize().getHeight();
+    }
+
+    private int getSpielerFrameWidth() {
+        return spielerFrame.frameJpanel.getWidth();
+    }
+
+    private int getSpielerFrameHeight() {
+        return spielerFrame.frameJpanel.getHeight();
     }
 }
