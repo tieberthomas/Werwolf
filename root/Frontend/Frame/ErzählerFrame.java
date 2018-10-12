@@ -8,7 +8,6 @@ import root.Frontend.Utils.PageRefresher.Models.ButtonTable;
 import root.Frontend.Utils.PageRefresher.Models.DeleteButtonTable;
 import root.Frontend.Utils.PageRefresher.Models.LabelTable;
 import root.Frontend.Utils.PageRefresher.PageRefresher;
-import root.Frontend.Utils.Timer;
 import root.Persona.Bonusrolle;
 import root.Persona.Hauptrolle;
 import root.Phases.ErsteNacht;
@@ -30,7 +29,6 @@ import java.util.stream.Collectors;
 
 public class ErzählerFrame extends MyFrame implements ActionListener {
     public static Game game;
-    public Timer timer;
 
     public SpielerFrame spielerFrame;
     public ÜbersichtsFrame übersichtsFrame;
@@ -136,8 +134,6 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         buildScreenFromPage(startPage);
 
         showFrame();
-
-        timer = new Timer(); //TODO move into spielerframe/make static
 
         initializePages();
 

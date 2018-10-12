@@ -3,6 +3,7 @@ package root.Frontend.Frame;
 import root.Frontend.Factories.SpielerPageElementFactory;
 import root.Frontend.Factories.SpielerPageFactory;
 import root.Frontend.Page.Page;
+import root.Frontend.Utils.TimeUpdater;
 import root.Phases.PhaseMode;
 import root.Phases.Tag;
 import root.mechanics.Game;
@@ -40,8 +41,8 @@ public class SpielerFrame extends MyFrame {
         comboBox2Label = new JLabel("");
         comboBox3Label = new JLabel("");
         clockLabel = new JLabel();
-        erzählerFrame.timer.spielerframe = this;
-        erzählerFrame.timer.startTimeUpdateThread();
+        TimeUpdater.spielerframe = this;
+        TimeUpdater.startTimeUpdateThread();
 
         frameJpanel = generateDefaultPanel();
 

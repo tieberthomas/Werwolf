@@ -6,13 +6,13 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class Timer {
-    public static boolean timeThreadStarted = false;
+public class TimeUpdater {
+    public static SpielerFrame spielerframe;
+    private static boolean timeThreadStarted = false;
     public static int time = 0;
-    public static String timestring = "00:00:00";
-    public SpielerFrame spielerframe;
+    private static String timestring = "00:00:00";
 
-    public void startTimeUpdateThread() {
+    public static void startTimeUpdateThread() {
         if (!timeThreadStarted) {
             timeThreadStarted = true;
             ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
@@ -21,7 +21,9 @@ public class Timer {
                 public void run() {
                     time++;
                     generateTimeString();
-                    spielerframe.clockLabel.setText(timestring);
+                    if(spielerframe!=null && spielerframe.clockLabel!=null) {
+                        spielerframe.clockLabel.setText(timestring);
+                    }
                 }
             };
 
@@ -29,7 +31,7 @@ public class Timer {
         }
     }
 
-    public static void generateTimeString() {
+    private static void generateTimeString() {
         int tmpTime = time;
         int firstDigit = 0;
         int secondDigit = 0;

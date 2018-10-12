@@ -1,7 +1,7 @@
 package root.Phases;
 
 import root.Frontend.Utils.JButtonStyler;
-import root.Frontend.Utils.Timer;
+import root.Frontend.Utils.TimeUpdater;
 import root.Frontend.FrontendControl;
 import root.Persona.Fraktionen.Bürger;
 import root.Persona.Hauptrolle;
@@ -45,7 +45,7 @@ public class Tag extends Thread {
     public void day() {
         lock = new Object();
         synchronized (lock) {
-            Timer.time = 0;
+            TimeUpdater.time = 0;
 
             FrontendControl.erzählerDefaultDayPage();
             FrontendControl.spielerDayPage();

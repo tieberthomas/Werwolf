@@ -39,8 +39,6 @@ get dropdown options von werwölfen und vampieren ist duplicated
 is tötend in werwolffraktion generische machen
 
 
-bei jeder rolle als kommentar den kartentext dazuschreiben
-
 
 zuviel arbeit fürs erste:
 nach jeder nacht und tag persistierung
