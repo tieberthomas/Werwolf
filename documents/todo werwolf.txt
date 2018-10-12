@@ -10,6 +10,9 @@ tarnumhang
 alles was tötet + prostituierten interaktion
 wahrsager
 
+bugs:
+gefängniswärter aufgebraucht
+
 
 ToDo:
 Dropdown auf totPage entfernen (michael fragen, ob bamboozeln von toten rollen in der nacht erwünscht ist)
@@ -21,6 +24,7 @@ task:
 wenn dieb karten stiehlt wie z.B. schnüffler oder tarnumhang, dann müssen arraylists der letzten nächte zurückgesetzt werden
 
 CherryOnTop:
+Statements farblich markieren nach status
 seher bamboozlekarten dem erzähler zeigen während der seher aktion damit dieser nicht verwirrt ist
 siegüberprüfung generischer machen (tag und nacht)
 tauschkarten quasi aus secondaryRolesInGame removen (für nachzügler) aber nicht wirklich, weil ja der spielerscreen am tag anzeigen soll dass es drin war
