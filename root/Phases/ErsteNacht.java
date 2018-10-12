@@ -443,9 +443,12 @@ public class ErsteNacht extends Thread {
 
     private Hauptrolle pickRandomHauptrolle(ArrayList<Hauptrolle> hauptrollen) {
         int numberOfUnassignedHauptrollen = hauptrollen.size();
-        Random random = new Random();
-        int index = random.nextInt(numberOfUnassignedHauptrollen);
+        if(numberOfUnassignedHauptrollen > 0) {
+            Random random = new Random();
+            int index = random.nextInt(numberOfUnassignedHauptrollen);
+            return hauptrollen.get(index);
+        }
 
-        return hauptrollen.get(index);
+        return new Dorfbewohner();
     }
 }
