@@ -97,6 +97,8 @@ public class ErsteNacht extends Thread {
             ersteNachtBuildStatements();
 
             for (Statement statement : statements) {
+                refreshStatementStates();
+
                 if (statement.isVisible()) {
                     setPlayersAwake(statement);
                     Rolle rolle = null;
@@ -218,6 +220,14 @@ public class ErsteNacht extends Thread {
         for (Bonusrolle currentBonusrolle : game.secondaryRoles) {
             currentBonusrolle.besuchtLetzteNacht = null;
             currentBonusrolle.besucht = null;
+        }
+    }
+
+    private void refreshStatementStates() {
+        for (Statement statement : statements) {
+            if(!statement.alreadyOver) {
+                statement.refreshState();
+            }
         }
     }
 
