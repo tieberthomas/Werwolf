@@ -1,12 +1,13 @@
 package root.Phases;
 
+import root.Frontend.FrontendControl;
 import root.Frontend.Utils.JButtonStyler;
 import root.Frontend.Utils.TimeUpdater;
-import root.Frontend.FrontendControl;
 import root.Persona.Fraktionen.Bürger;
 import root.Persona.Hauptrolle;
 import root.Persona.Rollen.Bonusrollen.ReineSeele;
 import root.Persona.Rollen.Bonusrollen.Wahrsager;
+import root.ResourceManagement.ImagePath;
 import root.Spieler;
 import root.mechanics.Game;
 
@@ -65,8 +66,8 @@ public class Tag extends Thread {
 
                 if (bonusrolleSpieler.equals(ReineSeele.NAME) && ((ReineSeele) chosenSpieler.bonusrolle).dayInvincibility ||
                         (gebürgteSpieler.contains(chosenSpieler) && hauptrolleSpieler.fraktion.name.equals(Bürger.NAME))) {
-                    FrontendControl.erzählerAnnounceVictimPage(chosenSpieler, ReineSeele.IMAGE_PATH);
-                    FrontendControl.spielerCardPicturePage(chosenSpieler.name, ReineSeele.IMAGE_PATH);
+                    FrontendControl.erzählerAnnounceVictimPage(chosenSpieler, ImagePath.REINE_SEELE_OPEN_KARTE);
+                    FrontendControl.spielerCardPicturePage(chosenSpieler.name, ImagePath.REINE_SEELE_OPEN_KARTE);
                     if (chosenSpieler.bonusrolle.name.equals(ReineSeele.NAME)) {
                         ((ReineSeele) chosenSpieler.bonusrolle).dayInvincibility = false;
                     }
