@@ -10,7 +10,7 @@ public class StatementRolle extends Statement {
     public boolean sammler;
 
     public StatementRolle(Rolle rolle) {
-        this(rolle.secondStatementIdentifier, rolle.statementTitle, rolle.statementBeschreibung, rolle.statementType, rolle.name);
+        this(rolle.statementIdentifier, rolle.statementTitle, rolle.statementBeschreibung, rolle.statementType, rolle.name);
     }
 
     public StatementRolle(String identifier, String title, String beschreibung, StatementType type, String rolle) {
