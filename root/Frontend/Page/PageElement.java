@@ -1,6 +1,7 @@
 package root.Frontend.Page;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class PageElement extends Predecessor {
     public JComponent component;
@@ -37,6 +38,10 @@ public class PageElement extends Predecessor {
         this.coordY = coordY;
         pageCoordY = this.coordY + pageOffsetY;
         component.setBounds(pageCoordX, pageCoordY, width, height);
+    }
+
+    public void setCoords(Point point) {
+        setCoords(point.x, point.y);
     }
 
     public void setCoords(int coordX, int coordY) {

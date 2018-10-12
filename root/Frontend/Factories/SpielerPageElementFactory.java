@@ -20,25 +20,53 @@ public class SpielerPageElementFactory {
     public static final int defaultTextSize = 36;
     public static final int defaultTitleSize = 48;
 
-    public PageElement generateBierLabel() {
-        JLabel bierJLabel = new JLabel();
+    public PageElement generateBierImage(Corner corner, int heigth) {
+        int xSpace = 10;
+        int ySpace = 20;
 
-        ImageIcon iconLogo = new ImageIcon(ImagePath.FREIBIER);
-
-        int bierLabelWidth = iconLogo.getIconWidth();
-        int bierLabelHeight = iconLogo.getIconHeight();
-
-        bierJLabel.setIcon(iconLogo);
-
-        PageElement bierLabel = new PageElement(bierJLabel, bierLabelWidth, bierLabelHeight, null, null, 0, 0);
-
-        int xCoord = spielerFrame.frameJpanel.getWidth() - bierLabelWidth;
-        int yCoord = spielerFrame.frameJpanel.getHeight() - bierLabelHeight;
-
-        bierLabel.setCoords(xCoord, yCoord);
-
-        return bierLabel;
+        return generateCornerImage(ImagePath.FREIBIER, corner, heigth, xSpace, ySpace);
     }
+
+    public PageElement generateCornerImage(String imagePath, Corner corner, int height,  int xSpace, int ySpace) {
+        PageElement pageImage = generateFixedHeightPageImage(imagePath, height);
+
+        Point point = generateCornerCoordinates(pageImage.width, height, xSpace, ySpace, corner);
+
+        pageImage.setCoords(point);
+
+        return pageImage;
+    }
+
+    private Point generateCornerCoordinates(int width, int heigth, int xSpace, int ySpace, Corner corner) {
+        Point startpoint = generateCornerStarpoint(corner);
+        int xOffsetDirection = corner.xDirection;
+        int yOffsetDirection = corner.yDirection;
+
+        int xImageOffset = xOffsetDirection == Direction.POSITIVE.modificatior ? 0 : width * xOffsetDirection;
+        int yImageOffset = yOffsetDirection == Direction.POSITIVE.modificatior ? 0 : heigth * yOffsetDirection;
+
+        int xCoord = startpoint.x + xImageOffset + xSpace*xOffsetDirection;
+        int yCoord = startpoint.y + yImageOffset + ySpace*yOffsetDirection;
+
+        return new Point(xCoord, yCoord);
+    }
+
+    private Point generateCornerStarpoint(Corner corner) {
+        int x = corner.xDirection == Direction.POSITIVE.modificatior ? 0 : spielerFrame.getWidth();
+        int y = corner.yDirection == Direction.POSITIVE.modificatior ? 0 : spielerFrame.getHeight();;
+
+        return new Point(x,y);
+    }
+
+    private PageElement generateFixedHeightPageImage(String imagePath, int height) {
+        JLabel bierJLabel = generateFixedHeightImage(imagePath, height);
+
+        int imageWidth = bierJLabel.getIcon().getIconWidth();
+        int imageHeight = bierJLabel.getIcon().getIconHeight();
+
+        return new PageElement(bierJLabel, imageWidth, imageHeight, null, null, 0, 0);
+    }
+
 
     public PageElement generateHorizontallyCenteredImageLabel(String imagePath, Predecessor predecessorY) {
         JLabel imageJLabel = new JLabel();
@@ -53,7 +81,7 @@ public class SpielerPageElementFactory {
         PageElement imageLabel = new PageElement(imageJLabel, imageJLabelWidth, imageJLabelHeight, null,
                 predecessorY, 0, 0);
 
-        int xCoord = spielerFrame.frameJpanel.getWidth() / 2 - (imageJLabelWidth / 2);
+        int xCoord = spielerFrame.getWidth() / 2 - (imageJLabelWidth / 2);
 
         imageLabel.setCoordX(xCoord);
 
@@ -72,8 +100,8 @@ public class SpielerPageElementFactory {
 
         PageElement imageLabel = new PageElement(imageJLabel, imageJLabelWidth, imageJLabelHeight);
 
-        int xCoord = spielerFrame.frameJpanel.getWidth() / 2 - (imageJLabelWidth / 2);
-        int yCoord = spielerFrame.frameJpanel.getHeight() / 2 - (imageJLabelHeight / 2);
+        int xCoord = spielerFrame.getWidth() / 2 - (imageJLabelWidth / 2);
+        int yCoord = spielerFrame.getHeight() / 2 - (imageJLabelHeight / 2);
 
         imageLabel.setCoords(xCoord, yCoord);
 
@@ -92,7 +120,7 @@ public class SpielerPageElementFactory {
 
         PageElement imageLabel = new PageElement(imageJLabel, imageJLabelWidth, imageJLabelHeight, null, predecessorY, 0, 0);
 
-        int xCoord = spielerFrame.frameJpanel.getWidth() / 2 - imageJLabelWidth;
+        int xCoord = spielerFrame.getWidth() / 2 - imageJLabelWidth;
 
         imageLabel.setCoordX(xCoord);
 
@@ -248,17 +276,41 @@ public class SpielerPageElementFactory {
         return formatLabel(label, defaultTitleSize);
     }
 
-    public ArrayList<JComponent> generateImages(RawInformation rawInformation, int width, int height) {
+    public JLabel generateFixedHeightImage(String imagepath, int wantedHeight) {
+        JLabel iconJLabel = new JLabel();
+
+        ImageIcon iconLogo = new ImageIcon(imagepath);
+
+        int actualHeight = iconLogo.getIconHeight();
+        int actualWidth = iconLogo.getIconWidth();
+        double skalierungsFaktor = ((double) wantedHeight) / actualHeight;
+        int scaledIconWidth = (int) ((double) actualWidth * skalierungsFaktor);
+
+        scaleImage(iconLogo, scaledIconWidth, wantedHeight);
+        iconJLabel.setIcon(iconLogo);
+
+        return iconJLabel;
+    }
+
+    private void scaleImage(ImageIcon imageIcon, int width, int height) {
+        Image img = imageIcon.getImage();
+        if (img != null) {
+            Image newimg = img.getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
+            imageIcon.setImage(newimg);
+        }
+    }
+
+    public ArrayList<JComponent> generateFixedSizedImages(RawInformation rawInformation, int width, int height) {
         ArrayList<JComponent> images = new ArrayList<>();
 
         for (String imagepath : rawInformation.imagePaths) {
-            images.add(generateFixedHeightImage(imagepath, width, height));
+            images.add(generateFixedSizeImage(imagepath, width, height));
         }
 
         return images;
     }
 
-    public JLabel generateFixedHeightImage(String imagepath, int wantedWidth, int wantedHeight) {
+    public JLabel generateFixedSizeImage(String imagepath, int wantedWidth, int wantedHeight) {
         JLabel iconJLabel = new JLabel();
 
         ImageIcon iconLogo = new ImageIcon(imagepath);

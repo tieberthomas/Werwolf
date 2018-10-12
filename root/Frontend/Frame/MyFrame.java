@@ -100,4 +100,14 @@ public class MyFrame extends JFrame {
             frameMode = FrameMode.small;
         }
     }
+
+    @Override
+    public int getWidth() {
+        return frameJpanel.getWidth();
+    }
+
+    @Override
+    public int getHeight() {
+        return frameJpanel.getHeight();
+    }
 }

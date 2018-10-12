@@ -104,13 +104,16 @@ public class SpielerPageFactory {
         spielerFrame.clockLabel = new JLabel("00:00:00"); ///TODO remove or make generic
         PageElement counterLabel = pageElementFactory.generateClockLabel(spielerFrame.clockLabel, clockSpace);
 
-        PageElement freibierWatermark = pageElementFactory.generateBierLabel();
-
         listPage.add(title1Element);
         listPage.add(title2Element);
         listPage.add(counterLabel);
-        if(freibier) {
-            listPage.add(freibierWatermark);
+
+        if(freibier) { //TODO implementieren dass nurnoch eines angezeigt wird nach erstem kill (?)
+            PageElement freibierWatermarkRight = pageElementFactory.generateBierImage(Corner.LOWERRIGHT, clockSpace);
+            PageElement freibierWatermarkLeft = pageElementFactory.generateBierImage(Corner.LOWERLEFT, clockSpace);
+
+            listPage.add(freibierWatermarkRight);
+            listPage.add(freibierWatermarkLeft);
         }
 
         return listPage;
@@ -488,7 +491,7 @@ public class SpielerPageFactory {
             int spaceToUse = spielerFrame.frameJpanel.getHeight() - frameOffset - offsetAbove;
             int columnHeight = spaceToUse / rawInformation.imagePaths.size();
             int columnWidth = (int) ((double) spielerFrame.frameJpanel.getWidth()) / numberOfColumns;
-            elementsToDisplay = pageElementFactory.generateImages(rawInformation, columnWidth, columnHeight);
+            elementsToDisplay = pageElementFactory.generateFixedSizedImages(rawInformation, columnWidth, columnHeight);
         }
 
         return generateColumnElements(elementsToDisplay, numberOfColumns, indexOfColumn, offsetAbove, 0);
