@@ -273,24 +273,21 @@ public class ErzählerPageElementFactory {
     }
 
     public ArrayList<Statement> changeStatementsToFitSammler(ArrayList<Statement> statements) {
-        ArrayList<Statement> newStatements = new ArrayList<Statement>();
-
         for (Statement statement : statements) {
             if (statement.getClass() == StatementRolle.class) {
                 StatementRolle statementRolle = (StatementRolle) statement;
                 if (statementRolle.sammler) {
                     if (!statementRolle.beschreibung.equals(Konditorlehrling.STATEMENT_BESCHREIBUNG)) {
-                        statement.beschreibung = Sammler.beschreibungAddiditon + statement.beschreibung;
+                        statement.beschreibung = Sammler.beschreibungAddiditon + statement.beschreibung; //TODO fix Der Sammler als Der Sammler als Der Sammler als Der Sammler als 
                     } else {
                         String searchString = "Konditorlehrling erwachen ";
                         statement.beschreibung = statement.beschreibung.replace(searchString, Sammler.beschreibungAddiditonLowerCase + searchString);
                     }
                 }
             }
-            newStatements.add(statement);
         }
 
-        return newStatements;
+        return statements;
     }
 
     public PageElement generateDropdown(JComboBox jComboBox, Predecessor predecessorX, Predecessor predecessorY,
