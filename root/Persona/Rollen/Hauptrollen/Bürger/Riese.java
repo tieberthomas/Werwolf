@@ -10,6 +10,7 @@ import root.Spieler;
 import root.mechanics.Opfer;
 
 public class Riese extends Hauptrolle {
+    public static final String STATEMENT_IDENTIFIER = "Riese";
     public static final String STATEMENT_TITLE = "Mitspieler töten";
     public static final String STATEMENT_BESCHREIBUNG = "Riese erwacht und entscheidet sich ob einen Mitspieler töten möchte";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
@@ -23,6 +24,7 @@ public class Riese extends Hauptrolle {
         this.imagePath = IMAGE_PATH;
         this.fraktion = FRAKTION;
 
+        this.statementIdentifier = STATEMENT_IDENTIFIER;
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;

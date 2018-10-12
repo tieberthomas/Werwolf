@@ -23,6 +23,7 @@ task:
 wenn dieb karten stiehlt wie z.B. schnüffler oder tarnumhang, dann müssen arraylists der letzten nächte zurückgesetzt werden
 
 CherryOnTop:
+Schattenpriester und Tote farblich unterscheiden
 Statements farblich markieren nach status
 seher bamboozlekarten dem erzähler zeigen während der seher aktion damit dieser nicht verwirrt ist
 siegüberprüfung generischer machen (tag und nacht)
@@ -55,3 +56,6 @@ Michael änderungs requests
 beim neuen schattenpriester werden alle SP eingerahmt
 
 michael fragen:
+
+Fallstrick:
+Henker Prostituierte Interaktion

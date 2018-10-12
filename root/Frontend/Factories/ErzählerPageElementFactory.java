@@ -279,14 +279,12 @@ public class ErzählerPageElementFactory {
             if (statement.getClass() == StatementRolle.class) {
                 StatementRolle statementRolle = (StatementRolle) statement;
                 if (statementRolle.sammler) {
-                    StatementRolle newRolleStatement = new StatementRolle(statementRolle.beschreibung, statementRolle.title, statementRolle.getRolle().name, statementRolle.type);
                     if (!statementRolle.beschreibung.equals(Konditorlehrling.STATEMENT_BESCHREIBUNG)) {
-                        newRolleStatement.beschreibung = Sammler.beschreibungAddiditon + statement.beschreibung;
+                        statement.beschreibung = Sammler.beschreibungAddiditon + statement.beschreibung;
                     } else {
                         String searchString = "Konditorlehrling erwachen ";
-                        newRolleStatement.beschreibung = statement.beschreibung.replace(searchString, Sammler.beschreibungAddiditonLowerCase + searchString);
+                        statement.beschreibung = statement.beschreibung.replace(searchString, Sammler.beschreibungAddiditonLowerCase + searchString);
                     }
-                    statement = newRolleStatement;
                 }
             }
             newStatements.add(statement);

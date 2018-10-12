@@ -13,13 +13,14 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Dieb extends Bonusrolle {
+    public static final String STATEMENT_IDENTIFIER = "Dieb";
     public static final String STATEMENT_TITLE = "Bonusrolle stehlen";
     public static final String STATEMENT_BESCHREIBUNG = "Dieb erwacht und entscheidet ob er jemandes Bonusrolle stehlen möchte";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
 
+    public static final String NEUE_BONUSROLLE = "Dieb_Neue_Bonusrolle";
     public static final String SECOND_STATEMENT_TITLE = "Neue Bonusrolle";
-    public static final String NEUE_BONUSROLLE = "Der Bestohlene erwacht und erhält eine neue Bonusrolle";
-    public static final String SECOND_STATEMENT_BESCHREIBUNG = NEUE_BONUSROLLE;
+    public static final String SECOND_STATEMENT_BESCHREIBUNG = "Der Bestohlene erwacht und erhält eine neue Bonusrolle";
     public static final StatementType SECOND_STATEMENT_TYPE = StatementType.ROLLE_INFO;//TODO Problem: Statement ist von Dieb abhängig, Dieb ist zu diesem Zeitpunkt bereits aus dem Spiel
 
     public static final String NAME = "Dieb";
@@ -31,10 +32,12 @@ public class Dieb extends Bonusrolle {
         this.imagePath = IMAGE_PATH;
         this.type = TYPE;
 
+        this.statementIdentifier = STATEMENT_IDENTIFIER;
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;
 
+        this.secondStatementIdentifier = NEUE_BONUSROLLE;
         this.secondStatementTitle = SECOND_STATEMENT_TITLE;
         this.secondStatementBeschreibung = SECOND_STATEMENT_BESCHREIBUNG;
         this.secondStatementType = SECOND_STATEMENT_TYPE;

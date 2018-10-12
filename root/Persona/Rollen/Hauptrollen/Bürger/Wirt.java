@@ -14,6 +14,7 @@ import static root.Persona.Rollen.Constants.DropdownConstants.JA;
 import static root.Persona.Rollen.Constants.DropdownConstants.NEIN;
 
 public class Wirt extends Hauptrolle {
+    public static final String STATEMENT_IDENTIFIER = "Wirt";
     public static final String STATEMENT_TITLE = "Freibier ausgeben";
     public static final String STATEMENT_BESCHREIBUNG = "Wirt erwacht und entscheidet sich ob er Freibier ausgeben will";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
@@ -28,6 +29,7 @@ public class Wirt extends Hauptrolle {
         this.imagePath = IMAGE_PATH;
         this.fraktion = FRAKTION;
 
+        this.statementIdentifier = STATEMENT_IDENTIFIER;
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;

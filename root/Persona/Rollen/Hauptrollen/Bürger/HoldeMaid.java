@@ -9,6 +9,7 @@ import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
 public class HoldeMaid extends Hauptrolle {
+    public static final String STATEMENT_IDENTIFIER = "HoldeMaid";
     public static final String STATEMENT_TITLE = "Mitspieler offenbaren";
     public static final String STATEMENT_BESCHREIBUNG = "Holde Maid erwacht und offenbart sich einem Mitspieler";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
@@ -22,6 +23,7 @@ public class HoldeMaid extends Hauptrolle {
         this.imagePath = IMAGE_PATH;
         this.fraktion = FRAKTION;
 
+        this.statementIdentifier = STATEMENT_IDENTIFIER;
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;

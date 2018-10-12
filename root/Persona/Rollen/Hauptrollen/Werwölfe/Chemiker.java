@@ -12,13 +12,14 @@ import root.mechanics.Opfer;
 import java.util.ArrayList;
 
 public class Chemiker extends Hauptrolle {
+    public static final String STATEMENT_IDENTIFIER = "Chemiker";
     public static final String STATEMENT_TITLE = "Opfer wiederbeleben";
     public static final String STATEMENT_BESCHREIBUNG = "Chemiker erwacht und kann ein Wolfsopfer dieser Nacht wiederbeleben und zum Wolfsrudel hinzufügen";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
 
+    public static final String NEUER_WERWOLF = "Chemiker_Neuer_Werwolf";
     public static final String SECOND_STATEMENT_TITLE = "Neuer Werwolf";
-    public static final String NEUER_WERWOLF = "Der Wiederbelebte erwacht und tauscht seine Hauptrollen- gegen eine Werwolfkarte";
-    public static final String SECOND_STATEMENT_BESCHREIBUNG = NEUER_WERWOLF;
+    public static final String SECOND_STATEMENT_BESCHREIBUNG = "Der Wiederbelebte erwacht und tauscht seine Hauptrollen- gegen eine Werwolfkarte";
     public static final StatementType SECOND_STATEMENT_TYPE = StatementType.FRAKTION_SPECAL;
 
     public static final String NAME = "Chemiker";
@@ -30,10 +31,12 @@ public class Chemiker extends Hauptrolle {
         this.imagePath = IMAGE_PATH;
         this.fraktion = FRAKTION;
 
+        this.statementIdentifier = STATEMENT_IDENTIFIER;
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;
 
+        this.secondStatementIdentifier = NEUER_WERWOLF;
         this.secondStatementTitle = SECOND_STATEMENT_TITLE;
         this.secondStatementBeschreibung = SECOND_STATEMENT_BESCHREIBUNG;
         this.secondStatementType = SECOND_STATEMENT_TYPE;

@@ -17,13 +17,14 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Schattenpriester_Fraktion extends Fraktion {
+    public static final String STATEMENT_IDENTIFIER = "Schattenpriester_Fraktion";
     public static final String STATEMENT_TITLE = "Opfer wiederbeleben";
     public static final String STATEMENT_BESCHREIBUNG = "Die Schattenpriester erwachen und entscheiden welchen Verstorbenen dieser Nacht sie wiederbeleben und zum Kult hinzufügen möchten";
     public static final StatementType STATEMENT_TYPE = StatementType.FRAKTION_CHOOSE_ONE;
 
+    public static final String NEUER_SCHATTENPRIESTER = "Schattenpriester_Fraktion_Neuer_Schattenpriester";
     public static final String SECOND_STATEMENT_TITLE = "Neuer Schattenpriester";
-    public static final String NEUER_SCHATTENPRIESTER = "Der Wiederbelebte erwacht und tauscht seine Karten gegen Schattenkarten";
-    public static final String SECOND_STATEMENT_BESCHREIBUNG = NEUER_SCHATTENPRIESTER;
+    public static final String SECOND_STATEMENT_BESCHREIBUNG = "Der Wiederbelebte erwacht und tauscht seine Karten gegen Schattenkarten";
     public static final StatementType SECOND_STATEMENT_TYPE = StatementType.FRAKTION_SPECAL;
 
     public static final String NAME = "Schattenpriester";
@@ -39,10 +40,12 @@ public class Schattenpriester_Fraktion extends Fraktion {
 
         this.color = COLOR;
 
+        this.statementIdentifier = STATEMENT_IDENTIFIER;
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;
 
+        this.secondStatementIdentifier = NEUER_SCHATTENPRIESTER;
         this.secondStatementTitle = SECOND_STATEMENT_TITLE;
         this.secondStatementBeschreibung = SECOND_STATEMENT_BESCHREIBUNG;
         this.secondStatementType = SECOND_STATEMENT_TYPE;

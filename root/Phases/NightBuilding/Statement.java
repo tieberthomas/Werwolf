@@ -4,8 +4,9 @@ import root.Phases.NightBuilding.Constants.StatementState;
 import root.Phases.NightBuilding.Constants.StatementType;
 
 public class Statement {
-    public String beschreibung;
+    public String identifier;
     public String title;
+    public String beschreibung;
     public StatementType type;
     private StatementState state = StatementState.INVISIBLE_NOT_IN_GAME;
     public boolean alreadyOver = false;

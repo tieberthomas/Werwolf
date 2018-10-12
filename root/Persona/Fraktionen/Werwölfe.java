@@ -17,6 +17,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Werwölfe extends Fraktion {
+    public static final String STATEMENT_IDENTIFIER = "Werwölfe";
     public static final String STATEMENT_TITLE = "Opfer wählen";
     public static final String STATEMENT_BESCHREIBUNG = "Die Werwölfe erwachen und die Wölfe wählen ein Opfer aus";
     public static final StatementType STATEMENT_TYPE = StatementType.FRAKTION_CHOOSE_ONE;
@@ -32,6 +33,7 @@ public class Werwölfe extends Fraktion {
 
         this.color = COLOR;
 
+        this.statementIdentifier = STATEMENT_IDENTIFIER;
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;

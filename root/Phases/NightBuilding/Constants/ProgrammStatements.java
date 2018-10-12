@@ -4,9 +4,9 @@ import root.Phases.NightBuilding.Statement;
 import root.Phases.NightBuilding.StatementProgramm;
 
 public class ProgrammStatements {
-    public static final String SCHÜTZE = "[Programm] Schütze";
-    public static final String OPFER = "[Programm] Opfer";
-    public static final String TORTE = "[Programm] Torte";
+    public static final String SCHÜTZE = "Programm_Schütze";
+    public static final String OPFER = "Programm_Opfer";
+    public static final String TORTE = "Programm_Torte";
 
     public static Statement getSchützeStatement() {
         return new StatementProgramm(SCHÜTZE);

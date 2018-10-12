@@ -13,6 +13,7 @@ import root.Spieler;
 import java.util.ArrayList;
 
 public class LadyAleera extends Hauptrolle {
+    public static final String STATEMENT_IDENTIFIER = "LadyAleera";
     public static final String STATEMENT_TITLE = "Geschützte Spieler";
     public static final String STATEMENT_BESCHREIBUNG = "Lady Aleera erwacht und sieht alle geschützten Spieler";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_INFO;
@@ -26,6 +27,7 @@ public class LadyAleera extends Hauptrolle {
         this.imagePath = IMAGE_PATH;
         this.fraktion = FRAKTION;
 
+        this.statementIdentifier = STATEMENT_IDENTIFIER;
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;

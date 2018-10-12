@@ -14,6 +14,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Vampire extends Fraktion {
+    public static final String STATEMENT_IDENTIFIER = "Vampire";
     public static final String STATEMENT_TITLE = "Opfer wählen";
     public static final String STATEMENT_BESCHREIBUNG = "Die Vampire erwachen und wählen ein Opfer aus";
     public static final StatementType STATEMENT_TYPE = StatementType.FRAKTION_CHOOSE_ONE;
@@ -29,6 +30,7 @@ public class Vampire extends Fraktion {
 
         this.color = COLOR;
 
+        this.statementIdentifier = STATEMENT_IDENTIFIER;
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;

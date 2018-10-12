@@ -9,6 +9,7 @@ import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
 public class Gefängniswärter extends Bonusrolle {
+    public static final String STATEMENT_IDENTIFIER = "Gefängniswärter";
     public static final String STATEMENT_TITLE = "Schutzhaft";
     public static final String STATEMENT_BESCHREIBUNG = "Gefängniswärter erwacht und stellt einen Spieler  unter Schutzhaft";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
@@ -22,6 +23,7 @@ public class Gefängniswärter extends Bonusrolle {
         this.imagePath = IMAGE_PATH;
         this.type = TYPE;
 
+        this.statementIdentifier = STATEMENT_IDENTIFIER;
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;

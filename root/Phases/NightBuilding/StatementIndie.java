@@ -3,9 +3,10 @@ package root.Phases.NightBuilding;
 import root.Phases.NightBuilding.Constants.StatementType;
 
 public class StatementIndie extends Statement {
-    public StatementIndie(String beschreibung, String title, StatementType type) {
-        this.beschreibung = beschreibung;
+    public StatementIndie(String identifier, String title, String beschreibung, StatementType type) {
+        this.identifier = identifier;
         this.title = title;
+        this.beschreibung = beschreibung;
         this.type = type;
     }
 

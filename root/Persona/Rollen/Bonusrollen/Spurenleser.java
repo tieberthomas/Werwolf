@@ -13,6 +13,7 @@ import root.Spieler;
 import java.util.ArrayList;
 
 public class Spurenleser extends Bonusrolle {
+    public static final String STATEMENT_IDENTIFIER = "Spurenleser";
     public static final String STATEMENT_TITLE = "Spuren lesen von";
     public static final String STATEMENT_BESCHREIBUNG = "Spurenleser erwacht, wählt einen Mitspieler und erfährt wen dieser Spieler besucht hat";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE_INFO;
@@ -27,6 +28,7 @@ public class Spurenleser extends Bonusrolle {
         this.imagePath = IMAGE_PATH;
         this.type = TYPE;
 
+        this.statementIdentifier = STATEMENT_IDENTIFIER;
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;

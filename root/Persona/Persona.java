@@ -15,10 +15,12 @@ public class Persona {
 
     public Color color = Color.WHITE;
 
+    public String statementIdentifier = "";
     public String statementTitle = "";
     public String statementBeschreibung = "";
     public StatementType statementType = StatementType.EMPTY_STATEMENT;
 
+    public String secondStatementIdentifier = "";
     public String secondStatementTitle = "";
     public String secondStatementBeschreibung = "";
     public StatementType secondStatementType = StatementType.EMPTY_STATEMENT;

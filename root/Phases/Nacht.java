@@ -125,8 +125,8 @@ public class Nacht extends Thread {
                             break;
                     }
 
-                    switch (statement.beschreibung) {
-                        case Wirt.STATEMENT_BESCHREIBUNG:
+                    switch (statement.identifier) {
+                        case Wirt.STATEMENT_IDENTIFIER:
                             if (DropdownConstants.JA.name.equals(chosenOption)) {
                                 game.freibier = true;
                             }
@@ -136,7 +136,7 @@ public class Nacht extends Thread {
                             setSchütze();
                             break;
 
-                        case Schreckenswolf.STATEMENT_BESCHREIBUNG:
+                        case Schreckenswolf.STATEMENT_IDENTIFIER:
                             Schreckenswolf schreckenswolf = (Schreckenswolf) rolle;
                             if (schreckenswolf != null && schreckenswolf.werwölfeKilledOnSchutz()) {
                                 dropdownOtions = schreckenswolf.getDropdownOptions();
@@ -147,7 +147,7 @@ public class Nacht extends Thread {
                             }
                             break;
 
-                        case Wölfin.STATEMENT_BESCHREIBUNG:
+                        case Wölfin.STATEMENT_IDENTIFIER:
                             if (!"".equals(chosenOption)) {
                                 wölfinKilled = true;
                                 wölfinSpieler = game.findSpielerPerRolle(Wölfin.NAME);
@@ -178,7 +178,7 @@ public class Nacht extends Thread {
                             showListShowImage(statement, neuerWerwolf, Werwölfe.zeigekarte.imagePath); //TODO evalueren obs schönere lösung gibt
                             break;
 
-                        case Analytiker.STATEMENT_BESCHREIBUNG:
+                        case Analytiker.STATEMENT_IDENTIFIER:
                             Spieler analytikerSpieler = game.findSpielerPerRolle(rolle.name);
                             if (Rolle.rolleLebend(Analytiker.NAME)) {
                                 ArrayList<String> spielerOrNonWithoutAnalytiker = (ArrayList<String>) spielerOrNon.clone();
@@ -201,7 +201,7 @@ public class Nacht extends Thread {
                             }
                             break;
 
-                        case Wahrsager.STATEMENT_BESCHREIBUNG:
+                        case Wahrsager.STATEMENT_IDENTIFIER:
                             Spieler wahrsagerSpieler2 = game.findSpielerPerRolle(Wahrsager.NAME);
                             Spieler deadWahrsagerSpieler = game.findSpielerOrDeadPerRolle(Wahrsager.NAME);
                             if (wahrsagerSpieler2 != null) {
@@ -218,8 +218,8 @@ public class Nacht extends Thread {
                             }
                             break;
 
-                        case Konditor.STATEMENT_BESCHREIBUNG:
-                        case Konditorlehrling.STATEMENT_BESCHREIBUNG:
+                        case Konditor.STATEMENT_IDENTIFIER:
+                        case Konditorlehrling.STATEMENT_IDENTIFIER:
                             //TODO evaluieren ob Page angezeigt werden soll wenn gibtEsTorte();
                             if (Opfer.deadVictims.size() == 0) {
                                 if (gibtEsTorte()) {
@@ -241,7 +241,7 @@ public class Nacht extends Thread {
                             setOpfer();
                             break;
 
-                        case IndieStatements.OPFER:
+                        case IndieStatements.OPFER_IDENTIFIER:
                             ArrayList<String> opferDerNacht = new ArrayList<>();
 
                             for (Opfer currentOpfer : Opfer.deadVictims) {

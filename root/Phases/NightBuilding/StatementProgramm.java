@@ -3,8 +3,8 @@ package root.Phases.NightBuilding;
 import root.Phases.NightBuilding.Constants.StatementType;
 
 public class StatementProgramm extends Statement {
-    public StatementProgramm(String beschreibung) {
-        this.beschreibung = beschreibung;
+    public StatementProgramm(String identifier) {
+        this.identifier = identifier;
         this.type = StatementType.PROGRAMM;
     }
 

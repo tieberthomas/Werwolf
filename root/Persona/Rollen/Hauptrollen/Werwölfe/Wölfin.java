@@ -14,13 +14,14 @@ import root.Spieler;
 import root.mechanics.Opfer;
 
 public class Wölfin extends Hauptrolle {
+    public static final String STATEMENT_IDENTIFIER = "Wölfin";
     public static final String STATEMENT_TITLE = "Opfer wählen";
     public static final String STATEMENT_BESCHREIBUNG = "Wölfin erwacht und wählt ein Opfer aus, wenn sie das tut, erfährt das Dorf ihre Bonusrolle";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
 
+    public static final String WÖLFIN_NEBENROLLE = "Wölfin_Nebenrolle";
     public static final String SECOND_STATEMENT_TITLE = "Wölfin";
-    public static final String WÖLFIN_NEBENROLLE = "Das Dorf erfährt die Bonusrolle der Wölfin";
-    public static final String SECOND_STATEMENT_BESCHREIBUNG = WÖLFIN_NEBENROLLE;
+    public static final String SECOND_STATEMENT_BESCHREIBUNG = "Das Dorf erfährt die Bonusrolle der Wölfin";
     public static final StatementType SECOND_STATEMENT_TYPE = StatementType.ROLLE_INFO;
 
     public static final String NAME = "Wölfin";
@@ -33,10 +34,12 @@ public class Wölfin extends Hauptrolle {
         this.imagePath = IMAGE_PATH;
         this.fraktion = FRAKTION;
 
+        this.statementIdentifier = STATEMENT_IDENTIFIER;
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;
 
+        this.secondStatementIdentifier = WÖLFIN_NEBENROLLE;
         this.secondStatementTitle = SECOND_STATEMENT_TITLE;
         this.secondStatementBeschreibung = SECOND_STATEMENT_BESCHREIBUNG;
         this.secondStatementType = SECOND_STATEMENT_TYPE;

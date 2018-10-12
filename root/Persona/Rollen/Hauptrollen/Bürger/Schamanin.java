@@ -9,6 +9,7 @@ import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
 public class Schamanin extends Hauptrolle {
+    public static final String STATEMENT_IDENTIFIER = "Schamanin";
     public static final String STATEMENT_TITLE = "Mitspieler schützen";
     public static final String STATEMENT_BESCHREIBUNG = "Schamanin erwacht und entscheidet ob sie einen Spieler schützen möchte";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
@@ -22,6 +23,7 @@ public class Schamanin extends Hauptrolle {
         this.imagePath = IMAGE_PATH;
         this.fraktion = FRAKTION;
 
+        this.statementIdentifier = STATEMENT_IDENTIFIER;
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;

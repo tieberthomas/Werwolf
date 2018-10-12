@@ -7,14 +7,15 @@ public class StatementFraktion extends Statement {
     public String fraktion;
 
     public StatementFraktion(Fraktion fraktion) {
-        this(fraktion.statementBeschreibung, fraktion.statementTitle, fraktion.name, fraktion.statementType);
+        this(fraktion.statementIdentifier, fraktion.statementTitle, fraktion.statementBeschreibung, fraktion.statementType, fraktion.name);
     }
 
-    public StatementFraktion(String beschreibung, String title, String fraktion, StatementType type) {
-        this.beschreibung = beschreibung;
+    public StatementFraktion(String identifier, String title, String beschreibung, StatementType type, String fraktion) {
+        this.identifier = identifier;
         this.title = title;
-        this.fraktion = fraktion;
+        this.beschreibung = beschreibung;
         this.type = type;
+        this.fraktion = fraktion;
     }
 
     @Override
