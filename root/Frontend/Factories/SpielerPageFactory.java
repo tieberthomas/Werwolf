@@ -108,7 +108,7 @@ public class SpielerPageFactory {
         PageElement title1Element = pageElementFactory.generateColumnTitleLabel("Hauptrollen", 2, 0, titleSpace);
         PageElement title2Element = pageElementFactory.generateColumnTitleLabel("Bonusrollen", 2, 1, titleSpace);
 
-        spielerFrame.clockLabel = new JLabel("00:00:00"); ///TODO remove or make generic
+        spielerFrame.clockLabel = new JLabel();
         PageElement counterLabel = pageElementFactory.generateClockLabel(spielerFrame.clockLabel, clockSpace);
 
         listPage.add(title1Element);

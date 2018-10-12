@@ -12,7 +12,6 @@ wahrsager
 
 
 ToDo:
-Dropdown auf totPage entfernen (michael fragen, ob bamboozeln von toten rollen in der nacht erwünscht ist)
 Fix Problem Dieb
 new Rolle vermeiden: immer von Liste in Game holen
 Liste für buttons Liste für Rollen
@@ -26,7 +25,6 @@ siegüberprüfung generischer machen (tag und nacht)
 tauschkarten quasi aus secondaryRolesInGame removen (für nachzügler) aber nicht wirklich, weil ja der spielerscreen am tag anzeigen soll dass es drin war
 bei übersichtspage rahmen von mehreren personen anzeigen (die nicht die ganze fraktion sind)
 showDeaktivPages und showTotPages schön zusammenfassen zu einer Methode die eine Zeigekarte kriegt
-reineseele übersichtspage etwas für markup überlegen dass erzähler sieht dass die person nicht die karten aufdrehen soll
 markup für vampirumhang geschützen spieler bei lady aleera überlegen (für erzähler)
 aufgebraucht page interaktiv gestalten
 im Setup Dropdown alphabetisch sortieren
@@ -35,7 +33,7 @@ getInstance (findSpielerOrDead) in game
 analytiker aussehen generisch in showFrontend von nach inkludieren
 erste nacht generisch machen wie normale nacht
 get dropdown options von werwölfen und vampieren ist duplicated
-is tötend in werwolffraktion generische machen
+is tötend in werwolffraktion generischer machen
 
 
 
@@ -43,7 +41,7 @@ zuviel arbeit fürs erste:
 nach jeder nacht und tag persistierung
 nocheinmal spielen button auf endscreen
 in der nacht ein zurückbutton.
-	->dann soll erzählersrceen auch mit pfeiltasten navigierbar sein
+	->dann soll erzählerscreen auch mit pfeiltasten navigierbar sein
 
 
 
