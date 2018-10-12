@@ -18,11 +18,8 @@ import root.Persona.Rollen.Hauptrollen.Vampire.LadyAleera;
 import root.Persona.Rollen.Hauptrollen.Vampire.MissVerona;
 import root.Persona.Rollen.Hauptrollen.Werwölfe.*;
 import root.Persona.Rollen.Hauptrollen.Überläufer.Überläufer;
-import root.Phases.ErsteNacht;
-import root.Phases.Nacht;
+import root.Phases.*;
 import root.Phases.NightBuilding.NormalNightStatementBuilder;
-import root.Phases.PhaseMode;
-import root.Phases.Tag;
 import root.Spieler;
 
 import java.util.ArrayList;
@@ -182,29 +179,31 @@ public class Game {
         tag.start();
     }
 
-    public String checkVictory() {
+    public Winner checkVictory() {
         ArrayList<Fraktion> fraktionen = Fraktion.getLivingFraktionen();
 
         switch (fraktionen.size()) {
             case 0:
-                return "Tot";
+                return Winner.ALL_DEAD;
             case 1:
-                return fraktionen.get(0).name;
+                Winner winner = Winner.FRAKTION;
+                winner.fraktion = fraktionen.get(0);
+                return winner;
             case 2:
                 if (getLivingPlayerStrings().size() == 2) {
                     Spieler spieler1 = findSpieler(getLivingPlayerStrings().get(0));
                     Spieler spieler2 = findSpieler(getLivingPlayerStrings().get(1));
                     if (liebespaar != null && ((liebespaar.spieler1 == spieler1 && liebespaar.spieler2 == spieler2) ||
                             (liebespaar.spieler1 == spieler2 && liebespaar.spieler2 == spieler1))) {
-                        return "Liebespaar";
+                        return Winner.LIEBESPAAR;
                     } else {
-                        return null;
+                        return Winner.NO_WINNER;
                     }
                 } else {
-                    return null;
+                    return Winner.NO_WINNER;
                 }
             default:
-                return null;
+                return Winner.NO_WINNER;
         }
     }
 

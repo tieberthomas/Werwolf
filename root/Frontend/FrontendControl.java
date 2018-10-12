@@ -14,6 +14,7 @@ import root.Persona.Rollen.Constants.Zeigekarten.Tot;
 import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Persona.Rollen.Hauptrollen.Vampire.GrafVladimir;
 import root.Phases.NightBuilding.Statement;
+import root.Phases.Winner;
 import root.Spieler;
 import root.mechanics.Game;
 
@@ -147,13 +148,13 @@ public class FrontendControl {
         spielerFrame.buildScreenFromPage(dayPage);
     }
 
-    public static void erzählerEndScreenPage(String victory) {
-        Page nightPage = spielerFrame.pageFactory.generateEndScreenPage(victory);
+    public static void erzählerEndScreenPage(Winner winner) {
+        Page nightPage = spielerFrame.pageFactory.generateEndScreenPage(winner);
         erzählerFrame.buildScreenFromPage(nightPage);
     }
 
-    public static void spielerEndScreenPage(String victory) {
-        Page nightPage = spielerFrame.pageFactory.generateEndScreenPage(victory);
+    public static void spielerEndScreenPage(Winner winner) {
+        Page nightPage = spielerFrame.pageFactory.generateEndScreenPage(winner);
         spielerFrame.buildScreenFromPage(nightPage);
     }
 

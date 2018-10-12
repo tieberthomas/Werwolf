@@ -97,10 +97,10 @@ public class Tag extends Thread {
     }
 
     public void checkVictory() {
-        String victory = game.checkVictory();
+        Winner winner = game.checkVictory();
 
-        if (victory != null) {
-            showEndScreenPage(victory);
+        if (winner != Winner.NO_WINNER) {
+            showEndScreenPage(winner);
         }
     }
 
@@ -135,9 +135,9 @@ public class Tag extends Thread {
         checkVictory();
     }
 
-    public static void showEndScreenPage(String victory) {
-        FrontendControl.erzählerEndScreenPage(victory);
-        FrontendControl.spielerEndScreenPage(victory);
+    private void showEndScreenPage(Winner winner) {
+        FrontendControl.erzählerEndScreenPage(winner);
+        FrontendControl.spielerEndScreenPage(winner);
 
         waitForAnswer();
     }

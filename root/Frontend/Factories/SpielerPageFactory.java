@@ -10,12 +10,12 @@ import root.Persona.Fraktion;
 import root.Persona.Rollen.Constants.BonusrollenType.Tarnumhang_BonusrollenType;
 import root.Persona.Rollen.Constants.RawInformation;
 import root.Persona.Rollen.Constants.Zeigekarten.Tot;
+import root.Phases.Winner;
 import root.mechanics.Liebespaar;
 
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class SpielerPageFactory {
     SpielerFrame spielerFrame;
@@ -74,15 +74,22 @@ public class SpielerPageFactory {
         return endScreenPage;
     }
 
-    public Page generateEndScreenPage(String string) {
-        Page endScreenPage;
-        if (string == null) { //TODO make string to generic victory type enum
-            endScreenPage = generateDeadPage();
-        } else if (Objects.equals(string, "Liebespaar")) {
-            endScreenPage = generateEndScreenPage("Liebespaar", Liebespaar.IMAGE_PATH, "gewinnt!");
-        } else {
-            Fraktion fraktion = Fraktion.findFraktion(string);
-            endScreenPage = generateEndScreenPage(fraktion.name, fraktion.imagePath, "gewinnen!");
+    public Page generateEndScreenPage(Winner winner) {
+        Page endScreenPage = null;
+
+        switch (winner) {
+            case ALL_DEAD:
+                endScreenPage = generateDeadPage();
+                break;
+
+            case LIEBESPAAR:
+                endScreenPage = generateEndScreenPage("Liebespaar", Liebespaar.IMAGE_PATH, "gewinnt!");
+                break;
+
+            case FRAKTION:
+                Fraktion fraktion = winner.fraktion;
+                endScreenPage = generateEndScreenPage(fraktion.name, fraktion.imagePath, "gewinnen!");
+                break;
         }
 
         return endScreenPage;
