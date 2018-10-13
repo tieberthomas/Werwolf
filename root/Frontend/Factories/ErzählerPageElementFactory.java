@@ -8,8 +8,6 @@ import root.Frontend.Page.PageElement;
 import root.Frontend.Page.PageTable;
 import root.Frontend.Page.Predecessor;
 import root.Persona.Bonusrolle;
-import root.Persona.Rollen.Bonusrollen.Konditorlehrling;
-import root.Persona.Rollen.Hauptrollen.Bürger.Sammler;
 import root.Phases.ErsteNacht;
 import root.Phases.Nacht;
 import root.Phases.NightBuilding.Statement;
@@ -230,12 +228,22 @@ public class ErzählerPageElementFactory {
         if (erzählerFrame.mode == ErzählerFrameMode.ersteNacht) {
             statements = ErsteNacht.statements;
         } else if (erzählerFrame.mode == ErzählerFrameMode.nacht) {
-            statements = changeStatementsToFitSammler(Nacht.statements);
+            statements = Nacht.statements;
         }
 
         for (Statement statement : statements) {
             if (statement.isVisible()) {
-                nachtPunkte.add(statement.beschreibung);
+                String beschreibung = statement.beschreibung;
+
+                if (statement.getClass() == StatementRolle.class) {
+                    StatementRolle statementRolle = (StatementRolle) statement;
+                    if (statementRolle.sammler) {
+                        beschreibung = statementRolle.sammlerBeschreibung;
+                    }
+                }
+
+                nachtPunkte.add(beschreibung);
+
                 if (statement.isLebend()) {
                     if (statement.identifier.equals(currentStatement)) {
                         nachtPunkteFarben.add(HTMLStringBuilder.yellow);
@@ -270,24 +278,6 @@ public class ErzählerPageElementFactory {
         PageElement nightLabel = new PageElement(nightJLabel, width, erzählerFrame.frameJpanel.getHeight() + 300);
 
         return nightLabel;
-    }
-
-    public ArrayList<Statement> changeStatementsToFitSammler(ArrayList<Statement> statements) {
-        for (Statement statement : statements) {
-            if (statement.getClass() == StatementRolle.class) {
-                StatementRolle statementRolle = (StatementRolle) statement;
-                if (statementRolle.sammler) {
-                    if (!statementRolle.identifier.equals(Konditorlehrling.STATEMENT_IDENTIFIER)) {
-                        statement.beschreibung = Sammler.beschreibungAddiditon + statement.beschreibung; //TODO fix Der Sammler als Der Sammler als Der Sammler als Der Sammler als 
-                    } else {
-                        String searchString = "Konditorlehrling erwachen ";
-                        statement.beschreibung = statement.beschreibung.replace(searchString, Sammler.beschreibungAddiditonLowerCase + searchString);
-                    }
-                }
-            }
-        }
-
-        return statements;
     }
 
     public PageElement generateDropdown(JComboBox jComboBox, Predecessor predecessorX, Predecessor predecessorY,

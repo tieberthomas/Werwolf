@@ -1,6 +1,7 @@
 package root.Phases.NightBuilding;
 
 import root.Persona.Rolle;
+import root.Persona.Rollen.Bonusrollen.Konditorlehrling;
 import root.Persona.Rollen.Hauptrollen.Bürger.Sammler;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.mechanics.Opfer;
@@ -8,6 +9,7 @@ import root.mechanics.Opfer;
 public class StatementRolle extends Statement {
     public String rolle;
     public boolean sammler;
+    public String sammlerBeschreibung;
 
     public StatementRolle(Rolle rolle) {
         this(rolle.statementIdentifier, rolle.statementTitle, rolle.statementBeschreibung, rolle.statementType, rolle.name);
@@ -20,6 +22,13 @@ public class StatementRolle extends Statement {
         this.type = type;
         this.rolle = rolle;
         this.sammler = Sammler.isSammlerRolle(rolle);
+
+        if (!this.identifier.equals(Konditorlehrling.STATEMENT_IDENTIFIER)) {
+            this.sammlerBeschreibung = Sammler.beschreibungAddiditon + this.beschreibung;
+        } else {
+            this.sammlerBeschreibung = this.beschreibung.replace(Sammler.konditorlehrlingSearchString, Sammler.beschreibungAddiditonLowerCase + Sammler.konditorlehrlingSearchString);
+        }
+
     }
 
     @Override
