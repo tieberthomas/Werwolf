@@ -236,15 +236,8 @@ public class ErzählerPageElementFactory {
         for (Statement statement : statements) {
             if (statement.isVisible()) {
                 nachtPunkte.add(statement.beschreibung);
-                if (!statement.isLebend()) {
-                    if (statement.beschreibung.contains(currentStatement) || (statement.title.equals(Konditorlehrling.STATEMENT_TITLE) && currentStatement.equals(Konditorlehrling.STATEMENT_BESCHREIBUNG))) {
-                        found = true;
-                        nachtPunkteFarben.add(HTMLStringBuilder.blue);
-                    } else {
-                        nachtPunkteFarben.add(HTMLStringBuilder.gray);
-                    }
-                } else {
-                    if (statement.beschreibung.contains(currentStatement) || (statement.title.equals(Konditorlehrling.STATEMENT_TITLE) && currentStatement.equals(Konditorlehrling.STATEMENT_BESCHREIBUNG))) {
+                if (statement.isLebend()) {
+                    if (statement.identifier.equals(currentStatement)) {
                         nachtPunkteFarben.add(HTMLStringBuilder.yellow);
                         found = true;
                     } else {
@@ -253,6 +246,13 @@ public class ErzählerPageElementFactory {
                         } else {
                             nachtPunkteFarben.add(HTMLStringBuilder.white);
                         }
+                    }
+                } else {
+                    if (statement.identifier.equals(currentStatement)) {
+                        nachtPunkteFarben.add(HTMLStringBuilder.blue);
+                        found = true;
+                    } else {
+                        nachtPunkteFarben.add(HTMLStringBuilder.gray);
                     }
                 }
             }
@@ -277,7 +277,7 @@ public class ErzählerPageElementFactory {
             if (statement.getClass() == StatementRolle.class) {
                 StatementRolle statementRolle = (StatementRolle) statement;
                 if (statementRolle.sammler) {
-                    if (!statementRolle.beschreibung.equals(Konditorlehrling.STATEMENT_BESCHREIBUNG)) {
+                    if (!statementRolle.identifier.equals(Konditorlehrling.STATEMENT_IDENTIFIER)) {
                         statement.beschreibung = Sammler.beschreibungAddiditon + statement.beschreibung; //TODO fix Der Sammler als Der Sammler als Der Sammler als Der Sammler als 
                     } else {
                         String searchString = "Konditorlehrling erwachen ";

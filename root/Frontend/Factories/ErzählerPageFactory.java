@@ -271,7 +271,7 @@ public class ErzählerPageFactory {
     }
 
     public Page generateDefaultNightPage(Statement statement, String title) {
-        PageElement nightLabel = pageElementFactory.generateNightLabel(statement.beschreibung);
+        PageElement nightLabel = pageElementFactory.generateNightLabel(statement.identifier);
         PageElement titleLabel = pageElementFactory.generateTitleLabel(nightLabel, title);
         erzählerFrame.nextJButton = new JButton();
         PageElement goNextButton = pageElementFactory.generateLowestButton(erzählerFrame.nextJButton);
