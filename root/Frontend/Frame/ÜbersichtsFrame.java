@@ -4,7 +4,6 @@ import root.Frontend.Factories.ÜbersichtsPageElementFactory;
 import root.Frontend.Factories.ÜbersichtsPageFactory;
 import root.Frontend.Page.Page;
 import root.Frontend.Page.PageTable;
-import root.Persona.Bonusrolle;
 import root.Persona.Hauptrolle;
 import root.Persona.Rolle;
 import root.Phases.ErsteNacht;
@@ -120,11 +119,7 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener {
         secondaryRoleTable.add(new JLabel("Bonusrolle"));
 
         for (Spieler spieler : game.spieler) {
-            Rolle rolle;
-            if (spieler.bonusrolle == null)
-                rolle = Bonusrolle.DEFAULT_BONUSROLLE;
-            else
-                rolle = spieler.bonusrolle;
+            Rolle rolle = spieler.bonusrolle;
 
             if (secondaryRoleTable.tableElements.size() < game.spieler.size() + 1) {
                 secondaryRoleTable.add(generateColorLabel(spieler, rolle));

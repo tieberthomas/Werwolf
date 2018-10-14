@@ -17,7 +17,7 @@ public class Wahrsager extends Bonusrolle {
 
     public static final String STATEMENT_IDENTIFIER = "Wahrsager";
     public static final String STATEMENT_TITLE = "Fraktion wählen";
-    public static final String STATEMENT_BESCHREIBUNG = "Wahrsager erwacht, bekommt ggf. die Anzahl der Spieler in jeder Fraktion mitgeteilt und schätzt, welche Frktion das Opfer der Dorfabstimmung haben wird";
+    public static final String STATEMENT_BESCHREIBUNG = "Wahrsager erwacht, bekommt ggf. die Anzahl der Spieler in jeder Fraktion mitgeteilt und schätzt, welche Fraktion das Opfer der Dorfabstimmung haben wird";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
     public static final String REWARD_TITLE = "Anzahl Mitglieder";
 
@@ -42,13 +42,12 @@ public class Wahrsager extends Bonusrolle {
 
     @Override
     public FrontendControl getDropdownOptions() {
-        ArrayList<String> strings = Fraktion.getFraktionOrNoneStrings();
+        ArrayList<String> dropdownStrings = Fraktion.getFraktionOrNoneStrings();
 
-        strings.remove("");
-        strings.add(KEIN_OPFER);
-        FrontendControlType typeOfContent = FrontendControlType.DROPDOWN_SEPARATED_LIST;
+        dropdownStrings.remove("");
+        dropdownStrings.add(KEIN_OPFER);
 
-        return new FrontendControl(typeOfContent, strings);
+        return new FrontendControl(FrontendControlType.DROPDOWN_LIST, dropdownStrings);
     }
 
     @Override

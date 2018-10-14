@@ -449,6 +449,6 @@ public class ErsteNacht extends Thread {
             return hauptrollen.get(index);
         }
 
-        return new Dorfbewohner();
+        return Hauptrolle.DEFAULT_HAUPTROLLE;
     }
 }

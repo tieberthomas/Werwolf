@@ -212,7 +212,7 @@ public class Nacht extends Thread {
                                     rewardInformation = wahrsager.rewardInformation();
                                 }
                                 FrontendControl dropdownShowReward = wahrsager.getDropdownOptions();
-                                dropdownShowReward.listStrings = rewardInformation;
+                                dropdownShowReward.displayedStrings = rewardInformation;
                                 chosenOption = showFrontendControl(statement, dropdownShowReward);
                                 wahrsager.tipp = Fraktion.findFraktion(chosenOption);
                             }
@@ -526,7 +526,7 @@ public class Nacht extends Thread {
                         return FrontendControl.erzählerFrame.chosenOption1;
 
                     case DROPDOWN_SEPARATED_LIST:
-                        showDropdownSeperatedList(statement, frontendControl.title, frontendControl.dropdownStrings, frontendControl.listStrings);
+                        showDropdownSeperatedList(statement, frontendControl.title, frontendControl.dropdownStrings, frontendControl.displayedStrings);
                         return FrontendControl.erzählerFrame.chosenOption1;
 
                     case DROPDOWN_IMAGE:

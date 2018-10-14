@@ -31,7 +31,7 @@ public class FrontendControl {
     public FrontendControlType typeOfContent;
     public String title;
     public ArrayList<String> dropdownStrings;
-    public ArrayList<String> listStrings;
+    public ArrayList<String> displayedStrings;
     public List<SchnüfflerInformation> informationen;
     public String imagePath;
 
@@ -94,6 +94,16 @@ public class FrontendControl {
         this.typeOfContent = FrontendControlType.SCHNÜFFLER_INFO;
         this.title = title;
         this.informationen = informationen;
+    }
+
+    public FrontendControl(String title, ArrayList<String> dropdownStrings, ArrayList<String> displayedStrings) {
+        this.typeOfContent = FrontendControlType.DROPDOWN_SEPARATED_LIST;
+        this.title = title;
+        this.dropdownStrings = dropdownStrings;
+        this.displayedStrings = displayedStrings;
+    }
+
+    public FrontendControl(String statementTitle, ArrayList<String> dropdownStrings) {
     }
 
     public static void erzählerDefaultNightPage(Statement statement) {
