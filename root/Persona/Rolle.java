@@ -116,7 +116,7 @@ public class Rolle extends Persona {
             if (currentSpieler.hauptrolle.name.equals(rolle) && currentSpieler.hauptrolle.abilityCharges > 0) {
                 return false;
             }
-            if (currentSpieler.bonusrolle.name.equals(rolle) && currentSpieler.hauptrolle.abilityCharges > 0) {
+            if (currentSpieler.bonusrolle.name.equals(rolle) && currentSpieler.bonusrolle.abilityCharges > 0) {
                 return false;
             }
         }
