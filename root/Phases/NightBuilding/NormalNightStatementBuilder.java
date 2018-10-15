@@ -117,7 +117,7 @@ public class NormalNightStatementBuilder {
         Rolle rolle = Rolle.findRolle(rollenName);
         if (rolle != null) {
             //TODO find better solution
-            Statement statement = new StatementRolle(rolle.statementIdentifier, rolle.secondStatementTitle, rolle.secondStatementBeschreibung, rolle.secondStatementType, rolle.name);
+            Statement statement = new StatementRolle(rolle.secondStatementIdentifier, rolle.secondStatementTitle, rolle.secondStatementBeschreibung, rolle.secondStatementType, rolle.name);
             statements.add(statement);
         }
     }
