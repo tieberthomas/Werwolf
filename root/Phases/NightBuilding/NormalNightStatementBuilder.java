@@ -14,6 +14,7 @@ import root.Persona.Rollen.Hauptrollen.Vampire.MissVerona;
 import root.Persona.Rollen.Hauptrollen.Werwölfe.Chemiker;
 import root.Persona.Rollen.Hauptrollen.Werwölfe.Schreckenswolf;
 import root.Persona.Rollen.Hauptrollen.Werwölfe.Wölfin;
+import root.Persona.Rollen.Hauptrollen.Überläufer.Henker;
 import root.Persona.Rollen.Hauptrollen.Überläufer.Überläufer;
 import root.Phases.NightBuilding.Constants.IndieStatements;
 import root.Phases.NightBuilding.Constants.ProgrammStatements;
@@ -55,6 +56,8 @@ public class NormalNightStatementBuilder {
         addStatementRolle(statements, Prostituierte.NAME);
 
         addStatementRolle(statements, Riese.NAME);
+        addStatementRolle(statements, Henker.NAME);
+        addSecondStatementRolle(statements, Henker.NAME);
         addStatementFraktion(statements, Vampire.NAME);
         addStatementFraktion(statements, Werwölfe.NAME);
         if (Wölfin.state == WölfinState.TÖTEND) {

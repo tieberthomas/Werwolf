@@ -1,0 +1,67 @@
+package root.Persona.Rollen.Hauptrollen.Überläufer;
+
+import root.Frontend.FrontendControl;
+import root.Persona.Fraktion;
+import root.Persona.Fraktionen.Überläufer_Fraktion;
+import root.Persona.Hauptrolle;
+import root.Persona.Rollen.Hauptrollen.Bürger.Dorfbewohner;
+import root.Phases.NightBuilding.Constants.StatementType;
+import root.ResourceManagement.ImagePath;
+import root.Spieler;
+
+public class Henker extends Hauptrolle {
+    public static final String STATEMENT_IDENTIFIER = "Henker";
+    public static final String STATEMENT_TITLE = "Person hängen";
+    public static final String STATEMENT_BESCHREIBUNG = "Henker erwacht und entscheidet wen er hängen möchte";
+    public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
+
+    public static final String SECOND_STATEMENT_IDENTIFIER = "Henker_raten";
+    public static final String SECOND_STATEMENT_TITLE = "Rollen raten";
+    public static final String SECOND_STATEMENT_BESCHREIBUNG = "Henker ratet die Rollen der Person";
+    public static final StatementType SECOND_STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
+
+    public static final String NAME = "Henker";
+    public static final String IMAGE_PATH = ImagePath.ÜBERLÄUFER_KARTE;
+    public static final Fraktion FRAKTION = new Überläufer_Fraktion();
+
+    public Henker() {
+        this.name = NAME;
+        this.imagePath = IMAGE_PATH;
+        this.fraktion = FRAKTION;
+
+        this.statementIdentifier = STATEMENT_IDENTIFIER;
+        this.statementTitle = STATEMENT_TITLE;
+        this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
+        this.statementType = STATEMENT_TYPE;
+
+        this.secondStatementIdentifier = SECOND_STATEMENT_IDENTIFIER;
+        this.secondStatementTitle = SECOND_STATEMENT_TITLE;
+        this.secondStatementBeschreibung = SECOND_STATEMENT_BESCHREIBUNG;
+        this.secondStatementType = SECOND_STATEMENT_TYPE;
+    }
+
+    @Override
+    public FrontendControl getDropdownOptions() {
+        return game.getMitspielerCheckSpammableFrontendControl(this);
+    }
+
+    @Override
+    public void processChosenOption(String chosenOption) {
+        Hauptrolle chosenHauptrolle = game.findHauptrolle(chosenOption);
+        if (chosenHauptrolle != null) {
+            try {
+                Spieler spielerHauptrolle = game.findSpielerPerRolle(chosenHauptrolle.name);
+                chosenHauptrolle = spielerHauptrolle.hauptrolle;
+
+                Spieler spielerÜberläufer = game.findSpielerPerRolle(NAME);
+                spielerÜberläufer.hauptrolle = chosenHauptrolle;
+                spielerHauptrolle.hauptrolle = new Dorfbewohner();
+
+                game.mitteHauptrollen.remove(chosenHauptrolle);
+                game.mitteHauptrollen.add(this);
+            } catch (NullPointerException e) {
+                System.out.println(NAME + " nicht gefunden");
+            }
+        }
+    }
+}

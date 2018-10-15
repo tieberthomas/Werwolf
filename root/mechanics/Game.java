@@ -17,6 +17,7 @@ import root.Persona.Rollen.Hauptrollen.Vampire.GrafVladimir;
 import root.Persona.Rollen.Hauptrollen.Vampire.LadyAleera;
 import root.Persona.Rollen.Hauptrollen.Vampire.MissVerona;
 import root.Persona.Rollen.Hauptrollen.Werwölfe.*;
+import root.Persona.Rollen.Hauptrollen.Überläufer.Henker;
 import root.Persona.Rollen.Hauptrollen.Überläufer.Überläufer;
 import root.Phases.*;
 import root.Phases.NightBuilding.NormalNightStatementBuilder;
@@ -88,6 +89,7 @@ public class Game {
         mainRoles.add(new Werwolf());
         mainRoles.add(new Wolfsmensch());
         mainRoles.add(new Wölfin());
+        mainRoles.add(new Henker());
         mainRoles.add(new Überläufer());
     }
 

@@ -22,6 +22,7 @@ import root.Persona.Rollen.Hauptrollen.Werwölfe.Blutwolf;
 import root.Persona.Rollen.Hauptrollen.Werwölfe.Chemiker;
 import root.Persona.Rollen.Hauptrollen.Werwölfe.Schreckenswolf;
 import root.Persona.Rollen.Hauptrollen.Werwölfe.Wölfin;
+import root.Persona.Rollen.Hauptrollen.Überläufer.Henker;
 import root.Phases.NightBuilding.Constants.IndieStatements;
 import root.Phases.NightBuilding.Constants.ProgrammStatements;
 import root.Phases.NightBuilding.Constants.StatementType;
@@ -136,6 +137,19 @@ public class Nacht extends Thread {
                             setSchütze();
                             break;
 
+                        case Henker.SECOND_STATEMENT_IDENTIFIER:
+                            ArrayList<String> mainRoles = game.getMainRoleInGameNames();
+                            ArrayList<String> bonusRoles = game.getSecondaryRoleInGameNames();
+                            showDropdownPage(statement, mainRoles, bonusRoles);
+
+                            Hauptrolle hauptrolle = game.findHauptrolle(FrontendControl.erzählerFrame.chosenOption1);
+                            Bonusrolle bonusrolle = game.findBonusrolle(FrontendControl.erzählerFrame.chosenOption2);
+
+                            if (hauptrolle != null && bonusrolle != null) {
+                                System.out.println(hauptrolle.name + " " + bonusrolle.name);
+                            }
+                            break;
+
                         case Schreckenswolf.STATEMENT_IDENTIFIER:
                             Schreckenswolf schreckenswolf = (Schreckenswolf) rolle;
                             if (schreckenswolf != null && schreckenswolf.werwölfeKilledOnSchutz()) {
@@ -180,13 +194,12 @@ public class Nacht extends Thread {
 
                         case Analytiker.STATEMENT_IDENTIFIER:
                             Spieler analytikerSpieler = game.findSpielerPerRolle(rolle.name);
-                            if (Rolle.rolleLebend(Analytiker.NAME)) {
-                                ArrayList<String> spielerOrNonWithoutAnalytiker = (ArrayList<String>) spielerOrNon.clone();
+
+                            ArrayList<String> spielerOrNonWithoutAnalytiker = (ArrayList<String>) spielerOrNon.clone();
+                            if(analytikerSpieler!=null) {
                                 spielerOrNonWithoutAnalytiker.remove(analytikerSpieler.name);
-                                showDropdownPage(statement, spielerOrNonWithoutAnalytiker, spielerOrNonWithoutAnalytiker);
-                            } else {
-                                showDropdownPage(statement, spielerOrNon, spielerOrNon);
                             }
+                            showDropdownPage(statement, spielerOrNonWithoutAnalytiker, spielerOrNonWithoutAnalytiker);
 
                             Spieler chosenSpieler1 = game.findSpieler(FrontendControl.erzählerFrame.chosenOption1);
                             Spieler chosenSpieler2 = game.findSpieler(FrontendControl.erzählerFrame.chosenOption2);
