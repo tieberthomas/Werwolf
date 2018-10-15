@@ -444,7 +444,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
             try {
                 if (übersichtsFrame != null) {
                     if (mode == ErzählerFrameMode.ersteNacht) {
-                        übersichtsFrame.übersichtsPage = übersichtsFrame.pageFactory.generateÜbersichtsPage();
+                        übersichtsFrame.refresh();
                     }
                 }
             } catch (NullPointerException e) {
@@ -522,7 +522,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                     showDayPage();
 
                     if (übersichtsFrame != null) {
-                        übersichtsFrame.refreshÜbersichtsPage();
+                        übersichtsFrame.refresh();
                     }
                 }
             } else {
@@ -552,7 +552,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                 mode = game.parsePhaseMode();
 
                 if (übersichtsFrame != null) {
-                    übersichtsFrame.refreshÜbersichtsPage();
+                    übersichtsFrame.refresh();
                 }
 
                 if (spieler != null) {

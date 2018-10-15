@@ -280,7 +280,11 @@ public class FrontendControl {
     }
 
     public static void refreshÜbersichtsFrame() {
-        übersichtsFrame.refreshÜbersichtsPage();
+        übersichtsFrame.refresh();
+    }
+
+    public static void regenerateAndRefreshÜbersichtsFrame() {
+        übersichtsFrame.regenerateAndRefresh();
     }
 
     public void addString(DropdownConstants dropdownConstant) {

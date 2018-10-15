@@ -6,7 +6,12 @@ import root.Persona.Rollen.Bonusrollen.Schatten;
 import root.Persona.Rollen.Hauptrollen.Bürger.Dorfbewohner;
 import root.mechanics.Game;
 
+import java.awt.*;
+
 public class Spieler {
+    public static Color ALIVE_BACKGROUND_COLOR = Color.WHITE;
+    public static Color DEAD_BACKGROUND_COLOR = Color.GRAY;
+
     public static Game game;
 
     public String name;

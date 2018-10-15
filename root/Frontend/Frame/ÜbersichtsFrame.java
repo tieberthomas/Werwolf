@@ -1,10 +1,8 @@
 package root.Frontend.Frame;
 
-import root.Frontend.Factories.ÜbersichtsPageElementFactory;
 import root.Frontend.Factories.ÜbersichtsPageFactory;
 import root.Frontend.Page.Page;
 import root.Frontend.Page.PageTable;
-import root.Persona.Hauptrolle;
 import root.Persona.Rolle;
 import root.Phases.ErsteNacht;
 import root.Phases.Nacht;
@@ -19,12 +17,11 @@ import java.awt.event.ActionListener;
 
 public class ÜbersichtsFrame extends MyFrame implements ActionListener {
     public Game game;
-    ErzählerFrame erzählerFrame;
 
-    public ÜbersichtsPageFactory pageFactory;
-    public ÜbersichtsPageElementFactory pageElementFactory;
+    private Color defaultBorderColor = Color.BLUE;
 
-    public Color defaultBorderColor = Color.BLUE;
+    private Color deactivatedColor = Color.RED;
+    private Color shieldedColor = Color.GREEN;
 
     public PageTable playerTable;
     public PageTable mainRoleTable;
@@ -35,16 +32,11 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener {
 
     public JButton refreshJButton;
 
-    public Page übersichtsPage;
+    private Page übersichtsPage;
 
     public ÜbersichtsFrame(ErzählerFrame erzählerFrame, Game game) {
         this.game = game;
         WINDOW_TITLE = "Übersichts Fenster";
-
-        this.erzählerFrame = erzählerFrame;
-
-        pageFactory = new ÜbersichtsPageFactory(this);
-        pageElementFactory = new ÜbersichtsPageElementFactory(this);
 
         refreshJButton = new JButton();
 
@@ -52,13 +44,18 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener {
 
         frameJpanel = generateDefaultPanel();
 
-        übersichtsPage = pageFactory.generateÜbersichtsPage();
-        refreshÜbersichtsPage();
+        regenerateAndRefresh();
 
         showFrame();
     }
 
-    public void refreshÜbersichtsPage() {
+    public void regenerateAndRefresh() {
+        ÜbersichtsPageFactory pageFactory = new ÜbersichtsPageFactory(this);
+        übersichtsPage = pageFactory.generateÜbersichtsPage();
+        refresh();
+    }
+
+    public void refresh() {
         refreshPlayerTable();
         refreshMainRoleTable();
         refreshSecondaryRoleTable();
@@ -69,7 +66,7 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener {
         buildScreenFromPage(übersichtsPage);
     }
 
-    public void refreshPlayerTable() {
+    private void refreshPlayerTable() {
         playerTable.tableElements.clear();
 
         playerTable.add(new JLabel("Spieler"));
@@ -77,9 +74,9 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener {
         for (Spieler spieler : game.spieler) {
             JLabel label = new JLabel(spieler.name);
             if (!spieler.lebend) {
-                label.setBackground(Color.lightGray);
+                label.setBackground(Spieler.DEAD_BACKGROUND_COLOR);
             } else {
-                label.setBackground(Color.white);
+                label.setBackground(Spieler.ALIVE_BACKGROUND_COLOR);
             }
             label.setOpaque(true);
             if ((game.phaseMode == PhaseMode.ersteNacht && ErsteNacht.playersAwake.contains(spieler)) ||
@@ -95,17 +92,13 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener {
         }
     }
 
-    public void refreshMainRoleTable() {
+    private void refreshMainRoleTable() {
         mainRoleTable.tableElements.clear();
 
         mainRoleTable.add(new JLabel("Hauptrolle"));
 
         for (Spieler spieler : game.spieler) {
-            Rolle rolle;
-            if (spieler.hauptrolle == null)
-                rolle = Hauptrolle.DEFAULT_HAUPTROLLE;
-            else
-                rolle = spieler.hauptrolle;
+            Rolle rolle = spieler.hauptrolle;
 
             if (mainRoleTable.tableElements.size() < game.spieler.size() + 1) {
                 mainRoleTable.add(generateColorLabel(spieler, rolle));
@@ -113,21 +106,20 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener {
         }
     }
 
-    public void refreshSecondaryRoleTable() {
+    private void refreshSecondaryRoleTable() {
         secondaryRoleTable.tableElements.clear();
 
         secondaryRoleTable.add(new JLabel("Bonusrolle"));
 
         for (Spieler spieler : game.spieler) {
             Rolle rolle = spieler.bonusrolle;
-
             if (secondaryRoleTable.tableElements.size() < game.spieler.size() + 1) {
                 secondaryRoleTable.add(generateColorLabel(spieler, rolle));
             }
         }
     }
 
-    public JLabel generateColorLabel(Spieler spieler, Rolle rolle) {
+    private JLabel generateColorLabel(Spieler spieler, Rolle rolle) {
         JLabel label = new JLabel(rolle.name);
 
         if (spieler.lebend) {
@@ -137,7 +129,7 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener {
             }
             label.setBackground(farbe);
         } else {
-            label.setBackground(Color.lightGray);
+            label.setBackground(Spieler.DEAD_BACKGROUND_COLOR);
         }
 
         label.setOpaque(true);
@@ -145,7 +137,7 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener {
         return label;
     }
 
-    public void refreshAliveTable() {
+    private void refreshAliveTable() {
         aliveTable.tableElements.clear();
 
         aliveTable.add(new JLabel("Lebend"));
@@ -158,18 +150,16 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener {
 
             JLabel label = new JLabel(text);
             if (spieler.lebend) {
-                label.setBackground(Color.white);
+                label.setBackground(Spieler.ALIVE_BACKGROUND_COLOR);
             } else {
-                label.setBackground(Color.lightGray);
+                label.setBackground(Spieler.DEAD_BACKGROUND_COLOR);
             }
             label.setOpaque(true);
-            if (aliveTable.tableElements.size() < game.spieler.size() + 1) {
-                aliveTable.add(label);
-            }
+            aliveTable.add(label);
         }
     }
 
-    public void refreshActiveTable() {
+    private void refreshActiveTable() {
         activeTable.tableElements.clear();
 
         activeTable.add(new JLabel("Aktiv"));
@@ -182,18 +172,19 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener {
 
             JLabel label = new JLabel(text);
             if (!spieler.aktiv) {
-                label.setBackground(Color.red);
+                label.setBackground(deactivatedColor);
             } else {
-                label.setBackground(Color.white);
+                label.setBackground(Spieler.ALIVE_BACKGROUND_COLOR);
             }
             label.setOpaque(true);
+
             if (activeTable.tableElements.size() < game.spieler.size() + 1) {
                 activeTable.add(label);
             }
         }
     }
 
-    public void refreshProtectedTable() {
+    private void refreshProtectedTable() {
         protectedTable.tableElements.clear();
 
         protectedTable.add(new JLabel("Geschützt"));
@@ -206,11 +197,12 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener {
 
             JLabel label = new JLabel(text);
             if (spieler.geschützt) {
-                label.setBackground(Color.green);
+                label.setBackground(shieldedColor);
             } else {
-                label.setBackground(Color.white);
+                label.setBackground(Spieler.ALIVE_BACKGROUND_COLOR);
             }
             label.setOpaque(true);
+
             if (protectedTable.tableElements.size() < game.spieler.size() + 1) {
                 protectedTable.add(label);
             }
@@ -220,7 +212,7 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == refreshJButton) {
-            refreshÜbersichtsPage();
+            refresh();
         }
     }
 }

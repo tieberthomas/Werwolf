@@ -132,6 +132,7 @@ public class ErsteNacht extends Thread {
                                 showDropdown(statement, spielerOrZufällig, spielerOrZufällig);
 
                                 game.liebespaar = new Liebespaar(FrontendControl.erzählerFrame.chosenOption1, FrontendControl.erzählerFrame.chosenOption2, game);
+                                FrontendControl.regenerateAndRefreshÜbersichtsFrame();
                                 break;
 
                             case LIEBESPAAR_FINDEN:
