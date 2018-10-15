@@ -134,7 +134,7 @@ public class NormalNightStatementBuilder {
     private static void addSecondStatementFraktion(ArrayList<Statement> statements, String fraktionsName) {
         Fraktion fraktion = Fraktion.findFraktion(fraktionsName);
         if (fraktion != null) {
-            Statement statement = new StatementFraktion(fraktion.statementIdentifier, fraktion.secondStatementTitle, fraktion.secondStatementBeschreibung, fraktion.secondStatementType, fraktion.name);
+            Statement statement = new StatementFraktion(fraktion.secondStatementIdentifier, fraktion.secondStatementTitle, fraktion.secondStatementBeschreibung, fraktion.secondStatementType, fraktion.name);
             statements.add(statement);
         }
     }
