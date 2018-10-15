@@ -26,6 +26,11 @@ public class Persona {
     public String secondStatementBeschreibung = "";
     public StatementType secondStatementType = StatementType.EMPTY_STATEMENT;
 
+    public String firstNightStatementIdentifier = "";
+    public String firstNightStatementTitle = "";
+    public String firstNightStatementBeschreibung = "";
+    public StatementType firstNightStatementType = StatementType.EMPTY_STATEMENT;
+
     public FrontendControl getDropdownOptions() {
         return new FrontendControl();
     }
