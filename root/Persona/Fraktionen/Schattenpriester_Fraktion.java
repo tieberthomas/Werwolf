@@ -67,24 +67,28 @@ public class Schattenpriester_Fraktion extends Fraktion {
 
     @Override
     public FrontendControl getDropdownOptions() {
-        FrontendControl frontendControl = new FrontendControl();
+        return new FrontendControl(FrontendControlType.DROPDOWN_LIST, getRessurectableOpfer());
+    }
 
-        frontendControl.typeOfContent = FrontendControlType.DROPDOWN_LIST;
-        frontendControl.dropdownStrings = new ArrayList<>();
+    private ArrayList<String> getRessurectableOpfer() {
+        ArrayList<String> dropdownStrings = new ArrayList<>();
 
         for (Opfer currentOpfer : Opfer.deadVictims) {
-            String fraktionOpfer = currentOpfer.opfer.hauptrolle.fraktion.name;
-            if (currentOpfer.opfer.bonusrolle.name.equals(Schattenkutte.NAME) ||
-                    (currentOpfer.opfer.ressurectable && !fraktionOpfer.equals(Schattenpriester_Fraktion.NAME))) {
-                if (!frontendControl.dropdownStrings.contains(currentOpfer.opfer.name)) {
-                    frontendControl.dropdownStrings.add(currentOpfer.opfer.name);
+            Spieler opferSpieler = currentOpfer.opfer;
+            if(opferSpieler!=null) {
+                String fraktionDesOpfers = opferSpieler.hauptrolle.fraktion.name;
+                if (opferSpieler.bonusrolle.name.equals(Schattenkutte.NAME) ||
+                        (opferSpieler.ressurectable && !fraktionDesOpfers.equals(Schattenpriester_Fraktion.NAME))) {
+                    if (!dropdownStrings.contains(opferSpieler.name)) {
+                        dropdownStrings.add(opferSpieler.name);
+                    }
                 }
             }
         }
 
-        frontendControl.dropdownStrings.add("");
+        dropdownStrings.add("");
 
-        return frontendControl;
+        return dropdownStrings;
     }
 
     @Override
