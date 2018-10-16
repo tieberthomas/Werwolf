@@ -9,8 +9,8 @@ import root.mechanics.Game;
 import java.awt.*;
 
 public class Spieler {
-    public static Color ALIVE_BACKGROUND_COLOR = Color.WHITE;
-    public static Color DEAD_BACKGROUND_COLOR = Color.GRAY;
+    public static final Color ALIVE_BACKGROUND_COLOR = Color.WHITE;
+    public static final Color DEAD_BACKGROUND_COLOR = Color.GRAY;
 
     public static Game game;
 

@@ -305,7 +305,7 @@ public class Nacht extends Thread {
             }
         }
 
-        cleanUp();
+        cleanUpNight();
 
         if (game.freibier) {//TODO remove
             game.freibierDay();
@@ -403,7 +403,7 @@ public class Nacht extends Thread {
         }
     }
 
-    private void cleanUp() {
+    private void cleanUpNight() {
         game.zweiteNacht = false;
 
         for (Spieler currentSpieler : game.spieler) {
@@ -502,7 +502,7 @@ public class Nacht extends Thread {
         }
 
         if (Sammler.isSammlerRolle(Konditor.NAME) || Sammler.isSammlerRolle(Konditorlehrling.NAME)) {
-            if (Rolle.rolleLebend(Sammler.NAME) && !Opfer.isOpferPerRolle(Sammler.NAME) && Rolle.rolleAktiv(Sammler.NAME)) {
+            if (Rolle.rolleLebend(Sammler.NAME) && !Opfer.isOpferPerRolle(Sammler.NAME) && Rolle.rolleAktiv(Sammler.NAME)) { //TODO kann man durch nur rolleAktiv ersetzen?
                 return true;
             }
         }

@@ -112,17 +112,17 @@ public class NormalNightStatementBuilder {
 
     private static void addStatementRolle(ArrayList<Statement> statements, String rollenName) {
         Rolle rolle = Rolle.findRolle(rollenName);
-        Statement statement = new StatementRolle(rolle);
-        statements.add(statement);
+        if (rolle != null) {
+            Statement statement = new StatementRolle(rolle);
+            statements.add(statement);
+        }
     }
 
     private static void addSecondStatementRolle(ArrayList<Statement> statements, String rollenName) {
         Rolle rolle = Rolle.findRolle(rollenName);
-        if (rolle != null) {
-            //TODO find better solution
-            Statement statement = new StatementRolle(rolle.secondStatementIdentifier, rolle.secondStatementTitle, rolle.secondStatementBeschreibung, rolle.secondStatementType, rolle.name);
-            statements.add(statement);
-        }
+        //TODO find better solution
+        Statement statement = new StatementRolle(rolle.secondStatementIdentifier, rolle.secondStatementTitle, rolle.secondStatementBeschreibung, rolle.secondStatementType, rolle.name);
+        statements.add(statement);
     }
 
     private static void addStatementFraktion(ArrayList<Statement> statements, String fraktionsName) {
