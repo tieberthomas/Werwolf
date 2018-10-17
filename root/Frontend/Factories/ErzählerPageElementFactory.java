@@ -16,7 +16,6 @@ import root.Phases.NightBuilding.StatementRolle;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class ErzählerPageElementFactory {
     static ErzählerFrame erzählerFrame;
@@ -376,14 +375,14 @@ public class ErzählerPageElementFactory {
         int iconWidth = (int) (iconLogo.getIconWidth() * 0.7);
         int iconHeight = (int) (iconLogo.getIconHeight() * 0.7);
 
-        if (!Objects.equals(filePath, "")) {
-            Image img = iconLogo.getImage();
-            if (img != null) {
-                Image newimg = img.getScaledInstance(iconWidth, iconHeight, java.awt.Image.SCALE_SMOOTH);
-                iconLogo = new ImageIcon(newimg);
+        Image img = iconLogo.getImage();
+        if (!(img == null || iconWidth == 0 || iconHeight == 0)) {
+            Image newimg = img.getScaledInstance(iconWidth, iconHeight, java.awt.Image.SCALE_SMOOTH);
+            iconLogo = new ImageIcon(newimg);
 
-                iconJLabel.setIcon(iconLogo);
-            }
+            iconJLabel.setIcon(iconLogo);
+        } else {
+            System.out.println("1 Image could not be found at location: " + filePath);
         }
 
         return new PageElement(iconJLabel, iconWidth, iconHeight, null, predecessorY, PageElement.DEFAULT_SPACE, 20);

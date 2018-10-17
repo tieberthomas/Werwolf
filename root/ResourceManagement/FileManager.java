@@ -2,67 +2,71 @@ package root.ResourceManagement;
 
 import root.Spieler;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.List;
 
 public class FileManager {
-    public void createFolderInAppdata() {
+    void createFolderInAppdata() {
         File theDir = new File(ResourcePath.SAVE_FILE_PATH);
 
         if (!theDir.exists()) {
             try {
                 theDir.mkdir();
             } catch (SecurityException se) {
-                System.out.println("Programm does not have the permisson to create a Folder in Appdata.");
+                System.out.println("Programm does not have the permisson to create a folder in Appdata.");
             }
         }
     }
 
-    public CompositionDto readComposition(String filePath) {
-        try {
-            File file = new File(filePath);
-            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8));
-
+    CompositionDto readComposition(String filePath) {
+        File file = new File(filePath);
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8))) {
             CompositionDto compositionDto = new CompositionDto();
             compositionDto.spieler = readList(br);
             compositionDto.hauptrollen = readList(br);
             compositionDto.bonusrollen = readList(br);
 
-            br.close();
-
             return compositionDto;
         } catch (IOException e) {
-            System.out.println("Something went wrong while reading the file");
+            System.out.println("Something went wrong while reading the composition file.");
             return null;
         }
     }
 
-    public boolean writeComposition(String filePath, ArrayList<String> spieler, ArrayList<String> hauptrollen, ArrayList<String> bonusrollen) {
-        try {
-            File file = new File(filePath);
-            file.createNewFile();
-            Writer writer = new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8);
+    boolean writeComposition(String filePath, List<String> spieler, List<String> hauptrollen, List<String> bonusrollen) {
+        File file = createNewFile(filePath);
 
-            writeArrayList(writer, spieler);
-            writeArrayList(writer, hauptrollen);
-            writeArrayList(writer, bonusrollen);
+        if(file == null) {
+            return false;
+        }
 
-            writer.flush();
-            writer.close();
+        try (Writer writer = new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8)) {
+                writeArrayList(writer, spieler);
+                writeArrayList(writer, hauptrollen);
+                writeArrayList(writer, bonusrollen);
+
+                writer.flush();
         } catch (IOException e) {
-            System.out.println("Something went wrong while writing the file");
+            System.out.println("Something went wrong while writing the composition file.");
             return false;
         }
 
         return true;
     }
 
-    public GameDto readGame(String filePath) {
-        try {
-            GameDto gameDto = new GameDto();
-            File file = new File(filePath);
-            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8));
+    GameDto readGame(String filePath) {
+        GameDto gameDto = new GameDto();
+        File file = new File(filePath);
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8))) {
             String line;
 
             line = br.readLine();
@@ -83,21 +87,21 @@ public class FileManager {
             gameDto.compositionDto.hauptrollen = readList(br);
             gameDto.compositionDto.bonusrollen = readList(br);
 
-            br.close();
-
             return gameDto;
         } catch (IOException e) {
-            System.out.println("Something went wrong while reading the file");
+            System.out.println("Something went wrong while reading the game file");
             return null;
         }
     }
 
-    public boolean writeGame(String filePath, ArrayList<Spieler> spieler, ArrayList<String> mainRolesLeft, ArrayList<String> secondaryRolesLeft) {
-        try {
-            File file = new File(filePath);
-            file.createNewFile();
-            Writer writer = new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8);
+    boolean writeGame(String filePath, List<Spieler> spieler, List<String> mainRolesLeft, List<String> secondaryRolesLeft) {
+        File file = createNewFile(filePath);
 
+        if(file == null) {
+            return false;
+        }
+
+        try (Writer writer = new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8)) {
             ArrayList<String> compositionStrings = new ArrayList<>();
 
             for (Spieler currentSpieler : spieler) {
@@ -109,23 +113,35 @@ public class FileManager {
             writeArrayList(writer, secondaryRolesLeft);
 
             writer.flush();
-            writer.close();
         } catch (IOException e) {
-            System.out.println("Something went wrong while writing the file");
+            System.out.println("Something went wrong while writing the game file");
             return false;
         }
 
         return true;
     }
 
-    public String buildPlayerString(Spieler spieler) {
+    private File createNewFile(String filePath) {
+        File file = new File(filePath);
+        try {
+            file.createNewFile();
+        } catch (IOException e) {
+            System.out.println("File could not be created at location: " + filePath);
+            return null;
+        }
+
+        return file;
+    }
+
+
+    private String buildPlayerString(Spieler spieler) {
         String name = spieler.name.replace(" ", "*");
         String hauptrolle = spieler.hauptrolle.name.replace(" ", "*");
         String bonusrolle = spieler.bonusrolle.name.replace(" ", "*");
         return name + " " + hauptrolle + " " + bonusrolle;
     }
 
-    public void writeArrayList(Writer writer, ArrayList<String> arrayToWrite) throws IOException {
+    private void writeArrayList(Writer writer, List<String> arrayToWrite) throws IOException {
         int numberOfLines = arrayToWrite.size();
         writer.write(Integer.toString(numberOfLines));
         writer.write("\n");
@@ -135,7 +151,7 @@ public class FileManager {
         }
     }
 
-    public ArrayList<String> readList(BufferedReader br) throws IOException {
+    private ArrayList<String> readList(BufferedReader br) throws IOException {
         ArrayList<String> listStrings = new ArrayList<>();
         String line = br.readLine();
         int numberOfSecondaryRoles = Integer.parseInt(line);

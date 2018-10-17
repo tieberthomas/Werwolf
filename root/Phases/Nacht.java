@@ -138,8 +138,8 @@ public class Nacht extends Thread {
                             break;
 
                         case Henker.SECOND_STATEMENT_IDENTIFIER:
-                            ArrayList<String> mainRoles = game.getMainRoleInGameNames();
-                            ArrayList<String> bonusRoles = game.getSecondaryRoleInGameNames();
+                            ArrayList<String> mainRoles = game.getPossibleInGameMainRoleNames();
+                            ArrayList<String> bonusRoles = game.getPossibleInGameSecondaryRoleNames();
                             showDropdownPage(statement, mainRoles, bonusRoles);
 
                             Hauptrolle hauptrolle = game.findHauptrolle(FrontendControl.erzählerFrame.chosenOption1);
