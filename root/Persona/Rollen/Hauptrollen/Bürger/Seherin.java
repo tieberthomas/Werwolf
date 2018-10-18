@@ -37,6 +37,11 @@ public class Seherin extends Hauptrolle {
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;
 
+        this.firstNightStatementIdentifier = STATEMENT_IDENTIFIER;
+        this.firstNightStatementTitle = STATEMENT_TITLE;
+        this.firstNightStatementBeschreibung = STATEMENT_BESCHREIBUNG;
+        this.firstNightStatementType = STATEMENT_TYPE;
+
         this.spammable = true;
     }
 

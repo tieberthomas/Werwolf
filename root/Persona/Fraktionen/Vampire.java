@@ -19,6 +19,11 @@ public class Vampire extends Fraktion {
     public static final String STATEMENT_BESCHREIBUNG = "Die Vampire erwachen und wählen ein Opfer aus";
     public static final StatementType STATEMENT_TYPE = StatementType.FRAKTION_CHOOSE_ONE;
 
+    public static final String FIRST_NIGHT_STATEMENT_IDENTIFIER = "First_Night_Vampire";
+    public static final String FIRST_NIGHT_STATEMENT_TITLE = "Vampire";
+    public static final String FIRST_NIGHT_STATEMENT_BESCHREIBUNG = "Die Vampire erwachen und sehen einander";
+    public static final StatementType FIRST_NIGHT_STATEMENT_TYPE = StatementType.FRAKTION_SPECAL;
+
     public static final String NAME = "Vampire";
     public static final String IMAGE_PATH = ImagePath.VAMPIERE_ICON;
     public static final Color COLOR = Color.red;
@@ -34,6 +39,11 @@ public class Vampire extends Fraktion {
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;
+
+        this.firstNightStatementIdentifier = FIRST_NIGHT_STATEMENT_IDENTIFIER;
+        this.firstNightStatementTitle = FIRST_NIGHT_STATEMENT_TITLE;
+        this.firstNightStatementBeschreibung = FIRST_NIGHT_STATEMENT_BESCHREIBUNG;
+        this.firstNightStatementType = FIRST_NIGHT_STATEMENT_TYPE;
     }
 
     @Override

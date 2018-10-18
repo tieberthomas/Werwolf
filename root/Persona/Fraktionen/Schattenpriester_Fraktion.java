@@ -27,6 +27,11 @@ public class Schattenpriester_Fraktion extends Fraktion {
     public static final String SECOND_STATEMENT_BESCHREIBUNG = "Der Wiederbelebte erwacht und tauscht seine Karten gegen Schattenkarten";
     public static final StatementType SECOND_STATEMENT_TYPE = StatementType.FRAKTION_SPECAL;
 
+    public static final String FIRST_NIGHT_STATEMENT_IDENTIFIER = "First_Night_Schattenpriester_Fraktion";
+    public static final String FIRST_NIGHT_STATEMENT_TITLE = "Schattenpriester";
+    public static final String FIRST_NIGHT_STATEMENT_BESCHREIBUNG = "Die Schattenpriester erwachen und sehen einander";
+    public static final StatementType FIRST_NIGHT_STATEMENT_TYPE = StatementType.FRAKTION_SPECAL;
+
     public static final String NAME = "Schattenpriester";
     public static final String IMAGE_PATH = ImagePath.SCHATTENPRIESTER_ICON;
     public static final Color COLOR = Color.lightGray;
@@ -49,6 +54,11 @@ public class Schattenpriester_Fraktion extends Fraktion {
         this.secondStatementTitle = SECOND_STATEMENT_TITLE;
         this.secondStatementBeschreibung = SECOND_STATEMENT_BESCHREIBUNG;
         this.secondStatementType = SECOND_STATEMENT_TYPE;
+
+        this.firstNightStatementIdentifier = FIRST_NIGHT_STATEMENT_IDENTIFIER;
+        this.firstNightStatementTitle = FIRST_NIGHT_STATEMENT_TITLE;
+        this.firstNightStatementBeschreibung = FIRST_NIGHT_STATEMENT_BESCHREIBUNG;
+        this.firstNightStatementType = FIRST_NIGHT_STATEMENT_TYPE;
     }
 
     @Override

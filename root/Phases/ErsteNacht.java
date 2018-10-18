@@ -4,22 +4,20 @@ import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.Persona.Bonusrolle;
 import root.Persona.Fraktion;
-import root.Persona.Fraktionen.Schattenpriester_Fraktion;
-import root.Persona.Fraktionen.Vampire;
 import root.Persona.Fraktionen.Werwölfe;
 import root.Persona.Hauptrolle;
 import root.Persona.Rolle;
-import root.Persona.Rollen.Bonusrollen.*;
+import root.Persona.Rollen.Bonusrollen.Tarnumhang;
 import root.Persona.Rollen.Constants.BonusrollenType.Passiv;
 import root.Persona.Rollen.Hauptrollen.Bürger.Bruder;
 import root.Persona.Rollen.Hauptrollen.Bürger.Dorfbewohner;
 import root.Persona.Rollen.Hauptrollen.Bürger.Seherin;
 import root.Persona.Rollen.Hauptrollen.Werwölfe.Alphawolf;
 import root.Persona.Rollen.Hauptrollen.Werwölfe.Wolfsmensch;
-import root.Phases.NightBuilding.Constants.StatementType;
+import root.Phases.NightBuilding.Constants.IndieStatements;
+import root.Phases.NightBuilding.FirstNightStatementBuilder;
 import root.Phases.NightBuilding.Statement;
 import root.Phases.NightBuilding.StatementFraktion;
-import root.Phases.NightBuilding.StatementIndie;
 import root.Phases.NightBuilding.StatementRolle;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
@@ -31,44 +29,6 @@ import java.util.Random;
 
 public class ErsteNacht extends Thread {
     Game game;
-
-    public static final String ALLE_SCHLAFEN_EIN = "Alle schlafen ein";
-    public static final String ALLE_WACHEN_AUF = "Alle wachen auf";
-
-    public static final String LIEBESPAAR = "Der Erzähler wählt ein Liebespaar aus";
-    public static final String LIEBESPAAR_FINDEN = "Das Liebespaar erwacht, findet und verliebt sich";
-    public static final String SEELENLICHT = "Seelenlicht erwacht und tauscht seine Karte je nach Hauptrolle aus";
-    public static final String LAMM = "Lamm erwacht und tauscht ggf. seine Karte aus";
-    public static final String VAMPIRUMHANG = "Träger des Vampirumhangs erwacht und tauscht ggf. seine Karte aus";
-    public static final String WOLFSPELZ = "Träger des Wolfspelzes erwacht und tauscht ggf. seine Karte aus";
-    public static final String IMITATOR = "Imitator erwacht und entscheidet welche Rolle er imitieren möchte";
-    public static final String VAMPIRE = "Die Vampire erwachen und sehen einander";
-    public static final String WOLFSMENSCH = "Wolfsmensch erwacht und erfährt eine Bürgerhauptrolle die nicht ausgeteilt worden ist";
-    public static final String WERWÖLFE = "Die Werwölfe erwachen und sehen einander";
-    public static final String ALPHAWOLF = "Alpha Wolf erwacht und erfährt die Persona der Wolfsfraktion";
-    public static final String SCHATTENPRIESTER = "Die Schattenpriester erwachen und sehen einander";
-    public static final String BRÜDER = "Die Brüder erwachen und sehen einander";
-    public static final String SEHERIN = "Seherin erwacht und lässt sich Auskunft über einen Mitspieler geben";
-
-    public static final String ALLE_SCHLAFEN_EIN_TITLE = "Alle schlafen ein";
-    public static final String ALLE_WACHEN_AUF_TITLE = "Alle wachen auf";
-
-    public static final String LIEBESPAAR_TITLE = "Liebespaar wählen";
-    public static final String LIEBESPAAR_FINDEN_TITLE = "Liebespaar";
-    public static final String SEELENLICHT_TITLE = "Neue Karte";
-    public static final String LAMM_TITLE = "Neue Karte";
-    public static final String VAMPIRUMHANG_TITLE = "Neue Karte";
-    public static final String WOLFSPELZ_TITLE = "Neue Karte";
-    public static final String IMITATOR_TITLE = "Imitieren";
-    public static final String VAMPIRE_TITLE = "Vampire";
-    public static final String WOLFSMENSCH_TITLE = "Nicht ausgeteilt";
-    public static final String WERWÖLFE_TITLE = "Werwölfe";
-    public static final String ALPHAWOLF_TITLE = "Werwölfe";
-    public static final String ALPHAWOLF_FERTIG_TITLE = "Fertig";
-    public static final String SCHATTENPRIESTER_TITLE = "Schattenpriester";
-    public static final String BRÜDER_TITLE = "Brüder";
-    public static final String BRÜDER_SECOND_TITLE = "Neue Hauptrolle";
-    public static final String SEHERIN_TITLE = "Spieler wählen";
 
     public static final String TARNUMHANG_TITLE = "Tarnumhang";
     public static final String NEUE_KARTE_TITLE = "Neue Karte";
@@ -94,7 +54,7 @@ public class ErsteNacht extends Thread {
 
             beginNight();
 
-            ersteNachtBuildStatements();
+            statements = FirstNightStatementBuilder.ersteNachtBuildStatements();
 
             for (Statement statement : statements) {
                 refreshStatementStates();
@@ -126,7 +86,7 @@ public class ErsteNacht extends Thread {
                         showFraktionMembers(statement, fraktion.name);
                     } else {
                         switch (statement.identifier) {
-                            case LIEBESPAAR:
+                            case IndieStatements.LIEBESPAAR_IDENTIFIER:
                                 ArrayList<String> spielerOrZufällig = game.liebespaar.getDropdownOptions();
 
                                 showDropdown(statement, spielerOrZufällig, spielerOrZufällig);
@@ -135,7 +95,7 @@ public class ErsteNacht extends Thread {
                                 FrontendControl.regenerateAndRefreshÜbersichtsFrame();
                                 break;
 
-                            case LIEBESPAAR_FINDEN:
+                            case IndieStatements.LIEBESPAAR_FINDEN_IDENTIFIER:
                                 Liebespaar liebespaar = game.liebespaar;
                                 if (liebespaar != null && liebespaar.spieler1 != null) {
                                     ArrayList<String> liebespaarStrings = new ArrayList<>();
@@ -152,7 +112,7 @@ public class ErsteNacht extends Thread {
                                 }
                                 break;
 
-                            case WOLFSMENSCH:
+                            case Wolfsmensch.FIRST_NIGHT_STATEMENT_IDENTIFIER:
                                 ArrayList<Hauptrolle> hauptrollen = game.getStillAvailableBürger();
                                 Hauptrolle hauptrolle = pickRandomHauptrolle(hauptrollen);
                                 if (hauptrolle == null) {
@@ -161,29 +121,29 @@ public class ErsteNacht extends Thread {
                                 showCard(statement, statement.title, hauptrolle.imagePath);
                                 break;
 
-                            case ALPHAWOLF:
+                            case Alphawolf.FIRST_NIGHT_STATEMENT_IDENTIFIER:
                                 ArrayList<Spieler> werwölfe = Fraktion.getFraktionsMembers(Werwölfe.NAME);
                                 werwölfe.remove(game.findSpielerPerRolle(Alphawolf.NAME));
                                 for (Spieler currentSpieler : werwölfe) {
                                     showHauptrolle(statement, currentSpieler);
                                 }
-                                statement.title = ALPHAWOLF_FERTIG_TITLE;
+                                statement.title = Alphawolf.FIRST_NIGHT_STATEMENT_FERTIG_TITLE;
                                 showImage(statement, statement.title, ImagePath.WÖLFE_ICON);
                                 break;
 
-                            case BRÜDER:
+                            case Bruder.FIRST_NIGHT_STATEMENT_IDENTIFIER:
                                 ArrayList<String> brüder = game.findSpielersStringsPerRolle(Bruder.NAME);
 
                                 if (brüder.size() == 1) {
                                     ArrayList<String> stillAvailableMainRoles = game.getStillAvailableMainRoleNames();
                                     stillAvailableMainRoles.remove(Bruder.NAME);
-                                    dropdownOtions = new FrontendControl(FrontendControlType.DROPDOWN, BRÜDER_SECOND_TITLE, stillAvailableMainRoles);
+                                    dropdownOtions = new FrontendControl(FrontendControlType.DROPDOWN, Bruder.FIRST_NIGHT_STATEMENT_SECOND_TITLE, stillAvailableMainRoles);
                                     chosenOption = showFrontendControl(statement, dropdownOtions);
                                     Hauptrolle newHauptrolle = game.findHauptrolle(chosenOption);
                                     if (newHauptrolle != null) {
                                         Spieler bruderSpieler = game.findSpielerPerRolle(Bruder.NAME);
                                         bruderSpieler.hauptrolle = newHauptrolle;
-                                        showFrontendControl(statement, new FrontendControl(FrontendControlType.IMAGE, BRÜDER_SECOND_TITLE, newHauptrolle.imagePath));
+                                        showFrontendControl(statement, new FrontendControl(FrontendControlType.IMAGE, Bruder.FIRST_NIGHT_STATEMENT_SECOND_TITLE, newHauptrolle.imagePath));
                                     }
                                 } else {
                                     FrontendControl.erzählerListPage(statement, brüder);
@@ -193,7 +153,7 @@ public class ErsteNacht extends Thread {
                                 }
                                 break;
 
-                            case SEHERIN:
+                            case Seherin.STATEMENT_IDENTIFIER:
                                 dropdownOtions = rolle.getDropdownOptions();
                                 chosenOption = showFrontendControl(statement, dropdownOtions);
                                 info = rolle.processChosenOptionGetInfo(chosenOption);
@@ -394,51 +354,6 @@ public class ErsteNacht extends Thread {
             lock.wait();
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
-    }
-
-    public void ersteNachtBuildStatements() {
-        statements = new ArrayList<>();
-
-        addStatementIndie(ALLE_SCHLAFEN_EIN, ALLE_SCHLAFEN_EIN_TITLE);
-
-        addStatementIndie(LIEBESPAAR, LIEBESPAAR_TITLE);
-        addStatementIndie(LIEBESPAAR_FINDEN, LIEBESPAAR_FINDEN_TITLE);
-
-        addStatementRolle(SEELENLICHT, SEELENLICHT_TITLE, Seelenlicht.NAME);
-        addStatementRolle(LAMM, LAMM_TITLE, Lamm.NAME);
-        addStatementRolle(VAMPIRUMHANG, VAMPIRUMHANG_TITLE, Vampirumhang.NAME);
-        addStatementRolle(WOLFSPELZ, WOLFSPELZ_TITLE, Wolfspelz.NAME);
-
-        //addStatementRolle(IMITATOR, IMITATOR_TITLE, Imitator.NAME);
-
-        addStatementFraktion(VAMPIRE, VAMPIRE_TITLE, Vampire.NAME);
-        addStatementRolle(WOLFSMENSCH, WOLFSMENSCH_TITLE, Wolfsmensch.NAME);
-        addStatementFraktion(WERWÖLFE, WERWÖLFE_TITLE, Werwölfe.NAME);
-        addStatementRolle(ALPHAWOLF, ALPHAWOLF_TITLE, Alphawolf.NAME);
-        addStatementFraktion(SCHATTENPRIESTER, SCHATTENPRIESTER_TITLE, Schattenpriester_Fraktion.NAME);
-        addStatementRolle(BRÜDER, BRÜDER_TITLE, Bruder.NAME);
-
-        addStatementRolle(SEHERIN, SEHERIN_TITLE, Seherin.NAME);
-
-        addStatementIndie(ALLE_WACHEN_AUF, ALLE_WACHEN_AUF_TITLE);
-    }
-
-    public void addStatementIndie(String statement, String title) {
-        statements.add(new StatementIndie(statement, title, statement, StatementType.INDIE));
-    }
-
-    //TODO Statement Type implementieren
-
-    public void addStatementRolle(String statement, String title, String rolle) {
-        statements.add(new StatementRolle(statement, title, statement, StatementType.INDIE, rolle));
-    }
-
-    public void addStatementFraktion(String statement, String title, String fraktionsName) {
-        if (Fraktion.fraktionInNachtEnthalten(fraktionsName)) {
-            if (Fraktion.getFraktionsMembers(fraktionsName).size() > 1) {
-                statements.add(new StatementFraktion(statement, title, statement, StatementType.INDIE, fraktionsName));
-            }
         }
     }
 

@@ -56,8 +56,10 @@ public class FirstNightStatementBuilder {
     }
 
     private static void addStatementFraktion(ArrayList<Statement> statements, String fraktionsName) {
-        Fraktion fraktion = Fraktion.findFraktion(fraktionsName);
-        Statement statement = new StatementFraktion(fraktion.firstNightStatementIdentifier, fraktion.firstNightStatementTitle, fraktion.firstNightStatementBeschreibung, fraktion.firstNightStatementType, fraktion.name);
-        statements.add(statement);
+        if (Fraktion.getFraktionsMembers(fraktionsName).size() > 1) {
+            Fraktion fraktion = Fraktion.findFraktion(fraktionsName);
+            Statement statement = new StatementFraktion(fraktion.firstNightStatementIdentifier, fraktion.firstNightStatementTitle, fraktion.firstNightStatementBeschreibung, fraktion.firstNightStatementType, fraktion.name);
+            statements.add(statement);
+        }
     }
 }
