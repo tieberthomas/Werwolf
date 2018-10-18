@@ -50,18 +50,14 @@ public class FirstNightStatementBuilder {
 
     private static void addStatementRolle(ArrayList<Statement> statements, String rollenName) {
         Rolle rolle = Rolle.findRolle(rollenName);
-        if (rolle != null) {
-            //TODO find better solution
-            Statement statement = new StatementRolle(rolle.firstNightStatementIdentifier, rolle.firstNightStatementTitle, rolle.firstNightStatementBeschreibung, rolle.firstNightStatementType, rolle.name);
-            statements.add(statement);
-        }
+        //TODO find better solution
+        Statement statement = new StatementRolle(rolle.firstNightStatementIdentifier, rolle.firstNightStatementTitle, rolle.firstNightStatementBeschreibung, rolle.firstNightStatementType, rolle.name);
+        statements.add(statement);
     }
 
     private static void addStatementFraktion(ArrayList<Statement> statements, String fraktionsName) {
         Fraktion fraktion = Fraktion.findFraktion(fraktionsName);
-        if (fraktion != null) {
-            Statement statement = new StatementFraktion(fraktion.firstNightStatementIdentifier, fraktion.firstNightStatementTitle, fraktion.firstNightStatementBeschreibung, fraktion.firstNightStatementType, fraktion.name);
-            statements.add(statement);
-        }
+        Statement statement = new StatementFraktion(fraktion.firstNightStatementIdentifier, fraktion.firstNightStatementTitle, fraktion.firstNightStatementBeschreibung, fraktion.firstNightStatementType, fraktion.name);
+        statements.add(statement);
     }
 }
