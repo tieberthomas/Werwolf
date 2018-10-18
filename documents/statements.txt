@@ -10,7 +10,7 @@ Träger des Wolfspelzes erwacht und tauscht ggf. seine Karte aus
 Die Vampire erwachen und sehen einander
 Wolfsmensch erwacht und erfährt eine Bürgerrolle die nicht im Spiel ist
 Die Werwölfe erwachen und sehen einander
-Alpha Wolf erwacht und erfährt die Rollen der Wolfsfraktion
+Alphawolf erwacht und erfährt die Rollen der Wolfsfraktion
 Die Schattenpriester erwachen und sehen einander
 Brüder erwachen und sehen einander
 Seherin erwacht und lässt sich Auskunft über einen Mitspieler geben
