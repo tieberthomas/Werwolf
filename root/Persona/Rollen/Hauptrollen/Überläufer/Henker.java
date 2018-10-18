@@ -1,9 +1,11 @@
 package root.Persona.Rollen.Hauptrollen.Überläufer;
 
 import root.Frontend.FrontendControl;
+import root.Persona.Bonusrolle;
 import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Überläufer_Fraktion;
 import root.Persona.Hauptrolle;
+import root.Persona.Rollen.Constants.Zeigekarten.Tot;
 import root.Persona.Rollen.Hauptrollen.Bürger.Dorfbewohner;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
@@ -47,21 +49,48 @@ public class Henker extends Hauptrolle {
 
     @Override
     public void processChosenOption(String chosenOption) {
-        Hauptrolle chosenHauptrolle = game.findHauptrolle(chosenOption);
-        if (chosenHauptrolle != null) {
-            try {
-                Spieler spielerHauptrolle = game.findSpielerPerRolle(chosenHauptrolle.name);
-                chosenHauptrolle = spielerHauptrolle.hauptrolle;
+        if(chosenOption!=null && !chosenOption.isEmpty()) {
+            Spieler chosenPlayer = game.findSpieler(chosenOption);
+            besucht = chosenPlayer;
+        }
+    }
 
-                Spieler spielerÜberläufer = game.findSpielerPerRolle(NAME);
-                spielerÜberläufer.hauptrolle = chosenHauptrolle;
-                spielerHauptrolle.hauptrolle = new Dorfbewohner();
+    @Override
+    public FrontendControl processChosenOptionsGetInfo(String chosenOption1, String chosenOption2) {
+        if(chosenOption1!=null && !chosenOption1.isEmpty() && chosenOption2!=null && !chosenOption2.isEmpty()) {
+            Hauptrolle hauptrolle = game.findHauptrolle(chosenOption1);
+            Bonusrolle bonusrolle = game.findBonusrolle(chosenOption2);
 
-                game.mitteHauptrollen.remove(chosenHauptrolle);
-                game.mitteHauptrollen.add(this);
-            } catch (NullPointerException e) {
-                System.out.println(NAME + " nicht gefunden");
+            int correctGuesses = 0;
+            Spieler chosenPlayer = besucht;
+
+            if(chosenPlayer.hauptrolle.equals(hauptrolle)) {
+                correctGuesses++;
+            }
+
+            if(chosenPlayer.bonusrolle.equals(bonusrolle)) {
+                correctGuesses++;
+            }
+
+            System.out.println(correctGuesses);
+
+            switch(correctGuesses) {
+                case 0:
+                    //kill henker
+                    //return tot zeigekarte
+                    break;
+                case 1:
+                    //schütze henker
+                    //return geschützt zeigekarte
+                    break;
+                case 2:
+                    //kill spieler
+                    //schütze henkre
+                    //return geschützt + kill frontencontrol
+                    break;
             }
         }
+
+        return new FrontendControl();
     }
 }

@@ -1,5 +1,6 @@
 package root.Persona;
 
+import root.Frontend.FrontendControl;
 import root.Persona.Rollen.Bonusrollen.Totengräber;
 import root.Persona.Rollen.Hauptrollen.Bürger.Sammler;
 import root.Spieler;
@@ -122,5 +123,9 @@ public class Rolle extends Persona {
         }
 
         return true;
+    }
+
+    public FrontendControl processChosenOptionsGetInfo(String chosenOption1, String chosenOption2) {
+        return new FrontendControl();
     }
 }

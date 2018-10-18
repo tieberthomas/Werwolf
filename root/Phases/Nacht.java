@@ -8,11 +8,24 @@ import root.Persona.Fraktionen.Vampire;
 import root.Persona.Fraktionen.Werwölfe;
 import root.Persona.Hauptrolle;
 import root.Persona.Rolle;
-import root.Persona.Rollen.Bonusrollen.*;
+import root.Persona.Rollen.Bonusrollen.Analytiker;
+import root.Persona.Rollen.Bonusrollen.Konditor;
+import root.Persona.Rollen.Bonusrollen.Konditorlehrling;
+import root.Persona.Rollen.Bonusrollen.Prostituierte;
+import root.Persona.Rollen.Bonusrollen.Schattenkutte;
+import root.Persona.Rollen.Bonusrollen.SchwarzeSeele;
+import root.Persona.Rollen.Bonusrollen.Wahrsager;
 import root.Persona.Rollen.Constants.BonusrollenType.Tarnumhang_BonusrollenType;
 import root.Persona.Rollen.Constants.DropdownConstants;
 import root.Persona.Rollen.Constants.SchnüfflerInformation;
-import root.Persona.Rollen.Constants.Zeigekarten.*;
+import root.Persona.Rollen.Constants.Zeigekarten.Aufgebraucht;
+import root.Persona.Rollen.Constants.Zeigekarten.AusDemSpiel;
+import root.Persona.Rollen.Constants.Zeigekarten.Deaktiviert;
+import root.Persona.Rollen.Constants.Zeigekarten.Nicht_Aktiv;
+import root.Persona.Rollen.Constants.Zeigekarten.Torten_Zeigekarte;
+import root.Persona.Rollen.Constants.Zeigekarten.Tot;
+import root.Persona.Rollen.Constants.Zeigekarten.Verstummt;
+import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Persona.Rollen.Hauptrollen.Bürger.Sammler;
 import root.Persona.Rollen.Hauptrollen.Bürger.Schamanin;
 import root.Persona.Rollen.Hauptrollen.Bürger.Wirt;
@@ -137,17 +150,17 @@ public class Nacht extends Thread {
                             setSchütze();
                             break;
 
-                        case Henker.SECOND_STATEMENT_IDENTIFIER:
+                        case Henker.SECOND_STATEMENT_IDENTIFIER: //TODO der case kann gemeinsam mit dem analytiker generalisiert werden
                             ArrayList<String> mainRoles = game.getPossibleInGameMainRoleNames();
                             ArrayList<String> bonusRoles = game.getPossibleInGameSecondaryRoleNames();
                             showDropdownPage(statement, mainRoles, bonusRoles);
 
-                            Hauptrolle hauptrolle = game.findHauptrolle(FrontendControl.erzählerFrame.chosenOption1);
-                            Bonusrolle bonusrolle = game.findBonusrolle(FrontendControl.erzählerFrame.chosenOption2);
+                            String hauptrolle = FrontendControl.erzählerFrame.chosenOption1;
+                            String bonusrolle = FrontendControl.erzählerFrame.chosenOption2;
 
-                            if (hauptrolle != null && bonusrolle != null) {
-                                System.out.println(hauptrolle.name + " " + bonusrolle.name);
-                            }
+                            Henker henker = ((Henker) rolle);
+                            info = henker.processChosenOptionsGetInfo(hauptrolle, bonusrolle);
+                            showFrontendControl(statement, info);
                             break;
 
                         case Schreckenswolf.STATEMENT_IDENTIFIER:
@@ -196,7 +209,7 @@ public class Nacht extends Thread {
                             Spieler analytikerSpieler = game.findSpielerPerRolle(rolle.name);
 
                             ArrayList<String> spielerOrNonWithoutAnalytiker = (ArrayList<String>) spielerOrNon.clone();
-                            if(analytikerSpieler!=null) {
+                            if (analytikerSpieler != null) {
                                 spielerOrNonWithoutAnalytiker.remove(analytikerSpieler.name);
                             }
                             showDropdownPage(statement, spielerOrNonWithoutAnalytiker, spielerOrNonWithoutAnalytiker);
@@ -371,7 +384,7 @@ public class Nacht extends Thread {
 
     private void refreshStatementStates() {
         for (Statement statement : statements) {
-            if(!statement.alreadyOver) {
+            if (!statement.alreadyOver) {
                 statement.refreshState();
             }
         }
