@@ -138,7 +138,7 @@ public class Opfer {
         if (riese) {
             opfer.opfer.ressurectable = false;
         }
-        String opferNebenrolle = opfer.opfer.bonusrolle.name;
+
         if (!opfer.opfer.equals(prostituierteSpieler) || riese) {
             deadVictims.add(opfer);
         }

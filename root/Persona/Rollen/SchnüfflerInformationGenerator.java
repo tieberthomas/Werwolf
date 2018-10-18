@@ -119,7 +119,7 @@ public class SchnüfflerInformationGenerator {
     private SpäherZeigekarte generateTötendInformation(boolean correctInformation) {
         boolean isKilling = player.hauptrolle.killing;
 
-        if (!correctInformation) {
+        if (!correctInformation) { //TODO geht mit XOR ??
             isKilling = !isKilling;
         }
 

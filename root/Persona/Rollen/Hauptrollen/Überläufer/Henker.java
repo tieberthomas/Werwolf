@@ -10,6 +10,7 @@ import root.Persona.Rollen.Hauptrollen.Bürger.Dorfbewohner;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
+import root.mechanics.Opfer;
 
 public class Henker extends Hauptrolle {
     public static final String STATEMENT_IDENTIFIER = "Henker";
@@ -57,7 +58,7 @@ public class Henker extends Hauptrolle {
 
     @Override
     public FrontendControl processChosenOptionsGetInfo(String chosenOption1, String chosenOption2) {
-        if(chosenOption1!=null && !chosenOption1.isEmpty() && chosenOption2!=null && !chosenOption2.isEmpty()) {
+        if(besucht != null && chosenOption1!=null && !chosenOption1.isEmpty() && chosenOption2!=null && !chosenOption2.isEmpty()) {
             Hauptrolle hauptrolle = game.findHauptrolle(chosenOption1);
             Bonusrolle bonusrolle = game.findBonusrolle(chosenOption2);
 
@@ -72,20 +73,19 @@ public class Henker extends Hauptrolle {
                 correctGuesses++;
             }
 
-            System.out.println(correctGuesses);
-
             switch(correctGuesses) {
                 case 0:
                     //kill henker
-                    //return tot zeigekarte
-                    break;
+                    //TODO für henker muss opfer klasse überarbeitet werden wegen methoden die zur verfügung gestellt werden
+                        //interaktionen mit henker kills überlegen (wenn henker sich selbst killt, stirbt prostituierte mit? kriegt schamanin refresh? ...)
+                    return new FrontendControl(new Tot());
                 case 1:
                     //schütze henker
                     //return geschützt zeigekarte
                     break;
                 case 2:
                     //kill spieler
-                    //schütze henkre
+                    //schütze henker
                     //return geschützt + kill frontencontrol
                     break;
             }
