@@ -130,10 +130,8 @@ public class NormalNightStatementBuilder {
 
     private static void addStatementRolle(ArrayList<Statement> statements, String rollenName) {
         Rolle rolle = Rolle.findRolle(rollenName);
-        if (rolle != null) {
-            Statement statement = new StatementRolle(rolle);
-            statements.add(statement);
-        }
+        Statement statement = new StatementRolle(rolle);
+        statements.add(statement);
     }
 
     private static void addSecondStatementRolle(ArrayList<Statement> statements, String rollenName) {
@@ -151,9 +149,7 @@ public class NormalNightStatementBuilder {
 
     private static void addSecondStatementFraktion(ArrayList<Statement> statements, String fraktionsName) {
         Fraktion fraktion = Fraktion.findFraktion(fraktionsName);
-        if (fraktion != null) {
-            Statement statement = new StatementFraktion(fraktion.secondStatementIdentifier, fraktion.secondStatementTitle, fraktion.secondStatementBeschreibung, fraktion.secondStatementType, fraktion.name);
-            statements.add(statement);
-        }
+        Statement statement = new StatementFraktion(fraktion.secondStatementIdentifier, fraktion.secondStatementTitle, fraktion.secondStatementBeschreibung, fraktion.secondStatementType, fraktion.name);
+        statements.add(statement);
     }
 }
