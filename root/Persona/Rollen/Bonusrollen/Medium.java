@@ -19,7 +19,7 @@ public class Medium extends Bonusrolle {
     public static final String VERBRAUCHT_TITLE = "Bonusrollen";
 
     public static final String NAME = "Medium";
-    public static final String IMAGE_PATH = ImagePath.ORAKEL_KARTE;
+    public static final String IMAGE_PATH = ""; //TODO replace imagepath
     public static final BonusrollenType TYPE = new Informativ();
 
 

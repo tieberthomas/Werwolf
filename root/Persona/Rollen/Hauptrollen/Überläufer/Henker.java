@@ -21,7 +21,7 @@ public class Henker extends Hauptrolle {
     public static final StatementType SECOND_STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
 
     public static final String NAME = "Henker";
-    public static final String IMAGE_PATH = ImagePath.ÜBERLÄUFER_KARTE;
+    public static final String IMAGE_PATH = ""; //TODO replace imagepath
     public static final Fraktion FRAKTION = new Überläufer_Fraktion();
 
     public Henker() {
@@ -38,6 +38,9 @@ public class Henker extends Hauptrolle {
         this.secondStatementTitle = SECOND_STATEMENT_TITLE;
         this.secondStatementBeschreibung = SECOND_STATEMENT_BESCHREIBUNG;
         this.secondStatementType = SECOND_STATEMENT_TYPE;
+
+        this.spammable = false;
+        this.killing = true;
     }
 
     @Override
