@@ -108,10 +108,14 @@ public class Opfer {
 
         String opferNebenrolle = opfer.bonusrolle.name;
 
-        if (!opfer.geschützt || (täterFraktion.equals(Werwölfe.NAME) && Werwölfe.blutWolfIsAktiv())) {
-            if (!(opferNebenrolle.equals(Vampirumhang.NAME) && täterFraktion.equals(Vampire.NAME) ||
-                    opferNebenrolle.equals(Wolfspelz.NAME) && täterFraktion.equals(Werwölfe.NAME) && !Werwölfe.blutWolfIsAktiv())) {
-                addDeadVictim(opfer, täterFraktion);
+        if (täterFraktion.equals(Werwölfe.NAME) && Werwölfe.blutWolfIsAktiv())  {
+            addDeadVictim(opfer, täterFraktion);
+        } else {
+            if (!opfer.geschützt) {
+                if (!(opferNebenrolle.equals(Vampirumhang.NAME) && täterFraktion.equals(Vampire.NAME) ||
+                        opferNebenrolle.equals(Wolfspelz.NAME) && täterFraktion.equals(Werwölfe.NAME))) {
+                    addDeadVictim(opfer, täterFraktion);
+                }
             }
         }
     }
@@ -159,15 +163,7 @@ public class Opfer {
     }
 
     public static void removeVictim(Spieler opfer) {
-        ArrayList<Opfer> opfersToRemove = new ArrayList<>();
-
-        for (Opfer currentVictim : deadVictims) {
-            if (currentVictim.opfer.name.equals(opfer.name)) {
-                opfersToRemove.add(currentVictim);
-            }
-        }
-
-        deadVictims.removeAll(opfersToRemove);
+        deadVictims.removeIf(victim -> victim.opfer.equals(opfer));
     }
 
     public static Opfer findOpfer(String name) {
