@@ -76,7 +76,7 @@ public class Dieb extends Bonusrolle {
     }
 
     private Bonusrolle getNewRandomBonusrolle() {
-        ArrayList<Bonusrolle> bonusrollen = game.getStillAvailableSecondaryRoles();
+        ArrayList<Bonusrolle> bonusrollen = game.getStillAvailableBonusRoles();
 
         int numberOfUnassignedBonusrollen = bonusrollen.size();
         Random random = new Random();

@@ -80,6 +80,7 @@ public class NormalNightStatementBuilder {
         addStatementRolle(statements, Seherin.NAME);
         addStatementRolle(statements, Späher.NAME);
         addStatementRolle(statements, Orakel.NAME);
+        addStatementRolle(statements, Medium.NAME);
 
         addStatementRolle(statements, GrafVladimir.NAME);
 

@@ -529,7 +529,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                 mode = ErzählerFrameMode.nachzüglerSetup;
 
                 spielerFrame.mode = SpielerFrameMode.blank;
-                buildScreenFromPage(pageFactory.generateNachzüglerPage(game.getStillAvailableMainRoleNames(), game.getStillAvailableSecondaryRoleNames()));
+                buildScreenFromPage(pageFactory.generateNachzüglerPage(game.getStillAvailableMainRoleNames(), game.getStillAvailableBonusRoleNames()));
             }
         } else if (ae.getSource() == umbringenJButton) {
             if (mode == ErzählerFrameMode.umbringenSetup) {
