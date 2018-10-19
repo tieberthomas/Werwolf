@@ -6,8 +6,6 @@ import root.Persona.Bonusrolle;
 import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Persona.Rollen.Constants.BonusrollenType.Informativ;
 import root.Phases.NightBuilding.Constants.StatementType;
-import root.ResourceManagement.ImagePath;
-import root.Spieler;
 
 import java.util.ArrayList;
 
