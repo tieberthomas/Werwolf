@@ -186,7 +186,7 @@ public class ErsteNacht extends Thread {
 
     private void refreshStatementStates() {
         for (Statement statement : statements) {
-            if(!statement.alreadyOver) {
+            if (!statement.alreadyOver) {
                 statement.refreshState();
             }
         }
@@ -359,7 +359,7 @@ public class ErsteNacht extends Thread {
 
     private Hauptrolle pickRandomHauptrolle(ArrayList<Hauptrolle> hauptrollen) {
         int numberOfUnassignedHauptrollen = hauptrollen.size();
-        if(numberOfUnassignedHauptrollen > 0) {
+        if (numberOfUnassignedHauptrollen > 0) {
             Random random = new Random();
             int index = random.nextInt(numberOfUnassignedHauptrollen);
             return hauptrollen.get(index);

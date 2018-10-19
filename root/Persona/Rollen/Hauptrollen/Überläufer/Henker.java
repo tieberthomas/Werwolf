@@ -5,8 +5,6 @@ import root.Persona.Bonusrolle;
 import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Überläufer_Fraktion;
 import root.Persona.Hauptrolle;
-import root.Persona.Rollen.Constants.Zeigekarten.Tot;
-import root.Persona.Rollen.Hauptrollen.Bürger.Dorfbewohner;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
@@ -49,32 +47,33 @@ public class Henker extends Hauptrolle {
 
     @Override
     public void processChosenOption(String chosenOption) {
-        if(chosenOption!=null && !chosenOption.isEmpty()) {
-            Spieler chosenPlayer = game.findSpieler(chosenOption);
+        Spieler chosenPlayer = game.findSpieler(chosenOption);
+
+        if (chosenPlayer != null) {
             besucht = chosenPlayer;
         }
     }
 
     @Override
     public FrontendControl processChosenOptionsGetInfo(String chosenOption1, String chosenOption2) {
-        if(chosenOption1!=null && !chosenOption1.isEmpty() && chosenOption2!=null && !chosenOption2.isEmpty()) {
+        if (chosenOption1 != null && !chosenOption1.isEmpty() && chosenOption2 != null && !chosenOption2.isEmpty()) {
             Hauptrolle hauptrolle = game.findHauptrolle(chosenOption1);
             Bonusrolle bonusrolle = game.findBonusrolle(chosenOption2);
 
             int correctGuesses = 0;
             Spieler chosenPlayer = besucht;
 
-            if(chosenPlayer.hauptrolle.equals(hauptrolle)) {
+            if (chosenPlayer.hauptrolle.equals(hauptrolle)) {
                 correctGuesses++;
             }
 
-            if(chosenPlayer.bonusrolle.equals(bonusrolle)) {
+            if (chosenPlayer.bonusrolle.equals(bonusrolle)) {
                 correctGuesses++;
             }
 
             System.out.println(correctGuesses);
 
-            switch(correctGuesses) {
+            switch (correctGuesses) {
                 case 0:
                     //kill henker
                     //return tot zeigekarte

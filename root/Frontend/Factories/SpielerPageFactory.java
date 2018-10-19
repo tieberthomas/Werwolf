@@ -115,7 +115,7 @@ public class SpielerPageFactory {
         listPage.add(title2Element);
         listPage.add(counterLabel);
 
-        if(freibier) { //TODO implementieren dass nurnoch eines angezeigt wird nach erstem kill (?)
+        if (freibier) { //TODO implementieren dass nurnoch eines angezeigt wird nach erstem kill (?)
             PageElement freibierWatermarkRight = pageElementFactory.generateBierImage(Corner.LOWERRIGHT, clockSpace);
             PageElement freibierWatermarkLeft = pageElementFactory.generateBierImage(Corner.LOWERLEFT, clockSpace);
 

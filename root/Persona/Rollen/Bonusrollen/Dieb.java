@@ -68,7 +68,7 @@ public class Dieb extends Bonusrolle {
 
     @Override
     public FrontendControl getInfo() {
-        if(besucht != null) {
+        if (besucht != null) {
             return new FrontendControl(FrontendControlType.CARD, besucht.bonusrolle.imagePath);
         }
 

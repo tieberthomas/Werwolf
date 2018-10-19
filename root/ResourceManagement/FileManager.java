@@ -2,14 +2,7 @@ package root.ResourceManagement;
 
 import root.Spieler;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,16 +38,16 @@ public class FileManager {
     boolean writeComposition(String filePath, List<String> spieler, List<String> hauptrollen, List<String> bonusrollen) {
         File file = createNewFile(filePath);
 
-        if(file == null) {
+        if (file == null) {
             return false;
         }
 
         try (Writer writer = new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8)) {
-                writeArrayList(writer, spieler);
-                writeArrayList(writer, hauptrollen);
-                writeArrayList(writer, bonusrollen);
+            writeArrayList(writer, spieler);
+            writeArrayList(writer, hauptrollen);
+            writeArrayList(writer, bonusrollen);
 
-                writer.flush();
+            writer.flush();
         } catch (IOException e) {
             System.out.println("Something went wrong while writing the composition file.");
             return false;
@@ -97,7 +90,7 @@ public class FileManager {
     boolean writeGame(String filePath, List<Spieler> spieler, List<String> mainRolesLeft, List<String> secondaryRolesLeft) {
         File file = createNewFile(filePath);
 
-        if(file == null) {
+        if (file == null) {
             return false;
         }
 

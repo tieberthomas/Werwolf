@@ -111,7 +111,7 @@ public class ErzählerPageFactory {
         int columnWidth = deleteButtonWidth + nameLabelWidth + spaceBetween;
         int columns = pageElementFactory.calculateColumns(columnWidth);
 
-        erzählerFrame.deleteMainRoleTable = pageElementFactory.generatePageTable( erzählerFrame.deleteMainRoleTable, counterLabel,
+        erzählerFrame.deleteMainRoleTable = pageElementFactory.generatePageTable(erzählerFrame.deleteMainRoleTable, counterLabel,
                 columns, deleteButtonWidth, tableElementHeight, nameLabelWidth, spaceBetween, 0, spaceBetween);
 
         erzählerFrame.mainRoleLabelTable = pageElementFactory.generatePageTable(erzählerFrame.mainRoleLabelTable, counterLabel,

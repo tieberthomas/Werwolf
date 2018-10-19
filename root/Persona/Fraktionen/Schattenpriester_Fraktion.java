@@ -85,7 +85,7 @@ public class Schattenpriester_Fraktion extends Fraktion {
 
         for (Opfer currentOpfer : Opfer.deadVictims) {
             Spieler opferSpieler = currentOpfer.opfer;
-            if(opferSpieler!=null) {
+            if (opferSpieler != null) {
                 String fraktionDesOpfers = opferSpieler.hauptrolle.fraktion.name;
                 if (opferSpieler.bonusrolle.name.equals(Schattenkutte.NAME) ||
                         (opferSpieler.ressurectable && !fraktionDesOpfers.equals(Schattenpriester_Fraktion.NAME))) {
