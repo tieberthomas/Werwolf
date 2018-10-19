@@ -171,7 +171,7 @@ public class Nacht extends Thread {
                         case Schattenpriester_Fraktion.NEUER_SCHATTENPRIESTER:
                             chosenPlayer = game.findSpieler(chosenOptionLastStatement);
                             String neuerSchattenpriester = "";
-                            erzählerInfoIconImagePath = "";
+                            erzählerInfoIconImagePath = ""; //TODO causes problem "1 Image could not be found at location: "
                             if (chosenPlayer != null) {
                                 neuerSchattenpriester = chosenPlayer.name;
 
@@ -848,7 +848,9 @@ public class Nacht extends Thread {
     }
 
     public void showListShowImage(Statement statement, String string, String spielerImagePath) {
-        showListShowImage(statement, string, spielerImagePath, "");
+        ArrayList<String> list = new ArrayList<>();
+        list.add(string);
+        showListShowImage(statement, statement.title, list, spielerImagePath);
     }
 
     public void showListShowImage(Statement statement, String string, String spielerImagePath, String erzählerImagePath) {
@@ -858,12 +860,8 @@ public class Nacht extends Thread {
     }
 
     public void showListShowImage(Statement statement, String title, ArrayList<String> strings, String spielerImagePath) {
-        showListShowImage(statement, title, strings, spielerImagePath, "");
-    }
-
-    public void showSchnüfflerInfo(Statement statement, List<SchnüfflerInformation> informationen) {
-        FrontendControl.erzählerDefaultNightPage(statement);
-        FrontendControl.spielerSchnüfflerInfoPage(informationen);
+        FrontendControl.erzählerListPage(statement, strings);
+        FrontendControl.spielerIconPicturePage(title, spielerImagePath);
 
         waitForAnswer();
     }
@@ -871,6 +869,13 @@ public class Nacht extends Thread {
     public void showListShowImage(Statement statement, String title, ArrayList<String> strings, String spielerImagePath, String erzählerImagePath) {
         FrontendControl.erzählerListPage(statement, strings, erzählerImagePath);
         FrontendControl.spielerIconPicturePage(title, spielerImagePath);
+
+        waitForAnswer();
+    }
+
+    public void showSchnüfflerInfo(Statement statement, List<SchnüfflerInformation> informationen) {
+        FrontendControl.erzählerDefaultNightPage(statement);
+        FrontendControl.spielerSchnüfflerInfoPage(informationen);
 
         waitForAnswer();
     }
