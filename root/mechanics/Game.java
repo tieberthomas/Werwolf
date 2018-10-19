@@ -57,7 +57,7 @@ public class Game {
         mainRolesInGame = new ArrayList<>();
         generateAllAvailableMainRoles();
         secondaryRolesInGame = new ArrayList<>();
-        generateAllAvailableSecondaryRoles();
+        generateAllAvailableBonusRoles();
         mitteHauptrollen = new ArrayList<>();
         mitteBonusrollen = new ArrayList<>();
         playersSpecified = new ArrayList<>();
@@ -66,7 +66,7 @@ public class Game {
         Torte.tortenEsser = new ArrayList<>();
     }
 
-    public void generateAllAvailableMainRoles() {
+    private void generateAllAvailableMainRoles() {
         mainRoles.add(new Bruder());
         mainRoles.add(new Dorfbewohner());
         mainRoles.add(new HoldeMaid());
@@ -93,7 +93,7 @@ public class Game {
         mainRoles.add(new Überläufer());
     }
 
-    public void generateAllAvailableSecondaryRoles() {
+    private void generateAllAvailableBonusRoles() {
         secondaryRoles.add(new Analytiker());
         secondaryRoles.add(new Archivar());
         secondaryRoles.add(new Dieb());
@@ -102,6 +102,7 @@ public class Game {
         secondaryRoles.add(new Konditor());
         secondaryRoles.add(new Konditorlehrling());
         secondaryRoles.add(new Lamm());
+        secondaryRoles.add(new Medium());
         secondaryRoles.add(new Nachbar());
         secondaryRoles.add(new Prostituierte());
         secondaryRoles.add(new Schatten());
@@ -509,7 +510,7 @@ public class Game {
         return secondaryRoleInGameNames;
     }
 
-    public ArrayList<Bonusrolle> getStillAvailableSecondaryRoles() {
+    public ArrayList<Bonusrolle> getStillAvailableBonusRoles() {
         ArrayList<Bonusrolle> stilleAvalableSecondaryRoles = new ArrayList<>();
 
         stilleAvalableSecondaryRoles.addAll(secondaryRolesInGame);
@@ -522,8 +523,8 @@ public class Game {
         return stilleAvalableSecondaryRoles;
     }
 
-    public ArrayList<String> getStillAvailableSecondaryRoleNames() {
-        ArrayList<Bonusrolle> stilleAvalableSecondaryRoles = getStillAvailableSecondaryRoles();
+    public ArrayList<String> getStillAvailableBonusRoleNames() {
+        ArrayList<Bonusrolle> stilleAvalableSecondaryRoles = getStillAvailableBonusRoles();
         ArrayList<String> names = new ArrayList<>();
 
         for (Bonusrolle bonusrolle : stilleAvalableSecondaryRoles) {
