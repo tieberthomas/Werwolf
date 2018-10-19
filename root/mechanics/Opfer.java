@@ -163,15 +163,7 @@ public class Opfer {
     }
 
     public static void removeVictim(Spieler opfer) {
-        ArrayList<Opfer> opfersToRemove = new ArrayList<>();
-
-        for (Opfer currentVictim : deadVictims) {
-            if (currentVictim.opfer.name.equals(opfer.name)) {
-                opfersToRemove.add(currentVictim);
-            }
-        }
-
-        deadVictims.removeAll(opfersToRemove);
+        deadVictims.removeIf(victim -> victim.opfer.equals(opfer));
     }
 
     public static Opfer findOpfer(String name) {
