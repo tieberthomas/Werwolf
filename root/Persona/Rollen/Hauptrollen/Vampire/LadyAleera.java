@@ -45,7 +45,7 @@ public class LadyAleera extends Hauptrolle {
         if (chosenPlayer != null) {
             besucht = chosenPlayer;
 
-            verschleierterSpieler = chosenPlayer;
+            verschleierterSpieler = chosenPlayer; //TODO information über spieler beschaffen
         }
     }
 }
