@@ -108,10 +108,14 @@ public class Opfer {
 
         String opferNebenrolle = opfer.bonusrolle.name;
 
-        if (!opfer.geschützt || (täterFraktion.equals(Werwölfe.NAME) && Werwölfe.blutWolfIsAktiv())) {
-            if (!(opferNebenrolle.equals(Vampirumhang.NAME) && täterFraktion.equals(Vampire.NAME) ||
-                    opferNebenrolle.equals(Wolfspelz.NAME) && täterFraktion.equals(Werwölfe.NAME) && !Werwölfe.blutWolfIsAktiv())) {
-                addDeadVictim(opfer, täterFraktion);
+        if (täterFraktion.equals(Werwölfe.NAME) && Werwölfe.blutWolfIsAktiv())  {
+            addDeadVictim(opfer, täterFraktion);
+        } else {
+            if (!opfer.geschützt) {
+                if (!(opferNebenrolle.equals(Vampirumhang.NAME) && täterFraktion.equals(Vampire.NAME) ||
+                        opferNebenrolle.equals(Wolfspelz.NAME) && täterFraktion.equals(Werwölfe.NAME))) {
+                    addDeadVictim(opfer, täterFraktion);
+                }
             }
         }
     }
