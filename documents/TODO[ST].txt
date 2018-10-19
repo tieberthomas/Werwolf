@@ -4,6 +4,7 @@ deaktiviert und verbraucht - deaktiviert anzeigen
 ErsteNacht Statement Type
 Alphabet Umlaute?
 killing = false?
+Nebenrolle -> Bonusrolle
 
 TH:
 NebenrollenType - Enum?
