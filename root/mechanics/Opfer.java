@@ -88,15 +88,15 @@ public class Opfer {
     public static void addVictim(Spieler opfer, Spieler täter) {
         possibleVictims.add(new Opfer(opfer, täter));
 
-        String opferNebenrolle = opfer.bonusrolle.name;
+        String opferBonusrolle = opfer.bonusrolle.name;
         String täterFraktion = täter.hauptrolle.fraktion.name;
 
         if (täter.hauptrolle.name.equals(Riese.NAME)) {
             addDeadVictim(opfer, täter, true);
         } else {
             if (!opfer.geschützt) {
-                if (!(opferNebenrolle.equals(Vampirumhang.NAME) && täterFraktion.equals(Vampire.NAME) ||
-                        opferNebenrolle.equals(Wolfspelz.NAME) && täterFraktion.equals(Werwölfe.NAME))) {
+                if (!(opferBonusrolle.equals(Vampirumhang.NAME) && täterFraktion.equals(Vampire.NAME) ||
+                        opferBonusrolle.equals(Wolfspelz.NAME) && täterFraktion.equals(Werwölfe.NAME))) {
                     addDeadVictim(opfer, täter);
                 }
             }
@@ -106,14 +106,14 @@ public class Opfer {
     public static void addVictim(Spieler opfer, Fraktion täterFraktion) {
         possibleVictims.add(new Opfer(opfer, täterFraktion));
 
-        String opferNebenrolle = opfer.bonusrolle.name;
+        String opferBonusrolle = opfer.bonusrolle.name;
 
         if (täterFraktion.equals(Werwölfe.NAME) && Werwölfe.blutWolfIsAktiv())  {
             addDeadVictim(opfer, täterFraktion);
         } else {
             if (!opfer.geschützt) {
-                if (!(opferNebenrolle.equals(Vampirumhang.NAME) && täterFraktion.equals(Vampire.NAME) ||
-                        opferNebenrolle.equals(Wolfspelz.NAME) && täterFraktion.equals(Werwölfe.NAME))) {
+                if (!(opferBonusrolle.equals(Vampirumhang.NAME) && täterFraktion.equals(Vampire.NAME) ||
+                        opferBonusrolle.equals(Wolfspelz.NAME) && täterFraktion.equals(Werwölfe.NAME))) {
                     addDeadVictim(opfer, täterFraktion);
                 }
             }
@@ -142,7 +142,6 @@ public class Opfer {
         if (riese) {
             opfer.opfer.ressurectable = false;
         }
-        String opferNebenrolle = opfer.opfer.bonusrolle.name;
         if (!opfer.opfer.equals(prostituierteSpieler) || riese) {
             deadVictims.add(opfer);
         }

@@ -642,7 +642,7 @@ public class Game {
         ArrayList<Bonusrolle> secondaryRolesUnspecified = new ArrayList<Bonusrolle>();
         secondaryRolesUnspecified = (ArrayList) secondaryRolesInGame.clone();
 
-        MyCollectionHelper.removeAllNebenrollen(secondaryRolesUnspecified, getSecondaryRolesSpecified());
+        MyCollectionHelper.removeAllBonusrollen(secondaryRolesUnspecified, getSecondaryRolesSpecified());
 
         return secondaryRolesUnspecified;
     }
