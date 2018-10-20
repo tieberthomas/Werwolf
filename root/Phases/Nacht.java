@@ -138,9 +138,9 @@ public class Nacht extends Thread {
                             break;
 
                         case Henker.SECOND_STATEMENT_IDENTIFIER: //TODO der case kann gemeinsam mit dem analytiker generalisiert werden
-                            ArrayList<String> mainRoles = game.getPossibleInGameMainRoleNames();
+                            ArrayList<String> hauptrollen = game.getPossibleInGameHauptrolleNames();
                             ArrayList<String> bonusRoles = game.getPossibleInGameSecondaryRoleNames();
-                            showDropdownPage(statement, mainRoles, bonusRoles);
+                            showDropdownPage(statement, hauptrollen, bonusRoles);
 
                             String hauptrolle = FrontendControl.erzählerFrame.chosenOption1;
                             String bonusrolle = FrontendControl.erzählerFrame.chosenOption2;
@@ -324,7 +324,7 @@ public class Nacht extends Thread {
         Opfer.possibleVictims = new ArrayList<>();
         Opfer.deadVictims = new ArrayList<>();
 
-        for (Hauptrolle currentHauptrolle : game.mainRoles) {
+        for (Hauptrolle currentHauptrolle : game.hauptrollen) {
             currentHauptrolle.besuchtLetzteNacht = currentHauptrolle.besucht;
             currentHauptrolle.besucht = null;
         }

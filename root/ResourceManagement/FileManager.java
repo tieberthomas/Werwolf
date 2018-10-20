@@ -87,7 +87,7 @@ public class FileManager {
         }
     }
 
-    boolean writeGame(String filePath, List<Spieler> spieler, List<String> mainRolesLeft, List<String> secondaryRolesLeft) {
+    boolean writeGame(String filePath, List<Spieler> spieler, List<String> hauptrollenLeft, List<String> secondaryRolesLeft) {
         File file = createNewFile(filePath);
 
         if (file == null) {
@@ -102,7 +102,7 @@ public class FileManager {
             }
 
             writeArrayList(writer, compositionStrings);
-            writeArrayList(writer, mainRolesLeft);
+            writeArrayList(writer, hauptrollenLeft);
             writeArrayList(writer, secondaryRolesLeft);
 
             writer.flush();

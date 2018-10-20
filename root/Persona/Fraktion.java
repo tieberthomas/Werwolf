@@ -32,7 +32,7 @@ public class Fraktion extends Persona {
     public int getNumberOfFraktionsMembersInGame() {
         int numberOfFraktionsMembersInGame = 0;
 
-        for (Hauptrolle currentHautprolle : game.mainRolesInGame) {
+        for (Hauptrolle currentHautprolle : game.hauptrollenInGame) {
             if (currentHautprolle.fraktion.name.equals(this.name)) {
                 numberOfFraktionsMembersInGame++;
             }
@@ -88,14 +88,14 @@ public class Fraktion extends Persona {
         if (fraktion.equals(Schattenpriester_Fraktion.NAME)) {
             return false;
         }
-        if (fraktion.equals(Werwölfe.NAME) && game.getMainRoleInGameNames().contains(Chemiker.NAME)) {
+        if (fraktion.equals(Werwölfe.NAME) && game.getHauptrolleInGameNames().contains(Chemiker.NAME)) {
             return false;
         }
 
-        int numberMainRolesInGame = 0;
-        for (Hauptrolle hauptrolle : game.mainRolesInGame) {
+        int numberHauptrollenInGame = 0;
+        for (Hauptrolle hauptrolle : game.hauptrollenInGame) {
             if (hauptrolle.fraktion.name.equals(fraktion)) {
-                numberMainRolesInGame++;
+                numberHauptrollenInGame++;
             }
         }
 
@@ -106,7 +106,7 @@ public class Fraktion extends Persona {
             }
         }
 
-        return numberMitteHauptrollen >= numberMainRolesInGame;
+        return numberMitteHauptrollen >= numberHauptrollenInGame;
     }
 
     public static boolean fraktionOpfer(String fraktion) {
@@ -190,7 +190,7 @@ public class Fraktion extends Persona {
     public static ArrayList<String> getFraktionStrings() {
         ArrayList<String> allFraktionen = new ArrayList<>();
 
-        for (Hauptrolle hauptrolle : game.mainRolesInGame) {
+        for (Hauptrolle hauptrolle : game.hauptrollenInGame) {
             String currentFratkion = hauptrolle.fraktion.name;
             if (!allFraktionen.contains(currentFratkion)) {
                 allFraktionen.add(currentFratkion);
@@ -233,7 +233,7 @@ public class Fraktion extends Persona {
     }
 
     public static Fraktion findFraktion(String searchedFraktion) {
-        for (Hauptrolle currentHautprolle : game.mainRoles) {
+        for (Hauptrolle currentHautprolle : game.hauptrollen) {
             if (currentHautprolle.fraktion.name.equals(searchedFraktion)) {
                 return currentHautprolle.fraktion;
             }

@@ -135,9 +135,9 @@ public class ErsteNacht extends Thread {
                                 ArrayList<String> brüder = game.findSpielersStringsPerRolle(Bruder.NAME);
 
                                 if (brüder.size() == 1) {
-                                    ArrayList<String> stillAvailableMainRoles = game.getStillAvailableMainRoleNames();
-                                    stillAvailableMainRoles.remove(Bruder.NAME);
-                                    dropdownOtions = new FrontendControl(FrontendControlType.DROPDOWN, Bruder.FIRST_NIGHT_STATEMENT_SECOND_TITLE, stillAvailableMainRoles);
+                                    ArrayList<String> stillAvailableHauptrollen = game.getStillAvailableHauptrolleNames();
+                                    stillAvailableHauptrollen.remove(Bruder.NAME);
+                                    dropdownOtions = new FrontendControl(FrontendControlType.DROPDOWN, Bruder.FIRST_NIGHT_STATEMENT_SECOND_TITLE, stillAvailableHauptrollen);
                                     chosenOption = showFrontendControl(statement, dropdownOtions);
                                     Hauptrolle newHauptrolle = game.findHauptrolle(chosenOption);
                                     if (newHauptrolle != null) {
@@ -174,7 +174,7 @@ public class ErsteNacht extends Thread {
     }
 
     public void beginNight() {
-        for (Hauptrolle currentHauptrolle : game.mainRoles) {
+        for (Hauptrolle currentHauptrolle : game.hauptrollen) {
             currentHauptrolle.besuchtLetzteNacht = null;
             currentHauptrolle.besucht = null;
         }

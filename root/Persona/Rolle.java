@@ -42,7 +42,7 @@ public class Rolle extends Persona {
     public static int numberOfOccurencesOfRoleInGame(Rolle rolle) {
         Hauptrolle wantedHauptRolle = game.findHauptrolle(rolle.name);
         if (wantedHauptRolle != null)
-            return game.numberOfOccurencesOfMainRoleInGame(wantedHauptRolle);
+            return game.numberOfOccurencesOfHauptrolleInGame(wantedHauptRolle);
 
         Bonusrolle wantedBonusrolleRolle = game.findBonusrolle(rolle.name);
         if (wantedBonusrolleRolle != null)
@@ -52,7 +52,7 @@ public class Rolle extends Persona {
     }
 
     public static boolean hauptRolleInNachtEnthalten(String rolle) {
-        if (game.getMainRoleInGameNames().contains(rolle)) {
+        if (game.getHauptrolleInGameNames().contains(rolle)) {
             for (Rolle currentRolle : game.mitteHauptrollen) {
                 if (currentRolle.name.equals(rolle)) {
                     return false;
@@ -65,7 +65,7 @@ public class Rolle extends Persona {
     }
 
     public static boolean rolleInNachtEnthalten(String rolle) {
-        if (game.getMainRoleInGameNames().contains(rolle) || game.getSecondaryRoleInGameNames().contains(rolle)) {
+        if (game.getHauptrolleInGameNames().contains(rolle) || game.getSecondaryRoleInGameNames().contains(rolle)) {
             for (Rolle currentRolle : game.mitteHauptrollen) {
                 if (currentRolle.name.equals(rolle)) {
                     return false;

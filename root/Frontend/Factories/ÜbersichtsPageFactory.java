@@ -19,7 +19,7 @@ public class ÜbersichtsPageFactory {
     public Page generateÜbersichtsPage() {
         int tableElementHeight = 25;
         int nameLabelWidth = 150;
-        int mainRoleLabelWidth = 150;
+        int hauptrolleLabelWidth = 150;
         int secondaryRoleLabelWidth = 150;
         int aliveLabelWidth = 80;
         int activeLabelWidth = 80;
@@ -43,10 +43,10 @@ public class ÜbersichtsPageFactory {
                 tableElementHeight, 0, spaceBetween, xOffset, spaceBetween);
 
         xOffset += nameLabelWidth + spaceBetween;
-        übersichtsFrame.mainRoleTable = pageElementFactory.generatePageTable(liebespaarLabel, columns, mainRoleLabelWidth,
+        übersichtsFrame.hauptrolleTable = pageElementFactory.generatePageTable(liebespaarLabel, columns, hauptrolleLabelWidth,
                 tableElementHeight, 0, spaceBetween, xOffset, spaceBetween);
 
-        xOffset += mainRoleLabelWidth + spaceBetween;
+        xOffset += hauptrolleLabelWidth + spaceBetween;
         übersichtsFrame.secondaryRoleTable = pageElementFactory.generatePageTable(liebespaarLabel, columns, secondaryRoleLabelWidth,
                 tableElementHeight, 0, spaceBetween, xOffset, spaceBetween);
 
@@ -66,7 +66,7 @@ public class ÜbersichtsPageFactory {
         PageElement refreshButton = pageElementFactory.generateLowestButton(übersichtsFrame.refreshJButton, "Refresh", true);
 
         übersichtsPage.addTable(übersichtsFrame.playerTable);
-        übersichtsPage.addTable(übersichtsFrame.mainRoleTable);
+        übersichtsPage.addTable(übersichtsFrame.hauptrolleTable);
         übersichtsPage.addTable(übersichtsFrame.secondaryRoleTable);
         übersichtsPage.addTable(übersichtsFrame.aliveTable);
         übersichtsPage.addTable(übersichtsFrame.activeTable);

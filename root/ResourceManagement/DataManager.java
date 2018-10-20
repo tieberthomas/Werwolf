@@ -46,7 +46,7 @@ public class DataManager {
         }
 
         for (String hauptRollenName : composition.hauptrollen) {
-            game.mainRolesInGame.add(game.findHauptrolle(hauptRollenName));
+            game.hauptrollenInGame.add(game.findHauptrolle(hauptRollenName));
         }
 
         for (String bonusRollenName : composition.bonusrollen) {
@@ -57,18 +57,18 @@ public class DataManager {
     private void evaluatePlayers(ArrayList<PlayerDto> players) {
         for (PlayerDto player : players) {
             Spieler newSpieler = new Spieler(player.name, player.hauptrolle, player.bonusrolle);
-            game.mainRolesInGame.add(newSpieler.hauptrolle);
+            game.hauptrollenInGame.add(newSpieler.hauptrolle);
             game.secondaryRolesInGame.add(newSpieler.bonusrolle);
         }
     }
 
     public void writeComposition() {
         fileManager.writeComposition(ResourcePath.LAST_GAME_COMPOSITION_FILE, game.getLivingPlayerStrings(),
-                game.getMainRoleInGameNames(), game.getSecondaryRoleInGameNames());
+                game.getHauptrolleInGameNames(), game.getSecondaryRoleInGameNames());
     }
 
     public void writeGame() {
         fileManager.writeGame(ResourcePath.LAST_GAME_FILE, game.getLivingPlayer(),
-                game.getMainRolesUnspecifiedStrings(), game.getSecondaryRolesUnspecifiedStrings());
+                game.getHauptrollenUnspecifiedStrings(), game.getSecondaryRolesUnspecifiedStrings());
     }
 }

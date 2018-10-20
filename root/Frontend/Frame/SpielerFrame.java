@@ -65,8 +65,8 @@ public class SpielerFrame extends MyFrame {
             refreshPlayerSetupPage();
         }
 
-        if (erzählerFrame.currentPage.equals(erzählerFrame.mainRoleSetupPage)) {
-            refreshMainRoleSetupPage();
+        if (erzählerFrame.currentPage.equals(erzählerFrame.hauptrolleSetupPage)) {
+            refreshHauptrolleSetupPage();
         }
 
         if (erzählerFrame.currentPage.equals(erzählerFrame.secondaryRoleSetupPage)) {
@@ -82,8 +82,8 @@ public class SpielerFrame extends MyFrame {
         buildScreenFromPage(pageFactory.generateListPage(game.getLivingPlayerStrings()));
     }
 
-    public void refreshMainRoleSetupPage() {
-        buildScreenFromPage(pageFactory.generateListPage(game.getMainRoleInGameNames()));
+    public void refreshHauptrolleSetupPage() {
+        buildScreenFromPage(pageFactory.generateListPage(game.getHauptrolleInGameNames()));
     }
 
     public void refreshSecondaryRoleSetupPage() {
@@ -91,12 +91,12 @@ public class SpielerFrame extends MyFrame {
     }
 
     public void refreshSecondarySpecifySetupPage() {
-        ArrayList<String> mainRoles = new ArrayList<>();
-        mainRoles.addAll(game.getMainRoleInGameNames());
+        ArrayList<String> hauptrollen = new ArrayList<>();
+        hauptrollen.addAll(game.getHauptrolleInGameNames());
 
         ArrayList<String> secondaryRoles = new ArrayList<>();
         secondaryRoles.addAll(game.getSecondaryRoleInGameNames());
-        buildScreenFromPage(pageFactory.generateDoubleListPage(mainRoles, secondaryRoles, "Hauptrollen", "Bonusrollen"));
+        buildScreenFromPage(pageFactory.generateDoubleListPage(hauptrollen, secondaryRoles, "Hauptrollen", "Bonusrollen"));
     }
 
     public void generateDayPage() {
@@ -107,7 +107,7 @@ public class SpielerFrame extends MyFrame {
             freibierTag = true;
         }
 
-        currentPage = pageFactory.generateDayPage(game.getPossibleInGameMainRoleNames(), game.getPossibleInGameSecondaryRoleNames(), freibierTag);
+        currentPage = pageFactory.generateDayPage(game.getPossibleInGameHauptrolleNames(), game.getPossibleInGameSecondaryRoleNames(), freibierTag);
         buildScreenFromPage(currentPage);
     }
 }
