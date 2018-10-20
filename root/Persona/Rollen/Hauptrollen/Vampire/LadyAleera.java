@@ -19,7 +19,7 @@ public class LadyAleera extends Hauptrolle {
     public static final Fraktion FRAKTION = new Vampire();
 
     public static Spieler verschleierterSpieler;
-    
+
     public LadyAleera() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;

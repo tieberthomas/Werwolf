@@ -108,7 +108,7 @@ public class Opfer {
 
         String opferBonusrolle = opfer.bonusrolle.name;
 
-        if (täterFraktion.equals(Werwölfe.NAME) && Werwölfe.blutWolfIsAktiv())  {
+        if (täterFraktion.equals(Werwölfe.NAME) && Werwölfe.blutWolfIsAktiv()) {
             addDeadVictim(opfer, täterFraktion);
         } else {
             if (!opfer.geschützt) {

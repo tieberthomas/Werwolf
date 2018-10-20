@@ -6,7 +6,6 @@ import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Überläufer_Fraktion;
 import root.Persona.Hauptrolle;
 import root.Phases.NightBuilding.Constants.StatementType;
-import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
 public class Henker extends Hauptrolle {
