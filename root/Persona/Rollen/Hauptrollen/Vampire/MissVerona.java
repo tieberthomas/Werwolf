@@ -42,11 +42,11 @@ public class MissVerona extends Hauptrolle {
     public ArrayList<String> findUntote() {
         ArrayList<String> untote = new ArrayList<>();
 
-        for (Opfer possibleOpfer : Opfer.possibleVictims) {
+        for (Opfer possibleOpfer : Opfer.possibleOpfer) {
             boolean überlebt = true;
             String currentPossibleOpferName = possibleOpfer.opfer.name;
 
-            for (Opfer deadOpfer : Opfer.deadVictims) {
+            for (Opfer deadOpfer : Opfer.deadOpfer) {
                 if (currentPossibleOpferName.equals(deadOpfer.opfer.name)) {
                     überlebt = false;
                 }

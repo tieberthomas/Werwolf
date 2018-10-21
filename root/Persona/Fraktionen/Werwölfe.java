@@ -53,7 +53,7 @@ public class Werwölfe extends Fraktion {
     public void processChosenOption(String chosenOption) {
         Spieler chosenPlayer = game.findSpieler(chosenOption);
         if (chosenPlayer != null) {
-            Opfer.addVictim(chosenPlayer, this);
+            Opfer.addOpfer(chosenPlayer, this);
         }
     }
 

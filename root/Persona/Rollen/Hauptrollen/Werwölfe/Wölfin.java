@@ -60,7 +60,7 @@ public class Wölfin extends Hauptrolle {
             besucht = chosenPlayer;
 
             Spieler täter = game.findSpielerPerRolle(NAME);
-            Opfer.addVictim(chosenPlayer, täter);
+            Opfer.addOpfer(chosenPlayer, täter);
         }
     }
 

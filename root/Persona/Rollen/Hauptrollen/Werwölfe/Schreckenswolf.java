@@ -67,7 +67,7 @@ public class Schreckenswolf extends Hauptrolle {
 
     private ArrayList<Opfer> possibleWerwolfOpfer() {
         ArrayList<Opfer> possibleWerwolfOpfer = new ArrayList<>();
-        for (Opfer opfer : Opfer.possibleVictims) {
+        for (Opfer opfer : Opfer.possibleOpfer) {
             if (opfer.täterFraktion.name.equals(Werwölfe.NAME)) {
                 possibleWerwolfOpfer.add(opfer);
             }

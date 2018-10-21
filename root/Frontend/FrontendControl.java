@@ -130,17 +130,17 @@ public class FrontendControl {
         erzählerFrame.buildScreenFromPage(erzählerFrame.tortenPage);
     }
 
-    public static void erzählerAnnounceVictimPage(Spieler spieler) {
-        Page dayPage = erzählerFrame.pageFactory.generateAnnounceVictimsDayPage(spieler.name, new Tot().imagePath);
+    public static void erzählerAnnounceOpferPage(Spieler spieler) {
+        Page dayPage = erzählerFrame.pageFactory.generateAnnounceOpferDayPage(spieler.name, new Tot().imagePath);
         erzählerFrame.buildScreenFromPage(dayPage);
     }
 
-    public static void erzählerAnnounceVictimPage(Spieler spieler, String imagepath) {
-        Page dayPage = erzählerFrame.pageFactory.generateAnnounceVictimsDayPage(spieler.name, imagepath);
+    public static void erzählerAnnounceOpferPage(Spieler spieler, String imagepath) {
+        Page dayPage = erzählerFrame.pageFactory.generateAnnounceOpferDayPage(spieler.name, imagepath);
         erzählerFrame.buildScreenFromPage(dayPage);
     }
 
-    public static void spielerAnnounceVictimPage(Spieler spieler) {
+    public static void spielerAnnounceOpferPage(Spieler spieler) {
         String hauptRolleImagePath = spieler.hauptrolle.imagePath;
         String bonusRolleImagePath = spieler.bonusrolle.imagePath;
         if (GrafVladimir.unerkennbarerSpieler != null) {

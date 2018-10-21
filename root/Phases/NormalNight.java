@@ -234,7 +234,7 @@ public class NormalNight extends Thread {
                         case Konditor.STATEMENT_IDENTIFIER:
                         case Konditorlehrling.STATEMENT_IDENTIFIER:
                             //TODO evaluieren ob Page angezeigt werden soll wenn gibtEsTorte();
-                            if (Opfer.deadVictims.size() == 0) {
+                            if (Opfer.deadOpfer.size() == 0) {
                                 if (gibtEsTorte()) {
                                     Torte.torte = true;
 
@@ -257,7 +257,7 @@ public class NormalNight extends Thread {
                         case IndieStatements.OPFER_IDENTIFIER:
                             ArrayList<String> opferDerNacht = new ArrayList<>();
 
-                            for (Opfer currentOpfer : Opfer.deadVictims) {
+                            for (Opfer currentOpfer : Opfer.deadOpfer) {
                                 if (!opferDerNacht.contains(currentOpfer.opfer.name)) {
                                     opferDerNacht.add(currentOpfer.opfer.name);
                                 }
@@ -265,7 +265,7 @@ public class NormalNight extends Thread {
 
                             FrontendControl.erzählerListPage(statement, IndieStatements.OPFER_TITLE, opferDerNacht);
                             for (String opfer : opferDerNacht) {
-                                FrontendControl.spielerAnnounceVictimPage(game.findSpieler(opfer));
+                                FrontendControl.spielerAnnounceOpferPage(game.findSpieler(opfer));
                                 waitForAnswer();
                             }
 
@@ -321,8 +321,8 @@ public class NormalNight extends Thread {
             currentSpieler.ressurectable = !fraktionSpieler.equals(Vampire.NAME);
         }
 
-        Opfer.possibleVictims = new ArrayList<>();
-        Opfer.deadVictims = new ArrayList<>();
+        Opfer.possibleOpfer = new ArrayList<>();
+        Opfer.deadOpfer = new ArrayList<>();
 
         for (Hauptrolle currentHauptrolle : game.hauptrollen) {
             currentHauptrolle.besuchtLastNight = currentHauptrolle.besucht;
@@ -389,7 +389,7 @@ public class NormalNight extends Thread {
 
     public void setOpfer() {
         checkLiebespaar();
-        killVictims();
+        killOpfer();
     }
 
     public void setPlayersAwake(Statement statement) {
@@ -413,10 +413,10 @@ public class NormalNight extends Thread {
         }
     }
 
-    public void killVictims() {
-        for (Opfer currentVictim : Opfer.deadVictims) {
+    public void killOpfer() {
+        for (Opfer currentOpfer : Opfer.deadOpfer) {
             if (Rolle.rolleLebend(Blutwolf.NAME)) {
-                if (currentVictim.fraktionsTäter && currentVictim.täterFraktion.name.equals(Werwölfe.NAME)) {
+                if (currentOpfer.fraktionsTäter && currentOpfer.täterFraktion.name.equals(Werwölfe.NAME)) {
                     Blutwolf.deadStacks++;
                     if (Blutwolf.deadStacks >= 2) {
                         Blutwolf.deadly = true;
@@ -424,7 +424,7 @@ public class NormalNight extends Thread {
                 }
             }
 
-            game.killSpieler(currentVictim.opfer);
+            game.killSpieler(currentOpfer.opfer);
         }
     }
 
@@ -436,21 +436,21 @@ public class NormalNight extends Thread {
 
         if (liebespaar != null && liebespaar.spieler1 != null && liebespaar.spieler2 != null) {
 
-            for (Opfer currentVictim : Opfer.deadVictims) {
-                if (currentVictim.opfer.name.equals(liebespaar.spieler1.name)) {
+            for (Opfer currentOpfer : Opfer.deadOpfer) {
+                if (currentOpfer.opfer.name.equals(liebespaar.spieler1.name)) {
                     spieler1Lebend = false;
                 }
-                if (currentVictim.opfer.name.equals(liebespaar.spieler2.name)) {
+                if (currentOpfer.opfer.name.equals(liebespaar.spieler2.name)) {
                     spieler2Lebend = false;
                 }
             }
 
             if (spieler1Lebend && !spieler2Lebend) {
-                Opfer.deadVictims.add(new Opfer(liebespaar.spieler1, liebespaar.spieler2));
+                Opfer.deadOpfer.add(new Opfer(liebespaar.spieler1, liebespaar.spieler2));
             }
 
             if (!spieler1Lebend && spieler2Lebend) {
-                Opfer.deadVictims.add(new Opfer(liebespaar.spieler2, liebespaar.spieler1));
+                Opfer.deadOpfer.add(new Opfer(liebespaar.spieler2, liebespaar.spieler1));
             }
         }
     }
@@ -461,15 +461,15 @@ public class NormalNight extends Thread {
             if (schamanin.besucht != null) {
                 Spieler geschützerSpieler = schamanin.besucht;
 
-                if (spielerIsPossibleVictim(geschützerSpieler) || spielerIsDeadVictim(geschützerSpieler)) {
+                if (spielerIsPossibleOpfer(geschützerSpieler) || spielerIsDeadOpfer(geschützerSpieler)) {
                     schamanin.abilityCharges++;
                 }
             }
         }
     }
 
-    private boolean spielerIsPossibleVictim(Spieler spieler) {
-        for (Opfer opfer : Opfer.possibleVictims) {
+    private boolean spielerIsPossibleOpfer(Spieler spieler) {
+        for (Opfer opfer : Opfer.possibleOpfer) {
             if (opfer.opfer.equals(spieler)) {
                 return true;
             }
@@ -478,8 +478,8 @@ public class NormalNight extends Thread {
         return false;
     }
 
-    private boolean spielerIsDeadVictim(Spieler spieler) {
-        for (Opfer opfer : Opfer.deadVictims) {
+    private boolean spielerIsDeadOpfer(Spieler spieler) {
+        for (Opfer opfer : Opfer.deadOpfer) {
             if (opfer.opfer.equals(spieler)) {
                 return true;
             }

@@ -441,7 +441,7 @@ public class ErzählerPageFactory {
         return dayPage;
     }
 
-    public Page generateAnnounceVictimsDayPage(String spieler1, String imagepath) {
+    public Page generateAnnounceOpferDayPage(String spieler1, String imagepath) {
         Page dayPage = generateDefaultDayPage();
 
         PageElement nameLabel = pageElementFactory.generateLeftCenteredLabel(new JLabel(spieler1));

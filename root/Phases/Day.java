@@ -66,7 +66,7 @@ public class Day extends Thread {
 
                 if (bonusrolleSpieler.equals(ReineSeele.NAME) && ((ReineSeele) chosenSpieler.bonusrolle).dayInvincibility ||
                         (gebürgteSpieler.contains(chosenSpieler) && hauptrolleSpieler.fraktion.name.equals(Bürger.NAME))) {
-                    FrontendControl.erzählerAnnounceVictimPage(chosenSpieler, ImagePath.REINE_SEELE_OPEN_KARTE);
+                    FrontendControl.erzählerAnnounceOpferPage(chosenSpieler, ImagePath.REINE_SEELE_OPEN_KARTE);
                     FrontendControl.spielerCardPicturePage(chosenSpieler.name, ImagePath.REINE_SEELE_OPEN_KARTE);
                     if (chosenSpieler.bonusrolle.name.equals(ReineSeele.NAME)) {
                         ((ReineSeele) chosenSpieler.bonusrolle).dayInvincibility = false;
@@ -117,8 +117,8 @@ public class Day extends Thread {
         if (spieler != null) {
             game.killSpieler(spieler);
 
-            FrontendControl.erzählerAnnounceVictimPage(spieler);
-            FrontendControl.spielerAnnounceVictimPage(spieler);
+            FrontendControl.erzählerAnnounceOpferPage(spieler);
+            FrontendControl.spielerAnnounceOpferPage(spieler);
         }
     }
 

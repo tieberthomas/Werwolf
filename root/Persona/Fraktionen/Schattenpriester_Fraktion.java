@@ -65,7 +65,7 @@ public class Schattenpriester_Fraktion extends Fraktion {
     public void processChosenOption(String chosenOption) {
         Spieler chosenOpfer = game.findSpieler(chosenOption);
         if (chosenOpfer != null) {
-            Opfer.removeVictim(chosenOpfer);
+            Opfer.removeOpfer(chosenOpfer);
 
             if (!chosenOpfer.bonusrolle.name.equals(Schattenkutte.NAME)) {
                 chosenOpfer.hauptrolle = new Schattenpriester();
@@ -83,7 +83,7 @@ public class Schattenpriester_Fraktion extends Fraktion {
     private ArrayList<String> getRessurectableOpfer() {
         ArrayList<String> dropdownStrings = new ArrayList<>();
 
-        for (Opfer currentOpfer : Opfer.deadVictims) {
+        for (Opfer currentOpfer : Opfer.deadOpfer) {
             Spieler opferSpieler = currentOpfer.opfer;
             if (opferSpieler != null) {
                 String fraktionDesOpfers = opferSpieler.hauptrolle.fraktion.name;

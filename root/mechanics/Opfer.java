@@ -16,8 +16,8 @@ import java.util.ArrayList;
 public class Opfer {
     public static Game game;
 
-    public static ArrayList<Opfer> possibleVictims = new ArrayList<>();
-    public static ArrayList<Opfer> deadVictims = new ArrayList<>();
+    public static ArrayList<Opfer> possibleOpfer = new ArrayList<>();
+    public static ArrayList<Opfer> deadOpfer = new ArrayList<>();
 
     public Spieler opfer;
     public Spieler täter;
@@ -40,7 +40,7 @@ public class Opfer {
     public static ArrayList<String> getOpferOrNonStrings() {
         ArrayList<String> toteOrNon = new ArrayList<>();
 
-        for (Opfer currentOpfer : Opfer.deadVictims) {
+        for (Opfer currentOpfer : Opfer.deadOpfer) {
             if (!toteOrNon.contains(currentOpfer.opfer.name))
                 toteOrNon.add(currentOpfer.opfer.name);
         }
@@ -62,7 +62,7 @@ public class Opfer {
     public static ArrayList<Spieler> getErweckbareOpfer() {
         ArrayList<Spieler> erweckbareOrNon = new ArrayList<>();
 
-        for (Opfer currentOpfer : Opfer.deadVictims) {
+        for (Opfer currentOpfer : Opfer.deadOpfer) {
             if (currentOpfer.opfer.ressurectable) {
                 if (!erweckbareOrNon.contains(currentOpfer.opfer))
                     erweckbareOrNon.add(currentOpfer.opfer);
@@ -85,54 +85,54 @@ public class Opfer {
         return erweckbareStrings;
     }
 
-    public static void addVictim(Spieler opfer, Spieler täter) {
-        possibleVictims.add(new Opfer(opfer, täter));
+    public static void addOpfer(Spieler opfer, Spieler täter) {
+        possibleOpfer.add(new Opfer(opfer, täter));
 
         String opferBonusrolle = opfer.bonusrolle.name;
         String täterFraktion = täter.hauptrolle.fraktion.name;
 
         if (täter.hauptrolle.name.equals(Riese.NAME)) {
-            addDeadVictim(opfer, täter, true);
+            addDeadOpfer(opfer, täter, true);
         } else {
             if (!opfer.geschützt) {
                 if (!(opferBonusrolle.equals(Vampirumhang.NAME) && täterFraktion.equals(Vampire.NAME) ||
                         opferBonusrolle.equals(Wolfspelz.NAME) && täterFraktion.equals(Werwölfe.NAME))) {
-                    addDeadVictim(opfer, täter);
+                    addDeadOpfer(opfer, täter);
                 }
             }
         }
     }
 
-    public static void addVictim(Spieler opfer, Fraktion täterFraktion) {
-        possibleVictims.add(new Opfer(opfer, täterFraktion));
+    public static void addOpfer(Spieler opfer, Fraktion täterFraktion) {
+        possibleOpfer.add(new Opfer(opfer, täterFraktion));
 
         String opferBonusrolle = opfer.bonusrolle.name;
 
         if (täterFraktion.equals(Werwölfe.NAME) && Werwölfe.blutWolfIsAktiv()) {
-            addDeadVictim(opfer, täterFraktion);
+            addDeadOpfer(opfer, täterFraktion);
         } else {
             if (!opfer.geschützt) {
                 if (!(opferBonusrolle.equals(Vampirumhang.NAME) && täterFraktion.equals(Vampire.NAME) ||
                         opferBonusrolle.equals(Wolfspelz.NAME) && täterFraktion.equals(Werwölfe.NAME))) {
-                    addDeadVictim(opfer, täterFraktion);
+                    addDeadOpfer(opfer, täterFraktion);
                 }
             }
         }
     }
 
-    private static void addDeadVictim(Spieler opfer, Spieler täter) {
-        addDeadVictim(opfer, täter, false);
+    private static void addDeadOpfer(Spieler opfer, Spieler täter) {
+        addDeadOpfer(opfer, täter, false);
     }
 
-    private static void addDeadVictim(Spieler opfer, Spieler täter, boolean riese) {
-        addDeadVictim(new Opfer(opfer, täter), riese);
+    private static void addDeadOpfer(Spieler opfer, Spieler täter, boolean riese) {
+        addDeadOpfer(new Opfer(opfer, täter), riese);
     }
 
-    private static void addDeadVictim(Spieler opfer, Fraktion täter) {
-        addDeadVictim(new Opfer(opfer, täter), false);
+    private static void addDeadOpfer(Spieler opfer, Fraktion täter) {
+        addDeadOpfer(new Opfer(opfer, täter), false);
     }
 
-    private static void addDeadVictim(Opfer opfer, boolean riese) {
+    private static void addDeadOpfer(Opfer opfer, boolean riese) {
         Spieler prostituierteSpieler = game.findSpielerPerRolle(Prostituierte.NAME);
         String hostProstituierte = "";
         if (prostituierteSpieler != null) {
@@ -143,7 +143,7 @@ public class Opfer {
             opfer.opfer.ressurectable = false;
         }
         if (!opfer.opfer.equals(prostituierteSpieler) || riese) {
-            deadVictims.add(opfer);
+            deadOpfer.add(opfer);
         }
 
         if (prostituierteSpieler != null) {
@@ -155,18 +155,18 @@ public class Opfer {
                     } else {
                         prostituierteOpferopfer = new Opfer(prostituierteSpieler, opfer.täter);
                     }
-                    deadVictims.add(prostituierteOpferopfer);
+                    deadOpfer.add(prostituierteOpferopfer);
                 }
             }
         }
     }
 
-    public static void removeVictim(Spieler opfer) {
-        deadVictims.removeIf(victim -> victim.opfer.equals(opfer));
+    public static void removeOpfer(Spieler opfer) {
+        deadOpfer.removeIf(deadOpfer -> deadOpfer.opfer.equals(opfer));
     }
 
     public static Opfer findOpfer(String name) {
-        for (Opfer currentOpfer : deadVictims) {
+        for (Opfer currentOpfer : deadOpfer) {
             if (currentOpfer.opfer.name.equals(name)) {
                 return currentOpfer;
             }
@@ -176,7 +176,7 @@ public class Opfer {
     }
 
     public static boolean isOpfer(String name) {
-        for (Opfer currentOpfer : deadVictims) {
+        for (Opfer currentOpfer : deadOpfer) {
             if (currentOpfer.opfer.name.equals(name)) {
                 return true;
             }
@@ -186,7 +186,7 @@ public class Opfer {
     }
 
     public static boolean isOpferPerRolle(String name) {
-        for (Opfer currentOpfer : deadVictims) {
+        for (Opfer currentOpfer : deadOpfer) {
             if (currentOpfer.opfer.hauptrolle.name.equals(name) || currentOpfer.opfer.bonusrolle.name.equals(name)) {
                 return true;
             }
