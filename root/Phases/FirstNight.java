@@ -175,11 +175,11 @@ public class FirstNight extends Thread {
 
     public void beginNight() {
         for (Hauptrolle currentHauptrolle : game.hauptrollen) {
-            currentHauptrolle.besuchtLetzteNacht = null;
+            currentHauptrolle.besuchtLastNight = null;
             currentHauptrolle.besucht = null;
         }
         for (Bonusrolle currentBonusrolle : game.bonusrollen) {
-            currentBonusrolle.besuchtLetzteNacht = null;
+            currentBonusrolle.besuchtLastNight = null;
             currentBonusrolle.besucht = null;
         }
     }

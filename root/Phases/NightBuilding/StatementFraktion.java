@@ -20,7 +20,7 @@ public class StatementFraktion extends Statement {
 
     @Override
     public boolean isVisibleNow() {
-        return Fraktion.fraktionInNachtEnthalten(fraktion);
+        return Fraktion.fraktionContainedInNight(fraktion);
     }
 
     @Override

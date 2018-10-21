@@ -42,7 +42,7 @@ public class Game {
     public ArrayList<Bonusrolle> mitteBonusrollen = new ArrayList<>();
     public ArrayList<Spieler> playersSpecified = new ArrayList<>();
 
-    public boolean zweiteNacht = true;
+    public boolean secondNight = true;
 
     public Game() {
         Persona.game = this;
@@ -164,8 +164,8 @@ public class Game {
     public void night() {
         FrontendControl.erzählerFrame.mode = ErzählerFrameMode.NORMAL_NIGHT;
         phaseMode = PhaseMode.NORMAL_NIGHT;
-        Nacht nacht = new Nacht(this);
-        nacht.start();
+        NormalNight normalNight = new NormalNight(this);
+        normalNight.start();
     }
 
     public void day() {
@@ -344,8 +344,8 @@ public class Game {
 
     public ArrayList<String> getPlayerCheckSpammableStrings(Rolle rolle) {
         ArrayList<String> allSpieler = getLivingPlayerOrNoneStrings();
-        if (!rolle.spammable && rolle.besuchtLetzteNacht != null) {
-            allSpieler.remove(rolle.besuchtLetzteNacht.name);
+        if (!rolle.spammable && rolle.besuchtLastNight != null) {
+            allSpieler.remove(rolle.besuchtLastNight.name);
         }
 
         return allSpieler;

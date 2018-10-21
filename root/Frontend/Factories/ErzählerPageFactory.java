@@ -515,19 +515,19 @@ public class ErzählerPageFactory {
         PageElement goBackButton = pageElementFactory.generateLowestButton(erzählerFrame.goBackJButton, "Zurück", false);
         erzählerFrame.goBackButtons.add(erzählerFrame.goBackJButton);
 
-        Page nachtzüglerPage = new Page();
+        Page nachzüglerPage = new Page();
 
-        nachtzüglerPage.add(titleLabel);
-        nachtzüglerPage.add(nameLabel);
-        nachtzüglerPage.add(nameTxtField);
-        nachtzüglerPage.add(hauptRolleLabel);
-        nachtzüglerPage.add(choosePlayer1);
-        nachtzüglerPage.add(bonusRolleLabel);
-        nachtzüglerPage.add(choosePlayer2);
-        nachtzüglerPage.add(nextButton);
-        nachtzüglerPage.add(goBackButton);
+        nachzüglerPage.add(titleLabel);
+        nachzüglerPage.add(nameLabel);
+        nachzüglerPage.add(nameTxtField);
+        nachzüglerPage.add(hauptRolleLabel);
+        nachzüglerPage.add(choosePlayer1);
+        nachzüglerPage.add(bonusRolleLabel);
+        nachzüglerPage.add(choosePlayer2);
+        nachzüglerPage.add(nextButton);
+        nachzüglerPage.add(goBackButton);
 
-        return nachtzüglerPage;
+        return nachzüglerPage;
     }
 
     public Page generateUmbringenPage(ArrayList<String> livingPlayers) {

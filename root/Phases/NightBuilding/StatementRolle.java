@@ -33,7 +33,7 @@ public class StatementRolle extends Statement {
 
     @Override
     public boolean isVisibleNow() {
-        return Rolle.rolleInNachtEnthalten(rolle);
+        return Rolle.rolleContainedInNight(rolle);
     }
 
     @Override

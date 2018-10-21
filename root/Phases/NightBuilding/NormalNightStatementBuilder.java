@@ -25,7 +25,7 @@ import java.util.ArrayList;
 public class NormalNightStatementBuilder {
     public static Game game;
 
-    public static ArrayList<Statement> normaleNachtBuildStatements() {
+    public static ArrayList<Statement> normalNightBuildStatements() {
         ArrayList<Statement> statements = new ArrayList<>();
 
         statements.add(IndieStatements.getAlleSchlafenEinStatement());

@@ -5,7 +5,7 @@ import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Werwölfe;
 import root.Persona.Hauptrolle;
 import root.Persona.Rollen.Bonusrollen.Wolfspelz;
-import root.Phases.Nacht;
+import root.Phases.NormalNight;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
@@ -57,7 +57,7 @@ public class Schreckenswolf extends Hauptrolle {
         Spieler chosenPlayer = game.findSpieler(chosenOption);
         if (chosenPlayer != null) {
             besucht = chosenPlayer;
-            Nacht.beschworenerSpieler = chosenPlayer;
+            NormalNight.beschworenerSpieler = chosenPlayer;
         }
     }
 

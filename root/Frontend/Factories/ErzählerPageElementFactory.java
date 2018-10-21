@@ -9,7 +9,7 @@ import root.Frontend.Page.PageTable;
 import root.Frontend.Page.Predecessor;
 import root.Persona.Bonusrolle;
 import root.Phases.FirstNight;
-import root.Phases.Nacht;
+import root.Phases.NormalNight;
 import root.Phases.NightBuilding.Statement;
 import root.Phases.NightBuilding.StatementRolle;
 
@@ -217,8 +217,8 @@ public class ErzählerPageElementFactory {
     }
 
     public PageElement generateNightLabel(String currentStatement) {
-        ArrayList<String> nachtPunkte = new ArrayList<>();
-        ArrayList<String> nachtPunkteFarben = new ArrayList<>();
+        ArrayList<String> statementStrings = new ArrayList<>();
+        ArrayList<String> statementColors = new ArrayList<>();
 
         Boolean found = false;
 
@@ -227,7 +227,7 @@ public class ErzählerPageElementFactory {
         if (erzählerFrame.mode == ErzählerFrameMode.FIRST_NIGHT) {
             statements = FirstNight.statements;
         } else if (erzählerFrame.mode == ErzählerFrameMode.NORMAL_NIGHT) {
-            statements = Nacht.statements;
+            statements = NormalNight.statements;
         }
 
         for (Statement statement : statements) {
@@ -241,31 +241,31 @@ public class ErzählerPageElementFactory {
                     }
                 }
 
-                nachtPunkte.add(beschreibung);
+                statementStrings.add(beschreibung);
 
                 if (statement.isLebend()) {
                     if (statement.identifier.equals(currentStatement)) {
-                        nachtPunkteFarben.add(HTMLStringBuilder.yellow);
+                        statementColors.add(HTMLStringBuilder.yellow);
                         found = true;
                     } else {
                         if (!found) {
-                            nachtPunkteFarben.add(HTMLStringBuilder.gray);
+                            statementColors.add(HTMLStringBuilder.gray);
                         } else {
-                            nachtPunkteFarben.add(HTMLStringBuilder.white);
+                            statementColors.add(HTMLStringBuilder.white);
                         }
                     }
                 } else {
                     if (statement.identifier.equals(currentStatement)) {
-                        nachtPunkteFarben.add(HTMLStringBuilder.blue);
+                        statementColors.add(HTMLStringBuilder.blue);
                         found = true;
                     } else {
-                        nachtPunkteFarben.add(HTMLStringBuilder.gray);
+                        statementColors.add(HTMLStringBuilder.gray);
                     }
                 }
             }
         }
 
-        String nightText = HTMLStringBuilder.buildHTMLText(nachtPunkte, nachtPunkteFarben);
+        String nightText = HTMLStringBuilder.buildHTMLText(statementStrings, statementColors);
 
         JLabel nightJLabel = new JLabel(nightText);
         nightJLabel.setVerticalAlignment(SwingConstants.TOP);

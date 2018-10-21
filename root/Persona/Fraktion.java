@@ -59,14 +59,14 @@ public class Fraktion extends Persona {
         frontendControl.typeOfContent = FrontendControlType.DROPDOWN_LIST;
         frontendControl.dropdownStrings = getFraktionsMemberStrings(rolle.fraktion.name);
         frontendControl.dropdownStrings.add("");
-        if (!rolle.spammable && rolle.besuchtLetzteNacht != null) {
-            frontendControl.dropdownStrings.remove(rolle.besuchtLetzteNacht.name);
+        if (!rolle.spammable && rolle.besuchtLastNight != null) {
+            frontendControl.dropdownStrings.remove(rolle.besuchtLastNight.name);
         }
 
         return frontendControl;
     }
 
-    public static boolean fraktionInNachtEnthalten(String fraktion) {
+    public static boolean fraktionContainedInNight(String fraktion) {
         if (getFraktionStrings().contains(fraktion)) {
             return !fraktionOffenkundigTot(fraktion);
         } else {

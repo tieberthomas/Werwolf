@@ -11,7 +11,7 @@ import root.Frontend.Utils.PageRefresher.PageRefresher;
 import root.Persona.Bonusrolle;
 import root.Persona.Hauptrolle;
 import root.Phases.FirstNight;
-import root.Phases.Nacht;
+import root.Phases.NormalNight;
 import root.Phases.PhaseMode;
 import root.Phases.Tag;
 import root.ResourceManagement.DataManager;
@@ -815,8 +815,8 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                     Tag.lock.notify();
                 }
             } else if (mode == ErzählerFrameMode.NORMAL_NIGHT) {
-                synchronized (Nacht.lock) {
-                    Nacht.lock.notify();
+                synchronized (NormalNight.lock) {
+                    NormalNight.lock.notify();
                 }
             }
         } catch (NullPointerException e) {

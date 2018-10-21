@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class Rolle extends Persona {
     public Spieler besucht;
-    public Spieler besuchtLetzteNacht;
+    public Spieler besuchtLastNight;
     public int abilityCharges = 1;
 
     public boolean spammable = false;
@@ -51,7 +51,7 @@ public class Rolle extends Persona {
         return 0;
     }
 
-    public static boolean hauptRolleInNachtEnthalten(String rolle) {
+    public static boolean hauptRolleContainedInNight(String rolle) {
         if (game.getHauptrolleInGameNames().contains(rolle)) {
             for (Rolle currentRolle : game.mitteHauptrollen) {
                 if (currentRolle.name.equals(rolle)) {
@@ -64,7 +64,7 @@ public class Rolle extends Persona {
         }
     }
 
-    public static boolean rolleInNachtEnthalten(String rolle) {
+    public static boolean rolleContainedInNight(String rolle) {
         if (game.getHauptrolleInGameNames().contains(rolle) || game.getBonusrolleInGameNames().contains(rolle)) {
             for (Rolle currentRolle : game.mitteHauptrollen) {
                 if (currentRolle.name.equals(rolle)) {
@@ -73,7 +73,7 @@ public class Rolle extends Persona {
             }
 
             for (Rolle currentRolle : game.mitteBonusrollen) {
-                if (!hauptRolleInNachtEnthalten(Sammler.NAME) || currentRolle.name.equals(Totengräber.NAME)) {
+                if (!hauptRolleContainedInNight(Sammler.NAME) || currentRolle.name.equals(Totengräber.NAME)) {
                     if (currentRolle.name.equals(rolle)) {
                         return false;
                     }

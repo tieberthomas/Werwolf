@@ -39,7 +39,7 @@ import root.mechanics.Torte;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Nacht extends Thread {
+public class NormalNight extends Thread {
     Game game;
 
     public static ArrayList<Statement> statements;
@@ -50,7 +50,7 @@ public class Nacht extends Thread {
     public static Spieler wölfinSpieler;
     public static Spieler beschworenerSpieler;
 
-    public Nacht(Game game) {
+    public NormalNight(Game game) {
         this.game = game;
     }
 
@@ -74,7 +74,7 @@ public class Nacht extends Thread {
 
             beginNight();
 
-            statements = NormalNightStatementBuilder.normaleNachtBuildStatements();
+            statements = NormalNightStatementBuilder.normalNightBuildStatements();
 
             for (Statement statement : statements) {
                 refreshStatementStates();
@@ -220,7 +220,7 @@ public class Nacht extends Thread {
                             if (wahrsagerSpieler2 != null) {
                                 Wahrsager wahrsager = (Wahrsager) deadWahrsagerSpieler.bonusrolle; //TODO Rolle rolle ?
                                 ArrayList<String> rewardInformation = new ArrayList<>();
-                                if (wahrsager.guessedRight() && !game.zweiteNacht) {
+                                if (wahrsager.guessedRight() && !game.secondNight) {
                                     statement.title = Wahrsager.REWARD_TITLE;
                                     rewardInformation = wahrsager.rewardInformation();
                                 }
@@ -325,12 +325,12 @@ public class Nacht extends Thread {
         Opfer.deadVictims = new ArrayList<>();
 
         for (Hauptrolle currentHauptrolle : game.hauptrollen) {
-            currentHauptrolle.besuchtLetzteNacht = currentHauptrolle.besucht;
+            currentHauptrolle.besuchtLastNight = currentHauptrolle.besucht;
             currentHauptrolle.besucht = null;
         }
 
         for (Bonusrolle currentBonusrolle : game.bonusrollen) {
-            currentBonusrolle.besuchtLetzteNacht = currentBonusrolle.besucht;
+            currentBonusrolle.besuchtLastNight = currentBonusrolle.besucht;
             currentBonusrolle.besucht = null;
 
             if (currentBonusrolle.name.equals(Analytiker.NAME)) {
@@ -404,7 +404,7 @@ public class Nacht extends Thread {
     }
 
     private void cleanUpNight() {
-        game.zweiteNacht = false;
+        game.secondNight = false;
 
         for (Spieler currentSpieler : game.spieler) {
             currentSpieler.aktiv = true;

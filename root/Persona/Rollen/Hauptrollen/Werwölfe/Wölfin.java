@@ -7,7 +7,7 @@ import root.Persona.Fraktionen.Werwölfe;
 import root.Persona.Hauptrolle;
 import root.Persona.Rollen.Bonusrollen.Tarnumhang;
 import root.Persona.Rollen.Constants.WölfinState;
-import root.Phases.Nacht;
+import root.Phases.NormalNight;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
@@ -66,8 +66,8 @@ public class Wölfin extends Hauptrolle {
 
     @Override
     public FrontendControl getInfo() {
-        if (Nacht.wölfinKilled) {
-            Spieler wölfinSpieler = Nacht.wölfinSpieler;
+        if (NormalNight.wölfinKilled) {
+            Spieler wölfinSpieler = NormalNight.wölfinSpieler;
             if (wölfinSpieler != null) {
                 String imagePath = wölfinSpieler.bonusrolle.imagePath;
                 if (wölfinSpieler.bonusrolle.name.equals(Tarnumhang.NAME)) {
