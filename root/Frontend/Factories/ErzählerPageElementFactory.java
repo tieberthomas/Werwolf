@@ -8,7 +8,7 @@ import root.Frontend.Page.PageElement;
 import root.Frontend.Page.PageTable;
 import root.Frontend.Page.Predecessor;
 import root.Persona.Bonusrolle;
-import root.Phases.ErsteNacht;
+import root.Phases.FirstNight;
 import root.Phases.Nacht;
 import root.Phases.NightBuilding.Statement;
 import root.Phases.NightBuilding.StatementRolle;
@@ -224,9 +224,9 @@ public class ErzählerPageElementFactory {
 
         ArrayList<Statement> statements = new ArrayList<>();
 
-        if (erzählerFrame.mode == ErzählerFrameMode.ersteNacht) {
-            statements = ErsteNacht.statements;
-        } else if (erzählerFrame.mode == ErzählerFrameMode.nacht) {
+        if (erzählerFrame.mode == ErzählerFrameMode.FIRST_NIGHT) {
+            statements = FirstNight.statements;
+        } else if (erzählerFrame.mode == ErzählerFrameMode.NORMAL_NIGHT) {
             statements = Nacht.statements;
         }
 

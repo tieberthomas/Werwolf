@@ -1,7 +1,7 @@
 ST:
 deaktiv nochmal anschauen
 deaktiviert und verbraucht - deaktiviert anzeigen
-ErsteNacht Statement Type
+FirstNight - StatementType
 Alphabet Umlaute?
 killing = false?
 

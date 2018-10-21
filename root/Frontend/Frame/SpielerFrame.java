@@ -102,7 +102,7 @@ public class SpielerFrame extends MyFrame {
     public void generateDayPage() {
         boolean freibierTag = false;
         title = Tag.dayTitle;
-        if (game.phaseMode == PhaseMode.freibierTag) {
+        if (game.phaseMode == PhaseMode.FREIBIER_DAY) {
             mode = SpielerFrameMode.freibierPage;
             freibierTag = true;
         }

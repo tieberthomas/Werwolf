@@ -1,5 +1,9 @@
 package root.Phases;
 
 public enum PhaseMode {
-    ersteNacht, tag, freibierTag, nacht, setup
+    SETUP,
+    FIRST_NIGHT,
+    NORMAL_NIGHT,
+    DAY,
+    FREIBIER_DAY
 }

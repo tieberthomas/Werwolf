@@ -10,7 +10,7 @@ import root.Frontend.Utils.PageRefresher.Models.LabelTable;
 import root.Frontend.Utils.PageRefresher.PageRefresher;
 import root.Persona.Bonusrolle;
 import root.Persona.Hauptrolle;
-import root.Phases.ErsteNacht;
+import root.Phases.FirstNight;
 import root.Phases.Nacht;
 import root.Phases.PhaseMode;
 import root.Phases.Tag;
@@ -39,7 +39,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
 
     public static Object lock;
 
-    public ErzählerFrameMode mode = ErzählerFrameMode.setup;
+    public ErzählerFrameMode mode = ErzählerFrameMode.SETUP;
 
     public ErzählerPageFactory pageFactory = new ErzählerPageFactory(this);
 
@@ -320,7 +320,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
             }
             buildScreenFromPage(currentPage);
             refreshPage(currentPage);
-            if (mode == ErzählerFrameMode.setup) {
+            if (mode == ErzählerFrameMode.SETUP) {
                 spielerFrame.refreshSetupPage();
             }
         }
@@ -332,7 +332,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         currentPage = setupPages.get(index - 1);
         buildScreenFromPage(currentPage);
         refreshPage(currentPage);
-        if (mode == ErzählerFrameMode.setup) {
+        if (mode == ErzählerFrameMode.SETUP) {
             spielerFrame.refreshSetupPage();
         }
         if (currentPage.equals(startPage)) {
@@ -391,7 +391,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
             } else {
                 prevPage();
             }
-        } else if (ae.getSource() == addPlayerButton || ae.getSource() == addPlayerTxtField && mode == ErzählerFrameMode.setup) {
+        } else if (ae.getSource() == addPlayerButton || ae.getSource() == addPlayerTxtField && mode == ErzählerFrameMode.SETUP) {
             if (!addPlayerTxtField.getText().equals("") && !game.spielerExists(addPlayerTxtField.getText())) {
                 addNewPlayer();
             }
@@ -443,7 +443,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
 
             try {
                 if (übersichtsFrame != null) {
-                    if (mode == ErzählerFrameMode.ersteNacht) {
+                    if (mode == ErzählerFrameMode.FIRST_NIGHT) {
                         übersichtsFrame.refresh();
                     }
                 }
@@ -492,8 +492,8 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
             } catch (NullPointerException e) {
                 System.out.println("Combobox3 might not be initialized.");
             }
-        } else if (ae.getSource() == nachzüglerJButton || ae.getSource() == addPlayerTxtField && mode == ErzählerFrameMode.nachzüglerSetup) {
-            if (mode == ErzählerFrameMode.nachzüglerSetup) {
+        } else if (ae.getSource() == nachzüglerJButton || ae.getSource() == addPlayerTxtField && mode == ErzählerFrameMode.NACHZÜGLER_SETUP) {
+            if (mode == ErzählerFrameMode.NACHZÜGLER_SETUP) {
                 if (!addPlayerTxtField.getText().equals("") && !game.spielerExists(addPlayerTxtField.getText())) {
                     try {
                         if (comboBox1 != null) {
@@ -526,13 +526,13 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                     }
                 }
             } else {
-                mode = ErzählerFrameMode.nachzüglerSetup;
+                mode = ErzählerFrameMode.NACHZÜGLER_SETUP;
 
                 spielerFrame.mode = SpielerFrameMode.blank;
                 buildScreenFromPage(pageFactory.generateNachzüglerPage(game.getStillAvailableHauptrolleNames(), game.getStillAvailableBonusrollenNames()));
             }
         } else if (ae.getSource() == umbringenJButton) {
-            if (mode == ErzählerFrameMode.umbringenSetup) {
+            if (mode == ErzählerFrameMode.UMBRINGEN_SETUP) {
                 try {
                     if (comboBox1 != null) {
                         chosenOption1 = (String) comboBox1.getSelectedItem();
@@ -559,13 +559,13 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                     continueThreads();
                 }
             } else {
-                mode = ErzählerFrameMode.umbringenSetup;
+                mode = ErzählerFrameMode.UMBRINGEN_SETUP;
 
                 spielerFrame.mode = SpielerFrameMode.blank;
                 buildScreenFromPage(pageFactory.generateUmbringenPage(game.getLivingPlayerStrings()));
             }
         } else if (ae.getSource() == priesterJButton) {
-            if (mode == ErzählerFrameMode.priesterSetup) {
+            if (mode == ErzählerFrameMode.PRIESTER_SETUP) {
                 try {
                     if (comboBox1 != null) {
                         chosenOption1 = (String) comboBox1.getSelectedItem();
@@ -584,13 +584,13 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                 mode = game.parsePhaseMode();
                 showDayPage();
             } else {
-                mode = ErzählerFrameMode.priesterSetup;
+                mode = ErzählerFrameMode.PRIESTER_SETUP;
 
                 spielerFrame.mode = SpielerFrameMode.blank;
                 buildScreenFromPage(pageFactory.generatePriesterPage(game.getLivingPlayerStrings()));
             }
         } else if (ae.getSource() == richterinJButton) {
-            if (mode == ErzählerFrameMode.richterinSetup) {
+            if (mode == ErzählerFrameMode.RICHTERIN_SETUP) {
                 try {
                     if (comboBox1 != null) {
                         chosenOption1 = (String) comboBox1.getSelectedItem();
@@ -610,7 +610,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                 mode = game.parsePhaseMode();
                 showDayPage();
             } else {
-                mode = ErzählerFrameMode.richterinSetup;
+                mode = ErzählerFrameMode.RICHTERIN_SETUP;
 
                 spielerFrame.mode = SpielerFrameMode.blank;
                 buildScreenFromPage(pageFactory.generateRichterinPage(game.getLivingPlayerStrings()));
@@ -752,8 +752,8 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     }
 
     private boolean gameIsInDaySetupMode() {
-        return mode == ErzählerFrameMode.nachzüglerSetup || mode == ErzählerFrameMode.umbringenSetup ||
-                mode == ErzählerFrameMode.priesterSetup || mode == ErzählerFrameMode.richterinSetup;
+        return mode == ErzählerFrameMode.NACHZÜGLER_SETUP || mode == ErzählerFrameMode.UMBRINGEN_SETUP ||
+                mode == ErzählerFrameMode.PRIESTER_SETUP || mode == ErzählerFrameMode.RICHTERIN_SETUP;
     }
 
     private boolean allPlayersSpecified() {
@@ -797,24 +797,24 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         übersichtsFrame = new ÜbersichtsFrame(this, game);
 
         FrontendControl.spielerFrame = spielerFrame;
-        if (game.phaseMode == PhaseMode.tag || game.phaseMode == PhaseMode.freibierTag) {
+        if (game.phaseMode == PhaseMode.DAY || game.phaseMode == PhaseMode.FREIBIER_DAY) {
             spielerFrame.generateDayPage();
-        } else if (game.phaseMode == PhaseMode.nacht || game.phaseMode == PhaseMode.ersteNacht) {
+        } else if (game.phaseMode == PhaseMode.NORMAL_NIGHT || game.phaseMode == PhaseMode.FIRST_NIGHT) {
             spielerFrame.buildScreenFromPage(savePage);
         }
     }
 
     public void continueThreads() {
         try {
-            if (mode == ErzählerFrameMode.ersteNacht) {
-                synchronized (ErsteNacht.lock) {
-                    ErsteNacht.lock.notify();
+            if (mode == ErzählerFrameMode.FIRST_NIGHT) {
+                synchronized (FirstNight.lock) {
+                    FirstNight.lock.notify();
                 }
-            } else if (mode == ErzählerFrameMode.tag || mode == ErzählerFrameMode.freibierTag || mode == ErzählerFrameMode.umbringenSetup) {
+            } else if (mode == ErzählerFrameMode.DAY || mode == ErzählerFrameMode.FREIBIER_DAY || mode == ErzählerFrameMode.UMBRINGEN_SETUP) {
                 synchronized (Tag.lock) {
                     Tag.lock.notify();
                 }
-            } else if (mode == ErzählerFrameMode.nacht) {
+            } else if (mode == ErzählerFrameMode.NORMAL_NIGHT) {
                 synchronized (Nacht.lock) {
                     Nacht.lock.notify();
                 }

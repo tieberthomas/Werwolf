@@ -51,7 +51,7 @@ public class Game {
         Opfer.game = this;
         NormalNightStatementBuilder.game = this;
 
-        phaseMode = PhaseMode.setup;
+        phaseMode = PhaseMode.SETUP;
 
         spieler = new ArrayList<>();
         hauptrollenInGame = new ArrayList<>();
@@ -118,16 +118,16 @@ public class Game {
     }
 
     public ErzählerFrameMode parsePhaseMode() { //TODO automapper?
-        if (phaseMode == PhaseMode.tag) {
-            return ErzählerFrameMode.tag;
-        } else if (phaseMode == PhaseMode.freibierTag) {
-            return ErzählerFrameMode.freibierTag;
-        } else if (phaseMode == PhaseMode.ersteNacht) {
-            return ErzählerFrameMode.ersteNacht;
-        } else if (phaseMode == PhaseMode.nacht) {
-            return ErzählerFrameMode.nacht;
+        if (phaseMode == PhaseMode.DAY) {
+            return ErzählerFrameMode.DAY;
+        } else if (phaseMode == PhaseMode.FREIBIER_DAY) {
+            return ErzählerFrameMode.FREIBIER_DAY;
+        } else if (phaseMode == PhaseMode.FIRST_NIGHT) {
+            return ErzählerFrameMode.FIRST_NIGHT;
+        } else if (phaseMode == PhaseMode.NORMAL_NIGHT) {
+            return ErzählerFrameMode.NORMAL_NIGHT;
         } else {
-            return ErzählerFrameMode.setup;
+            return ErzählerFrameMode.SETUP;
         }
     }
 
@@ -155,29 +155,29 @@ public class Game {
     }
 
     public void firstnight(ErzählerFrame erzählerFrame) {
-        erzählerFrame.mode = ErzählerFrameMode.ersteNacht;
-        phaseMode = PhaseMode.ersteNacht;
-        ErsteNacht ersteNacht = new ErsteNacht(this);
-        ersteNacht.start();
+        erzählerFrame.mode = ErzählerFrameMode.FIRST_NIGHT;
+        phaseMode = PhaseMode.FIRST_NIGHT;
+        FirstNight firstNight = new FirstNight(this);
+        firstNight.start();
     }
 
     public void night() {
-        FrontendControl.erzählerFrame.mode = ErzählerFrameMode.nacht;
-        phaseMode = PhaseMode.nacht;
+        FrontendControl.erzählerFrame.mode = ErzählerFrameMode.NORMAL_NIGHT;
+        phaseMode = PhaseMode.NORMAL_NIGHT;
         Nacht nacht = new Nacht(this);
         nacht.start();
     }
 
     public void day() {
-        FrontendControl.erzählerFrame.mode = ErzählerFrameMode.tag;
-        phaseMode = PhaseMode.tag;
+        FrontendControl.erzählerFrame.mode = ErzählerFrameMode.DAY;
+        phaseMode = PhaseMode.DAY;
         tag = new Tag(this);
         tag.start();
     }
 
     public void freibierDay() {
-        FrontendControl.erzählerFrame.mode = ErzählerFrameMode.freibierTag;
-        phaseMode = PhaseMode.freibierTag;
+        FrontendControl.erzählerFrame.mode = ErzählerFrameMode.FREIBIER_DAY;
+        phaseMode = PhaseMode.FREIBIER_DAY;
         tag = new Tag(this);
         tag.start();
     }

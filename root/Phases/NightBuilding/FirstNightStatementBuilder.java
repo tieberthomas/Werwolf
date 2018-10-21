@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class FirstNightStatementBuilder {
     public static Game game;
 
-    public static ArrayList<Statement> ersteNachtBuildStatements() {
+    public static ArrayList<Statement> firstNightBuildStatements() {
         ArrayList<Statement> statements = new ArrayList<>();
 
         statements.add(IndieStatements.getAlleSchlafenEinStatement());

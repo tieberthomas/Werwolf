@@ -27,7 +27,7 @@ import root.mechanics.Liebespaar;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class ErsteNacht extends Thread {
+public class FirstNight extends Thread {
     Game game;
 
     public static final String TARNUMHANG_TITLE = "Tarnumhang";
@@ -37,7 +37,7 @@ public class ErsteNacht extends Thread {
     public static Object lock;
     public static ArrayList<Spieler> playersAwake = new ArrayList<>();
 
-    public ErsteNacht(Game game) {
+    public FirstNight(Game game) {
         this.game = game;
     }
 
@@ -54,7 +54,7 @@ public class ErsteNacht extends Thread {
 
             beginNight();
 
-            statements = FirstNightStatementBuilder.ersteNachtBuildStatements();
+            statements = FirstNightStatementBuilder.firstNightBuildStatements();
 
             for (Statement statement : statements) {
                 refreshStatementStates();
