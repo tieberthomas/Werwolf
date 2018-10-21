@@ -27,7 +27,7 @@ import java.util.ArrayList;
 
 public class Game {
     public PhaseMode phaseMode;
-    public Tag tag;
+    public Day day;
 
     public boolean freibier = false;
 
@@ -171,15 +171,15 @@ public class Game {
     public void day() {
         FrontendControl.erzählerFrame.mode = ErzählerFrameMode.DAY;
         phaseMode = PhaseMode.DAY;
-        tag = new Tag(this);
-        tag.start();
+        day = new Day(this);
+        day.start();
     }
 
     public void freibierDay() {
         FrontendControl.erzählerFrame.mode = ErzählerFrameMode.FREIBIER_DAY;
         phaseMode = PhaseMode.FREIBIER_DAY;
-        tag = new Tag(this);
-        tag.start();
+        day = new Day(this);
+        day.start();
     }
 
     public Winner checkVictory() {

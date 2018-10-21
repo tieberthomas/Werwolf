@@ -5,7 +5,7 @@ import root.Frontend.Page.Page;
 import root.Frontend.Page.PageElement;
 import root.Frontend.Page.PageTable;
 import root.Phases.NightBuilding.Statement;
-import root.Phases.Tag;
+import root.Phases.Day;
 import root.ResourceManagement.ImagePath;
 
 import javax.swing.*;
@@ -442,19 +442,19 @@ public class ErzählerPageFactory {
     }
 
     public Page generateAnnounceVictimsDayPage(String spieler1, String imagepath) {
-        Page tagPage = generateDefaultDayPage();
+        Page dayPage = generateDefaultDayPage();
 
         PageElement nameLabel = pageElementFactory.generateLeftCenteredLabel(new JLabel(spieler1));
         PageElement deadImage = pageElementFactory.generateRightCenteredImage(imagepath);
 
-        tagPage.add(nameLabel);
-        tagPage.add(deadImage);
+        dayPage.add(nameLabel);
+        dayPage.add(deadImage);
 
-        return tagPage;
+        return dayPage;
     }
 
     private Page generateDefaultDayPage() {
-        PageElement titleLabel = pageElementFactory.generateTitleLabel(null, Tag.dayTitle);
+        PageElement titleLabel = pageElementFactory.generateTitleLabel(null, Day.dayTitle);
         continueToGenerateElement = titleLabel;
 
         erzählerFrame.nextJButton = new JButton();
@@ -475,17 +475,17 @@ public class ErzählerPageFactory {
         erzählerFrame.respawnFramesJButton = new JButton();
         PageElement respawnFramesButton = pageElementFactory.generateLowestButton(erzählerFrame.respawnFramesJButton, "Fenster neustart", false, 4);
 
-        Page tagPage = new Page();
+        Page dayPage = new Page();
 
-        tagPage.add(titleLabel);
-        tagPage.add(nextButton);
-        tagPage.add(nachzüglerButton);
-        tagPage.add(umbringenButton);
-        tagPage.add(priesterButton);
-        tagPage.add(richterinButton);
-        tagPage.add(respawnFramesButton);
+        dayPage.add(titleLabel);
+        dayPage.add(nextButton);
+        dayPage.add(nachzüglerButton);
+        dayPage.add(umbringenButton);
+        dayPage.add(priesterButton);
+        dayPage.add(richterinButton);
+        dayPage.add(respawnFramesButton);
 
-        return tagPage;
+        return dayPage;
     }
 
     public Page generateNachzüglerPage(ArrayList<String> hauptrollen, ArrayList<String> bonusrollen) {

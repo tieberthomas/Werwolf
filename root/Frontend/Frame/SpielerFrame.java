@@ -5,7 +5,7 @@ import root.Frontend.Factories.SpielerPageFactory;
 import root.Frontend.Page.Page;
 import root.Frontend.Utils.TimeUpdater;
 import root.Phases.PhaseMode;
-import root.Phases.Tag;
+import root.Phases.Day;
 import root.mechanics.Game;
 
 import javax.swing.*;
@@ -100,14 +100,14 @@ public class SpielerFrame extends MyFrame {
     }
 
     public void generateDayPage() {
-        boolean freibierTag = false;
-        title = Tag.dayTitle;
+        boolean freibierDay = false;
+        title = Day.dayTitle;
         if (game.phaseMode == PhaseMode.FREIBIER_DAY) {
             mode = SpielerFrameMode.freibierPage;
-            freibierTag = true;
+            freibierDay = true;
         }
 
-        currentPage = pageFactory.generateDayPage(game.getPossibleInGameHauptrolleNames(), game.getPossibleInGameBonusrolleNames(), freibierTag);
+        currentPage = pageFactory.generateDayPage(game.getPossibleInGameHauptrolleNames(), game.getPossibleInGameBonusrolleNames(), freibierDay);
         buildScreenFromPage(currentPage);
     }
 }

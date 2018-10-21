@@ -13,7 +13,7 @@ import root.Persona.Hauptrolle;
 import root.Phases.FirstNight;
 import root.Phases.NormalNight;
 import root.Phases.PhaseMode;
-import root.Phases.Tag;
+import root.Phases.Day;
 import root.ResourceManagement.DataManager;
 import root.Spieler;
 import root.mechanics.Game;
@@ -543,8 +543,8 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                 Spieler spieler = game.findSpieler(chosenOption1);
 
                 if (spieler != null) {
-                    Tag.umbringenSpieler = spieler;
-                    Tag.umbringenButton = true;
+                    Day.umbringenSpieler = spieler;
+                    Day.umbringenButton = true;
                 } else {
                     showDayPage();
                 }
@@ -579,7 +579,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                 }
                 String priester = chosenOption1;
                 String spieler = chosenOption2;
-                game.tag.bürgen(priester, spieler);
+                game.day.bürgen(priester, spieler);
 
                 mode = game.parsePhaseMode();
                 showDayPage();
@@ -605,7 +605,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
 
                 String richterin = chosenOption1;
                 String spieler = chosenOption2;
-                game.tag.verurteilen(richterin, spieler);
+                game.day.verurteilen(richterin, spieler);
 
                 mode = game.parsePhaseMode();
                 showDayPage();
@@ -811,8 +811,8 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                     FirstNight.lock.notify();
                 }
             } else if (mode == ErzählerFrameMode.DAY || mode == ErzählerFrameMode.FREIBIER_DAY || mode == ErzählerFrameMode.UMBRINGEN_SETUP) {
-                synchronized (Tag.lock) {
-                    Tag.lock.notify();
+                synchronized (Day.lock) {
+                    Day.lock.notify();
                 }
             } else if (mode == ErzählerFrameMode.NORMAL_NIGHT) {
                 synchronized (NormalNight.lock) {

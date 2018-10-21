@@ -13,7 +13,7 @@ import root.mechanics.Game;
 
 import java.util.ArrayList;
 
-public class Tag extends Thread {
+public class Day extends Thread {
     Game game;
 
     public static Object lock;
@@ -26,7 +26,7 @@ public class Tag extends Thread {
 
     public static String dayTitle = "Opfer der Dorfabstimmung";
 
-    public Tag(Game game) {
+    public Day(Game game) {
         this.game = game;
     }
 
@@ -148,8 +148,8 @@ public class Tag extends Thread {
         Spieler verbürgerSpieler = game.findSpieler(spieler);
 
         if (priesterSpieler != null && spieler != null) {
-            Tag.priester = priesterSpieler;
-            Tag.gebürgteSpieler.add(verbürgerSpieler);
+            Day.priester = priesterSpieler;
+            Day.gebürgteSpieler.add(verbürgerSpieler);
         }
     }
 
@@ -158,8 +158,8 @@ public class Tag extends Thread {
         Spieler verurteilterSpieler = game.findSpieler(spieler);
 
         if (richterinSpieler != null && spieler != null) {
-            Tag.richterin = richterinSpieler;
-            Tag.verurteilteSpieler.add(verurteilterSpieler);
+            Day.richterin = richterinSpieler;
+            Day.verurteilteSpieler.add(verurteilterSpieler);
         }
     }
 
