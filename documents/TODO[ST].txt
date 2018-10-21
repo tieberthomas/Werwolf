@@ -1,17 +1,12 @@
 ST:
-deaktiv nochmal anschauen
-deaktiviert und verbraucht - deaktiviert anzeigen
 FirstNight - StatementType
 Alphabet Umlaute?
-killing = false?
 
 TH:
 BonusrollenType - Enum?
-Englisch-Deutsch-Gemisch
 
 MT:
 Freigestellt -> Weiß
-
 
 Nach Auslieferung:
 Phase manager
