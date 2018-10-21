@@ -35,7 +35,7 @@ public class FirstNight extends Thread {
 
     public static ArrayList<Statement> statements;
     public static Object lock;
-    public static ArrayList<Spieler> playersAwake = new ArrayList<>();
+    public static ArrayList<Spieler> spielerAwake = new ArrayList<>();
 
     public FirstNight(Game game) {
         this.game = game;
@@ -60,7 +60,7 @@ public class FirstNight extends Thread {
                 refreshStatementStates();
 
                 if (statement.isVisible()) {
-                    setPlayersAwake(statement);
+                    setSpielerAwake(statement);
                     Rolle rolle = null;
                     if (statement.getClass() == StatementRolle.class) {
                         rolle = ((StatementRolle) statement).getRolle();
@@ -200,17 +200,17 @@ public class FirstNight extends Thread {
         }
     }
 
-    public void setPlayersAwake(Statement statement) {
-        playersAwake.clear();
+    public void setSpielerAwake(Statement statement) {
+        spielerAwake.clear();
         if (statement.getClass() == StatementFraktion.class) {
             StatementFraktion statementFraktion = (StatementFraktion) statement;
-            playersAwake.addAll(Fraktion.getFraktionsMembers(statementFraktion.fraktion));
+            spielerAwake.addAll(Fraktion.getFraktionsMembers(statementFraktion.fraktion));
         } else if (statement.getClass() == StatementRolle.class) {
             StatementRolle statementRolle = (StatementRolle) statement;
             if (!statementRolle.rolle.equals(Bruder.NAME)) {
-                playersAwake.add(game.findSpielerPerRolle(statementRolle.rolle));
+                spielerAwake.add(game.findSpielerPerRolle(statementRolle.rolle));
             } else {
-                playersAwake.addAll(game.findSpielersPerRolle(statementRolle.rolle));
+                spielerAwake.addAll(game.findSpielersPerRolle(statementRolle.rolle));
             }
         }
     }

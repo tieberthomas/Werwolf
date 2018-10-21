@@ -79,7 +79,7 @@ public class SpielerFrame extends MyFrame {
     }
 
     public void refreshPlayerSetupPage() {
-        buildScreenFromPage(pageFactory.generateListPage(game.getLivingPlayerStrings()));
+        buildScreenFromPage(pageFactory.generateListPage(game.getLivingSpielerStrings()));
     }
 
     public void refreshHauptrolleSetupPage() {

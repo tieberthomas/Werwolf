@@ -44,11 +44,11 @@ public class Bonusrolle extends Rolle {
     }
 
     public boolean showTarnumhang(Bonusrolle requester, Spieler spieler) {
-        return spieler != null && (spieler.bonusrolle.equals(Tarnumhang.NAME) || (playerIsSchamanin(spieler) && thisRolleIsNotBuerger(requester)));
+        return spieler != null && (spieler.bonusrolle.equals(Tarnumhang.NAME) || (spielerIsSchamanin(spieler) && thisRolleIsNotBuerger(requester)));
     }
 
-    private boolean playerIsSchamanin(Spieler player) {
-        return player.hauptrolle.equals(Schamanin.NAME);
+    private boolean spielerIsSchamanin(Spieler spieler) {
+        return spieler.hauptrolle.equals(Schamanin.NAME);
     }
 
     private boolean thisRolleIsNotBuerger(Bonusrolle requester) {

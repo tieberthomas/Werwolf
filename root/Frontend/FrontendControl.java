@@ -117,7 +117,7 @@ public class FrontendControl {
     }
 
     public static void erzählerDefaultDayPage() {
-        Page dayPage = erzählerFrame.pageFactory.generateDayPage(game.getLivingPlayerOrNoneStrings());
+        Page dayPage = erzählerFrame.pageFactory.generateDayPage(game.getLivingSpielerOrNoneStrings());
         erzählerFrame.buildScreenFromPage(dayPage);
     }
 
@@ -126,7 +126,7 @@ public class FrontendControl {
     }
 
     public static void erzählerTortenPage() {
-        erzählerFrame.pageFactory.generateTortenPage(erzählerFrame.tortenPage, game.getLivingPlayerStrings());
+        erzählerFrame.pageFactory.generateTortenPage(erzählerFrame.tortenPage, game.getLivingSpielerStrings());
         erzählerFrame.buildScreenFromPage(erzählerFrame.tortenPage);
     }
 

@@ -49,15 +49,15 @@ public class Schreckenswolf extends Hauptrolle {
 
     @Override
     public FrontendControl getDropdownOptions() {
-        return game.getPlayerCheckSpammableFrontendControl(this);
+        return game.getSpielerCheckSpammableFrontendControl(this);
     }
 
     @Override
     public void processChosenOption(String chosenOption) {
-        Spieler chosenPlayer = game.findSpieler(chosenOption);
-        if (chosenPlayer != null) {
-            besucht = chosenPlayer;
-            NormalNight.beschworenerSpieler = chosenPlayer;
+        Spieler chosenSpieler = game.findSpieler(chosenOption);
+        if (chosenSpieler != null) {
+            besucht = chosenSpieler;
+            NormalNight.beschworenerSpieler = chosenSpieler;
         }
     }
 

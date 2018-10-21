@@ -33,17 +33,17 @@ public class Gefängniswärter extends Bonusrolle {
 
     @Override
     public FrontendControl getDropdownOptions() {
-        return game.getPlayerCheckSpammableFrontendControl(this);
+        return game.getSpielerCheckSpammableFrontendControl(this);
     }
 
     @Override
     public void processChosenOption(String chosenOption) {
-        Spieler chosenPlayer = game.findSpieler(chosenOption);
-        if (chosenPlayer != null) {
-            besucht = chosenPlayer;
+        Spieler chosenSpieler = game.findSpieler(chosenOption);
+        if (chosenSpieler != null) {
+            besucht = chosenSpieler;
 
-            chosenPlayer.aktiv = false;
-            chosenPlayer.geschützt = true;
+            chosenSpieler.aktiv = false;
+            chosenSpieler.geschützt = true;
         }
     }
 }

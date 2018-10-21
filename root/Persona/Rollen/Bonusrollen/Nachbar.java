@@ -38,23 +38,23 @@ public class Nachbar extends Bonusrolle {
 
     @Override
     public FrontendControl getDropdownOptions() {
-        return game.getPlayerCheckSpammableFrontendControl(this);
+        return game.getSpielerCheckSpammableFrontendControl(this);
     }
 
     @Override
     public FrontendControl processChosenOptionGetInfo(String chosenOption) {
-        Spieler chosenPlayer = game.findSpieler(chosenOption);
+        Spieler chosenSpieler = game.findSpieler(chosenOption);
 
-        if (chosenPlayer != null) {
-            besucht = chosenPlayer;
+        if (chosenSpieler != null) {
+            besucht = chosenSpieler;
 
-            if (showTarnumhang(this, chosenPlayer)) {
+            if (showTarnumhang(this, chosenSpieler)) {
                 return new FrontendControl(new Tarnumhang_BonusrollenType());
             }
 
             Spieler nachbarSpieler = game.findSpielerPerRolle(Nachbar.NAME);
-            FrontendControl info = new FrontendControl(FrontendControlType.LIST, getBesucherStrings(chosenPlayer, nachbarSpieler));
-            info.title = INFO_TITLE + chosenPlayer.name;
+            FrontendControl info = new FrontendControl(FrontendControlType.LIST, getBesucherStrings(chosenSpieler, nachbarSpieler));
+            info.title = INFO_TITLE + chosenSpieler.name;
 
             return info;
         }
@@ -66,7 +66,7 @@ public class Nachbar extends Bonusrolle {
         ArrayList<String> besucher = new ArrayList<>();
 
         if (beobachteterSpieler != null) {
-            for (Spieler spieler : game.getLivingPlayer()) {
+            for (Spieler spieler : game.getLivingSpieler()) {
                 if (spieler.hauptrolle.besucht != null && spieler.hauptrolle.besucht.name.equals(beobachteterSpieler.name) ||
                         (spieler.bonusrolle.besucht != null && spieler.bonusrolle.besucht.name.equals(beobachteterSpieler.name))) {
                     besucher.add(spieler.name);

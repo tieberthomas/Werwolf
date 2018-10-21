@@ -40,7 +40,7 @@ public class Game {
     public ArrayList<Bonusrolle> bonusrollenInGame = new ArrayList<>();
     public ArrayList<Hauptrolle> mitteHauptrollen = new ArrayList<>();
     public ArrayList<Bonusrolle> mitteBonusrollen = new ArrayList<>();
-    public ArrayList<Spieler> playersSpecified = new ArrayList<>();
+    public ArrayList<Spieler> spielerSpecified = new ArrayList<>();
 
     public boolean secondNight = true;
 
@@ -60,7 +60,7 @@ public class Game {
         generateAllAvailableBonusrollen();
         mitteHauptrollen = new ArrayList<>();
         mitteBonusrollen = new ArrayList<>();
-        playersSpecified = new ArrayList<>();
+        spielerSpecified = new ArrayList<>();
 
         liebespaar = new Liebespaar(this);
         Torte.tortenEsser = new ArrayList<>();
@@ -193,9 +193,9 @@ public class Game {
                 winner.fraktion = fraktionen.get(0);
                 return winner;
             case 2:
-                if (getLivingPlayerStrings().size() == 2) {
-                    Spieler spieler1 = findSpieler(getLivingPlayerStrings().get(0));
-                    Spieler spieler2 = findSpieler(getLivingPlayerStrings().get(1));
+                if (getLivingSpielerStrings().size() == 2) {
+                    Spieler spieler1 = findSpieler(getLivingSpielerStrings().get(0));
+                    Spieler spieler2 = findSpieler(getLivingSpielerStrings().get(1));
                     if (liebespaar != null && ((liebespaar.spieler1 == spieler1 && liebespaar.spieler2 == spieler2) ||
                             (liebespaar.spieler1 == spieler2 && liebespaar.spieler2 == spieler1))) {
                         return Winner.LIEBESPAAR;
@@ -233,7 +233,7 @@ public class Game {
             }
 
             if (bonusrolle.equals(Tarnumhang.NAME)) {
-                ((Tarnumhang) bonusrolle).seenPlayers = new ArrayList<>();
+                ((Tarnumhang) bonusrolle).seenSpieler = new ArrayList<>();
             }
         }
     }
@@ -302,7 +302,7 @@ public class Game {
         return spielers;
     }
 
-    public ArrayList<Spieler> getLivingPlayer() {
+    public ArrayList<Spieler> getLivingSpieler() {
         ArrayList<Spieler> allSpieler = new ArrayList<>();
 
         for (Spieler currentSpieler : spieler) {
@@ -314,7 +314,7 @@ public class Game {
         return allSpieler;
     }
 
-    public ArrayList<String> getLivingPlayerStrings() {
+    public ArrayList<String> getLivingSpielerStrings() {
         ArrayList<String> allSpieler = new ArrayList<>();
 
         for (Spieler currentSpieler : spieler) {
@@ -326,24 +326,24 @@ public class Game {
         return allSpieler;
     }
 
-    public ArrayList<String> getLivingPlayerOrNoneStrings() {
-        ArrayList<String> allSpieler = getLivingPlayerStrings();
+    public ArrayList<String> getLivingSpielerOrNoneStrings() {
+        ArrayList<String> allSpieler = getLivingSpielerStrings();
         allSpieler.add("");
 
         return allSpieler;
     }
 
-    public FrontendControl getPlayerFrontendControl() {
+    public FrontendControl getSpielerFrontendControl() {
         FrontendControl frontendControl = new FrontendControl();
 
         frontendControl.typeOfContent = FrontendControlType.DROPDOWN;
-        frontendControl.dropdownStrings = getLivingPlayerOrNoneStrings();
+        frontendControl.dropdownStrings = getLivingSpielerOrNoneStrings();
 
         return frontendControl;
     }
 
-    public ArrayList<String> getPlayerCheckSpammableStrings(Rolle rolle) {
-        ArrayList<String> allSpieler = getLivingPlayerOrNoneStrings();
+    public ArrayList<String> getSpielerCheckSpammableStrings(Rolle rolle) {
+        ArrayList<String> allSpieler = getLivingSpielerOrNoneStrings();
         if (!rolle.spammable && rolle.besuchtLastNight != null) {
             allSpieler.remove(rolle.besuchtLastNight.name);
         }
@@ -351,11 +351,11 @@ public class Game {
         return allSpieler;
     }
 
-    public FrontendControl getPlayerCheckSpammableFrontendControl(Rolle rolle) {
+    public FrontendControl getSpielerCheckSpammableFrontendControl(Rolle rolle) {
         FrontendControl frontendControl = new FrontendControl();
 
         frontendControl.typeOfContent = FrontendControlType.DROPDOWN;
-        frontendControl.dropdownStrings = getPlayerCheckSpammableStrings(rolle);
+        frontendControl.dropdownStrings = getSpielerCheckSpammableStrings(rolle);
 
         return frontendControl;
     }
@@ -363,7 +363,7 @@ public class Game {
     public ArrayList<String> getMitspielerCheckSpammableStrings(Rolle rolle) {
         Spieler spieler = findSpielerPerRolle(rolle.name);
 
-        ArrayList<String> mitspieler = getPlayerCheckSpammableStrings(rolle);
+        ArrayList<String> mitspieler = getSpielerCheckSpammableStrings(rolle);
         if (spieler != null) {
             mitspieler.remove(spieler.name);
         }
@@ -559,27 +559,27 @@ public class Game {
         bonusrollenInGame.remove(findBonusrolle(Schatten.NAME));
     }
 
-    public ArrayList<Spieler> getPlayersUnspecified() {
-        ArrayList<Spieler> playersUnspecified = new ArrayList<Spieler>();
-        playersUnspecified = (ArrayList) spieler.clone();
-        playersUnspecified.removeAll(playersSpecified);
-        return playersUnspecified;
+    public ArrayList<Spieler> getSpielerUnspecified() {
+        ArrayList<Spieler> spielerUnspecified = new ArrayList<Spieler>();
+        spielerUnspecified = (ArrayList) spieler.clone();
+        spielerUnspecified.removeAll(spielerSpecified);
+        return spielerUnspecified;
     }
 
-    public ArrayList<String> getPlayersUnspecifiedStrings() {
-        ArrayList<String> playersUnspecifiedStrings = new ArrayList<>();
+    public ArrayList<String> getSpielerUnspecifiedStrings() {
+        ArrayList<String> spielerUnspecifiedStrings = new ArrayList<>();
 
-        for (Spieler spieler : getPlayersUnspecified()) {
-            playersUnspecifiedStrings.add(spieler.name);
+        for (Spieler spieler : getSpielerUnspecified()) {
+            spielerUnspecifiedStrings.add(spieler.name);
         }
 
-        return playersUnspecifiedStrings;
+        return spielerUnspecifiedStrings;
     }
 
     public ArrayList<Hauptrolle> getHauptrollenSpecified() {
         ArrayList<Hauptrolle> hauptrollenSpecified = new ArrayList<>();
 
-        for (Spieler spieler : playersSpecified) {
+        for (Spieler spieler : spielerSpecified) {
             hauptrollenSpecified.add(spieler.hauptrolle);
         }
 
@@ -619,7 +619,7 @@ public class Game {
     public ArrayList<Bonusrolle> getBonusrollenSpecified() {
         ArrayList<Bonusrolle> bonusrollenSpecified = new ArrayList<>();
 
-        for (Spieler spieler : playersSpecified) {
+        for (Spieler spieler : spielerSpecified) {
             bonusrollenSpecified.add(spieler.bonusrolle);
         }
 

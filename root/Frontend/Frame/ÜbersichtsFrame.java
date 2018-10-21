@@ -79,8 +79,8 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener {
                 label.setBackground(Spieler.ALIVE_BACKGROUND_COLOR);
             }
             label.setOpaque(true);
-            if ((game.phaseMode == PhaseMode.FIRST_NIGHT && FirstNight.playersAwake.contains(spieler)) ||
-                    (game.phaseMode == PhaseMode.NORMAL_NIGHT && NormalNight.playersAwake.contains(spieler))) {
+            if ((game.phaseMode == PhaseMode.FIRST_NIGHT && FirstNight.spielerAwake.contains(spieler)) ||
+                    (game.phaseMode == PhaseMode.NORMAL_NIGHT && NormalNight.spielerAwake.contains(spieler))) {
                 Color borderColor = defaultBorderColor;
                 //hier kann die rahmen farbe geändert werden wenn notwendig
                 label.setBorder(BorderFactory.createLineBorder(borderColor, 2));

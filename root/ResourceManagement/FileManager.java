@@ -63,9 +63,9 @@ public class FileManager {
             String line;
 
             line = br.readLine();
-            int numberOfPlayers = Integer.parseInt(line);
+            int numberOfSpieler = Integer.parseInt(line);
 
-            for (int i = 0; i < numberOfPlayers; i++) {
+            for (int i = 0; i < numberOfSpieler; i++) {
                 line = br.readLine();
                 String[] fractals = line.split(" ");
 
@@ -73,8 +73,8 @@ public class FileManager {
                 String hauptrolleString = fractals[1].replace("*", " ");
                 String bonusrolleString = fractals[2].replace("*", " ");
 
-                PlayerDto playerDto = new PlayerDto(name, hauptrolleString, bonusrolleString);
-                gameDto.players.add(playerDto);
+                SpielerDto spielerDto = new SpielerDto(name, hauptrolleString, bonusrolleString);
+                gameDto.spieler.add(spielerDto);
             }
 
             gameDto.compositionDto.hauptrollen = readList(br);
@@ -98,7 +98,7 @@ public class FileManager {
             ArrayList<String> compositionStrings = new ArrayList<>();
 
             for (Spieler currentSpieler : spieler) {
-                compositionStrings.add(buildPlayerString(currentSpieler));
+                compositionStrings.add(buildSpielerString(currentSpieler));
             }
 
             writeArrayList(writer, compositionStrings);
@@ -127,7 +127,7 @@ public class FileManager {
     }
 
 
-    private String buildPlayerString(Spieler spieler) {
+    private String buildSpielerString(Spieler spieler) {
         String name = spieler.name.replace(" ", "*");
         String hauptrolle = spieler.hauptrolle.name.replace(" ", "*");
         String bonusrolle = spieler.bonusrolle.name.replace(" ", "*");

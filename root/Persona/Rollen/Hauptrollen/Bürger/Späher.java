@@ -43,16 +43,16 @@ public class Späher extends Hauptrolle {
 
     @Override
     public FrontendControl processChosenOptionGetInfo(String chosenOption) {
-        Spieler chosenPlayer = game.findSpieler(chosenOption);
+        Spieler chosenSpieler = game.findSpieler(chosenOption);
 
-        if (chosenPlayer != null) {
-            besucht = chosenPlayer;
+        if (chosenSpieler != null) {
+            besucht = chosenSpieler;
 
-            if (chosenPlayer.bonusrolle.name.equals(Tarnumhang.NAME)) {
+            if (chosenSpieler.bonusrolle.name.equals(Tarnumhang.NAME)) {
                 return new FrontendControl(new Tarnumhang_BonusrollenType());
             }
 
-            if (chosenPlayer.hauptrolle.killing && !chosenPlayer.hauptrolle.equals(Geisterwolf.NAME)) {
+            if (chosenSpieler.hauptrolle.killing && !chosenSpieler.hauptrolle.equals(Geisterwolf.NAME)) {
                 abilityCharges--;
 
                 return new FrontendControl(new Tötend());

@@ -34,20 +34,20 @@ public class Archivar extends Bonusrolle {
 
     @Override
     public FrontendControl getDropdownOptions() {
-        return game.getPlayerCheckSpammableFrontendControl(this);
+        return game.getSpielerCheckSpammableFrontendControl(this);
     }
 
     @Override
     public FrontendControl processChosenOptionGetInfo(String chosenOption) {
-        Spieler chosenPlayer = game.findSpieler(chosenOption);
-        Spieler archivarPlayer = game.findSpielerPerRolle(this.name);
+        Spieler chosenSpieler = game.findSpieler(chosenOption);
+        Spieler archivarSpieler = game.findSpielerPerRolle(this.name);
 
-        if (chosenPlayer != null && archivarPlayer != null) {
-            besucht = chosenPlayer;
+        if (chosenSpieler != null && archivarSpieler != null) {
+            besucht = chosenSpieler;
 
-            BonusrollenType chosenPlayerType = chosenPlayer.getBonusrollenTypeInfo(archivarPlayer);
+            BonusrollenType chosenSpielerType = chosenSpieler.getBonusrollenTypeInfo(archivarSpieler);
 
-            return new FrontendControl(FrontendControlType.IMAGE, chosenPlayerType.title, chosenPlayerType.imagePath);
+            return new FrontendControl(FrontendControlType.IMAGE, chosenSpielerType.title, chosenSpielerType.imagePath);
         }
 
         return new FrontendControl();

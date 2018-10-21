@@ -175,7 +175,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
 
     private void generatePlayerPageRefresher() {
         playerPageRefresher = new PageRefresher(playerSetupPage);
-        playerPageRefresher.add(new LabelTable(playerLabelTable, game::getLivingPlayerStrings));
+        playerPageRefresher.add(new LabelTable(playerLabelTable, game::getLivingSpielerStrings));
         playerPageRefresher.add(new DeleteButtonTable(deletePlayerTable, deletePlayerButtons, game.spieler::size));
     }
 
@@ -204,7 +204,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         specifyPageRefresher.add(new LabelTable(playerSpecifyLabelTable,
                 new Supplier<ArrayList<String>>() {
                     public ArrayList<String> get() {
-                        return (ArrayList<String>) game.playersSpecified.stream()
+                        return (ArrayList<String>) game.spielerSpecified.stream()
                                 .map(player -> player.name)
                                 .collect(Collectors.toList());
                     }
@@ -212,7 +212,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         specifyPageRefresher.add(new LabelTable(hauptrolleSpecifyLabelTable,
                 new Supplier<ArrayList<String>>() {
                     public ArrayList<String> get() {
-                        return (ArrayList<String>) game.playersSpecified.stream()
+                        return (ArrayList<String>) game.spielerSpecified.stream()
                                 .map(player -> player.hauptrolle.name)
                                 .collect(Collectors.toList());
                     }
@@ -220,12 +220,12 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         specifyPageRefresher.add(new LabelTable(bonusrolleSpecifyLabelTable,
                 new Supplier<ArrayList<String>>() {
                     public ArrayList<String> get() {
-                        return (ArrayList<String>) game.playersSpecified.stream()
+                        return (ArrayList<String>) game.spielerSpecified.stream()
                                 .map(player -> player.bonusrolle.name)
                                 .collect(Collectors.toList());
                     }
                 }));
-        specifyPageRefresher.add(new DeleteButtonTable(deleteSpecifyPlayerTable, deleteSpecifyPlayerButtons, game.playersSpecified::size));
+        specifyPageRefresher.add(new DeleteButtonTable(deleteSpecifyPlayerTable, deleteSpecifyPlayerButtons, game.spielerSpecified::size));
     }
 
     private void generateAllPages() {
@@ -278,7 +278,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     }
 
     public void refreshSpecifyComboBoxes() {
-        DefaultComboBoxModel model1 = new DefaultComboBoxModel(game.getPlayersUnspecifiedStrings().toArray());
+        DefaultComboBoxModel model1 = new DefaultComboBoxModel(game.getSpielerUnspecifiedStrings().toArray());
         comboBox1.setModel(model1);
         DefaultComboBoxModel model2 = new DefaultComboBoxModel(game.getHauptrollenUnspecifiedStrings().toArray());
         comboBox2.setModel(model2);
@@ -291,7 +291,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
             deleteSpecifyPlayerButtons.remove(index);
         }
 
-        game.playersSpecified.remove(index);
+        game.spielerSpecified.remove(index);
     }
 
     private void refreshTortenPage() {
@@ -300,7 +300,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     }
 
     public void refreshTortenComboBoxes() {
-        ArrayList<String> nichtTortenEsser = game.getLivingPlayerStrings();
+        ArrayList<String> nichtTortenEsser = game.getLivingSpielerStrings();
         ArrayList<String> tortenEsser = new ArrayList<>();
         for (Spieler spieler : Torte.tortenEsser) {
             tortenEsser.add(spieler.name);
@@ -362,7 +362,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                 dataManager.loadLastComposition();
             } else if (ae.getSource() == loadLastGameJButton) {
                 dataManager.loadLastGame();
-                game.playersSpecified = (ArrayList) game.spieler.clone();
+                game.spielerSpecified = (ArrayList) game.spieler.clone();
             }
 
             generateAllPageRefreshers();
@@ -562,7 +562,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                 mode = ErzählerFrameMode.UMBRINGEN_SETUP;
 
                 spielerFrame.mode = SpielerFrameMode.blank;
-                buildScreenFromPage(pageFactory.generateUmbringenPage(game.getLivingPlayerStrings()));
+                buildScreenFromPage(pageFactory.generateUmbringenPage(game.getLivingSpielerStrings()));
             }
         } else if (ae.getSource() == priesterJButton) {
             if (mode == ErzählerFrameMode.PRIESTER_SETUP) {
@@ -587,7 +587,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                 mode = ErzählerFrameMode.PRIESTER_SETUP;
 
                 spielerFrame.mode = SpielerFrameMode.blank;
-                buildScreenFromPage(pageFactory.generatePriesterPage(game.getLivingPlayerStrings()));
+                buildScreenFromPage(pageFactory.generatePriesterPage(game.getLivingSpielerStrings()));
             }
         } else if (ae.getSource() == richterinJButton) {
             if (mode == ErzählerFrameMode.RICHTERIN_SETUP) {
@@ -613,7 +613,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                 mode = ErzählerFrameMode.RICHTERIN_SETUP;
 
                 spielerFrame.mode = SpielerFrameMode.blank;
-                buildScreenFromPage(pageFactory.generateRichterinPage(game.getLivingPlayerStrings()));
+                buildScreenFromPage(pageFactory.generateRichterinPage(game.getLivingSpielerStrings()));
             }
         } else if (ae.getSource() == respawnFramesJButton) {
             respawnFrames();
@@ -704,8 +704,8 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                 deletePlayerButtons.remove(i);
                 String spielerName = game.spieler.get(i).name;
 
-                if (game.playersSpecified.contains(spielerName)) {
-                    int index = game.playersSpecified.indexOf(spielerName);
+                if (game.spielerSpecified.contains(spielerName)) {
+                    int index = game.spielerSpecified.indexOf(spielerName);
                     removeSpecifiedPlayer(index);
                 }
 
@@ -757,14 +757,14 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     }
 
     private boolean allPlayersSpecified() {
-        return game.playersSpecified.size() == game.spieler.size();
+        return game.spielerSpecified.size() == game.spieler.size();
     }
 
     private void specifyPlayer() {
         try {
             String spielerName = (String) comboBox1.getSelectedItem();
             Spieler spieler = game.findSpieler(spielerName);
-            game.playersSpecified.add(spieler);
+            game.spielerSpecified.add(spieler);
 
             String hauptrolle = (String) comboBox2.getSelectedItem();
             spieler.hauptrolle = game.findHauptrolle(hauptrolle);
@@ -825,12 +825,12 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     }
 
     public void showDayPage() {
-        //buildScreenFromPage(pageFactory.generateDayPage(game.getLivingPlayerOrNoneStrings()));
+        //buildScreenFromPage(pageFactory.generateDayPage(game.getLivingSpielerOrNoneStrings()));
         FrontendControl.erzählerDefaultDayPage();
         FrontendControl.spielerDayPage();
     }
 
     private Page generateSpecifyPlayerPage() {
-        return pageFactory.generatePlayerSpecifiyPage(playerSpecifiyPage, game.getPlayersUnspecifiedStrings(), game.getHauptrollenUnspecifiedStrings(), game.getBonusrollenUnspecifiedStrings());
+        return pageFactory.generatePlayerSpecifiyPage(playerSpecifiyPage, game.getSpielerUnspecifiedStrings(), game.getHauptrollenUnspecifiedStrings(), game.getBonusrollenUnspecifiedStrings());
     }
 }

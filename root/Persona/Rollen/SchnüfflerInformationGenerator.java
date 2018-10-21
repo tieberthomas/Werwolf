@@ -19,21 +19,21 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class SchnüfflerInformationGenerator {
-    private Spieler player;
+    private Spieler spieler;
     private Random random = new Random();
     private ArrayList<InformationType> erhaltbareInformationen = new ArrayList<>(Arrays.asList(
             InformationType.FRAKTION, InformationType.TÖTEND, InformationType.BONUSROLLEN_TYPE));
     private ArrayList<BonusrollenType> bonusrollenTypes = new ArrayList<>(Arrays.asList(
             new Aktiv(), new Passiv(), new Informativ()));
 
-    public SchnüfflerInformationGenerator(Spieler player) {
-        this.player = player;
+    public SchnüfflerInformationGenerator(Spieler spieler) {
+        this.spieler = spieler;
     }
 
     public SchnüfflerInformation generateInformation() {
         Bonusrolle schnüffler = Schnüffler.game.findSpielerPerRolle(Schnüffler.NAME).bonusrolle;
-        if (schnüffler.showTarnumhang(schnüffler, player)) {
-            return new SchnüfflerInformation(player.name);
+        if (schnüffler.showTarnumhang(schnüffler, spieler)) {
+            return new SchnüfflerInformation(spieler.name);
         }
 
         InformationType correctInformation = decideCorrectInformation();
@@ -60,11 +60,11 @@ public class SchnüfflerInformationGenerator {
             }
         }
 
-        return new SchnüfflerInformation(player.name, fraktion, tötend, bonusrollenType);
+        return new SchnüfflerInformation(spieler.name, fraktion, tötend, bonusrollenType);
     }
 
-    private boolean playerIsSchamanin() {
-        return player.hauptrolle.name.equals(Schamanin.NAME);
+    private boolean spielerIsSchamanin() {
+        return spieler.hauptrolle.name.equals(Schamanin.NAME);
     }
 
     private boolean schnüfflerIsNotBuerger() {
@@ -91,13 +91,13 @@ public class SchnüfflerInformationGenerator {
     }
 
     private Fraktion generateFraktionInformation(boolean correctInformation) {
-        Fraktion playerFraktion = player.hauptrolle.fraktion;
+        Fraktion spielerFraktion = spieler.hauptrolle.fraktion;
         if (correctInformation) {
-            return playerFraktion;
+            return spielerFraktion;
         }
 
         ArrayList<Fraktion> fraktionen = Fraktion.getLivingFraktionen();
-        removeFraktion(fraktionen, playerFraktion);
+        removeFraktion(fraktionen, spielerFraktion);
 
         int numberOfFraktionen = fraktionen.size();
         int decision = random.nextInt(numberOfFraktionen);
@@ -117,7 +117,7 @@ public class SchnüfflerInformationGenerator {
     }
 
     private SpäherZeigekarte generateTötendInformation(boolean correctInformation) {
-        boolean isKilling = player.hauptrolle.killing;
+        boolean isKilling = spieler.hauptrolle.killing;
 
         if (!correctInformation) {
             isKilling = !isKilling;
@@ -127,12 +127,12 @@ public class SchnüfflerInformationGenerator {
     }
 
     private BonusrollenType generateBonusrollenInformation(boolean correctInformation) {
-        BonusrollenType playerBonusrollenType = player.bonusrolle.type;
+        BonusrollenType spielerBonusrollenType = spieler.bonusrolle.type;
         if (correctInformation) {
-            return playerBonusrollenType;
+            return spielerBonusrollenType;
         }
 
-        removeBonusrollenType(bonusrollenTypes, playerBonusrollenType);
+        removeBonusrollenType(bonusrollenTypes, spielerBonusrollenType);
 
         int numberOfBonusrollenTypes = bonusrollenTypes.size();
         int decision = random.nextInt(numberOfBonusrollenTypes);

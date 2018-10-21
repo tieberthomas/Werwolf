@@ -45,7 +45,7 @@ public class NormalNight extends Thread {
     public static ArrayList<Statement> statements;
     public static Object lock;
 
-    public static ArrayList<Spieler> playersAwake = new ArrayList<>();
+    public static ArrayList<Spieler> spielerAwake = new ArrayList<>();
     public static boolean wölfinKilled;
     public static Spieler wölfinSpieler;
     public static Spieler beschworenerSpieler;
@@ -65,12 +65,12 @@ public class NormalNight extends Thread {
             Rolle rolle = null;
             String erzählerInfoIconImagePath;
 
-            Spieler chosenPlayer;
+            Spieler chosenSpieler;
             wölfinKilled = false;
             wölfinSpieler = null;
             beschworenerSpieler = null;
 
-            ArrayList<String> spielerOrNon = game.getLivingPlayerOrNoneStrings();
+            ArrayList<String> spielerOrNon = game.getLivingSpielerOrNoneStrings();
 
             beginNight();
 
@@ -82,7 +82,7 @@ public class NormalNight extends Thread {
                 chosenOption = null;
 
                 if (statement.isVisible() || statement.type == StatementType.PROGRAMM) {
-                    setPlayersAwake(statement);
+                    setSpielerAwake(statement);
 
                     switch (statement.type) {
                         case SHOW_TITLE:
@@ -169,13 +169,13 @@ public class NormalNight extends Thread {
                             break;
 
                         case Schattenpriester_Fraktion.NEUER_SCHATTENPRIESTER:
-                            chosenPlayer = game.findSpieler(chosenOptionLastStatement);
+                            chosenSpieler = game.findSpieler(chosenOptionLastStatement);
                             String neuerSchattenpriester = "";
                             erzählerInfoIconImagePath = ""; //TODO causes problem "1 Image could not be found at location: "
-                            if (chosenPlayer != null) {
-                                neuerSchattenpriester = chosenPlayer.name;
+                            if (chosenSpieler != null) {
+                                neuerSchattenpriester = chosenSpieler.name;
 
-                                if (!chosenPlayer.hauptrolle.fraktion.name.equals(Schattenpriester_Fraktion.NAME)) {
+                                if (!chosenSpieler.hauptrolle.fraktion.name.equals(Schattenpriester_Fraktion.NAME)) {
                                     erzählerInfoIconImagePath = Schattenkutte.IMAGE_PATH;
                                 }
                             }
@@ -183,10 +183,10 @@ public class NormalNight extends Thread {
                             break;
 
                         case Chemiker.NEUER_WERWOLF:
-                            chosenPlayer = game.findSpieler(chosenOptionLastStatement);
+                            chosenSpieler = game.findSpieler(chosenOptionLastStatement);
                             String neuerWerwolf = "";
-                            if (chosenPlayer != null) {
-                                neuerWerwolf = chosenPlayer.name;
+                            if (chosenSpieler != null) {
+                                neuerWerwolf = chosenSpieler.name;
                             }
 
                             showListShowImage(statement, neuerWerwolf, Werwölfe.zeigekarte.imagePath); //TODO evalueren obs schönere lösung gibt
@@ -392,14 +392,14 @@ public class NormalNight extends Thread {
         killOpfer();
     }
 
-    public void setPlayersAwake(Statement statement) {
-        playersAwake.clear();
+    public void setSpielerAwake(Statement statement) {
+        spielerAwake.clear();
         if (statement.getClass() == StatementFraktion.class) {
             StatementFraktion statementFraktion = (StatementFraktion) statement;
-            playersAwake.addAll(Fraktion.getFraktionsMembers(statementFraktion.fraktion));
+            spielerAwake.addAll(Fraktion.getFraktionsMembers(statementFraktion.fraktion));
         } else if (statement.getClass() == StatementRolle.class) {
             StatementRolle statementRolle = (StatementRolle) statement;
-            playersAwake.add(game.findSpielerPerRolle(statementRolle.rolle));
+            spielerAwake.add(game.findSpielerPerRolle(statementRolle.rolle));
         }
     }
 

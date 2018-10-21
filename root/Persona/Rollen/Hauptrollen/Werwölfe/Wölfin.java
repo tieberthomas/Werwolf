@@ -49,18 +49,18 @@ public class Wölfin extends Hauptrolle {
 
     @Override
     public FrontendControl getDropdownOptions() {
-        return game.getPlayerCheckSpammableFrontendControl(this);
+        return game.getSpielerCheckSpammableFrontendControl(this);
     }
 
     @Override
     public void processChosenOption(String chosenOption) {
-        Spieler chosenPlayer = game.findSpieler(chosenOption);
+        Spieler chosenSpieler = game.findSpieler(chosenOption);
         state = WölfinState.FERTIG;
-        if (chosenPlayer != null) {
-            besucht = chosenPlayer;
+        if (chosenSpieler != null) {
+            besucht = chosenSpieler;
 
             Spieler täter = game.findSpielerPerRolle(NAME);
-            Opfer.addOpfer(chosenPlayer, täter);
+            Opfer.addOpfer(chosenSpieler, täter);
         }
     }
 

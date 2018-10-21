@@ -49,10 +49,10 @@ public class Henker extends Hauptrolle {
 
     @Override
     public void processChosenOption(String chosenOption) {
-        Spieler chosenPlayer = game.findSpieler(chosenOption);
+        Spieler chosenSpieler = game.findSpieler(chosenOption);
 
-        if (chosenPlayer != null) {
-            besucht = chosenPlayer;
+        if (chosenSpieler != null) {
+            besucht = chosenSpieler;
         }
     }
 
@@ -63,13 +63,13 @@ public class Henker extends Hauptrolle {
             Bonusrolle bonusrolle = game.findBonusrolle(chosenOption2);
 
             int correctGuesses = 0;
-            Spieler chosenPlayer = besucht;
+            Spieler chosenSpieler = besucht;
 
-            if (chosenPlayer.hauptrolle.equals(hauptrolle)) {
+            if (chosenSpieler.hauptrolle.equals(hauptrolle)) {
                 correctGuesses++;
             }
 
-            if (chosenPlayer.bonusrolle.equals(bonusrolle)) {
+            if (chosenSpieler.bonusrolle.equals(bonusrolle)) {
                 correctGuesses++;
             }
 

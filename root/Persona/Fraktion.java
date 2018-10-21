@@ -133,13 +133,13 @@ public class Fraktion extends Persona {
     }
 
     public static boolean fraktionAktiv(String fraktion) {
-        ArrayList<Spieler> livingPlayers = game.getLivingPlayer();
+        ArrayList<Spieler> livingSpieler = game.getLivingSpieler();
 
         for (Opfer opfer : Opfer.deadOpfer) {
-            livingPlayers.remove(opfer.opfer);
+            livingSpieler.remove(opfer.opfer);
         }
 
-        for (Spieler currentSpieler : livingPlayers) {
+        for (Spieler currentSpieler : livingSpieler) {
             String hauptrolleSpieler = currentSpieler.hauptrolle.name;
             String fraktionSpieler = currentSpieler.hauptrolle.fraktion.name;
 

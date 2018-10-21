@@ -52,14 +52,14 @@ public class Seherin extends Hauptrolle {
 
     @Override
     public FrontendControl processChosenOptionGetInfo(String chosenOption) {
-        Spieler chosenPlayer = game.findSpieler(chosenOption);
+        Spieler chosenSpieler = game.findSpieler(chosenOption);
 
-        if (chosenPlayer != null) {
-            besucht = chosenPlayer;
-            Zeigekarte zeigekarte = chosenPlayer.hauptrolle.fraktion.getZeigeKarte();
+        if (chosenSpieler != null) {
+            besucht = chosenSpieler;
+            Zeigekarte zeigekarte = chosenSpieler.hauptrolle.fraktion.getZeigeKarte();
 
-            Bonusrolle bonusrolle = chosenPlayer.bonusrolle;
-            Hauptrolle hauptrolle = chosenPlayer.hauptrolle;
+            Bonusrolle bonusrolle = chosenSpieler.bonusrolle;
+            Hauptrolle hauptrolle = chosenSpieler.hauptrolle;
             if (bonusrolle.equals(Lamm.NAME) || hauptrolle.equals(Wolfsmensch.NAME)) {
                 zeigekarte = new BürgerZeigekarte();
             }

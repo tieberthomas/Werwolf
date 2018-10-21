@@ -125,10 +125,10 @@ public class Day extends Thread {
     public void killSpielerCheckLiebespaar(Spieler spieler) {
         killSpieler(spieler);
 
-        if (game.liebespaar.getPlayerToDie() != null) {
+        if (game.liebespaar.getSpielerToDie() != null) {
             JButtonStyler.disableButton(FrontendControl.erzählerFrame.umbringenJButton);
             waitForAnswer();
-            killSpieler(game.liebespaar.getPlayerToDie());
+            killSpieler(game.liebespaar.getSpielerToDie());
         }
 
         waitForAnswer();

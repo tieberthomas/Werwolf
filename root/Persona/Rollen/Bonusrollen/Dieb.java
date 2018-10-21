@@ -50,16 +50,16 @@ public class Dieb extends Bonusrolle {
 
     @Override
     public void processChosenOption(String chosenOption) {
-        Spieler chosenPlayer = game.findSpieler(chosenOption);
+        Spieler chosenSpieler = game.findSpieler(chosenOption);
 
-        if (chosenPlayer != null) {
+        if (chosenSpieler != null) {
             try {
-                besucht = chosenPlayer;
+                besucht = chosenSpieler;
 
                 Spieler spielerDieb = game.findSpielerPerRolle(NAME);
 
-                spielerDieb.bonusrolle = chosenPlayer.bonusrolle;
-                chosenPlayer.bonusrolle = getNewRandomBonusrolle();
+                spielerDieb.bonusrolle = chosenSpieler.bonusrolle;
+                chosenSpieler.bonusrolle = getNewRandomBonusrolle();
             } catch (NullPointerException e) {
                 System.out.println(NAME + " nicht gefunden");
             }
