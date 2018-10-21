@@ -3,6 +3,8 @@ package root;
 import root.Persona.Bonusrolle;
 import root.Persona.Hauptrolle;
 import root.Persona.Rollen.Bonusrollen.Schatten;
+import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
+import root.Persona.Rollen.Constants.BonusrollenType.Tarnumhang_BonusrollenType;
 import root.Persona.Rollen.Hauptrollen.Bürger.Dorfbewohner;
 import root.mechanics.Game;
 
@@ -54,6 +56,29 @@ public class Spieler {
     }
 
     public boolean equals(String spielerName) {
-        return spielerName != null && this.name.equals(spielerName);
+        return this.name.equals(spielerName);
+    }
+
+    public Bonusrolle getBonusrolle() {
+        return bonusrolle;
+    }
+
+    public BonusrollenType getBonusrollenType() {
+        return bonusrolle.type;
+    }
+
+    public BonusrollenType getBonusrollenTypeInfo(Spieler requester) {
+        BonusrollenType bonunsrollenInfo = bonusrolle.getBonusrollenTypeInfo();
+        BonusrollenType hauptrollenInfo = hauptrolle.getBonusrollenTypeInfo(requester);
+
+        if(hauptrollenInfo != null) {
+            return  hauptrollenInfo;
+        } else {
+            return bonunsrollenInfo;
+        }
+    }
+
+    public void setBonusrolle(Bonusrolle bonusrolle) {
+        this.bonusrolle = bonusrolle;
     }
 }

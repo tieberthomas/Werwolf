@@ -2,6 +2,7 @@ package root.Persona;
 
 import root.Frontend.FrontendControl;
 import root.Persona.Rollen.Bonusrollen.Totengräber;
+import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Persona.Rollen.Hauptrollen.Bürger.Sammler;
 import root.Spieler;
 

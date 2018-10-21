@@ -41,16 +41,12 @@ public class Archivar extends Bonusrolle {
     @Override
     public FrontendControl processChosenOptionGetInfo(String chosenOption) {
         Spieler chosenPlayer = game.findSpieler(chosenOption);
+        Spieler archivarPlayer = game.findSpielerPerRolle(this.name);
 
-        if (chosenPlayer != null) {
+        if (chosenPlayer != null && archivarPlayer != null) {
             besucht = chosenPlayer;
 
-            BonusrollenType chosenPlayerType = chosenPlayer.bonusrolle.type;
-
-            if (showTarnumhang(this, chosenPlayer)) {
-                chosenPlayerType = new Tarnumhang_BonusrollenType();
-            }
-
+            BonusrollenType chosenPlayerType = chosenPlayer.getBonusrollenTypeInfo(archivarPlayer);
 
             return new FrontendControl(FrontendControlType.IMAGE, chosenPlayerType.title, chosenPlayerType.imagePath);
         }

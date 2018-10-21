@@ -56,4 +56,8 @@ public class Bonusrolle extends Rolle {
 
         return !spieler.hauptrolle.fraktion.equals(new Bürger());
     }
+
+    public BonusrollenType getBonusrollenTypeInfo() {
+        return type;
+    }
 }
