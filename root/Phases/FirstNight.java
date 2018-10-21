@@ -1,6 +1,5 @@
 package root.Phases;
 
-import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.Persona.Bonusrolle;
 import root.Persona.Fraktion;
@@ -9,7 +8,6 @@ import root.Persona.Hauptrolle;
 import root.Persona.Rolle;
 import root.Persona.Rollen.Bonusrollen.Tarnumhang;
 import root.Persona.Rollen.Constants.BonusrollenType.Passiv;
-import root.Persona.Rollen.Hauptrollen.Bürger.Bruder;
 import root.Persona.Rollen.Hauptrollen.Bürger.Dorfbewohner;
 import root.Persona.Rollen.Hauptrollen.Bürger.Seherin;
 import root.Persona.Rollen.Hauptrollen.Werwölfe.Alphawolf;
@@ -131,28 +129,6 @@ public class FirstNight extends Thread {
                                 showImage(statement, statement.title, ImagePath.WÖLFE_ICON);
                                 break;
 
-                            case Bruder.FIRST_NIGHT_STATEMENT_IDENTIFIER:
-                                ArrayList<String> brüder = game.findSpielersStringsPerRolle(Bruder.NAME);
-
-                                if (brüder.size() == 1) {
-                                    ArrayList<String> stillAvailableHauptrollen = game.getStillAvailableHauptrolleNames();
-                                    stillAvailableHauptrollen.remove(Bruder.NAME);
-                                    dropdownOtions = new FrontendControl(FrontendControlType.DROPDOWN, Bruder.FIRST_NIGHT_STATEMENT_SECOND_TITLE, stillAvailableHauptrollen);
-                                    chosenOption = showFrontendControl(statement, dropdownOtions);
-                                    Hauptrolle newHauptrolle = game.findHauptrolle(chosenOption);
-                                    if (newHauptrolle != null) {
-                                        Spieler bruderSpieler = game.findSpielerPerRolle(Bruder.NAME);
-                                        bruderSpieler.hauptrolle = newHauptrolle;
-                                        showFrontendControl(statement, new FrontendControl(FrontendControlType.IMAGE, Bruder.FIRST_NIGHT_STATEMENT_SECOND_TITLE, newHauptrolle.imagePath));
-                                    }
-                                } else {
-                                    FrontendControl.erzählerListPage(statement, brüder);
-                                    FrontendControl.spielerCardPicturePage(statement.title, ImagePath.BRÜDER_KARTE);
-
-                                    waitForAnswer();
-                                }
-                                break;
-
                             case Seherin.STATEMENT_IDENTIFIER:
                                 dropdownOtions = rolle.getDropdownOptions();
                                 chosenOption = showFrontendControl(statement, dropdownOtions);
@@ -207,11 +183,7 @@ public class FirstNight extends Thread {
             spielerAwake.addAll(Fraktion.getFraktionsMembers(statementFraktion.fraktion));
         } else if (statement.getClass() == StatementRolle.class) {
             StatementRolle statementRolle = (StatementRolle) statement;
-            if (!statementRolle.rolle.equals(Bruder.NAME)) {
-                spielerAwake.add(game.findSpielerPerRolle(statementRolle.rolle));
-            } else {
-                spielerAwake.addAll(game.findSpielersPerRolle(statementRolle.rolle));
-            }
+            spielerAwake.add(game.findSpielerPerRolle(statementRolle.rolle));
         }
     }
 

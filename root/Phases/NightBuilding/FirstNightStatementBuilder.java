@@ -9,7 +9,6 @@ import root.Persona.Rollen.Bonusrollen.Lamm;
 import root.Persona.Rollen.Bonusrollen.Seelenlicht;
 import root.Persona.Rollen.Bonusrollen.Vampirumhang;
 import root.Persona.Rollen.Bonusrollen.Wolfspelz;
-import root.Persona.Rollen.Hauptrollen.Bürger.Bruder;
 import root.Persona.Rollen.Hauptrollen.Bürger.Seherin;
 import root.Persona.Rollen.Hauptrollen.Werwölfe.Alphawolf;
 import root.Persona.Rollen.Hauptrollen.Werwölfe.Wolfsmensch;
@@ -39,7 +38,6 @@ public class FirstNightStatementBuilder {
         addStatementFraktion(statements, Werwölfe.NAME);
         addStatementRolle(statements, Alphawolf.NAME);
         addStatementFraktion(statements, Schattenpriester_Fraktion.NAME);
-        addStatementRolle(statements, Bruder.NAME);
 
         addStatementRolle(statements, Seherin.NAME);
 

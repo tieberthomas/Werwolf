@@ -67,7 +67,6 @@ public class Game {
     }
 
     private void generateAllAvailableHauptrollen() {
-        hauptrollen.add(new Bruder());
         hauptrollen.add(new Dorfbewohner());
         hauptrollen.add(new HoldeMaid());
         hauptrollen.add(new Orakel());
@@ -474,9 +473,6 @@ public class Game {
 
     public void addAllHauptrollenToGame() {
         hauptrollenInGame.addAll(hauptrollen);
-        hauptrollenInGame.remove(findHauptrolle(Bruder.NAME));
-        hauptrollenInGame.add(new Bruder());
-        hauptrollenInGame.add(new Bruder()); //zum sortieren der liste
         hauptrollenInGame.remove(findHauptrolle(Dorfbewohner.NAME));
     }
 
