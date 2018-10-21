@@ -144,12 +144,12 @@ public class ErzählerPageFactory {
         return hauptrolleSetupPage;
     }
 
-    public Page generateSecondaryRoleSetupPage(Page secondaryRoleSetupPage, int numberOfPlayers, int numberOfSecondaryRoles, ArrayList<String> secondaryRoles) {
-        PageTable secondaryRoleButtonTable = pageElementFactory.generateButtonTable(erzählerFrame.secondaryRoleButtonTable, null);
-        pageElementFactory.generateTableButtons(secondaryRoles, erzählerFrame.secondaryRoleButtons, secondaryRoleButtonTable);
+    public Page generateBonusrolleSetupPage(Page bonusrolleSetupPage, int numberOfPlayers, int numberOfBonusrollen, ArrayList<String> bonusrollen) {
+        PageTable bonusrolleButtonTable = pageElementFactory.generateButtonTable(erzählerFrame.bonusrolleButtonTable, null);
+        pageElementFactory.generateTableButtons(bonusrollen, erzählerFrame.bonusrolleButtons, bonusrolleButtonTable);
 
-        erzählerFrame.secondaryRoleCounterJLabel = new JLabel(pageElementFactory.generateCounterLabelTitle(numberOfPlayers, numberOfSecondaryRoles));
-        PageElement counterLabel = pageElementFactory.generateCounterLabel(erzählerFrame.secondaryRoleCounterJLabel, secondaryRoleButtonTable);
+        erzählerFrame.bonusrolleCounterJLabel = new JLabel(pageElementFactory.generateCounterLabelTitle(numberOfPlayers, numberOfBonusrollen));
+        PageElement counterLabel = pageElementFactory.generateCounterLabel(erzählerFrame.bonusrolleCounterJLabel, bonusrolleButtonTable);
 
         int tableElementHeight = 25;
         int deleteButtonWidth = 40;
@@ -158,40 +158,40 @@ public class ErzählerPageFactory {
         int columnWidth = deleteButtonWidth + nameLabelWidth + spaceBetween;
         int columns = pageElementFactory.calculateColumns(columnWidth);
 
-        erzählerFrame.deleteSecondaryRoleTable = pageElementFactory.generatePageTable(erzählerFrame.deleteSecondaryRoleTable, counterLabel, columns, deleteButtonWidth,
+        erzählerFrame.deleteBonusrolleTable = pageElementFactory.generatePageTable(erzählerFrame.deleteBonusrolleTable, counterLabel, columns, deleteButtonWidth,
                 tableElementHeight, nameLabelWidth, spaceBetween, 0, spaceBetween);
 
-        erzählerFrame.secondaryRoleLabelTable = pageElementFactory.generatePageTable(erzählerFrame.secondaryRoleLabelTable, counterLabel, columns, nameLabelWidth,
+        erzählerFrame.bonusrolleLabelTable = pageElementFactory.generatePageTable(erzählerFrame.bonusrolleLabelTable, counterLabel, columns, nameLabelWidth,
                 tableElementHeight, deleteButtonWidth, spaceBetween, deleteButtonWidth + spaceBetween, spaceBetween);
 
-        erzählerFrame.secondaryRoleGoBackJButton = new JButton();
-        PageElement goBackButton = pageElementFactory.generateLowestButton(erzählerFrame.secondaryRoleGoBackJButton, "Zurück", false);
-        erzählerFrame.goBackButtons.add(erzählerFrame.secondaryRoleGoBackJButton);
+        erzählerFrame.bonusrolleGoBackJButton = new JButton();
+        PageElement goBackButton = pageElementFactory.generateLowestButton(erzählerFrame.bonusrolleGoBackJButton, "Zurück", false);
+        erzählerFrame.goBackButtons.add(erzählerFrame.bonusrolleGoBackJButton);
 
-        erzählerFrame.secondaryRoleGoNextJButton = new JButton();
-        PageElement goNextButton = pageElementFactory.generateLowestButton(erzählerFrame.secondaryRoleGoNextJButton);
-        erzählerFrame.goNextButtons.add(erzählerFrame.secondaryRoleGoNextJButton);
+        erzählerFrame.bonusrolleGoNextJButton = new JButton();
+        PageElement goNextButton = pageElementFactory.generateLowestButton(erzählerFrame.bonusrolleGoNextJButton);
+        erzählerFrame.goNextButtons.add(erzählerFrame.bonusrolleGoNextJButton);
 
-        erzählerFrame.addAllSecondaryRolesJButton = new JButton();
-        PageElement addAllSecondaryRolesButton = pageElementFactory.generateLowestButton(erzählerFrame.addAllSecondaryRolesJButton,
+        erzählerFrame.addAllBonusrollenJButton = new JButton();
+        PageElement addAllBonusrollenButton = pageElementFactory.generateLowestButton(erzählerFrame.addAllBonusrollenJButton,
                 "Alle Rollen", true, 1);
 
-        secondaryRoleSetupPage.clearPage();
+        bonusrolleSetupPage.clearPage();
 
-        secondaryRoleSetupPage.add(goBackButton);
-        secondaryRoleSetupPage.add(goNextButton);
-        secondaryRoleSetupPage.add(addAllSecondaryRolesButton);
-        secondaryRoleSetupPage.addTable(secondaryRoleButtonTable);
-        secondaryRoleSetupPage.add(counterLabel);
-        secondaryRoleSetupPage.addTable(erzählerFrame.deleteSecondaryRoleTable);
-        secondaryRoleSetupPage.addTable(erzählerFrame.secondaryRoleLabelTable);
+        bonusrolleSetupPage.add(goBackButton);
+        bonusrolleSetupPage.add(goNextButton);
+        bonusrolleSetupPage.add(addAllBonusrollenButton);
+        bonusrolleSetupPage.addTable(bonusrolleButtonTable);
+        bonusrolleSetupPage.add(counterLabel);
+        bonusrolleSetupPage.addTable(erzählerFrame.deleteBonusrolleTable);
+        bonusrolleSetupPage.addTable(erzählerFrame.bonusrolleLabelTable);
 
-        erzählerFrame.setupPages.add(secondaryRoleSetupPage);
+        erzählerFrame.setupPages.add(bonusrolleSetupPage);
 
-        return secondaryRoleSetupPage;
+        return bonusrolleSetupPage;
     }
 
-    public Page generatePlayerSpecifiyPage(Page playerSpecifyPage, ArrayList<String> playersUnspecified, ArrayList<String> hauptrollenUnspecified, ArrayList<String> secondaryRolesUnspecified) {
+    public Page generatePlayerSpecifiyPage(Page playerSpecifyPage, ArrayList<String> playersUnspecified, ArrayList<String> hauptrollenUnspecified, ArrayList<String> bonusrollenUnspecified) {
         String title = "Wählen Sie für diesen Spieler Haupt- und Bonusrolle.";
         String HTMLtitle = HTMLStringBuilder.buildHTMLText(title);
         PageElement titleLabel = pageElementFactory.generateLabel(null, HTMLtitle);
@@ -208,32 +208,32 @@ public class ErzählerPageFactory {
         PageElement chooseHauptrolle = pageElementFactory.generateDropdown(erzählerFrame.comboBox2,
                 null, hauptrolleLabel, 0, 0);
 
-        PageElement secondaryRoleLabel = pageElementFactory.generateLabel(chooseHauptrolle, "Bonusrolle");
-        erzählerFrame.comboBox3 = new JComboBox(secondaryRolesUnspecified.toArray());
-        PageElement chooseSecondaryRole = pageElementFactory.generateDropdown(erzählerFrame.comboBox3,
-                null, secondaryRoleLabel, 0, 0);
+        PageElement bonusrolleLabel = pageElementFactory.generateLabel(chooseHauptrolle, "Bonusrolle");
+        erzählerFrame.comboBox3 = new JComboBox(bonusrollenUnspecified.toArray());
+        PageElement chooseBonusrolle = pageElementFactory.generateDropdown(erzählerFrame.comboBox3,
+                null, bonusrolleLabel, 0, 0);
 
         int tableElementHeight = 25;
         int deleteButtonWidth = 40;
         int nameLabelWidth = 150;
         int hauptrolleLabelWidth = 150;
-        int secondaryRoleLabelWidth = 150;
+        int bonusrolleLabelWidth = 150;
         int spaceBetween = 5;
         int columns = 1;
 
         erzählerFrame.deleteSpecifyPlayerTable = pageElementFactory.generatePageTable(erzählerFrame.deleteSpecifyPlayerTable, titleLabel, null, columns, deleteButtonWidth,
-                tableElementHeight, nameLabelWidth + hauptrolleLabelWidth + secondaryRoleLabelWidth, spaceBetween,
+                tableElementHeight, nameLabelWidth + hauptrolleLabelWidth + bonusrolleLabelWidth, spaceBetween,
                 0, spaceBetween);
 
         erzählerFrame.playerSpecifyLabelTable = pageElementFactory.generatePageTable(erzählerFrame.playerSpecifyLabelTable, titleLabel, null, columns, nameLabelWidth,
-                tableElementHeight, deleteButtonWidth + hauptrolleLabelWidth + secondaryRoleLabelWidth, spaceBetween,
+                tableElementHeight, deleteButtonWidth + hauptrolleLabelWidth + bonusrolleLabelWidth, spaceBetween,
                 deleteButtonWidth + spaceBetween, spaceBetween);
 
         erzählerFrame.hauptrolleSpecifyLabelTable = pageElementFactory.generatePageTable(erzählerFrame.hauptrolleSpecifyLabelTable, titleLabel, null, columns, hauptrolleLabelWidth,
-                tableElementHeight, deleteButtonWidth + nameLabelWidth + secondaryRoleLabelWidth, spaceBetween,
+                tableElementHeight, deleteButtonWidth + nameLabelWidth + bonusrolleLabelWidth, spaceBetween,
                 deleteButtonWidth + spaceBetween * 2 + nameLabelWidth, spaceBetween);
 
-        erzählerFrame.secondaryRoleSpecifyLabelTable = pageElementFactory.generatePageTable(erzählerFrame.secondaryRoleSpecifyLabelTable, titleLabel, null, columns, secondaryRoleLabelWidth,
+        erzählerFrame.bonusrolleSpecifyLabelTable = pageElementFactory.generatePageTable(erzählerFrame.bonusrolleSpecifyLabelTable, titleLabel, null, columns, bonusrolleLabelWidth,
                 tableElementHeight, deleteButtonWidth + nameLabelWidth + hauptrolleLabelWidth, spaceBetween,
                 deleteButtonWidth + spaceBetween * 3 + nameLabelWidth + hauptrolleLabelWidth, spaceBetween);
 
@@ -252,11 +252,11 @@ public class ErzählerPageFactory {
         playerSpecifyPage.add(choosePlayer);
         playerSpecifyPage.add(hauptrolleLabel);
         playerSpecifyPage.add(chooseHauptrolle);
-        playerSpecifyPage.add(secondaryRoleLabel);
-        playerSpecifyPage.add(chooseSecondaryRole);
+        playerSpecifyPage.add(bonusrolleLabel);
+        playerSpecifyPage.add(chooseBonusrolle);
         playerSpecifyPage.addTable(erzählerFrame.playerSpecifyLabelTable);
         playerSpecifyPage.addTable(erzählerFrame.hauptrolleSpecifyLabelTable);
-        playerSpecifyPage.addTable(erzählerFrame.secondaryRoleSpecifyLabelTable);
+        playerSpecifyPage.addTable(erzählerFrame.bonusrolleSpecifyLabelTable);
         playerSpecifyPage.addTable(erzählerFrame.deleteSpecifyPlayerTable);
         playerSpecifyPage.add(goNextButton);
         playerSpecifyPage.add(goBackButton);
@@ -488,7 +488,7 @@ public class ErzählerPageFactory {
         return tagPage;
     }
 
-    public Page generateNachzüglerPage(ArrayList<String> hauptrollen, ArrayList<String> secondaryRoles) {
+    public Page generateNachzüglerPage(ArrayList<String> hauptrollen, ArrayList<String> bonusrollen) {
         PageElement titleLabel = pageElementFactory.generateTitleLabel(null, "Nachzügler");
 
         PageElement nameLabel = pageElementFactory.generateLabel(titleLabel, "Name");
@@ -503,7 +503,7 @@ public class ErzählerPageFactory {
 
         PageElement bonusRolleLabel = pageElementFactory.generateLabel(choosePlayer1, "Hauptrolle");
 
-        erzählerFrame.comboBox2 = new JComboBox(secondaryRoles.toArray());
+        erzählerFrame.comboBox2 = new JComboBox(bonusrollen.toArray());
         PageElement choosePlayer2 = pageElementFactory.generateDropdown(erzählerFrame.comboBox2,
                 null, bonusRolleLabel, 0, 0);
 

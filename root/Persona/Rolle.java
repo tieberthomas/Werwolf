@@ -2,7 +2,6 @@ package root.Persona;
 
 import root.Frontend.FrontendControl;
 import root.Persona.Rollen.Bonusrollen.Totengräber;
-import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Persona.Rollen.Hauptrollen.Bürger.Sammler;
 import root.Spieler;
 
@@ -40,14 +39,14 @@ public class Rolle extends Persona {
         return null;
     }
 
-    public static int numberOfOccurencesOfRoleInGame(Rolle rolle) {
+    public static int numberOfOccurencesOfRolleInGame(Rolle rolle) {
         Hauptrolle wantedHauptRolle = game.findHauptrolle(rolle.name);
         if (wantedHauptRolle != null)
             return game.numberOfOccurencesOfHauptrolleInGame(wantedHauptRolle);
 
         Bonusrolle wantedBonusrolleRolle = game.findBonusrolle(rolle.name);
         if (wantedBonusrolleRolle != null)
-            return game.numberOfOccurencesOfSecondaryRoleInGame(wantedBonusrolleRolle);
+            return game.numberOfOccurencesOfBonusrolleInGame(wantedBonusrolleRolle);
 
         return 0;
     }
@@ -66,7 +65,7 @@ public class Rolle extends Persona {
     }
 
     public static boolean rolleInNachtEnthalten(String rolle) {
-        if (game.getHauptrolleInGameNames().contains(rolle) || game.getSecondaryRoleInGameNames().contains(rolle)) {
+        if (game.getHauptrolleInGameNames().contains(rolle) || game.getBonusrolleInGameNames().contains(rolle)) {
             for (Rolle currentRolle : game.mitteHauptrollen) {
                 if (currentRolle.name.equals(rolle)) {
                     return false;

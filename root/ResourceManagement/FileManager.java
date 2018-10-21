@@ -87,7 +87,7 @@ public class FileManager {
         }
     }
 
-    boolean writeGame(String filePath, List<Spieler> spieler, List<String> hauptrollenLeft, List<String> secondaryRolesLeft) {
+    boolean writeGame(String filePath, List<Spieler> spieler, List<String> hauptrollenLeft, List<String> bonusrollenLeft) {
         File file = createNewFile(filePath);
 
         if (file == null) {
@@ -103,7 +103,7 @@ public class FileManager {
 
             writeArrayList(writer, compositionStrings);
             writeArrayList(writer, hauptrollenLeft);
-            writeArrayList(writer, secondaryRolesLeft);
+            writeArrayList(writer, bonusrollenLeft);
 
             writer.flush();
         } catch (IOException e) {
@@ -147,9 +147,9 @@ public class FileManager {
     private ArrayList<String> readList(BufferedReader br) throws IOException {
         ArrayList<String> listStrings = new ArrayList<>();
         String line = br.readLine();
-        int numberOfSecondaryRoles = Integer.parseInt(line);
+        int numberOfBonusrollen = Integer.parseInt(line);
 
-        for (int i = 0; i < numberOfSecondaryRoles; i++) {
+        for (int i = 0; i < numberOfBonusrollen; i++) {
             line = br.readLine();
             listStrings.add(line);
         }

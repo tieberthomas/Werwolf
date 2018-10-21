@@ -178,7 +178,7 @@ public class ErsteNacht extends Thread {
             currentHauptrolle.besuchtLetzteNacht = null;
             currentHauptrolle.besucht = null;
         }
-        for (Bonusrolle currentBonusrolle : game.secondaryRoles) {
+        for (Bonusrolle currentBonusrolle : game.bonusrollen) {
             currentBonusrolle.besuchtLetzteNacht = null;
             currentBonusrolle.besucht = null;
         }

@@ -156,8 +156,8 @@ public class ErzählerPageElementFactory {
         return "Spieleranzahl: " + Integer.toString(numberOfPlayers);
     }
 
-    public String generateCounterLabelTitle(int numberOfPlayers, int numberOfRoles) {
-        return Integer.toString(numberOfRoles) + " / " + Integer.toString(numberOfPlayers);
+    public String generateCounterLabelTitle(int numberOfPlayers, int numberOfRollen) {
+        return Integer.toString(numberOfRollen) + " / " + Integer.toString(numberOfPlayers);
     }
 
     public PageTable generateButtonTable(PageTable buttonTable, Predecessor predecessorY) {
@@ -177,8 +177,8 @@ public class ErzählerPageElementFactory {
     public void generateTableButtons(ArrayList<String> stringsToFillIn, ArrayList<JButton> tableButtons, PageTable pageTable) {
         tableButtons.clear();
         pageTable.tableElements.clear();
-        for (String role : stringsToFillIn) {
-            JButton button = new JButton(role);
+        for (String rolle : stringsToFillIn) {
+            JButton button = new JButton(rolle);
             button.addActionListener(erzählerFrame);
             button.setMargin(new Insets(0, 0, 0, 0));
             button.setBackground(Bonusrolle.DEFAULT_COLOR);

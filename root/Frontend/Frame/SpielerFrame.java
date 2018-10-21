@@ -69,8 +69,8 @@ public class SpielerFrame extends MyFrame {
             refreshHauptrolleSetupPage();
         }
 
-        if (erzählerFrame.currentPage.equals(erzählerFrame.secondaryRoleSetupPage)) {
-            refreshSecondaryRoleSetupPage();
+        if (erzählerFrame.currentPage.equals(erzählerFrame.bonusrolleSetupPage)) {
+            refreshBonusrolleSetupPage();
         }
 
         if (erzählerFrame.currentPage.equals(erzählerFrame.playerSpecifiyPage)) {
@@ -86,17 +86,17 @@ public class SpielerFrame extends MyFrame {
         buildScreenFromPage(pageFactory.generateListPage(game.getHauptrolleInGameNames()));
     }
 
-    public void refreshSecondaryRoleSetupPage() {
-        buildScreenFromPage(pageFactory.generateListPage(game.getSecondaryRoleInGameNames()));
+    public void refreshBonusrolleSetupPage() {
+        buildScreenFromPage(pageFactory.generateListPage(game.getBonusrolleInGameNames()));
     }
 
     public void refreshSecondarySpecifySetupPage() {
         ArrayList<String> hauptrollen = new ArrayList<>();
         hauptrollen.addAll(game.getHauptrolleInGameNames());
 
-        ArrayList<String> secondaryRoles = new ArrayList<>();
-        secondaryRoles.addAll(game.getSecondaryRoleInGameNames());
-        buildScreenFromPage(pageFactory.generateDoubleListPage(hauptrollen, secondaryRoles, "Hauptrollen", "Bonusrollen"));
+        ArrayList<String> bonusrollen = new ArrayList<>();
+        bonusrollen.addAll(game.getBonusrolleInGameNames());
+        buildScreenFromPage(pageFactory.generateDoubleListPage(hauptrollen, bonusrollen, "Hauptrollen", "Bonusrollen"));
     }
 
     public void generateDayPage() {
@@ -107,7 +107,7 @@ public class SpielerFrame extends MyFrame {
             freibierTag = true;
         }
 
-        currentPage = pageFactory.generateDayPage(game.getPossibleInGameHauptrolleNames(), game.getPossibleInGameSecondaryRoleNames(), freibierTag);
+        currentPage = pageFactory.generateDayPage(game.getPossibleInGameHauptrolleNames(), game.getPossibleInGameBonusrolleNames(), freibierTag);
         buildScreenFromPage(currentPage);
     }
 }

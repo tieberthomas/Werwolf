@@ -8,7 +8,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class JButtonStyler {
-    public static void refreshRoleButtons(ArrayList<JButton> buttons) {
+    public static void refreshRolleButtons(ArrayList<JButton> buttons) {
         styleButtons(buttons);
         disableButtons(buttons);
     }
@@ -46,7 +46,7 @@ public class JButtonStyler {
     private static boolean buttonShouldBeDisabled(JButton button) {
         Rolle rolle = Rolle.findRolle(button.getText());
         if (rolle != null) {
-            int occurrences = Rolle.numberOfOccurencesOfRoleInGame(rolle);
+            int occurrences = Rolle.numberOfOccurencesOfRolleInGame(rolle);
             if (rolle.numberOfPossibleInstances <= occurrences) {
                 if (button.isEnabled()) {
                     return true;

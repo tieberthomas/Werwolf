@@ -46,14 +46,14 @@ public class Medium extends Bonusrolle {
     }
 
     private Bonusrolle getRandomUnseenBonusrolle() {
-        ArrayList<Bonusrolle> unseenBonusroles = getAllUnseenBonusrollen();
+        ArrayList<Bonusrolle> unseenBonusrollen = getAllUnseenBonusrollen();
 
         Bonusrolle bonusrolle;
 
-        if (unseenBonusroles.size() > 0) {
-            int randIndex = (int) (Math.random() * unseenBonusroles.size());
+        if (unseenBonusrollen.size() > 0) {
+            int randIndex = (int) (Math.random() * unseenBonusrollen.size());
 
-            bonusrolle = unseenBonusroles.get(randIndex);
+            bonusrolle = unseenBonusrollen.get(randIndex);
             geseheneBonusrollen.add(bonusrolle.name);
         } else {
             bonusrolle = null;
@@ -63,8 +63,8 @@ public class Medium extends Bonusrolle {
     }
 
     private ArrayList<Bonusrolle> getAllUnseenBonusrollen() {
-        ArrayList<Bonusrolle> bonusrolesNotInGame = game.getStillAvailableBonusRoles();
-        bonusrolesNotInGame.removeIf(bonusrolle -> geseheneBonusrollen.contains(bonusrolle.name));
-        return bonusrolesNotInGame;
+        ArrayList<Bonusrolle> bonusrollenNotInGame = game.getStillAvailableBonusrollen();
+        bonusrollenNotInGame.removeIf(bonusrolle -> geseheneBonusrollen.contains(bonusrolle.name));
+        return bonusrollenNotInGame;
     }
 }

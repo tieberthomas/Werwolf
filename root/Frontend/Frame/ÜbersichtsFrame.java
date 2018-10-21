@@ -25,7 +25,7 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener {
 
     public PageTable playerTable;
     public PageTable hauptrolleTable;
-    public PageTable secondaryRoleTable;
+    public PageTable bonusrolleTable;
     public PageTable aliveTable;
     public PageTable activeTable;
     public PageTable protectedTable;
@@ -58,7 +58,7 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener {
     public void refresh() {
         refreshPlayerTable();
         refreshHauptrolleTable();
-        refreshSecondaryRoleTable();
+        refreshBonusrolleTable();
         refreshAliveTable();
         refreshActiveTable();
         refreshProtectedTable();
@@ -106,15 +106,15 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener {
         }
     }
 
-    private void refreshSecondaryRoleTable() {
-        secondaryRoleTable.tableElements.clear();
+    private void refreshBonusrolleTable() {
+        bonusrolleTable.tableElements.clear();
 
-        secondaryRoleTable.add(new JLabel("Bonusrolle"));
+        bonusrolleTable.add(new JLabel("Bonusrolle"));
 
         for (Spieler spieler : game.spieler) {
             Rolle rolle = spieler.bonusrolle;
-            if (secondaryRoleTable.tableElements.size() < game.spieler.size() + 1) {
-                secondaryRoleTable.add(generateColorLabel(spieler, rolle));
+            if (bonusrolleTable.tableElements.size() < game.spieler.size() + 1) {
+                bonusrolleTable.add(generateColorLabel(spieler, rolle));
             }
         }
     }

@@ -63,7 +63,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     public JButton addPlayerButton;
 
     public Page hauptrolleSetupPage;
-    public JLabel secondaryRoleCounterJLabel;
+    public JLabel bonusrolleCounterJLabel;
     public JLabel numberOfPlayersJLabel;
     public JButton hauptrolleGoBackJButton;
     public JButton hauptrolleGoNextJButton;
@@ -74,22 +74,22 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     public ArrayList<JButton> deleteHauptrolleButtons = new ArrayList<>();
     public JButton addAllHauptrollenJButton;
 
-    public Page secondaryRoleSetupPage;
-    public JButton secondaryRoleGoBackJButton;
-    public JButton secondaryRoleGoNextJButton;
-    public PageTable secondaryRoleButtonTable;
-    public ArrayList<JButton> secondaryRoleButtons = new ArrayList<>();
-    public PageTable secondaryRoleLabelTable;
-    public PageTable deleteSecondaryRoleTable;
-    public ArrayList<JButton> deleteSecondaryRoleButtons = new ArrayList<>();
-    public JButton addAllSecondaryRolesJButton;
+    public Page bonusrolleSetupPage;
+    public JButton bonusrolleGoBackJButton;
+    public JButton bonusrolleGoNextJButton;
+    public PageTable bonusrolleButtonTable;
+    public ArrayList<JButton> bonusrolleButtons = new ArrayList<>();
+    public PageTable bonusrolleLabelTable;
+    public PageTable deleteBonusrolleTable;
+    public ArrayList<JButton> deleteBonusrolleButtons = new ArrayList<>();
+    public JButton addAllBonusrollenJButton;
 
     public Page playerSpecifiyPage;
     public JButton playerSpecifyGoNextJButton;
     public JButton playerSpecifyGoBackJButton;
     public PageTable playerSpecifyLabelTable;
     public PageTable hauptrolleSpecifyLabelTable;
-    public PageTable secondaryRoleSpecifyLabelTable;
+    public PageTable bonusrolleSpecifyLabelTable;
     public PageTable deleteSpecifyPlayerTable;
     public ArrayList<JButton> deleteSpecifyPlayerButtons = new ArrayList<>();
 
@@ -116,7 +116,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
 
     private PageRefresher playerPageRefresher;
     private PageRefresher hauptrollePageRefresher;
-    private PageRefresher secondaryRolePageRefresher;
+    private PageRefresher bonusrollePageRefresher;
     private PageRefresher tortenPageRefresher;
     private PageRefresher specifyPageRefresher;
 
@@ -143,24 +143,24 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     private void initializePages() {
         playerSetupPage = new Page();
         hauptrolleSetupPage = new Page();
-        secondaryRoleSetupPage = new Page();
+        bonusrolleSetupPage = new Page();
         tortenPage = new Page();
         playerSpecifiyPage = new Page();
 
         hauptrolleButtonTable = new PageTable();
-        secondaryRoleButtonTable = new PageTable();
+        bonusrolleButtonTable = new PageTable();
 
         playerLabelTable = new PageTable();
         hauptrolleLabelTable = new PageTable();
-        secondaryRoleLabelTable = new PageTable();
+        bonusrolleLabelTable = new PageTable();
         tortenPlayerLabelTable = new PageTable();
         playerSpecifyLabelTable = new PageTable();
         hauptrolleSpecifyLabelTable = new PageTable();
-        secondaryRoleSpecifyLabelTable = new PageTable();
+        bonusrolleSpecifyLabelTable = new PageTable();
 
         deletePlayerTable = new PageTable();
         deleteHauptrolleTable = new PageTable();
-        deleteSecondaryRoleTable = new PageTable();
+        deleteBonusrolleTable = new PageTable();
         deleteTortenPlayerTable = new PageTable();
         deleteSpecifyPlayerTable = new PageTable();
     }
@@ -168,7 +168,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     private void generateAllPageRefreshers() {
         generatePlayerPageRefresher();
         generateHauptrollePageRefresher();
-        generateSecondaryRolePageRefresher();
+        generateBonusrollePageRefresher();
         generateTortenPageRefresher();
         generateSpecifyPageRefresher();
     }
@@ -186,11 +186,11 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         hauptrollePageRefresher.add(new DeleteButtonTable(deleteHauptrolleTable, deleteHauptrolleButtons, game.hauptrollenInGame::size));
     }
 
-    private void generateSecondaryRolePageRefresher() {
-        secondaryRolePageRefresher = new PageRefresher(secondaryRoleSetupPage);
-        secondaryRolePageRefresher.add(new ButtonTable(secondaryRoleButtons));
-        secondaryRolePageRefresher.add(new LabelTable(secondaryRoleLabelTable, game::getSecondaryRoleInGameNames));
-        secondaryRolePageRefresher.add(new DeleteButtonTable(deleteSecondaryRoleTable, deleteSecondaryRoleButtons, game.secondaryRolesInGame::size));
+    private void generateBonusrollePageRefresher() {
+        bonusrollePageRefresher = new PageRefresher(bonusrolleSetupPage);
+        bonusrollePageRefresher.add(new ButtonTable(bonusrolleButtons));
+        bonusrollePageRefresher.add(new LabelTable(bonusrolleLabelTable, game::getBonusrolleInGameNames));
+        bonusrollePageRefresher.add(new DeleteButtonTable(deleteBonusrolleTable, deleteBonusrolleButtons, game.bonusrollenInGame::size));
     }
 
     private void generateTortenPageRefresher() {
@@ -217,7 +217,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                                 .collect(Collectors.toList());
                     }
                 }));
-        specifyPageRefresher.add(new LabelTable(secondaryRoleSpecifyLabelTable,
+        specifyPageRefresher.add(new LabelTable(bonusrolleSpecifyLabelTable,
                 new Supplier<ArrayList<String>>() {
                     public ArrayList<String> get() {
                         return (ArrayList<String>) game.playersSpecified.stream()
@@ -234,13 +234,13 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
 
         int numberOfplayers = game.spieler.size();
         int numberOfhauptrollen = game.hauptrollenInGame.size();
-        int numberOfbonusRoles = game.secondaryRolesInGame.size();
+        int numberOfbonusrollen = game.bonusrollenInGame.size();
         ArrayList<String> hauptrollen = game.getHauptrolleNames();
-        ArrayList<String> secondaryRoles = game.getSecondaryRoleNames();
+        ArrayList<String> bonusrollen = game.getBonusrolleNames();
 
         pageFactory.generatePlayerSetupPage(playerSetupPage, numberOfplayers);
         pageFactory.generateHauptrolleSetupPage(hauptrolleSetupPage, numberOfplayers, numberOfhauptrollen, hauptrollen);
-        pageFactory.generateSecondaryRoleSetupPage(secondaryRoleSetupPage, numberOfplayers, numberOfbonusRoles, secondaryRoles);
+        pageFactory.generateBonusrolleSetupPage(bonusrolleSetupPage, numberOfplayers, numberOfbonusrollen, bonusrollen);
         playerSpecifiyPage = generateSpecifyPlayerPage();
     }
 
@@ -255,9 +255,9 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         hauptrollePageRefresher.refreshPage();
     }
 
-    private void refreshSecondaryRolePage() {
-        refreshSecondaryRoleCounterLabel();
-        secondaryRolePageRefresher.refreshPage();
+    private void refreshBonusrollePage() {
+        refreshBonusrolleCounterLabel();
+        bonusrollePageRefresher.refreshPage();
     }
 
     public void refreshNumberOfPlayersLabel() {
@@ -268,8 +268,8 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         hauptrolleCounterJLabel.setText(pageFactory.pageElementFactory.generateCounterLabelTitle(game.spieler.size(), game.hauptrollenInGame.size()));
     }
 
-    public void refreshSecondaryRoleCounterLabel() {
-        secondaryRoleCounterJLabel.setText(pageFactory.pageElementFactory.generateCounterLabelTitle(game.spieler.size(), game.secondaryRolesInGame.size()));
+    public void refreshBonusrolleCounterLabel() {
+        bonusrolleCounterJLabel.setText(pageFactory.pageElementFactory.generateCounterLabelTitle(game.spieler.size(), game.bonusrollenInGame.size()));
     }
 
     private void refreshSpecifyPlayerPage() {
@@ -282,7 +282,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         comboBox1.setModel(model1);
         DefaultComboBoxModel model2 = new DefaultComboBoxModel(game.getHauptrollenUnspecifiedStrings().toArray());
         comboBox2.setModel(model2);
-        DefaultComboBoxModel model3 = new DefaultComboBoxModel(game.getSecondaryRolesUnspecifiedStrings().toArray());
+        DefaultComboBoxModel model3 = new DefaultComboBoxModel(game.getBonusrollenUnspecifiedStrings().toArray());
         comboBox3.setModel(model3);
     }
 
@@ -345,8 +345,8 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
             refreshPlayerPage();
         else if (page == hauptrolleSetupPage)
             refreshHauptrollePage();
-        else if (page == secondaryRoleSetupPage)
-            refreshSecondaryRolePage();
+        else if (page == bonusrolleSetupPage)
+            refreshBonusrollePage();
         else if (page == playerSpecifiyPage)
             refreshSpecifyPlayerPage();
     }
@@ -368,7 +368,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
             generateAllPageRefreshers();
             nextPage();
         } else if (goNextButtons.contains(ae.getSource())) {
-            if (ae.getSource() == secondaryRoleGoNextJButton) {
+            if (ae.getSource() == bonusrolleGoNextJButton) {
                 dataManager.writeComposition();
             }
 
@@ -379,7 +379,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                 } else {
                     specifyPlayer();
                 }
-            } else if (ae.getSource() == secondaryRoleGoNextJButton) {
+            } else if (ae.getSource() == bonusrolleGoNextJButton) {
                 playerSpecifiyPage = generateSpecifyPlayerPage();
             }
 
@@ -409,14 +409,14 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
             addHauptrolle(ae);
         } else if (deleteHauptrolleButtons.contains(ae.getSource())) {
             deleteHauptrolle(ae);
-        } else if (addAllSecondaryRolesJButton == ae.getSource()) {
-            game.addAllSecondaryRoles();
-            refreshSecondaryRolePage();
-            spielerFrame.refreshSecondaryRoleSetupPage();
-        } else if (secondaryRoleButtons.contains(ae.getSource())) {
-            addSecondaryRole(ae);
-        } else if (deleteSecondaryRoleButtons.contains(ae.getSource())) {
-            deleteSecondaryRole(ae);
+        } else if (addAllBonusrollenJButton == ae.getSource()) {
+            game.addAllBonusrollen();
+            refreshBonusrollePage();
+            spielerFrame.refreshBonusrolleSetupPage();
+        } else if (bonusrolleButtons.contains(ae.getSource())) {
+            addBonusrolle(ae);
+        } else if (deleteBonusrolleButtons.contains(ae.getSource())) {
+            deleteBonusrolle(ae);
         } else if (deleteSpecifyPlayerButtons.contains(ae.getSource())) {
             deleteSpecifiedPlayer(ae);
         } else if (ae.getSource() == nextJButton) {
@@ -512,9 +512,9 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                     String bonusrolle = chosenOption2;
 
                     Spieler newSpieler = new Spieler(name, hauptrolle, bonusrolle);
-                    game.secondaryRolesInGame.remove(newSpieler.bonusrolle);
+                    game.bonusrollenInGame.remove(newSpieler.bonusrolle);
                     newSpieler.bonusrolle = newSpieler.bonusrolle.getTauschErgebnis();
-                    game.secondaryRolesInGame.add(newSpieler.bonusrolle);
+                    game.bonusrollenInGame.add(newSpieler.bonusrolle);
 
                     addPlayerTxtField.setText("");
 
@@ -529,7 +529,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                 mode = ErzählerFrameMode.nachzüglerSetup;
 
                 spielerFrame.mode = SpielerFrameMode.blank;
-                buildScreenFromPage(pageFactory.generateNachzüglerPage(game.getStillAvailableHauptrolleNames(), game.getStillAvailableBonusRoleNames()));
+                buildScreenFromPage(pageFactory.generateNachzüglerPage(game.getStillAvailableHauptrolleNames(), game.getStillAvailableBonusrollenNames()));
             }
         } else if (ae.getSource() == umbringenJButton) {
             if (mode == ErzählerFrameMode.umbringenSetup) {
@@ -630,36 +630,36 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         }
     }
 
-    private void deleteSecondaryRole(ActionEvent ae) {
-        for (int i = 0; i < deleteSecondaryRoleButtons.size(); i++) {
-            if (ae.getSource() == deleteSecondaryRoleButtons.get(i)) {
-                deleteSecondaryRoleButtons.remove(i);
-                String secondaryRoleName = game.secondaryRolesInGame.get(i).name;
+    private void deleteBonusrolle(ActionEvent ae) {
+        for (int i = 0; i < deleteBonusrolleButtons.size(); i++) {
+            if (ae.getSource() == deleteBonusrolleButtons.get(i)) {
+                deleteBonusrolleButtons.remove(i);
+                String bonusrolleName = game.bonusrollenInGame.get(i).name;
 
-                ArrayList<String> secondaryRolesSpecified = game.getHauptrollenSpecifiedStrings();
+                ArrayList<String> bonusrollenSpecified = game.getHauptrollenSpecifiedStrings();
 
-                if (secondaryRolesSpecified.contains(secondaryRoleName)) {
-                    int index = secondaryRolesSpecified.indexOf(secondaryRoleName);
+                if (bonusrollenSpecified.contains(bonusrolleName)) {
+                    int index = bonusrollenSpecified.indexOf(bonusrolleName);
                     removeSpecifiedPlayer(index);
                 }
 
-                game.secondaryRolesInGame.remove(i);
+                game.bonusrollenInGame.remove(i);
 
-                refreshSecondaryRolePage();
-                spielerFrame.refreshSecondaryRoleSetupPage();
+                refreshBonusrollePage();
+                spielerFrame.refreshBonusrolleSetupPage();
             }
         }
     }
 
-    private void addSecondaryRole(ActionEvent ae) {
-        for (int i = 0; i < secondaryRoleButtons.size(); i++) {
-            if (ae.getSource() == secondaryRoleButtons.get(i)) {
-                String secondaryRoleName = secondaryRoleButtons.get(i).getText();
-                Bonusrolle newSecondaryRole = game.findBonusrolle(secondaryRoleName);
-                game.secondaryRolesInGame.add(newSecondaryRole);
+    private void addBonusrolle(ActionEvent ae) {
+        for (int i = 0; i < bonusrolleButtons.size(); i++) {
+            if (ae.getSource() == bonusrolleButtons.get(i)) {
+                String bonusrolleName = bonusrolleButtons.get(i).getText();
+                Bonusrolle newBonusrolle = game.findBonusrolle(bonusrolleName);
+                game.bonusrollenInGame.add(newBonusrolle);
 
-                refreshSecondaryRolePage();
-                spielerFrame.refreshSecondaryRoleSetupPage();
+                refreshBonusrollePage();
+                spielerFrame.refreshBonusrolleSetupPage();
             }
         }
     }
@@ -831,6 +831,6 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     }
 
     private Page generateSpecifyPlayerPage() {
-        return pageFactory.generatePlayerSpecifiyPage(playerSpecifiyPage, game.getPlayersUnspecifiedStrings(), game.getHauptrollenUnspecifiedStrings(), game.getSecondaryRolesUnspecifiedStrings());
+        return pageFactory.generatePlayerSpecifiyPage(playerSpecifiyPage, game.getPlayersUnspecifiedStrings(), game.getHauptrollenUnspecifiedStrings(), game.getBonusrollenUnspecifiedStrings());
     }
 }
