@@ -4,7 +4,6 @@ import root.Persona.Bonusrolle;
 import root.Persona.Hauptrolle;
 import root.Persona.Rollen.Bonusrollen.Schatten;
 import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
-import root.Persona.Rollen.Constants.BonusrollenType.Tarnumhang_BonusrollenType;
 import root.Persona.Rollen.Hauptrollen.Bürger.Dorfbewohner;
 import root.mechanics.Game;
 
@@ -71,8 +70,8 @@ public class Spieler {
         BonusrollenType bonunsrollenInfo = bonusrolle.getBonusrollenTypeInfo();
         BonusrollenType hauptrollenInfo = hauptrolle.getBonusrollenTypeInfo(requester);
 
-        if(hauptrollenInfo != null) {
-            return  hauptrollenInfo;
+        if (hauptrollenInfo != null) {
+            return hauptrollenInfo;
         } else {
             return bonunsrollenInfo;
         }

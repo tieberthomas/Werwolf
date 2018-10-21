@@ -1,11 +1,9 @@
 package root.Persona.Rollen.Hauptrollen.Bürger;
 
 import root.Frontend.FrontendControl;
-import root.Persona.Bonusrolle;
 import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Bürger;
 import root.Persona.Hauptrolle;
-import root.Persona.Rollen.Bonusrollen.Tarnumhang;
 import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Persona.Rollen.Constants.BonusrollenType.Tarnumhang_BonusrollenType;
 import root.Phases.NightBuilding.Constants.StatementType;
@@ -53,7 +51,7 @@ public class Schamanin extends Hauptrolle {
 
     @Override
     public BonusrollenType getBonusrollenTypeInfo(Spieler requester) {
-        if(thisRolleIsNotBuerger(requester)) {
+        if (thisRolleIsNotBuerger(requester)) {
             return new Tarnumhang_BonusrollenType();
         }
 
@@ -61,7 +59,7 @@ public class Schamanin extends Hauptrolle {
     }
 
     private boolean thisRolleIsNotBuerger(Spieler requester) {
-        if(requester == null) {
+        if (requester == null) {
             return false;
         }
 

@@ -9,9 +9,9 @@ import root.Frontend.Page.PageTable;
 import root.Frontend.Page.Predecessor;
 import root.Persona.Bonusrolle;
 import root.Phases.FirstNight;
-import root.Phases.NormalNight;
 import root.Phases.NightBuilding.Statement;
 import root.Phases.NightBuilding.StatementRolle;
+import root.Phases.NormalNight;
 
 import javax.swing.*;
 import java.awt.*;

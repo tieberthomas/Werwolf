@@ -5,10 +5,10 @@ import root.Frontend.FrontendControl;
 import root.Persona.Bonusrolle;
 import root.Persona.Rollen.Constants.BonusrollenType.Aktiv;
 import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
-import root.Phases.NormalNight;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.Phases.NightBuilding.Statement;
 import root.Phases.NightBuilding.StatementRolle;
+import root.Phases.NormalNight;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
 

@@ -4,8 +4,8 @@ import root.Frontend.Frame.ErzählerFrame;
 import root.Frontend.Page.Page;
 import root.Frontend.Page.PageElement;
 import root.Frontend.Page.PageTable;
-import root.Phases.NightBuilding.Statement;
 import root.Phases.Day;
+import root.Phases.NightBuilding.Statement;
 import root.ResourceManagement.ImagePath;
 
 import javax.swing.*;
