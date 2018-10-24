@@ -66,6 +66,10 @@ public class Rolle extends Persona {
 
     public static boolean rolleContainedInNight(String rolle) {
         if (game.getHauptrolleInGameNames().contains(rolle) || game.getBonusrolleInGameNames().contains(rolle)) {
+            if (rolleLebend(rolle)) {
+                return true;
+            }
+
             for (Rolle currentRolle : game.mitteHauptrollen) {
                 if (currentRolle.name.equals(rolle)) {
                     return false;
