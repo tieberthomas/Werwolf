@@ -1,24 +1,23 @@
-MICHAEL BITTE UPDATEN
-
-Bruder
+Detektiv
 Dorfbewohner
 Holde Maid
+Irrlicht
 Orakel
 Riese
 Sammler
 Schamanin
+Schattenmensch
 Seherin
 Späher
 Wirt
 
-Alphawolf
 Blutwolf
 Chemiker
 Geisterwolf
 Schreckenswolf
 Werwolf
-Wolfsmensch
 Wölfin
+Wolfsmensch
 
 Graf Vladimir
 Lady Aleera
@@ -27,6 +26,7 @@ Miss Verona
 Schattenpriester
 
 Überläufer
+Henker
 
 Analytiker
 Archivar
@@ -36,6 +36,7 @@ Gefängniswärter
 Konditor
 Konditorlehrling
 Lamm
+Medium
 Nachbar
 Nachtfürst
 Prostituierte
