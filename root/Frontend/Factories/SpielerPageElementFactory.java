@@ -163,7 +163,7 @@ public class SpielerPageElementFactory {
     public PageElement generateCenteredLabel(JLabel label, Predecessor predecessorY, int spaceToPredecessorY) {
         label = generateBigJLabel(label);
 
-        int imageJLabelWidth = 300;
+        int imageJLabelWidth = getSpielerFrameWidth();
         int imageJLabelHeight = getJLabelStandardHeight();
 
         PageElement centeredLabel = new PageElement(label, imageJLabelWidth, imageJLabelHeight, null, predecessorY, 0, spaceToPredecessorY);
