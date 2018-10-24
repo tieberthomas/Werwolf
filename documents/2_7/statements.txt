@@ -1,47 +1,46 @@
-MICHAEL BITTE UPDATEN
-
 Erste Nacht
 Die Bonusrollenkarten mit Augensymbol werden aufgedreht
 Alle schlafen ein
 Der Erzähler wählt ein Liebespaar aus
 Das Liebespaar erwacht, findet und verliebt sich
 Seelenlicht erwacht und tauscht seine Karte je nach Hauptrolle aus
-Lamm erwacht und tauscht ggf. seine Karte aus
-Träger des Vampirumhangs erwacht und tauscht ggf. seine Karte aus
 Träger des Wolfspelzes erwacht und tauscht ggf. seine Karte aus
-Die Vampire erwachen und sehen einander
+Träger des Vampirumhangs erwacht und tauscht ggf. seine Karte aus
+Lamm erwacht und tauscht ggf. seine Karte aus
 Wolfsmensch erwacht und erfährt eine Bürgerrolle die nicht im Spiel ist
 Die Werwölfe erwachen und sehen einander
-Alphawolf erwacht und erfährt die Rollen der Wolfsfraktion
+Die Vampire erwachen und sehen einander
 Die Schattenpriester erwachen und sehen einander
-Brüder erwachen und sehen einander
-Seherin erwacht und lässt sich Auskunft über einen Mitspieler geben
+Imitator erwacht und entscheidet sich für eine Bonusrolle
 Alle wachen auf
 
 Normale Nacht
 Alle schlafen ein
-Wirt erwacht und entscheidet sich ob er Freibier ausgeben will
-Totengräber erwacht und entscheidet ob er seine Bonusrollenkarte tauschen möchte
-Dieb erwacht und entscheidet ob er jemandes Bonusrolle stehlen möchte
+Wirt erwacht und entscheidet sich, ob er Freibier ausgeben will
+Totengräber erwacht und entscheidet, ob er seine Bonusrollenkarte tauschen möchte
+Dieb erwacht und entscheidet, ob er jemandes Bonusrolle stehlen möchte
 Der Bestohlene erwacht und erhält eine neue Bonusrolle
 Gefängniswärter erwacht und stellt einen Spieler  unter Schutzhaft
+Imitator erwacht uund führt ggf. seine Fähigkeit aus
 Überläufer erwacht und entscheidet ob er seine Hauptrollenkarte tauschen möchte
 Holde Maid erwacht und offenbart sich einem Mitspieler
-Detektiv erwacht, bekommt ggf. eine Bürgerhauptrolle die im Spiel ist gezeigt und schätzt die Anzahl der Bürger
+Irrlichter entscheiden sich, ob sie
+Detektiv erwacht, schätzt die Anzahl der Bürger und bekommt ggf. eine Bürgerhauptrolle die im Spiel ist gezeigt
 Schamanin erwacht und entscheidet ob sie einen Spieler schützen möchte
-Lady Aleera erwacht und sieht alle geschützten Spieler
 Prostituierte legt sich zu einem Mitspieler ins Bett
+Henker erwcht und versucht die Rollen eines Mitspielers zu erraten
 Riese erwacht und entscheidet sich ob einen Mitspieler töten möchte
-Die Vampire erwachen und wählen ein Opfer aus
 Die Werwölfe erwachen und die Wölfe wählen ein Opfer aus
 Wölfin erwacht und wählt ein Opfer aus, wenn sie das tut, erfährt das Dorf ihre Bonusrolle
-Nachtfürst erwacht, schätzt die Anzahl der Opfer dieser Nacht und führt ggf. seine Tötung aus
 Schreckenswolf erwacht und verstummt ggf. einen Spieler der am folgenden Tag nichtmehr reden darf
+Die Vampire erwachen und wählen ein Opfer aus
+Nachtfürst erwacht, schätzt die Anzahl der Opfer dieser Nacht und führt ggf. seine Tötung aus
 Die Schattenpriester erwachen und entscheiden welchen Verstorbenen dieser Nacht sie wiederbeleben und zum Kult hinzufügen möchten
 Der Wiederbelebte erwacht und tauscht seine Karten gegen Schattenkarten
 Chemiker erwacht und kann ein Wolfsopfer dieser Nacht wiederbeleben und zum Wolfsrudel hinzufügen
 Der Wiederbelebte erwacht und tauscht seine Hauptrollen- gegen eine Werwolfkarte
-Miss Verona erwacht und lässt sich Auskunft über die Spieler geben, die angegriffen wurden
+Lady Aleera erwacht und verschleiert die Identität eines Spielers
+Miss Verona erwacht und verschleiert die Identität eines Spielers
 Analytiker erwacht und wählt zwei Spieler, der Erzähler sagt ihm ob diese in derselben Fraktion sind
 Archivar erwacht und lässt sich Auskunft über die Bonusrolle eines Mitspielers geben
 Schnüffler erwacht und lässt sich Auskunft über einen Mitspieler geben
@@ -49,6 +48,7 @@ Träger des Tarnumhangs erwacht und erfährt einen Mitspieler, bei dem ein Umhha
 Seherin erwacht und lässt sich Auskunft über die Fraktion eines Mitspielers geben
 Späher erwacht und lässt sich Auskunft über einen Mitspieler geben
 Orakel erwacht und lässt sich vom Erzähler die Bonusrollenkarte eines zufälligen Bürgers zeigen
+Medium erwacht und erfährt eine zufällige Bonusrolle, die nicht im Spiel ist
 Graf Vladimir erwacht und veerschleiert die Identität eines Spielers
 Nachbar erwacht, wählt einen Spieler und erfährt wer diesen Spieler besucht hat
 Spurenleser erwacht, wählt einen Mitspieler und erfährt wen dieser Spieler besucht hat
