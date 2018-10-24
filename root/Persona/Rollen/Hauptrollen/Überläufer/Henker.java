@@ -5,7 +5,9 @@ import root.Persona.Bonusrolle;
 import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Überläufer_Fraktion;
 import root.Persona.Hauptrolle;
+import root.Persona.Rollen.Constants.Zeigekarten.Tot;
 import root.Phases.NightBuilding.Constants.StatementType;
+import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
 public class Henker extends Hauptrolle {
@@ -20,7 +22,7 @@ public class Henker extends Hauptrolle {
     public static final StatementType SECOND_STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
 
     public static final String NAME = "Henker";
-    public static final String IMAGE_PATH = ""; //TODO replace imagepath
+    public static final String IMAGE_PATH = ImagePath.HENKER_KARTE;
     public static final Fraktion FRAKTION = new Überläufer_Fraktion();
 
     public Henker() {
@@ -78,8 +80,7 @@ public class Henker extends Hauptrolle {
             switch (correctGuesses) {
                 case 0:
                     //kill henker
-                    //return tot zeigekarte
-                    break;
+                    return new FrontendControl(new Tot());
                 case 1:
                     //schütze henker
                     //return geschützt zeigekarte
