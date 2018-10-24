@@ -6,6 +6,7 @@ import root.Persona.Bonusrolle;
 import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Persona.Rollen.Constants.BonusrollenType.Informativ;
 import root.Phases.NightBuilding.Constants.StatementType;
+import root.ResourceManagement.ImagePath;
 
 import java.util.ArrayList;
 
@@ -17,7 +18,7 @@ public class Medium extends Bonusrolle {
     public static final String VERBRAUCHT_TITLE = "Bonusrollen";
 
     public static final String NAME = "Medium";
-    public static final String IMAGE_PATH = ""; //TODO replace imagepath
+    public static final String IMAGE_PATH = ImagePath.MEDIUM_KARTE;
     public static final BonusrollenType TYPE = new Informativ();
 
 

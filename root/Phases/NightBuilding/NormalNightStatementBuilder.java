@@ -47,6 +47,7 @@ public class NormalNightStatementBuilder {
         }
 
         addStatementRolle(statements, HoldeMaid.NAME);
+        addStatementRolle(statements, Irrlicht.NAME);
         //Detektiv erwacht und schätzt die Anzahl der Bürger
         addStatementRolle(statements, Schamanin.NAME);
 
@@ -55,9 +56,9 @@ public class NormalNightStatementBuilder {
         addStatementRolle(statements, LadyAleera.NAME);
         addStatementRolle(statements, Prostituierte.NAME);
 
-        addStatementRolle(statements, Riese.NAME);
         addStatementRolle(statements, Henker.NAME);
         addSecondStatementRolle(statements, Henker.NAME);
+        addStatementRolle(statements, Riese.NAME);
         addStatementFraktion(statements, Vampire.NAME);
         addStatementFraktion(statements, Werwölfe.NAME);
         if (Wölfin.state == WölfinState.TÖTEND) {
@@ -73,7 +74,6 @@ public class NormalNightStatementBuilder {
         addSecondStatementRolle(statements, Chemiker.NAME);
 
         addStatementRolle(statements, MissVerona.NAME);
-        addStatementRolle(statements, Irrlicht.NAME); //TODO michael fragen ob position stimmt
         addStatementRolle(statements, Analytiker.NAME);
         addStatementRolle(statements, Archivar.NAME);
         addStatementRolle(statements, Schnüffler.NAME);
