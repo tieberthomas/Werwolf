@@ -767,10 +767,10 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         for (int i = 0; i < deletePlayerButtons.size(); i++) {
             if (ae.getSource() == deletePlayerButtons.get(i)) {
                 deletePlayerButtons.remove(i);
-                String spielerName = game.spieler.get(i).name;
+                Spieler spieler = game.spieler.get(i);
 
-                if (game.spielerSpecified.contains(spielerName)) {
-                    int index = game.spielerSpecified.indexOf(spielerName);
+                if (game.spielerSpecified.contains(spieler)) {
+                    int index = game.spielerSpecified.indexOf(spieler);
                     removeSpecifiedPlayer(index);
                 }
 
@@ -890,7 +890,6 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     }
 
     public void showDayPage() {
-        //buildScreenFromPage(pageFactory.generateDayPage(game.getLivingSpielerOrNoneStrings()));
         FrontendControl.erzählerDefaultDayPage();
         FrontendControl.spielerDayPage();
     }

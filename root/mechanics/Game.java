@@ -35,7 +35,7 @@ public class Game {
 
     public Liebespaar liebespaar;
 
-    public ArrayList<Spieler> spieler = new ArrayList<>(); //TODO überflüssige initialisierung an manchen stellen, generisch machen
+    public ArrayList<Spieler> spieler = new ArrayList<>();
     public ArrayList<Hauptrolle> hauptrollen = new ArrayList<>();
     public ArrayList<Hauptrolle> hauptrollenInGame = new ArrayList<>();
     public ArrayList<Bonusrolle> bonusrollen = new ArrayList<>();
