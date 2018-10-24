@@ -1,6 +1,5 @@
 package root.Phases;
 
-import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.Persona.Bonusrolle;
 import root.Persona.Fraktion;
@@ -9,7 +8,6 @@ import root.Persona.Hauptrolle;
 import root.Persona.Rolle;
 import root.Persona.Rollen.Bonusrollen.Tarnumhang;
 import root.Persona.Rollen.Constants.BonusrollenType.Passiv;
-import root.Persona.Rollen.Hauptrollen.Bürger.Bruder;
 import root.Persona.Rollen.Hauptrollen.Bürger.Dorfbewohner;
 import root.Persona.Rollen.Hauptrollen.Bürger.Seherin;
 import root.Persona.Rollen.Hauptrollen.Werwölfe.Alphawolf;
@@ -27,7 +25,7 @@ import root.mechanics.Liebespaar;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class ErsteNacht extends Thread {
+public class FirstNight extends Thread {
     Game game;
 
     public static final String TARNUMHANG_TITLE = "Tarnumhang";
@@ -35,9 +33,9 @@ public class ErsteNacht extends Thread {
 
     public static ArrayList<Statement> statements;
     public static Object lock;
-    public static ArrayList<Spieler> playersAwake = new ArrayList<>();
+    public static ArrayList<Spieler> spielerAwake = new ArrayList<>();
 
-    public ErsteNacht(Game game) {
+    public FirstNight(Game game) {
         this.game = game;
     }
 
@@ -54,13 +52,13 @@ public class ErsteNacht extends Thread {
 
             beginNight();
 
-            statements = FirstNightStatementBuilder.ersteNachtBuildStatements();
+            statements = FirstNightStatementBuilder.firstNightBuildStatements();
 
             for (Statement statement : statements) {
                 refreshStatementStates();
 
                 if (statement.isVisible()) {
-                    setPlayersAwake(statement);
+                    setSpielerAwake(statement);
                     Rolle rolle = null;
                     if (statement.getClass() == StatementRolle.class) {
                         rolle = ((StatementRolle) statement).getRolle();
@@ -131,28 +129,6 @@ public class ErsteNacht extends Thread {
                                 showImage(statement, statement.title, ImagePath.WÖLFE_ICON);
                                 break;
 
-                            case Bruder.FIRST_NIGHT_STATEMENT_IDENTIFIER:
-                                ArrayList<String> brüder = game.findSpielersStringsPerRolle(Bruder.NAME);
-
-                                if (brüder.size() == 1) {
-                                    ArrayList<String> stillAvailableMainRoles = game.getStillAvailableMainRoleNames();
-                                    stillAvailableMainRoles.remove(Bruder.NAME);
-                                    dropdownOtions = new FrontendControl(FrontendControlType.DROPDOWN, Bruder.FIRST_NIGHT_STATEMENT_SECOND_TITLE, stillAvailableMainRoles);
-                                    chosenOption = showFrontendControl(statement, dropdownOtions);
-                                    Hauptrolle newHauptrolle = game.findHauptrolle(chosenOption);
-                                    if (newHauptrolle != null) {
-                                        Spieler bruderSpieler = game.findSpielerPerRolle(Bruder.NAME);
-                                        bruderSpieler.hauptrolle = newHauptrolle;
-                                        showFrontendControl(statement, new FrontendControl(FrontendControlType.IMAGE, Bruder.FIRST_NIGHT_STATEMENT_SECOND_TITLE, newHauptrolle.imagePath));
-                                    }
-                                } else {
-                                    FrontendControl.erzählerListPage(statement, brüder);
-                                    FrontendControl.spielerCardPicturePage(statement.title, ImagePath.BRÜDER_KARTE);
-
-                                    waitForAnswer();
-                                }
-                                break;
-
                             case Seherin.STATEMENT_IDENTIFIER:
                                 dropdownOtions = rolle.getDropdownOptions();
                                 chosenOption = showFrontendControl(statement, dropdownOtions);
@@ -174,19 +150,19 @@ public class ErsteNacht extends Thread {
     }
 
     public void beginNight() {
-        for (Hauptrolle currentHauptrolle : game.mainRoles) {
-            currentHauptrolle.besuchtLetzteNacht = null;
+        for (Hauptrolle currentHauptrolle : game.hauptrollen) {
+            currentHauptrolle.besuchtLastNight = null;
             currentHauptrolle.besucht = null;
         }
-        for (Bonusrolle currentBonusrolle : game.secondaryRoles) {
-            currentBonusrolle.besuchtLetzteNacht = null;
+        for (Bonusrolle currentBonusrolle : game.bonusrollen) {
+            currentBonusrolle.besuchtLastNight = null;
             currentBonusrolle.besucht = null;
         }
     }
 
     private void refreshStatementStates() {
         for (Statement statement : statements) {
-            if(!statement.alreadyOver) {
+            if (!statement.alreadyOver) {
                 statement.refreshState();
             }
         }
@@ -200,18 +176,14 @@ public class ErsteNacht extends Thread {
         }
     }
 
-    public void setPlayersAwake(Statement statement) {
-        playersAwake.clear();
+    public void setSpielerAwake(Statement statement) {
+        spielerAwake.clear();
         if (statement.getClass() == StatementFraktion.class) {
             StatementFraktion statementFraktion = (StatementFraktion) statement;
-            playersAwake.addAll(Fraktion.getFraktionsMembers(statementFraktion.fraktion));
+            spielerAwake.addAll(Fraktion.getFraktionsMembers(statementFraktion.fraktion));
         } else if (statement.getClass() == StatementRolle.class) {
             StatementRolle statementRolle = (StatementRolle) statement;
-            if (!statementRolle.rolle.equals(Bruder.NAME)) {
-                playersAwake.add(game.findSpielerPerRolle(statementRolle.rolle));
-            } else {
-                playersAwake.addAll(game.findSpielersPerRolle(statementRolle.rolle));
-            }
+            spielerAwake.add(game.findSpielerPerRolle(statementRolle.rolle));
         }
     }
 
@@ -265,7 +237,7 @@ public class ErsteNacht extends Thread {
         return null;
     }
 
-    public void showNebenrolle(Statement statement, Spieler spieler) {
+    public void showBonusrolle(Statement statement, Spieler spieler) {
         if (spieler != null) {
             statement.title = spieler.name;
 
@@ -359,7 +331,7 @@ public class ErsteNacht extends Thread {
 
     private Hauptrolle pickRandomHauptrolle(ArrayList<Hauptrolle> hauptrollen) {
         int numberOfUnassignedHauptrollen = hauptrollen.size();
-        if(numberOfUnassignedHauptrollen > 0) {
+        if (numberOfUnassignedHauptrollen > 0) {
             Random random = new Random();
             int index = random.nextInt(numberOfUnassignedHauptrollen);
             return hauptrollen.get(index);

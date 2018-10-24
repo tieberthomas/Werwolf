@@ -8,7 +8,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class JButtonStyler {
-    public static void refreshRoleButtons(ArrayList<JButton> buttons) {
+    public static void refreshRolleButtons(ArrayList<JButton> buttons) {
         styleButtons(buttons);
         disableButtons(buttons);
     }
@@ -17,7 +17,7 @@ public class JButtonStyler {
         for (JButton button : buttons) {
             button.setEnabled(true);
             Rolle rolle = Rolle.findRolle(button.getText());
-            if(rolle!=null) {
+            if (rolle != null) {
                 button.setBackground(rolle.getColor());
             }
             setTextColorWhiteIfBackgroundIsTooDark(button);
@@ -25,7 +25,7 @@ public class JButtonStyler {
     }
 
     private static void setTextColorWhiteIfBackgroundIsTooDark(JButton button) {
-        if(button.getBackground().equals(Color.BLACK)) {
+        if (button.getBackground().equals(Color.BLACK)) {
             button.setForeground(Color.WHITE);
             button.setUI(new MetalButtonUI() {
                 protected Color getDisabledTextColor() {
@@ -37,7 +37,7 @@ public class JButtonStyler {
 
     private static void disableButtons(ArrayList<JButton> buttons) {
         for (JButton button : buttons) {
-            if(buttonShouldBeDisabled(button)) {
+            if (buttonShouldBeDisabled(button)) {
                 disableButton(button);
             }
         }
@@ -45,8 +45,8 @@ public class JButtonStyler {
 
     private static boolean buttonShouldBeDisabled(JButton button) {
         Rolle rolle = Rolle.findRolle(button.getText());
-        if(rolle!=null) {
-            int occurrences = Rolle.numberOfOccurencesOfRoleInGame(rolle);
+        if (rolle != null) {
+            int occurrences = Rolle.numberOfOccurencesOfRolleInGame(rolle);
             if (rolle.numberOfPossibleInstances <= occurrences) {
                 if (button.isEnabled()) {
                     return true;

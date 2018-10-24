@@ -44,27 +44,27 @@ public class Schnüffler extends Bonusrolle {
         FrontendControl frontendControl = new FrontendControl();
 
         frontendControl.typeOfContent = FrontendControlType.DROPDOWN;
-        frontendControl.dropdownStrings = game.getLivingPlayerOrNoneStrings();
+        frontendControl.dropdownStrings = game.getLivingSpielerOrNoneStrings();
 
-        removePreviousPlayers(frontendControl.dropdownStrings);
+        removePreviousSpieler(frontendControl.dropdownStrings);
 
         return frontendControl;
     }
 
-    private void removePreviousPlayers(ArrayList<String> allPlayers) {
+    private void removePreviousSpieler(ArrayList<String> spieler) {
         for (SchnüfflerInformation information : informationen) {
-            allPlayers.remove(information.spielerName);
+            spieler.remove(information.spielerName);
         }
     }
 
     @Override
     public FrontendControl processChosenOptionGetInfo(String chosenOption) {
-        Spieler chosenPlayer = game.findSpieler(chosenOption);
+        Spieler chosenSpieler = game.findSpieler(chosenOption);
 
-        if (chosenPlayer != null) {
-            besucht = chosenPlayer;
+        if (chosenSpieler != null) {
+            besucht = chosenSpieler;
 
-            SchnüfflerInformationGenerator informationGenerator = new SchnüfflerInformationGenerator(chosenPlayer);
+            SchnüfflerInformationGenerator informationGenerator = new SchnüfflerInformationGenerator(chosenSpieler);
             SchnüfflerInformation information = informationGenerator.generateInformation();
             informationen.add(information);
 
@@ -72,7 +72,7 @@ public class Schnüffler extends Bonusrolle {
                 informationen.remove(0);
             }
 
-            String pageTitle = chosenPlayer.name;
+            String pageTitle = chosenSpieler.name;
             return new FrontendControl(informationen, pageTitle);
         }
 

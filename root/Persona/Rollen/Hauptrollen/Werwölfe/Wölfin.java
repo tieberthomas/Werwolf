@@ -7,8 +7,8 @@ import root.Persona.Fraktionen.Werwölfe;
 import root.Persona.Hauptrolle;
 import root.Persona.Rollen.Bonusrollen.Tarnumhang;
 import root.Persona.Rollen.Constants.WölfinState;
-import root.Phases.Nacht;
 import root.Phases.NightBuilding.Constants.StatementType;
+import root.Phases.NormalNight;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
 import root.mechanics.Opfer;
@@ -19,7 +19,7 @@ public class Wölfin extends Hauptrolle {
     public static final String STATEMENT_BESCHREIBUNG = "Wölfin erwacht und wählt ein Opfer aus, wenn sie das tut, erfährt das Dorf ihre Bonusrolle";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
 
-    public static final String WÖLFIN_NEBENROLLE = "Wölfin_Nebenrolle";
+    public static final String WÖLFIN_BONUSROLLE = "Wölfin_Bonusrolle";
     public static final String SECOND_STATEMENT_TITLE = "Wölfin";
     public static final String SECOND_STATEMENT_BESCHREIBUNG = "Das Dorf erfährt die Bonusrolle der Wölfin";
     public static final StatementType SECOND_STATEMENT_TYPE = StatementType.ROLLE_INFO;
@@ -39,7 +39,7 @@ public class Wölfin extends Hauptrolle {
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;
 
-        this.secondStatementIdentifier = WÖLFIN_NEBENROLLE;
+        this.secondStatementIdentifier = WÖLFIN_BONUSROLLE;
         this.secondStatementTitle = SECOND_STATEMENT_TITLE;
         this.secondStatementBeschreibung = SECOND_STATEMENT_BESCHREIBUNG;
         this.secondStatementType = SECOND_STATEMENT_TYPE;
@@ -49,25 +49,25 @@ public class Wölfin extends Hauptrolle {
 
     @Override
     public FrontendControl getDropdownOptions() {
-        return game.getPlayerCheckSpammableFrontendControl(this);
+        return game.getSpielerCheckSpammableFrontendControl(this);
     }
 
     @Override
     public void processChosenOption(String chosenOption) {
-        Spieler chosenPlayer = game.findSpieler(chosenOption);
+        Spieler chosenSpieler = game.findSpieler(chosenOption);
         state = WölfinState.FERTIG;
-        if (chosenPlayer != null) {
-            besucht = chosenPlayer;
+        if (chosenSpieler != null) {
+            besucht = chosenSpieler;
 
             Spieler täter = game.findSpielerPerRolle(NAME);
-            Opfer.addVictim(chosenPlayer, täter);
+            Opfer.addOpfer(chosenSpieler, täter);
         }
     }
 
     @Override
     public FrontendControl getInfo() {
-        if (Nacht.wölfinKilled) {
-            Spieler wölfinSpieler = Nacht.wölfinSpieler;
+        if (NormalNight.wölfinKilled) {
+            Spieler wölfinSpieler = NormalNight.wölfinSpieler;
             if (wölfinSpieler != null) {
                 String imagePath = wölfinSpieler.bonusrolle.imagePath;
                 if (wölfinSpieler.bonusrolle.name.equals(Tarnumhang.NAME)) {

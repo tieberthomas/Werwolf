@@ -17,7 +17,7 @@ public class MyCollectionHelper {
         return list;
     }
 
-    public static ArrayList<Bonusrolle> removeAllNebenrollen(ArrayList<Bonusrolle> list, ArrayList<Bonusrolle> elementsToRemove) {
+    public static ArrayList<Bonusrolle> removeAllBonusrollen(ArrayList<Bonusrolle> list, ArrayList<Bonusrolle> elementsToRemove) {
         for (Bonusrolle bonusrolle : elementsToRemove) {
             int index = list.indexOf(bonusrolle);
             if (index != (-1))

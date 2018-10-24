@@ -28,7 +28,7 @@ public class SpielerPageElementFactory {
         return generateCornerImage(ImagePath.FREIBIER, corner, heigth, xSpace, ySpace);
     }
 
-    public PageElement generateCornerImage(String imagePath, Corner corner, int height,  int xSpace, int ySpace) {
+    public PageElement generateCornerImage(String imagePath, Corner corner, int height, int xSpace, int ySpace) {
         PageElement pageImage = generateFixedHeightPageImage(imagePath, height);
 
         Point point = generateCornerCoordinates(pageImage.width, height, xSpace, ySpace, corner);
@@ -46,8 +46,8 @@ public class SpielerPageElementFactory {
         int xImageOffset = xOffsetDirection == Direction.POSITIVE.modificatior ? 0 : width * xOffsetDirection;
         int yImageOffset = yOffsetDirection == Direction.POSITIVE.modificatior ? 0 : heigth * yOffsetDirection;
 
-        int xCoord = startpoint.x + xImageOffset + xSpace*xOffsetDirection;
-        int yCoord = startpoint.y + yImageOffset + ySpace*yOffsetDirection;
+        int xCoord = startpoint.x + xImageOffset + xSpace * xOffsetDirection;
+        int yCoord = startpoint.y + yImageOffset + ySpace * yOffsetDirection;
 
         return new Point(xCoord, yCoord);
     }
@@ -56,7 +56,7 @@ public class SpielerPageElementFactory {
         int x = corner.xDirection == Direction.POSITIVE.modificatior ? 0 : getSpielerFrameWidth();
         int y = corner.yDirection == Direction.POSITIVE.modificatior ? 0 : getSpielerFrameHeight();
 
-        return new Point(x,y);
+        return new Point(x, y);
     }
 
     private PageElement generateFixedHeightPageImage(String imagePath, int height) {
@@ -225,7 +225,7 @@ public class SpielerPageElementFactory {
 
         PageElement titleLabel = new PageElement(titleJLabel, numberOfPlayersLabelWidth, numberOfPlayersLabelHeight, null, null);
 
-        int spacePerColumn = getSpielerFrameWidth()  / numberOfColumns;
+        int spacePerColumn = getSpielerFrameWidth() / numberOfColumns;
         int xCoord = (int) (spacePerColumn * (indexOfColumn + 0.5) - (numberOfPlayersLabelWidth / 2));
 
         titleLabel.setCoordX(xCoord);

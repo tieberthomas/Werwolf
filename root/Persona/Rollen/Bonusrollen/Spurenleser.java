@@ -43,17 +43,17 @@ public class Spurenleser extends Bonusrolle {
 
     @Override
     public FrontendControl processChosenOptionGetInfo(String chosenOption) {
-        Spieler chosenPlayer = game.findSpieler(chosenOption);
+        Spieler chosenSpieler = game.findSpieler(chosenOption);
 
-        if (chosenPlayer != null) {
-            besucht = chosenPlayer;
+        if (chosenSpieler != null) {
+            besucht = chosenSpieler;
 
-            if (showTarnumhang(this, chosenPlayer)) {
+            if (showTarnumhang(this, chosenSpieler)) {
                 return new FrontendControl(new Tarnumhang_BonusrollenType());
             }
 
-            FrontendControl info = new FrontendControl(FrontendControlType.LIST, getBesuchteSpielerStrings(chosenPlayer));
-            info.title = INFO_TITLE + chosenPlayer.name;
+            FrontendControl info = new FrontendControl(FrontendControlType.LIST, getBesuchteSpielerStrings(chosenSpieler));
+            info.title = INFO_TITLE + chosenSpieler.name;
 
             return info;
         }

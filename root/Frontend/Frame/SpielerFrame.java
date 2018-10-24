@@ -4,8 +4,8 @@ import root.Frontend.Factories.SpielerPageElementFactory;
 import root.Frontend.Factories.SpielerPageFactory;
 import root.Frontend.Page.Page;
 import root.Frontend.Utils.TimeUpdater;
+import root.Phases.Day;
 import root.Phases.PhaseMode;
-import root.Phases.Tag;
 import root.mechanics.Game;
 
 import javax.swing.*;
@@ -65,12 +65,12 @@ public class SpielerFrame extends MyFrame {
             refreshPlayerSetupPage();
         }
 
-        if (erzählerFrame.currentPage.equals(erzählerFrame.mainRoleSetupPage)) {
-            refreshMainRoleSetupPage();
+        if (erzählerFrame.currentPage.equals(erzählerFrame.hauptrolleSetupPage)) {
+            refreshHauptrolleSetupPage();
         }
 
-        if (erzählerFrame.currentPage.equals(erzählerFrame.secondaryRoleSetupPage)) {
-            refreshSecondaryRoleSetupPage();
+        if (erzählerFrame.currentPage.equals(erzählerFrame.bonusrolleSetupPage)) {
+            refreshBonusrolleSetupPage();
         }
 
         if (erzählerFrame.currentPage.equals(erzählerFrame.playerSpecifiyPage)) {
@@ -79,35 +79,35 @@ public class SpielerFrame extends MyFrame {
     }
 
     public void refreshPlayerSetupPage() {
-        buildScreenFromPage(pageFactory.generateListPage(game.getLivingPlayerStrings()));
+        buildScreenFromPage(pageFactory.generateListPage(game.getLivingSpielerStrings()));
     }
 
-    public void refreshMainRoleSetupPage() {
-        buildScreenFromPage(pageFactory.generateListPage(game.getMainRoleInGameNames()));
+    public void refreshHauptrolleSetupPage() {
+        buildScreenFromPage(pageFactory.generateListPage(game.getHauptrolleInGameNames()));
     }
 
-    public void refreshSecondaryRoleSetupPage() {
-        buildScreenFromPage(pageFactory.generateListPage(game.getSecondaryRoleInGameNames()));
+    public void refreshBonusrolleSetupPage() {
+        buildScreenFromPage(pageFactory.generateListPage(game.getBonusrolleInGameNames()));
     }
 
     public void refreshSecondarySpecifySetupPage() {
-        ArrayList<String> mainRoles = new ArrayList<>();
-        mainRoles.addAll(game.getMainRoleInGameNames());
+        ArrayList<String> hauptrollen = new ArrayList<>();
+        hauptrollen.addAll(game.getHauptrolleInGameNames());
 
-        ArrayList<String> secondaryRoles = new ArrayList<>();
-        secondaryRoles.addAll(game.getSecondaryRoleInGameNames());
-        buildScreenFromPage(pageFactory.generateDoubleListPage(mainRoles, secondaryRoles, "Hauptrollen", "Bonusrollen"));
+        ArrayList<String> bonusrollen = new ArrayList<>();
+        bonusrollen.addAll(game.getBonusrolleInGameNames());
+        buildScreenFromPage(pageFactory.generateDoubleListPage(hauptrollen, bonusrollen, "Hauptrollen", "Bonusrollen"));
     }
 
     public void generateDayPage() {
-        boolean freibierTag = false;
-        title = Tag.dayTitle;
-        if (game.phaseMode == PhaseMode.freibierTag) {
+        boolean freibierDay = false;
+        title = Day.dayTitle;
+        if (game.phaseMode == PhaseMode.FREIBIER_DAY) {
             mode = SpielerFrameMode.freibierPage;
-            freibierTag = true;
+            freibierDay = true;
         }
 
-        currentPage = pageFactory.generateDayPage(game.getPossibleInGameMainRoleNames(), game.getPossibleInGameSecondaryRoleNames(), freibierTag);
+        currentPage = pageFactory.generateDayPage(game.getPossibleInGameHauptrolleNames(), game.getPossibleInGameBonusrolleNames(), freibierDay);
         buildScreenFromPage(currentPage);
     }
 }

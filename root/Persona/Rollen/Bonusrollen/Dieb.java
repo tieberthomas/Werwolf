@@ -50,16 +50,16 @@ public class Dieb extends Bonusrolle {
 
     @Override
     public void processChosenOption(String chosenOption) {
-        Spieler chosenPlayer = game.findSpieler(chosenOption);
+        Spieler chosenSpieler = game.findSpieler(chosenOption);
 
-        if (chosenPlayer != null) {
+        if (chosenSpieler != null) {
             try {
-                besucht = chosenPlayer;
+                besucht = chosenSpieler;
 
                 Spieler spielerDieb = game.findSpielerPerRolle(NAME);
 
-                spielerDieb.bonusrolle = chosenPlayer.bonusrolle;
-                chosenPlayer.bonusrolle = getNewRandomBonusrolle();
+                spielerDieb.bonusrolle = chosenSpieler.bonusrolle;
+                chosenSpieler.bonusrolle = getNewRandomBonusrolle();
             } catch (NullPointerException e) {
                 System.out.println(NAME + " nicht gefunden");
             }
@@ -68,7 +68,7 @@ public class Dieb extends Bonusrolle {
 
     @Override
     public FrontendControl getInfo() {
-        if(besucht != null) {
+        if (besucht != null) {
             return new FrontendControl(FrontendControlType.CARD, besucht.bonusrolle.imagePath);
         }
 
@@ -76,7 +76,7 @@ public class Dieb extends Bonusrolle {
     }
 
     private Bonusrolle getNewRandomBonusrolle() {
-        ArrayList<Bonusrolle> bonusrollen = game.getStillAvailableSecondaryRoles();
+        ArrayList<Bonusrolle> bonusrollen = game.getStillAvailableBonusrollen();
 
         int numberOfUnassignedBonusrollen = bonusrollen.size();
         Random random = new Random();

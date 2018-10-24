@@ -5,8 +5,8 @@ import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Werwölfe;
 import root.Persona.Hauptrolle;
 import root.Persona.Rollen.Bonusrollen.Wolfspelz;
-import root.Phases.Nacht;
 import root.Phases.NightBuilding.Constants.StatementType;
+import root.Phases.NormalNight;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
 import root.mechanics.Opfer;
@@ -49,15 +49,15 @@ public class Schreckenswolf extends Hauptrolle {
 
     @Override
     public FrontendControl getDropdownOptions() {
-        return game.getPlayerCheckSpammableFrontendControl(this);
+        return game.getSpielerCheckSpammableFrontendControl(this);
     }
 
     @Override
     public void processChosenOption(String chosenOption) {
-        Spieler chosenPlayer = game.findSpieler(chosenOption);
-        if (chosenPlayer != null) {
-            besucht = chosenPlayer;
-            Nacht.beschworenerSpieler = chosenPlayer;
+        Spieler chosenSpieler = game.findSpieler(chosenOption);
+        if (chosenSpieler != null) {
+            besucht = chosenSpieler;
+            NormalNight.beschworenerSpieler = chosenSpieler;
         }
     }
 
@@ -67,7 +67,7 @@ public class Schreckenswolf extends Hauptrolle {
 
     private ArrayList<Opfer> possibleWerwolfOpfer() {
         ArrayList<Opfer> possibleWerwolfOpfer = new ArrayList<>();
-        for (Opfer opfer : Opfer.possibleVictims) {
+        for (Opfer opfer : Opfer.possibleOpfer) {
             if (opfer.täterFraktion.name.equals(Werwölfe.NAME)) {
                 possibleWerwolfOpfer.add(opfer);
             }

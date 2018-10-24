@@ -5,10 +5,10 @@ import root.Frontend.FrontendControl;
 import root.Persona.Bonusrolle;
 import root.Persona.Rollen.Constants.BonusrollenType.Aktiv;
 import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
-import root.Phases.Nacht;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.Phases.NightBuilding.Statement;
 import root.Phases.NightBuilding.StatementRolle;
+import root.Phases.NormalNight;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
@@ -64,7 +64,7 @@ public class Totengräber extends Bonusrolle {
     }
 
     public void removeSammlerFlag(String bonusRolle) {
-        for (Statement statement : Nacht.statements) {
+        for (Statement statement : NormalNight.statements) {
             if (statement.getClass() == StatementRolle.class) {
                 StatementRolle statementRolle = (StatementRolle) statement;
                 if (statementRolle.getRolle().name.equals(bonusRolle)) {

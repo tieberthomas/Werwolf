@@ -5,7 +5,6 @@ import root.Frontend.FrontendControl;
 import root.Persona.Bonusrolle;
 import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Persona.Rollen.Constants.BonusrollenType.Informativ;
-import root.Persona.Rollen.Constants.BonusrollenType.Tarnumhang_BonusrollenType;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
@@ -35,24 +34,20 @@ public class Archivar extends Bonusrolle {
 
     @Override
     public FrontendControl getDropdownOptions() {
-        return game.getPlayerCheckSpammableFrontendControl(this);
+        return game.getSpielerCheckSpammableFrontendControl(this);
     }
 
     @Override
     public FrontendControl processChosenOptionGetInfo(String chosenOption) {
-        Spieler chosenPlayer = game.findSpieler(chosenOption);
+        Spieler chosenSpieler = game.findSpieler(chosenOption);
+        Spieler archivarSpieler = game.findSpielerPerRolle(this.name);
 
-        if (chosenPlayer != null) {
-            besucht = chosenPlayer;
+        if (chosenSpieler != null && archivarSpieler != null) {
+            besucht = chosenSpieler;
 
-            BonusrollenType chosenPlayerType = chosenPlayer.bonusrolle.type;
+            BonusrollenType chosenSpielerType = chosenSpieler.getBonusrollenTypeInfo(archivarSpieler);
 
-            if (showTarnumhang(this, chosenPlayer)) {
-                chosenPlayerType = new Tarnumhang_BonusrollenType();
-            }
-
-
-            return new FrontendControl(FrontendControlType.IMAGE, chosenPlayerType.title, chosenPlayerType.imagePath);
+            return new FrontendControl(FrontendControlType.IMAGE, chosenSpielerType.title, chosenSpielerType.imagePath);
         }
 
         return new FrontendControl();

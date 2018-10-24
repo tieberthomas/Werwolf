@@ -27,22 +27,22 @@ import java.util.ArrayList;
 
 public class Game {
     public PhaseMode phaseMode;
-    public Tag tag;
+    public Day day;
 
     public boolean freibier = false;
 
     public Liebespaar liebespaar;
 
     public ArrayList<Spieler> spieler = new ArrayList<>();
-    public ArrayList<Hauptrolle> mainRoles = new ArrayList<>();
-    public ArrayList<Hauptrolle> mainRolesInGame = new ArrayList<>();
-    public ArrayList<Bonusrolle> secondaryRoles = new ArrayList<>();
-    public ArrayList<Bonusrolle> secondaryRolesInGame = new ArrayList<>();
+    public ArrayList<Hauptrolle> hauptrollen = new ArrayList<>();
+    public ArrayList<Hauptrolle> hauptrollenInGame = new ArrayList<>();
+    public ArrayList<Bonusrolle> bonusrollen = new ArrayList<>();
+    public ArrayList<Bonusrolle> bonusrollenInGame = new ArrayList<>();
     public ArrayList<Hauptrolle> mitteHauptrollen = new ArrayList<>();
     public ArrayList<Bonusrolle> mitteBonusrollen = new ArrayList<>();
-    public ArrayList<Spieler> playersSpecified = new ArrayList<>();
+    public ArrayList<Spieler> spielerSpecified = new ArrayList<>();
 
-    public boolean zweiteNacht = true;
+    public boolean secondNight = true;
 
     public Game() {
         Persona.game = this;
@@ -51,82 +51,82 @@ public class Game {
         Opfer.game = this;
         NormalNightStatementBuilder.game = this;
 
-        phaseMode = PhaseMode.setup;
+        phaseMode = PhaseMode.SETUP;
 
         spieler = new ArrayList<>();
-        mainRolesInGame = new ArrayList<>();
-        generateAllAvailableMainRoles();
-        secondaryRolesInGame = new ArrayList<>();
-        generateAllAvailableSecondaryRoles();
+        hauptrollenInGame = new ArrayList<>();
+        generateAllAvailableHauptrollen();
+        bonusrollenInGame = new ArrayList<>();
+        generateAllAvailableBonusrollen();
         mitteHauptrollen = new ArrayList<>();
         mitteBonusrollen = new ArrayList<>();
-        playersSpecified = new ArrayList<>();
+        spielerSpecified = new ArrayList<>();
 
         liebespaar = new Liebespaar(this);
         Torte.tortenEsser = new ArrayList<>();
     }
 
-    public void generateAllAvailableMainRoles() {
-        mainRoles.add(new Bruder());
-        mainRoles.add(new Dorfbewohner());
-        mainRoles.add(new HoldeMaid());
-        mainRoles.add(new Orakel());
-        mainRoles.add(new Riese());
-        mainRoles.add(new Sammler());
-        mainRoles.add(new Schamanin());
-        mainRoles.add(new Seherin());
-        mainRoles.add(new Späher());
-        mainRoles.add(new Wirt());
-        mainRoles.add(new Schattenpriester());
-        mainRoles.add(new GrafVladimir());
-        mainRoles.add(new LadyAleera());
-        mainRoles.add(new MissVerona());
-        mainRoles.add(new Alphawolf());
-        mainRoles.add(new Blutwolf());
-        mainRoles.add(new Chemiker());
-        mainRoles.add(new Geisterwolf());
-        mainRoles.add(new Schreckenswolf());
-        mainRoles.add(new Werwolf());
-        mainRoles.add(new Wolfsmensch());
-        mainRoles.add(new Wölfin());
-        mainRoles.add(new Henker());
-        mainRoles.add(new Überläufer());
+    private void generateAllAvailableHauptrollen() {
+        hauptrollen.add(new Dorfbewohner());
+        hauptrollen.add(new HoldeMaid());
+        hauptrollen.add(new Orakel());
+        hauptrollen.add(new Riese());
+        hauptrollen.add(new Sammler());
+        hauptrollen.add(new Schamanin());
+        hauptrollen.add(new Seherin());
+        hauptrollen.add(new Späher());
+        hauptrollen.add(new Wirt());
+        hauptrollen.add(new Schattenpriester());
+        hauptrollen.add(new GrafVladimir());
+        hauptrollen.add(new LadyAleera());
+        hauptrollen.add(new MissVerona());
+        hauptrollen.add(new Alphawolf());
+        hauptrollen.add(new Blutwolf());
+        hauptrollen.add(new Chemiker());
+        hauptrollen.add(new Geisterwolf());
+        hauptrollen.add(new Schreckenswolf());
+        hauptrollen.add(new Werwolf());
+        hauptrollen.add(new Wolfsmensch());
+        hauptrollen.add(new Wölfin());
+        hauptrollen.add(new Henker());
+        hauptrollen.add(new Überläufer());
     }
 
-    public void generateAllAvailableSecondaryRoles() {
-        secondaryRoles.add(new Analytiker());
-        secondaryRoles.add(new Archivar());
-        secondaryRoles.add(new Dieb());
-        secondaryRoles.add(new Gefängniswärter());
+    private void generateAllAvailableBonusrollen() {
+        bonusrollen.add(new Analytiker());
+        bonusrollen.add(new Archivar());
+        bonusrollen.add(new Dieb());
+        bonusrollen.add(new Gefängniswärter());
         //Imitator
-        secondaryRoles.add(new Konditor());
-        secondaryRoles.add(new Konditorlehrling());
-        secondaryRoles.add(new Lamm());
-        secondaryRoles.add(new Nachbar());
-        secondaryRoles.add(new Prostituierte());
-        secondaryRoles.add(new Schatten());
-        secondaryRoles.add(new Schattenkutte());
-        secondaryRoles.add(new Schnüffler());
-        secondaryRoles.add(new Seelenlicht());
-        secondaryRoles.add(new Spurenleser());
-        secondaryRoles.add(new Tarnumhang());
-        secondaryRoles.add(new Totengräber());
-        secondaryRoles.add(new Vampirumhang());
-        secondaryRoles.add(new Wahrsager());
-        secondaryRoles.add(new Wolfspelz());
+        bonusrollen.add(new Konditor());
+        bonusrollen.add(new Konditorlehrling());
+        bonusrollen.add(new Lamm());
+        bonusrollen.add(new Medium());
+        bonusrollen.add(new Nachbar());
+        bonusrollen.add(new Prostituierte());
+        bonusrollen.add(new Schatten());
+        bonusrollen.add(new Schattenkutte());
+        bonusrollen.add(new Schnüffler());
+        bonusrollen.add(new Seelenlicht());
+        bonusrollen.add(new Spurenleser());
+        bonusrollen.add(new Tarnumhang());
+        bonusrollen.add(new Totengräber());
+        bonusrollen.add(new Vampirumhang());
+        bonusrollen.add(new Wahrsager());
+        bonusrollen.add(new Wolfspelz());
     }
 
     public ErzählerFrameMode parsePhaseMode() { //TODO automapper?
-        if (phaseMode == PhaseMode.tag) {
-            return ErzählerFrameMode.tag;
-        } else if (phaseMode == PhaseMode.freibierTag) {
-            return ErzählerFrameMode.freibierTag;
-        } else if (phaseMode == PhaseMode.ersteNacht) {
-            return ErzählerFrameMode.ersteNacht;
-        } else if (phaseMode == PhaseMode.nacht) {
-            return ErzählerFrameMode.nacht;
+        if (phaseMode == PhaseMode.DAY) {
+            return ErzählerFrameMode.DAY;
+        } else if (phaseMode == PhaseMode.FREIBIER_DAY) {
+            return ErzählerFrameMode.FREIBIER_DAY;
+        } else if (phaseMode == PhaseMode.FIRST_NIGHT) {
+            return ErzählerFrameMode.FIRST_NIGHT;
+        } else if (phaseMode == PhaseMode.NORMAL_NIGHT) {
+            return ErzählerFrameMode.NORMAL_NIGHT;
         } else {
-            return ErzählerFrameMode.setup;
+            return ErzählerFrameMode.SETUP;
         }
     }
 
@@ -154,31 +154,31 @@ public class Game {
     }
 
     public void firstnight(ErzählerFrame erzählerFrame) {
-        erzählerFrame.mode = ErzählerFrameMode.ersteNacht;
-        phaseMode = PhaseMode.ersteNacht;
-        ErsteNacht ersteNacht = new ErsteNacht(this);
-        ersteNacht.start();
+        erzählerFrame.mode = ErzählerFrameMode.FIRST_NIGHT;
+        phaseMode = PhaseMode.FIRST_NIGHT;
+        FirstNight firstNight = new FirstNight(this);
+        firstNight.start();
     }
 
     public void night() {
-        FrontendControl.erzählerFrame.mode = ErzählerFrameMode.nacht;
-        phaseMode = PhaseMode.nacht;
-        Nacht nacht = new Nacht(this);
-        nacht.start();
+        FrontendControl.erzählerFrame.mode = ErzählerFrameMode.NORMAL_NIGHT;
+        phaseMode = PhaseMode.NORMAL_NIGHT;
+        NormalNight normalNight = new NormalNight(this);
+        normalNight.start();
     }
 
     public void day() {
-        FrontendControl.erzählerFrame.mode = ErzählerFrameMode.tag;
-        phaseMode = PhaseMode.tag;
-        tag = new Tag(this);
-        tag.start();
+        FrontendControl.erzählerFrame.mode = ErzählerFrameMode.DAY;
+        phaseMode = PhaseMode.DAY;
+        day = new Day(this);
+        day.start();
     }
 
     public void freibierDay() {
-        FrontendControl.erzählerFrame.mode = ErzählerFrameMode.freibierTag;
-        phaseMode = PhaseMode.freibierTag;
-        tag = new Tag(this);
-        tag.start();
+        FrontendControl.erzählerFrame.mode = ErzählerFrameMode.FREIBIER_DAY;
+        phaseMode = PhaseMode.FREIBIER_DAY;
+        day = new Day(this);
+        day.start();
     }
 
     public Winner checkVictory() {
@@ -192,9 +192,9 @@ public class Game {
                 winner.fraktion = fraktionen.get(0);
                 return winner;
             case 2:
-                if (getLivingPlayerStrings().size() == 2) {
-                    Spieler spieler1 = findSpieler(getLivingPlayerStrings().get(0));
-                    Spieler spieler2 = findSpieler(getLivingPlayerStrings().get(1));
+                if (getLivingSpielerStrings().size() == 2) {
+                    Spieler spieler1 = findSpieler(getLivingSpielerStrings().get(0));
+                    Spieler spieler2 = findSpieler(getLivingSpielerStrings().get(1));
                     if (liebespaar != null && ((liebespaar.spieler1 == spieler1 && liebespaar.spieler2 == spieler2) ||
                             (liebespaar.spieler1 == spieler2 && liebespaar.spieler2 == spieler1))) {
                         return Winner.LIEBESPAAR;
@@ -232,7 +232,7 @@ public class Game {
             }
 
             if (bonusrolle.equals(Tarnumhang.NAME)) {
-                ((Tarnumhang) bonusrolle).seenPlayers = new ArrayList<>();
+                ((Tarnumhang) bonusrolle).seenSpieler = new ArrayList<>();
             }
         }
     }
@@ -301,7 +301,7 @@ public class Game {
         return spielers;
     }
 
-    public ArrayList<Spieler> getLivingPlayer() {
+    public ArrayList<Spieler> getLivingSpieler() {
         ArrayList<Spieler> allSpieler = new ArrayList<>();
 
         for (Spieler currentSpieler : spieler) {
@@ -313,7 +313,7 @@ public class Game {
         return allSpieler;
     }
 
-    public ArrayList<String> getLivingPlayerStrings() {
+    public ArrayList<String> getLivingSpielerStrings() {
         ArrayList<String> allSpieler = new ArrayList<>();
 
         for (Spieler currentSpieler : spieler) {
@@ -325,36 +325,36 @@ public class Game {
         return allSpieler;
     }
 
-    public ArrayList<String> getLivingPlayerOrNoneStrings() {
-        ArrayList<String> allSpieler = getLivingPlayerStrings();
+    public ArrayList<String> getLivingSpielerOrNoneStrings() {
+        ArrayList<String> allSpieler = getLivingSpielerStrings();
         allSpieler.add("");
 
         return allSpieler;
     }
 
-    public FrontendControl getPlayerFrontendControl() {
+    public FrontendControl getSpielerFrontendControl() {
         FrontendControl frontendControl = new FrontendControl();
 
         frontendControl.typeOfContent = FrontendControlType.DROPDOWN;
-        frontendControl.dropdownStrings = getLivingPlayerOrNoneStrings();
+        frontendControl.dropdownStrings = getLivingSpielerOrNoneStrings();
 
         return frontendControl;
     }
 
-    public ArrayList<String> getPlayerCheckSpammableStrings(Rolle rolle) {
-        ArrayList<String> allSpieler = getLivingPlayerOrNoneStrings();
-        if (!rolle.spammable && rolle.besuchtLetzteNacht != null) {
-            allSpieler.remove(rolle.besuchtLetzteNacht.name);
+    public ArrayList<String> getSpielerCheckSpammableStrings(Rolle rolle) {
+        ArrayList<String> allSpieler = getLivingSpielerOrNoneStrings();
+        if (!rolle.spammable && rolle.besuchtLastNight != null) {
+            allSpieler.remove(rolle.besuchtLastNight.name);
         }
 
         return allSpieler;
     }
 
-    public FrontendControl getPlayerCheckSpammableFrontendControl(Rolle rolle) {
+    public FrontendControl getSpielerCheckSpammableFrontendControl(Rolle rolle) {
         FrontendControl frontendControl = new FrontendControl();
 
         frontendControl.typeOfContent = FrontendControlType.DROPDOWN;
-        frontendControl.dropdownStrings = getPlayerCheckSpammableStrings(rolle);
+        frontendControl.dropdownStrings = getSpielerCheckSpammableStrings(rolle);
 
         return frontendControl;
     }
@@ -362,7 +362,7 @@ public class Game {
     public ArrayList<String> getMitspielerCheckSpammableStrings(Rolle rolle) {
         Spieler spieler = findSpielerPerRolle(rolle.name);
 
-        ArrayList<String> mitspieler = getPlayerCheckSpammableStrings(rolle);
+        ArrayList<String> mitspieler = getSpielerCheckSpammableStrings(rolle);
         if (spieler != null) {
             mitspieler.remove(spieler.name);
         }
@@ -379,59 +379,59 @@ public class Game {
         return frontendControl;
     }
 
-    public ArrayList<String> getMainRoleNames() {
+    public ArrayList<String> getHauptrolleNames() {
         ArrayList<String> names = new ArrayList<String>();
 
-        for (Hauptrolle hauptrolle : mainRoles) {
+        for (Hauptrolle hauptrolle : hauptrollen) {
             names.add(hauptrolle.name);
         }
 
         return names;
     }
 
-    public ArrayList<String> getMainRoleInGameNames() {
+    public ArrayList<String> getHauptrolleInGameNames() {
         ArrayList<String> names = new ArrayList<String>();
 
-        for (Hauptrolle hauptrolle : mainRolesInGame) {
+        for (Hauptrolle hauptrolle : hauptrollenInGame) {
             names.add(hauptrolle.name);
         }
 
         return names;
     }
 
-    public ArrayList<String> getPossibleInGameMainRoleNames() {
-        ArrayList<String> mainRolesInGame = getMainRoleInGameNames();
+    public ArrayList<String> getPossibleInGameHauptrolleNames() {
+        ArrayList<String> hauptrollenInGame = getHauptrolleInGameNames();
 
         for (Hauptrolle hauptrolle : mitteHauptrollen) {
             if (!hauptrolle.name.equals(Schattenpriester.NAME)) {
-                mainRolesInGame.remove(hauptrolle.name);
+                hauptrollenInGame.remove(hauptrolle.name);
             }
         }
 
         for (int i = 0; i < Schattenpriester_Fraktion.deadSchattenPriester; i++) {
-            mainRolesInGame.remove(Schattenpriester.NAME);
+            hauptrollenInGame.remove(Schattenpriester.NAME);
         }
 
-        return mainRolesInGame;
+        return hauptrollenInGame;
     }
 
-    public ArrayList<Hauptrolle> getStillAvailableMainRoles() {
-        ArrayList<Hauptrolle> stilleAvalableMainRoles = new ArrayList<>();
+    public ArrayList<Hauptrolle> getStillAvailableHauptrollen() {
+        ArrayList<Hauptrolle> stilleAvalableHauptrollen = new ArrayList<>();
 
-        stilleAvalableMainRoles.addAll(mainRolesInGame);
+        stilleAvalableHauptrollen.addAll(hauptrollenInGame);
 
         for (Spieler spieler : spieler) {
-            stilleAvalableMainRoles.remove(spieler.hauptrolle);
+            stilleAvalableHauptrollen.remove(spieler.hauptrolle);
         }
 
-        return stilleAvalableMainRoles;
+        return stilleAvalableHauptrollen;
     }
 
     public ArrayList<Hauptrolle> getStillAvailableBürger() {
-        ArrayList<Hauptrolle> mainroles = getStillAvailableMainRoles();
+        ArrayList<Hauptrolle> hauptrollen = getStillAvailableHauptrollen();
         ArrayList<Hauptrolle> bürger = new ArrayList<>();
 
-        for (Hauptrolle hauptrolle : mainroles) {
+        for (Hauptrolle hauptrolle : hauptrollen) {
             if (hauptrolle.fraktion.equals(Bürger.NAME)) {
                 bürger.add(hauptrolle);
             }
@@ -440,11 +440,11 @@ public class Game {
         return bürger;
     }
 
-    public ArrayList<String> getStillAvailableMainRoleNames() {
-        ArrayList<Hauptrolle> stilleAvalableMainRoles = getStillAvailableMainRoles();
+    public ArrayList<String> getStillAvailableHauptrolleNames() {
+        ArrayList<Hauptrolle> stilleAvalableHauptrollen = getStillAvailableHauptrollen();
         ArrayList<String> names = new ArrayList<>();
 
-        for (Hauptrolle hauptrolle : stilleAvalableMainRoles) {
+        for (Hauptrolle hauptrolle : stilleAvalableHauptrollen) {
             names.add(hauptrolle.name);
         }
 
@@ -452,7 +452,7 @@ public class Game {
     }
 
     public Hauptrolle findHauptrolle(String wantedName) {
-        for (Hauptrolle hauptrolle : mainRoles) {
+        for (Hauptrolle hauptrolle : hauptrollen) {
             if (hauptrolle.name.equals(wantedName))
                 return hauptrolle;
         }
@@ -460,9 +460,9 @@ public class Game {
         return null;
     }
 
-    public int numberOfOccurencesOfMainRoleInGame(Hauptrolle hauptrolle) {
+    public int numberOfOccurencesOfHauptrolleInGame(Hauptrolle hauptrolle) {
         int occurences = 0;
-        for (Hauptrolle currentHauptrolle : mainRolesInGame) {
+        for (Hauptrolle currentHauptrolle : hauptrollenInGame) {
             if (currentHauptrolle.name.equals(hauptrolle.name)) {
                 occurences++;
             }
@@ -471,62 +471,59 @@ public class Game {
         return occurences;
     }
 
-    public void addAllMainRolesToGame() {
-        mainRolesInGame.addAll(mainRoles);
-        mainRolesInGame.remove(findHauptrolle(Bruder.NAME));
-        mainRolesInGame.add(new Bruder());
-        mainRolesInGame.add(new Bruder()); //zum sortieren der liste
-        mainRolesInGame.remove(findHauptrolle(Dorfbewohner.NAME));
+    public void addAllHauptrollenToGame() {
+        hauptrollenInGame.addAll(hauptrollen);
+        hauptrollenInGame.remove(findHauptrolle(Dorfbewohner.NAME));
     }
 
-    public ArrayList<String> getSecondaryRoleNames() {
+    public ArrayList<String> getBonusrolleNames() {
         ArrayList<String> names = new ArrayList<String>();
 
-        for (Bonusrolle bonusrolle : secondaryRoles) {
+        for (Bonusrolle bonusrolle : bonusrollen) {
             names.add(bonusrolle.name);
         }
 
         return names;
     }
 
-    public ArrayList<String> getSecondaryRoleInGameNames() {
+    public ArrayList<String> getBonusrolleInGameNames() {
         ArrayList<String> names = new ArrayList<String>();
 
-        for (Bonusrolle bonusrolle : secondaryRolesInGame) {
+        for (Bonusrolle bonusrolle : bonusrollenInGame) {
             names.add(bonusrolle.name);
         }
 
         return names;
     }
 
-    public ArrayList<String> getPossibleInGameSecondaryRoleNames() {
-        ArrayList<String> secondaryRoleInGameNames = getSecondaryRoleInGameNames();
+    public ArrayList<String> getPossibleInGameBonusrolleNames() {
+        ArrayList<String> bonusrolleInGameNames = getBonusrolleInGameNames();
 
         for (Bonusrolle bonusrolle : mitteBonusrollen) {
-            secondaryRoleInGameNames.remove(bonusrolle.name);
+            bonusrolleInGameNames.remove(bonusrolle.name);
         }
 
-        return secondaryRoleInGameNames;
+        return bonusrolleInGameNames;
     }
 
-    public ArrayList<Bonusrolle> getStillAvailableSecondaryRoles() {
-        ArrayList<Bonusrolle> stilleAvalableSecondaryRoles = new ArrayList<>();
+    public ArrayList<Bonusrolle> getStillAvailableBonusrollen() {
+        ArrayList<Bonusrolle> stilleAvalableBonusrollen = new ArrayList<>();
 
-        stilleAvalableSecondaryRoles.addAll(secondaryRolesInGame);
+        stilleAvalableBonusrollen.addAll(bonusrollenInGame);
 
         for (Spieler spieler : spieler) {
-            stilleAvalableSecondaryRoles.remove(spieler.bonusrolle);
+            stilleAvalableBonusrollen.remove(spieler.bonusrolle);
         }
 
 
-        return stilleAvalableSecondaryRoles;
+        return stilleAvalableBonusrollen;
     }
 
-    public ArrayList<String> getStillAvailableSecondaryRoleNames() {
-        ArrayList<Bonusrolle> stilleAvalableSecondaryRoles = getStillAvailableSecondaryRoles();
+    public ArrayList<String> getStillAvailableBonusrollenNames() {
+        ArrayList<Bonusrolle> stilleAvalableBonusrollen = getStillAvailableBonusrollen();
         ArrayList<String> names = new ArrayList<>();
 
-        for (Bonusrolle bonusrolle : stilleAvalableSecondaryRoles) {
+        for (Bonusrolle bonusrolle : stilleAvalableBonusrollen) {
             names.add(bonusrolle.name);
         }
 
@@ -534,7 +531,7 @@ public class Game {
     }
 
     public Bonusrolle findBonusrolle(String wantedName) {
-        for (Bonusrolle bonusrolle : secondaryRoles) {
+        for (Bonusrolle bonusrolle : bonusrollen) {
             if (bonusrolle.name.equals(wantedName))
                 return bonusrolle;
         }
@@ -542,9 +539,9 @@ public class Game {
         return null;
     }
 
-    public int numberOfOccurencesOfSecondaryRoleInGame(Bonusrolle bonusrolle) {
+    public int numberOfOccurencesOfBonusrolleInGame(Bonusrolle bonusrolle) {
         int occurences = 0;
-        for (Bonusrolle currentBonusrolle : secondaryRolesInGame) {
+        for (Bonusrolle currentBonusrolle : bonusrollenInGame) {
             if (currentBonusrolle.name.equals(bonusrolle.name)) {
                 occurences++;
             }
@@ -553,106 +550,106 @@ public class Game {
         return occurences;
     }
 
-    public void addAllSecondaryRoles() {
-        secondaryRolesInGame.addAll(secondaryRoles);
-        secondaryRolesInGame.remove(findBonusrolle(Schatten.NAME));
+    public void addAllBonusrollen() {
+        bonusrollenInGame.addAll(bonusrollen);
+        bonusrollenInGame.remove(findBonusrolle(Schatten.NAME));
     }
 
-    public ArrayList<Spieler> getPlayersUnspecified() {
-        ArrayList<Spieler> playersUnspecified = new ArrayList<Spieler>();
-        playersUnspecified = (ArrayList) spieler.clone();
-        playersUnspecified.removeAll(playersSpecified);
-        return playersUnspecified;
+    public ArrayList<Spieler> getSpielerUnspecified() {
+        ArrayList<Spieler> spielerUnspecified = new ArrayList<Spieler>();
+        spielerUnspecified = (ArrayList) spieler.clone();
+        spielerUnspecified.removeAll(spielerSpecified);
+        return spielerUnspecified;
     }
 
-    public ArrayList<String> getPlayersUnspecifiedStrings() {
-        ArrayList<String> playersUnspecifiedStrings = new ArrayList<>();
+    public ArrayList<String> getSpielerUnspecifiedStrings() {
+        ArrayList<String> spielerUnspecifiedStrings = new ArrayList<>();
 
-        for (Spieler spieler : getPlayersUnspecified()) {
-            playersUnspecifiedStrings.add(spieler.name);
+        for (Spieler spieler : getSpielerUnspecified()) {
+            spielerUnspecifiedStrings.add(spieler.name);
         }
 
-        return playersUnspecifiedStrings;
+        return spielerUnspecifiedStrings;
     }
 
-    public ArrayList<Hauptrolle> getMainRolesSpecified() {
-        ArrayList<Hauptrolle> mainRolesSpecified = new ArrayList<>();
+    public ArrayList<Hauptrolle> getHauptrollenSpecified() {
+        ArrayList<Hauptrolle> hauptrollenSpecified = new ArrayList<>();
 
-        for (Spieler spieler : playersSpecified) {
-            mainRolesSpecified.add(spieler.hauptrolle);
+        for (Spieler spieler : spielerSpecified) {
+            hauptrollenSpecified.add(spieler.hauptrolle);
         }
 
-        return mainRolesSpecified;
+        return hauptrollenSpecified;
     }
 
-    public ArrayList<String> getMainRolesSpecifiedStrings() {
-        ArrayList<String> mainRolesSpecifiedStrings = new ArrayList<>();
+    public ArrayList<String> getHauptrollenSpecifiedStrings() {
+        ArrayList<String> hauptrollenSpecifiedStrings = new ArrayList<>();
 
-        for (Hauptrolle hauptrolle : getMainRolesSpecified()) {
+        for (Hauptrolle hauptrolle : getHauptrollenSpecified()) {
             if (hauptrolle != null) {
-                mainRolesSpecifiedStrings.add(hauptrolle.name);
+                hauptrollenSpecifiedStrings.add(hauptrolle.name);
             }
         }
 
-        return mainRolesSpecifiedStrings;
+        return hauptrollenSpecifiedStrings;
     }
 
-    public ArrayList<Hauptrolle> getMainRolesUnspecified() {
-        ArrayList<Hauptrolle> mainRolesUnspecified = (ArrayList) mainRolesInGame.clone();
+    public ArrayList<Hauptrolle> getHauptrollenUnspecified() {
+        ArrayList<Hauptrolle> hauptrollenUnspecified = (ArrayList) hauptrollenInGame.clone();
 
-        MyCollectionHelper.removeAllHauptrollen(mainRolesUnspecified, getMainRolesSpecified());
+        MyCollectionHelper.removeAllHauptrollen(hauptrollenUnspecified, getHauptrollenSpecified());
 
-        return mainRolesUnspecified;
+        return hauptrollenUnspecified;
     }
 
-    public ArrayList<String> getMainRolesUnspecifiedStrings() {
-        ArrayList<String> mainRolesUnspecifiedStrings = new ArrayList<>();
+    public ArrayList<String> getHauptrollenUnspecifiedStrings() {
+        ArrayList<String> hauptrollenUnspecifiedStrings = new ArrayList<>();
 
-        for (Hauptrolle hauptrolle : getMainRolesUnspecified()) {
-            mainRolesUnspecifiedStrings.add(hauptrolle.name);
+        for (Hauptrolle hauptrolle : getHauptrollenUnspecified()) {
+            hauptrollenUnspecifiedStrings.add(hauptrolle.name);
         }
 
-        return mainRolesUnspecifiedStrings;
+        return hauptrollenUnspecifiedStrings;
     }
 
-    public ArrayList<Bonusrolle> getSecondaryRolesSpecified() {
-        ArrayList<Bonusrolle> secondaryRolesSpecified = new ArrayList<>();
+    public ArrayList<Bonusrolle> getBonusrollenSpecified() {
+        ArrayList<Bonusrolle> bonusrollenSpecified = new ArrayList<>();
 
-        for (Spieler spieler : playersSpecified) {
-            secondaryRolesSpecified.add(spieler.bonusrolle);
+        for (Spieler spieler : spielerSpecified) {
+            bonusrollenSpecified.add(spieler.bonusrolle);
         }
 
-        return secondaryRolesSpecified;
+        return bonusrollenSpecified;
     }
 
-    public ArrayList<String> getSecondaryRoleSpecifiedStrings() {
-        ArrayList<String> secondaryRolesSpecifiedStrings = new ArrayList<>();
+    public ArrayList<String> getBonusrolleSpecifiedStrings() {
+        ArrayList<String> bonusrollenSpecifiedStrings = new ArrayList<>();
 
-        for (Bonusrolle bonusrolle : getSecondaryRolesSpecified()) {
+        for (Bonusrolle bonusrolle : getBonusrollenSpecified()) {
             if (bonusrolle != null) {
-                secondaryRolesSpecifiedStrings.add(bonusrolle.name);
+                bonusrollenSpecifiedStrings.add(bonusrolle.name);
             }
         }
 
-        return secondaryRolesSpecifiedStrings;
+        return bonusrollenSpecifiedStrings;
     }
 
-    public ArrayList<Bonusrolle> getSecondaryRolesUnspecified() {
-        ArrayList<Bonusrolle> secondaryRolesUnspecified = new ArrayList<Bonusrolle>();
-        secondaryRolesUnspecified = (ArrayList) secondaryRolesInGame.clone();
+    public ArrayList<Bonusrolle> getBonusrollenUnspecified() {
+        ArrayList<Bonusrolle> bonusrollenUnspecified = new ArrayList<Bonusrolle>();
+        bonusrollenUnspecified = (ArrayList) bonusrollenInGame.clone();
 
-        MyCollectionHelper.removeAllNebenrollen(secondaryRolesUnspecified, getSecondaryRolesSpecified());
+        MyCollectionHelper.removeAllBonusrollen(bonusrollenUnspecified, getBonusrollenSpecified());
 
-        return secondaryRolesUnspecified;
+        return bonusrollenUnspecified;
     }
 
-    public ArrayList<String> getSecondaryRolesUnspecifiedStrings() {
-        ArrayList<String> secondaryRolesUnspecifiedStrings = new ArrayList<>();
+    public ArrayList<String> getBonusrollenUnspecifiedStrings() {
+        ArrayList<String> bonusrollenUnspecifiedStrings = new ArrayList<>();
 
-        for (Bonusrolle bonusrolle : getSecondaryRolesUnspecified()) {
-            secondaryRolesUnspecifiedStrings.add(bonusrolle.name);
+        for (Bonusrolle bonusrolle : getBonusrollenUnspecified()) {
+            bonusrollenUnspecifiedStrings.add(bonusrolle.name);
         }
 
-        return secondaryRolesUnspecifiedStrings;
+        return bonusrollenUnspecifiedStrings;
     }
 }

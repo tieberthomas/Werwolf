@@ -28,7 +28,7 @@ public class Tarnumhang extends Bonusrolle {
     private ArrayList<String> umhänge = new ArrayList<>(Arrays.asList(
             Lamm.NAME, Wolfspelz.NAME, Vampirumhang.NAME, Schattenkutte.NAME));
 
-    public ArrayList<String> seenPlayers = new ArrayList<>(); //TODO wenn dieb Tarnumhang nimmt dann neu anlegen
+    public ArrayList<String> seenSpieler = new ArrayList<>(); //TODO wenn dieb Tarnumhang nimmt dann neu anlegen
 
     public Tarnumhang() {
         this.name = NAME;
@@ -58,10 +58,10 @@ public class Tarnumhang extends Bonusrolle {
 
     private String getUnseenTräger() {
         ArrayList<String> allTräger = getAllTräger();
-        allTräger.removeAll(seenPlayers);
+        allTräger.removeAll(seenSpieler);
 
         if (allTräger.size() == 0) {
-            seenPlayers = new ArrayList<>();
+            seenSpieler = new ArrayList<>();
             allTräger = getAllTräger();
         }
 

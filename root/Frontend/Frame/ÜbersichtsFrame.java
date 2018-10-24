@@ -4,8 +4,8 @@ import root.Frontend.Factories.ÜbersichtsPageFactory;
 import root.Frontend.Page.Page;
 import root.Frontend.Page.PageTable;
 import root.Persona.Rolle;
-import root.Phases.ErsteNacht;
-import root.Phases.Nacht;
+import root.Phases.FirstNight;
+import root.Phases.NormalNight;
 import root.Phases.PhaseMode;
 import root.Spieler;
 import root.mechanics.Game;
@@ -24,8 +24,8 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener {
     private Color shieldedColor = Color.GREEN;
 
     public PageTable playerTable;
-    public PageTable mainRoleTable;
-    public PageTable secondaryRoleTable;
+    public PageTable hauptrolleTable;
+    public PageTable bonusrolleTable;
     public PageTable aliveTable;
     public PageTable activeTable;
     public PageTable protectedTable;
@@ -57,8 +57,8 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener {
 
     public void refresh() {
         refreshPlayerTable();
-        refreshMainRoleTable();
-        refreshSecondaryRoleTable();
+        refreshHauptrolleTable();
+        refreshBonusrolleTable();
         refreshAliveTable();
         refreshActiveTable();
         refreshProtectedTable();
@@ -79,8 +79,8 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener {
                 label.setBackground(Spieler.ALIVE_BACKGROUND_COLOR);
             }
             label.setOpaque(true);
-            if ((game.phaseMode == PhaseMode.ersteNacht && ErsteNacht.playersAwake.contains(spieler)) ||
-                    (game.phaseMode == PhaseMode.nacht && Nacht.playersAwake.contains(spieler))) {
+            if ((game.phaseMode == PhaseMode.FIRST_NIGHT && FirstNight.spielerAwake.contains(spieler)) ||
+                    (game.phaseMode == PhaseMode.NORMAL_NIGHT && NormalNight.spielerAwake.contains(spieler))) {
                 Color borderColor = defaultBorderColor;
                 //hier kann die rahmen farbe geändert werden wenn notwendig
                 label.setBorder(BorderFactory.createLineBorder(borderColor, 2));
@@ -92,29 +92,29 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener {
         }
     }
 
-    private void refreshMainRoleTable() {
-        mainRoleTable.tableElements.clear();
+    private void refreshHauptrolleTable() {
+        hauptrolleTable.tableElements.clear();
 
-        mainRoleTable.add(new JLabel("Hauptrolle"));
+        hauptrolleTable.add(new JLabel("Hauptrolle"));
 
         for (Spieler spieler : game.spieler) {
             Rolle rolle = spieler.hauptrolle;
 
-            if (mainRoleTable.tableElements.size() < game.spieler.size() + 1) {
-                mainRoleTable.add(generateColorLabel(spieler, rolle));
+            if (hauptrolleTable.tableElements.size() < game.spieler.size() + 1) {
+                hauptrolleTable.add(generateColorLabel(spieler, rolle));
             }
         }
     }
 
-    private void refreshSecondaryRoleTable() {
-        secondaryRoleTable.tableElements.clear();
+    private void refreshBonusrolleTable() {
+        bonusrolleTable.tableElements.clear();
 
-        secondaryRoleTable.add(new JLabel("Bonusrolle"));
+        bonusrolleTable.add(new JLabel("Bonusrolle"));
 
         for (Spieler spieler : game.spieler) {
             Rolle rolle = spieler.bonusrolle;
-            if (secondaryRoleTable.tableElements.size() < game.spieler.size() + 1) {
-                secondaryRoleTable.add(generateColorLabel(spieler, rolle));
+            if (bonusrolleTable.tableElements.size() < game.spieler.size() + 1) {
+                bonusrolleTable.add(generateColorLabel(spieler, rolle));
             }
         }
     }

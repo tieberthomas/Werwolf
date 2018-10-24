@@ -27,7 +27,7 @@ public class DataManager {
     public void loadLastGame() {
         GameDto lastGame = fileManager.readGame(ResourcePath.LAST_GAME_FILE);
         if (lastGame != null) {
-            evaluatePlayers(lastGame.players);
+            evaluateSpieler(lastGame.spieler);
             evaluateComposition(lastGame.compositionDto, false);
         } else {
             System.out.println("no last game could be found");
@@ -38,37 +38,37 @@ public class DataManager {
         evaluateComposition(composition, true);
     }
 
-    private void evaluateComposition(CompositionDto composition, boolean evaluatePlayers) {
-        if (evaluatePlayers) {
+    private void evaluateComposition(CompositionDto composition, boolean evaluateSpieler) {
+        if (evaluateSpieler) {
             for (String spielerName : composition.spieler) {
                 game.spieler.add(new Spieler(spielerName));
             }
         }
 
         for (String hauptRollenName : composition.hauptrollen) {
-            game.mainRolesInGame.add(game.findHauptrolle(hauptRollenName));
+            game.hauptrollenInGame.add(game.findHauptrolle(hauptRollenName));
         }
 
         for (String bonusRollenName : composition.bonusrollen) {
-            game.secondaryRolesInGame.add(game.findBonusrolle(bonusRollenName));
+            game.bonusrollenInGame.add(game.findBonusrolle(bonusRollenName));
         }
     }
 
-    private void evaluatePlayers(ArrayList<PlayerDto> players) {
-        for (PlayerDto player : players) {
-            Spieler newSpieler = new Spieler(player.name, player.hauptrolle, player.bonusrolle);
-            game.mainRolesInGame.add(newSpieler.hauptrolle);
-            game.secondaryRolesInGame.add(newSpieler.bonusrolle);
+    private void evaluateSpieler(ArrayList<SpielerDto> spieler) {
+        for (SpielerDto currentSpieler : spieler) {
+            Spieler newSpieler = new Spieler(currentSpieler.name, currentSpieler.hauptrolle, currentSpieler.bonusrolle);
+            game.hauptrollenInGame.add(newSpieler.hauptrolle);
+            game.bonusrollenInGame.add(newSpieler.bonusrolle);
         }
     }
 
     public void writeComposition() {
-        fileManager.writeComposition(ResourcePath.LAST_GAME_COMPOSITION_FILE, game.getLivingPlayerStrings(),
-                game.getMainRoleInGameNames(), game.getSecondaryRoleInGameNames());
+        fileManager.writeComposition(ResourcePath.LAST_GAME_COMPOSITION_FILE, game.getLivingSpielerStrings(),
+                game.getHauptrolleInGameNames(), game.getBonusrolleInGameNames());
     }
 
     public void writeGame() {
-        fileManager.writeGame(ResourcePath.LAST_GAME_FILE, game.getLivingPlayer(),
-                game.getMainRolesUnspecifiedStrings(), game.getSecondaryRolesUnspecifiedStrings());
+        fileManager.writeGame(ResourcePath.LAST_GAME_FILE, game.getLivingSpieler(),
+                game.getHauptrollenUnspecifiedStrings(), game.getBonusrollenUnspecifiedStrings());
     }
 }

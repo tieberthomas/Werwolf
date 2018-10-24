@@ -21,7 +21,7 @@ public class TimeUpdater {
                 public void run() {
                     time++;
                     generateTimeString();
-                    if(spielerframe!=null && spielerframe.clockLabel!=null) {
+                    if (spielerframe != null && spielerframe.clockLabel != null) {
                         spielerframe.clockLabel.setText(timestring);
                     }
                 }

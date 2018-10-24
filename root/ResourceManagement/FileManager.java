@@ -2,14 +2,7 @@ package root.ResourceManagement;
 
 import root.Spieler;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,16 +38,16 @@ public class FileManager {
     boolean writeComposition(String filePath, List<String> spieler, List<String> hauptrollen, List<String> bonusrollen) {
         File file = createNewFile(filePath);
 
-        if(file == null) {
+        if (file == null) {
             return false;
         }
 
         try (Writer writer = new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8)) {
-                writeArrayList(writer, spieler);
-                writeArrayList(writer, hauptrollen);
-                writeArrayList(writer, bonusrollen);
+            writeArrayList(writer, spieler);
+            writeArrayList(writer, hauptrollen);
+            writeArrayList(writer, bonusrollen);
 
-                writer.flush();
+            writer.flush();
         } catch (IOException e) {
             System.out.println("Something went wrong while writing the composition file.");
             return false;
@@ -70,9 +63,9 @@ public class FileManager {
             String line;
 
             line = br.readLine();
-            int numberOfPlayers = Integer.parseInt(line);
+            int numberOfSpieler = Integer.parseInt(line);
 
-            for (int i = 0; i < numberOfPlayers; i++) {
+            for (int i = 0; i < numberOfSpieler; i++) {
                 line = br.readLine();
                 String[] fractals = line.split(" ");
 
@@ -80,8 +73,8 @@ public class FileManager {
                 String hauptrolleString = fractals[1].replace("*", " ");
                 String bonusrolleString = fractals[2].replace("*", " ");
 
-                PlayerDto playerDto = new PlayerDto(name, hauptrolleString, bonusrolleString);
-                gameDto.players.add(playerDto);
+                SpielerDto spielerDto = new SpielerDto(name, hauptrolleString, bonusrolleString);
+                gameDto.spieler.add(spielerDto);
             }
 
             gameDto.compositionDto.hauptrollen = readList(br);
@@ -94,10 +87,10 @@ public class FileManager {
         }
     }
 
-    boolean writeGame(String filePath, List<Spieler> spieler, List<String> mainRolesLeft, List<String> secondaryRolesLeft) {
+    boolean writeGame(String filePath, List<Spieler> spieler, List<String> hauptrollenLeft, List<String> bonusrollenLeft) {
         File file = createNewFile(filePath);
 
-        if(file == null) {
+        if (file == null) {
             return false;
         }
 
@@ -105,12 +98,12 @@ public class FileManager {
             ArrayList<String> compositionStrings = new ArrayList<>();
 
             for (Spieler currentSpieler : spieler) {
-                compositionStrings.add(buildPlayerString(currentSpieler));
+                compositionStrings.add(buildSpielerString(currentSpieler));
             }
 
             writeArrayList(writer, compositionStrings);
-            writeArrayList(writer, mainRolesLeft);
-            writeArrayList(writer, secondaryRolesLeft);
+            writeArrayList(writer, hauptrollenLeft);
+            writeArrayList(writer, bonusrollenLeft);
 
             writer.flush();
         } catch (IOException e) {
@@ -134,7 +127,7 @@ public class FileManager {
     }
 
 
-    private String buildPlayerString(Spieler spieler) {
+    private String buildSpielerString(Spieler spieler) {
         String name = spieler.name.replace(" ", "*");
         String hauptrolle = spieler.hauptrolle.name.replace(" ", "*");
         String bonusrolle = spieler.bonusrolle.name.replace(" ", "*");
@@ -154,9 +147,9 @@ public class FileManager {
     private ArrayList<String> readList(BufferedReader br) throws IOException {
         ArrayList<String> listStrings = new ArrayList<>();
         String line = br.readLine();
-        int numberOfSecondaryRoles = Integer.parseInt(line);
+        int numberOfBonusrollen = Integer.parseInt(line);
 
-        for (int i = 0; i < numberOfSecondaryRoles; i++) {
+        for (int i = 0; i < numberOfBonusrollen; i++) {
             line = br.readLine();
             listStrings.add(line);
         }

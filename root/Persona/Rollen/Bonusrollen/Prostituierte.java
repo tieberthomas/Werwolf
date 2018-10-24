@@ -35,16 +35,16 @@ public class Prostituierte extends Bonusrolle {
 
     @Override
     public FrontendControl getDropdownOptions() {
-        return game.getPlayerCheckSpammableFrontendControl(this);
+        return game.getSpielerCheckSpammableFrontendControl(this);
     }
 
     @Override
     public void processChosenOption(String chosenOption) {
-        Spieler chosenPlayer = game.findSpieler(chosenOption);
-        if (chosenPlayer != null && !chosenPlayer.equals(game.findSpielerPerRolle(NAME))) {
-            besucht = chosenPlayer;
+        Spieler chosenSpieler = game.findSpieler(chosenOption);
+        if (chosenSpieler != null && !chosenSpieler.equals(game.findSpielerPerRolle(NAME))) {
+            besucht = chosenSpieler;
 
-            host = chosenPlayer;
+            host = chosenSpieler;
         } else {
             host = game.findSpielerPerRolle(NAME);
         }

@@ -8,10 +8,10 @@ import root.Frontend.Page.PageElement;
 import root.Frontend.Page.PageTable;
 import root.Frontend.Page.Predecessor;
 import root.Persona.Bonusrolle;
-import root.Phases.ErsteNacht;
-import root.Phases.Nacht;
+import root.Phases.FirstNight;
 import root.Phases.NightBuilding.Statement;
 import root.Phases.NightBuilding.StatementRolle;
+import root.Phases.NormalNight;
 
 import javax.swing.*;
 import java.awt.*;
@@ -156,8 +156,8 @@ public class ErzählerPageElementFactory {
         return "Spieleranzahl: " + Integer.toString(numberOfPlayers);
     }
 
-    public String generateCounterLabelTitle(int numberOfPlayers, int numberOfRoles) {
-        return Integer.toString(numberOfRoles) + " / " + Integer.toString(numberOfPlayers);
+    public String generateCounterLabelTitle(int numberOfPlayers, int numberOfRollen) {
+        return Integer.toString(numberOfRollen) + " / " + Integer.toString(numberOfPlayers);
     }
 
     public PageTable generateButtonTable(PageTable buttonTable, Predecessor predecessorY) {
@@ -177,8 +177,8 @@ public class ErzählerPageElementFactory {
     public void generateTableButtons(ArrayList<String> stringsToFillIn, ArrayList<JButton> tableButtons, PageTable pageTable) {
         tableButtons.clear();
         pageTable.tableElements.clear();
-        for (String role : stringsToFillIn) {
-            JButton button = new JButton(role);
+        for (String rolle : stringsToFillIn) {
+            JButton button = new JButton(rolle);
             button.addActionListener(erzählerFrame);
             button.setMargin(new Insets(0, 0, 0, 0));
             button.setBackground(Bonusrolle.DEFAULT_COLOR);
@@ -217,17 +217,17 @@ public class ErzählerPageElementFactory {
     }
 
     public PageElement generateNightLabel(String currentStatement) {
-        ArrayList<String> nachtPunkte = new ArrayList<>();
-        ArrayList<String> nachtPunkteFarben = new ArrayList<>();
+        ArrayList<String> statementStrings = new ArrayList<>();
+        ArrayList<String> statementColors = new ArrayList<>();
 
         Boolean found = false;
 
         ArrayList<Statement> statements = new ArrayList<>();
 
-        if (erzählerFrame.mode == ErzählerFrameMode.ersteNacht) {
-            statements = ErsteNacht.statements;
-        } else if (erzählerFrame.mode == ErzählerFrameMode.nacht) {
-            statements = Nacht.statements;
+        if (erzählerFrame.mode == ErzählerFrameMode.FIRST_NIGHT) {
+            statements = FirstNight.statements;
+        } else if (erzählerFrame.mode == ErzählerFrameMode.NORMAL_NIGHT) {
+            statements = NormalNight.statements;
         }
 
         for (Statement statement : statements) {
@@ -241,31 +241,31 @@ public class ErzählerPageElementFactory {
                     }
                 }
 
-                nachtPunkte.add(beschreibung);
+                statementStrings.add(beschreibung);
 
                 if (statement.isLebend()) {
                     if (statement.identifier.equals(currentStatement)) {
-                        nachtPunkteFarben.add(HTMLStringBuilder.yellow);
+                        statementColors.add(HTMLStringBuilder.yellow);
                         found = true;
                     } else {
                         if (!found) {
-                            nachtPunkteFarben.add(HTMLStringBuilder.gray);
+                            statementColors.add(HTMLStringBuilder.gray);
                         } else {
-                            nachtPunkteFarben.add(HTMLStringBuilder.white);
+                            statementColors.add(HTMLStringBuilder.white);
                         }
                     }
                 } else {
                     if (statement.identifier.equals(currentStatement)) {
-                        nachtPunkteFarben.add(HTMLStringBuilder.blue);
+                        statementColors.add(HTMLStringBuilder.blue);
                         found = true;
                     } else {
-                        nachtPunkteFarben.add(HTMLStringBuilder.gray);
+                        statementColors.add(HTMLStringBuilder.gray);
                     }
                 }
             }
         }
 
-        String nightText = HTMLStringBuilder.buildHTMLText(nachtPunkte, nachtPunkteFarben);
+        String nightText = HTMLStringBuilder.buildHTMLText(statementStrings, statementColors);
 
         JLabel nightJLabel = new JLabel(nightText);
         nightJLabel.setVerticalAlignment(SwingConstants.TOP);

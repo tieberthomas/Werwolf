@@ -51,16 +51,16 @@ public class Werwölfe extends Fraktion {
 
     @Override
     public void processChosenOption(String chosenOption) {
-        Spieler chosenPlayer = game.findSpieler(chosenOption);
-        if (chosenPlayer != null) {
-            Opfer.addVictim(chosenPlayer, this);
+        Spieler chosenSpieler = game.findSpieler(chosenOption);
+        if (chosenSpieler != null) {
+            Opfer.addOpfer(chosenSpieler, this);
         }
     }
 
     @Override
     public FrontendControl getDropdownOptions() {
         FrontendControlType typeOfContent = FrontendControlType.DROPDOWN_IMAGE;
-        ArrayList<String> strings = game.getLivingPlayerOrNoneStrings();
+        ArrayList<String> strings = game.getLivingSpielerOrNoneStrings();
         String imagePath = zeigekarte.imagePath;
         if (blutWolfIsAktiv()) {
             imagePath = new Blutmond().imagePath;

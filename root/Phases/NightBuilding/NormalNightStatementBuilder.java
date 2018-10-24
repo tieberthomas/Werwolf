@@ -5,27 +5,9 @@ import root.Persona.Fraktionen.Schattenpriester_Fraktion;
 import root.Persona.Fraktionen.Vampire;
 import root.Persona.Fraktionen.Werwölfe;
 import root.Persona.Rolle;
-import root.Persona.Rollen.Bonusrollen.Analytiker;
-import root.Persona.Rollen.Bonusrollen.Archivar;
-import root.Persona.Rollen.Bonusrollen.Dieb;
-import root.Persona.Rollen.Bonusrollen.Gefängniswärter;
-import root.Persona.Rollen.Bonusrollen.Konditor;
-import root.Persona.Rollen.Bonusrollen.Konditorlehrling;
-import root.Persona.Rollen.Bonusrollen.Nachbar;
-import root.Persona.Rollen.Bonusrollen.Prostituierte;
-import root.Persona.Rollen.Bonusrollen.Schnüffler;
-import root.Persona.Rollen.Bonusrollen.Spurenleser;
-import root.Persona.Rollen.Bonusrollen.Tarnumhang;
-import root.Persona.Rollen.Bonusrollen.Totengräber;
-import root.Persona.Rollen.Bonusrollen.Wahrsager;
+import root.Persona.Rollen.Bonusrollen.*;
 import root.Persona.Rollen.Constants.WölfinState;
-import root.Persona.Rollen.Hauptrollen.Bürger.HoldeMaid;
-import root.Persona.Rollen.Hauptrollen.Bürger.Orakel;
-import root.Persona.Rollen.Hauptrollen.Bürger.Riese;
-import root.Persona.Rollen.Hauptrollen.Bürger.Schamanin;
-import root.Persona.Rollen.Hauptrollen.Bürger.Seherin;
-import root.Persona.Rollen.Hauptrollen.Bürger.Späher;
-import root.Persona.Rollen.Hauptrollen.Bürger.Wirt;
+import root.Persona.Rollen.Hauptrollen.Bürger.*;
 import root.Persona.Rollen.Hauptrollen.Vampire.GrafVladimir;
 import root.Persona.Rollen.Hauptrollen.Vampire.LadyAleera;
 import root.Persona.Rollen.Hauptrollen.Vampire.MissVerona;
@@ -43,7 +25,7 @@ import java.util.ArrayList;
 public class NormalNightStatementBuilder {
     public static Game game;
 
-    public static ArrayList<Statement> normaleNachtBuildStatements() {
+    public static ArrayList<Statement> normalNightBuildStatements() {
         ArrayList<Statement> statements = new ArrayList<>();
 
         statements.add(IndieStatements.getAlleSchlafenEinStatement());
@@ -98,6 +80,7 @@ public class NormalNightStatementBuilder {
         addStatementRolle(statements, Seherin.NAME);
         addStatementRolle(statements, Späher.NAME);
         addStatementRolle(statements, Orakel.NAME);
+        addStatementRolle(statements, Medium.NAME);
 
         addStatementRolle(statements, GrafVladimir.NAME);
 
@@ -106,7 +89,7 @@ public class NormalNightStatementBuilder {
 
         addStatementRolle(statements, Wahrsager.NAME);
 
-        if (game.getSecondaryRoleInGameNames().contains(Konditorlehrling.NAME)) {
+        if (game.getBonusrolleInGameNames().contains(Konditorlehrling.NAME)) {
             addStatementRolle(statements, Konditorlehrling.NAME);
         } else {
             addStatementRolle(statements, Konditor.NAME);

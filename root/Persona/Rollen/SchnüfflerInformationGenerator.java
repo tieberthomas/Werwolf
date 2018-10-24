@@ -19,21 +19,21 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class SchnüfflerInformationGenerator {
-    private Spieler player;
+    private Spieler spieler;
     private Random random = new Random();
     private ArrayList<InformationType> erhaltbareInformationen = new ArrayList<>(Arrays.asList(
-            InformationType.FRAKTION, InformationType.TÖTEND, InformationType.NEBENROLLENTYPE));
+            InformationType.FRAKTION, InformationType.TÖTEND, InformationType.BONUSROLLEN_TYPE));
     private ArrayList<BonusrollenType> bonusrollenTypes = new ArrayList<>(Arrays.asList(
             new Aktiv(), new Passiv(), new Informativ()));
 
-    public SchnüfflerInformationGenerator(Spieler player) {
-        this.player = player;
+    public SchnüfflerInformationGenerator(Spieler spieler) {
+        this.spieler = spieler;
     }
 
     public SchnüfflerInformation generateInformation() {
         Bonusrolle schnüffler = Schnüffler.game.findSpielerPerRolle(Schnüffler.NAME).bonusrolle;
-        if (schnüffler.showTarnumhang(schnüffler, player)) {
-            return new SchnüfflerInformation(player.name);
+        if (schnüffler.showTarnumhang(schnüffler, spieler)) {
+            return new SchnüfflerInformation(spieler.name);
         }
 
         InformationType correctInformation = decideCorrectInformation();
@@ -53,18 +53,18 @@ public class SchnüfflerInformationGenerator {
                     isCorrectInformation = correctInformation.equals(InformationType.TÖTEND);
                     tötend = generateTötendInformation(isCorrectInformation);
                     break;
-                case NEBENROLLENTYPE:
-                    isCorrectInformation = correctInformation.equals(InformationType.NEBENROLLENTYPE);
-                    bonusrollenType = generateNebenrollenInformation(isCorrectInformation);
+                case BONUSROLLEN_TYPE:
+                    isCorrectInformation = correctInformation.equals(InformationType.BONUSROLLEN_TYPE);
+                    bonusrollenType = generateBonusrollenInformation(isCorrectInformation);
                     break;
             }
         }
 
-        return new SchnüfflerInformation(player.name, fraktion, tötend, bonusrollenType);
+        return new SchnüfflerInformation(spieler.name, fraktion, tötend, bonusrollenType);
     }
 
-    private boolean playerIsSchamanin() {
-        return player.hauptrolle.name.equals(Schamanin.NAME);
+    private boolean spielerIsSchamanin() {
+        return spieler.hauptrolle.name.equals(Schamanin.NAME);
     }
 
     private boolean schnüfflerIsNotBuerger() {
@@ -83,21 +83,21 @@ public class SchnüfflerInformationGenerator {
             case 1:
                 return InformationType.TÖTEND;
             case 2:
-                return InformationType.NEBENROLLENTYPE;
+                return InformationType.BONUSROLLEN_TYPE;
 
         }
 
-        return InformationType.NEBENROLLENTYPE;
+        return InformationType.BONUSROLLEN_TYPE;
     }
 
     private Fraktion generateFraktionInformation(boolean correctInformation) {
-        Fraktion playerFraktion = player.hauptrolle.fraktion;
+        Fraktion spielerFraktion = spieler.hauptrolle.fraktion;
         if (correctInformation) {
-            return playerFraktion;
+            return spielerFraktion;
         }
 
         ArrayList<Fraktion> fraktionen = Fraktion.getLivingFraktionen();
-        removeFraktion(fraktionen, playerFraktion);
+        removeFraktion(fraktionen, spielerFraktion);
 
         int numberOfFraktionen = fraktionen.size();
         int decision = random.nextInt(numberOfFraktionen);
@@ -117,7 +117,7 @@ public class SchnüfflerInformationGenerator {
     }
 
     private SpäherZeigekarte generateTötendInformation(boolean correctInformation) {
-        boolean isKilling = player.hauptrolle.killing;
+        boolean isKilling = spieler.hauptrolle.killing;
 
         if (!correctInformation) { //TODO geht mit XOR ??
             isKilling = !isKilling;
@@ -126,21 +126,21 @@ public class SchnüfflerInformationGenerator {
         return SpäherZeigekarte.getZeigekarte(isKilling);
     }
 
-    private BonusrollenType generateNebenrollenInformation(boolean correctInformation) {
-        BonusrollenType playerBonusrollenType = player.bonusrolle.type;
+    private BonusrollenType generateBonusrollenInformation(boolean correctInformation) {
+        BonusrollenType spielerBonusrollenType = spieler.bonusrolle.type;
         if (correctInformation) {
-            return playerBonusrollenType;
+            return spielerBonusrollenType;
         }
 
-        removeNebenrollenType(bonusrollenTypes, playerBonusrollenType);
+        removeBonusrollenType(bonusrollenTypes, spielerBonusrollenType);
 
-        int numberOfNebenrollenTypes = bonusrollenTypes.size();
-        int decision = random.nextInt(numberOfNebenrollenTypes);
+        int numberOfBonusrollenTypes = bonusrollenTypes.size();
+        int decision = random.nextInt(numberOfBonusrollenTypes);
 
         return bonusrollenTypes.get(decision);
     }
 
-    private void removeNebenrollenType(ArrayList<BonusrollenType> bonusrollenTypes, BonusrollenType bonusrollenTypeToRemove) {
+    private void removeBonusrollenType(ArrayList<BonusrollenType> bonusrollenTypes, BonusrollenType bonusrollenTypeToRemove) {
         BonusrollenType bonusrollenTypeInListToRemove = null;
         for (BonusrollenType bonusrollenType : bonusrollenTypes) {
             if (bonusrollenType.equals(bonusrollenTypeToRemove)) {

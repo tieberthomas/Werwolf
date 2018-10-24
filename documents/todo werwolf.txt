@@ -15,6 +15,7 @@ gefängniswärter aufgebraucht
 
 
 ToDo:
+StatementType ROLLE_CHOOSE_SPIELER
 Fix Problem Dieb
 new Rolle vermeiden: immer von Liste in Game holen
 Liste für buttons Liste für Rollen
@@ -27,7 +28,7 @@ Schattenpriester und Tote farblich unterscheiden
 Statements farblich markieren nach status
 seher bamboozlekarten dem erzähler zeigen während der seher aktion damit dieser nicht verwirrt ist
 siegüberprüfung generischer machen (tag und nacht)
-tauschkarten quasi aus secondaryRolesInGame removen (für nachzügler) aber nicht wirklich, weil ja der spielerscreen am tag anzeigen soll dass es drin war
+tauschkarten quasi aus bonusrollenInGame removen (für nachzügler) aber nicht wirklich, weil ja der spielerscreen am tag anzeigen soll dass es drin war
 bei übersichtspage rahmen von mehreren personen anzeigen (die nicht die ganze fraktion sind)
 showDeaktivPages und showTotPages schön zusammenfassen zu einer Methode die eine Zeigekarte kriegt
 markup für vampirumhang geschützen spieler bei lady aleera überlegen (für erzähler)

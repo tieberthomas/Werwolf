@@ -16,10 +16,9 @@ public class Liebespaar {
     public Spieler spieler2;
 
     public ArrayList<String> getDropdownOptions() {
-        this.game = game;
-        ArrayList<String> playerStrings = game.getLivingPlayerStrings();
-        playerStrings.add(ZUFÄLLIG);
-        return playerStrings;
+        ArrayList<String> spielerStrings = game.getLivingSpielerStrings();
+        spielerStrings.add(ZUFÄLLIG);
+        return spielerStrings;
     }
 
     public Liebespaar(Game game) {
@@ -54,7 +53,7 @@ public class Liebespaar {
         return spieler.get(randomNum);
     }
 
-    public Spieler getPlayerToDie() {
+    public Spieler getSpielerToDie() {
         if (spieler1 != null && spieler2 != null) {
             if (spieler1.lebend && !spieler2.lebend) {
                 return spieler1;

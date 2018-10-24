@@ -5,12 +5,8 @@ import root.Persona.Bonusrolle;
 import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Überläufer_Fraktion;
 import root.Persona.Hauptrolle;
-import root.Persona.Rollen.Constants.Zeigekarten.Tot;
-import root.Persona.Rollen.Hauptrollen.Bürger.Dorfbewohner;
 import root.Phases.NightBuilding.Constants.StatementType;
-import root.ResourceManagement.ImagePath;
 import root.Spieler;
-import root.mechanics.Opfer;
 
 public class Henker extends Hauptrolle {
     public static final String STATEMENT_IDENTIFIER = "Henker";
@@ -24,7 +20,7 @@ public class Henker extends Hauptrolle {
     public static final StatementType SECOND_STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
 
     public static final String NAME = "Henker";
-    public static final String IMAGE_PATH = ImagePath.ÜBERLÄUFER_KARTE;
+    public static final String IMAGE_PATH = ""; //TODO replace imagepath
     public static final Fraktion FRAKTION = new Überläufer_Fraktion();
 
     public Henker() {
@@ -41,6 +37,9 @@ public class Henker extends Hauptrolle {
         this.secondStatementTitle = SECOND_STATEMENT_TITLE;
         this.secondStatementBeschreibung = SECOND_STATEMENT_BESCHREIBUNG;
         this.secondStatementType = SECOND_STATEMENT_TYPE;
+
+        this.spammable = false;
+        this.killing = true;
     }
 
     @Override
@@ -50,42 +49,44 @@ public class Henker extends Hauptrolle {
 
     @Override
     public void processChosenOption(String chosenOption) {
-        if(chosenOption!=null && !chosenOption.isEmpty()) {
-            Spieler chosenPlayer = game.findSpieler(chosenOption);
-            besucht = chosenPlayer;
+        Spieler chosenSpieler = game.findSpieler(chosenOption);
+
+        if (chosenSpieler != null) {
+            besucht = chosenSpieler;
         }
     }
 
     @Override
     public FrontendControl processChosenOptionsGetInfo(String chosenOption1, String chosenOption2) {
-        if(besucht != null && chosenOption1!=null && !chosenOption1.isEmpty() && chosenOption2!=null && !chosenOption2.isEmpty()) {
+        if (chosenOption1 != null && !chosenOption1.isEmpty() && chosenOption2 != null && !chosenOption2.isEmpty()) {
             Hauptrolle hauptrolle = game.findHauptrolle(chosenOption1);
             Bonusrolle bonusrolle = game.findBonusrolle(chosenOption2);
 
             int correctGuesses = 0;
-            Spieler chosenPlayer = besucht;
+            Spieler chosenSpieler = besucht;
 
-            if(chosenPlayer.hauptrolle.equals(hauptrolle)) {
+            if (chosenSpieler.hauptrolle.equals(hauptrolle)) {
                 correctGuesses++;
             }
 
-            if(chosenPlayer.bonusrolle.equals(bonusrolle)) {
+            if (chosenSpieler.bonusrolle.equals(bonusrolle)) {
                 correctGuesses++;
             }
 
-            switch(correctGuesses) {
+            System.out.println(correctGuesses);
+
+            switch (correctGuesses) {
                 case 0:
                     //kill henker
-                    //TODO für henker muss opfer klasse überarbeitet werden wegen methoden die zur verfügung gestellt werden
-                        //interaktionen mit henker kills überlegen (wenn henker sich selbst killt, stirbt prostituierte mit? kriegt schamanin refresh? ...)
-                    return new FrontendControl(new Tot());
+                    //return tot zeigekarte
+                    break;
                 case 1:
                     //schütze henker
                     //return geschützt zeigekarte
                     break;
                 case 2:
                     //kill spieler
-                    //schütze henker
+                    //schütze henkre
                     //return geschützt + kill frontencontrol
                     break;
             }

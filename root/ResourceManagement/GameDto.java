@@ -4,5 +4,5 @@ import java.util.ArrayList;
 
 public class GameDto {
     CompositionDto compositionDto = new CompositionDto();
-    ArrayList<PlayerDto> players = new ArrayList<>();
+    ArrayList<SpielerDto> spieler = new ArrayList<>();
 }

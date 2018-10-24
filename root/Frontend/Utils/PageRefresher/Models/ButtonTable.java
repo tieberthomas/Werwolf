@@ -14,6 +14,6 @@ public class ButtonTable implements RefreshObject {
 
     @Override
     public void refresh() {
-        JButtonStyler.refreshRoleButtons(buttons);
+        JButtonStyler.refreshRolleButtons(buttons);
     }
 }
