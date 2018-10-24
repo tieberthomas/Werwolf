@@ -43,7 +43,7 @@ public class Henker extends Hauptrolle {
     }
 
     @Override
-    public FrontendControl getDropdownOptions() {
+    public FrontendControl getDropdownOptionsFrontendControl() {
         return game.getMitspielerCheckSpammableFrontendControl(this);
     }
 
@@ -58,7 +58,7 @@ public class Henker extends Hauptrolle {
 
     @Override
     public FrontendControl processChosenOptionsGetInfo(String chosenOption1, String chosenOption2) {
-        if (chosenOption1 != null && !chosenOption1.isEmpty() && chosenOption2 != null && !chosenOption2.isEmpty()) {
+        if (besucht != null && chosenOption1 != null && !chosenOption1.isEmpty() && chosenOption2 != null && !chosenOption2.isEmpty()) {
             Hauptrolle hauptrolle = game.findHauptrolle(chosenOption1);
             Bonusrolle bonusrolle = game.findBonusrolle(chosenOption2);
 

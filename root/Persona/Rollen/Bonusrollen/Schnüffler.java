@@ -40,7 +40,7 @@ public class Schnüffler extends Bonusrolle {
     }
 
     @Override
-    public FrontendControl getDropdownOptions() {
+    public FrontendControl getDropdownOptionsFrontendControl() {
         FrontendControl frontendControl = new FrontendControl();
 
         frontendControl.typeOfContent = FrontendControlType.DROPDOWN;

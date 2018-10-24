@@ -58,7 +58,7 @@ public class Werwölfe extends Fraktion {
     }
 
     @Override
-    public FrontendControl getDropdownOptions() {
+    public FrontendControl getDropdownOptionsFrontendControl() {
         FrontendControlType typeOfContent = FrontendControlType.DROPDOWN_IMAGE;
         ArrayList<String> strings = game.getLivingSpielerOrNoneStrings();
         String imagePath = zeigekarte.imagePath;

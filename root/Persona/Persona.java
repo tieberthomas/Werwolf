@@ -31,7 +31,7 @@ public class Persona {
     public String firstNightStatementBeschreibung = "";
     public StatementType firstNightStatementType = StatementType.EMPTY_STATEMENT;
 
-    public FrontendControl getDropdownOptions() {
+    public FrontendControl getDropdownOptionsFrontendControl() {
         return new FrontendControl();
     }
 

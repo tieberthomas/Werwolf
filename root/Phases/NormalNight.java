@@ -13,6 +13,7 @@ import root.Persona.Rollen.Constants.BonusrollenType.Tarnumhang_BonusrollenType;
 import root.Persona.Rollen.Constants.DropdownConstants;
 import root.Persona.Rollen.Constants.SchnüfflerInformation;
 import root.Persona.Rollen.Constants.Zeigekarten.*;
+import root.Persona.Rollen.Hauptrollen.Bürger.Irrlicht;
 import root.Persona.Rollen.Hauptrollen.Bürger.Sammler;
 import root.Persona.Rollen.Hauptrollen.Bürger.Schamanin;
 import root.Persona.Rollen.Hauptrollen.Bürger.Wirt;
@@ -92,7 +93,7 @@ public class NormalNight extends Thread {
                         case ROLLE_CHOOSE_ONE:
                             rolle = ((StatementRolle) statement).getRolle();
 
-                            dropdownOtions = rolle.getDropdownOptions();
+                            dropdownOtions = rolle.getDropdownOptionsFrontendControl();
                             chosenOption = showFrontendControl(statement, dropdownOtions);
                             rolle.processChosenOption(chosenOption);
                             break;
@@ -100,7 +101,7 @@ public class NormalNight extends Thread {
                         case ROLLE_CHOOSE_ONE_INFO:
                             rolle = ((StatementRolle) statement).getRolle();
 
-                            dropdownOtions = rolle.getDropdownOptions();
+                            dropdownOtions = rolle.getDropdownOptionsFrontendControl();
                             chosenOption = showFrontendControl(statement, dropdownOtions);
                             info = rolle.processChosenOptionGetInfo(chosenOption);
                             showFrontendControl(statement, info);
@@ -120,7 +121,7 @@ public class NormalNight extends Thread {
                         case FRAKTION_CHOOSE_ONE:
                             Fraktion fraktion = ((StatementFraktion) statement).getFraktion();
 
-                            dropdownOtions = fraktion.getDropdownOptions();
+                            dropdownOtions = fraktion.getDropdownOptionsFrontendControl();
                             chosenOption = showFrontendControl(statement, dropdownOtions);
                             fraktion.processChosenOption(chosenOption);
                             break;
@@ -153,7 +154,7 @@ public class NormalNight extends Thread {
                         case Schreckenswolf.STATEMENT_IDENTIFIER:
                             Schreckenswolf schreckenswolf = (Schreckenswolf) rolle;
                             if (schreckenswolf != null && schreckenswolf.werwölfeKilledOnSchutz()) {
-                                dropdownOtions = schreckenswolf.getDropdownOptions();
+                                dropdownOtions = schreckenswolf.getDropdownOptionsFrontendControl();
                                 chosenOption = showFrontendControl(statement, dropdownOtions);
                                 schreckenswolf.processChosenOption(chosenOption);
                             } else {
@@ -192,6 +193,17 @@ public class NormalNight extends Thread {
                             showListShowImage(statement, neuerWerwolf, Werwölfe.zeigekarte.imagePath); //TODO evalueren obs schönere lösung gibt
                             break;
 
+                        case Irrlicht.STATEMENT_IDENTIFIER:
+                            rolle = ((StatementRolle) statement).getRolle();
+
+                            dropdownOtions = rolle.getDropdownOptionsFrontendControl();
+                            ArrayList<String> flackerndeIrrlichter = new ArrayList<>();
+                            chosenOption = showFrontendControl(statement, dropdownOtions);
+                            flackerndeIrrlichter.add(chosenOption);
+                            info = Irrlicht.processFlackerndeIrrlichter(flackerndeIrrlichter);
+                            showFrontendControl(statement, info);
+                            break;
+
                         case Analytiker.STATEMENT_IDENTIFIER:
                             Spieler analytikerSpieler = game.findSpielerPerRolle(rolle.name);
 
@@ -224,7 +236,7 @@ public class NormalNight extends Thread {
                                     statement.title = Wahrsager.REWARD_TITLE;
                                     rewardInformation = wahrsager.rewardInformation();
                                 }
-                                FrontendControl dropdownShowReward = wahrsager.getDropdownOptions();
+                                FrontendControl dropdownShowReward = wahrsager.getDropdownOptionsFrontendControl();
                                 dropdownShowReward.displayedStrings = rewardInformation;
                                 chosenOption = showFrontendControl(statement, dropdownShowReward);
                                 wahrsager.tipp = Fraktion.findFraktion(chosenOption);
@@ -238,7 +250,7 @@ public class NormalNight extends Thread {
                                 if (gibtEsTorte()) {
                                     Torte.torte = true;
 
-                                    dropdownOtions = rolle.getDropdownOptions();
+                                    dropdownOtions = rolle.getDropdownOptionsFrontendControl();
                                     chosenOption = showKonditorDropdownPage(statement, dropdownOtions);
                                     rolle.processChosenOption(chosenOption);
 
@@ -566,6 +578,10 @@ public class NormalNight extends Thread {
                         showSchnüfflerInfo(statement, frontendControl.informationen);
                         break;
 
+                    case IRRLICHT_DROPDOWN:
+                        showIrrlichtDropdown(statement, frontendControl.title, frontendControl.dropdownStrings);
+                        break;
+
                 }
                 break;
 
@@ -587,6 +603,13 @@ public class NormalNight extends Thread {
         }
 
         return null;
+    }
+
+    private void showIrrlichtDropdown(Statement statement, String title, ArrayList<String> dropdownStrings) {
+        FrontendControl.irrlichtDropdownPage(statement, dropdownStrings);
+        FrontendControl.spielerTitlePage(title);
+
+        waitForAnswer();
     }
 
     private void showDropdownShowImage(Statement statement, String title, ArrayList<String> strings, String imagePath) {

@@ -73,6 +73,7 @@ public class NormalNightStatementBuilder {
         addSecondStatementRolle(statements, Chemiker.NAME);
 
         addStatementRolle(statements, MissVerona.NAME);
+        addStatementRolle(statements, Irrlicht.NAME); //TODO michael fragen ob position stimmt
         addStatementRolle(statements, Analytiker.NAME);
         addStatementRolle(statements, Archivar.NAME);
         addStatementRolle(statements, Schnüffler.NAME);

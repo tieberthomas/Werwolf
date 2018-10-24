@@ -41,7 +41,7 @@ public class Wahrsager extends Bonusrolle {
     }
 
     @Override
-    public FrontendControl getDropdownOptions() {
+    public FrontendControl getDropdownOptionsFrontendControl() {
         ArrayList<String> dropdownStrings = Fraktion.getFraktionOrNoneStrings();
 
         dropdownStrings.remove("");

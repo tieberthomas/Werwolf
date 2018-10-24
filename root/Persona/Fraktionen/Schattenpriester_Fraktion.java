@@ -76,7 +76,7 @@ public class Schattenpriester_Fraktion extends Fraktion {
     }
 
     @Override
-    public FrontendControl getDropdownOptions() {
+    public FrontendControl getDropdownOptionsFrontendControl() {
         return new FrontendControl(FrontendControlType.DROPDOWN_LIST, getRessurectableOpfer());
     }
 

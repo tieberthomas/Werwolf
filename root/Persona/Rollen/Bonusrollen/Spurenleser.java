@@ -37,7 +37,7 @@ public class Spurenleser extends Bonusrolle {
     }
 
     @Override
-    public FrontendControl getDropdownOptions() {
+    public FrontendControl getDropdownOptionsFrontendControl() {
         return game.getMitspielerCheckSpammableFrontendControl(this);
     }
 

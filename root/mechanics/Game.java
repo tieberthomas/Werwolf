@@ -33,7 +33,7 @@ public class Game {
 
     public Liebespaar liebespaar;
 
-    public ArrayList<Spieler> spieler = new ArrayList<>();
+    public ArrayList<Spieler> spieler = new ArrayList<>(); //TODO überflüssige initialisierung an manchen stellen, generisch machen
     public ArrayList<Hauptrolle> hauptrollen = new ArrayList<>();
     public ArrayList<Hauptrolle> hauptrollenInGame = new ArrayList<>();
     public ArrayList<Bonusrolle> bonusrollen = new ArrayList<>();
@@ -69,6 +69,7 @@ public class Game {
     private void generateAllAvailableHauptrollen() {
         hauptrollen.add(new Dorfbewohner());
         hauptrollen.add(new HoldeMaid());
+        hauptrollen.add(new Irrlicht());
         hauptrollen.add(new Orakel());
         hauptrollen.add(new Riese());
         hauptrollen.add(new Sammler());

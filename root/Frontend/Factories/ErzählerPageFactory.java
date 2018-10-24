@@ -692,4 +692,9 @@ public class ErzählerPageFactory {
         return page.pageElements.get(continueToGeneratePagePoint);
     }
 
+    public Page generateIrrlichtDropdownPage(Statement statement, ArrayList<String> dropdownStrings) {
+        Page dropdownPage = generateDropdownPage(statement, dropdownStrings);
+
+        return dropdownPage;
+    }
 }

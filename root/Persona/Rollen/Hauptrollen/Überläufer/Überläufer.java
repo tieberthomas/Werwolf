@@ -34,7 +34,7 @@ public class Überläufer extends Hauptrolle {
     }
 
     @Override
-    public FrontendControl getDropdownOptions() {
+    public FrontendControl getDropdownOptionsFrontendControl() {
         ArrayList<String> nehmbareHauptrollen = getMitteHauptrollenStrings();
         nehmbareHauptrollen.add("");
         return new FrontendControl(FrontendControlType.DROPDOWN_LIST, nehmbareHauptrollen);

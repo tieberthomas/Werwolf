@@ -287,6 +287,11 @@ public class FrontendControl {
         übersichtsFrame.regenerateAndRefresh();
     }
 
+    public static void irrlichtDropdownPage(Statement statement, ArrayList<String> dropdownStrings) {
+        Page page = erzählerFrame.pageFactory.generateIrrlichtDropdownPage(statement, dropdownStrings);
+        erzählerFrame.buildScreenFromPage(page);
+    }
+
     public void addString(DropdownConstants dropdownConstant) {
         dropdownStrings.add(dropdownConstant.name);
     }

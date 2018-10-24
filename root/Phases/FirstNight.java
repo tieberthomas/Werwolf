@@ -130,7 +130,7 @@ public class FirstNight extends Thread {
                                 break;
 
                             case Seherin.STATEMENT_IDENTIFIER:
-                                dropdownOtions = rolle.getDropdownOptions();
+                                dropdownOtions = rolle.getDropdownOptionsFrontendControl();
                                 chosenOption = showFrontendControl(statement, dropdownOtions);
                                 info = rolle.processChosenOptionGetInfo(chosenOption);
                                 showFrontendControl(statement, info);

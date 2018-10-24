@@ -36,7 +36,7 @@ public class Totengräber extends Bonusrolle {
     }
 
     @Override
-    public FrontendControl getDropdownOptions() {
+    public FrontendControl getDropdownOptionsFrontendControl() {
         ArrayList<String> nehmbareBonusrollen = getNehmbareBonusrollen();
         nehmbareBonusrollen.add("");
         return new FrontendControl(FrontendControlType.DROPDOWN_LIST, nehmbareBonusrollen);

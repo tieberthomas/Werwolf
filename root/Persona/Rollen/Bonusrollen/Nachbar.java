@@ -37,7 +37,7 @@ public class Nachbar extends Bonusrolle {
     }
 
     @Override
-    public FrontendControl getDropdownOptions() {
+    public FrontendControl getDropdownOptionsFrontendControl() {
         return game.getSpielerCheckSpammableFrontendControl(this);
     }
 
