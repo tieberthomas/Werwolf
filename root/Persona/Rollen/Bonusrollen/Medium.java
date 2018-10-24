@@ -15,7 +15,8 @@ public class Medium extends Bonusrolle {
     public static final String STATEMENT_TITLE = "Bonusrolle";
     public static final String STATEMENT_BESCHREIBUNG = "Medium erwacht und lässt sich vom Erzähler eine Bonusrolle, die nicht im Spiel ist, zeigen";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_INFO;
-    public static final String VERBRAUCHT_TITLE = "Bonusrollen";
+
+    public static final String NO_BONUSROLES_OUT_OF_GAME = "Es sind alle Bonusrollen im Spiel";
 
     public static final String NAME = "Medium";
     public static final String IMAGE_PATH = ImagePath.MEDIUM_KARTE;
@@ -42,7 +43,7 @@ public class Medium extends Bonusrolle {
         if (randomBonusrolle != null) {
             return new FrontendControl(FrontendControlType.CARD, randomBonusrolle.imagePath);
         } else {
-            return new FrontendControl(FrontendControlType.LIST, VERBRAUCHT_TITLE, geseheneBonusrollen);
+            return new FrontendControl(statementTitle, NO_BONUSROLES_OUT_OF_GAME);
         }
     }
 
@@ -57,7 +58,13 @@ public class Medium extends Bonusrolle {
             bonusrolle = unseenBonusrollen.get(randIndex);
             geseheneBonusrollen.add(bonusrolle.name);
         } else {
-            bonusrolle = null;
+            if (geseheneBonusrollen.size() == 0) {
+                //das heißt dass alle bonusrollen im spiel sind
+                return null;
+            } else {
+                geseheneBonusrollen.clear();
+                return getRandomUnseenBonusrolle();
+            }
         }
 
         return bonusrolle;
