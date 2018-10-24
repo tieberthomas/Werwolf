@@ -194,10 +194,11 @@ public class NormalNight extends Thread {
                             break;
 
                         case Irrlicht.STATEMENT_IDENTIFIER:
-                            rolle = ((StatementRolle) statement).getRolle();
-
                             dropdownOtions = rolle.getDropdownOptionsFrontendControl();
                             showFrontendControl(statement, dropdownOtions);
+                            break;
+
+                        case Irrlicht.SECOND_STATEMENT_IDENTIFIER:
                             info = Irrlicht.processFlackerndeIrrlichter(FrontendControl.getFlackerndeIrrlichter());
                             showFrontendControl(statement, info);
                             break;

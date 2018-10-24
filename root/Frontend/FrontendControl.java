@@ -44,6 +44,13 @@ public class FrontendControl {
         this.title = title;
     }
 
+    public FrontendControl(String title, String listString) {
+        this.typeOfContent = FrontendControlType.LIST;
+        this.title = title;
+        dropdownStrings = new ArrayList<>();
+        dropdownStrings.add(listString);
+    }
+
     public FrontendControl(List<String> dropdownStrings) {
         this.typeOfContent = FrontendControlType.LIST;
         this.dropdownStrings = dropdownStrings;
@@ -285,6 +292,7 @@ public class FrontendControl {
     }
 
     public static void irrlichtDropdownPage(Statement statement, List<String> dropdownStrings) {
+        erzählerFrame.irrlichtPage.clearPage();
         Page page = erzählerFrame.pageFactory.generateIrrlichtDropdownPage(erzählerFrame.irrlichtPage, statement, dropdownStrings);
         erzählerFrame.buildScreenFromPage(page);
     }

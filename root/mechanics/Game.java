@@ -656,10 +656,12 @@ public class Game {
         return bonusrollenUnspecifiedStrings;
     }
 
-    public List<String> getIrrlichter() {
+    public List<Spieler> getIrrlichter() {
         ArrayList<Spieler> livingSpieler = getLivingSpieler();
-        List<Spieler> irrlichtSpieler = livingSpieler.stream().filter(p -> p.hauptrolle.equals(Irrlicht.NAME)).collect(Collectors.toList());
+        return livingSpieler.stream().filter(p -> p.hauptrolle.equals(Irrlicht.NAME)).collect(Collectors.toList());
+    }
 
-        return irrlichtSpieler.stream().map(Spieler::getName).collect(Collectors.toList());
+    public List<String> getIrrlichterStrings() {
+        return getIrrlichter().stream().map(Spieler::getName).collect(Collectors.toList());
     }
 }

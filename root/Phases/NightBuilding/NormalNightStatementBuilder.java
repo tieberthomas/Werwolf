@@ -48,6 +48,7 @@ public class NormalNightStatementBuilder {
 
         addStatementRolle(statements, HoldeMaid.NAME);
         addStatementRolle(statements, Irrlicht.NAME);
+        addSecondStatementRolle(statements, Irrlicht.NAME);
         //Detektiv erwacht und schätzt die Anzahl der Bürger
         addStatementRolle(statements, Schamanin.NAME);
 
