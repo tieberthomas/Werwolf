@@ -9,7 +9,6 @@ import root.Phases.NightBuilding.Statement;
 import root.ResourceManagement.ImagePath;
 
 import javax.swing.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ErzählerPageFactory {
@@ -556,15 +555,13 @@ public class ErzählerPageFactory {
 
         PageElement priesterLabel = pageElementFactory.generateLabel(titleLabel, "Priester");
 
-        List<String> comboBoxOptions = livingPlayers;
-        erzählerFrame.comboBox1 = new JComboBox(comboBoxOptions.toArray());
+        erzählerFrame.comboBox1 = new JComboBox(livingPlayers.toArray());
         PageElement choosePriester = pageElementFactory.generateDropdown(erzählerFrame.comboBox1,
                 null, priesterLabel, 0, 0);
 
         PageElement spielerLabel = pageElementFactory.generateLabel(choosePriester, "Spieler");
 
-        List<String> comboBox2Options = livingPlayers;
-        erzählerFrame.comboBox2 = new JComboBox(comboBox2Options.toArray());
+        erzählerFrame.comboBox2 = new JComboBox(livingPlayers.toArray());
         PageElement choosePlayer = pageElementFactory.generateDropdown(erzählerFrame.comboBox2,
                 null, spielerLabel, 0, 0);
 
@@ -594,15 +591,13 @@ public class ErzählerPageFactory {
 
         PageElement richterinLabel = pageElementFactory.generateLabel(titleLabel, "Richterin");
 
-        List<String> comboBoxOptions = livingPlayers;
-        erzählerFrame.comboBox1 = new JComboBox(comboBoxOptions.toArray());
+        erzählerFrame.comboBox1 = new JComboBox(livingPlayers.toArray());
         PageElement chooseRichterin = pageElementFactory.generateDropdown(erzählerFrame.comboBox1,
                 null, richterinLabel, 0, 0);
 
         PageElement spielerLabel = pageElementFactory.generateLabel(chooseRichterin, "Spieler");
 
-        List<String> comboBox2Options = livingPlayers;
-        erzählerFrame.comboBox2 = new JComboBox(comboBox2Options.toArray());
+        erzählerFrame.comboBox2 = new JComboBox(livingPlayers.toArray());
         PageElement choosePlayer = pageElementFactory.generateDropdown(erzählerFrame.comboBox2,
                 null, spielerLabel, 0, 0);
 
@@ -636,8 +631,7 @@ public class ErzählerPageFactory {
         int spaceBetween = 10;
         int columns = 2;
 
-        List<String> comboBoxOptions = livingPlayers;
-        erzählerFrame.comboBox1 = new JComboBox(comboBoxOptions.toArray());
+        erzählerFrame.comboBox1 = new JComboBox(livingPlayers.toArray());
         PageElement choosePlayer1 = pageElementFactory.generateDropdown(erzählerFrame.comboBox1,
                 null, titleLabel, 0, 0);
 
