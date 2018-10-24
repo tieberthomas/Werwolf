@@ -27,7 +27,7 @@ public class Page {
         pageElements.add(pageElement);
     }
 
-    public void addTable(PageTable pageTable) {
+    public void add(PageTable pageTable) {
         pageTable.setPageOffset(xPageOffset, yPageOffset);
         pageTables.add(pageTable);
     }

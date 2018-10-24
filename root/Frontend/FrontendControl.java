@@ -30,8 +30,8 @@ public class FrontendControl {
 
     public FrontendControlType typeOfContent;
     public String title;
-    public ArrayList<String> dropdownStrings;
-    public ArrayList<String> displayedStrings;
+    public List<String> dropdownStrings;
+    public List<String> displayedStrings;
     public List<SchnüfflerInformation> informationen;
     public String imagePath;
 
@@ -44,17 +44,17 @@ public class FrontendControl {
         this.title = title;
     }
 
-    public FrontendControl(ArrayList<String> dropdownStrings) {
+    public FrontendControl(List<String> dropdownStrings) {
         this.typeOfContent = FrontendControlType.LIST;
         this.dropdownStrings = dropdownStrings;
     }
 
-    public FrontendControl(FrontendControlType typeOfContent, ArrayList<String> dropdownStrings) {
+    public FrontendControl(FrontendControlType typeOfContent, List<String> dropdownStrings) {
         this.typeOfContent = typeOfContent;
         this.dropdownStrings = dropdownStrings;
     }
 
-    public FrontendControl(FrontendControlType typeOfContent, String title, ArrayList<String> dropdownStrings) {
+    public FrontendControl(FrontendControlType typeOfContent, String title, List<String> dropdownStrings) {
         this.typeOfContent = typeOfContent;
         this.title = title;
         this.dropdownStrings = dropdownStrings;
@@ -77,13 +77,13 @@ public class FrontendControl {
         this.imagePath = zeigekarte.imagePath;
     }
 
-    public FrontendControl(FrontendControlType typeOfContent, ArrayList<String> dropdownStrings, String imagePath) {
+    public FrontendControl(FrontendControlType typeOfContent, List<String> dropdownStrings, String imagePath) {
         this.typeOfContent = typeOfContent;
         this.dropdownStrings = dropdownStrings;
         this.imagePath = imagePath;
     }
 
-    public FrontendControl(FrontendControlType typeOfContent, String title, ArrayList<String> dropdownStrings, String imagePath) {
+    public FrontendControl(FrontendControlType typeOfContent, String title, List<String> dropdownStrings, String imagePath) {
         this.typeOfContent = typeOfContent;
         this.title = title;
         this.dropdownStrings = dropdownStrings;
@@ -96,18 +96,15 @@ public class FrontendControl {
         this.informationen = informationen;
     }
 
-    public FrontendControl(String title, ArrayList<String> dropdownStrings, ArrayList<String> displayedStrings) {
+    public FrontendControl(String title, List<String> dropdownStrings, List<String> displayedStrings) {
         this.typeOfContent = FrontendControlType.DROPDOWN_SEPARATED_LIST;
         this.title = title;
         this.dropdownStrings = dropdownStrings;
         this.displayedStrings = displayedStrings;
     }
 
-    public FrontendControl(String statementTitle, ArrayList<String> dropdownStrings) {
-    }
-
     public static void erzählerDefaultNightPage(Statement statement) {
-        Page nightPage = erzählerFrame.pageFactory.generateDefaultNightPage(statement);
+        Page nightPage = erzählerFrame.pageFactory.generateDefaultNightPage(new Page(), statement);
         erzählerFrame.buildScreenFromPage(nightPage);
     }
 
@@ -168,23 +165,23 @@ public class FrontendControl {
         spielerFrame.buildScreenFromPage(nightPage);
     }
 
-    public static void erzählerDropdownPage(Statement statement, ArrayList<String> dropdownOptions) {
-        Page nightPage = erzählerFrame.pageFactory.generateDropdownPage(statement, dropdownOptions);
+    public static void erzählerDropdownPage(Statement statement, List<String> dropdownOptions) {
+        Page nightPage = erzählerFrame.pageFactory.generateDropdownPage(new Page(), statement, dropdownOptions);
         erzählerFrame.buildScreenFromPage(nightPage);
     }
 
-    public static void erzählerDropdownPage(Statement statement, ArrayList<String> dropdownOptions1, ArrayList<String> dropdownOptions2) {
-        Page nightPage = erzählerFrame.pageFactory.generateDropdownPage(statement, dropdownOptions1, dropdownOptions2);
+    public static void erzählerDropdownPage(Statement statement, List<String> dropdownOptions1, List<String> dropdownOptions2) {
+        Page nightPage = erzählerFrame.pageFactory.generateDropdownPage(new Page(), statement, dropdownOptions1, dropdownOptions2);
         erzählerFrame.buildScreenFromPage(nightPage);
     }
 
-    public static void erzählerDropdownPage(Statement statement, ArrayList<String> dropdownOptions, String imagePath) {
-        Page nightPage = erzählerFrame.pageFactory.generateDropdownPage(statement, dropdownOptions, imagePath);
+    public static void erzählerDropdownPage(Statement statement, List<String> dropdownOptions, String imagePath) {
+        Page nightPage = erzählerFrame.pageFactory.generateDropdownPage(new Page(), statement, dropdownOptions, imagePath);
         erzählerFrame.buildScreenFromPage(nightPage);
     }
 
-    public static void erzählerDropdownPage(Statement statement, ArrayList<String> dropdownOptions1, ArrayList<String> dropdownOptions2, String imagePath) {
-        Page nightPage = erzählerFrame.pageFactory.generateDropdownPage(statement, dropdownOptions1, dropdownOptions2, imagePath);
+    public static void erzählerDropdownPage(Statement statement, List<String> dropdownOptions1, List<String> dropdownOptions2, String imagePath) {
+        Page nightPage = erzählerFrame.pageFactory.generateDropdownPage(new Page(), statement, dropdownOptions1, dropdownOptions2, imagePath);
         erzählerFrame.buildScreenFromPage(nightPage);
     }
 
@@ -193,7 +190,7 @@ public class FrontendControl {
         spielerFrame.buildScreenFromPage(spielerFrame.dropDownPage);
     }
 
-    public static void spielerDropdownListPage(String title, ArrayList<String> dropdownOptions) {
+    public static void spielerDropdownListPage(String title, List<String> dropdownOptions) {
         spielerFrame.dropDownPage = spielerFrame.pageFactory.generateListMirrorPage(title, dropdownOptions);
         spielerFrame.buildScreenFromPage(spielerFrame.dropDownPage);
     }
@@ -209,25 +206,25 @@ public class FrontendControl {
         erzählerListPage(statement, list);
     }
 
-    public static void erzählerListPage(Statement statement, ArrayList<String> strings) {
+    public static void erzählerListPage(Statement statement, List<String> strings) {
         erzählerListPage(statement, statement.title, strings);
     }
 
-    public static void erzählerListPage(Statement statement, String title, ArrayList<String> strings) {
-        Page nightPage = erzählerFrame.pageFactory.generateListPage(statement, title, strings);
+    public static void erzählerListPage(Statement statement, String title, List<String> strings) {
+        Page nightPage = erzählerFrame.pageFactory.generateListPage(new Page(), statement, title, strings);
         erzählerFrame.buildScreenFromPage(nightPage);
     }
 
-    public static void erzählerListPage(Statement statement, ArrayList<String> strings, String imagePath) {
+    public static void erzählerListPage(Statement statement, List<String> strings, String imagePath) {
         erzählerListPage(statement, statement.title, strings, imagePath);
     }
 
-    public static void erzählerListPage(Statement statement, String title, ArrayList<String> strings, String imagePath) {
-        Page nightPage = erzählerFrame.pageFactory.generateListPage(statement, title, strings, imagePath);
+    public static void erzählerListPage(Statement statement, String title, List<String> strings, String imagePath) {
+        Page nightPage = erzählerFrame.pageFactory.generateListPage(new Page(), statement, title, strings, imagePath);
         erzählerFrame.buildScreenFromPage(nightPage);
     }
 
-    public static void spielerListPage(String title, ArrayList<String> strings) {
+    public static void spielerListPage(String title, List<String> strings) {
         Page nightPage = spielerFrame.pageFactory.generateListPage(title, strings);
         spielerFrame.buildScreenFromPage(nightPage);
     }
@@ -237,7 +234,7 @@ public class FrontendControl {
     }
 
     public static void erzählerIconPicturePage(Statement statement, String title, String imagePath) {
-        Page nightPage = erzählerFrame.pageFactory.generateIconPicturePage(statement, title, imagePath);
+        Page nightPage = erzählerFrame.pageFactory.generateIconPicturePage(new Page(), statement, title, imagePath);
         erzählerFrame.buildScreenFromPage(nightPage);
     }
 
@@ -252,7 +249,7 @@ public class FrontendControl {
     }
 
     public static void erzählerCardPicturePage(Statement statement, String title, String imagePath) {
-        Page nightPage = erzählerFrame.pageFactory.generateCardPicturePage(statement, title, imagePath);
+        Page nightPage = erzählerFrame.pageFactory.generateCardPicturePage(new Page(), statement, title, imagePath);
         erzählerFrame.buildScreenFromPage(nightPage);
     }
 
@@ -287,9 +284,13 @@ public class FrontendControl {
         übersichtsFrame.regenerateAndRefresh();
     }
 
-    public static void irrlichtDropdownPage(Statement statement, ArrayList<String> dropdownStrings) {
-        Page page = erzählerFrame.pageFactory.generateIrrlichtDropdownPage(statement, dropdownStrings);
+    public static void irrlichtDropdownPage(Statement statement, List<String> dropdownStrings) {
+        Page page = erzählerFrame.pageFactory.generateIrrlichtDropdownPage(erzählerFrame.irrlichtPage, statement, dropdownStrings);
         erzählerFrame.buildScreenFromPage(page);
+    }
+
+    public static void resetFlackerndeIrrlichter() {
+        erzählerFrame.flackerndeIrrlichter.clear();
     }
 
     public void addString(DropdownConstants dropdownConstant) {

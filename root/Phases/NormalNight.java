@@ -379,6 +379,8 @@ public class NormalNight extends Thread {
         Torte.torte = false;
 
         GrafVladimir.unerkennbarerSpieler = null;
+
+        FrontendControl.resetFlackerndeIrrlichter();
     }
 
     private void refreshStatementStates() {
@@ -605,21 +607,21 @@ public class NormalNight extends Thread {
         return null;
     }
 
-    private void showIrrlichtDropdown(Statement statement, String title, ArrayList<String> dropdownStrings) {
+    private void showIrrlichtDropdown(Statement statement, String title, List<String> dropdownStrings) {
         FrontendControl.irrlichtDropdownPage(statement, dropdownStrings);
         FrontendControl.spielerTitlePage(title);
 
         waitForAnswer();
     }
 
-    private void showDropdownShowImage(Statement statement, String title, ArrayList<String> strings, String imagePath) {
+    private void showDropdownShowImage(Statement statement, String title, List<String> strings, String imagePath) {
         FrontendControl.erzählerDropdownPage(statement, strings);
         FrontendControl.spielerDropdownMirrorImagePage(title, imagePath);
 
         waitForAnswer();
     }
 
-    public void showDropdownPage(Statement statement, ArrayList<String> dropdownOptions1, ArrayList<String> dropdownOptions2) {
+    public void showDropdownPage(Statement statement, List<String> dropdownOptions1, List<String> dropdownOptions2) {
         switch (statement.getState()) {
             case NORMAL:
                 FrontendControl.erzählerDropdownPage(statement, dropdownOptions1, dropdownOptions2);
@@ -814,21 +816,21 @@ public class NormalNight extends Thread {
         waitForAnswer();
     }
 
-    public void showDropdown(Statement statement, String title, ArrayList<String> dropdownOptions) {
+    public void showDropdown(Statement statement, String title, List<String> dropdownOptions) {
         FrontendControl.erzählerDropdownPage(statement, dropdownOptions);
         FrontendControl.spielerDropdownPage(title, 1);
 
         waitForAnswer();
     }
 
-    public void showDropdownList(Statement statement, String title, ArrayList<String> strings) {
+    public void showDropdownList(Statement statement, String title, List<String> strings) {
         FrontendControl.erzählerDropdownPage(statement, strings);
         FrontendControl.spielerDropdownListPage(title, strings);
 
         waitForAnswer();
     }
 
-    public void showDropdownSeperatedList(Statement statement, String title, ArrayList<String> dropdownStrings, ArrayList<String> listStrings) {
+    public void showDropdownSeperatedList(Statement statement, String title, List<String> dropdownStrings, List<String> listStrings) {
         FrontendControl.erzählerDropdownPage(statement, dropdownStrings);
         FrontendControl.spielerDropdownListPage(title, listStrings);
 
@@ -841,11 +843,11 @@ public class NormalNight extends Thread {
         showList(statement, list);
     }
 
-    public void showList(Statement statement, ArrayList<String> strings) {
+    public void showList(Statement statement, List<String> strings) {
         showList(statement, statement.title, strings);
     }
 
-    public void showList(Statement statement, String title, ArrayList<String> strings) {
+    public void showList(Statement statement, String title, List<String> strings) {
         FrontendControl.erzählerListPage(statement, title, strings);
         FrontendControl.spielerListPage(title, strings);
 
@@ -882,14 +884,14 @@ public class NormalNight extends Thread {
         showListShowImage(statement, statement.title, list, spielerImagePath, erzählerImagePath);
     }
 
-    public void showListShowImage(Statement statement, String title, ArrayList<String> strings, String spielerImagePath) {
+    public void showListShowImage(Statement statement, String title, List<String> strings, String spielerImagePath) {
         FrontendControl.erzählerListPage(statement, strings);
         FrontendControl.spielerIconPicturePage(title, spielerImagePath);
 
         waitForAnswer();
     }
 
-    public void showListShowImage(Statement statement, String title, ArrayList<String> strings, String spielerImagePath, String erzählerImagePath) {
+    public void showListShowImage(Statement statement, String title, List<String> strings, String spielerImagePath, String erzählerImagePath) {
         FrontendControl.erzählerListPage(statement, strings, erzählerImagePath);
         FrontendControl.spielerIconPicturePage(title, spielerImagePath);
 
@@ -903,7 +905,7 @@ public class NormalNight extends Thread {
         waitForAnswer();
     }
 
-    public static ArrayList<String> getEmptyStringList() {
+    public static List<String> getEmptyStringList() {
         ArrayList<String> emptyContent = new ArrayList<>();
         emptyContent.add("");
         return emptyContent;

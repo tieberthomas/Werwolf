@@ -23,6 +23,7 @@ import root.mechanics.Game;
 import root.mechanics.Liebespaar;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class FirstNight extends Thread {
@@ -267,7 +268,7 @@ public class FirstNight extends Thread {
         waitForAnswer();
     }
 
-    public void showList(Statement statement, String title, ArrayList<String> strings) {
+    public void showList(Statement statement, String title, List<String> strings) {
         FrontendControl.erzählerListPage(statement, title, strings);
         FrontendControl.spielerListPage(title, strings);
 
@@ -281,21 +282,21 @@ public class FirstNight extends Thread {
         waitForAnswer();
     }
 
-    public void showDropdown(Statement statement, String title, ArrayList<String> dropdownOptions) {
+    public void showDropdown(Statement statement, String title, List<String> dropdownOptions) {
         FrontendControl.erzählerDropdownPage(statement, dropdownOptions);
         FrontendControl.spielerDropdownPage(title, 1);
 
         waitForAnswer();
     }
 
-    public void showDropdown(Statement statement, ArrayList<String> dropdownOptions1, ArrayList<String> dropdownOptions2) {
+    public void showDropdown(Statement statement, List<String> dropdownOptions1, List<String> dropdownOptions2) {
         FrontendControl.erzählerDropdownPage(statement, dropdownOptions1, dropdownOptions2);
         FrontendControl.spielerDropdownPage(statement.title, 2);
 
         waitForAnswer();
     }
 
-    public void showDropdownList(Statement statement, String title, ArrayList<String> strings) {
+    public void showDropdownList(Statement statement, String title, List<String> strings) {
         FrontendControl.erzählerDropdownPage(statement, strings);
         FrontendControl.spielerDropdownListPage(title, strings);
 
@@ -309,11 +310,11 @@ public class FirstNight extends Thread {
         waitForAnswer();
     }
 
-    public void showListShowImage(Statement statement, ArrayList<String> strings, String spielerImagePath) {
+    public void showListShowImage(Statement statement, List<String> strings, String spielerImagePath) {
         showListShowImage(statement, statement.title, strings, spielerImagePath);
     }
 
-    public void showListShowImage(Statement statement, String title, ArrayList<String> strings, String spielerImagePath) {
+    public void showListShowImage(Statement statement, String title, List<String> strings, String spielerImagePath) {
         FrontendControl.erzählerListPage(statement, strings);
         FrontendControl.spielerIconPicturePage(title, spielerImagePath);
 

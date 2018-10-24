@@ -23,6 +23,7 @@ import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Irrlicht extends Hauptrolle {
     public static final String STATEMENT_IDENTIFIER = "Irrlicht";
@@ -49,7 +50,7 @@ public class Irrlicht extends Hauptrolle {
 
     @Override
     public FrontendControl getDropdownOptionsFrontendControl() {
-        ArrayList<String> allSplieler = game.getLivingSpielerStrings();
+        List<String> allSplieler = game.getIrrlichter();
 
         return new FrontendControl(FrontendControlType.IRRLICHT_DROPDOWN, allSplieler);
     }

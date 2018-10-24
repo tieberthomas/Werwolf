@@ -80,4 +80,8 @@ public class Spieler {
     public void setBonusrolle(Bonusrolle bonusrolle) {
         this.bonusrolle = bonusrolle;
     }
+
+    public String getName() {
+        return name;
+    }
 }

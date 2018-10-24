@@ -16,6 +16,7 @@ import root.Phases.NormalNight;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ErzählerPageElementFactory {
     static ErzählerFrame erzählerFrame;
@@ -174,7 +175,7 @@ public class ErzählerPageElementFactory {
 
     }
 
-    public void generateTableButtons(ArrayList<String> stringsToFillIn, ArrayList<JButton> tableButtons, PageTable pageTable) {
+    public void generateTableButtons(List<String> stringsToFillIn, List<JButton> tableButtons, PageTable pageTable) {
         tableButtons.clear();
         pageTable.tableElements.clear();
         for (String rolle : stringsToFillIn) {

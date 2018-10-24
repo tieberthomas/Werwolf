@@ -100,7 +100,7 @@ public class SpielerPageFactory {
         return generateStaticImagePage(tot.title, tot.imagePath, true);
     }
 
-    public Page generateDayPage(ArrayList<String> hauptrollen, ArrayList<String> bonusrollen, boolean freibier) {
+    public Page generateDayPage(List<String> hauptrollen, List<String> bonusrollen, boolean freibier) {
         int titleSpace = 80;
         int clockSpace = 150;
         Page listPage = generateDoubleListPage(hauptrollen, bonusrollen, titleSpace, clockSpace - 30);
@@ -224,7 +224,7 @@ public class SpielerPageFactory {
         return imagePage;
     }
 
-    public Page generateListPage(String title, ArrayList<String> stringsToDisplay) {
+    public Page generateListPage(String title, List<String> stringsToDisplay) {
         spielerFrame.title = title;
         spielerFrame.mode = SpielerFrameMode.staticListPage;
 
@@ -262,7 +262,7 @@ public class SpielerPageFactory {
         return listPage;
     }
 
-    public Page generateListMirrorPage(String title, ArrayList<String> stringsToDisplay) {
+    public Page generateListMirrorPage(String title, List<String> stringsToDisplay) {
         Page listPage = generateListPage(title, stringsToDisplay);
 
         spielerFrame.mode = SpielerFrameMode.listMirrorPage;
@@ -286,7 +286,7 @@ public class SpielerPageFactory {
         return generateTitlePage(spielerFrame.title);
     }
 
-    public Page generateDoubleListPage(ArrayList<String> stringsToDisplay1, ArrayList<String> stringsToDisplay2, String title1, String title2) {
+    public Page generateDoubleListPage(List<String> stringsToDisplay1, List<String> stringsToDisplay2, String title1, String title2) {
         int titleSpace = 80;
         Page listPage = generateDoubleListPage(stringsToDisplay1, stringsToDisplay2, titleSpace, 0);
 
@@ -299,7 +299,7 @@ public class SpielerPageFactory {
         return listPage;
     }
 
-    public Page generateDoubleListPage(ArrayList<String> stringsToDisplay1, ArrayList<String> stringsToDisplay2, int offsetAbove, int offsetBelow) {
+    public Page generateDoubleListPage(List<String> stringsToDisplay1, List<String> stringsToDisplay2, int offsetAbove, int offsetBelow) {
         ArrayList<String> realStringsToDisplay1 = new ArrayList<String>(stringsToDisplay1);
         realStringsToDisplay1.remove("");
         ArrayList<String> realStringsToDisplay2 = new ArrayList<String>(stringsToDisplay2);
@@ -316,7 +316,7 @@ public class SpielerPageFactory {
         }
     }
 
-    public Page generateListPage(ArrayList<String> stringsToDisplay) {
+    public Page generateListPage(List<String> stringsToDisplay) {
         ArrayList<String> realStringsToDisplay = new ArrayList<String>(stringsToDisplay);
         realStringsToDisplay.remove("");
 
@@ -329,7 +329,7 @@ public class SpielerPageFactory {
         }
     }
 
-    public Page generateListPage(ArrayList<String> stringsToDisplay, int numberOfColumns) {
+    public Page generateListPage(List<String> stringsToDisplay, int numberOfColumns) {
         Page listPage = new Page(0, 10);
         float dividingPoint = ((float) stringsToDisplay.size()) / numberOfColumns;
 
@@ -347,11 +347,11 @@ public class SpielerPageFactory {
         return listPage;
     }
 
-    public Page generateListPage(ArrayList<String> stringsToDisplay, ArrayList<String> stringsToDisplay2, int numberOfColumnsPerList) {
+    public Page generateListPage(List<String> stringsToDisplay, List<String> stringsToDisplay2, int numberOfColumnsPerList) {
         return generateListPage(stringsToDisplay, stringsToDisplay2, numberOfColumnsPerList, 0, 0);
     }
 
-    public Page generateListPage(ArrayList<String> stringsToDisplay, ArrayList<String> stringsToDisplay2, int numberOfColumnsPerList, int offsetAbove, int offsetBelow) {
+    public Page generateListPage(List<String> stringsToDisplay, List<String> stringsToDisplay2, int numberOfColumnsPerList, int offsetAbove, int offsetBelow) {
         Page listPage = new Page(5, 10);
         float dividingPoint1 = ((float) stringsToDisplay.size()) / numberOfColumnsPerList;
         float dividingPoint2 = ((float) stringsToDisplay2.size()) / numberOfColumnsPerList;
@@ -387,15 +387,15 @@ public class SpielerPageFactory {
         return listPage;
     }
 
-    public Page generateListPage(ArrayList<String> stringsToDisplay, int numberOfColumns, int indexOfColumn) {
+    public Page generateListPage(List<String> stringsToDisplay, int numberOfColumns, int indexOfColumn) {
         return generateListPage(stringsToDisplay, numberOfColumns, indexOfColumn, 0, 0, pageElementFactory.defaultTextSize);
     }
 
-    public Page generateListPage(ArrayList<String> stringsToDisplay, int numberOfColumns, int indexOfColumn, int textSize) {
+    public Page generateListPage(List<String> stringsToDisplay, int numberOfColumns, int indexOfColumn, int textSize) {
         return generateListPage(stringsToDisplay, numberOfColumns, indexOfColumn, 0, 0, textSize);
     }
 
-    public Page generateListPage(ArrayList<String> stringsToDisplay, int numberOfColumns, int indexOfColumn, int offsetAbove, int offsetBelow, int textSize) {
+    public Page generateListPage(List<String> stringsToDisplay, int numberOfColumns, int indexOfColumn, int offsetAbove, int offsetBelow, int textSize) {
         Page listPage = new Page(0, 10);
         ArrayList<String> realStringsToDisplay = new ArrayList<String>(stringsToDisplay);
         realStringsToDisplay.remove("");
@@ -430,7 +430,7 @@ public class SpielerPageFactory {
         return listPage;
     }
 
-    public ArrayList<PageElement> generateColumnElements(ArrayList<JComponent> elementsToDisplay, int numberOfColumns, int indexOfColumn, int offsetAbove, int offsetBelow) {
+    public List<PageElement> generateColumnElements(List<JComponent> elementsToDisplay, int numberOfColumns, int indexOfColumn, int offsetAbove, int offsetBelow) {
         Page listPage = new Page(0, 10);
 
         if (elementsToDisplay.size() > 0) {
@@ -476,7 +476,7 @@ public class SpielerPageFactory {
             PageElement spielerTitle = pageElementFactory.generateColumnCenteredLabel(new JLabel(information.spieler), null, 0, columns, indexOfColumn);
             listPage.add(spielerTitle);
             int offsetAbove = spielerTitle.height;
-            ArrayList<PageElement> columnToAdd = generateSchnüfflerInformationsColumn(information, maxColumns, columns, indexOfColumn, offsetAbove);
+            List<PageElement> columnToAdd = generateSchnüfflerInformationsColumn(information, maxColumns, columns, indexOfColumn, offsetAbove);
 
             for (PageElement element : columnToAdd) {
                 listPage.add(element);
@@ -489,7 +489,7 @@ public class SpielerPageFactory {
         return listPage;
     }
 
-    private ArrayList<PageElement> generateSchnüfflerInformationsColumn(RawInformation rawInformation, int maxColumns, int numberOfColumns, int indexOfColumn, int offsetAbove) {
+    private List<PageElement> generateSchnüfflerInformationsColumn(RawInformation rawInformation, int maxColumns, int numberOfColumns, int indexOfColumn, int offsetAbove) {
         ArrayList<JComponent> elementsToDisplay = new ArrayList<>();
         if (rawInformation.isTarnumhang) {
             elementsToDisplay.add(pageElementFactory.generateIcon(new Tarnumhang_BonusrollenType().imagePath));

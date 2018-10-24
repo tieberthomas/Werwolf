@@ -10,6 +10,7 @@ import root.ResourceManagement.ImagePath;
 
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ErzählerPageFactory {
     private ErzählerFrame erzählerFrame;
@@ -89,15 +90,15 @@ public class ErzählerPageFactory {
         playerSetupPage.add(goBackButton);
         playerSetupPage.add(goNextButton);
         playerSetupPage.add(numberOfPlayersLabel);
-        playerSetupPage.addTable(erzählerFrame.deletePlayerTable);
-        playerSetupPage.addTable(erzählerFrame.playerLabelTable);
+        playerSetupPage.add(erzählerFrame.deletePlayerTable);
+        playerSetupPage.add(erzählerFrame.playerLabelTable);
 
         erzählerFrame.setupPages.add(playerSetupPage);
 
         return playerSetupPage;
     }
 
-    public Page generateHauptrolleSetupPage(Page hauptrolleSetupPage, int numberOfPlayers, int numberOfHauptrollen, ArrayList<String> hauptrollen) {
+    public Page generateHauptrolleSetupPage(Page hauptrolleSetupPage, int numberOfPlayers, int numberOfHauptrollen, List<String> hauptrollen) {
         PageTable hauptrolleButtonTable = pageElementFactory.generateButtonTable(erzählerFrame.hauptrolleButtonTable, null);
         pageElementFactory.generateTableButtons(hauptrollen, erzählerFrame.hauptrolleButtons, hauptrolleButtonTable);
 
@@ -134,17 +135,17 @@ public class ErzählerPageFactory {
         hauptrolleSetupPage.add(goNextButton);
         hauptrolleSetupPage.add(goBackButton);
         hauptrolleSetupPage.add(addAllHauptrollenButton);
-        hauptrolleSetupPage.addTable(hauptrolleButtonTable);
+        hauptrolleSetupPage.add(hauptrolleButtonTable);
         hauptrolleSetupPage.add(counterLabel);
-        hauptrolleSetupPage.addTable(erzählerFrame.deleteHauptrolleTable);
-        hauptrolleSetupPage.addTable(erzählerFrame.hauptrolleLabelTable);
+        hauptrolleSetupPage.add(erzählerFrame.deleteHauptrolleTable);
+        hauptrolleSetupPage.add(erzählerFrame.hauptrolleLabelTable);
 
         erzählerFrame.setupPages.add(hauptrolleSetupPage);
 
         return hauptrolleSetupPage;
     }
 
-    public Page generateBonusrolleSetupPage(Page bonusrolleSetupPage, int numberOfPlayers, int numberOfBonusrollen, ArrayList<String> bonusrollen) {
+    public Page generateBonusrolleSetupPage(Page bonusrolleSetupPage, int numberOfPlayers, int numberOfBonusrollen, List<String> bonusrollen) {
         PageTable bonusrolleButtonTable = pageElementFactory.generateButtonTable(erzählerFrame.bonusrolleButtonTable, null);
         pageElementFactory.generateTableButtons(bonusrollen, erzählerFrame.bonusrolleButtons, bonusrolleButtonTable);
 
@@ -181,17 +182,17 @@ public class ErzählerPageFactory {
         bonusrolleSetupPage.add(goBackButton);
         bonusrolleSetupPage.add(goNextButton);
         bonusrolleSetupPage.add(addAllBonusrollenButton);
-        bonusrolleSetupPage.addTable(bonusrolleButtonTable);
+        bonusrolleSetupPage.add(bonusrolleButtonTable);
         bonusrolleSetupPage.add(counterLabel);
-        bonusrolleSetupPage.addTable(erzählerFrame.deleteBonusrolleTable);
-        bonusrolleSetupPage.addTable(erzählerFrame.bonusrolleLabelTable);
+        bonusrolleSetupPage.add(erzählerFrame.deleteBonusrolleTable);
+        bonusrolleSetupPage.add(erzählerFrame.bonusrolleLabelTable);
 
         erzählerFrame.setupPages.add(bonusrolleSetupPage);
 
         return bonusrolleSetupPage;
     }
 
-    public Page generatePlayerSpecifiyPage(Page playerSpecifyPage, ArrayList<String> playersUnspecified, ArrayList<String> hauptrollenUnspecified, ArrayList<String> bonusrollenUnspecified) {
+    public Page generatePlayerSpecifiyPage(Page playerSpecifyPage, List<String> playersUnspecified, List<String> hauptrollenUnspecified, List<String> bonusrollenUnspecified) {
         String title = "Wählen Sie für diesen Spieler Haupt- und Bonusrolle.";
         String HTMLtitle = HTMLStringBuilder.buildHTMLText(title);
         PageElement titleLabel = pageElementFactory.generateLabel(null, HTMLtitle);
@@ -254,10 +255,10 @@ public class ErzählerPageFactory {
         playerSpecifyPage.add(chooseHauptrolle);
         playerSpecifyPage.add(bonusrolleLabel);
         playerSpecifyPage.add(chooseBonusrolle);
-        playerSpecifyPage.addTable(erzählerFrame.playerSpecifyLabelTable);
-        playerSpecifyPage.addTable(erzählerFrame.hauptrolleSpecifyLabelTable);
-        playerSpecifyPage.addTable(erzählerFrame.bonusrolleSpecifyLabelTable);
-        playerSpecifyPage.addTable(erzählerFrame.deleteSpecifyPlayerTable);
+        playerSpecifyPage.add(erzählerFrame.playerSpecifyLabelTable);
+        playerSpecifyPage.add(erzählerFrame.hauptrolleSpecifyLabelTable);
+        playerSpecifyPage.add(erzählerFrame.bonusrolleSpecifyLabelTable);
+        playerSpecifyPage.add(erzählerFrame.deleteSpecifyPlayerTable);
         playerSpecifyPage.add(goNextButton);
         playerSpecifyPage.add(goBackButton);
 
@@ -266,40 +267,31 @@ public class ErzählerPageFactory {
         return playerSpecifyPage;
     }
 
-    public Page generateDefaultNightPage(Statement statement) {
-        return generateDefaultNightPage(statement, statement.title);
+    public Page generateDefaultNightPage(Page nightPage, Statement statement) {
+        return generateDefaultNightPage(nightPage, statement, statement.title);
     }
 
-    public Page generateDefaultNightPage(Statement statement, String title) {
+    public Page generateDefaultNightPage(Page nightPage, Statement statement, String title) {
         PageElement nightLabel = pageElementFactory.generateNightLabel(statement.identifier);
         PageElement titleLabel = pageElementFactory.generateTitleLabel(nightLabel, title);
         erzählerFrame.nextJButton = new JButton();
         PageElement goNextButton = pageElementFactory.generateLowestButton(erzählerFrame.nextJButton);
-        Page defaultNightPage = new Page();
 
-        defaultNightPage.add(nightLabel);
-        defaultNightPage.add(titleLabel);
-        defaultNightPage.add(goNextButton);
+        nightPage.add(nightLabel);
+        nightPage.add(titleLabel);
+        nightPage.add(goNextButton);
 
-        continueToGeneratePagePoint = defaultNightPage.pageElements.indexOf(titleLabel);
+        continueToGeneratePagePoint = nightPage.pageElements.indexOf(titleLabel);
 
-        return defaultNightPage;
+        return nightPage;
     }
 
-    public Page generateDeactivatedPage(Statement statement) {
-        return generateIconPicturePage(statement, ImagePath.DEAKTIVIERT);
+    public Page generateIconPicturePage(Page iconPage, Statement statement, String imagePath) {
+        return generateIconPicturePage(iconPage, statement, statement.title, imagePath);
     }
 
-    public Page generateAufgebrauchtPage(Statement statement) {
-        return generateIconPicturePage(statement, ImagePath.AUFGEBRAUCHT);
-    }
-
-    public Page generateIconPicturePage(Statement statement, String imagePath) {
-        return generateIconPicturePage(statement, statement.title, imagePath);
-    }
-
-    public Page generateIconPicturePage(Statement statement, String title, String imagePath) {
-        Page picturePage = generateDefaultNightPage(statement, title);
+    public Page generateIconPicturePage(Page picturePage, Statement statement, String title, String imagePath) {
+        picturePage = generateDefaultNightPage(picturePage, statement, title);
         PageElement deactivatedIcon = pageElementFactory.generateIcon(getContinueToGeneratePagePoint(picturePage), imagePath);
 
         picturePage.add(deactivatedIcon);
@@ -307,8 +299,8 @@ public class ErzählerPageFactory {
         return picturePage;
     }
 
-    public Page generateCardPicturePage(Statement statement, String title, String imagePath) {
-        Page picturePage = generateDefaultNightPage(statement, title);
+    public Page generateCardPicturePage(Page picturePage, Statement statement, String title, String imagePath) {
+        picturePage = generateDefaultNightPage(picturePage, statement, title);
         PageElement deactivatedIcon = pageElementFactory.generateSmallIcon(getContinueToGeneratePagePoint(picturePage), imagePath);
 
         picturePage.add(deactivatedIcon);
@@ -316,8 +308,8 @@ public class ErzählerPageFactory {
         return picturePage;
     }
 
-    public Page generateDropdownPage(Statement statement, ArrayList<String> dropdownOptions) {
-        Page dropdownPage = generateDefaultNightPage(statement);
+    public Page generateDropdownPage(Page dropdownPage, Statement statement, List<String> dropdownOptions) {
+        dropdownPage = generateDefaultNightPage(dropdownPage, statement);
         erzählerFrame.comboBox1 = new JComboBox(dropdownOptions.toArray());
         PageElement choosePlayer1 = pageElementFactory.generateDropdown(erzählerFrame.comboBox1,
                 null, getContinueToGeneratePagePoint(dropdownPage));
@@ -329,8 +321,8 @@ public class ErzählerPageFactory {
         return dropdownPage;
     }
 
-    public Page generateDropdownPage(Statement statement, ArrayList<String> dropdownOptions, String imagePath) {
-        Page dropdownPage = generateDropdownPage(statement, dropdownOptions);
+    public Page generateDropdownPage(Page dropdownPage, Statement statement, List<String> dropdownOptions, String imagePath) {
+        dropdownPage = generateDropdownPage(dropdownPage, statement, dropdownOptions);
         PageElement modeIcon = pageElementFactory.generateSmallIcon(getContinueToGeneratePagePoint(dropdownPage), imagePath);
 
         dropdownPage.add(modeIcon);
@@ -340,8 +332,8 @@ public class ErzählerPageFactory {
         return dropdownPage;
     }
 
-    public Page generateDropdownPage(Statement statement, ArrayList<String> dropdownOptions, ArrayList<String> dropdownOptions2) {
-        Page dropdownPage = generateDropdownPage(statement, dropdownOptions);
+    public Page generateDropdownPage(Page dropdownPage, Statement statement, List<String> dropdownOptions, List<String> dropdownOptions2) {
+        dropdownPage = generateDropdownPage(dropdownPage, statement, dropdownOptions);
         erzählerFrame.comboBox2 = new JComboBox(dropdownOptions2.toArray());
         PageElement choosePlayer2 = pageElementFactory.generateDropdown(erzählerFrame.comboBox2,
                 null, getContinueToGeneratePagePoint(dropdownPage));
@@ -353,8 +345,8 @@ public class ErzählerPageFactory {
         return dropdownPage;
     }
 
-    public Page generateDropdownPage(Statement statement, ArrayList<String> dropdownOptions, ArrayList<String> dropdownOptions2, String imagePath) {
-        Page dropdownPage = generateDropdownPage(statement, dropdownOptions, dropdownOptions2);
+    public Page generateDropdownPage(Page dropdownPage, Statement statement, List<String> dropdownOptions, List<String> dropdownOptions2, String imagePath) {
+        dropdownPage = generateDropdownPage(dropdownPage, statement, dropdownOptions, dropdownOptions2);
         PageElement modeIcon = pageElementFactory.generateSmallIcon(getContinueToGeneratePagePoint(dropdownPage), imagePath);
 
         dropdownPage.add(modeIcon);
@@ -364,8 +356,8 @@ public class ErzählerPageFactory {
         return dropdownPage;
     }
 
-    public Page generateDropdownPage(Statement statement, ArrayList<String> dropdownOptions, ArrayList<String> dropdownOptions2, ArrayList<String> dropdownOptions3) {
-        Page dropdownPage = generateDropdownPage(statement, dropdownOptions, dropdownOptions2);
+    public Page generateDropdownPage(Page dropdownPage, Statement statement, List<String> dropdownOptions, List<String> dropdownOptions2, List<String> dropdownOptions3) {
+        dropdownPage = generateDropdownPage(dropdownPage, statement, dropdownOptions, dropdownOptions2);
         erzählerFrame.comboBox3 = new JComboBox(dropdownOptions3.toArray());
         PageElement choosePlayer3 = pageElementFactory.generateDropdown(erzählerFrame.comboBox3,
                 null, getContinueToGeneratePagePoint(dropdownPage));
@@ -375,8 +367,8 @@ public class ErzählerPageFactory {
         return dropdownPage;
     }
 
-    public Page generateDropdownPage(Statement statement, ArrayList<String> dropdownOptions, ArrayList<String> dropdownOptions2, ArrayList<String> dropdownOptions3, String imagePath) {
-        Page dropdownPage = generateDropdownPage(statement, dropdownOptions, dropdownOptions2, dropdownOptions3);
+    public Page generateDropdownPage(Page dropdownPage, Statement statement, List<String> dropdownOptions, List<String> dropdownOptions2, List<String> dropdownOptions3, String imagePath) {
+        dropdownPage = generateDropdownPage(dropdownPage, statement, dropdownOptions, dropdownOptions2, dropdownOptions3);
         PageElement modeIcon = pageElementFactory.generateSmallIcon(getContinueToGeneratePagePoint(dropdownPage), imagePath);
 
         dropdownPage.add(modeIcon);
@@ -386,12 +378,12 @@ public class ErzählerPageFactory {
         return dropdownPage;
     }
 
-    public Page generateListPage(Statement statement, ArrayList<String> stringsToDisplay) {
-        return generateListPage(statement, statement.title, stringsToDisplay);
+    public Page generateListPage(Page listPage, Statement statement, List<String> stringsToDisplay) {
+        return generateListPage(listPage, statement, statement.title, stringsToDisplay);
     }
 
-    public Page generateListPage(Statement statement, String title, ArrayList<String> stringsToDisplay) {
-        Page listPage = generateDefaultNightPage(statement, title);
+    public Page generateListPage(Page listPage, Statement statement, String title, List<String> stringsToDisplay) {
+        listPage = generateDefaultNightPage(listPage, statement, title);
 
         if (stringsToDisplay.size() > 0) {
             PageElement label = pageElementFactory.generateLabel(getContinueToGeneratePagePoint(listPage), stringsToDisplay.get(0));
@@ -411,12 +403,12 @@ public class ErzählerPageFactory {
         return listPage;
     }
 
-    public Page generateListPage(Statement statement, ArrayList<String> stringsToDisplay, String imagePath) {
-        return generateListPage(statement, statement.title, stringsToDisplay, imagePath);
+    public Page generateListPage(Page listPage, Statement statement, List<String> stringsToDisplay, String imagePath) {
+        return generateListPage(listPage, statement, statement.title, stringsToDisplay, imagePath);
     }
 
-    public Page generateListPage(Statement statement, String title, ArrayList<String> stringsToDisplay, String imagePath) {
-        Page listPage = generateListPage(statement, title, stringsToDisplay);
+    public Page generateListPage(Page listPage, Statement statement, String title, List<String> stringsToDisplay, String imagePath) {
+        listPage = generateListPage(listPage, statement, title, stringsToDisplay);
 
         PageElement modeIcon = pageElementFactory.generateSmallIcon(getContinueToGeneratePagePoint(listPage), imagePath);
 
@@ -429,7 +421,7 @@ public class ErzählerPageFactory {
         return listPage;
     }
 
-    public Page generateDayPage(ArrayList<String> livingPlayers) {
+    public Page generateDayPage(List<String> livingPlayers) {
         Page dayPage = generateDefaultDayPage();
 
         erzählerFrame.comboBox1 = new JComboBox(livingPlayers.toArray());
@@ -488,7 +480,7 @@ public class ErzählerPageFactory {
         return dayPage;
     }
 
-    public Page generateNachzüglerPage(ArrayList<String> hauptrollen, ArrayList<String> bonusrollen) {
+    public Page generateNachzüglerPage(List<String> hauptrollen, List<String> bonusrollen) {
         PageElement titleLabel = pageElementFactory.generateTitleLabel(null, "Nachzügler");
 
         PageElement nameLabel = pageElementFactory.generateLabel(titleLabel, "Name");
@@ -530,12 +522,12 @@ public class ErzählerPageFactory {
         return nachzüglerPage;
     }
 
-    public Page generateUmbringenPage(ArrayList<String> livingPlayers) {
+    public Page generateUmbringenPage(List<String> livingPlayers) {
         PageElement titleLabel = pageElementFactory.generateTitleLabel(null, "Umbringen");
 
         PageElement nameLabel = pageElementFactory.generateLabel(titleLabel, "Name");
 
-        ArrayList<String> comboBoxOptions = livingPlayers;
+        List<String> comboBoxOptions = livingPlayers;
         comboBoxOptions.add("");
         erzählerFrame.comboBox1 = new JComboBox(comboBoxOptions.toArray());
         PageElement choosePlayer1 = pageElementFactory.generateDropdown(erzählerFrame.comboBox1,
@@ -559,19 +551,19 @@ public class ErzählerPageFactory {
         return umbringenPage;
     }
 
-    public Page generatePriesterPage(ArrayList<String> livingPlayers) {
+    public Page generatePriesterPage(List<String> livingPlayers) {
         PageElement titleLabel = pageElementFactory.generateTitleLabel(null, "Bürgen");
 
         PageElement priesterLabel = pageElementFactory.generateLabel(titleLabel, "Priester");
 
-        ArrayList<String> comboBoxOptions = livingPlayers;
+        List<String> comboBoxOptions = livingPlayers;
         erzählerFrame.comboBox1 = new JComboBox(comboBoxOptions.toArray());
         PageElement choosePriester = pageElementFactory.generateDropdown(erzählerFrame.comboBox1,
                 null, priesterLabel, 0, 0);
 
         PageElement spielerLabel = pageElementFactory.generateLabel(choosePriester, "Spieler");
 
-        ArrayList<String> comboBox2Options = livingPlayers;
+        List<String> comboBox2Options = livingPlayers;
         erzählerFrame.comboBox2 = new JComboBox(comboBox2Options.toArray());
         PageElement choosePlayer = pageElementFactory.generateDropdown(erzählerFrame.comboBox2,
                 null, spielerLabel, 0, 0);
@@ -597,19 +589,19 @@ public class ErzählerPageFactory {
         return priesterPage;
     }
 
-    public Page generateRichterinPage(ArrayList<String> livingPlayers) {
+    public Page generateRichterinPage(List<String> livingPlayers) {
         PageElement titleLabel = pageElementFactory.generateTitleLabel(null, "Verurteilen");
 
         PageElement richterinLabel = pageElementFactory.generateLabel(titleLabel, "Richterin");
 
-        ArrayList<String> comboBoxOptions = livingPlayers;
+        List<String> comboBoxOptions = livingPlayers;
         erzählerFrame.comboBox1 = new JComboBox(comboBoxOptions.toArray());
         PageElement chooseRichterin = pageElementFactory.generateDropdown(erzählerFrame.comboBox1,
                 null, richterinLabel, 0, 0);
 
         PageElement spielerLabel = pageElementFactory.generateLabel(chooseRichterin, "Spieler");
 
-        ArrayList<String> comboBox2Options = livingPlayers;
+        List<String> comboBox2Options = livingPlayers;
         erzählerFrame.comboBox2 = new JComboBox(comboBox2Options.toArray());
         PageElement choosePlayer = pageElementFactory.generateDropdown(erzählerFrame.comboBox2,
                 null, spielerLabel, 0, 0);
@@ -635,7 +627,7 @@ public class ErzählerPageFactory {
         return richterinPage;
     }
 
-    public Page generateTortenPage(Page tortenPage, ArrayList<String> livingPlayers) {
+    public Page generateTortenPage(Page tortenPage, List<String> livingPlayers) {
         PageElement titleLabel = pageElementFactory.generateTitleLabel(null, "Torte");
 
         int tableElementHeight = 25;
@@ -644,7 +636,7 @@ public class ErzählerPageFactory {
         int spaceBetween = 10;
         int columns = 2;
 
-        ArrayList<String> comboBoxOptions = livingPlayers;
+        List<String> comboBoxOptions = livingPlayers;
         erzählerFrame.comboBox1 = new JComboBox(comboBoxOptions.toArray());
         PageElement choosePlayer1 = pageElementFactory.generateDropdown(erzählerFrame.comboBox1,
                 null, titleLabel, 0, 0);
@@ -666,35 +658,41 @@ public class ErzählerPageFactory {
         tortenPage.add(titleLabel);
         tortenPage.add(choosePlayer1);
         tortenPage.add(addPlayerButton);
-        tortenPage.addTable(erzählerFrame.deleteTortenPlayerTable);
-        tortenPage.addTable(erzählerFrame.tortenPlayerLabelTable);
+        tortenPage.add(erzählerFrame.deleteTortenPlayerTable);
+        tortenPage.add(erzählerFrame.tortenPlayerLabelTable);
         tortenPage.add(nextButton);
 
         return tortenPage;
     }
 
-    /*public Page generateVictoryPage(String victoryMessage) {
-        Page victoryPage = new Page();
-        JLabel victoryJLabel = pageElementFactory.generateBigJLabel(new JLabel(victoryMessage));
-        int width = victoryJLabel.getPreferredSize().width;
-        int height = victoryJLabel.getPreferredSize().height;
-        int spaceToPredecessorX = erzählerFrame.frameJPanel.getWidth()/2 - width/2;
-        int spaceToPredecessorY = erzählerFrame.frameJPanel.getWidth()/2 - height/2;
-
-        PageElement victoryLabel = new PageElement(victoryJLabel, width, height, null, null, spaceToPredecessorX, spaceToPredecessorY);
-
-        victoryPage.add(victoryLabel);
-
-        return victoryPage;
-    }*/
-
-    public PageElement getContinueToGeneratePagePoint(Page page) {
+    private PageElement getContinueToGeneratePagePoint(Page page) {
         return page.pageElements.get(continueToGeneratePagePoint);
     }
 
-    public Page generateIrrlichtDropdownPage(Statement statement, ArrayList<String> dropdownStrings) {
-        Page dropdownPage = generateDropdownPage(statement, dropdownStrings);
+    public Page generateIrrlichtDropdownPage(Page irrlichtPage, Statement statement, List<String> dropdownStrings) {
+        irrlichtPage = generateDropdownPage(irrlichtPage, statement, dropdownStrings);
 
-        return dropdownPage;
+        PageElement continueToGeneratePoint = getContinueToGeneratePagePoint(irrlichtPage);
+
+        erzählerFrame.addIrrlichtButton = new JButton("Hinzufügen");
+        PageElement addIrrlichtButton = pageElementFactory.generateSmallButton(erzählerFrame.addIrrlichtButton, continueToGeneratePoint);
+
+        int tableElementHeight = 25;
+        int deleteButtonWidth = 40;
+        int nameLabelWidth = 150;
+        int spaceBetween = 10;
+        int columns = 1;
+
+        erzählerFrame.deleteIrrlichterTable = pageElementFactory.generatePageTable(erzählerFrame.deleteIrrlichterTable, continueToGeneratePoint,
+                columns, deleteButtonWidth, tableElementHeight, nameLabelWidth, spaceBetween, 0, spaceBetween);
+
+        erzählerFrame.irrlichterLableTable = pageElementFactory.generatePageTable(erzählerFrame.irrlichterLableTable, continueToGeneratePoint,
+                columns, nameLabelWidth, tableElementHeight, deleteButtonWidth, spaceBetween, deleteButtonWidth + spaceBetween, spaceBetween);
+
+        irrlichtPage.add(addIrrlichtButton);
+        irrlichtPage.add(erzählerFrame.deleteIrrlichterTable);
+        irrlichtPage.add(erzählerFrame.irrlichterLableTable);
+
+        return irrlichtPage;
     }
 }

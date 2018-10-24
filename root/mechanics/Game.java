@@ -24,6 +24,8 @@ import root.Phases.NightBuilding.NormalNightStatementBuilder;
 import root.Spieler;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Game {
     public PhaseMode phaseMode;
@@ -652,5 +654,12 @@ public class Game {
         }
 
         return bonusrollenUnspecifiedStrings;
+    }
+
+    public List<String> getIrrlichter() {
+        ArrayList<Spieler> livingSpieler = getLivingSpieler();
+        List<Spieler> irrlichtSpieler = livingSpieler.stream().filter(p -> p.hauptrolle.equals(Irrlicht.NAME)).collect(Collectors.toList());
+
+        return irrlichtSpieler.stream().map(Spieler::getName).collect(Collectors.toList());
     }
 }

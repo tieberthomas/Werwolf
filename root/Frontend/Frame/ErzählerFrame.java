@@ -24,6 +24,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
@@ -119,6 +120,14 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     private PageRefresher bonusrollePageRefresher;
     private PageRefresher tortenPageRefresher;
     private PageRefresher specifyPageRefresher;
+    private PageRefresher irrlichtPageRefresher;
+
+    public Page irrlichtPage;
+    public PageTable deleteIrrlichterTable;
+    public PageTable irrlichterLableTable;
+    public ArrayList<String> flackerndeIrrlichter; //TODO mit strings oder spielern arbeiten?
+    public ArrayList<JButton> deleteIrrlichterButtons = new ArrayList<>();
+    public JButton addIrrlichtButton = new JButton();
 
     public ErzählerFrame() {
         calcFrameSize();
@@ -146,6 +155,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         bonusrolleSetupPage = new Page();
         tortenPage = new Page();
         playerSpecifiyPage = new Page();
+        irrlichtPage = new Page();
 
         hauptrolleButtonTable = new PageTable();
         bonusrolleButtonTable = new PageTable();
@@ -157,12 +167,16 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         playerSpecifyLabelTable = new PageTable();
         hauptrolleSpecifyLabelTable = new PageTable();
         bonusrolleSpecifyLabelTable = new PageTable();
+        irrlichterLableTable = new PageTable();
 
         deletePlayerTable = new PageTable();
         deleteHauptrolleTable = new PageTable();
         deleteBonusrolleTable = new PageTable();
         deleteTortenPlayerTable = new PageTable();
         deleteSpecifyPlayerTable = new PageTable();
+        deleteIrrlichterTable = new PageTable();
+
+        flackerndeIrrlichter = new ArrayList<>();
     }
 
     private void generateAllPageRefreshers() {
@@ -171,6 +185,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         generateBonusrollePageRefresher();
         generateTortenPageRefresher();
         generateSpecifyPageRefresher();
+        generateIrrlichtPageRefresher();
     }
 
     private void generatePlayerPageRefresher() {
@@ -226,6 +241,12 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                     }
                 }));
         specifyPageRefresher.add(new DeleteButtonTable(deleteSpecifyPlayerTable, deleteSpecifyPlayerButtons, game.spielerSpecified::size));
+    }
+
+    private void generateIrrlichtPageRefresher() {
+        irrlichtPageRefresher = new PageRefresher(irrlichtPage);
+        irrlichtPageRefresher.add(new LabelTable(irrlichterLableTable, this::getFlackerndeIrrlichter));
+        irrlichtPageRefresher.add(new DeleteButtonTable(deleteIrrlichterTable, deleteIrrlichterButtons, this.flackerndeIrrlichter::size));
     }
 
     private void generateAllPages() {
@@ -307,6 +328,19 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         }
         nichtTortenEsser.removeAll(tortenEsser);
         DefaultComboBoxModel model1 = new DefaultComboBoxModel(nichtTortenEsser.toArray());
+        comboBox1.setModel(model1);
+    }
+
+    private void refreshIrrlichtPage() {
+        refreshIrrlichtComboBoxes();
+        irrlichtPageRefresher.refreshPage();
+    }
+
+    private void refreshIrrlichtComboBoxes() {
+        List<String> nichtFlackernde = game.getIrrlichter();
+        ArrayList<String> flackernde = flackerndeIrrlichter;
+        nichtFlackernde.removeAll(flackernde);
+        DefaultComboBoxModel model1 = new DefaultComboBoxModel(nichtFlackernde.toArray());
         comboBox1.setModel(model1);
     }
 
@@ -395,6 +429,8 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
             if (!addPlayerTxtField.getText().equals("") && !game.spielerExists(addPlayerTxtField.getText())) {
                 addNewPlayer();
             }
+        } else if (ae.getSource() == addIrrlichtButton) {
+            addIrrlicht();
         } else if (ae.getSource() == addPlayerTortenButton) {
             addTortenEsser();
         } else if (deleteTortenPlayerButtons.contains(ae.getSource())) {
@@ -620,6 +656,15 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         }
     }
 
+    private void addIrrlicht() {
+        try {
+            String spielerName = comboBox1.getSelectedItem().toString();
+            flackerndeIrrlichter.add(spielerName);
+            refreshIrrlichtPage();
+        } catch (NullPointerException e) {
+        }
+    }
+
     private void deleteSpecifiedPlayer(ActionEvent ae) {
         for (int i = 0; i < deleteSpecifyPlayerButtons.size(); i++) {
             if (ae.getSource() == deleteSpecifyPlayerButtons.get(i)) {
@@ -832,5 +877,9 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
 
     private Page generateSpecifyPlayerPage() {
         return pageFactory.generatePlayerSpecifiyPage(playerSpecifiyPage, game.getSpielerUnspecifiedStrings(), game.getHauptrollenUnspecifiedStrings(), game.getBonusrollenUnspecifiedStrings());
+    }
+
+    public ArrayList<String> getFlackerndeIrrlichter() {
+        return flackerndeIrrlichter;
     }
 }

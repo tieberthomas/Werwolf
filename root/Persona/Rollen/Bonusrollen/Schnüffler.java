@@ -12,6 +12,7 @@ import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Schnüffler extends Bonusrolle {
     public static final String STATEMENT_IDENTIFIER = "Schnüffler";
@@ -51,7 +52,7 @@ public class Schnüffler extends Bonusrolle {
         return frontendControl;
     }
 
-    private void removePreviousSpieler(ArrayList<String> spieler) {
+    private void removePreviousSpieler(List<String> spieler) {
         for (SchnüfflerInformation information : informationen) {
             spieler.remove(information.spielerName);
         }
