@@ -18,6 +18,8 @@ import root.Persona.Rollen.Hauptrollen.Überläufer.Henker;
 import root.Persona.Rollen.Hauptrollen.Überläufer.Überläufer;
 import root.Phases.NightBuilding.Constants.IndieStatements;
 import root.Phases.NightBuilding.Constants.ProgrammStatements;
+import root.Phases.NightBuilding.StatementDependancy.StatementDependencyFraktion;
+import root.Phases.NightBuilding.StatementDependancy.StatementDependencyRolle;
 import root.mechanics.Game;
 
 import java.util.ArrayList;
@@ -115,26 +117,26 @@ public class NormalNightStatementBuilder {
 
     private static void addStatementRolle(ArrayList<Statement> statements, String rollenName) {
         Rolle rolle = Rolle.findRolle(rollenName);
-        Statement statement = new StatementRolle(rolle);
+        Statement statement = new Statement(rolle);
         statements.add(statement);
     }
 
     private static void addSecondStatementRolle(ArrayList<Statement> statements, String rollenName) {
         Rolle rolle = Rolle.findRolle(rollenName);
         //TODO find better solution
-        Statement statement = new StatementRolle(rolle.secondStatementIdentifier, rolle.secondStatementTitle, rolle.secondStatementBeschreibung, rolle.secondStatementType, rolle.name);
+        Statement statement = new Statement(rolle.secondStatementIdentifier, rolle.secondStatementTitle, rolle.secondStatementBeschreibung, rolle.secondStatementType, new StatementDependencyRolle(rolle));
         statements.add(statement);
     }
 
     private static void addStatementFraktion(ArrayList<Statement> statements, String fraktionsName) {
         Fraktion fraktion = Fraktion.findFraktion(fraktionsName);
-        Statement statement = new StatementFraktion(fraktion);
+        Statement statement = new Statement(fraktion);
         statements.add(statement);
     }
 
     private static void addSecondStatementFraktion(ArrayList<Statement> statements, String fraktionsName) {
         Fraktion fraktion = Fraktion.findFraktion(fraktionsName);
-        Statement statement = new StatementFraktion(fraktion.secondStatementIdentifier, fraktion.secondStatementTitle, fraktion.secondStatementBeschreibung, fraktion.secondStatementType, fraktion.name);
+        Statement statement = new Statement(fraktion.secondStatementIdentifier, fraktion.secondStatementTitle, fraktion.secondStatementBeschreibung, fraktion.secondStatementType, new StatementDependencyFraktion(fraktion));
         statements.add(statement);
     }
 }
