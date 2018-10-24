@@ -16,14 +16,13 @@ public class Medium extends Bonusrolle {
     public static final String STATEMENT_BESCHREIBUNG = "Medium erwacht und lässt sich vom Erzähler eine Bonusrolle, die nicht im Spiel ist, zeigen";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_INFO;
 
-    public static final String NO_BONUSROLES_OUT_OF_GAME = "Es sind alle Bonusrollen im Spiel";
+    private static final String NO_BONUSROLES_OUT_OF_GAME = "Es sind alle Bonusrollen im Spiel";
 
     public static final String NAME = "Medium";
     public static final String IMAGE_PATH = ImagePath.MEDIUM_KARTE;
     public static final BonusrollenType TYPE = new Informativ();
 
-
-    public static ArrayList<String> geseheneBonusrollen = new ArrayList<>();
+    private static ArrayList<String> geseheneBonusrollen = new ArrayList<>();
 
     public Medium() {
         this.name = NAME;

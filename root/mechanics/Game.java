@@ -477,6 +477,7 @@ public class Game {
     public void addAllHauptrollenToGame() {
         hauptrollenInGame.addAll(hauptrollen);
         hauptrollenInGame.remove(findHauptrolle(Dorfbewohner.NAME));
+        hauptrollenInGame.remove(findHauptrolle(Werwolf.NAME));
     }
 
     public ArrayList<String> getBonusrolleNames() {
@@ -559,8 +560,7 @@ public class Game {
     }
 
     public ArrayList<Spieler> getSpielerUnspecified() {
-        ArrayList<Spieler> spielerUnspecified = new ArrayList<Spieler>();
-        spielerUnspecified = (ArrayList) spieler.clone();
+        ArrayList<Spieler> spielerUnspecified = (ArrayList)spieler.clone();
         spielerUnspecified.removeAll(spielerSpecified);
         return spielerUnspecified;
     }
