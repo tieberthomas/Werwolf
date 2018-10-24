@@ -337,7 +337,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     }
 
     private void refreshIrrlichtComboBoxes() {
-        List<String> nichtFlackernde = game.getIrrlichter();
+        List<String> nichtFlackernde = game.getIrrlichterStrings();
         ArrayList<String> flackernde = flackerndeIrrlichter;
         nichtFlackernde.removeAll(flackernde);
         DefaultComboBoxModel model1 = new DefaultComboBoxModel(nichtFlackernde.toArray());
@@ -435,6 +435,8 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
             addTortenEsser();
         } else if (deleteTortenPlayerButtons.contains(ae.getSource())) {
             deleteTortenesser(ae);
+        } else if (deleteIrrlichterButtons.contains(ae.getSource())) {
+            deleteFlackerndesIrrlicht(ae);
         } else if (deletePlayerButtons.contains(ae.getSource())) {
             deletePlayer(ae);
         } else if (addAllHauptrollenJButton == ae.getSource()) {
@@ -673,6 +675,24 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                 refreshSpecifyPlayerPage();
             }
         }
+    }
+
+    private void deleteFlackerndesIrrlicht(ActionEvent ae) {
+        for (int i = 0; i < deleteIrrlichterButtons.size(); i++) {
+            if (ae.getSource() == deleteIrrlichterButtons.get(i)) {
+                removeFlackerndesIrrlicht(i);
+
+                refreshIrrlichtPage();
+            }
+        }
+    }
+
+    private void removeFlackerndesIrrlicht(int index) {
+        if (deleteIrrlichterButtons.size() > index) {
+            deleteIrrlichterButtons.remove(index);
+        }
+
+        flackerndeIrrlichter.remove(index);
     }
 
     private void deleteBonusrolle(ActionEvent ae) {
