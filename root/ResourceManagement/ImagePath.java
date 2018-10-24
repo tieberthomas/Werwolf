@@ -44,6 +44,7 @@ public class ImagePath {
 
     public static String DORFBEWOHNER_KARTE = BÜRGER_PATH + "Dorfbewohner" + IMAGE_FILE_EXTENSION;
     public static String HOLDE_MAID_KARTE = BÜRGER_PATH + "Holde_Maid" + IMAGE_FILE_EXTENSION;
+    public static String IRRLICHT_KARTE = BÜRGER_PATH + "Irrlicht" + IMAGE_FILE_EXTENSION;
     public static String ORAKEL_KARTE = BÜRGER_PATH + "Orakel" + IMAGE_FILE_EXTENSION;
     public static String RIESE_KARTE = BÜRGER_PATH + "Riese" + IMAGE_FILE_EXTENSION;
     public static String SAMMLER_KARTE = BÜRGER_PATH + "Sammler" + IMAGE_FILE_EXTENSION;
@@ -54,6 +55,7 @@ public class ImagePath {
 
     public static String SCHATTENPRIESTER_KARTE = SCHATTENPRIESTER_PATH + "Schattenpriester" + IMAGE_FILE_EXTENSION;
 
+    public static String HENKER_KARTE = ÜBERLÄUFER_PATH + "Henker" + IMAGE_FILE_EXTENSION;
     public static String ÜBERLÄUFER_KARTE = ÜBERLÄUFER_PATH + "Überläufer" + IMAGE_FILE_EXTENSION;
 
     public static String GRAF_VLADIMIR_KARTE = VAMPIRE_PATH + "Graf_Vladimir" + IMAGE_FILE_EXTENSION;
