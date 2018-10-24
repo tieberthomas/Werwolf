@@ -18,7 +18,8 @@ public class Orakel extends Hauptrolle {
     public static final String STATEMENT_TITLE = "Bonusrolle";
     public static final String STATEMENT_BESCHREIBUNG = "Orakel erwacht und lässt sich vom Erzähler die Bonusrollenkarte eines zufälligen Bürgers zeigen";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_INFO;
-    public static final String VERBRAUCHT_TITLE = "Bonusrollen";
+
+    public static final String LAST_BUERGER_MESSAGE = "Du bist der letzte Bürger";
 
     public static final String NAME = "Orakel";
     public static final String IMAGE_PATH = ImagePath.ORAKEL_KARTE;
@@ -44,17 +45,7 @@ public class Orakel extends Hauptrolle {
         if (randomBonusrolle != null) {
             return new FrontendControl(FrontendControlType.CARD, randomBonusrolle.imagePath);
         } else {
-            Spieler orakelSpieler = game.findSpielerPerRolle(NAME);
-
-            if (orakelSpieler != null) {
-                ArrayList<String> bonusRolleList = (ArrayList<String>) geseheneBonusrollen.clone();
-                bonusRolleList.remove(orakelSpieler.bonusrolle.name);
-                FrontendControl info = new FrontendControl(FrontendControlType.LIST, bonusRolleList);
-                info.title = VERBRAUCHT_TITLE;
-                return info;
-            } else {
-                return new FrontendControl(VERBRAUCHT_TITLE);
-            }
+            return new FrontendControl(STATEMENT_TITLE, LAST_BUERGER_MESSAGE);
         }
     }
 
@@ -69,7 +60,13 @@ public class Orakel extends Hauptrolle {
             bonusrolle = unseenBürger.get(randIndex).bonusrolle;
             geseheneBonusrollen.add(bonusrolle.name);
         } else {
-            bonusrolle = null;
+            if (geseheneBonusrollen.size() == 1) {
+                //das heißt dass keine bonusrollen mehr bei bürgern sind
+                return null;
+            } else {
+                geseheneBonusrollen.clear();
+                return getRandomUnseenBonusrolle();
+            }
         }
 
         return bonusrolle;
