@@ -296,4 +296,8 @@ public class FrontendControl {
     public void addString(DropdownConstants dropdownConstant) {
         dropdownStrings.add(dropdownConstant.name);
     }
+
+    public static List<String> getFlackerndeIrrlichter() {
+        return erzählerFrame.flackerndeIrrlichter;
+    }
 }

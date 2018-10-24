@@ -197,10 +197,8 @@ public class NormalNight extends Thread {
                             rolle = ((StatementRolle) statement).getRolle();
 
                             dropdownOtions = rolle.getDropdownOptionsFrontendControl();
-                            ArrayList<String> flackerndeIrrlichter = new ArrayList<>();
-                            chosenOption = showFrontendControl(statement, dropdownOtions);
-                            flackerndeIrrlichter.add(chosenOption);
-                            info = Irrlicht.processFlackerndeIrrlichter(flackerndeIrrlichter);
+                            showFrontendControl(statement, dropdownOtions);
+                            info = Irrlicht.processFlackerndeIrrlichter(FrontendControl.getFlackerndeIrrlichter());
                             showFrontendControl(statement, info);
                             break;
 
