@@ -4,14 +4,12 @@ import root.Frontend.FrontendControl;
 import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Bürger;
 import root.Persona.Hauptrolle;
-import root.Persona.Rollen.Bonusrollen.Tarnumhang;
-import root.Persona.Rollen.Constants.BonusrollenType.Tarnumhang_BonusrollenType;
-import root.Persona.Rollen.Constants.Zeigekarten.Nicht_Tötend;
-import root.Persona.Rollen.Constants.Zeigekarten.Tötend;
-import root.Persona.Rollen.Hauptrollen.Werwölfe.Geisterwolf;
+import root.Persona.Rollen.Constants.TötendInformationType;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
+
+import static root.Persona.Rollen.Constants.TötendInformationType.TÖTEND;
 
 public class Späher extends Hauptrolle {
     public static final String STATEMENT_IDENTIFIER = "Späher";
@@ -44,21 +42,18 @@ public class Späher extends Hauptrolle {
     @Override
     public FrontendControl processChosenOptionGetInfo(String chosenOption) {
         Spieler chosenSpieler = game.findSpieler(chosenOption);
+        Spieler späherSpieler = game.findSpielerPerRolle(name);
 
-        if (chosenSpieler != null) {
+        if (chosenSpieler != null && späherSpieler != null) {
             besucht = chosenSpieler;
 
-            if (chosenSpieler.bonusrolle.name.equals(Tarnumhang.NAME)) {
-                return new FrontendControl(new Tarnumhang_BonusrollenType());
-            }
+            TötendInformationType info = chosenSpieler.isTötendInfo(späherSpieler);
 
-            if (chosenSpieler.hauptrolle.killing && !chosenSpieler.hauptrolle.equals(Geisterwolf.NAME)) {
+            if (info == TÖTEND) {
                 abilityCharges--;
-
-                return new FrontendControl(new Tötend());
-            } else {
-                return new FrontendControl(new Nicht_Tötend());
             }
+
+            return new FrontendControl(info.zeigekarte);
         }
 
         return new FrontendControl();

@@ -23,13 +23,13 @@ public class Irrlicht extends Hauptrolle {
     public static final String SECOND_STATEMENT_BESCHREIBUNG = "ein Irrlicht bekommt Info";
     public static final StatementType SECOND_STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
 
-    public static final String LAST_IRRLICHT_MESSAGE = "Du bist das letzte Irrlicht";
+    private static final String LAST_IRRLICHT_MESSAGE = "Du bist das letzte Irrlicht";
 
     public static final String NAME = "Irrlicht";
     public static final String IMAGE_PATH = ImagePath.IRRLICHT_KARTE;
     public static final Fraktion FRAKTION = new Bürger();
 
-    public static ArrayList<String> geseheneIrrlichter = new ArrayList<>();
+    private static ArrayList<String> geseheneIrrlichter = new ArrayList<>();
 
     public Irrlicht() {
         this.name = NAME;

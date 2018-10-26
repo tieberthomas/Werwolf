@@ -87,7 +87,7 @@ public class Henker extends Hauptrolle {
                     break;
                 case 2:
                     //kill spieler
-                    //schütze henkre
+                    //schütze henker
                     //return geschützt + kill frontencontrol
                     break;
             }

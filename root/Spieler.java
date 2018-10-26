@@ -4,10 +4,13 @@ import root.Persona.Bonusrolle;
 import root.Persona.Hauptrolle;
 import root.Persona.Rollen.Bonusrollen.Schatten;
 import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
+import root.Persona.Rollen.Constants.TötendInformationType;
 import root.Persona.Rollen.Hauptrollen.Bürger.Dorfbewohner;
 import root.mechanics.Game;
 
 import java.awt.*;
+
+import static root.Persona.Rollen.Constants.TötendInformationType.TARNUMHANG;
 
 public class Spieler {
     public static final Color ALIVE_BACKGROUND_COLOR = Color.WHITE;
@@ -62,6 +65,10 @@ public class Spieler {
         return bonusrolle;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public BonusrollenType getBonusrollenType() {
         return bonusrolle.type;
     }
@@ -81,7 +88,18 @@ public class Spieler {
         this.bonusrolle = bonusrolle;
     }
 
-    public String getName() {
-        return name;
+    public boolean isTötend() {
+        return hauptrolle.killing;
+    }
+
+    public TötendInformationType isTötendInfo(Spieler requester) {
+        TötendInformationType hauptrolleIsTötend = hauptrolle.isTötendInfo(requester);
+        TötendInformationType bonunsrolleIsTötend = bonusrolle.isTötendInfo();
+
+        if (TARNUMHANG.equals(bonunsrolleIsTötend)) {
+            return bonunsrolleIsTötend;
+        } else {
+            return hauptrolleIsTötend;
+        }
     }
 }

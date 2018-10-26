@@ -5,6 +5,7 @@ import root.Frontend.FrontendControl;
 import root.Persona.Bonusrolle;
 import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Persona.Rollen.Constants.BonusrollenType.Tarnumhang_BonusrollenType;
+import root.Persona.Rollen.Constants.TötendInformationType;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
@@ -13,6 +14,8 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
+
+import static root.Persona.Rollen.Constants.TötendInformationType.TARNUMHANG;
 
 public class Tarnumhang extends Bonusrolle {
     public static final String STATEMENT_IDENTIFIER = "Tarnumhang";
@@ -87,5 +90,9 @@ public class Tarnumhang extends Bonusrolle {
         }
 
         return allTräger;
+    }
+
+    public TötendInformationType isTötendInfo() {
+        return TARNUMHANG;
     }
 }

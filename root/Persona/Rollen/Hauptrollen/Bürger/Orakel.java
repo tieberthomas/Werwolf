@@ -19,13 +19,13 @@ public class Orakel extends Hauptrolle {
     public static final String STATEMENT_BESCHREIBUNG = "Orakel erwacht und lässt sich vom Erzähler die Bonusrollenkarte eines zufälligen Bürgers zeigen";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_INFO;
 
-    public static final String LAST_BUERGER_MESSAGE = "Du bist der letzte Bürger";
+    private static final String LAST_BUERGER_MESSAGE = "Du bist der letzte Bürger";
 
     public static final String NAME = "Orakel";
     public static final String IMAGE_PATH = ImagePath.ORAKEL_KARTE;
     public static final Fraktion FRAKTION = new Bürger();
 
-    public static ArrayList<String> geseheneBonusrollen = new ArrayList<>();
+    private static ArrayList<String> geseheneBonusrollen = new ArrayList<>();
 
     public Orakel() {
         this.name = NAME;

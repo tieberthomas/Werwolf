@@ -6,9 +6,12 @@ import root.Persona.Fraktionen.Bürger;
 import root.Persona.Hauptrolle;
 import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Persona.Rollen.Constants.BonusrollenType.Tarnumhang_BonusrollenType;
+import root.Persona.Rollen.Constants.TötendInformationType;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
+
+import static root.Persona.Rollen.Constants.TötendInformationType.TARNUMHANG;
 
 public class Schamanin extends Hauptrolle {
     public static final String STATEMENT_IDENTIFIER = "Schamanin";
@@ -58,11 +61,15 @@ public class Schamanin extends Hauptrolle {
         return null;
     }
 
-    private boolean thisRolleIsNotBuerger(Spieler requester) {
-        if (requester == null) {
-            return false;
+    public TötendInformationType isTötendInfo(Spieler requester) {
+        if (thisRolleIsNotBuerger(requester)) {
+            return TARNUMHANG;
         }
 
-        return !requester.hauptrolle.fraktion.equals(new Bürger());
+        return TötendInformationType.getTötendInformationsType(killing);
+    }
+
+    private boolean thisRolleIsNotBuerger(Spieler requester) {
+        return requester != null && !requester.hauptrolle.fraktion.equals(new Bürger());
     }
 }
