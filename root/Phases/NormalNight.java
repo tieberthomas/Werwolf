@@ -29,8 +29,10 @@ import root.Phases.NightBuilding.Constants.ProgrammStatements;
 import root.Phases.NightBuilding.Constants.StatementState;
 import root.Phases.NightBuilding.NormalNightStatementBuilder;
 import root.Phases.NightBuilding.Statement;
+import root.Phases.NightBuilding.StatementDependancy.StatementDependency;
 import root.Phases.NightBuilding.StatementDependancy.StatementDependencyFraktion;
 import root.Phases.NightBuilding.StatementDependancy.StatementDependencyRolle;
+import root.Phases.NightBuilding.StatementDependancy.StatementDependencyStatement;
 import root.Spieler;
 import root.mechanics.Game;
 import root.mechanics.Liebespaar;
@@ -60,13 +62,16 @@ public class NormalNight extends Thread {
         synchronized (lock) {
             FrontendControl dropdownOtions;
             FrontendControl info;
+
             String chosenOption;
             String chosenOptionLastStatement = null;
+            Spieler chosenSpieler;
 
             Rolle rolle = null;
+            Fraktion fraktion = null;
+
             String erzählerInfoIconImagePath;
 
-            Spieler chosenSpieler;
             wölfinKilled = false;
             wölfinSpieler = null;
             beschworenerSpieler = null;
@@ -85,22 +90,30 @@ public class NormalNight extends Thread {
                 if (statement.state != StatementState.INVISIBLE_NOT_IN_GAME) {
                     setSpielerAwake(statement);
 
+                    StatementDependency dependency = statement.dependency;
+                    while (dependency instanceof StatementDependencyStatement) {
+                        dependency = ((StatementDependencyStatement) dependency).statement.dependency;
+                    }
+
+                    if(dependency instanceof StatementDependencyRolle) {
+                        rolle = ((StatementDependencyRolle) dependency).rolle;
+                    }
+                    if(dependency instanceof StatementDependencyFraktion) {
+                        fraktion = ((StatementDependencyFraktion) dependency).fraktion;
+                    }
+
                     switch (statement.type) {
                         case SHOW_TITLE:
                             showTitle(statement);
                             break;
 
                         case ROLLE_CHOOSE_ONE:
-                            rolle = ((StatementDependencyRolle) statement.dependency).rolle;
-
                             dropdownOtions = rolle.getDropdownOptionsFrontendControl();
                             chosenOption = showFrontendControl(statement, dropdownOtions);
                             rolle.processChosenOption(chosenOption);
                             break;
 
                         case ROLLE_CHOOSE_ONE_INFO:
-                            rolle = ((StatementDependencyRolle) statement.dependency).rolle;
-
                             dropdownOtions = rolle.getDropdownOptionsFrontendControl();
                             chosenOption = showFrontendControl(statement, dropdownOtions);
                             info = rolle.processChosenOptionGetInfo(chosenOption);
@@ -108,19 +121,11 @@ public class NormalNight extends Thread {
                             break;
 
                         case ROLLE_INFO:
-                            rolle = ((StatementDependencyRolle) statement.dependency).rolle;
-
                             info = rolle.getInfo();
                             showFrontendControl(statement, info);
                             break;
 
-                        case ROLLE_SPECAL:
-                            rolle = ((StatementDependencyRolle) statement.dependency).rolle;
-                            break;
-
                         case FRAKTION_CHOOSE_ONE:
-                            Fraktion fraktion = ((StatementDependencyFraktion) statement.dependency).fraktion;
-
                             dropdownOtions = fraktion.getDropdownOptionsFrontendControl();
                             chosenOption = showFrontendControl(statement, dropdownOtions);
                             fraktion.processChosenOption(chosenOption);

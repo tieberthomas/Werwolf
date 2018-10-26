@@ -18,8 +18,6 @@ import root.Persona.Rollen.Hauptrollen.Überläufer.Henker;
 import root.Persona.Rollen.Hauptrollen.Überläufer.Überläufer;
 import root.Phases.NightBuilding.Constants.IndieStatements;
 import root.Phases.NightBuilding.Constants.ProgrammStatements;
-import root.Phases.NightBuilding.StatementDependancy.StatementDependencyFraktion;
-import root.Phases.NightBuilding.StatementDependancy.StatementDependencyRolle;
 import root.mechanics.Game;
 
 import java.util.ArrayList;
@@ -123,8 +121,12 @@ public class NormalNightStatementBuilder {
 
     private static void addSecondStatementRolle(ArrayList<Statement> statements, String rollenName) {
         Rolle rolle = Rolle.findRolle(rollenName);
-        //TODO find better solution
-        Statement statement = new Statement(rolle.secondStatementIdentifier, rolle.secondStatementTitle, rolle.secondStatementBeschreibung, rolle.secondStatementType, new StatementDependencyRolle(rolle));
+
+        Statement firstStatement = statements.stream()
+                .filter(statement -> statement.identifier.equals(rolle.statementIdentifier))
+                .findAny().orElse(null);
+
+        Statement statement = new Statement(rolle, firstStatement);
         statements.add(statement);
     }
 
@@ -136,7 +138,12 @@ public class NormalNightStatementBuilder {
 
     private static void addSecondStatementFraktion(ArrayList<Statement> statements, String fraktionsName) {
         Fraktion fraktion = Fraktion.findFraktion(fraktionsName);
-        Statement statement = new Statement(fraktion.secondStatementIdentifier, fraktion.secondStatementTitle, fraktion.secondStatementBeschreibung, fraktion.secondStatementType, new StatementDependencyFraktion(fraktion));
+
+        Statement firstStatement = statements.stream()
+                .filter(statement -> statement.identifier.equals(fraktion.statementIdentifier))
+                .findAny().orElse(null);
+
+        Statement statement = new Statement(fraktion, firstStatement);
         statements.add(statement);
     }
 }

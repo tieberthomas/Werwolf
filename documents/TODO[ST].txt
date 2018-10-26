@@ -2,6 +2,11 @@ ST:
 FirstNight - StatementType
 Alphabet Umlaute?
 
+isInstanceOf
+ID
+Rexen
+Seherin firstNight
+
 TH:
 BonusrollenType - Enum?
 
@@ -13,3 +18,5 @@ Phase manager
 Analytiker generisch machen
 ErsteNacht generisch machen
 FrontendControl subclassen
+Persona ID
+Rolle, Fraktion zusammenfassen Persona
