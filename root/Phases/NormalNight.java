@@ -26,11 +26,11 @@ import root.Persona.Rollen.Hauptrollen.Werwölfe.Wölfin;
 import root.Persona.Rollen.Hauptrollen.Überläufer.Henker;
 import root.Phases.NightBuilding.Constants.IndieStatements;
 import root.Phases.NightBuilding.Constants.ProgrammStatements;
-import root.Phases.NightBuilding.Constants.StatementType;
+import root.Phases.NightBuilding.Constants.StatementState;
 import root.Phases.NightBuilding.NormalNightStatementBuilder;
 import root.Phases.NightBuilding.Statement;
-import root.Phases.NightBuilding.StatementFraktion;
-import root.Phases.NightBuilding.StatementRolle;
+import root.Phases.NightBuilding.StatementDependancy.StatementDependencyFraktion;
+import root.Phases.NightBuilding.StatementDependancy.StatementDependencyRolle;
 import root.Spieler;
 import root.mechanics.Game;
 import root.mechanics.Liebespaar;
@@ -82,7 +82,7 @@ public class NormalNight extends Thread {
 
                 chosenOption = null;
 
-                if (statement.isVisible() || statement.type == StatementType.PROGRAMM) {
+                if (statement.state != StatementState.INVISIBLE_NOT_IN_GAME) {
                     setSpielerAwake(statement);
 
                     switch (statement.type) {
@@ -91,7 +91,7 @@ public class NormalNight extends Thread {
                             break;
 
                         case ROLLE_CHOOSE_ONE:
-                            rolle = ((StatementRolle) statement).getRolle();
+                            rolle = ((StatementDependencyRolle) statement.dependency).rolle;
 
                             dropdownOtions = rolle.getDropdownOptionsFrontendControl();
                             chosenOption = showFrontendControl(statement, dropdownOtions);
@@ -99,7 +99,7 @@ public class NormalNight extends Thread {
                             break;
 
                         case ROLLE_CHOOSE_ONE_INFO:
-                            rolle = ((StatementRolle) statement).getRolle();
+                            rolle = ((StatementDependencyRolle) statement.dependency).rolle;
 
                             dropdownOtions = rolle.getDropdownOptionsFrontendControl();
                             chosenOption = showFrontendControl(statement, dropdownOtions);
@@ -108,18 +108,18 @@ public class NormalNight extends Thread {
                             break;
 
                         case ROLLE_INFO:
-                            rolle = ((StatementRolle) statement).getRolle();
+                            rolle = ((StatementDependencyRolle) statement.dependency).rolle;
 
                             info = rolle.getInfo();
                             showFrontendControl(statement, info);
                             break;
 
                         case ROLLE_SPECAL:
-                            rolle = ((StatementRolle) statement).getRolle();
+                            rolle = ((StatementDependencyRolle) statement.dependency).rolle;
                             break;
 
                         case FRAKTION_CHOOSE_ONE:
-                            Fraktion fraktion = ((StatementFraktion) statement).getFraktion();
+                            Fraktion fraktion = ((StatementDependencyFraktion) statement.dependency).fraktion;
 
                             dropdownOtions = fraktion.getDropdownOptionsFrontendControl();
                             chosenOption = showFrontendControl(statement, dropdownOtions);
@@ -407,12 +407,12 @@ public class NormalNight extends Thread {
 
     public void setSpielerAwake(Statement statement) {
         spielerAwake.clear();
-        if (statement.getClass() == StatementFraktion.class) {
-            StatementFraktion statementFraktion = (StatementFraktion) statement;
-            spielerAwake.addAll(Fraktion.getFraktionsMembers(statementFraktion.fraktion));
-        } else if (statement.getClass() == StatementRolle.class) {
-            StatementRolle statementRolle = (StatementRolle) statement;
-            spielerAwake.add(game.findSpielerPerRolle(statementRolle.rolle));
+        if (statement.dependency.getClass() == StatementDependencyFraktion.class) {
+            StatementDependencyFraktion statementDependencyFraktion = (StatementDependencyFraktion) statement.dependency;
+            spielerAwake.addAll(Fraktion.getFraktionsMembers(statementDependencyFraktion.fraktion.name));
+        } else if (statement.dependency.getClass() == StatementDependencyRolle.class) {
+            StatementDependencyRolle statementDependencyRolle = (StatementDependencyRolle) statement.dependency;
+            spielerAwake.add(game.findSpielerPerRolle(statementDependencyRolle.rolle.name));
         }
     }
 
@@ -536,7 +536,7 @@ public class NormalNight extends Thread {
             frontendControl.title = statement.title;
         }
 
-        switch (statement.getState()) {
+        switch (statement.state) {
             case NORMAL:
                 switch (frontendControl.typeOfContent) {
                     case TITLE:
@@ -621,7 +621,7 @@ public class NormalNight extends Thread {
     }
 
     public void showDropdownPage(Statement statement, List<String> dropdownOptions1, List<String> dropdownOptions2) {
-        switch (statement.getState()) {
+        switch (statement.state) {
             case NORMAL:
                 FrontendControl.erzählerDropdownPage(statement, dropdownOptions1, dropdownOptions2);
                 FrontendControl.spielerDropdownPage(statement.title, 2);

@@ -13,10 +13,11 @@ import root.Persona.Rollen.Hauptrollen.Bürger.Seherin;
 import root.Persona.Rollen.Hauptrollen.Werwölfe.Alphawolf;
 import root.Persona.Rollen.Hauptrollen.Werwölfe.Wolfsmensch;
 import root.Phases.NightBuilding.Constants.IndieStatements;
+import root.Phases.NightBuilding.Constants.StatementState;
 import root.Phases.NightBuilding.FirstNightStatementBuilder;
 import root.Phases.NightBuilding.Statement;
-import root.Phases.NightBuilding.StatementFraktion;
-import root.Phases.NightBuilding.StatementRolle;
+import root.Phases.NightBuilding.StatementDependancy.StatementDependencyFraktion;
+import root.Phases.NightBuilding.StatementDependancy.StatementDependencyRolle;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
 import root.mechanics.Game;
@@ -58,11 +59,11 @@ public class FirstNight extends Thread {
             for (Statement statement : statements) {
                 refreshStatementStates();
 
-                if (statement.isVisible()) {
+                if (statement.state != StatementState.INVISIBLE_NOT_IN_GAME) {
                     setSpielerAwake(statement);
                     Rolle rolle = null;
-                    if (statement.getClass() == StatementRolle.class) {
-                        rolle = ((StatementRolle) statement).getRolle();
+                    if (statement.dependency.getClass() == StatementDependencyRolle.class) {
+                        rolle = ((StatementDependencyRolle) statement.dependency).rolle;
                     }
 
                     if (rolle != null && rolle instanceof Bonusrolle && ((Bonusrolle) rolle).type.equals(new Passiv())) {
@@ -80,9 +81,9 @@ public class FirstNight extends Thread {
                             bonusrolle.tauschen(newBonusrolle);
                         }
 
-                    } else if (statement.getClass() == StatementFraktion.class) {
-                        Fraktion fraktion = Fraktion.findFraktion(((StatementFraktion) statement).fraktion);
-                        showFraktionMembers(statement, fraktion.name);
+                    } else if (statement.dependency.getClass() == StatementDependencyFraktion.class) {
+                        Fraktion fraktion = ((StatementDependencyFraktion) statement.dependency).fraktion;
+                        showFraktionMembers(statement, fraktion);
                     } else {
                         switch (statement.identifier) {
                             case IndieStatements.LIEBESPAAR_IDENTIFIER:
@@ -179,26 +180,21 @@ public class FirstNight extends Thread {
 
     public void setSpielerAwake(Statement statement) {
         spielerAwake.clear();
-        if (statement.getClass() == StatementFraktion.class) {
-            StatementFraktion statementFraktion = (StatementFraktion) statement;
-            spielerAwake.addAll(Fraktion.getFraktionsMembers(statementFraktion.fraktion));
-        } else if (statement.getClass() == StatementRolle.class) {
-            StatementRolle statementRolle = (StatementRolle) statement;
-            spielerAwake.add(game.findSpielerPerRolle(statementRolle.rolle));
+        if (statement.dependency.getClass() == StatementDependencyFraktion.class) {
+            StatementDependencyFraktion statementDependencyFraktion = (StatementDependencyFraktion) statement.dependency;
+            spielerAwake.addAll(Fraktion.getFraktionsMembers(statementDependencyFraktion.fraktion.name));
+        } else if (statement.dependency.getClass() == StatementDependencyRolle.class) {
+            StatementDependencyRolle statementDependencyRolle = (StatementDependencyRolle) statement.dependency;
+            spielerAwake.add(game.findSpielerPerRolle(statementDependencyRolle.rolle.name));
         }
     }
 
-    public void showFraktionMembers(Statement statement, String fraktionName) {
-        ArrayList<String> fraktionMembers = Fraktion.getFraktionsMemberStrings(fraktionName);
+    public void showFraktionMembers(Statement statement, Fraktion fraktion) {
+        ArrayList<String> fraktionMembers = Fraktion.getFraktionsMemberStrings(fraktion.name);
 
-        try {
-            Fraktion fraktion = Fraktion.findFraktion(fraktionName);
-            String fraktionsLogoImagePath = fraktion.imagePath;
+        String fraktionsLogoImagePath = fraktion.imagePath;
 
-            showListShowImage(statement, fraktionMembers, fraktionsLogoImagePath);
-        } catch (NullPointerException e) {
-            System.out.println(fraktionName + " nicht gefunden");
-        }
+        showListShowImage(statement, fraktionMembers, fraktionsLogoImagePath);
     }
 
     public String showFrontendControl(Statement statement, FrontendControl frontendControl) {

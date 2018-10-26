@@ -8,9 +8,12 @@ import root.Frontend.Page.PageElement;
 import root.Frontend.Page.PageTable;
 import root.Frontend.Page.Predecessor;
 import root.Persona.Bonusrolle;
+import root.Persona.Rollen.Hauptrollen.Bürger.Sammler;
 import root.Phases.FirstNight;
+import root.Phases.NightBuilding.Constants.StatementState;
+import root.Phases.NightBuilding.Constants.StatementType;
 import root.Phases.NightBuilding.Statement;
-import root.Phases.NightBuilding.StatementRolle;
+import root.Phases.NightBuilding.StatementDependancy.StatementDependencyRolle;
 import root.Phases.NormalNight;
 
 import javax.swing.*;
@@ -232,19 +235,26 @@ public class ErzählerPageElementFactory {
         }
 
         for (Statement statement : statements) {
-            if (statement.isVisible()) {
+            if (statement.state != StatementState.INVISIBLE_NOT_IN_GAME && statement.type != StatementType.PROGRAMM) {
                 String beschreibung = statement.beschreibung;
 
-                if (statement.getClass() == StatementRolle.class) {
-                    StatementRolle statementRolle = (StatementRolle) statement;
-                    if (statementRolle.sammler) {
-                        beschreibung = statementRolle.sammlerBeschreibung;
+                if (statement.dependency.getClass() == StatementDependencyRolle.class) {
+                    StatementDependencyRolle statementDependencyRolle = (StatementDependencyRolle) statement.dependency;
+                    if (Sammler.isSammlerRolle(statementDependencyRolle.rolle.name)) {
+                        beschreibung = statement.sammlerBeschreibung;
                     }
                 }
 
                 statementStrings.add(beschreibung);
 
-                if (statement.isLebend()) {
+                if ((statement.state == StatementState.NOT_IN_GAME)) {
+                    if (statement.identifier.equals(currentStatement)) {
+                        statementColors.add(HTMLStringBuilder.blue);
+                        found = true;
+                    } else {
+                        statementColors.add(HTMLStringBuilder.gray);
+                    }
+                } else {
                     if (statement.identifier.equals(currentStatement)) {
                         statementColors.add(HTMLStringBuilder.yellow);
                         found = true;
@@ -254,13 +264,6 @@ public class ErzählerPageElementFactory {
                         } else {
                             statementColors.add(HTMLStringBuilder.white);
                         }
-                    }
-                } else {
-                    if (statement.identifier.equals(currentStatement)) {
-                        statementColors.add(HTMLStringBuilder.blue);
-                        found = true;
-                    } else {
-                        statementColors.add(HTMLStringBuilder.gray);
                     }
                 }
             }

@@ -1,7 +1,6 @@
 package root.Phases.NightBuilding.Constants;
 
 import root.Phases.NightBuilding.Statement;
-import root.Phases.NightBuilding.StatementProgramm;
 
 public class ProgrammStatements {
     public static final String SCHÜTZE = "Programm_Schütze";
@@ -9,14 +8,14 @@ public class ProgrammStatements {
     public static final String TORTE = "Programm_Torte";
 
     public static Statement getSchützeStatement() {
-        return new StatementProgramm(SCHÜTZE);
+        return new Statement(SCHÜTZE);
     }
 
     public static Statement getOferStatement() {
-        return new StatementProgramm(OPFER);
+        return new Statement(OPFER);
     }
 
     public static Statement getTortenProgrammStatement() {
-        return new StatementProgramm(TORTE);
+        return new Statement(TORTE);
     }
 }

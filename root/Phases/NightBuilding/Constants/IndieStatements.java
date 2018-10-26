@@ -1,7 +1,6 @@
 package root.Phases.NightBuilding.Constants;
 
 import root.Phases.NightBuilding.Statement;
-import root.Phases.NightBuilding.StatementIndie;
 
 public class IndieStatements {
     public static final String ALLE_SCHLAFEN_EIN_IDENTIFIER = "Alle_schlafen_ein";
@@ -30,22 +29,22 @@ public class IndieStatements {
     public static final StatementType OPFER_TYPE = StatementType.INDIE;
 
     public static Statement getAlleSchlafenEinStatement() {
-        return new StatementIndie(ALLE_SCHLAFEN_EIN_IDENTIFIER, ALLE_SCHLAFEN_EIN_TITLE, ALLE_SCHLAFEN_EIN_BESCHREIBUNG, ALLE_SCHLAFEN_EIN_TYPE);
+        return new Statement(ALLE_SCHLAFEN_EIN_IDENTIFIER, ALLE_SCHLAFEN_EIN_TITLE, ALLE_SCHLAFEN_EIN_BESCHREIBUNG, ALLE_SCHLAFEN_EIN_TYPE);
     }
 
     public static Statement getAlleWachenAufStatement() {
-        return new StatementIndie(ALLE_WACHEN_AUF_IDENTIFIER, ALLE_WACHEN_AUF_TITLE, ALLE_WACHEN_AUF_BESCHREIBUNG, ALLE_WACHEN_AUF_TYPE);
+        return new Statement(ALLE_WACHEN_AUF_IDENTIFIER, ALLE_WACHEN_AUF_TITLE, ALLE_WACHEN_AUF_BESCHREIBUNG, ALLE_WACHEN_AUF_TYPE);
     }
 
     public static Statement getLiebespaarStatement() {
-        return new StatementIndie(LIEBESPAAR_IDENTIFIER, LIEBESPAAR_TITLE, LIEBESPAAR_BESCHREIBUNG, LIEBESPAAR_TYPE);
+        return new Statement(LIEBESPAAR_IDENTIFIER, LIEBESPAAR_TITLE, LIEBESPAAR_BESCHREIBUNG, LIEBESPAAR_TYPE);
     }
 
     public static Statement getLiebespaarFindenStatement() {
-        return new StatementIndie(LIEBESPAAR_FINDEN_IDENTIFIER, LIEBESPAAR_FINDEN_TITLE, LIEBESPAAR_FINDEN_BESCHREIBUNG, LIEBESPAAR_FINDEN_TYPE);
+        return new Statement(LIEBESPAAR_FINDEN_IDENTIFIER, LIEBESPAAR_FINDEN_TITLE, LIEBESPAAR_FINDEN_BESCHREIBUNG, LIEBESPAAR_FINDEN_TYPE);
     }
 
     public static Statement getOpferStatement() {
-        return new StatementIndie(OPFER_IDENTIFIER, OPFER_TITLE, OPFER_BESCHREIBUNG, OPFER_TYPE);
+        return new Statement(OPFER_IDENTIFIER, OPFER_TITLE, OPFER_BESCHREIBUNG, OPFER_TYPE);
     }
 }
