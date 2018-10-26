@@ -74,20 +74,6 @@ public class Werwölfe extends Fraktion {
         return zeigekarte;
     }
 
-    public static boolean isTötend(String hauptrolle) {
-        //TODO auf iskilling überprüfen
-        ArrayList<String> tötend = new ArrayList<>();
-
-        tötend.add(Alphawolf.NAME);
-        tötend.add(Blutwolf.NAME);
-        tötend.add(Geisterwolf.NAME);
-        tötend.add(Schreckenswolf.NAME);
-        tötend.add(Werwolf.NAME);
-        tötend.add(Wölfin.NAME);
-
-        return tötend.contains(hauptrolle);
-    }
-
     public static boolean blutWolfIsAktiv() {
         return Rolle.rolleLebend(Blutwolf.NAME) && Rolle.rolleAktiv(Blutwolf.NAME) && Blutwolf.deadly;
     }
