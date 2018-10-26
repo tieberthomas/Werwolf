@@ -11,7 +11,7 @@ import root.ResourceManagement.ImagePath;
 import java.util.ArrayList;
 
 public class Medium extends Bonusrolle {
-    public static final String STATEMENT_IDENTIFIER = "Medium";
+    public static final String STATEMENT_ID = "Medium";
     public static final String STATEMENT_TITLE = "Bonusrolle";
     public static final String STATEMENT_BESCHREIBUNG = "Medium erwacht und lässt sich vom Erzähler eine Bonusrolle, die nicht im Spiel ist, zeigen";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_INFO;
@@ -29,7 +29,7 @@ public class Medium extends Bonusrolle {
         this.imagePath = IMAGE_PATH;
         this.type = TYPE;
 
-        this.statementIdentifier = STATEMENT_IDENTIFIER;
+        this.statementID = STATEMENT_ID;
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;

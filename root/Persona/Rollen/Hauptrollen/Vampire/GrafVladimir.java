@@ -9,7 +9,7 @@ import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
 public class GrafVladimir extends Hauptrolle {
-    public static final String STATEMENT_IDENTIFIER = "GrafVladimir";
+    public static final String STATEMENT_ID = "GrafVladimir";
     public static final String STATEMENT_TITLE = "Spieler unerkennbar machen";
     public static final String STATEMENT_BESCHREIBUNG = "Graf Vladimir erwacht und veerschleiert die Identität eines Spielers";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
@@ -24,7 +24,7 @@ public class GrafVladimir extends Hauptrolle {
         this.imagePath = IMAGE_PATH;
         this.fraktion = FRAKTION;
 
-        this.statementIdentifier = STATEMENT_IDENTIFIER;
+        this.statementID = STATEMENT_ID;
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;

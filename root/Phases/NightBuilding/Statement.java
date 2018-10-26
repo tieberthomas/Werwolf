@@ -12,7 +12,7 @@ import root.Phases.NightBuilding.StatementDependancy.StatementDependencyRolle;
 import root.Phases.NightBuilding.StatementDependancy.StatementDependencyStatement;
 
 public class Statement {
-    public String identifier;
+    public String id;
     public String title;
     public String beschreibung;
     public StatementType type;
@@ -28,13 +28,13 @@ public class Statement {
     }
 
     public Statement(Rolle rolle) {
-        this.identifier = rolle.statementIdentifier;
+        this.id = rolle.statementID;
         this.title = rolle.statementTitle;
         this.beschreibung = rolle.statementBeschreibung;
         this.type = rolle.statementType;
         this.dependency = new StatementDependencyRolle(rolle);
 
-        if (!this.identifier.equals(Konditorlehrling.STATEMENT_IDENTIFIER)) {
+        if (!this.id.equals(Konditorlehrling.STATEMENT_ID)) {
             this.sammlerBeschreibung = Sammler.beschreibungAddiditon + this.beschreibung;
         } else {
             this.sammlerBeschreibung = this.beschreibung.replace(Sammler.konditorlehrlingSearchString, Sammler.beschreibungAddiditonLowerCase + Sammler.konditorlehrlingSearchString);
@@ -42,7 +42,7 @@ public class Statement {
     }
 
     public Statement(Rolle rolle, Statement dependency) {
-        this.identifier = rolle.secondStatementIdentifier;
+        this.id = rolle.secondStatementID;
         this.title = rolle.secondStatementTitle;
         this.beschreibung = rolle.secondStatementBeschreibung;
         this.type = rolle.secondStatementType;
@@ -50,7 +50,7 @@ public class Statement {
     }
 
     public Statement(Fraktion fraktion) {
-        this.identifier = fraktion.statementIdentifier;
+        this.id = fraktion.statementID;
         this.title = fraktion.statementTitle;
         this.beschreibung = fraktion.statementBeschreibung;
         this.type = fraktion.statementType;
@@ -58,29 +58,29 @@ public class Statement {
     }
 
     public Statement(Fraktion fraktion, Statement dependency) {
-        this.identifier = fraktion.secondStatementIdentifier;
+        this.id = fraktion.secondStatementID;
         this.title = fraktion.secondStatementTitle;
         this.beschreibung = fraktion.secondStatementBeschreibung;
         this.type = fraktion.secondStatementType;
         this.dependency = new StatementDependencyStatement(dependency);
     }
 
-    public Statement(String identifier) {
-        this.identifier = identifier;
+    public Statement(String id) {
+        this.id = id;
         this.type = StatementType.PROGRAMM;
         this.dependency = new StatementDependency();
     }
 
-    public Statement(String identifier, String title, String beschreibung, StatementType type) {
-        this.identifier = identifier;
+    public Statement(String id, String title, String beschreibung, StatementType type) {
+        this.id = id;
         this.title = title;
         this.beschreibung = beschreibung;
         this.type = type;
         this.dependency = new StatementDependency();
     }
 
-    public Statement(String identifier, String title, String beschreibung, StatementType type, StatementDependency dependency) {
-        this.identifier = identifier;
+    public Statement(String id, String title, String beschreibung, StatementType type, StatementDependency dependency) {
+        this.id = id;
         this.title = title;
         this.beschreibung = beschreibung;
         this.type = type;
@@ -89,24 +89,24 @@ public class Statement {
 
     public static Statement newFirstNightStatement(Rolle rolle)
     {
-        String identifier = rolle.firstNightStatementIdentifier;
+        String id = rolle.firstNightStatementID;
         String title = rolle.firstNightStatementTitle;
         String beschreibung = rolle.firstNightStatementBeschreibung;
         StatementType type = rolle.firstNightStatementType;
         StatementDependency dependency = new StatementDependencyRolle(rolle);
 
-        return new Statement(identifier, title, beschreibung, type, dependency);
+        return new Statement(id, title, beschreibung, type, dependency);
     }
 
     public static Statement newFirstNightStatement(Fraktion fraktion)
     {
-        String identifier = fraktion.firstNightStatementIdentifier;
+        String id = fraktion.firstNightStatementID;
         String title = fraktion.firstNightStatementTitle;
         String beschreibung = fraktion.firstNightStatementBeschreibung;
         StatementType type = fraktion.firstNightStatementType;
         StatementDependency dependency = new StatementDependencyFraktion(fraktion);
 
-        return new Statement(identifier, title, beschreibung, type, dependency);
+        return new Statement(id, title, beschreibung, type, dependency);
     }
 
     public void refreshState() {

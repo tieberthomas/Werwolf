@@ -248,14 +248,14 @@ public class ErzählerPageElementFactory {
                 statementStrings.add(beschreibung);
 
                 if ((statement.state == StatementState.NOT_IN_GAME)) {
-                    if (statement.identifier.equals(currentStatement)) {
+                    if (statement.id.equals(currentStatement)) {
                         statementColors.add(HTMLStringBuilder.blue);
                         found = true;
                     } else {
                         statementColors.add(HTMLStringBuilder.gray);
                     }
                 } else {
-                    if (statement.identifier.equals(currentStatement)) {
+                    if (statement.id.equals(currentStatement)) {
                         statementColors.add(HTMLStringBuilder.yellow);
                         found = true;
                     } else {

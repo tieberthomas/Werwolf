@@ -11,7 +11,7 @@ import root.Spieler;
 import java.awt.*;
 
 public class Wolfspelz extends Bonusrolle {
-    public static final String FIRST_NIGHT_STATEMENT_IDENTIFIER = "Wolfspelz";
+    public static final String FIRST_NIGHT_STATEMENT_ID = "Wolfspelz";
     public static final String FIRST_NIGHT_STATEMENT_TITLE = "Neue Karte";
     public static final String FIRST_NIGHT_STATEMENT_BESCHREIBUNG = "Träger des Wolfspelzes erwacht und tauscht ggf. seine Karte aus";
     public static final StatementType FIRST_NIGHT_STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
@@ -28,7 +28,7 @@ public class Wolfspelz extends Bonusrolle {
 
         this.color = COLOR;
 
-        this.firstNightStatementIdentifier = FIRST_NIGHT_STATEMENT_IDENTIFIER;
+        this.firstNightStatementID = FIRST_NIGHT_STATEMENT_ID;
         this.firstNightStatementTitle = FIRST_NIGHT_STATEMENT_TITLE;
         this.firstNightStatementBeschreibung = FIRST_NIGHT_STATEMENT_BESCHREIBUNG;
         this.firstNightStatementType = FIRST_NIGHT_STATEMENT_TYPE;

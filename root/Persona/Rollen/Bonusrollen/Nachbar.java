@@ -13,7 +13,7 @@ import root.Spieler;
 import java.util.ArrayList;
 
 public class Nachbar extends Bonusrolle {
-    public static final String STATEMENT_IDENTIFIER = "Nachbar";
+    public static final String STATEMENT_ID = "Nachbar";
     public static final String STATEMENT_TITLE = "Spieler wählen";
     public static final String STATEMENT_BESCHREIBUNG = "Nachbar erwacht, wählt einen Spieler und erfährt wer diesen Spieler besucht hat";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE_INFO;
@@ -28,7 +28,7 @@ public class Nachbar extends Bonusrolle {
         this.imagePath = IMAGE_PATH;
         this.type = TYPE;
 
-        this.statementIdentifier = STATEMENT_IDENTIFIER;
+        this.statementID = STATEMENT_ID;
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;

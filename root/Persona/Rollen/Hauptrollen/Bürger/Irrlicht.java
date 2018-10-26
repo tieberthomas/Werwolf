@@ -13,12 +13,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Irrlicht extends Hauptrolle {
-    public static final String STATEMENT_IDENTIFIER = "Irrlicht";
+    public static final String STATEMENT_ID = "Irrlicht";
     public static final String STATEMENT_TITLE = "Flackern";
     public static final String STATEMENT_BESCHREIBUNG = "Irrlichter flackern gar sehr";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
 
-    public static final String SECOND_STATEMENT_IDENTIFIER = "Irrlicht_Info";
+    public static final String SECOND_STATEMENT_ID = "Irrlicht_Info";
     public static final String SECOND_STATEMENT_TITLE = "anderes Irrlicht";
     public static final String SECOND_STATEMENT_BESCHREIBUNG = "ein Irrlicht bekommt Info";
     public static final StatementType SECOND_STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
@@ -36,12 +36,12 @@ public class Irrlicht extends Hauptrolle {
         this.imagePath = IMAGE_PATH;
         this.fraktion = FRAKTION;
 
-        this.statementIdentifier = STATEMENT_IDENTIFIER;
+        this.statementID = STATEMENT_ID;
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;
 
-        this.secondStatementIdentifier = SECOND_STATEMENT_IDENTIFIER;
+        this.secondStatementID = SECOND_STATEMENT_ID;
         this.secondStatementTitle = SECOND_STATEMENT_TITLE;
         this.secondStatementBeschreibung = SECOND_STATEMENT_BESCHREIBUNG;
         this.secondStatementType = SECOND_STATEMENT_TYPE;

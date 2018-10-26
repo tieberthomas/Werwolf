@@ -132,8 +132,8 @@ public class NormalNight extends Thread {
                             break;
                     }
 
-                    switch (statement.identifier) {
-                        case Wirt.STATEMENT_IDENTIFIER:
+                    switch (statement.id) {
+                        case Wirt.STATEMENT_ID:
                             if (DropdownConstants.JA.name.equals(chosenOption)) {
                                 game.freibier = true;
                             }
@@ -143,7 +143,7 @@ public class NormalNight extends Thread {
                             setSchütze();
                             break;
 
-                        case Henker.SECOND_STATEMENT_IDENTIFIER: //TODO der case kann gemeinsam mit dem analytiker generalisiert werden
+                        case Henker.SECOND_STATEMENT_ID: //TODO der case kann gemeinsam mit dem analytiker generalisiert werden
                             ArrayList<String> hauptrollen = game.getPossibleInGameHauptrolleNames();
                             ArrayList<String> bonusrollen = game.getPossibleInGameBonusrolleNames();
                             showDropdownPage(statement, hauptrollen, bonusrollen);
@@ -156,7 +156,7 @@ public class NormalNight extends Thread {
                             showFrontendControl(statement, info);
                             break;
 
-                        case Schreckenswolf.STATEMENT_IDENTIFIER:
+                        case Schreckenswolf.STATEMENT_ID:
                             Schreckenswolf schreckenswolf = (Schreckenswolf) rolle;
                             if (schreckenswolf != null && schreckenswolf.werwölfeKilledOnSchutz()) {
                                 dropdownOtions = schreckenswolf.getDropdownOptionsFrontendControl();
@@ -167,7 +167,7 @@ public class NormalNight extends Thread {
                             }
                             break;
 
-                        case Wölfin.STATEMENT_IDENTIFIER:
+                        case Wölfin.STATEMENT_ID:
                             if (!"".equals(chosenOption)) {
                                 wölfinKilled = true;
                                 wölfinSpieler = game.findSpielerPerRolle(Wölfin.NAME);
@@ -198,17 +198,17 @@ public class NormalNight extends Thread {
                             showListShowImage(statement, neuerWerwolf, Werwölfe.zeigekarte.imagePath); //TODO evalueren obs schönere lösung gibt
                             break;
 
-                        case Irrlicht.STATEMENT_IDENTIFIER:
+                        case Irrlicht.STATEMENT_ID:
                             dropdownOtions = rolle.getDropdownOptionsFrontendControl();
                             showFrontendControl(statement, dropdownOtions);
                             break;
 
-                        case Irrlicht.SECOND_STATEMENT_IDENTIFIER:
+                        case Irrlicht.SECOND_STATEMENT_ID:
                             info = Irrlicht.processFlackerndeIrrlichter(FrontendControl.getFlackerndeIrrlichter());
                             showFrontendControl(statement, info);
                             break;
 
-                        case Analytiker.STATEMENT_IDENTIFIER:
+                        case Analytiker.STATEMENT_ID:
                             Spieler analytikerSpieler = game.findSpielerPerRolle(rolle.name);
 
                             ArrayList<String> spielerOrNonWithoutAnalytiker = (ArrayList<String>) spielerOrNon.clone();
@@ -230,7 +230,7 @@ public class NormalNight extends Thread {
                             }
                             break;
 
-                        case Wahrsager.STATEMENT_IDENTIFIER:
+                        case Wahrsager.STATEMENT_ID:
                             Spieler wahrsagerSpieler2 = game.findSpielerPerRolle(Wahrsager.NAME);
                             Spieler deadWahrsagerSpieler = game.findSpielerOrDeadPerRolle(Wahrsager.NAME);
                             if (wahrsagerSpieler2 != null) {
@@ -247,8 +247,8 @@ public class NormalNight extends Thread {
                             }
                             break;
 
-                        case Konditor.STATEMENT_IDENTIFIER:
-                        case Konditorlehrling.STATEMENT_IDENTIFIER:
+                        case Konditor.STATEMENT_ID:
+                        case Konditorlehrling.STATEMENT_ID:
                             //TODO evaluieren ob Page angezeigt werden soll wenn gibtEsTorte();
                             if (Opfer.deadOpfer.size() == 0) {
                                 if (gibtEsTorte()) {
@@ -270,7 +270,7 @@ public class NormalNight extends Thread {
                             setOpfer();
                             break;
 
-                        case IndieStatements.OPFER_IDENTIFIER:
+                        case IndieStatements.OPFER_ID:
                             ArrayList<String> opferDerNacht = new ArrayList<>();
 
                             for (Opfer currentOpfer : Opfer.deadOpfer) {

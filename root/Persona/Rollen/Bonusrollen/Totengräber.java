@@ -12,7 +12,7 @@ import root.Spieler;
 import java.util.ArrayList;
 
 public class Totengräber extends Bonusrolle {
-    public static final String STATEMENT_IDENTIFIER = "Totengräber";
+    public static final String STATEMENT_ID = "Totengräber";
     public static final String STATEMENT_TITLE = "Karte tauschen";
     public static final String STATEMENT_BESCHREIBUNG = "Totengräber erwacht und entscheidet ob er seine Bonusrollenkarte tauschen möchte";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
@@ -26,7 +26,7 @@ public class Totengräber extends Bonusrolle {
         this.imagePath = IMAGE_PATH;
         this.type = TYPE;
 
-        this.statementIdentifier = STATEMENT_IDENTIFIER;
+        this.statementID = STATEMENT_ID;
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;

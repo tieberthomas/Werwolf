@@ -18,7 +18,7 @@ import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
 public class Seherin extends Hauptrolle {
-    public static final String STATEMENT_IDENTIFIER = "Seherin";
+    public static final String STATEMENT_ID = "Seherin";
     public static final String STATEMENT_TITLE = "Spieler wählen";
     public static final String STATEMENT_BESCHREIBUNG = "Seherin erwacht und lässt sich Auskunft über die Fraktion eines Mitspielers geben";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE_INFO;
@@ -32,12 +32,12 @@ public class Seherin extends Hauptrolle {
         this.imagePath = IMAGE_PATH;
         this.fraktion = FRAKTION;
 
-        this.statementIdentifier = STATEMENT_IDENTIFIER;
+        this.statementID = STATEMENT_ID;
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;
 
-        this.firstNightStatementIdentifier = STATEMENT_IDENTIFIER;
+        this.firstNightStatementID = STATEMENT_ID;
         this.firstNightStatementTitle = STATEMENT_TITLE;
         this.firstNightStatementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.firstNightStatementType = STATEMENT_TYPE;

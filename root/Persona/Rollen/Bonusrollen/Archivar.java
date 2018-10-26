@@ -10,7 +10,7 @@ import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
 public class Archivar extends Bonusrolle {
-    public static final String STATEMENT_IDENTIFIER = "Archivar";
+    public static final String STATEMENT_ID = "Archivar";
     public static final String STATEMENT_TITLE = "Spieler wählen";
     public static final String STATEMENT_BESCHREIBUNG = "Archivar erwacht und lässt sich Auskunft über die Bonusrolle eines Mitspielers geben";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE_INFO;
@@ -24,7 +24,7 @@ public class Archivar extends Bonusrolle {
         this.imagePath = IMAGE_PATH;
         this.type = TYPE;
 
-        this.statementIdentifier = STATEMENT_IDENTIFIER;
+        this.statementID = STATEMENT_ID;
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;

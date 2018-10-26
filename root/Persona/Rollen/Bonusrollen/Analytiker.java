@@ -11,7 +11,7 @@ import root.mechanics.Liebespaar;
 import java.util.Objects;
 
 public class Analytiker extends Bonusrolle {
-    public static final String STATEMENT_IDENTIFIER = "Analytiker";
+    public static final String STATEMENT_ID = "Analytiker";
     public static final String STATEMENT_TITLE = "Spieler wählen";
     public static final String STATEMENT_BESCHREIBUNG = "Analytiker erwacht und wählt zwei Spieler, der Erzähler sagt ihm ob diese in derselben Fraktion sind";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
@@ -28,7 +28,7 @@ public class Analytiker extends Bonusrolle {
         this.imagePath = IMAGE_PATH;
         this.type = TYPE;
 
-        this.statementIdentifier = STATEMENT_IDENTIFIER;
+        this.statementID = STATEMENT_ID;
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;

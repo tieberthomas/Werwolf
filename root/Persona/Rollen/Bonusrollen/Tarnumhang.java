@@ -18,7 +18,7 @@ import java.util.Random;
 import static root.Persona.Rollen.Constants.TötendInformationType.TARNUMHANG;
 
 public class Tarnumhang extends Bonusrolle {
-    public static final String STATEMENT_IDENTIFIER = "Tarnumhang";
+    public static final String STATEMENT_ID = "Tarnumhang";
     public static final String STATEMENT_TITLE = "Träger eines Umhangs";
     public static final String STATEMENT_BESCHREIBUNG = "Träger des Tarnumhangs erwacht und erfährt einen Mitspieler, bei dem ein Umhhang liegt";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_INFO;
@@ -40,7 +40,7 @@ public class Tarnumhang extends Bonusrolle {
 
         this.color = COLOR;
 
-        this.statementIdentifier = STATEMENT_IDENTIFIER;
+        this.statementID = STATEMENT_ID;
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;

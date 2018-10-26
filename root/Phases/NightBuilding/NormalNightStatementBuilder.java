@@ -123,7 +123,7 @@ public class NormalNightStatementBuilder {
         Rolle rolle = Rolle.findRolle(rollenName);
 
         Statement firstStatement = statements.stream()
-                .filter(statement -> statement.identifier.equals(rolle.statementIdentifier))
+                .filter(statement -> statement.id.equals(rolle.statementID))
                 .findAny().orElse(null);
 
         Statement statement = new Statement(rolle, firstStatement);
@@ -140,7 +140,7 @@ public class NormalNightStatementBuilder {
         Fraktion fraktion = Fraktion.findFraktion(fraktionsName);
 
         Statement firstStatement = statements.stream()
-                .filter(statement -> statement.identifier.equals(fraktion.statementIdentifier))
+                .filter(statement -> statement.id.equals(fraktion.statementID))
                 .findAny().orElse(null);
 
         Statement statement = new Statement(fraktion, firstStatement);

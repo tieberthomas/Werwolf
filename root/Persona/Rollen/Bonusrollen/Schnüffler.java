@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Schnüffler extends Bonusrolle {
-    public static final String STATEMENT_IDENTIFIER = "Schnüffler";
+    public static final String STATEMENT_ID = "Schnüffler";
     public static final String STATEMENT_TITLE = "Spieler wählen";
     public static final String STATEMENT_BESCHREIBUNG = "Schnüffler erwacht und lässt sich Auskunft über einen Mitspieler geben";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE_INFO;
@@ -32,7 +32,7 @@ public class Schnüffler extends Bonusrolle {
         this.imagePath = IMAGE_PATH;
         this.type = TYPE;
 
-        this.statementIdentifier = STATEMENT_IDENTIFIER;
+        this.statementID = STATEMENT_ID;
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;

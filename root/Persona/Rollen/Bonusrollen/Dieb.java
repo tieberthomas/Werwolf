@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Dieb extends Bonusrolle {
-    public static final String STATEMENT_IDENTIFIER = "Dieb";
+    public static final String STATEMENT_ID = "Dieb";
     public static final String STATEMENT_TITLE = "Bonusrolle stehlen";
     public static final String STATEMENT_BESCHREIBUNG = "Dieb erwacht und entscheidet ob er jemandes Bonusrolle stehlen möchte";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
@@ -32,12 +32,12 @@ public class Dieb extends Bonusrolle {
         this.imagePath = IMAGE_PATH;
         this.type = TYPE;
 
-        this.statementIdentifier = STATEMENT_IDENTIFIER;
+        this.statementID = STATEMENT_ID;
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;
 
-        this.secondStatementIdentifier = NEUE_BONUSROLLE;
+        this.secondStatementID = NEUE_BONUSROLLE;
         this.secondStatementTitle = SECOND_STATEMENT_TITLE;
         this.secondStatementBeschreibung = SECOND_STATEMENT_BESCHREIBUNG;
         this.secondStatementType = SECOND_STATEMENT_TYPE;

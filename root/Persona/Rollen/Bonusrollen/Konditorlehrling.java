@@ -14,7 +14,7 @@ import static root.Persona.Rollen.Constants.DropdownConstants.GUT;
 import static root.Persona.Rollen.Constants.DropdownConstants.SCHLECHT;
 
 public class Konditorlehrling extends Bonusrolle {
-    public static final String STATEMENT_IDENTIFIER = "Konditorlehrling";
+    public static final String STATEMENT_ID = "Konditorlehrling";
     public static final String STATEMENT_TITLE = Konditor.STATEMENT_TITLE;
     public static final String STATEMENT_BESCHREIBUNG = "Konditor und Konditorlehrling erwachen und entscheiden sich ob es eine gute oder schlechte Torte gibt";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
@@ -28,7 +28,7 @@ public class Konditorlehrling extends Bonusrolle {
         this.imagePath = IMAGE_PATH;
         this.type = TYPE;
 
-        this.statementIdentifier = STATEMENT_IDENTIFIER;
+        this.statementID = STATEMENT_ID;
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;

@@ -15,7 +15,7 @@ import java.util.Objects;
 public class Wahrsager extends Bonusrolle {
     public static final String KEIN_OPFER = "Kein Opfer";
 
-    public static final String STATEMENT_IDENTIFIER = "Wahrsager";
+    public static final String STATEMENT_ID = "Wahrsager";
     public static final String STATEMENT_TITLE = "Fraktion wählen";
     public static final String STATEMENT_BESCHREIBUNG = "Wahrsager erwacht, bekommt ggf. die Anzahl der Spieler in jeder Fraktion mitgeteilt und schätzt, welche Fraktion das Opfer der Dorfabstimmung haben wird";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
@@ -32,7 +32,7 @@ public class Wahrsager extends Bonusrolle {
         this.imagePath = IMAGE_PATH;
         this.type = TYPE;
 
-        this.statementIdentifier = STATEMENT_IDENTIFIER;
+        this.statementID = STATEMENT_ID;
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;

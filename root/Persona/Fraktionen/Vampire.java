@@ -14,12 +14,12 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Vampire extends Fraktion {
-    public static final String STATEMENT_IDENTIFIER = "Vampire";
+    public static final String STATEMENT_ID = "Vampire";
     public static final String STATEMENT_TITLE = "Opfer wählen";
     public static final String STATEMENT_BESCHREIBUNG = "Die Vampire erwachen und wählen ein Opfer aus";
     public static final StatementType STATEMENT_TYPE = StatementType.FRAKTION_CHOOSE_ONE;
 
-    public static final String FIRST_NIGHT_STATEMENT_IDENTIFIER = "First_Night_Vampire";
+    public static final String FIRST_NIGHT_STATEMENT_ID = "First_Night_Vampire";
     public static final String FIRST_NIGHT_STATEMENT_TITLE = "Vampire";
     public static final String FIRST_NIGHT_STATEMENT_BESCHREIBUNG = "Die Vampire erwachen und sehen einander";
     public static final StatementType FIRST_NIGHT_STATEMENT_TYPE = StatementType.FRAKTION_SPECAL;
@@ -35,12 +35,12 @@ public class Vampire extends Fraktion {
 
         this.color = COLOR;
 
-        this.statementIdentifier = STATEMENT_IDENTIFIER;
+        this.statementID = STATEMENT_ID;
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;
 
-        this.firstNightStatementIdentifier = FIRST_NIGHT_STATEMENT_IDENTIFIER;
+        this.firstNightStatementID = FIRST_NIGHT_STATEMENT_ID;
         this.firstNightStatementTitle = FIRST_NIGHT_STATEMENT_TITLE;
         this.firstNightStatementBeschreibung = FIRST_NIGHT_STATEMENT_BESCHREIBUNG;
         this.firstNightStatementType = FIRST_NIGHT_STATEMENT_TYPE;
