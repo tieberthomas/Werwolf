@@ -62,7 +62,7 @@ public class FirstNight extends Thread {
                 if (statement.state != StatementState.INVISIBLE_NOT_IN_GAME) {
                     setSpielerAwake(statement);
                     Rolle rolle = null;
-                    if (statement.dependency.getClass() == StatementDependencyRolle.class) {
+                    if (statement.dependency instanceof StatementDependencyRolle) {
                         rolle = ((StatementDependencyRolle) statement.dependency).rolle;
                     }
 
@@ -81,7 +81,7 @@ public class FirstNight extends Thread {
                             bonusrolle.tauschen(newBonusrolle);
                         }
 
-                    } else if (statement.dependency.getClass() == StatementDependencyFraktion.class) {
+                    } else if (statement.dependency instanceof StatementDependencyFraktion) {
                         Fraktion fraktion = ((StatementDependencyFraktion) statement.dependency).fraktion;
                         showFraktionMembers(statement, fraktion);
                     } else {
@@ -180,10 +180,10 @@ public class FirstNight extends Thread {
 
     public void setSpielerAwake(Statement statement) {
         spielerAwake.clear();
-        if (statement.dependency.getClass() == StatementDependencyFraktion.class) {
+        if (statement.dependency instanceof StatementDependencyFraktion) {
             StatementDependencyFraktion statementDependencyFraktion = (StatementDependencyFraktion) statement.dependency;
             spielerAwake.addAll(Fraktion.getFraktionsMembers(statementDependencyFraktion.fraktion.name));
-        } else if (statement.dependency.getClass() == StatementDependencyRolle.class) {
+        } else if (statement.dependency instanceof StatementDependencyRolle) {
             StatementDependencyRolle statementDependencyRolle = (StatementDependencyRolle) statement.dependency;
             spielerAwake.add(game.findSpielerPerRolle(statementDependencyRolle.rolle.name));
         }

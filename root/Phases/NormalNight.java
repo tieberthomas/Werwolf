@@ -412,10 +412,10 @@ public class NormalNight extends Thread {
 
     public void setSpielerAwake(Statement statement) {
         spielerAwake.clear();
-        if (statement.dependency.getClass() == StatementDependencyFraktion.class) {
+        if (statement.dependency instanceof StatementDependencyFraktion) {
             StatementDependencyFraktion statementDependencyFraktion = (StatementDependencyFraktion) statement.dependency;
             spielerAwake.addAll(Fraktion.getFraktionsMembers(statementDependencyFraktion.fraktion.name));
-        } else if (statement.dependency.getClass() == StatementDependencyRolle.class) {
+        } else if (statement.dependency instanceof StatementDependencyRolle) {
             StatementDependencyRolle statementDependencyRolle = (StatementDependencyRolle) statement.dependency;
             spielerAwake.add(game.findSpielerPerRolle(statementDependencyRolle.rolle.name));
         }

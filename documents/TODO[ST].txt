@@ -2,7 +2,6 @@ ST:
 FirstNight - StatementType
 Alphabet Umlaute?
 
-isInstanceOf
 ID
 Rexen
 Seherin firstNight
