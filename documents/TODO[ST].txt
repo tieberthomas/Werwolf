@@ -8,7 +8,6 @@ TH:
 BonusrollenType - Enum?
 
 MT:
-Irrlichter Text
 Freigestellt -> Weiß
 
 Nach Auslieferung:

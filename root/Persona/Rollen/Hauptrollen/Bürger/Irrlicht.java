@@ -15,12 +15,12 @@ import java.util.List;
 public class Irrlicht extends Hauptrolle {
     public static final String STATEMENT_ID = "Irrlicht";
     public static final String STATEMENT_TITLE = "Flackern";
-    public static final String STATEMENT_BESCHREIBUNG = "Irrlichter flackern gar sehr"; //TODO text
+    public static final String STATEMENT_BESCHREIBUNG = "Irrlichter entscheiden sich, ob sie flackern möchten";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
 
     public static final String SECOND_STATEMENT_ID = "Irrlicht_Info";
     public static final String SECOND_STATEMENT_TITLE = "anderes Irrlicht";
-    public static final String SECOND_STATEMENT_BESCHREIBUNG = "ein Irrlicht bekommt Info";
+    public static final String SECOND_STATEMENT_BESCHREIBUNG = "Irrlicht erwacht und erfährt ein anderes Irrlicht";
     public static final StatementType SECOND_STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
 
     private static final String LAST_IRRLICHT_MESSAGE = "Du bist das letzte Irrlicht";
