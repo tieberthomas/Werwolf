@@ -9,7 +9,6 @@ BonusrollenType - Enum?
 
 MT:
 Irrlichter Text
-Typo Wahrsager?
 Freigestellt -> Weiß
 
 Nach Auslieferung:
