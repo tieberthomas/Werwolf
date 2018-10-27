@@ -61,6 +61,7 @@ public class Totengräber extends Bonusrolle {
     public static ArrayList<String> getNehmbareBonusrollen() {
         ArrayList<String> nehmbareBonusrollen = new ArrayList<>();
 
+        //TODO michael fragen, welche rollen darf Totengräber nehmen
         for (Bonusrolle bonusrolle : game.mitteBonusrollen) {
             nehmbareBonusrollen.add(bonusrolle.name);
         }

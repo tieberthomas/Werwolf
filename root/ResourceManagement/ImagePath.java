@@ -62,7 +62,6 @@ public class ImagePath {
     public static String LADY_ALEERA_KARTE = VAMPIRE_PATH + "Lady_Aleera" + IMAGE_FILE_EXTENSION;
     public static String MISS_VERONA_KARTE = VAMPIRE_PATH + "Miss_Verona" + IMAGE_FILE_EXTENSION;
 
-    public static String ALPHAWOLF_KARTE = WÖLFE_PATH + "Alphawolf" + IMAGE_FILE_EXTENSION;
     public static String BLUTWOLF_KARTE = WÖLFE_PATH + "Blutwolf" + IMAGE_FILE_EXTENSION;
     public static String CHEMIKER_KARTE = WÖLFE_PATH + "Chemiker" + IMAGE_FILE_EXTENSION;
     public static String GEISTERWOLF_KARTE = WÖLFE_PATH + "Geisterwolf" + IMAGE_FILE_EXTENSION;

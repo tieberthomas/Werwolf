@@ -3,14 +3,12 @@ package root.Phases;
 import root.Frontend.FrontendControl;
 import root.Persona.Bonusrolle;
 import root.Persona.Fraktion;
-import root.Persona.Fraktionen.Werwölfe;
 import root.Persona.Hauptrolle;
 import root.Persona.Rolle;
 import root.Persona.Rollen.Bonusrollen.Tarnumhang;
 import root.Persona.Rollen.Constants.BonusrollenType.Passiv;
 import root.Persona.Rollen.Hauptrollen.Bürger.Dorfbewohner;
 import root.Persona.Rollen.Hauptrollen.Bürger.Seherin;
-import root.Persona.Rollen.Hauptrollen.Werwölfe.Alphawolf;
 import root.Persona.Rollen.Hauptrollen.Werwölfe.Wolfsmensch;
 import root.Phases.NightBuilding.Constants.IndieStatements;
 import root.Phases.NightBuilding.Constants.StatementState;
@@ -119,16 +117,6 @@ public class FirstNight extends Thread {
                                     hauptrolle = new Dorfbewohner();
                                 }
                                 showCard(statement, statement.title, hauptrolle.imagePath);
-                                break;
-
-                            case Alphawolf.FIRST_NIGHT_STATEMENT_ID:
-                                ArrayList<Spieler> werwölfe = Fraktion.getFraktionsMembers(Werwölfe.NAME);
-                                werwölfe.remove(game.findSpielerPerRolle(Alphawolf.NAME));
-                                for (Spieler currentSpieler : werwölfe) {
-                                    showHauptrolle(statement, currentSpieler);
-                                }
-                                statement.title = Alphawolf.FIRST_NIGHT_STATEMENT_FERTIG_TITLE;
-                                showImage(statement, statement.title, ImagePath.WÖLFE_ICON);
                                 break;
 
                             case Seherin.STATEMENT_ID:
