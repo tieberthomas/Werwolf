@@ -4,7 +4,12 @@ import root.Frontend.FrontendControl;
 import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Vampire;
 import root.Persona.Hauptrolle;
+import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
+import root.Persona.Rollen.Constants.BonusrollenType.Tarnumhang_BonusrollenType;
+import root.Persona.Rollen.Constants.TötendInformationType;
+import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Phases.NightBuilding.Constants.StatementType;
+import root.Phases.NormalNight;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
@@ -18,7 +23,7 @@ public class LadyAleera extends Hauptrolle {
     public static final String IMAGE_PATH = ImagePath.LADY_ALEERA_KARTE;
     public static final Fraktion FRAKTION = new Vampire();
 
-    public static Spieler verschleierterSpieler;
+    public static Spieler gefälschterSpieler;
 
     public LadyAleera() {
         this.name = NAME;
@@ -45,7 +50,24 @@ public class LadyAleera extends Hauptrolle {
         if (chosenSpieler != null) {
             besucht = chosenSpieler;
 
-            verschleierterSpieler = chosenSpieler; //TODO information über spieler beschaffen
+            gefälschterSpieler = chosenSpieler;
+            NormalNight.gefälschterSpieler = chosenSpieler;
+        }
+    }
+
+    public static BonusrollenType fälscheInformation(BonusrollenType bonusrollenType) {
+        return null;
+    }
+
+    public static TötendInformationType fälscheInformation(TötendInformationType tötend) {
+        return null;
+    }
+
+    public static Zeigekarte fälscheInformation(Zeigekarte fraktion) {
+        if(fraktion.equals(new Tarnumhang_BonusrollenType())) {
+            return fraktion;
+        } else {
+            return null;
         }
     }
 }

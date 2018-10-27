@@ -43,27 +43,11 @@ public class Seherin extends Hauptrolle {
 
         if (chosenSpieler != null) {
             besucht = chosenSpieler;
-            /*Zeigekarte zeigekarte = chosenSpieler.hauptrolle.fraktion.getZeigeKarte();
-
-            Bonusrolle bonusrolle = chosenSpieler.bonusrolle;
-            Hauptrolle hauptrolle = chosenSpieler.hauptrolle;
-            if (bonusrolle.equals(Lamm.NAME) || hauptrolle.equals(Wolfsmensch.NAME)) {
-                zeigekarte = new BürgerZeigekarte();
-            }
-            if (bonusrolle.equals(Wolfspelz.NAME)) {
-                zeigekarte = new WerwölfeZeigekarte();
-            }
-            if (bonusrolle.equals(Vampirumhang.NAME)) {
-                zeigekarte = new VampiereZeigekarte();
-            }
-            if (bonusrolle.equals(Schattenkutte.NAME)) {
-                zeigekarte = new SchattenpriesterZeigekarte();
-            }
-            if (bonusrolle.equals(Tarnumhang.NAME)) {
-                zeigekarte = new Tarnumhang_BonusrollenType();
-            }*/
 
             Zeigekarte zeigekarte = chosenSpieler.getFraktionInfo();
+            /*if(chosenSpieler.equals(NormalNight.gefälschterSpieler)) {
+                zeigekarte = LadyAleera.fälscheInformation(zeigekarte);
+            }*/
 
             return new FrontendControl(zeigekarte);
         }

@@ -17,7 +17,8 @@ public class GrafVladimir extends Hauptrolle {
     public static final String NAME = "Graf Vladimir";
     public static final String IMAGE_PATH = ImagePath.GRAF_VLADIMIR_KARTE;
     public static final Fraktion FRAKTION = new Vampire();
-    public static Spieler unerkennbarerSpieler;
+
+    public static Spieler verschleierterSpieler;
 
     public GrafVladimir() {
         this.name = NAME;
@@ -44,7 +45,7 @@ public class GrafVladimir extends Hauptrolle {
         if (chosenSpieler != null) {
             besucht = chosenSpieler;
 
-            unerkennbarerSpieler = chosenSpieler;
+            verschleierterSpieler = chosenSpieler;
         }
     }
 }

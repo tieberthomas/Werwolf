@@ -52,6 +52,7 @@ public class NormalNight extends Thread {
     public static boolean wölfinKilled;
     public static Spieler wölfinSpieler;
     public static Spieler beschworenerSpieler;
+    public static Spieler gefälschterSpieler;
 
     public NormalNight(Game game) {
         this.game = game;
@@ -382,7 +383,7 @@ public class NormalNight extends Thread {
 
         Torte.torte = false;
 
-        GrafVladimir.unerkennbarerSpieler = null;
+        GrafVladimir.verschleierterSpieler = null;
 
         FrontendControl.resetFlackerndeIrrlichter();
     }
