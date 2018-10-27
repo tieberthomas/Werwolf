@@ -4,6 +4,7 @@ import root.Persona.Bonusrolle;
 import root.Persona.Fraktionen.Vampire;
 import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Persona.Rollen.Constants.BonusrollenType.Passiv;
+import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
@@ -59,5 +60,9 @@ public class Vampirumhang extends Bonusrolle {
         } else {
             return this;
         }
+    }
+
+    public Zeigekarte getFraktionInfo() {
+        return new Vampire().getZeigeKarte();
     }
 }

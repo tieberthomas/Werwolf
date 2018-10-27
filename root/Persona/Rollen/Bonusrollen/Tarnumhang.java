@@ -6,6 +6,7 @@ import root.Persona.Bonusrolle;
 import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Persona.Rollen.Constants.BonusrollenType.Tarnumhang_BonusrollenType;
 import root.Persona.Rollen.Constants.TötendInformationType;
+import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
@@ -94,5 +95,9 @@ public class Tarnumhang extends Bonusrolle {
 
     public TötendInformationType isTötendInfo() {
         return TARNUMHANG;
+    }
+
+    public Zeigekarte getFraktionInfo() {
+        return new Tarnumhang_BonusrollenType();
     }
 }

@@ -3,6 +3,7 @@ package root.Persona;
 import root.Persona.Fraktionen.Bürger;
 import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Persona.Rollen.Constants.TötendInformationType;
+import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Persona.Rollen.Hauptrollen.Bürger.Dorfbewohner;
 import root.Spieler;
 
@@ -32,5 +33,9 @@ public class Hauptrolle extends Rolle {
         } else {
             return NICHT_TÖTEND;
         }
+    }
+
+    public Zeigekarte getFraktionInfo() {
+        return fraktion.getZeigeKarte();
     }
 }

@@ -4,6 +4,7 @@ import root.Persona.Bonusrolle;
 import root.Persona.Fraktionen.Bürger;
 import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Persona.Rollen.Constants.BonusrollenType.Passiv;
+import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
@@ -60,5 +61,9 @@ public class Lamm extends Bonusrolle {
         }
 
         return this;
+    }
+
+    public Zeigekarte getFraktionInfo() {
+        return new Bürger().getZeigeKarte();
     }
 }

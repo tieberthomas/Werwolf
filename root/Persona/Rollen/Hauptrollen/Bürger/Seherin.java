@@ -1,18 +1,10 @@
 package root.Persona.Rollen.Hauptrollen.Bürger;
 
 import root.Frontend.FrontendControl;
-import root.Persona.Bonusrolle;
 import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Bürger;
 import root.Persona.Hauptrolle;
-import root.Persona.Rollen.Bonusrollen.*;
-import root.Persona.Rollen.Constants.BonusrollenType.Tarnumhang_BonusrollenType;
-import root.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.BürgerZeigekarte;
-import root.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.SchattenpriesterZeigekarte;
-import root.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.VampiereZeigekarte;
-import root.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.WerwölfeZeigekarte;
 import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
-import root.Persona.Rollen.Hauptrollen.Werwölfe.Wolfsmensch;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
@@ -56,7 +48,7 @@ public class Seherin extends Hauptrolle {
 
         if (chosenSpieler != null) {
             besucht = chosenSpieler;
-            Zeigekarte zeigekarte = chosenSpieler.hauptrolle.fraktion.getZeigeKarte();
+            /*Zeigekarte zeigekarte = chosenSpieler.hauptrolle.fraktion.getZeigeKarte();
 
             Bonusrolle bonusrolle = chosenSpieler.bonusrolle;
             Hauptrolle hauptrolle = chosenSpieler.hauptrolle;
@@ -74,7 +66,9 @@ public class Seherin extends Hauptrolle {
             }
             if (bonusrolle.equals(Tarnumhang.NAME)) {
                 zeigekarte = new Tarnumhang_BonusrollenType();
-            }
+            }*/
+
+            Zeigekarte zeigekarte = chosenSpieler.getFraktionInfo();
 
             return new FrontendControl(zeigekarte);
         }

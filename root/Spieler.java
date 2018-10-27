@@ -1,10 +1,12 @@
 package root;
 
 import root.Persona.Bonusrolle;
+import root.Persona.Fraktion;
 import root.Persona.Hauptrolle;
 import root.Persona.Rollen.Bonusrollen.Schatten;
 import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Persona.Rollen.Constants.TötendInformationType;
+import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Persona.Rollen.Hauptrollen.Bürger.Dorfbewohner;
 import root.mechanics.Game;
 
@@ -100,6 +102,21 @@ public class Spieler {
             return bonunsrolleIsTötend;
         } else {
             return hauptrolleIsTötend;
+        }
+    }
+
+    public Fraktion getFraktion() {
+        return hauptrolle.fraktion;
+    }
+
+    public Zeigekarte getFraktionInfo() {
+        Zeigekarte hauptrollenFraktion = hauptrolle.getFraktionInfo();
+        Zeigekarte bonunsrollenFraktion = bonusrolle.getFraktionInfo();
+
+        if (bonunsrollenFraktion != null) {
+            return bonunsrollenFraktion;
+        } else {
+            return hauptrollenFraktion;
         }
     }
 }
