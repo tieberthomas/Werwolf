@@ -13,12 +13,12 @@ import root.Spieler;
 public class Henker extends Hauptrolle {
     public static final String STATEMENT_ID = "Henker";
     public static final String STATEMENT_TITLE = "Person hängen";
-    public static final String STATEMENT_BESCHREIBUNG = "Henker erwacht und entscheidet wen er hängen möchte";
+    public static final String STATEMENT_BESCHREIBUNG = "Henker erwcht und versucht die Rollen eines Mitspielers zu erraten";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
 
     public static final String SECOND_STATEMENT_ID = "Henker_raten";
     public static final String SECOND_STATEMENT_TITLE = "Rollen raten";
-    public static final String SECOND_STATEMENT_BESCHREIBUNG = "Henker ratet die Rollen der Person";
+    public static final String SECOND_STATEMENT_BESCHREIBUNG = "Henker ratet die Rollen der Person"; //TODO zusammenfassen?
     public static final StatementType SECOND_STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
 
     public static final String NAME = "Henker";

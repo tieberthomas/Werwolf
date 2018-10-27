@@ -15,7 +15,7 @@ import java.util.List;
 public class Irrlicht extends Hauptrolle {
     public static final String STATEMENT_ID = "Irrlicht";
     public static final String STATEMENT_TITLE = "Flackern";
-    public static final String STATEMENT_BESCHREIBUNG = "Irrlichter flackern gar sehr";
+    public static final String STATEMENT_BESCHREIBUNG = "Irrlichter flackern gar sehr"; //TODO text
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
 
     public static final String SECOND_STATEMENT_ID = "Irrlicht_Info";

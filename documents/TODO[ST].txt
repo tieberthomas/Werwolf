@@ -3,13 +3,13 @@ FirstNight - StatementType
 Alphabet Umlaute?
 
 Tötend - Killing ?
-Rexen
-Seherin firstNight
 
 TH:
 BonusrollenType - Enum?
 
 MT:
+Irrlichter Text
+Typo Wahrsager?
 Freigestellt -> Weiß
 
 Nach Auslieferung:
