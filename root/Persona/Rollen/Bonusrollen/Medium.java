@@ -7,6 +7,7 @@ import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Persona.Rollen.Constants.BonusrollenType.Informativ;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
+import root.mechanics.Rand;
 
 import java.util.ArrayList;
 
@@ -52,9 +53,7 @@ public class Medium extends Bonusrolle {
         Bonusrolle bonusrolle;
 
         if (unseenBonusrollen.size() > 0) {
-            int randIndex = (int) (Math.random() * unseenBonusrollen.size());
-
-            bonusrolle = unseenBonusrollen.get(randIndex);
+            bonusrolle = Rand.getRandomElement(unseenBonusrollen);
             geseheneBonusrollen.add(bonusrolle.name);
         } else {
             if (geseheneBonusrollen.size() == 0) {

@@ -19,10 +19,10 @@ import root.ResourceManagement.ImagePath;
 import root.Spieler;
 import root.mechanics.Game;
 import root.mechanics.Liebespaar;
+import root.mechanics.Rand;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class FirstNight extends Thread {
     Game game;
@@ -309,9 +309,7 @@ public class FirstNight extends Thread {
     private Hauptrolle pickRandomHauptrolle(ArrayList<Hauptrolle> hauptrollen) {
         int numberOfUnassignedHauptrollen = hauptrollen.size();
         if (numberOfUnassignedHauptrollen > 0) {
-            Random random = new Random();
-            int index = random.nextInt(numberOfUnassignedHauptrollen);
-            return hauptrollen.get(index);
+            return Rand.getRandomElement(hauptrollen);
         }
 
         return Hauptrolle.DEFAULT_HAUPTROLLE;
