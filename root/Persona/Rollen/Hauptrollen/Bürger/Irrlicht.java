@@ -56,11 +56,14 @@ public class Irrlicht extends Hauptrolle {
         return new FrontendControl(FrontendControlType.IRRLICHT_DROPDOWN, allSplieler);
     }
 
-    public static FrontendControl processFlackerndeIrrlichter(List<String> irrlichter) {
-        System.out.println(irrlichter.size() + " irrlichter flackern gar sehr");
+    public static FrontendControl processFlackerndeIrrlichter(List<String> flackerndeIrrlichter) {
+        int numberIrrlichterInGame = game.getIrrlichterStrings().size();
+        int numberFlackerndeIrrlichter = flackerndeIrrlichter.size();
 
-        if (irrlichter.size() == 1) {
-            Spieler einzigesFlackerndesIrrlicht = game.findSpieler(irrlichter.get(0));
+        System.out.println(numberFlackerndeIrrlichter + " irrlichter flackern gar sehr");
+
+        if (numberFlackerndeIrrlichter == 1) {
+            Spieler einzigesFlackerndesIrrlicht = game.findSpieler(flackerndeIrrlichter.get(0));
             Irrlicht irrlicht = ((Irrlicht) einzigesFlackerndesIrrlicht.hauptrolle);
             String randomIrrlicht = irrlicht.getRandomUnseenIrrlichtSpieler(einzigesFlackerndesIrrlicht.name);
 
@@ -69,7 +72,7 @@ public class Irrlicht extends Hauptrolle {
             } else {
                 return new FrontendControl(SECOND_STATEMENT_TITLE, LAST_IRRLICHT_MESSAGE);
             }
-        } else if (irrlichter.size() == game.getIrrlichterStrings().size()) {
+        } else if (numberFlackerndeIrrlichter == numberIrrlichterInGame && numberIrrlichterInGame != 0) {
             //kill ein so wie einen Henker irrlicht
             Spieler spielerDerSterbenSoll = getRandomIrrlichtToDie();
             System.out.println(spielerDerSterbenSoll.name + " flackerte zu viel.");
