@@ -559,7 +559,7 @@ public class Game {
     }
 
     public ArrayList<Spieler> getSpielerUnspecified() {
-        ArrayList<Spieler> spielerUnspecified = (ArrayList)spieler.clone();
+        ArrayList<Spieler> spielerUnspecified = (ArrayList) spieler.clone();
         spielerUnspecified.removeAll(spielerSpecified);
         return spielerUnspecified;
     }

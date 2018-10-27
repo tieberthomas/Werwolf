@@ -87,8 +87,7 @@ public class Statement {
         this.dependency = dependency;
     }
 
-    public static Statement newFirstNightStatement(Rolle rolle)
-    {
+    public static Statement newFirstNightStatement(Rolle rolle) {
         String id = rolle.firstNightStatementID;
         String title = rolle.firstNightStatementTitle;
         String beschreibung = rolle.firstNightStatementBeschreibung;
@@ -98,8 +97,7 @@ public class Statement {
         return new Statement(id, title, beschreibung, type, dependency);
     }
 
-    public static Statement newFirstNightStatement(Fraktion fraktion)
-    {
+    public static Statement newFirstNightStatement(Fraktion fraktion) {
         String id = fraktion.firstNightStatementID;
         String title = fraktion.firstNightStatementTitle;
         String beschreibung = fraktion.firstNightStatementBeschreibung;

@@ -95,10 +95,10 @@ public class NormalNight extends Thread {
                         dependency = ((StatementDependencyStatement) dependency).statement.dependency;
                     }
 
-                    if(dependency instanceof StatementDependencyRolle) {
+                    if (dependency instanceof StatementDependencyRolle) {
                         rolle = ((StatementDependencyRolle) dependency).rolle;
                     }
-                    if(dependency instanceof StatementDependencyFraktion) {
+                    if (dependency instanceof StatementDependencyFraktion) {
                         fraktion = ((StatementDependencyFraktion) dependency).fraktion;
                     }
 

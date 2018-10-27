@@ -59,17 +59,17 @@ public class Irrlicht extends Hauptrolle {
     public static FrontendControl processFlackerndeIrrlichter(List<String> irrlichter) {
         System.out.println(irrlichter.size() + " irrlichter flackern gar sehr");
 
-        if(irrlichter.size() == 1) {
+        if (irrlichter.size() == 1) {
             Spieler einzigesFlackerndesIrrlicht = game.findSpieler(irrlichter.get(0));
-            Irrlicht irrlicht = ((Irrlicht)einzigesFlackerndesIrrlicht.hauptrolle);
+            Irrlicht irrlicht = ((Irrlicht) einzigesFlackerndesIrrlicht.hauptrolle);
             String randomIrrlicht = irrlicht.getRandomUnseenIrrlichtSpieler(einzigesFlackerndesIrrlicht.name);
 
-            if(randomIrrlicht != null) {
+            if (randomIrrlicht != null) {
                 return new FrontendControl(SECOND_STATEMENT_TITLE, randomIrrlicht);
             } else {
                 return new FrontendControl(SECOND_STATEMENT_TITLE, LAST_IRRLICHT_MESSAGE);
             }
-        } else if(irrlichter.size() == game.getIrrlichterStrings().size()) {
+        } else if (irrlichter.size() == game.getIrrlichterStrings().size()) {
             //kill ein so wie einen Henker irrlicht
             Spieler spielerDerSterbenSoll = getRandomIrrlichtToDie();
             System.out.println(spielerDerSterbenSoll.name + " flackerte zu viel.");
@@ -81,7 +81,7 @@ public class Irrlicht extends Hauptrolle {
     private String getRandomUnseenIrrlichtSpieler(String einzigesFlackerndesIrrlichtName) {
         List<String> unseenIrrlichter = getAllUnseenIrrlichter(einzigesFlackerndesIrrlichtName);
 
-        if(unseenIrrlichter == null) {
+        if (unseenIrrlichter == null) {
             return null;
         }
 
@@ -100,14 +100,14 @@ public class Irrlicht extends Hauptrolle {
     private List<String> getAllUnseenIrrlichter(String einzigesFlackerndesIrrlichtName) {
         List<String> irrlichter = game.getIrrlichterStrings();
 
-        if(irrlichter.size() == 1) {
+        if (irrlichter.size() == 1) {
             return null;
         }
 
         irrlichter.removeAll(geseheneIrrlichter);
         irrlichter.remove(einzigesFlackerndesIrrlichtName);
 
-        if(irrlichter.size() == 0) {
+        if (irrlichter.size() == 0) {
             geseheneIrrlichter.clear();
             return getAllUnseenIrrlichter(einzigesFlackerndesIrrlichtName);
         }
@@ -120,7 +120,7 @@ public class Irrlicht extends Hauptrolle {
 
         Spieler irrlicht = null;
 
-        if (irrlichter!=null) {
+        if (irrlichter != null) {
             int randIndex = (int) (Math.random() * irrlichter.size());
 
             irrlicht = irrlichter.get(randIndex);

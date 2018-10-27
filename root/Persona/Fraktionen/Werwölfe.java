@@ -7,7 +7,7 @@ import root.Persona.Rolle;
 import root.Persona.Rollen.Constants.Zeigekarten.Blutmond;
 import root.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.WerwölfeZeigekarte;
 import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
-import root.Persona.Rollen.Hauptrollen.Werwölfe.*;
+import root.Persona.Rollen.Hauptrollen.Werwölfe.Blutwolf;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
