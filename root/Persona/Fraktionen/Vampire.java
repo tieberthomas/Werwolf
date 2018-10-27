@@ -3,7 +3,7 @@ package root.Persona.Fraktionen;
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.Persona.Fraktion;
-import root.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.VampiereZeigekarte;
+import root.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.VampireZeigekarte;
 import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
@@ -25,9 +25,9 @@ public class Vampire extends Fraktion {
     public static final StatementType FIRST_NIGHT_STATEMENT_TYPE = StatementType.FRAKTION_SPECAL;
 
     public static final String NAME = "Vampire";
-    public static final String IMAGE_PATH = ImagePath.VAMPIERE_ICON;
+    public static final String IMAGE_PATH = ImagePath.VAMPIRE_ICON;
     public static final Color COLOR = Color.red;
-    public static final Zeigekarte zeigekarte = new VampiereZeigekarte();
+    public static final Zeigekarte zeigekarte = new VampireZeigekarte();
 
     public Vampire() {
         this.name = NAME;

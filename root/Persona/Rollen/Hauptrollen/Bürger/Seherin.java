@@ -54,7 +54,7 @@ public class Seherin extends Hauptrolle {
                 zeigekarte = new WerwölfeZeigekarte();
             }
             if (bonusrolle.equals(Vampirumhang.NAME)) {
-                zeigekarte = new VampiereZeigekarte();
+                zeigekarte = new VampireZeigekarte();
             }
             if (bonusrolle.equals(Schattenkutte.NAME)) {
                 zeigekarte = new SchattenpriesterZeigekarte();

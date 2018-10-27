@@ -39,7 +39,7 @@ public class ImagePath {
     public static String BÜRGER_ICON = ICON_PATH + "Bürger" + IMAGE_FILE_EXTENSION;
     public static String SCHATTENPRIESTER_ICON = ICON_PATH + "Schattenpriester" + IMAGE_FILE_EXTENSION;
     public static String ÜBERLÄUFER_ICON = ICON_PATH + "Überläufer" + IMAGE_FILE_EXTENSION;
-    public static String VAMPIERE_ICON = ICON_PATH + "Vampire" + IMAGE_FILE_EXTENSION;
+    public static String VAMPIRE_ICON = ICON_PATH + "Vampire" + IMAGE_FILE_EXTENSION;
     public static String WÖLFE_ICON = ICON_PATH + "Wölfe" + IMAGE_FILE_EXTENSION;
 
     public static String DETEKTIV_KARTE = BÜRGER_PATH + "Detektiv" + IMAGE_FILE_EXTENSION;
