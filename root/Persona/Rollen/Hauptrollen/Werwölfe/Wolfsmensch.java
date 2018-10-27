@@ -9,7 +9,7 @@ import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 
 public class Wolfsmensch extends Hauptrolle {
-    public static final String FIRST_NIGHT_STATEMENT_IDENTIFIER = "Wolfsmensch";
+    public static final String FIRST_NIGHT_STATEMENT_ID = "Wolfsmensch";
     public static final String FIRST_NIGHT_STATEMENT_TITLE = "Nicht im Spiel";
     public static final String FIRST_NIGHT_STATEMENT_BESCHREIBUNG = "Wolfsmensch erwacht und erfährt eine Bürgerrolle die nicht im Spiel ist";
     public static final StatementType FIRST_NIGHT_STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
@@ -23,7 +23,7 @@ public class Wolfsmensch extends Hauptrolle {
         this.imagePath = IMAGE_PATH;
         this.fraktion = FRAKTION;
 
-        this.firstNightStatementIdentifier = FIRST_NIGHT_STATEMENT_IDENTIFIER;
+        this.firstNightStatementID = FIRST_NIGHT_STATEMENT_ID;
         this.firstNightStatementTitle = FIRST_NIGHT_STATEMENT_TITLE;
         this.firstNightStatementBeschreibung = FIRST_NIGHT_STATEMENT_BESCHREIBUNG;
         this.firstNightStatementType = FIRST_NIGHT_STATEMENT_TYPE;

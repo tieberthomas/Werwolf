@@ -12,7 +12,7 @@ import root.Spieler;
 import static root.Persona.Rollen.Constants.TötendInformationType.TÖTEND;
 
 public class Späher extends Hauptrolle {
-    public static final String STATEMENT_IDENTIFIER = "Späher";
+    public static final String STATEMENT_ID = "Späher";
     public static final String STATEMENT_TITLE = "Spieler wählen";
     public static final String STATEMENT_BESCHREIBUNG = "Späher erwacht und lässt sich Auskunft über einen Mitspieler geben";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE_INFO;
@@ -26,7 +26,7 @@ public class Späher extends Hauptrolle {
         this.imagePath = IMAGE_PATH;
         this.fraktion = FRAKTION;
 
-        this.statementIdentifier = STATEMENT_IDENTIFIER;
+        this.statementID = STATEMENT_ID;
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;

@@ -83,7 +83,6 @@ public class Game {
         hauptrollen.add(new GrafVladimir());
         hauptrollen.add(new LadyAleera());
         hauptrollen.add(new MissVerona());
-        hauptrollen.add(new Alphawolf());
         hauptrollen.add(new Blutwolf());
         hauptrollen.add(new Chemiker());
         hauptrollen.add(new Geisterwolf());
@@ -560,7 +559,7 @@ public class Game {
     }
 
     public ArrayList<Spieler> getSpielerUnspecified() {
-        ArrayList<Spieler> spielerUnspecified = (ArrayList)spieler.clone();
+        ArrayList<Spieler> spielerUnspecified = (ArrayList) spieler.clone();
         spielerUnspecified.removeAll(spielerSpecified);
         return spielerUnspecified;
     }

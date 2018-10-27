@@ -111,11 +111,10 @@ public class Fraktion extends Persona {
 
     public static boolean fraktionOpfer(String fraktion) {
         for (Spieler currentSpieler : game.spieler) {
-            String hauptrolleSpieler = currentSpieler.hauptrolle.name;
             String fraktionSpieler = currentSpieler.hauptrolle.fraktion.name;
 
             if (fraktion.equals(Werwölfe.NAME)) {
-                if (fraktionSpieler.equals(fraktion) && Werwölfe.isTötend(hauptrolleSpieler)) { //TODO currentSpieler.hauptrolle.killing ?
+                if (fraktionSpieler.equals(fraktion) && currentSpieler.hauptrolle.killing) {
                     if (currentSpieler.lebend && !Opfer.isOpfer(currentSpieler.name)) {
                         return false;
                     }
@@ -140,11 +139,10 @@ public class Fraktion extends Persona {
         }
 
         for (Spieler currentSpieler : livingSpieler) {
-            String hauptrolleSpieler = currentSpieler.hauptrolle.name;
             String fraktionSpieler = currentSpieler.hauptrolle.fraktion.name;
 
             if (fraktion.equals(Werwölfe.NAME)) {
-                if (fraktionSpieler.equals(fraktion) && Werwölfe.isTötend(hauptrolleSpieler)) {
+                if (fraktionSpieler.equals(fraktion) && currentSpieler.hauptrolle.killing) {
                     if (currentSpieler.aktiv) {
                         return true;
                     }

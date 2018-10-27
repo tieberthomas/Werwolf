@@ -9,7 +9,7 @@ import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
 public class Prostituierte extends Bonusrolle {
-    public static final String STATEMENT_IDENTIFIER = "Prostituierte";
+    public static final String STATEMENT_ID = "Prostituierte";
     public static final String STATEMENT_TITLE = "Bett legen";
     public static final String STATEMENT_BESCHREIBUNG = "Prostituierte legt sich zu einem Mitspieler ins Bett";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
@@ -25,7 +25,7 @@ public class Prostituierte extends Bonusrolle {
         this.imagePath = IMAGE_PATH;
         this.type = TYPE;
 
-        this.statementIdentifier = STATEMENT_IDENTIFIER;
+        this.statementID = STATEMENT_ID;
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;

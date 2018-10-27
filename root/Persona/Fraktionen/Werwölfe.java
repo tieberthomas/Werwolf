@@ -7,7 +7,7 @@ import root.Persona.Rolle;
 import root.Persona.Rollen.Constants.Zeigekarten.Blutmond;
 import root.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.WerwölfeZeigekarte;
 import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
-import root.Persona.Rollen.Hauptrollen.Werwölfe.*;
+import root.Persona.Rollen.Hauptrollen.Werwölfe.Blutwolf;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
@@ -17,12 +17,12 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Werwölfe extends Fraktion {
-    public static final String STATEMENT_IDENTIFIER = "Werwölfe";
+    public static final String STATEMENT_ID = "Werwölfe";
     public static final String STATEMENT_TITLE = "Opfer wählen";
     public static final String STATEMENT_BESCHREIBUNG = "Die Werwölfe erwachen und die Wölfe wählen ein Opfer aus";
     public static final StatementType STATEMENT_TYPE = StatementType.FRAKTION_CHOOSE_ONE;
 
-    public static final String FIRST_NIGHT_STATEMENT_IDENTIFIER = "First_Night_Werwölfe";
+    public static final String FIRST_NIGHT_STATEMENT_ID = "First_Night_Werwölfe";
     public static final String FIRST_NIGHT_STATEMENT_TITLE = "Werwölfe";
     public static final String FIRST_NIGHT_STATEMENT_BESCHREIBUNG = "Die Werwölfe erwachen und sehen einander";
     public static final StatementType FIRST_NIGHT_STATEMENT_TYPE = StatementType.FRAKTION_SPECAL;
@@ -38,12 +38,12 @@ public class Werwölfe extends Fraktion {
 
         this.color = COLOR;
 
-        this.statementIdentifier = STATEMENT_IDENTIFIER;
+        this.statementID = STATEMENT_ID;
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;
 
-        this.firstNightStatementIdentifier = FIRST_NIGHT_STATEMENT_IDENTIFIER;
+        this.firstNightStatementID = FIRST_NIGHT_STATEMENT_ID;
         this.firstNightStatementTitle = FIRST_NIGHT_STATEMENT_TITLE;
         this.firstNightStatementBeschreibung = FIRST_NIGHT_STATEMENT_BESCHREIBUNG;
         this.firstNightStatementType = FIRST_NIGHT_STATEMENT_TYPE;
@@ -72,20 +72,6 @@ public class Werwölfe extends Fraktion {
     @Override
     public Zeigekarte getZeigeKarte() {
         return zeigekarte;
-    }
-
-    public static boolean isTötend(String hauptrolle) {
-        //TODO auf iskilling überprüfen
-        ArrayList<String> tötend = new ArrayList<>();
-
-        tötend.add(Alphawolf.NAME);
-        tötend.add(Blutwolf.NAME);
-        tötend.add(Geisterwolf.NAME);
-        tötend.add(Schreckenswolf.NAME);
-        tötend.add(Werwolf.NAME);
-        tötend.add(Wölfin.NAME);
-
-        return tötend.contains(hauptrolle);
     }
 
     public static boolean blutWolfIsAktiv() {

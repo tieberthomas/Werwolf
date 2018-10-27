@@ -16,17 +16,17 @@ public class Persona {
 
     public Color color = Spieler.ALIVE_BACKGROUND_COLOR;
 
-    public String statementIdentifier = "";
+    public String statementID = "";
     public String statementTitle = "";
     public String statementBeschreibung = "";
     public StatementType statementType = StatementType.EMPTY_STATEMENT;
 
-    public String secondStatementIdentifier = "";
+    public String secondStatementID = "";
     public String secondStatementTitle = "";
     public String secondStatementBeschreibung = "";
     public StatementType secondStatementType = StatementType.EMPTY_STATEMENT;
 
-    public String firstNightStatementIdentifier = "";
+    public String firstNightStatementID = "";
     public String firstNightStatementTitle = "";
     public String firstNightStatementBeschreibung = "";
     public StatementType firstNightStatementType = StatementType.EMPTY_STATEMENT;

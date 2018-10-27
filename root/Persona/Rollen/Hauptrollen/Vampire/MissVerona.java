@@ -12,9 +12,9 @@ import root.mechanics.Opfer;
 import java.util.ArrayList;
 
 public class MissVerona extends Hauptrolle {
-    public static final String STATEMENT_IDENTIFIER = "MissVerona";
+    public static final String STATEMENT_ID = "MissVerona";
     public static final String STATEMENT_TITLE = "Angegriffene Opfer";
-    public static final String STATEMENT_BESCHREIBUNG = "Miss Verona erwacht und lässt sich Auskunft über die Spieler geben, die angegriffen wurden";
+    public static final String STATEMENT_BESCHREIBUNG = "Miss Verona erwacht und verschleiert die Identität eines Spielers";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_INFO;
 
     public static final String NAME = "Miss Verona";
@@ -26,13 +26,15 @@ public class MissVerona extends Hauptrolle {
         this.imagePath = IMAGE_PATH;
         this.fraktion = FRAKTION;
 
-        this.statementIdentifier = STATEMENT_IDENTIFIER;
+        this.statementID = STATEMENT_ID;
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;
 
         this.killing = true;
     }
+
+    //TODO update 2.7
 
     @Override
     public FrontendControl getInfo() {

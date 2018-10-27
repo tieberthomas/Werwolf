@@ -55,7 +55,7 @@ public class MyFrame extends JFrame {
         frameJpanel.removeAll();
 
         for (PageElement element : page.pageElements) {
-            if (element.component.getClass() == JButton.class) {
+            if (element.component instanceof JButton) {
                 ((JButton) element.component).setFocusPainted(false);
             }
             frameJpanel.add(element.component);

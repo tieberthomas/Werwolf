@@ -2,6 +2,8 @@ ST:
 FirstNight - StatementType
 Alphabet Umlaute?
 
+Tötend - Killing ?
+
 TH:
 BonusrollenType - Enum?
 
@@ -11,5 +13,8 @@ Freigestellt -> Weiß
 Nach Auslieferung:
 Phase manager
 Analytiker generisch machen
-ErsteNacht generisch machen
+FirstNight generisch machen
+show methoden in Night verschieben nach FrontendControl
 FrontendControl subclassen
+Persona ID
+Rolle, Fraktion zusammenfassen Persona

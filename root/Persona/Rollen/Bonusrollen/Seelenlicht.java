@@ -9,7 +9,7 @@ import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
 public class Seelenlicht extends Bonusrolle {
-    public static final String FIRST_NIGHT_STATEMENT_IDENTIFIER = "Seelenlicht";
+    public static final String FIRST_NIGHT_STATEMENT_ID = "Seelenlicht";
     public static final String FIRST_NIGHT_STATEMENT_TITLE = "Neue Karte";
     public static final String FIRST_NIGHT_STATEMENT_BESCHREIBUNG = "Seelenlicht erwacht und tauscht seine Karte je nach Hauptrolle aus";
     public static final StatementType FIRST_NIGHT_STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
@@ -23,7 +23,7 @@ public class Seelenlicht extends Bonusrolle {
         this.imagePath = IMAGE_PATH;
         this.type = TYPE;
 
-        this.firstNightStatementIdentifier = FIRST_NIGHT_STATEMENT_IDENTIFIER;
+        this.firstNightStatementID = FIRST_NIGHT_STATEMENT_ID;
         this.firstNightStatementTitle = FIRST_NIGHT_STATEMENT_TITLE;
         this.firstNightStatementBeschreibung = FIRST_NIGHT_STATEMENT_BESCHREIBUNG;
         this.firstNightStatementType = FIRST_NIGHT_STATEMENT_TYPE;

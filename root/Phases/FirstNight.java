@@ -3,14 +3,11 @@ package root.Phases;
 import root.Frontend.FrontendControl;
 import root.Persona.Bonusrolle;
 import root.Persona.Fraktion;
-import root.Persona.Fraktionen.Werwölfe;
 import root.Persona.Hauptrolle;
 import root.Persona.Rolle;
 import root.Persona.Rollen.Bonusrollen.Tarnumhang;
 import root.Persona.Rollen.Constants.BonusrollenType.Passiv;
 import root.Persona.Rollen.Hauptrollen.Bürger.Dorfbewohner;
-import root.Persona.Rollen.Hauptrollen.Bürger.Seherin;
-import root.Persona.Rollen.Hauptrollen.Werwölfe.Alphawolf;
 import root.Persona.Rollen.Hauptrollen.Werwölfe.Wolfsmensch;
 import root.Phases.NightBuilding.Constants.IndieStatements;
 import root.Phases.NightBuilding.Constants.StatementState;
@@ -62,7 +59,7 @@ public class FirstNight extends Thread {
                 if (statement.state != StatementState.INVISIBLE_NOT_IN_GAME) {
                     setSpielerAwake(statement);
                     Rolle rolle = null;
-                    if (statement.dependency.getClass() == StatementDependencyRolle.class) {
+                    if (statement.dependency instanceof StatementDependencyRolle) {
                         rolle = ((StatementDependencyRolle) statement.dependency).rolle;
                     }
 
@@ -81,12 +78,12 @@ public class FirstNight extends Thread {
                             bonusrolle.tauschen(newBonusrolle);
                         }
 
-                    } else if (statement.dependency.getClass() == StatementDependencyFraktion.class) {
+                    } else if (statement.dependency instanceof StatementDependencyFraktion) {
                         Fraktion fraktion = ((StatementDependencyFraktion) statement.dependency).fraktion;
                         showFraktionMembers(statement, fraktion);
                     } else {
-                        switch (statement.identifier) {
-                            case IndieStatements.LIEBESPAAR_IDENTIFIER:
+                        switch (statement.id) {
+                            case IndieStatements.LIEBESPAAR_ID:
                                 ArrayList<String> spielerOrZufällig = game.liebespaar.getDropdownOptions();
 
                                 showDropdown(statement, spielerOrZufällig, spielerOrZufällig);
@@ -95,7 +92,7 @@ public class FirstNight extends Thread {
                                 FrontendControl.regenerateAndRefreshÜbersichtsFrame();
                                 break;
 
-                            case IndieStatements.LIEBESPAAR_FINDEN_IDENTIFIER:
+                            case IndieStatements.LIEBESPAAR_FINDEN_ID:
                                 Liebespaar liebespaar = game.liebespaar;
                                 if (liebespaar != null && liebespaar.spieler1 != null) {
                                     ArrayList<String> liebespaarStrings = new ArrayList<>();
@@ -112,30 +109,13 @@ public class FirstNight extends Thread {
                                 }
                                 break;
 
-                            case Wolfsmensch.FIRST_NIGHT_STATEMENT_IDENTIFIER:
+                            case Wolfsmensch.FIRST_NIGHT_STATEMENT_ID:
                                 ArrayList<Hauptrolle> hauptrollen = game.getStillAvailableBürger();
                                 Hauptrolle hauptrolle = pickRandomHauptrolle(hauptrollen);
                                 if (hauptrolle == null) {
                                     hauptrolle = new Dorfbewohner();
                                 }
                                 showCard(statement, statement.title, hauptrolle.imagePath);
-                                break;
-
-                            case Alphawolf.FIRST_NIGHT_STATEMENT_IDENTIFIER:
-                                ArrayList<Spieler> werwölfe = Fraktion.getFraktionsMembers(Werwölfe.NAME);
-                                werwölfe.remove(game.findSpielerPerRolle(Alphawolf.NAME));
-                                for (Spieler currentSpieler : werwölfe) {
-                                    showHauptrolle(statement, currentSpieler);
-                                }
-                                statement.title = Alphawolf.FIRST_NIGHT_STATEMENT_FERTIG_TITLE;
-                                showImage(statement, statement.title, ImagePath.WÖLFE_ICON);
-                                break;
-
-                            case Seherin.STATEMENT_IDENTIFIER:
-                                dropdownOtions = rolle.getDropdownOptionsFrontendControl();
-                                chosenOption = showFrontendControl(statement, dropdownOtions);
-                                info = rolle.processChosenOptionGetInfo(chosenOption);
-                                showFrontendControl(statement, info);
                                 break;
 
                             default:
@@ -180,10 +160,10 @@ public class FirstNight extends Thread {
 
     public void setSpielerAwake(Statement statement) {
         spielerAwake.clear();
-        if (statement.dependency.getClass() == StatementDependencyFraktion.class) {
+        if (statement.dependency instanceof StatementDependencyFraktion) {
             StatementDependencyFraktion statementDependencyFraktion = (StatementDependencyFraktion) statement.dependency;
             spielerAwake.addAll(Fraktion.getFraktionsMembers(statementDependencyFraktion.fraktion.name));
-        } else if (statement.dependency.getClass() == StatementDependencyRolle.class) {
+        } else if (statement.dependency instanceof StatementDependencyRolle) {
             StatementDependencyRolle statementDependencyRolle = (StatementDependencyRolle) statement.dependency;
             spielerAwake.add(game.findSpielerPerRolle(statementDependencyRolle.rolle.name));
         }

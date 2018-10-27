@@ -14,7 +14,7 @@ import root.mechanics.Opfer;
 import java.util.ArrayList;
 
 public class Schreckenswolf extends Hauptrolle {
-    public static final String STATEMENT_IDENTIFIER = "Schreckenswolf";
+    public static final String STATEMENT_ID = "Schreckenswolf";
     public static final String STATEMENT_TITLE = "Mitspieler verstummen";
     public static final String STATEMENT_BESCHREIBUNG = "Schreckenswolf erwacht und verstummt ggf. einen Spieler der am folgenden Tag nichtmehr reden darf";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
@@ -33,12 +33,12 @@ public class Schreckenswolf extends Hauptrolle {
         this.imagePath = IMAGE_PATH;
         this.fraktion = FRAKTION;
 
-        this.statementIdentifier = STATEMENT_IDENTIFIER;
+        this.statementID = STATEMENT_ID;
         this.statementTitle = STATEMENT_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;
 
-        this.secondStatementIdentifier = VERSTUMMT;
+        this.secondStatementID = VERSTUMMT;
         this.secondStatementTitle = SECOND_STATEMENT_TITLE;
         this.secondStatementBeschreibung = SECOND_STATEMENT_BESCHREIBUNG;
         this.secondStatementType = SECOND_STATEMENT_TYPE;

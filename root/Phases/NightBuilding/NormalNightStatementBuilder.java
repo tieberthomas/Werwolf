@@ -18,8 +18,6 @@ import root.Persona.Rollen.Hauptrollen.Überläufer.Henker;
 import root.Persona.Rollen.Hauptrollen.Überläufer.Überläufer;
 import root.Phases.NightBuilding.Constants.IndieStatements;
 import root.Phases.NightBuilding.Constants.ProgrammStatements;
-import root.Phases.NightBuilding.StatementDependancy.StatementDependencyFraktion;
-import root.Phases.NightBuilding.StatementDependancy.StatementDependencyRolle;
 import root.mechanics.Game;
 
 import java.util.ArrayList;
@@ -51,32 +49,33 @@ public class NormalNightStatementBuilder {
         addStatementRolle(statements, HoldeMaid.NAME);
         addStatementRolle(statements, Irrlicht.NAME);
         addSecondStatementRolle(statements, Irrlicht.NAME);
-        //Detektiv erwacht und schätzt die Anzahl der Bürger
+        //Detektiv erwacht, schätzt die Anzahl der Bürger und bekommt ggf. eine Bürgerhauptrolle die im Spiel ist gezeigt
         addStatementRolle(statements, Schamanin.NAME);
 
         statements.add(ProgrammStatements.getSchützeStatement());
 
-        addStatementRolle(statements, LadyAleera.NAME);
         addStatementRolle(statements, Prostituierte.NAME);
 
         addStatementRolle(statements, Henker.NAME);
         addSecondStatementRolle(statements, Henker.NAME);
         addStatementRolle(statements, Riese.NAME);
-        addStatementFraktion(statements, Vampire.NAME);
         addStatementFraktion(statements, Werwölfe.NAME);
         if (Wölfin.state == WölfinState.TÖTEND) {
             addStatementRolle(statements, Wölfin.NAME);
         }
+        addStatementRolle(statements, Schreckenswolf.NAME);
+        addStatementFraktion(statements, Vampire.NAME);
 
         //Nachtfürst erwacht, schätzt die Anzahl der Opfer dieser Nacht und führt ggf. seine Tötung aus
-        addStatementRolle(statements, Schreckenswolf.NAME);
 
         addStatementFraktion(statements, Schattenpriester_Fraktion.NAME);
         addSecondStatementFraktion(statements, Schattenpriester_Fraktion.NAME);
         addStatementRolle(statements, Chemiker.NAME);
         addSecondStatementRolle(statements, Chemiker.NAME);
 
+        addStatementRolle(statements, LadyAleera.NAME);
         addStatementRolle(statements, MissVerona.NAME);
+
         addStatementRolle(statements, Analytiker.NAME);
         addStatementRolle(statements, Archivar.NAME);
         addStatementRolle(statements, Schnüffler.NAME);
@@ -123,8 +122,12 @@ public class NormalNightStatementBuilder {
 
     private static void addSecondStatementRolle(ArrayList<Statement> statements, String rollenName) {
         Rolle rolle = Rolle.findRolle(rollenName);
-        //TODO find better solution
-        Statement statement = new Statement(rolle.secondStatementIdentifier, rolle.secondStatementTitle, rolle.secondStatementBeschreibung, rolle.secondStatementType, new StatementDependencyRolle(rolle));
+
+        Statement firstStatement = statements.stream()
+                .filter(statement -> statement.id.equals(rolle.statementID))
+                .findAny().orElse(null);
+
+        Statement statement = new Statement(rolle, firstStatement);
         statements.add(statement);
     }
 
@@ -136,7 +139,12 @@ public class NormalNightStatementBuilder {
 
     private static void addSecondStatementFraktion(ArrayList<Statement> statements, String fraktionsName) {
         Fraktion fraktion = Fraktion.findFraktion(fraktionsName);
-        Statement statement = new Statement(fraktion.secondStatementIdentifier, fraktion.secondStatementTitle, fraktion.secondStatementBeschreibung, fraktion.secondStatementType, new StatementDependencyFraktion(fraktion));
+
+        Statement firstStatement = statements.stream()
+                .filter(statement -> statement.id.equals(fraktion.statementID))
+                .findAny().orElse(null);
+
+        Statement statement = new Statement(fraktion, firstStatement);
         statements.add(statement);
     }
 }
