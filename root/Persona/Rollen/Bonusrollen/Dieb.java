@@ -8,9 +8,9 @@ import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
+import root.mechanics.Rand;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Dieb extends Bonusrolle {
     public static final String STATEMENT_ID = "Dieb";
@@ -78,10 +78,6 @@ public class Dieb extends Bonusrolle {
     private Bonusrolle getNewRandomBonusrolle() {
         ArrayList<Bonusrolle> bonusrollen = game.getStillAvailableBonusrollen();
 
-        int numberOfUnassignedBonusrollen = bonusrollen.size();
-        Random random = new Random();
-        int index = random.nextInt(numberOfUnassignedBonusrollen);
-
-        return bonusrollen.get(index);
+        return Rand.getRandomElement(bonusrollen);
     }
 }

@@ -8,6 +8,7 @@ import root.Persona.Hauptrolle;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
+import root.mechanics.Rand;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -91,9 +92,7 @@ public class Irrlicht extends Hauptrolle {
         String irrlichtName = null;
 
         if (unseenIrrlichter.size() > 0) {
-            int randIndex = (int) (Math.random() * unseenIrrlichter.size());
-
-            irrlichtName = unseenIrrlichter.get(randIndex);
+            irrlichtName = Rand.getRandomElement(unseenIrrlichter);
             geseheneIrrlichter.add(irrlichtName);
         }
 
@@ -124,9 +123,7 @@ public class Irrlicht extends Hauptrolle {
         Spieler irrlicht = null;
 
         if (irrlichter != null) {
-            int randIndex = (int) (Math.random() * irrlichter.size());
-
-            irrlicht = irrlichter.get(randIndex);
+            irrlicht = Rand.getRandomElement(irrlichter);
         }
 
         return irrlicht;

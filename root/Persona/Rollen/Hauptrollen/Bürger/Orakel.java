@@ -10,6 +10,7 @@ import root.Persona.Rolle;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
+import root.mechanics.Rand;
 
 import java.util.ArrayList;
 
@@ -55,9 +56,7 @@ public class Orakel extends Hauptrolle {
         Bonusrolle bonusrolle;
 
         if (unseenBürger.size() > 0) {
-            int randIndex = (int) (Math.random() * unseenBürger.size());
-
-            bonusrolle = unseenBürger.get(randIndex).bonusrolle;
+            bonusrolle = Rand.getRandomElement(unseenBürger).bonusrolle;
             geseheneBonusrollen.add(bonusrolle.name);
         } else {
             if (geseheneBonusrollen.size() == 1) {

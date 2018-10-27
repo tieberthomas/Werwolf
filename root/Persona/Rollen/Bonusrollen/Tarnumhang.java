@@ -10,11 +10,11 @@ import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
+import root.mechanics.Rand;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Random;
 
 import static root.Persona.Rollen.Constants.TötendInformationType.TARNUMHANG;
 
@@ -70,12 +70,7 @@ public class Tarnumhang extends Bonusrolle {
         }
 
         if (allTräger.size() > 0) {
-
-            int numberOfTräger = allTräger.size();
-            Random random = new Random();
-            int decision = random.nextInt(numberOfTräger);
-
-            return allTräger.get(decision);
+            return Rand.getRandomElement(allTräger);
         } else {
             return KEINE_UMHÄNGE;
         }
