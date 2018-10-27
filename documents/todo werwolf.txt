@@ -38,7 +38,7 @@ fraktionsbamboozelstatements
 getInstance (findSpielerOrDead) in game
 analytiker aussehen generisch in showFrontend von nach inkludieren
 erste nacht generisch machen wie normale nacht
-get dropdown options von werwölfen und vampiren ist duplicated
+get dropdown options von werwölfen und vampieren ist duplicated
 is tötend in werwolffraktion generischer machen
 
 

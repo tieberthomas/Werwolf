@@ -1,0 +1,10 @@
+diff a/documents/todo werwolf.txt b/documents/todo werwolf.txt	(rejected hunks)
+@@ -38,7 +38,7 @@
+ getInstance (findSpielerOrDead) in game
+ analytiker aussehen generisch in showFrontend von nach inkludieren
+ erste nacht generisch machen wie normale nacht
+-get dropdown options von werwölfen und vampieren ist duplicated
++get dropdown options von werwölfen und vampiren ist duplicated
+ is tötend in werwolffraktion generischer machen
+ 
+ 
