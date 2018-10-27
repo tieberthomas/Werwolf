@@ -1,4 +1,4 @@
-detektiv (bonusrolle) (informativ)
+detektiv (bürger)
     -versucht die anzahl der bürger zu erraten, wenn richitg bekommt er eine bürgerrolle die im spiel ist verraten
 
 nachtfürst (bonusrolle)

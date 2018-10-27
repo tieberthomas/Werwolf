@@ -42,6 +42,7 @@ public class ImagePath {
     public static String VAMPIERE_ICON = ICON_PATH + "Vampire" + IMAGE_FILE_EXTENSION;
     public static String WÖLFE_ICON = ICON_PATH + "Wölfe" + IMAGE_FILE_EXTENSION;
 
+    public static String DETEKTIV_KARTE = BÜRGER_PATH + "Detektiv" + IMAGE_FILE_EXTENSION;
     public static String DORFBEWOHNER_KARTE = BÜRGER_PATH + "Dorfbewohner" + IMAGE_FILE_EXTENSION;
     public static String HOLDE_MAID_KARTE = BÜRGER_PATH + "Holde_Maid" + IMAGE_FILE_EXTENSION;
     public static String IRRLICHT_KARTE = BÜRGER_PATH + "Irrlicht" + IMAGE_FILE_EXTENSION;
@@ -49,6 +50,7 @@ public class ImagePath {
     public static String RIESE_KARTE = BÜRGER_PATH + "Riese" + IMAGE_FILE_EXTENSION;
     public static String SAMMLER_KARTE = BÜRGER_PATH + "Sammler" + IMAGE_FILE_EXTENSION;
     public static String SCHAMANIN_KARTE = BÜRGER_PATH + "Schamanin" + IMAGE_FILE_EXTENSION;
+    public static String SCHATTENMENSCH_KARTE = BÜRGER_PATH + "Schattenmensch" + IMAGE_FILE_EXTENSION;
     public static String SEHERIN_KARTE = BÜRGER_PATH + "Seherin" + IMAGE_FILE_EXTENSION;
     public static String SPÄHER_KARTE = BÜRGER_PATH + "Späher" + IMAGE_FILE_EXTENSION;
     public static String WIRT_KARTE = BÜRGER_PATH + "Wirt" + IMAGE_FILE_EXTENSION;
@@ -72,7 +74,6 @@ public class ImagePath {
 
     public static String ANALYTIKER_KARTE = BONUSROLLEN_PATH + "Analytiker" + IMAGE_FILE_EXTENSION;
     public static String ARCHIVAR_KARTE = BONUSROLLEN_PATH + "Archivar" + IMAGE_FILE_EXTENSION;
-    public static String DETEKTIV_KARTE = BONUSROLLEN_PATH + "Detektiv" + IMAGE_FILE_EXTENSION;
     public static String DIEB_KARTE = BONUSROLLEN_PATH + "Dieb" + IMAGE_FILE_EXTENSION;
     public static String GEFÄNGNISWÄRTER_KARTE = BONUSROLLEN_PATH + "Gefängniswärter" + IMAGE_FILE_EXTENSION;
     public static String IMITATOR_KARTE = BONUSROLLEN_PATH + "Imitator" + IMAGE_FILE_EXTENSION;
