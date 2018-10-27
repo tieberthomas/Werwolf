@@ -147,8 +147,8 @@ public class FrontendControl {
     public static void spielerAnnounceOpferPage(Spieler spieler) {
         String hauptRolleImagePath = spieler.hauptrolle.imagePath;
         String bonusRolleImagePath = spieler.bonusrolle.imagePath;
-        if (GrafVladimir.unerkennbarerSpieler != null) {
-            if (spieler.name.equals(GrafVladimir.unerkennbarerSpieler.name)) {
+        if (GrafVladimir.verschleierterSpieler != null) {
+            if (spieler.name.equals(GrafVladimir.verschleierterSpieler.name)) {
                 AusDemSpiel ausDemSpiel = new AusDemSpiel();
                 hauptRolleImagePath = ausDemSpiel.imagePath;
                 bonusRolleImagePath = ausDemSpiel.imagePath;
