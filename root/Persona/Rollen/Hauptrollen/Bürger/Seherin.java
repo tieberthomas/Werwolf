@@ -45,9 +45,6 @@ public class Seherin extends Hauptrolle {
             besucht = chosenSpieler;
 
             Zeigekarte zeigekarte = chosenSpieler.getFraktionInfo();
-            /*if(chosenSpieler.equals(NormalNight.gefälschterSpieler)) {
-                zeigekarte = LadyAleera.fälscheInformation(zeigekarte);
-            }*/
 
             return new FrontendControl(zeigekarte);
         }

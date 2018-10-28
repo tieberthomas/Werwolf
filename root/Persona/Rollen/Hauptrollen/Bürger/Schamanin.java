@@ -6,12 +6,11 @@ import root.Persona.Fraktionen.Bürger;
 import root.Persona.Hauptrolle;
 import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Persona.Rollen.Constants.BonusrollenType.Tarnumhang_BonusrollenType;
-import root.Persona.Rollen.Constants.TötendInformationType;
+import root.Persona.Rollen.Constants.Zeigekarten.SpäherZeigekarte;
+import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
-
-import static root.Persona.Rollen.Constants.TötendInformationType.TARNUMHANG;
 
 public class Schamanin extends Hauptrolle {
     public static final String STATEMENT_ID = "Schamanin";
@@ -61,12 +60,12 @@ public class Schamanin extends Hauptrolle {
         return null;
     }
 
-    public TötendInformationType isTötendInfo(Spieler requester) {
+    public Zeigekarte isTötendInfo(Spieler requester) {
         if (thisRolleIsNotBuerger(requester)) {
-            return TARNUMHANG;
+            return new Tarnumhang_BonusrollenType();
         }
 
-        return TötendInformationType.getTötendInformationsType(killing);
+        return SpäherZeigekarte.getZeigekarte(killing);
     }
 
     private boolean thisRolleIsNotBuerger(Spieler requester) {

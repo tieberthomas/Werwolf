@@ -8,15 +8,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class FraktionsInfo extends InformationsCluster {
-    private List<Zeigekarte> informations;
+    private static List<Zeigekarte> informations;
 
-    @Override
-    public Zeigekarte getWrongInformation(Zeigekarte existingInformation) {
+    public static Zeigekarte getWrongInformation(Zeigekarte existingInformation) {
         generateFraktionsInfos();
-        return super.getWrongInformation(existingInformation);
+        return InformationsCluster.getWrongInformation(informations, existingInformation);
     }
 
-    private void generateFraktionsInfos() {
+    private static void generateFraktionsInfos() {
         ArrayList<Fraktion> fraktionen = Fraktion.getLivingFraktionen();
         informations = fraktionen.stream().map(Fraktion::getZeigeKarte).collect(Collectors.toList());
     }

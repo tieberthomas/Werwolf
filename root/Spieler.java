@@ -5,14 +5,16 @@ import root.Persona.Fraktion;
 import root.Persona.Hauptrolle;
 import root.Persona.Rollen.Bonusrollen.Schatten;
 import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
-import root.Persona.Rollen.Constants.TötendInformationType;
+import root.Persona.Rollen.Constants.BonusrollenType.Tarnumhang_BonusrollenType;
+import root.Persona.Rollen.Constants.InformationsCluster.BonusrollenInfo;
+import root.Persona.Rollen.Constants.InformationsCluster.FraktionsInfo;
+import root.Persona.Rollen.Constants.InformationsCluster.TötendInfo;
 import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Persona.Rollen.Hauptrollen.Bürger.Dorfbewohner;
+import root.Phases.NormalNight;
 import root.mechanics.Game;
 
 import java.awt.*;
-
-import static root.Persona.Rollen.Constants.TötendInformationType.TARNUMHANG;
 
 public class Spieler {
     public static final Color ALIVE_BACKGROUND_COLOR = Color.WHITE;
@@ -79,10 +81,18 @@ public class Spieler {
         BonusrollenType bonunsrollenInfo = bonusrolle.getBonusrollenTypeInfo();
         BonusrollenType hauptrollenInfo = hauptrolle.getBonusrollenTypeInfo(requester);
 
+        BonusrollenType information;
+
         if (hauptrollenInfo != null) {
-            return hauptrollenInfo;
+            information = hauptrollenInfo;
         } else {
-            return bonunsrollenInfo;
+            information = bonunsrollenInfo;
+        }
+
+        if (this.equals(NormalNight.gefälschterSpieler)) {
+            return BonusrollenInfo.getWrongInformation(information);
+        } else {
+            return information;
         }
     }
 
@@ -94,14 +104,22 @@ public class Spieler {
         return hauptrolle.killing;
     }
 
-    public TötendInformationType isTötendInfo(Spieler requester) {
-        TötendInformationType hauptrolleIsTötend = hauptrolle.isTötendInfo(requester);
-        TötendInformationType bonunsrolleIsTötend = bonusrolle.isTötendInfo();
+    public Zeigekarte isTötendInfo(Spieler requester) {
+        Zeigekarte hauptrolleIsTötend = hauptrolle.isTötendInfo(requester);
+        Zeigekarte bonunsrolleIsTötend = bonusrolle.isTötendInfo();
 
-        if (TARNUMHANG.equals(bonunsrolleIsTötend)) {
-            return bonunsrolleIsTötend;
+        Zeigekarte information;
+
+        if (bonunsrolleIsTötend instanceof Tarnumhang_BonusrollenType) {
+            information = bonunsrolleIsTötend;
         } else {
-            return hauptrolleIsTötend;
+            information = hauptrolleIsTötend;
+        }
+
+        if (this.equals(NormalNight.gefälschterSpieler)) {
+            return TötendInfo.getWrongInformation(information);
+        } else {
+            return information;
         }
     }
 
@@ -113,10 +131,18 @@ public class Spieler {
         Zeigekarte hauptrollenFraktion = hauptrolle.getFraktionInfo();
         Zeigekarte bonunsrollenFraktion = bonusrolle.getFraktionInfo();
 
+        Zeigekarte information;
+
         if (bonunsrollenFraktion != null) {
-            return bonunsrollenFraktion;
+            information = bonunsrollenFraktion;
         } else {
-            return hauptrollenFraktion;
+            information = hauptrollenFraktion;
+        }
+
+        if (this.equals(NormalNight.gefälschterSpieler)) {
+            return FraktionsInfo.getWrongInformation(information);
+        } else {
+            return information;
         }
     }
 }

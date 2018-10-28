@@ -8,6 +8,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class TötendInfo extends InformationsCluster {
-    private ArrayList<Zeigekarte> informations = new ArrayList<>(Arrays.asList(
+    private static ArrayList<Zeigekarte> informations = new ArrayList<>(Arrays.asList(
             new Tötend(), new Nicht_Tötend()));
+
+    public static Zeigekarte getWrongInformation(Zeigekarte existingInformation) {
+        return InformationsCluster.getWrongInformation(informations, existingInformation);
+    }
 }

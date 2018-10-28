@@ -5,6 +5,8 @@ import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Bürger;
 import root.Persona.Hauptrolle;
 import root.Persona.Rollen.Constants.TötendInformationType;
+import root.Persona.Rollen.Constants.Zeigekarten.Tötend;
+import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
@@ -47,13 +49,13 @@ public class Späher extends Hauptrolle {
         if (chosenSpieler != null && späherSpieler != null) {
             besucht = chosenSpieler;
 
-            TötendInformationType info = chosenSpieler.isTötendInfo(späherSpieler);
+            Zeigekarte info = chosenSpieler.isTötendInfo(späherSpieler);
 
-            if (info == TÖTEND) {
+            if (info instanceof Tötend) {
                 abilityCharges--;
             }
 
-            return new FrontendControl(info.zeigekarte);
+            return new FrontendControl(info);
         }
 
         return new FrontendControl();

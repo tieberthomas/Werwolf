@@ -2,15 +2,13 @@ package root.Persona;
 
 import root.Persona.Fraktionen.Bürger;
 import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
-import root.Persona.Rollen.Constants.TötendInformationType;
+import root.Persona.Rollen.Constants.Zeigekarten.Nicht_Tötend;
+import root.Persona.Rollen.Constants.Zeigekarten.Tötend;
 import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Persona.Rollen.Hauptrollen.Bürger.Dorfbewohner;
 import root.Spieler;
 
 import java.awt.*;
-
-import static root.Persona.Rollen.Constants.TötendInformationType.NICHT_TÖTEND;
-import static root.Persona.Rollen.Constants.TötendInformationType.TÖTEND;
 
 public class Hauptrolle extends Rolle {
     public Fraktion fraktion = new Bürger();
@@ -27,11 +25,11 @@ public class Hauptrolle extends Rolle {
         return null;
     }
 
-    public TötendInformationType isTötendInfo(Spieler requester) {
+    public Zeigekarte isTötendInfo(Spieler requester) {
         if (killing) {
-            return TÖTEND;
+            return new Tötend();
         } else {
-            return NICHT_TÖTEND;
+            return new Nicht_Tötend();
         }
     }
 

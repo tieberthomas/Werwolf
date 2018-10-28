@@ -6,7 +6,6 @@ import root.Persona.Rollen.Bonusrollen.Schatten;
 import root.Persona.Rollen.Bonusrollen.Tarnumhang;
 import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Persona.Rollen.Constants.BonusrollenType.Passiv;
-import root.Persona.Rollen.Constants.TötendInformationType;
 import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Persona.Rollen.Hauptrollen.Bürger.Schamanin;
 import root.Spieler;
@@ -63,7 +62,7 @@ public class Bonusrolle extends Rolle {
         return type;
     }
 
-    public TötendInformationType isTötendInfo() {
+    public Zeigekarte isTötendInfo() {
         return null;
     }
 
