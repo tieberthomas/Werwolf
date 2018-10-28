@@ -29,6 +29,8 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 public class ErzählerFrame extends MyFrame implements ActionListener {
+    public boolean next = true;
+
     public static Game game;
 
     public SpielerFrame spielerFrame;
@@ -435,6 +437,10 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
             addIrrlicht();
         } else if (ae.getSource() == addPlayerTortenButton) {
             addTortenEsser();
+        } else if (ae.getSource() == henkerGoBackButton) {
+            System.out.println("zurück");
+            next = false;
+            triggerNext();
         } else if (deleteTortenPlayerButtons.contains(ae.getSource())) {
             deleteTortenesser(ae);
         } else if (deleteIrrlichterButtons.contains(ae.getSource())) {
@@ -460,37 +466,8 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         } else if (deleteSpecifyPlayerButtons.contains(ae.getSource())) {
             deleteSpecifiedPlayer(ae);
         } else if (ae.getSource() == nextJButton) {
-            try {
-                if (comboBox1 != null) {
-                    chosenOption1 = (String) comboBox1.getSelectedItem();
-                }
-
-                if (comboBox2 != null) {
-                    chosenOption2 = (String) comboBox2.getSelectedItem();
-                }
-
-                if (comboBox3 != null) {
-                    chosenOption3 = (String) comboBox3.getSelectedItem();
-                }
-            } catch (NullPointerException e) {
-                System.out.println("some comboboxes (1,2,3) might not be initialized.");
-            }
-
-            spielerFrame.mode = SpielerFrameMode.blank;
-            spielerFrame.buildScreenFromPage(spielerFrame.blankPage);
-
-            continueThreads();
-
-            try {
-                if (übersichtsFrame != null) {
-                    if (mode == ErzählerFrameMode.FIRST_NIGHT) {
-                        übersichtsFrame.refresh();
-                    }
-                }
-            } catch (NullPointerException e) {
-                System.out.println("Übersichtsframe seems to be not there. (yet?)");
-            }
-
+            next = true;
+            triggerNext();
         } else if (ae.getSource() == comboBox1 && ((JComboBox) ae.getSource()).hasFocus()) {
             try {
                 if (spielerFrame.mode == SpielerFrameMode.dropDownText) {
@@ -657,6 +634,39 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
             }
         } else if (ae.getSource() == respawnFramesJButton) {
             respawnFrames();
+        }
+    }
+
+    private void triggerNext() {
+        try {
+            if (comboBox1 != null) {
+                chosenOption1 = (String) comboBox1.getSelectedItem();
+            }
+
+            if (comboBox2 != null) {
+                chosenOption2 = (String) comboBox2.getSelectedItem();
+            }
+
+            if (comboBox3 != null) {
+                chosenOption3 = (String) comboBox3.getSelectedItem();
+            }
+        } catch (NullPointerException e) {
+            System.out.println("some comboboxes (1,2,3) might not be initialized.");
+        }
+
+        spielerFrame.mode = SpielerFrameMode.blank;
+        spielerFrame.buildScreenFromPage(spielerFrame.blankPage);
+
+        continueThreads();
+
+        try {
+            if (übersichtsFrame != null) {
+                if (mode == ErzählerFrameMode.FIRST_NIGHT) {
+                    übersichtsFrame.refresh();
+                }
+            }
+        } catch (NullPointerException e) {
+            System.out.println("Übersichtsframe seems to be not there. (yet?)");
         }
     }
 
@@ -887,7 +897,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                 }
             }
         } catch (NullPointerException e) {
-            System.out.println("Somehting went wrong with the Phases. (phasemode might be set wrong)");
+            System.out.println("Something went wrong with the Phases. (phasemode might be set wrong)");
         }
     }
 

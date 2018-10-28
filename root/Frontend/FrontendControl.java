@@ -227,11 +227,15 @@ public class FrontendControl {
     }
 
     public static void erzählerListPage(Statement statement, List<String> strings) {
-        erzählerListPage(statement, statement.title, strings);
+        erzählerListPage(statement, statement.title, strings, false);
     }
 
     public static void erzählerListPage(Statement statement, String title, List<String> strings) {
-        Page nightPage = erzählerFrame.pageFactory.generateListPage(new Page(), statement, title, strings);
+        erzählerListPage(statement, title, strings, false);
+    }
+
+    public static void erzählerListPage(Statement statement, String title, List<String> strings, boolean hatZurückButton) {
+        Page nightPage = erzählerFrame.pageFactory.generateListPage(new Page(), statement, title, strings, hatZurückButton);
         erzählerFrame.buildScreenFromPage(nightPage);
     }
 

@@ -395,11 +395,11 @@ public class ErzählerPageFactory {
     }
 
     public Page generateListPage(Page listPage, Statement statement, List<String> stringsToDisplay) {
-        return generateListPage(listPage, statement, statement.title, stringsToDisplay);
+        return generateListPage(listPage, statement, statement.title, stringsToDisplay, false);
     }
 
-    public Page generateListPage(Page listPage, Statement statement, String title, List<String> stringsToDisplay) {
-        listPage = generateDefaultNightPage(listPage, statement, title);
+    public Page generateListPage(Page listPage, Statement statement, String title, List<String> stringsToDisplay, boolean hatZurückButton) {
+        listPage = generateDefaultNightPage(listPage, statement, title, hatZurückButton);
 
         if (stringsToDisplay.size() > 0) {
             PageElement label = pageElementFactory.generateLabel(getContinueToGeneratePagePoint(listPage), stringsToDisplay.get(0));
@@ -424,7 +424,7 @@ public class ErzählerPageFactory {
     }
 
     public Page generateListPage(Page listPage, Statement statement, String title, List<String> stringsToDisplay, String imagePath) {
-        listPage = generateListPage(listPage, statement, title, stringsToDisplay);
+        listPage = generateListPage(listPage, statement, title, stringsToDisplay, false);
 
         PageElement modeIcon = pageElementFactory.generateSmallIcon(getContinueToGeneratePagePoint(listPage), imagePath);
 

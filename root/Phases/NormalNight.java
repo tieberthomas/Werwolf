@@ -147,22 +147,25 @@ public class NormalNight extends Thread {
 
                         case Henker.STATEMENT_ID:
                             dropdownOptions = rolle.getDropdownOptionsFrontendControl();
-                            chosenOption = showFrontendControl(statement, dropdownOptions.pages.get(0));
+                            chosenOption = showFrontendControl(statement, dropdownOptions);
                             rolle.processChosenOption(chosenOption);
 
-                            if(rolle.besucht!=null) {
-                                showFrontendControl(statement, dropdownOptions.pages.get(1));
-                                /*
-                                ArrayList<String> hauptrollen = game.getPossibleInGameHauptrolleNames();
-                                ArrayList<String> bonusrollen = game.getPossibleInGameBonusrolleNames();
-                                showDropdownPage(statement, hauptrollen, bonusrollen);
-
-                                String hauptrolle = FrontendControl.erzählerFrame.chosenOption1;
-                                String bonusrolle = FrontendControl.erzählerFrame.chosenOption2;
+                            if (rolle.besucht != null) {
+                                while (Henker.pagecounter < Henker.numberOfPages) {
+                                    if (FrontendControl.erzählerFrame.next) {
+                                        henkerNächsteSeite();
+                                    } else {
+                                        henkerSeiteZurück();
+                                        waitForAnswer(); //TODO remove workaround
+                                        if (Henker.pagecounter == 0) {
+                                            waitForAnswer();
+                                        }
+                                    }
+                                }
 
                                 Henker henker = ((Henker) rolle);
-                                info = henker.processChosenOptionsGetInfo(hauptrolle, bonusrolle);
-                                showFrontendControl(statement, info);*/
+                                info = henker.processChosenOptionsGetInfo(Henker.chosenHauptrolle.name, Henker.chosenBonusrolle.name);
+                                showFrontendControl(statement, info);
                             }
                             break;
 
@@ -391,6 +394,10 @@ public class NormalNight extends Thread {
         Torte.torte = false;
 
         GrafVladimir.verschleierterSpieler = null;
+        getarnterSpieler = null;
+        gefälschterSpieler = null;
+
+        Henker.pagecounter = 0;
 
         FrontendControl.resetFlackerndeIrrlichter();
     }
@@ -573,7 +580,7 @@ public class NormalNight extends Thread {
                         return FrontendControl.erzählerFrame.chosenOption1;
 
                     case LIST:
-                        showList(statement, frontendControl.title, frontendControl.dropdownStrings);
+                        showList(statement, frontendControl.title, frontendControl.dropdownStrings, frontendControl.hatZurückButton);
                         break;
 
                     case IMAGE:
@@ -856,11 +863,11 @@ public class NormalNight extends Thread {
     }
 
     public void showList(Statement statement, List<String> strings) {
-        showList(statement, statement.title, strings);
+        showList(statement, statement.title, strings, false);
     }
 
-    public void showList(Statement statement, String title, List<String> strings) {
-        FrontendControl.erzählerListPage(statement, title, strings);
+    public void showList(Statement statement, String title, List<String> strings, boolean hatZurückButton) {
+        FrontendControl.erzählerListPage(statement, title, strings, hatZurückButton);
         FrontendControl.spielerListPage(title, strings);
 
         waitForAnswer();
@@ -930,5 +937,32 @@ public class NormalNight extends Thread {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public void henkerNächsteSeite() {
+        Henker henker = (Henker) game.findHauptrolle(Henker.NAME);
+        Henker.pagecounter++;
+        if (Henker.pagecounter < Henker.numberOfPages) {
+            FrontendControl frontendControl = henker.getPage(FrontendControl.erzählerFrame.chosenOption1);
+            showHenkerPage(frontendControl);
+        }
+    }
+
+    public void henkerSeiteZurück() {
+        Henker henker = (Henker) game.findHauptrolle(Henker.NAME);
+        if (Henker.pagecounter > 0) {
+            Henker.pagecounter--;
+            FrontendControl frontendControl = henker.getPage();
+            showHenkerPage(frontendControl);
+        }
+    }
+
+    public void showHenkerPage(FrontendControl frontendControl) {
+        System.out.println(Henker.pagecounter);
+        Statement henkerStatement = statements.stream()
+                .filter(statement -> statement.id.equals(Henker.STATEMENT_ID))
+                .findAny().orElse(null);
+
+        showFrontendControl(henkerStatement, frontendControl);
     }
 }

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class BonusrollenInfo extends InformationsCluster {
-    private static ArrayList<Zeigekarte> informations = new ArrayList<>(Arrays.asList(
+    public static ArrayList<Zeigekarte> informations = new ArrayList<>(Arrays.asList(
             new Aktiv(), new Passiv(), new Informativ()));
 
     public static BonusrollenType getWrongInformation(Zeigekarte existingInformation) {

@@ -403,6 +403,14 @@ public class Game {
         return names;
     }
 
+    public List<Hauptrolle> getPossibleInGameHauptrollen() {
+        ArrayList<String> hauptrollenInGameNames = getHauptrolleInGameNames();
+
+        ArrayList<Hauptrolle> hauptrolleInGame = new ArrayList<>();
+        hauptrollenInGameNames.forEach(rolle -> hauptrolleInGame.add(this.findHauptrolle(rolle)));
+        return hauptrolleInGame;
+    }
+
     public ArrayList<String> getPossibleInGameHauptrolleNames() {
         ArrayList<String> hauptrollenInGame = getHauptrolleInGameNames();
 
@@ -499,6 +507,14 @@ public class Game {
         }
 
         return names;
+    }
+
+    public List<Bonusrolle> getPossibleInGameBonusrollen() {
+        ArrayList<String> bonusrollenInGameNames = getBonusrolleInGameNames();
+
+        ArrayList<Bonusrolle> bonusrollenInGame = new ArrayList<>();
+        bonusrollenInGameNames.forEach(rolle -> bonusrollenInGame.add(this.findBonusrolle(rolle)));
+        return bonusrollenInGame;
     }
 
     public ArrayList<String> getPossibleInGameBonusrolleNames() {
