@@ -55,6 +55,6 @@ public class Persona {
     }
 
     public boolean equals(String personaName) {
-        return personaName != null && this.name.equals(personaName);
+        return this.name.equals(personaName);
     }
 }

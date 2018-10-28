@@ -50,6 +50,7 @@ public class Game {
         Persona.game = this;
         Spieler.game = this;
         FrontendControl.game = this;
+        Angriff.game = this;
         Opfer.game = this;
         NormalNightStatementBuilder.game = this;
 

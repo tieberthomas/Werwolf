@@ -20,3 +20,4 @@ FrontendControl subclassen
 Persona ID
 Rolle, Fraktion zusammenfassen Persona
 Game aufräumen
+.equals() - ".name" löschen

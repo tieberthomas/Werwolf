@@ -34,10 +34,7 @@ import root.Phases.NightBuilding.StatementDependancy.StatementDependencyFraktion
 import root.Phases.NightBuilding.StatementDependancy.StatementDependencyRolle;
 import root.Phases.NightBuilding.StatementDependancy.StatementDependencyStatement;
 import root.Spieler;
-import root.mechanics.Game;
-import root.mechanics.Liebespaar;
-import root.mechanics.Opfer;
-import root.mechanics.Torte;
+import root.mechanics.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +44,8 @@ public class NormalNight extends Thread {
 
     public static ArrayList<Statement> statements;
     public static Object lock;
+
+    public static ArrayList<Angriff> angriffe = new ArrayList<>();
 
     public static ArrayList<Spieler> spielerAwake = new ArrayList<>();
     public static boolean wölfinKilled;
