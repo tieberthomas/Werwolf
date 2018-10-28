@@ -1,5 +1,6 @@
 package root.Persona.Rollen.Hauptrollen.Überläufer;
 
+import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.Persona.Bonusrolle;
 import root.Persona.Fraktion;
@@ -10,16 +11,18 @@ import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
+import java.util.ArrayList;
+
 public class Henker extends Hauptrolle {
     public static final String STATEMENT_ID = "Henker";
-    public static final String STATEMENT_TITLE = "Person hängen";
+    public static final String SPIELER_TITLE = "Person hängen";
+    public static final String FRAKTION_TITLE = "Person hängen";
+    public static final String HAUPTROLLEN_TITLE = "Hauptrolle wählen";
+    public static final String BONUSROLLENTYP_TITLE = "Bonusrollentyp wählen";
+    public static final String BONUSROLLEN_TITLE = "Bonusrolle wählen";
+    public static final String AUSWAHL_BESTÄTIGUNG_TITLE = "Person hängen";
     public static final String STATEMENT_BESCHREIBUNG = "Henker erwcht und versucht die Rollen eines Mitspielers zu erraten";
-    public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
-
-    public static final String SECOND_STATEMENT_ID = "Henker_raten";
-    public static final String SECOND_STATEMENT_TITLE = "Rollen raten";
-    public static final String SECOND_STATEMENT_BESCHREIBUNG = "Henker ratet die Rollen der Person"; //TODO zusammenfassen?
-    public static final StatementType SECOND_STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
+    public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
 
     public static final String NAME = "Henker";
     public static final String IMAGE_PATH = ImagePath.HENKER_KARTE;
@@ -31,14 +34,9 @@ public class Henker extends Hauptrolle {
         this.fraktion = FRAKTION;
 
         this.statementID = STATEMENT_ID;
-        this.statementTitle = STATEMENT_TITLE;
+        this.statementTitle = SPIELER_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;
-
-        this.secondStatementID = SECOND_STATEMENT_ID;
-        this.secondStatementTitle = SECOND_STATEMENT_TITLE;
-        this.secondStatementBeschreibung = SECOND_STATEMENT_BESCHREIBUNG;
-        this.secondStatementType = SECOND_STATEMENT_TYPE;
 
         this.spammable = false;
         this.killing = true;
@@ -46,7 +44,29 @@ public class Henker extends Hauptrolle {
 
     @Override
     public FrontendControl getDropdownOptionsFrontendControl() {
-        return game.getMitspielerCheckSpammableFrontendControl(this);
+        FrontendControl spielerAuswahl = game.getMitspielerCheckSpammableFrontendControl(this);
+        FrontendControl fraktionsAuswahl = new FrontendControl(FrontendControlType.DROPDOWN_LIST, FRAKTION_TITLE, Fraktion.getLivingFraktionStrings());
+        fraktionsAuswahl.hatZurückButton = true;
+        FrontendControl hauptrollenAuswahl = game.getMitspielerCheckSpammableFrontendControl(this);
+        hauptrollenAuswahl.hatZurückButton = true;
+        FrontendControl bonusrollenTypAuswahl = game.getMitspielerCheckSpammableFrontendControl(this);
+        bonusrollenTypAuswahl.hatZurückButton = true;
+        FrontendControl bonusrollenAuswahl = game.getMitspielerCheckSpammableFrontendControl(this);
+        bonusrollenAuswahl.hatZurückButton = true;
+        FrontendControl auswahlBestätigung = game.getMitspielerCheckSpammableFrontendControl(this);
+        auswahlBestätigung.hatZurückButton = true;
+
+        ArrayList<FrontendControl> pages = new ArrayList<>();
+        pages.add(spielerAuswahl);
+        pages.add(fraktionsAuswahl);
+        pages.add(hauptrollenAuswahl);
+        pages.add(bonusrollenTypAuswahl);
+        pages.add(bonusrollenAuswahl);
+        pages.add(auswahlBestätigung);
+
+        return new FrontendControl(pages, FrontendControlType.PAGES);
+
+        //return game.getMitspielerCheckSpammableFrontendControl(this);
     }
 
     @Override

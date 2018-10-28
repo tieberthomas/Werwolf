@@ -57,7 +57,6 @@ public class NormalNightStatementBuilder {
         addStatementRolle(statements, Prostituierte.NAME);
 
         addStatementRolle(statements, Henker.NAME);
-        addSecondStatementRolle(statements, Henker.NAME);
         addStatementRolle(statements, Riese.NAME);
         addStatementFraktion(statements, Werwölfe.NAME);
         if (Wölfin.state == WölfinState.TÖTEND) {

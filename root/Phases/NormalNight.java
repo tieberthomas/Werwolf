@@ -62,7 +62,7 @@ public class NormalNight extends Thread {
     public void run() {
         lock = new Object();
         synchronized (lock) {
-            FrontendControl dropdownOtions;
+            FrontendControl dropdownOptions;
             FrontendControl info;
 
             String chosenOption;
@@ -110,14 +110,14 @@ public class NormalNight extends Thread {
                             break;
 
                         case ROLLE_CHOOSE_ONE:
-                            dropdownOtions = rolle.getDropdownOptionsFrontendControl();
-                            chosenOption = showFrontendControl(statement, dropdownOtions);
+                            dropdownOptions = rolle.getDropdownOptionsFrontendControl();
+                            chosenOption = showFrontendControl(statement, dropdownOptions);
                             rolle.processChosenOption(chosenOption);
                             break;
 
                         case ROLLE_CHOOSE_ONE_INFO:
-                            dropdownOtions = rolle.getDropdownOptionsFrontendControl();
-                            chosenOption = showFrontendControl(statement, dropdownOtions);
+                            dropdownOptions = rolle.getDropdownOptionsFrontendControl();
+                            chosenOption = showFrontendControl(statement, dropdownOptions);
                             info = rolle.processChosenOptionGetInfo(chosenOption);
                             showFrontendControl(statement, info);
                             break;
@@ -128,8 +128,8 @@ public class NormalNight extends Thread {
                             break;
 
                         case FRAKTION_CHOOSE_ONE:
-                            dropdownOtions = fraktion.getDropdownOptionsFrontendControl();
-                            chosenOption = showFrontendControl(statement, dropdownOtions);
+                            dropdownOptions = fraktion.getDropdownOptionsFrontendControl();
+                            chosenOption = showFrontendControl(statement, dropdownOptions);
                             fraktion.processChosenOption(chosenOption);
                             break;
                     }
@@ -145,24 +145,32 @@ public class NormalNight extends Thread {
                             setSchütze();
                             break;
 
-                        case Henker.SECOND_STATEMENT_ID: //TODO der case kann gemeinsam mit dem analytiker generalisiert werden
-                            ArrayList<String> hauptrollen = game.getPossibleInGameHauptrolleNames();
-                            ArrayList<String> bonusrollen = game.getPossibleInGameBonusrolleNames();
-                            showDropdownPage(statement, hauptrollen, bonusrollen);
+                        case Henker.STATEMENT_ID:
+                            dropdownOptions = rolle.getDropdownOptionsFrontendControl();
+                            chosenOption = showFrontendControl(statement, dropdownOptions.pages.get(0));
+                            rolle.processChosenOption(chosenOption);
 
-                            String hauptrolle = FrontendControl.erzählerFrame.chosenOption1;
-                            String bonusrolle = FrontendControl.erzählerFrame.chosenOption2;
+                            if(rolle.besucht!=null) {
+                                showFrontendControl(statement, dropdownOptions.pages.get(1));
+                                /*
+                                ArrayList<String> hauptrollen = game.getPossibleInGameHauptrolleNames();
+                                ArrayList<String> bonusrollen = game.getPossibleInGameBonusrolleNames();
+                                showDropdownPage(statement, hauptrollen, bonusrollen);
 
-                            Henker henker = ((Henker) rolle);
-                            info = henker.processChosenOptionsGetInfo(hauptrolle, bonusrolle);
-                            showFrontendControl(statement, info);
+                                String hauptrolle = FrontendControl.erzählerFrame.chosenOption1;
+                                String bonusrolle = FrontendControl.erzählerFrame.chosenOption2;
+
+                                Henker henker = ((Henker) rolle);
+                                info = henker.processChosenOptionsGetInfo(hauptrolle, bonusrolle);
+                                showFrontendControl(statement, info);*/
+                            }
                             break;
 
                         case Schreckenswolf.STATEMENT_ID:
                             Schreckenswolf schreckenswolf = (Schreckenswolf) rolle;
                             if (schreckenswolf != null && schreckenswolf.werwölfeKilledOnSchutz()) {
-                                dropdownOtions = schreckenswolf.getDropdownOptionsFrontendControl();
-                                chosenOption = showFrontendControl(statement, dropdownOtions);
+                                dropdownOptions = schreckenswolf.getDropdownOptionsFrontendControl();
+                                chosenOption = showFrontendControl(statement, dropdownOptions);
                                 schreckenswolf.processChosenOption(chosenOption);
                             } else {
                                 showZeigekarte(statement, new Nicht_Aktiv());
@@ -201,8 +209,8 @@ public class NormalNight extends Thread {
                             break;
 
                         case Irrlicht.STATEMENT_ID:
-                            dropdownOtions = rolle.getDropdownOptionsFrontendControl();
-                            showFrontendControl(statement, dropdownOtions);
+                            dropdownOptions = rolle.getDropdownOptionsFrontendControl();
+                            showFrontendControl(statement, dropdownOptions);
                             break;
 
                         case Irrlicht.SECOND_STATEMENT_ID:
@@ -256,8 +264,8 @@ public class NormalNight extends Thread {
                                 if (gibtEsTorte()) {
                                     Torte.torte = true;
 
-                                    dropdownOtions = rolle.getDropdownOptionsFrontendControl();
-                                    chosenOption = showKonditorDropdownPage(statement, dropdownOtions);
+                                    dropdownOptions = rolle.getDropdownOptionsFrontendControl();
+                                    chosenOption = showKonditorDropdownPage(statement, dropdownOptions);
                                     rolle.processChosenOption(chosenOption);
 
                                     Torte.gut = chosenOption.equals(DropdownConstants.GUT.name);
@@ -555,11 +563,11 @@ public class NormalNight extends Thread {
                         return FrontendControl.erzählerFrame.chosenOption1;
 
                     case DROPDOWN_LIST:
-                        showDropdownList(statement, frontendControl.title, frontendControl.dropdownStrings);
+                        showDropdownList(statement, frontendControl.title, frontendControl.dropdownStrings, frontendControl.hatZurückButton);
                         return FrontendControl.erzählerFrame.chosenOption1;
 
                     case DROPDOWN_SEPARATED_LIST:
-                        showDropdownSeperatedList(statement, frontendControl.title, frontendControl.dropdownStrings, frontendControl.displayedStrings);
+                        showDropdownSeperatedList(statement, frontendControl.title, frontendControl.dropdownStrings, frontendControl.displayedStrings, frontendControl.hatZurückButton);
                         return FrontendControl.erzählerFrame.chosenOption1;
 
                     case DROPDOWN_IMAGE:
@@ -829,15 +837,15 @@ public class NormalNight extends Thread {
         waitForAnswer();
     }
 
-    public void showDropdownList(Statement statement, String title, List<String> strings) {
-        FrontendControl.erzählerDropdownPage(statement, strings);
+    public void showDropdownList(Statement statement, String title, List<String> strings, boolean hatZurückButton) {
+        FrontendControl.erzählerDropdownPage(statement, strings, hatZurückButton);
         FrontendControl.spielerDropdownListPage(title, strings);
 
         waitForAnswer();
     }
 
-    public void showDropdownSeperatedList(Statement statement, String title, List<String> dropdownStrings, List<String> listStrings) {
-        FrontendControl.erzählerDropdownPage(statement, dropdownStrings);
+    public void showDropdownSeperatedList(Statement statement, String title, List<String> dropdownStrings, List<String> listStrings, boolean hatZurückButton) {
+        FrontendControl.erzählerDropdownPage(statement, dropdownStrings, hatZurückButton);
         FrontendControl.spielerDropdownListPage(title, listStrings);
 
         waitForAnswer();

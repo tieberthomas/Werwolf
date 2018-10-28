@@ -270,7 +270,15 @@ public class ErzählerPageFactory {
         return generateDefaultNightPage(nightPage, statement, statement.title);
     }
 
-    public Page generateDefaultNightPage(Page nightPage, Statement statement, String title) {
+    private Page generateDefaultNightPage(Page nightPage, Statement statement, String title) {
+        return generateDefaultNightPage(nightPage, statement, title, false);
+    }
+
+    private Page generateDefaultNightPage(Page nightPage, Statement statement, boolean hatZurückButton) {
+        return generateDefaultNightPage(nightPage, statement, statement.title, hatZurückButton);
+    }
+
+    public Page generateDefaultNightPage(Page nightPage, Statement statement, String title, boolean hatZurückButton) {
         PageElement nightLabel = pageElementFactory.generateNightLabel(statement.id);
         PageElement titleLabel = pageElementFactory.generateTitleLabel(nightLabel, title);
         erzählerFrame.nextJButton = new JButton();
@@ -279,6 +287,11 @@ public class ErzählerPageFactory {
         nightPage.add(nightLabel);
         nightPage.add(titleLabel);
         nightPage.add(goNextButton);
+
+        if(hatZurückButton) {
+            PageElement zurückButton = pageElementFactory.generateLowestButton(erzählerFrame.henkerGoBackButton, true, 1);
+            nightPage.add(zurückButton);
+        }
 
         continueToGeneratePagePoint = nightPage.pageElements.indexOf(titleLabel);
 
@@ -308,7 +321,11 @@ public class ErzählerPageFactory {
     }
 
     public Page generateDropdownPage(Page dropdownPage, Statement statement, List<String> dropdownOptions) {
-        dropdownPage = generateDefaultNightPage(dropdownPage, statement);
+        return generateDropdownPage(dropdownPage, statement, dropdownOptions, false);
+    }
+
+    public Page generateDropdownPage(Page dropdownPage, Statement statement, List<String> dropdownOptions, boolean hatZurückButton) {
+        dropdownPage = generateDefaultNightPage(dropdownPage, statement, hatZurückButton);
         erzählerFrame.comboBox1 = new JComboBox(dropdownOptions.toArray());
         PageElement choosePlayer1 = pageElementFactory.generateDropdown(erzählerFrame.comboBox1,
                 null, getContinueToGeneratePagePoint(dropdownPage));

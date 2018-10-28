@@ -129,6 +129,8 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     public ArrayList<JButton> deleteIrrlichterButtons = new ArrayList<>();
     public JButton addIrrlichtButton = new JButton();
 
+    public JButton henkerGoBackButton = new JButton("Zurück");
+
     public ErzählerFrame() {
         calcFrameSize();
 

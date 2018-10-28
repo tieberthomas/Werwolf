@@ -35,6 +35,10 @@ public class FrontendControl {
     public List<SchnüfflerInformation> informationen;
     public String imagePath;
 
+    public boolean hatZurückButton = false;
+
+    public List<FrontendControl> pages;
+
     public FrontendControl() {
         this.typeOfContent = FrontendControlType.SKIP;
     }
@@ -110,6 +114,11 @@ public class FrontendControl {
         this.displayedStrings = displayedStrings;
     }
 
+    public FrontendControl(List<FrontendControl> pages, FrontendControlType typeOfContent) {
+        this.pages = pages;
+        this.typeOfContent = typeOfContent;
+    }
+
     public static void erzählerDefaultNightPage(Statement statement) {
         Page nightPage = erzählerFrame.pageFactory.generateDefaultNightPage(new Page(), statement);
         erzählerFrame.buildScreenFromPage(nightPage);
@@ -173,7 +182,11 @@ public class FrontendControl {
     }
 
     public static void erzählerDropdownPage(Statement statement, List<String> dropdownOptions) {
-        Page nightPage = erzählerFrame.pageFactory.generateDropdownPage(new Page(), statement, dropdownOptions);
+        FrontendControl.erzählerDropdownPage(statement, dropdownOptions, false);
+    }
+
+    public static void erzählerDropdownPage(Statement statement, List<String> dropdownOptions, boolean hatZurückButton) {
+        Page nightPage = erzählerFrame.pageFactory.generateDropdownPage(new Page(), statement, dropdownOptions, hatZurückButton);
         erzählerFrame.buildScreenFromPage(nightPage);
     }
 

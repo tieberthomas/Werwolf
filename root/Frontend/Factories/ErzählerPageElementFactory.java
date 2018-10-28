@@ -108,6 +108,10 @@ public class ErzählerPageElementFactory {
         return generateLowestButton(button, title, right, 0);
     }
 
+    public PageElement generateLowestButton(JButton button, boolean right, int howManyButtonsBefore) {
+        return generateLowestButton(button, button.getText(), right, howManyButtonsBefore);
+    }
+
     public PageElement generateLowestButton(JButton button, String title, boolean right, int howManyButtonsBefore) {
         int elementWidth = 120;
         if (erzählerFrame.frameMode == FrameMode.small) {
