@@ -80,7 +80,7 @@ public class Schreckenswolf extends Hauptrolle {
         boolean someoneHadSchutz = false;
 
         for (Opfer opfer : possibleOpfer) {
-            if (opfer.opfer.geschützt || opfer.opfer.bonusrolle.equals(Wolfspelz.NAME)) {
+            if (opfer.spieler.geschützt || opfer.spieler.bonusrolle.equals(Wolfspelz.NAME)) {
                 someoneHadSchutz = true;
             }
         }

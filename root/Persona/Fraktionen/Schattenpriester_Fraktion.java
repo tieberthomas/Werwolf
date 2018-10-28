@@ -84,7 +84,7 @@ public class Schattenpriester_Fraktion extends Fraktion {
         ArrayList<String> dropdownStrings = new ArrayList<>();
 
         for (Opfer currentOpfer : Opfer.deadOpfer) {
-            Spieler opferSpieler = currentOpfer.opfer;
+            Spieler opferSpieler = currentOpfer.spieler;
             if (opferSpieler != null) {
                 String fraktionDesOpfers = opferSpieler.hauptrolle.fraktion.name;
                 if (opferSpieler.bonusrolle.name.equals(Schattenkutte.NAME) ||

@@ -3,6 +3,7 @@ FirstNight - StatementType
 Alphabet Umlaute?
 
 Tötend - Killing ?
+ressurectable - erweckbar ?
 
 TH:
 BonusrollenType - Enum?
@@ -18,3 +19,4 @@ show methoden in Night verschieben nach FrontendControl
 FrontendControl subclassen
 Persona ID
 Rolle, Fraktion zusammenfassen Persona
+Game aufräumen

@@ -217,7 +217,7 @@ public class Game {
             Hauptrolle hauptrolle = spieler.hauptrolle;
             Bonusrolle bonusrolle = spieler.bonusrolle;
             mitteHauptrollen.add(hauptrolle);
-            mitteBonusrollen.add(bonusrolle);
+            mitteBonusrollen.add(bonusrolle); //TODO methode auslagern?
 
             if (hauptrolle.name.equals(Schattenpriester.NAME) && !bonusrolle.name.equals(Schatten.NAME)) {
                 Schattenpriester_Fraktion.deadSchattenPriester++;
@@ -228,6 +228,8 @@ public class Game {
                     Wölfin.state = WölfinState.TÖTEND;
                 }
             }
+
+            //TODO rolle.cleanUp()
 
             if (bonusrolle.equals(Schnüffler.NAME)) {
                 ((Schnüffler) bonusrolle).informationen = new ArrayList<>();
