@@ -8,6 +8,7 @@ import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Persona.Rollen.Constants.BonusrollenType.Passiv;
 import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Persona.Rollen.Hauptrollen.Bürger.Schamanin;
+import root.Phases.NormalNight;
 import root.Spieler;
 
 import java.awt.*;
@@ -45,7 +46,11 @@ public class Bonusrolle extends Rolle {
     }
 
     public boolean showTarnumhang(Bonusrolle requester, Spieler spieler) {
-        return spieler != null && (spieler.bonusrolle.equals(Tarnumhang.NAME) || (spielerIsSchamanin(spieler) && thisRolleIsNotBuerger(requester)));
+        Spieler getarnterSpieler = NormalNight.getarnterSpieler;
+        Spieler requesterSpieler = game.findSpielerPerRolle(name);
+        return spieler != null && (spieler.bonusrolle.equals(Tarnumhang.NAME) ||
+                (spielerIsSchamanin(spieler) && thisRolleIsNotBuerger(requester))) ||
+                requesterSpieler.equals(getarnterSpieler) || spieler.equals(getarnterSpieler);
     }
 
     private boolean spielerIsSchamanin(Spieler spieler) {

@@ -53,6 +53,7 @@ public class NormalNight extends Thread {
     public static Spieler wölfinSpieler;
     public static Spieler beschworenerSpieler;
     public static Spieler gefälschterSpieler;
+    public static Spieler getarnterSpieler;
 
     public NormalNight(Game game) {
         this.game = game;

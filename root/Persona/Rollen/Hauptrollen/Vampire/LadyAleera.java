@@ -19,8 +19,6 @@ public class LadyAleera extends Hauptrolle {
     public static final String IMAGE_PATH = ImagePath.LADY_ALEERA_KARTE;
     public static final Fraktion FRAKTION = new Vampire();
 
-    public static Spieler gefälschterSpieler;
-
     public LadyAleera() {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
@@ -45,8 +43,6 @@ public class LadyAleera extends Hauptrolle {
         Spieler chosenSpieler = game.findSpieler(chosenOption);
         if (chosenSpieler != null) {
             besucht = chosenSpieler;
-
-            gefälschterSpieler = chosenSpieler;
             NormalNight.gefälschterSpieler = chosenSpieler;
         }
     }

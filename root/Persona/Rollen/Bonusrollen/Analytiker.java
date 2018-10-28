@@ -38,7 +38,11 @@ public class Analytiker extends Bonusrolle {
     }
 
     public boolean showTarnumhang(Spieler spieler1, Spieler spieler2) {
-        return showTarnumhang(this, spieler1) || showTarnumhang(this, spieler2);
+        Spieler getarnterSpieler = NormalNight.getarnterSpieler;
+        Spieler analytikerSpieler = game.findSpielerPerRolle(name);
+        return showTarnumhang(this, spieler1) || showTarnumhang(this, spieler2) ||
+                analytikerSpieler.equals(getarnterSpieler) ||
+                spieler1.equals(getarnterSpieler) || spieler2.equals(getarnterSpieler);
     }
 
     public String analysiere(Spieler spieler1, Spieler spieler2) {

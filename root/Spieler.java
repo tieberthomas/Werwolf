@@ -83,7 +83,9 @@ public class Spieler {
 
         BonusrollenType information;
 
-        if (hauptrollenInfo != null) {
+        Spieler getarnterSpieler = NormalNight.getarnterSpieler;
+
+        if (hauptrollenInfo != null || this.equals(getarnterSpieler) || requester.equals(getarnterSpieler)) {
             information = hauptrollenInfo;
         } else {
             information = bonunsrollenInfo;
@@ -110,7 +112,9 @@ public class Spieler {
 
         Zeigekarte information;
 
-        if (bonunsrolleIsTötend instanceof Tarnumhang_BonusrollenType) {
+        Spieler getarnterSpieler = NormalNight.getarnterSpieler;
+
+        if (bonunsrolleIsTötend instanceof Tarnumhang_BonusrollenType || this.equals(getarnterSpieler) || requester.equals(getarnterSpieler)) {
             information = bonunsrolleIsTötend;
         } else {
             information = hauptrolleIsTötend;
@@ -127,13 +131,15 @@ public class Spieler {
         return hauptrolle.fraktion;
     }
 
-    public Zeigekarte getFraktionInfo() {
+    public Zeigekarte getFraktionInfo(Spieler requester) {
         Zeigekarte hauptrollenFraktion = hauptrolle.getFraktionInfo();
         Zeigekarte bonunsrollenFraktion = bonusrolle.getFraktionInfo();
 
         Zeigekarte information;
 
-        if (bonunsrollenFraktion != null) {
+        Spieler getarnterSpieler = NormalNight.getarnterSpieler;
+
+        if (bonunsrollenFraktion != null || this.equals(getarnterSpieler) || requester.equals(getarnterSpieler)) {
             information = bonunsrollenFraktion;
         } else {
             information = hauptrollenFraktion;

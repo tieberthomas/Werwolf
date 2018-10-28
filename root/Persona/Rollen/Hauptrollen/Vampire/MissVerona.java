@@ -1,15 +1,13 @@
 package root.Persona.Rollen.Hauptrollen.Vampire;
 
-import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Vampire;
 import root.Persona.Hauptrolle;
 import root.Phases.NightBuilding.Constants.StatementType;
+import root.Phases.NormalNight;
 import root.ResourceManagement.ImagePath;
-import root.mechanics.Opfer;
-
-import java.util.ArrayList;
+import root.Spieler;
 
 public class MissVerona extends Hauptrolle {
     public static final String STATEMENT_ID = "MissVerona";
@@ -34,32 +32,17 @@ public class MissVerona extends Hauptrolle {
         this.killing = true;
     }
 
-    //TODO update 2.7
-
     @Override
-    public FrontendControl getInfo() {
-        return new FrontendControl(FrontendControlType.LIST, findUntote());
+    public FrontendControl getDropdownOptionsFrontendControl() {
+        return game.getSpielerCheckSpammableFrontendControl(this);
     }
 
-    public ArrayList<String> findUntote() {
-        ArrayList<String> untote = new ArrayList<>();
-
-        for (Opfer possibleOpfer : Opfer.possibleOpfer) {
-            boolean überlebt = true;
-            String currentPossibleOpferName = possibleOpfer.opfer.name;
-
-            for (Opfer deadOpfer : Opfer.deadOpfer) {
-                if (currentPossibleOpferName.equals(deadOpfer.opfer.name)) {
-                    überlebt = false;
-                }
-            }
-
-            if (überlebt) {
-                if (!untote.contains(currentPossibleOpferName))
-                    untote.add(currentPossibleOpferName);
-            }
+    @Override
+    public void processChosenOption(String chosenOption) {
+        Spieler chosenSpieler = game.findSpieler(chosenOption);
+        if (chosenSpieler != null) {
+            besucht = chosenSpieler;
+            NormalNight.getarnterSpieler = chosenSpieler;
         }
-
-        return untote;
     }
 }

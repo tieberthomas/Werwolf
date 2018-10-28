@@ -44,7 +44,9 @@ public class Seherin extends Hauptrolle {
         if (chosenSpieler != null) {
             besucht = chosenSpieler;
 
-            Zeigekarte zeigekarte = chosenSpieler.getFraktionInfo();
+            Spieler seherinSpieler = game.findSpielerPerRolle(name);
+
+            Zeigekarte zeigekarte = chosenSpieler.getFraktionInfo(seherinSpieler);
 
             return new FrontendControl(zeigekarte);
         }
