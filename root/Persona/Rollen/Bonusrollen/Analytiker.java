@@ -4,6 +4,7 @@ import root.Persona.Bonusrolle;
 import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Persona.Rollen.Constants.BonusrollenType.Informativ;
 import root.Phases.NightBuilding.Constants.StatementType;
+import root.Phases.NormalNight;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
 import root.mechanics.Liebespaar;
@@ -49,8 +50,10 @@ public class Analytiker extends Bonusrolle {
         String fraktion1 = spieler1.hauptrolle.fraktion.name;
         String fraktion2 = spieler2.hauptrolle.fraktion.name;
 
+        String information;
+
         if (Objects.equals(fraktion1, fraktion2)) {
-            return GLEICH;
+            information = GLEICH;
         } else {
             Liebespaar liebespaar = game.liebespaar;
             if (liebespaar != null && liebespaar.spieler1 != null) {
@@ -59,13 +62,37 @@ public class Analytiker extends Bonusrolle {
 
                 if (Objects.equals(name1, liebespartner1) && Objects.equals(name2, liebespartner2) ||
                         Objects.equals(name2, liebespartner1) && Objects.equals(name1, liebespartner2)) {
-                    return GLEICH;
+                    information = GLEICH;
                 } else {
-                    return UNGLEICH;
+                    information = UNGLEICH;
                 }
             } else {
-                return UNGLEICH;
+                information = UNGLEICH;
             }
+        }
+
+        Spieler analytikerSpieler = game.findSpielerPerRolle(name);
+
+        if (analytikerSpieler != null && analytikerSpieler.equals(NormalNight.gefälschterSpieler)) {
+            return getWrongInformation(information);
+        } else {
+            return information;
+        }
+    }
+
+    private String getWrongInformation(String information) {
+        if (information == null) {
+            return null;
+        }
+
+        switch (information) {
+            case GLEICH:
+                return UNGLEICH;
+            case UNGLEICH:
+                return GLEICH;
+            default:
+                System.out.println("Analytiker.getWrongInformation was called with wrong Parameters.");
+                return null;
         }
     }
 }
