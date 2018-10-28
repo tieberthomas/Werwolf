@@ -135,7 +135,7 @@ public class Fraktion extends Persona {
         ArrayList<Spieler> livingSpieler = game.getLivingSpieler();
 
         for (Opfer opfer : Opfer.deadOpfer) {
-            livingSpieler.remove(opfer.opfer);
+            livingSpieler.remove(opfer.spieler);
         }
 
         for (Spieler currentSpieler : livingSpieler) {

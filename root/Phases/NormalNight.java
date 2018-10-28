@@ -276,8 +276,8 @@ public class NormalNight extends Thread {
                             ArrayList<String> opferDerNacht = new ArrayList<>();
 
                             for (Opfer currentOpfer : Opfer.deadOpfer) {
-                                if (!opferDerNacht.contains(currentOpfer.opfer.name)) {
-                                    opferDerNacht.add(currentOpfer.opfer.name);
+                                if (!opferDerNacht.contains(currentOpfer.spieler.name)) {
+                                    opferDerNacht.add(currentOpfer.spieler.name);
                                 }
                             }
 
@@ -444,7 +444,7 @@ public class NormalNight extends Thread {
                 }
             }
 
-            game.killSpieler(currentOpfer.opfer);
+            game.killSpieler(currentOpfer.spieler);
         }
     }
 
@@ -457,10 +457,10 @@ public class NormalNight extends Thread {
         if (liebespaar != null && liebespaar.spieler1 != null && liebespaar.spieler2 != null) {
 
             for (Opfer currentOpfer : Opfer.deadOpfer) {
-                if (currentOpfer.opfer.name.equals(liebespaar.spieler1.name)) {
+                if (currentOpfer.spieler.name.equals(liebespaar.spieler1.name)) {
                     spieler1Lebend = false;
                 }
-                if (currentOpfer.opfer.name.equals(liebespaar.spieler2.name)) {
+                if (currentOpfer.spieler.name.equals(liebespaar.spieler2.name)) {
                     spieler2Lebend = false;
                 }
             }
@@ -490,7 +490,7 @@ public class NormalNight extends Thread {
 
     private boolean spielerIsPossibleOpfer(Spieler spieler) {
         for (Opfer opfer : Opfer.possibleOpfer) {
-            if (opfer.opfer.equals(spieler)) {
+            if (opfer.spieler.equals(spieler)) {
                 return true;
             }
         }
@@ -500,7 +500,7 @@ public class NormalNight extends Thread {
 
     private boolean spielerIsDeadOpfer(Spieler spieler) {
         for (Opfer opfer : Opfer.deadOpfer) {
-            if (opfer.opfer.equals(spieler)) {
+            if (opfer.spieler.equals(spieler)) {
                 return true;
             }
         }

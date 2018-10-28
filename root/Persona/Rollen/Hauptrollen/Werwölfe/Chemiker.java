@@ -59,10 +59,10 @@ public class Chemiker extends Hauptrolle {
     public void processChosenOption(String chosenOption) {
         Opfer chosenOpfer = Opfer.findOpfer(chosenOption);
         if (chosenOpfer != null) {
-            besucht = chosenOpfer.opfer;
+            besucht = chosenOpfer.spieler;
 
             Opfer.deadOpfer.remove(chosenOpfer);
-            chosenOpfer.opfer.hauptrolle = new Werwolf();
+            chosenOpfer.spieler.hauptrolle = new Werwolf();
         }
     }
 
@@ -70,14 +70,14 @@ public class Chemiker extends Hauptrolle {
         ArrayList<String> resurrectableOpfer = new ArrayList<>();
 
         for (Opfer currentOpfer : Opfer.deadOpfer) {
-            String opferFraktion = currentOpfer.opfer.hauptrolle.fraktion.name;
+            String opferFraktion = currentOpfer.spieler.hauptrolle.fraktion.name;
             String täterFraktion = currentOpfer.täterFraktion.name;
 
-            if (currentOpfer.opfer.ressurectable) {
+            if (currentOpfer.spieler.ressurectable) {
                 if (täterFraktion.equals(Werwölfe.NAME)) {
                     if (!opferFraktion.equals(Werwölfe.NAME)) {
-                        if (!resurrectableOpfer.contains(currentOpfer.opfer.name)) {
-                            resurrectableOpfer.add(currentOpfer.opfer.name);
+                        if (!resurrectableOpfer.contains(currentOpfer.spieler.name)) {
+                            resurrectableOpfer.add(currentOpfer.spieler.name);
                         }
                     }
                 }
