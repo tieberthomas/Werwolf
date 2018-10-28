@@ -3,6 +3,7 @@ FirstNight - StatementType
 Alphabet Umlaute?
 
 Tötend - Killing ?
+ressurectable - erweckbar ?
 
 TH:
 BonusrollenType - Enum?

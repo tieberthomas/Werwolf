@@ -99,8 +99,6 @@ public class NormalNightStatementBuilder {
         }
 
         statements.add(IndieStatements.getAlleWachenAufStatement());
-
-        statements.add(ProgrammStatements.getOferStatement());
         statements.add(IndieStatements.getOpferStatement());
 
         addSecondStatementRolle(statements, Schreckenswolf.NAME);

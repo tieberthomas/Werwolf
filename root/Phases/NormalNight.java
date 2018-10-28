@@ -141,7 +141,7 @@ public class NormalNight extends Thread {
                             }
                             break;
 
-                        case ProgrammStatements.SCHÜTZE:
+                        case ProgrammStatements.SCHÜTZE_ID:
                             setSchütze();
                             break;
 
@@ -268,11 +268,9 @@ public class NormalNight extends Thread {
                             }
                             break;
 
-                        case ProgrammStatements.OPFER:
-                            setOpfer();
-                            break;
-
                         case IndieStatements.OPFER_ID:
+                            setOpfer();
+
                             ArrayList<String> opferDerNacht = new ArrayList<>();
 
                             for (Opfer currentOpfer : Opfer.deadOpfer) {
@@ -302,7 +300,7 @@ public class NormalNight extends Thread {
                             }
                             break;
 
-                        case ProgrammStatements.TORTE:
+                        case ProgrammStatements.TORTE_ID:
                             if (Torte.torte) {
                                 FrontendControl.erzählerTortenPage();
                                 FrontendControl.showZeigekarteOnSpielerScreen(new Torten_Zeigekarte());
