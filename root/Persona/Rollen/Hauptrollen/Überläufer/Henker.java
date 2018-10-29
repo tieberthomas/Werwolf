@@ -12,17 +12,16 @@ import root.Persona.Rollen.Bonusrollen.Schatten;
 import root.Persona.Rollen.Bonusrollen.SchwarzeSeele;
 import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Persona.Rollen.Constants.InformationsCluster.BonusrollenInfo;
-import root.Persona.Rollen.Constants.Zeigekarten.Nicht_Tötend;
 import root.Persona.Rollen.Constants.Zeigekarten.Tot;
-import root.Persona.Rollen.Constants.Zeigekarten.Tötend;
 import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Persona.Rollen.Hauptrollen.Bürger.Dorfbewohner;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
+import root.mechanics.KillLogik.AbsoluteKill;
+import root.mechanics.KillLogik.Selbstmord;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -108,16 +107,18 @@ public class Henker extends Hauptrolle {
 
             System.out.println(correctGuesses);
 
+            Spieler hänkerSpieler = game.findSpielerPerRolle(NAME);
+
             switch (correctGuesses) {
                 case 0:
-                    //kill henker
+                    Selbstmord.execute(hänkerSpieler);
                     return new FrontendControl(new Tot());
                 case 1:
                     //schütze henker
                     //return geschützt zeigekarte
                     break;
                 case 2:
-                    //kill spieler
+                    AbsoluteKill.execute(besucht, hänkerSpieler);
                     //schütze henker
                     //return geschützt + kill frontencontrol
                     break;

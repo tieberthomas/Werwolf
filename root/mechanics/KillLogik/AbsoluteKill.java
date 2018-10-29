@@ -2,7 +2,7 @@ package root.mechanics.KillLogik;
 
 import root.Spieler;
 
-public class RiesenKill {
+public class AbsoluteKill {
     public static void execute(Spieler opfer, Spieler täter) {
         boolean defendable = false;
         boolean hideable = false;
