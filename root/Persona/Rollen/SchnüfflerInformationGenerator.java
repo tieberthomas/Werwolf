@@ -12,6 +12,7 @@ import root.Persona.Rollen.Constants.InformationType;
 import root.Persona.Rollen.Constants.SchnüfflerInformation;
 import root.Persona.Rollen.Constants.Zeigekarten.SpäherZeigekarte;
 import root.Persona.Rollen.Hauptrollen.Bürger.Schamanin;
+import root.Persona.Rollen.Hauptrollen.Überläufer.Henker;
 import root.Spieler;
 
 import java.util.ArrayList;
@@ -92,6 +93,10 @@ public class SchnüfflerInformationGenerator {
 
     private Fraktion generateFraktionInformation(boolean correctInformation) {
         Fraktion spielerFraktion = spieler.hauptrolle.fraktion;
+        if(spieler.bonusrolle.equals(Henker.NAME)) {
+            spielerFraktion = new Bürger();
+        }
+
         if (correctInformation) {
             return spielerFraktion;
         }
