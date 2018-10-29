@@ -32,11 +32,11 @@ public class FirstNightStatementBuilder {
         addStatementRolle(statements, Vampirumhang.NAME);
         addStatementRolle(statements, Lamm.NAME);
 
-        addStatementRolle(statements, Henker.NAME);
         addStatementRolle(statements, Wolfsmensch.NAME);
         addStatementFraktion(statements, Werwölfe.NAME);
         addStatementFraktion(statements, Vampire.NAME);
         addStatementFraktion(statements, Schattenpriester_Fraktion.NAME);
+        addStatementRolle(statements, Henker.NAME);
 
         statements.add(IndieStatements.getAlleWachenAufStatement());
 
