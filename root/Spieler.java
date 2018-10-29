@@ -86,7 +86,7 @@ public class Spieler {
         Spieler getarnterSpieler = NormalNight.getarnterSpieler;
 
         if (hauptrollenInfo != null || this.equals(getarnterSpieler) || requester.equals(getarnterSpieler)) {
-            information = hauptrollenInfo;
+            information = new Tarnumhang_BonusrollenType();
         } else {
             information = bonunsrollenInfo;
         }
@@ -115,7 +115,7 @@ public class Spieler {
         Spieler getarnterSpieler = NormalNight.getarnterSpieler;
 
         if (bonunsrolleIsTötend instanceof Tarnumhang_BonusrollenType || this.equals(getarnterSpieler) || requester.equals(getarnterSpieler)) {
-            information = bonunsrolleIsTötend;
+            information = new Tarnumhang_BonusrollenType();
         } else {
             information = hauptrolleIsTötend;
         }

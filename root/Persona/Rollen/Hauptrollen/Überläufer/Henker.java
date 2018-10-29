@@ -4,8 +4,12 @@ import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.Persona.Bonusrolle;
 import root.Persona.Fraktion;
+import root.Persona.Fraktionen.Schattenpriester_Fraktion;
 import root.Persona.Fraktionen.Überläufer_Fraktion;
 import root.Persona.Hauptrolle;
+import root.Persona.Rollen.Bonusrollen.ReineSeele;
+import root.Persona.Rollen.Bonusrollen.Schatten;
+import root.Persona.Rollen.Bonusrollen.SchwarzeSeele;
 import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Persona.Rollen.Constants.InformationsCluster.BonusrollenInfo;
 import root.Persona.Rollen.Constants.Zeigekarten.Tot;
@@ -166,6 +170,11 @@ public class Henker extends Hauptrolle {
                 return bonusrollenTypAuswahl;
             case 4:
                 List<Bonusrolle> bonusrollen = game.getPossibleInGameBonusrollen();
+                if(Fraktion.fraktionContainedInNight(Schattenpriester_Fraktion.NAME)) {
+                    bonusrollen.add(new Schatten());
+                }
+                bonusrollen.add(new SchwarzeSeele());
+                bonusrollen.add(new ReineSeele());
                 List<String> bonusrollenStrings = bonusrollen.stream().
                         filter(bonusrolle -> bonusrolle.type.equals(chosenBonusrollenType)).
                         map(bonusrolle -> bonusrolle.name).
