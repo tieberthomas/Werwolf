@@ -12,7 +12,7 @@ import root.Phases.NightBuilding.Constants.StatementType;
 import root.Phases.NormalNight;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
-import root.mechanics.Opfer;
+import root.mechanics.KillLogik.Opfer;
 
 import java.awt.*;
 import java.util.ArrayList;

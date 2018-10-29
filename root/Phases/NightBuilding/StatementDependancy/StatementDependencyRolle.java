@@ -2,7 +2,7 @@ package root.Phases.NightBuilding.StatementDependancy;
 
 import root.Persona.Rolle;
 import root.Persona.Rollen.Hauptrollen.Bürger.Sammler;
-import root.mechanics.Opfer;
+import root.mechanics.KillLogik.Opfer;
 
 public class StatementDependencyRolle extends StatementDependency {
     public Rolle rolle;

@@ -11,7 +11,7 @@ import root.Phases.NightBuilding.Constants.StatementType;
 import root.Phases.NormalNight;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
-import root.mechanics.Angriff;
+import root.mechanics.KillLogik.NormalKill;
 
 public class Wölfin extends Hauptrolle {
     public static final String STATEMENT_ID = "Wölfin";
@@ -60,9 +60,7 @@ public class Wölfin extends Hauptrolle {
             besucht = chosenSpieler;
 
             Spieler täter = game.findSpielerPerRolle(NAME);
-            Angriff angriff = new Angriff(chosenSpieler, täter,
-                    true, true, true, true, true);
-            angriff.execute();
+            NormalKill.execute(chosenSpieler, täter);
         }
     }
 
