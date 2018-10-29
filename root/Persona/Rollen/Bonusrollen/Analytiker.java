@@ -87,7 +87,7 @@ public class Analytiker extends Bonusrolle {
 
         Spieler analytikerSpieler = game.findSpielerPerRolle(name);
 
-        if (analytikerSpieler != null && analytikerSpieler.equals(NormalNight.gefälschterSpieler)) {
+        if (analytikerSpieler != null && (spieler1.equals(NormalNight.gefälschterSpieler) || spieler2.equals(NormalNight.gefälschterSpieler))) {
             return getWrongInformation(information);
         } else {
             return information;
