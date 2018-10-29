@@ -9,8 +9,10 @@ import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Persona.Rollen.Constants.BonusrollenType.Informativ;
 import root.Persona.Rollen.Constants.BonusrollenType.Passiv;
 import root.Persona.Rollen.Constants.InformationType;
+import root.Persona.Rollen.Constants.InformationsCluster.TötendInfo;
 import root.Persona.Rollen.Constants.SchnüfflerInformation;
 import root.Persona.Rollen.Constants.Zeigekarten.SpäherZeigekarte;
+import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Persona.Rollen.Hauptrollen.Bürger.Schamanin;
 import root.Persona.Rollen.Hauptrollen.Überläufer.Henker;
 import root.Spieler;
@@ -64,16 +66,6 @@ public class SchnüfflerInformationGenerator {
         return new SchnüfflerInformation(spieler.name, fraktion, tötend, bonusrollenType);
     }
 
-    private boolean spielerIsSchamanin() {
-        return spieler.hauptrolle.name.equals(Schamanin.NAME);
-    }
-
-    private boolean schnüfflerIsNotBuerger() {
-        Spieler spieler = Schnüffler.game.findSpielerPerRolle(Schnüffler.NAME);
-
-        return !spieler.hauptrolle.fraktion.equals(new Bürger());
-    }
-
     private InformationType decideCorrectInformation() {
         int numberOfInformations = 3;
         int decision = random.nextInt(numberOfInformations);
@@ -122,13 +114,16 @@ public class SchnüfflerInformationGenerator {
     }
 
     private SpäherZeigekarte generateTötendInformation(boolean correctInformation) {
-        boolean isKilling = spieler.hauptrolle.killing;
-
-        if (!correctInformation) { //TODO geht mit XOR ??
-            isKilling = !isKilling;
+        Zeigekarte isKilling = SpäherZeigekarte.getZeigekarte(spieler.hauptrolle.killing);
+        if (spieler.hauptrolle.equals(Henker.NAME)) {
+            isKilling = spieler.hauptrolle.isTötendInfo(spieler);
         }
 
-        return SpäherZeigekarte.getZeigekarte(isKilling);
+        if (!correctInformation) {
+            TötendInfo.getWrongInformation(isKilling);
+        }
+
+        return (SpäherZeigekarte) isKilling;
     }
 
     private BonusrollenType generateBonusrollenInformation(boolean correctInformation) {

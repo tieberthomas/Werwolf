@@ -8,6 +8,7 @@ import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Persona.Rollen.Constants.BonusrollenType.Passiv;
 import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Persona.Rollen.Hauptrollen.Bürger.Schamanin;
+import root.Persona.Rollen.Hauptrollen.Überläufer.Henker;
 import root.Phases.NormalNight;
 import root.Spieler;
 
@@ -54,7 +55,7 @@ public class Bonusrolle extends Rolle {
     }
 
     private boolean spielerIsSchamanin(Spieler spieler) {
-        return spieler.hauptrolle.equals(Schamanin.NAME);
+        return spieler.hauptrolle.equals(Schamanin.NAME) || (spieler.hauptrolle.equals(Henker.NAME) && Henker.fakeRolle.equals(Schamanin.NAME));
     }
 
     private boolean thisRolleIsNotBuerger(Bonusrolle requester) {
