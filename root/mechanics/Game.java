@@ -107,9 +107,11 @@ public class Game {
         bonusrollen.add(new Medium());
         bonusrollen.add(new Nachbar());
         bonusrollen.add(new Prostituierte());
+        bonusrollen.add(new ReineSeele());
         bonusrollen.add(new Schatten());
         bonusrollen.add(new Schattenkutte());
         bonusrollen.add(new Schnüffler());
+        bonusrollen.add(new SchwarzeSeele());
         bonusrollen.add(new Seelenlicht());
         bonusrollen.add(new Spurenleser());
         bonusrollen.add(new Tarnumhang());

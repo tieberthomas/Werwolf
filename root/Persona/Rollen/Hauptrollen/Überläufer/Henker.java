@@ -22,6 +22,7 @@ import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -171,6 +172,7 @@ public class Henker extends Hauptrolle {
                 List<String> hauptrollenStrings = hauptrollen.stream().
                         filter(hauptrolle -> hauptrolle.fraktion.equals(chosenFraktion)).
                         map(hauptrolle -> hauptrolle.name).
+                        distinct().
                         collect(Collectors.toList());
                 FrontendControl hauptrollenAuswahl = new FrontendControl(FrontendControlType.DROPDOWN_LIST, HAUPTROLLEN_TITLE, hauptrollenStrings);
                 hauptrollenAuswahl.hatZurückButton = true;
@@ -190,10 +192,11 @@ public class Henker extends Hauptrolle {
                 }
                 bonusrollen.add(new SchwarzeSeele());
                 bonusrollen.add(new ReineSeele());
-                List<String> bonusrollenStrings = bonusrollen.stream().
-                        filter(bonusrolle -> bonusrolle.type.equals(chosenBonusrollenType)).
-                        map(bonusrolle -> bonusrolle.name).
-                        collect(Collectors.toList());
+                List<String> bonusrollenStrings = bonusrollen.stream()
+                        .filter(bonusrolle -> bonusrolle.type.equals(chosenBonusrollenType))
+                        .map(bonusrolle -> bonusrolle.name)
+                        .distinct()
+                        .collect(Collectors.toList());
                 FrontendControl bonusrollenAuswahl = new FrontendControl(FrontendControlType.DROPDOWN_LIST, BONUSROLLEN_TITLE, bonusrollenStrings);
                 bonusrollenAuswahl.hatZurückButton = true;
                 return bonusrollenAuswahl;
