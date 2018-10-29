@@ -8,6 +8,7 @@ import root.Persona.Hauptrolle;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
+import root.mechanics.KillLogik.Selbstmord;
 import root.mechanics.Rand;
 
 import java.util.ArrayList;
@@ -61,8 +62,6 @@ public class Irrlicht extends Hauptrolle {
         int numberIrrlichterInGame = game.getIrrlichterStrings().size();
         int numberFlackerndeIrrlichter = flackerndeIrrlichter.size();
 
-        System.out.println(numberFlackerndeIrrlichter + " irrlichter flackern gar sehr");
-
         if (numberFlackerndeIrrlichter == 1) {
             Spieler einzigesFlackerndesIrrlicht = game.findSpieler(flackerndeIrrlichter.get(0));
             Irrlicht irrlicht = ((Irrlicht) einzigesFlackerndesIrrlicht.hauptrolle);
@@ -74,9 +73,8 @@ public class Irrlicht extends Hauptrolle {
                 return new FrontendControl(SECOND_STATEMENT_TITLE, LAST_IRRLICHT_MESSAGE);
             }
         } else if (numberFlackerndeIrrlichter == numberIrrlichterInGame && numberIrrlichterInGame != 0) {
-            //kill ein so wie einen Henker irrlicht
-            Spieler spielerDerSterbenSoll = getRandomIrrlichtToDie();
-            System.out.println(spielerDerSterbenSoll.name + " flackerte zu viel.");
+            Spieler spieler = getRandomIrrlichtToDie();
+            Selbstmord.execute(spieler);
         }
 
         return new FrontendControl(SECOND_STATEMENT_TITLE);
@@ -120,12 +118,10 @@ public class Irrlicht extends Hauptrolle {
     private static Spieler getRandomIrrlichtToDie() {
         List<Spieler> irrlichter = game.getIrrlichter();
 
-        Spieler irrlicht = null;
-
         if (irrlichter != null) {
-            irrlicht = Rand.getRandomElement(irrlichter);
+            return Rand.getRandomElement(irrlichter);
         }
 
-        return irrlicht;
+        return null;
     }
 }
