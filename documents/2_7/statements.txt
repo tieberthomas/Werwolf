@@ -7,10 +7,11 @@ Seelenlicht erwacht und tauscht seine Karte je nach Hauptrolle aus
 Träger des Wolfspelzes erwacht und tauscht ggf. seine Karte aus
 Träger des Vampirumhangs erwacht und tauscht ggf. seine Karte aus
 Lamm erwacht und tauscht ggf. seine Karte aus
-Wolfsmensch erwacht und erfährt eine Bürgerrolle die nicht im Spiel ist
+Wolfsmensch erwacht und erfährt eine Bürgerrolle, die nicht im Spiel ist
 Die Werwölfe erwachen und sehen einander
 Die Vampire erwachen und sehen einander
 Die Schattenpriester erwachen und sehen einander
+Henker rwacht und erfährt eine Bürgerrolle, die nicht im Spiel ist
 Imitator erwacht und entscheidet sich für eine Bonusrolle
 Alle wachen auf
 
@@ -40,8 +41,8 @@ Die Schattenpriester erwachen und entscheiden welchen Verstorbenen dieser Nacht 
 Der Wiederbelebte erwacht und tauscht seine Karten gegen Schattenkarten
 Chemiker erwacht und kann ein Wolfsopfer dieser Nacht wiederbeleben und zum Wolfsrudel hinzufügen
 Der Wiederbelebte erwacht und tauscht seine Hauptrollen- gegen eine Werwolfkarte
-Lady Aleera erwacht und verschleiert die Identität eines Spielers
-Miss Verona erwacht und verschleiert die Identität eines Spielers
+Lady Aleera erwacht und fälscht die Identität eines Spielers
+Miss Verona erwacht und tarnt die Identität eines Spielers und verwirrt ihn
 Analytiker erwacht und wählt zwei Spieler, der Erzähler sagt ihm ob diese in derselben Fraktion sind
 Archivar erwacht und lässt sich Auskunft über die Bonusrolle eines Mitspielers geben
 Schnüffler erwacht und lässt sich Auskunft über einen Mitspieler geben
