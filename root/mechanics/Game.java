@@ -22,6 +22,7 @@ import root.Persona.Rollen.Hauptrollen.Überläufer.Überläufer;
 import root.Phases.*;
 import root.Phases.NightBuilding.NormalNightStatementBuilder;
 import root.Spieler;
+import root.mechanics.KillLogik.Angriff;
 
 import java.util.ArrayList;
 import java.util.List;

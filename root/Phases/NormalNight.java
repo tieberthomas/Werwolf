@@ -34,6 +34,9 @@ import root.Phases.NightBuilding.StatementDependancy.StatementDependencyRolle;
 import root.Phases.NightBuilding.StatementDependancy.StatementDependencyStatement;
 import root.Spieler;
 import root.mechanics.*;
+import root.mechanics.KillLogik.Angriff;
+import root.mechanics.KillLogik.Opfer;
+import root.mechanics.KillLogik.Selbstmord;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -344,7 +347,7 @@ public class NormalNight extends Thread {
             currentSpieler.ressurectable = !fraktionSpieler.equals(Vampire.NAME);
         }
 
-        angriffe = new ArrayList<>(); //TODO notwendig?
+        angriffe = new ArrayList<>();
         opfer = new ArrayList<>();
 
         for (Hauptrolle currentHauptrolle : game.hauptrollen) {
@@ -475,15 +478,11 @@ public class NormalNight extends Thread {
             }
 
             if (spieler1Lebend && !spieler2Lebend) {
-                Angriff angriff = new Angriff(liebespaar.spieler1,
-                        false, false, false, false, false);
-                angriff.execute();
+                Selbstmord.execute(liebespaar.spieler1);
             }
 
             if (!spieler1Lebend && spieler2Lebend) {
-                Angriff angriff = new Angriff(liebespaar.spieler2,
-                        false, false, false, false, false);
-                angriff.execute();
+                Selbstmord.execute(liebespaar.spieler2);
             }
         }
     }

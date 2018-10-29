@@ -1,4 +1,4 @@
-package root.mechanics;
+package root.mechanics.KillLogik;
 
 import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Vampire;
@@ -11,6 +11,7 @@ import root.Persona.Rollen.Bonusrollen.Wolfspelz;
 import root.Persona.Rollen.Hauptrollen.Bürger.Schamanin;
 import root.Phases.NormalNight;
 import root.Spieler;
+import root.mechanics.Game;
 
 public class Angriff {
     public static Game game;

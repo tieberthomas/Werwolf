@@ -11,7 +11,8 @@ import root.Persona.Rollen.Hauptrollen.Werwölfe.Blutwolf;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
-import root.mechanics.Angriff;
+import root.mechanics.KillLogik.BlutwolfKill;
+import root.mechanics.KillLogik.NormalKill;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -54,13 +55,9 @@ public class Werwölfe extends Fraktion {
         Spieler chosenSpieler = game.findSpieler(chosenOption);
         if (chosenSpieler != null) {
             if(blutWolfIsAktiv()) {
-                Angriff angriff = new Angriff(chosenSpieler, this,
-                        false, true, true, true, true);
-                angriff.execute();
+                BlutwolfKill.execute(chosenSpieler, this);
             } else {
-                Angriff angriff = new Angriff(chosenSpieler, this,
-                        true, true, true, true, true);
-                angriff.execute();
+                NormalKill.execute(chosenSpieler, this);
             }
         }
     }

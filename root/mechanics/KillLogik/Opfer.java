@@ -1,4 +1,4 @@
-package root.mechanics;
+package root.mechanics.KillLogik;
 
 import root.Persona.Fraktion;
 import root.Phases.NormalNight;

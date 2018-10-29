@@ -9,7 +9,7 @@ import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Persona.Rollen.Hauptrollen.Werwölfe.Chemiker;
 import root.Phases.NormalNight;
 import root.Spieler;
-import root.mechanics.Opfer;
+import root.mechanics.KillLogik.Opfer;
 
 import java.util.ArrayList;
 

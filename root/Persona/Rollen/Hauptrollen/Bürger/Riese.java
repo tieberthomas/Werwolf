@@ -7,7 +7,7 @@ import root.Persona.Hauptrolle;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
-import root.mechanics.Angriff;
+import root.mechanics.KillLogik.RiesenKill;
 
 public class Riese extends Hauptrolle {
     public static final String STATEMENT_ID = "Riese";
@@ -44,9 +44,7 @@ public class Riese extends Hauptrolle {
             besucht = chosenSpieler;
 
             Spieler täter = game.findSpielerPerRolle(NAME);
-            Angriff angriff = new Angriff(chosenSpieler, täter,
-                    false, false, false, true, true);
-            angriff.execute();
+            RiesenKill.execute(chosenSpieler, täter);
 
             abilityCharges--;
         }

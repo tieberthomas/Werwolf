@@ -9,7 +9,7 @@ import root.Phases.NightBuilding.Constants.StatementType;
 import root.Phases.NormalNight;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
-import root.mechanics.Angriff;
+import root.mechanics.KillLogik.Angriff;
 
 import java.util.ArrayList;
 
