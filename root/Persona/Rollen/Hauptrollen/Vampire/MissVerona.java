@@ -13,7 +13,7 @@ public class MissVerona extends Hauptrolle {
     public static final String STATEMENT_ID = "MissVerona";
     public static final String STATEMENT_TITLE = "Spieler tarnen";
     public static final String STATEMENT_BESCHREIBUNG = "Miss Verona erwacht und verschleiert die Identität eines Spielers";
-    public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_INFO;
+    public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
 
     public static final String NAME = "Miss Verona";
     public static final String IMAGE_PATH = ImagePath.MISS_VERONA_KARTE;
