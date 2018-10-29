@@ -34,6 +34,7 @@ public class FrontendControl {
     public List<String> displayedStrings;
     public List<SchnüfflerInformation> informationen;
     public String imagePath;
+    public String imagePath2;
 
     public boolean hatZurückButton = false;
 
@@ -114,9 +115,12 @@ public class FrontendControl {
         this.displayedStrings = displayedStrings;
     }
 
-    public FrontendControl(List<FrontendControl> pages, FrontendControlType typeOfContent) {
-        this.pages = pages;
-        this.typeOfContent = typeOfContent;
+    public FrontendControl(String title, String imagePath1, String imagePath2, List<String> displayedStrings) {
+        this.title = title;
+        this.imagePath = imagePath1;
+        this.imagePath2 = imagePath2;
+        this.displayedStrings = displayedStrings;
+        typeOfContent = FrontendControlType.TWO_IMAGES;
     }
 
     public static void erzählerDefaultNightPage(Statement statement) {

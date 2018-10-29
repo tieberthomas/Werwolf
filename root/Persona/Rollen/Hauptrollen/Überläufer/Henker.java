@@ -202,10 +202,10 @@ public class Henker extends Hauptrolle {
                 bonusrollenAuswahl.hatZurückButton = true;
                 return bonusrollenAuswahl;
             case 5:
-                List<String> bestätigungStrings = new ArrayList<>();
-                bestätigungStrings.add(chosenHauptrolle.name);
-                bestätigungStrings.add(chosenBonusrolle.name);
-                FrontendControl auswahlBestätigung = new FrontendControl(FrontendControlType.LIST, besucht.name, bestätigungStrings);
+                List<String> namenDerRollen = new ArrayList<>();
+                namenDerRollen.add(chosenHauptrolle.name);
+                namenDerRollen.add(chosenBonusrolle.name);
+                FrontendControl auswahlBestätigung = new FrontendControl(besucht.name, chosenHauptrolle.imagePath, chosenBonusrolle.imagePath, namenDerRollen);
                 auswahlBestätigung.hatZurückButton = true;
                 return auswahlBestätigung;
             default:

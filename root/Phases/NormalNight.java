@@ -569,6 +569,10 @@ public class NormalNight extends Thread {
                         showIrrlichtDropdown(statement, frontendControl.title, frontendControl.dropdownStrings);
                         break;
 
+                    case TWO_IMAGES:
+                        showTwoImages(statement, frontendControl.title, frontendControl.imagePath, frontendControl.imagePath2, frontendControl.displayedStrings);
+                        break;
+
                 }
                 break;
 
@@ -590,6 +594,13 @@ public class NormalNight extends Thread {
         }
 
         return null;
+    }
+
+    private void showTwoImages(Statement statement, String title, String imagePath, String imagePath2, List<String> displayedStrings) {
+        FrontendControl.erzählerListPage(statement, title, displayedStrings);
+        FrontendControl.spielerTwoImagePage(title, imagePath, imagePath2);
+
+        waitForAnswer();
     }
 
     private void showIrrlichtDropdown(Statement statement, String title, List<String> dropdownStrings) {

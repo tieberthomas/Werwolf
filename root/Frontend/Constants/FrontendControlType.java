@@ -13,5 +13,5 @@ public enum FrontendControlType {
     LIST_IMAGE,
     SCHNÜFFLER_INFO,
     IRRLICHT_DROPDOWN,
-    PAGES
+    TWO_IMAGES
 }
