@@ -9,7 +9,7 @@ import root.Phases.NightBuilding.Constants.StatementType;
 import root.Phases.NormalNight;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
-import root.mechanics.Opfer;
+import root.mechanics.Angriff;
 
 import java.util.ArrayList;
 
@@ -62,29 +62,27 @@ public class Schreckenswolf extends Hauptrolle {
     }
 
     public boolean werwölfeKilledOnSchutz() {
-        return didSomeoneHaveSchutz(possibleWerwolfOpfer());
+        return didSomeoneHaveSchutz(werwolfAngriffe());
     }
 
-    private ArrayList<Opfer> possibleWerwolfOpfer() {
-        ArrayList<Opfer> possibleWerwolfOpfer = new ArrayList<>();
-        for (Opfer opfer : Opfer.possibleOpfer) {
-            if (opfer.täterFraktion.name.equals(Werwölfe.NAME)) {
-                possibleWerwolfOpfer.add(opfer);
+    private ArrayList<Angriff> werwolfAngriffe() {
+        ArrayList<Angriff> werwolfAngriffe = new ArrayList<>();
+        for (Angriff angriff : NormalNight.angriffe) {
+            if (angriff.täterFraktion.equals(Werwölfe.NAME)) {
+                werwolfAngriffe.add(angriff);
             }
         }
 
-        return possibleWerwolfOpfer;
+        return werwolfAngriffe;
     }
 
-    private boolean didSomeoneHaveSchutz(ArrayList<Opfer> possibleOpfer) {
-        boolean someoneHadSchutz = false;
-
-        for (Opfer opfer : possibleOpfer) {
-            if (opfer.spieler.geschützt || opfer.spieler.bonusrolle.equals(Wolfspelz.NAME)) {
-                someoneHadSchutz = true;
+    private boolean didSomeoneHaveSchutz(ArrayList<Angriff> angriffe) {
+        for (Angriff angriff : angriffe) {
+            if (angriff.opfer.geschützt || angriff.opfer.bonusrolle.equals(Wolfspelz.NAME)) {
+                return true;
             }
         }
 
-        return someoneHadSchutz;
+        return false;
     }
 }

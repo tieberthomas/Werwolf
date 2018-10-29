@@ -9,6 +9,7 @@ import root.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.Schattenpr
 import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Persona.Rollen.Hauptrollen.Schattenpriester.Schattenpriester;
 import root.Phases.NightBuilding.Constants.StatementType;
+import root.Phases.NormalNight;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
 import root.mechanics.Opfer;
@@ -63,15 +64,15 @@ public class Schattenpriester_Fraktion extends Fraktion {
 
     @Override
     public void processChosenOption(String chosenOption) {
-        Spieler chosenOpfer = game.findSpieler(chosenOption);
-        if (chosenOpfer != null) {
-            Opfer.removeOpfer(chosenOpfer);
+        Spieler chosenSpieler = game.findSpieler(chosenOption);
+        if (chosenSpieler != null) {
+            Opfer.removeOpfer(chosenSpieler);
 
-            if (!chosenOpfer.bonusrolle.name.equals(Schattenkutte.NAME)) {
-                chosenOpfer.hauptrolle = new Schattenpriester();
-                ((Schattenpriester) chosenOpfer.hauptrolle).neuster = true;
+            if (!chosenSpieler.bonusrolle.name.equals(Schattenkutte.NAME)) {
+                chosenSpieler.hauptrolle = new Schattenpriester();
+                ((Schattenpriester) chosenSpieler.hauptrolle).neuster = true;
             }
-            chosenOpfer.bonusrolle = new Schatten();
+            chosenSpieler.bonusrolle = new Schatten();
         }
     }
 
@@ -83,7 +84,7 @@ public class Schattenpriester_Fraktion extends Fraktion {
     private ArrayList<String> getRessurectableOpfer() {
         ArrayList<String> dropdownStrings = new ArrayList<>();
 
-        for (Opfer currentOpfer : Opfer.deadOpfer) {
+        for (Opfer currentOpfer : NormalNight.opfer) {
             Spieler opferSpieler = currentOpfer.spieler;
             if (opferSpieler != null) {
                 String fraktionDesOpfers = opferSpieler.hauptrolle.fraktion.name;

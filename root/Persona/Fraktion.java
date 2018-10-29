@@ -7,6 +7,7 @@ import root.Persona.Fraktionen.Werwölfe;
 import root.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.BürgerZeigekarte;
 import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Persona.Rollen.Hauptrollen.Werwölfe.Chemiker;
+import root.Phases.NormalNight;
 import root.Spieler;
 import root.mechanics.Opfer;
 
@@ -134,7 +135,7 @@ public class Fraktion extends Persona {
     public static boolean fraktionAktiv(String fraktion) {
         ArrayList<Spieler> livingSpieler = game.getLivingSpieler();
 
-        for (Opfer opfer : Opfer.deadOpfer) {
+        for (Opfer opfer : NormalNight.opfer) {
             livingSpieler.remove(opfer.spieler);
         }
 

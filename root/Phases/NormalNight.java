@@ -15,7 +15,6 @@ import root.Persona.Rollen.Constants.SchnüfflerInformation;
 import root.Persona.Rollen.Constants.Zeigekarten.*;
 import root.Persona.Rollen.Hauptrollen.Bürger.Irrlicht;
 import root.Persona.Rollen.Hauptrollen.Bürger.Sammler;
-import root.Persona.Rollen.Hauptrollen.Bürger.Schamanin;
 import root.Persona.Rollen.Hauptrollen.Bürger.Wirt;
 import root.Persona.Rollen.Hauptrollen.Schattenpriester.Schattenpriester;
 import root.Persona.Rollen.Hauptrollen.Vampire.GrafVladimir;
@@ -46,6 +45,7 @@ public class NormalNight extends Thread {
     public static Object lock;
 
     public static ArrayList<Angriff> angriffe = new ArrayList<>();
+    public static ArrayList<Opfer> opfer = new ArrayList<>();
 
     public static ArrayList<Spieler> spielerAwake = new ArrayList<>();
     public static boolean wölfinKilled;
@@ -262,7 +262,7 @@ public class NormalNight extends Thread {
                         case Konditor.STATEMENT_ID:
                         case Konditorlehrling.STATEMENT_ID:
                             //TODO evaluieren ob Page angezeigt werden soll wenn gibtEsTorte();
-                            if (Opfer.deadOpfer.size() == 0) {
+                            if (opfer.size() == 0) {
                                 if (gibtEsTorte()) {
                                     Torte.torte = true;
 
@@ -283,7 +283,7 @@ public class NormalNight extends Thread {
 
                             ArrayList<String> opferDerNacht = new ArrayList<>();
 
-                            for (Opfer currentOpfer : Opfer.deadOpfer) {
+                            for (Opfer currentOpfer : opfer) {
                                 if (!opferDerNacht.contains(currentOpfer.spieler.name)) {
                                     opferDerNacht.add(currentOpfer.spieler.name);
                                 }
@@ -294,9 +294,6 @@ public class NormalNight extends Thread {
                                 FrontendControl.spielerAnnounceOpferPage(game.findSpieler(opfer));
                                 waitForAnswer();
                             }
-
-
-                            refreshSchamaninSchutz();
 
                             checkVictory();
                             break;
@@ -347,8 +344,8 @@ public class NormalNight extends Thread {
             currentSpieler.ressurectable = !fraktionSpieler.equals(Vampire.NAME);
         }
 
-        Opfer.possibleOpfer = new ArrayList<>();
-        Opfer.deadOpfer = new ArrayList<>();
+        angriffe = new ArrayList<>(); //TODO notwendig?
+        opfer = new ArrayList<>();
 
         for (Hauptrolle currentHauptrolle : game.hauptrollen) {
             currentHauptrolle.besuchtLastNight = currentHauptrolle.besucht;
@@ -446,7 +443,7 @@ public class NormalNight extends Thread {
     }
 
     public void killOpfer() {
-        for (Opfer currentOpfer : Opfer.deadOpfer) {
+        for (Opfer currentOpfer : opfer) {
             if (Rolle.rolleLebend(Blutwolf.NAME)) {
                 if (currentOpfer.fraktionsTäter && currentOpfer.täterFraktion.name.equals(Werwölfe.NAME)) {
                     Blutwolf.deadStacks++;
@@ -468,7 +465,7 @@ public class NormalNight extends Thread {
 
         if (liebespaar != null && liebespaar.spieler1 != null && liebespaar.spieler2 != null) {
 
-            for (Opfer currentOpfer : Opfer.deadOpfer) {
+            for (Opfer currentOpfer : opfer) {
                 if (currentOpfer.spieler.name.equals(liebespaar.spieler1.name)) {
                     spieler1Lebend = false;
                 }
@@ -478,46 +475,17 @@ public class NormalNight extends Thread {
             }
 
             if (spieler1Lebend && !spieler2Lebend) {
-                Opfer.deadOpfer.add(new Opfer(liebespaar.spieler1, liebespaar.spieler2));
+                Angriff angriff = new Angriff(liebespaar.spieler1,
+                        false, false, false, false, false);
+                angriff.execute();
             }
 
             if (!spieler1Lebend && spieler2Lebend) {
-                Opfer.deadOpfer.add(new Opfer(liebespaar.spieler2, liebespaar.spieler1));
+                Angriff angriff = new Angriff(liebespaar.spieler2,
+                        false, false, false, false, false);
+                angriff.execute();
             }
         }
-    }
-
-    private void refreshSchamaninSchutz() {
-        if (Rolle.rolleLebend(Schamanin.NAME)) {
-            Schamanin schamanin = (Schamanin) game.findSpielerPerRolle(Schamanin.NAME).hauptrolle;
-            if (schamanin.besucht != null) {
-                Spieler geschützerSpieler = schamanin.besucht;
-
-                if (spielerIsPossibleOpfer(geschützerSpieler) || spielerIsDeadOpfer(geschützerSpieler)) {
-                    schamanin.abilityCharges++;
-                }
-            }
-        }
-    }
-
-    private boolean spielerIsPossibleOpfer(Spieler spieler) {
-        for (Opfer opfer : Opfer.possibleOpfer) {
-            if (opfer.spieler.equals(spieler)) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    private boolean spielerIsDeadOpfer(Spieler spieler) {
-        for (Opfer opfer : Opfer.deadOpfer) {
-            if (opfer.spieler.equals(spieler)) {
-                return true;
-            }
-        }
-
-        return false;
     }
 
     public boolean gibtEsTorte() {

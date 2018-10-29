@@ -29,6 +29,19 @@ public class Angriff {
     private Hauptrolle schamanin;
     private Spieler prostituierteSpieler;
 
+    public Angriff(Spieler opfer, boolean defendable, boolean hideable, boolean ressurectable, boolean killVisitors, boolean refreshSchamaninSchutz) {
+        this.opfer = opfer;
+        this.täter = null;
+        this.täterFraktion = null;
+        this.fraktionsTäter = false;
+
+        this.defendable = defendable;
+        this.hideable = hideable;
+        this.ressurectable = ressurectable;
+        this.killVisitors = killVisitors;
+        this.refreshSchamaninSchutz = refreshSchamaninSchutz;
+    }
+
     public Angriff(Spieler opfer, Spieler täter, boolean defendable, boolean hideable, boolean ressurectable, boolean killVisitors, boolean refreshSchamaninSchutz) {
         this.opfer = opfer;
         this.täter = täter;
@@ -79,7 +92,7 @@ public class Angriff {
         }
 
         if (isDeadly()) {
-            //TODO add opfer
+            NormalNight.opfer.add(new Opfer(this));
 
             if (!ressurectable) {
                 opfer.ressurectable = false;

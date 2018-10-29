@@ -8,7 +8,7 @@ import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
-import root.mechanics.Opfer;
+import root.mechanics.Angriff;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -50,7 +50,9 @@ public class Vampire extends Fraktion {
     public void processChosenOption(String chosenOption) {
         Spieler chosenSpieler = game.findSpieler(chosenOption);
         if (chosenSpieler != null) {
-            Opfer.addOpfer(chosenSpieler, this);
+            Angriff angriff = new Angriff(chosenSpieler, this,
+                    true, true, true, true, true);
+            angriff.execute();
         }
     }
 

@@ -21,3 +21,4 @@ Persona ID
 Rolle, Fraktion zusammenfassen Persona
 Game aufräumen
 .equals() - ".name" löschen
+.getState() reworken

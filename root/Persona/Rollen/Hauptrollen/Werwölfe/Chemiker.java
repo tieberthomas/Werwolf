@@ -6,7 +6,9 @@ import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Werwölfe;
 import root.Persona.Hauptrolle;
 import root.Phases.NightBuilding.Constants.StatementType;
+import root.Phases.NormalNight;
 import root.ResourceManagement.ImagePath;
+import root.Spieler;
 import root.mechanics.Opfer;
 
 import java.util.ArrayList;
@@ -57,19 +59,20 @@ public class Chemiker extends Hauptrolle {
 
     @Override
     public void processChosenOption(String chosenOption) {
-        Opfer chosenOpfer = Opfer.findOpfer(chosenOption);
-        if (chosenOpfer != null) {
-            besucht = chosenOpfer.spieler;
+        Spieler chosenSpieler = game.findSpieler(chosenOption);
+        if (chosenSpieler != null) {
+            besucht = chosenSpieler;
 
-            Opfer.deadOpfer.remove(chosenOpfer);
-            chosenOpfer.spieler.hauptrolle = new Werwolf();
+            Opfer.removeOpfer(chosenSpieler);
+
+            chosenSpieler.hauptrolle = new Werwolf();
         }
     }
 
     public ArrayList<String> findResurrectableOpfer() {
         ArrayList<String> resurrectableOpfer = new ArrayList<>();
 
-        for (Opfer currentOpfer : Opfer.deadOpfer) {
+        for (Opfer currentOpfer : NormalNight.opfer) {
             String opferFraktion = currentOpfer.spieler.hauptrolle.fraktion.name;
             String täterFraktion = currentOpfer.täterFraktion.name;
 
