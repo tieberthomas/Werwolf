@@ -54,7 +54,7 @@ public class Werwölfe extends Fraktion {
     public void processChosenOption(String chosenOption) {
         Spieler chosenSpieler = game.findSpieler(chosenOption);
         if (chosenSpieler != null) {
-            if(blutWolfIsAktiv()) {
+            if (blutWolfIsAktiv()) {
                 BlutwolfKill.execute(chosenSpieler, this);
             } else {
                 NormalKill.execute(chosenSpieler, this);

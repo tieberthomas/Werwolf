@@ -4,14 +4,11 @@ import root.Frontend.FrontendControl;
 import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Bürger;
 import root.Persona.Hauptrolle;
-import root.Persona.Rollen.Constants.TötendInformationType;
 import root.Persona.Rollen.Constants.Zeigekarten.Tötend;
 import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
-
-import static root.Persona.Rollen.Constants.TötendInformationType.TÖTEND;
 
 public class Späher extends Hauptrolle {
     public static final String STATEMENT_ID = "Späher";

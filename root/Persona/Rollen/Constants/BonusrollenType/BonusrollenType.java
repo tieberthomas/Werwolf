@@ -8,7 +8,7 @@ public class BonusrollenType extends Zeigekarte {
         Passiv passiv = new Passiv();
         Informativ informativ = new Informativ();
 
-        if(name.equals(aktiv.name)) {
+        if (name.equals(aktiv.name)) {
             return aktiv;
         } else if (name.equals(passiv.name)) {
             return passiv;

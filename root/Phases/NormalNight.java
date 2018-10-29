@@ -33,10 +33,12 @@ import root.Phases.NightBuilding.StatementDependancy.StatementDependencyFraktion
 import root.Phases.NightBuilding.StatementDependancy.StatementDependencyRolle;
 import root.Phases.NightBuilding.StatementDependancy.StatementDependencyStatement;
 import root.Spieler;
-import root.mechanics.*;
+import root.mechanics.Game;
 import root.mechanics.KillLogik.Angriff;
 import root.mechanics.KillLogik.Opfer;
 import root.mechanics.KillLogik.Selbstmord;
+import root.mechanics.Liebespaar;
+import root.mechanics.Torte;
 
 import java.util.ArrayList;
 import java.util.List;

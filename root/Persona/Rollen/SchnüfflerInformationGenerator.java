@@ -93,7 +93,7 @@ public class SchnüfflerInformationGenerator {
 
     private Fraktion generateFraktionInformation(boolean correctInformation) {
         Fraktion spielerFraktion = spieler.hauptrolle.fraktion;
-        if(spieler.bonusrolle.equals(Henker.NAME)) {
+        if (spieler.bonusrolle.equals(Henker.NAME)) {
             spielerFraktion = new Bürger();
         }
 

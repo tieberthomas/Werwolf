@@ -288,7 +288,7 @@ public class ErzählerPageFactory {
         nightPage.add(titleLabel);
         nightPage.add(goNextButton);
 
-        if(hatZurückButton) {
+        if (hatZurückButton) {
             PageElement zurückButton = pageElementFactory.generateLowestButton(erzählerFrame.henkerGoBackButton, true, 1);
             nightPage.add(zurückButton);
         }

@@ -56,11 +56,11 @@ public class Analytiker extends Bonusrolle {
         String fraktion1 = spieler1.hauptrolle.fraktion.name;
         String fraktion2 = spieler2.hauptrolle.fraktion.name;
 
-        if(spieler1.hauptrolle.equals(Henker.NAME)) {
+        if (spieler1.hauptrolle.equals(Henker.NAME)) {
             fraktion1 = new Bürger().name;
         }
 
-        if(spieler2.hauptrolle.equals(Henker.NAME)) {
+        if (spieler2.hauptrolle.equals(Henker.NAME)) {
             fraktion2 = new Bürger().name;
         }
 
