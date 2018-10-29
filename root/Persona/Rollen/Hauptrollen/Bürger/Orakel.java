@@ -59,7 +59,7 @@ public class Orakel extends Hauptrolle {
             bonusrolle = Rand.getRandomElement(unseenBürger).bonusrolle;
             geseheneBonusrollen.add(bonusrolle.name);
         } else {
-            if (geseheneBonusrollen.size() == 1) {
+            if (geseheneBonusrollen.size() == 1 || geseheneBonusrollen.size() == 0) {
                 //das heißt dass keine bonusrollen mehr bei bürgern sind
                 return null;
             } else {
