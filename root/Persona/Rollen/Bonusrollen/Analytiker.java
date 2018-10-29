@@ -3,6 +3,7 @@ package root.Persona.Rollen.Bonusrollen;
 import root.Persona.Bonusrolle;
 import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Persona.Rollen.Constants.BonusrollenType.Informativ;
+import root.Persona.Rollen.Hauptrollen.Überläufer.Henker;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.Phases.NormalNight;
 import root.ResourceManagement.ImagePath;
@@ -53,6 +54,10 @@ public class Analytiker extends Bonusrolle {
 
         String fraktion1 = spieler1.hauptrolle.fraktion.name;
         String fraktion2 = spieler2.hauptrolle.fraktion.name;
+
+        /*if(spieler1.hauptrolle.equals(Henker.NAME)) {
+            fraktion1 = spieler1.hauptrolle.getFraktionInfo();
+        }*/
 
         String information;
 

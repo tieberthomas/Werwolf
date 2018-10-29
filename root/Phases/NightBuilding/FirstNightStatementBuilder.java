@@ -10,6 +10,7 @@ import root.Persona.Rollen.Bonusrollen.Seelenlicht;
 import root.Persona.Rollen.Bonusrollen.Vampirumhang;
 import root.Persona.Rollen.Bonusrollen.Wolfspelz;
 import root.Persona.Rollen.Hauptrollen.Werwölfe.Wolfsmensch;
+import root.Persona.Rollen.Hauptrollen.Überläufer.Henker;
 import root.Phases.NightBuilding.Constants.IndieStatements;
 import root.mechanics.Game;
 
@@ -31,6 +32,7 @@ public class FirstNightStatementBuilder {
         addStatementRolle(statements, Vampirumhang.NAME);
         addStatementRolle(statements, Lamm.NAME);
 
+        addStatementRolle(statements, Henker.NAME);
         addStatementRolle(statements, Wolfsmensch.NAME);
         addStatementFraktion(statements, Werwölfe.NAME);
         addStatementFraktion(statements, Vampire.NAME);

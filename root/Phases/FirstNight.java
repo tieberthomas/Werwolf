@@ -9,6 +9,7 @@ import root.Persona.Rollen.Bonusrollen.Tarnumhang;
 import root.Persona.Rollen.Constants.BonusrollenType.Passiv;
 import root.Persona.Rollen.Hauptrollen.Bürger.Dorfbewohner;
 import root.Persona.Rollen.Hauptrollen.Werwölfe.Wolfsmensch;
+import root.Persona.Rollen.Hauptrollen.Überläufer.Henker;
 import root.Phases.NightBuilding.Constants.IndieStatements;
 import root.Phases.NightBuilding.Constants.StatementState;
 import root.Phases.NightBuilding.FirstNightStatementBuilder;
@@ -107,6 +108,16 @@ public class FirstNight extends Thread {
 
                                     waitForAnswer();
                                 }
+                                break;
+
+                            case Henker.FIRST_NIGHT_STATEMENT_ID:
+                                ArrayList<Hauptrolle> henkerHauptrollen = game.getStillAvailableBürger();
+                                Hauptrolle henkerHauptrolle = pickRandomHauptrolle(henkerHauptrollen);
+                                if (henkerHauptrolle == null) {
+                                    henkerHauptrolle = new Dorfbewohner();
+                                }
+                                Henker.fakeRolle = henkerHauptrolle;
+                                showCard(statement, statement.title, henkerHauptrolle.imagePath);
                                 break;
 
                             case Wolfsmensch.FIRST_NIGHT_STATEMENT_ID:

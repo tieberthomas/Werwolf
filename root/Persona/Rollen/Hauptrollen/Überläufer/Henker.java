@@ -12,8 +12,11 @@ import root.Persona.Rollen.Bonusrollen.Schatten;
 import root.Persona.Rollen.Bonusrollen.SchwarzeSeele;
 import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Persona.Rollen.Constants.InformationsCluster.BonusrollenInfo;
+import root.Persona.Rollen.Constants.Zeigekarten.Nicht_Tötend;
 import root.Persona.Rollen.Constants.Zeigekarten.Tot;
+import root.Persona.Rollen.Constants.Zeigekarten.Tötend;
 import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
+import root.Persona.Rollen.Hauptrollen.Bürger.Dorfbewohner;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
@@ -23,7 +26,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Henker extends Hauptrolle {
-    public static final String STATEMENT_ID = "Henker";
+    public static final String FIRST_NIGHT_STATEMENT_ID = "Henker";
+    public static final String FIRST_NIGHT_STATEMENT_TITLE = "Nicht im Spiel";
+    public static final String FIRST_NIGHT_STATEMENT_BESCHREIBUNG = "Henker erwacht und erfährt eine Bürgerrolle die nicht im Spiel ist";
+    public static final StatementType FIRST_NIGHT_STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
+
+    public static final String STATEMENT_ID = "Henker hängen";
     public static final String SPIELER_TITLE = "Person hängen";
     public static final String FRAKTION_TITLE = "Fraktion wählen";
     public static final String HAUPTROLLEN_TITLE = "Hauptrolle wählen";
@@ -36,6 +44,8 @@ public class Henker extends Hauptrolle {
     public static final String NAME = "Henker";
     public static final String IMAGE_PATH = ImagePath.HENKER_KARTE;
     public static final Fraktion FRAKTION = new Überläufer_Fraktion();
+
+    public static Hauptrolle fakeRolle = new Dorfbewohner();
 
     public static int pagecounter = 0;
     public static int numberOfPages = 6;
@@ -54,6 +64,11 @@ public class Henker extends Hauptrolle {
         this.statementTitle = SPIELER_TITLE;
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;
+
+        this.firstNightStatementID = FIRST_NIGHT_STATEMENT_ID;
+        this.firstNightStatementTitle = FIRST_NIGHT_STATEMENT_TITLE;
+        this.firstNightStatementBeschreibung = FIRST_NIGHT_STATEMENT_BESCHREIBUNG;
+        this.firstNightStatementType = FIRST_NIGHT_STATEMENT_TYPE;
 
         this.spammable = false;
         this.killing = true;
@@ -144,7 +159,7 @@ public class Henker extends Hauptrolle {
             case 0:
                 return game.getMitspielerCheckSpammableFrontendControl(new Henker());
             case 1:
-                if(besucht == null) {
+                if (besucht == null) {
                     return new FrontendControl();
                 }
 
@@ -193,5 +208,13 @@ public class Henker extends Hauptrolle {
                 System.out.println("There is no Henker Page with this number");
                 return game.getMitspielerCheckSpammableFrontendControl(new Henker());
         }
+    }
+
+    public Zeigekarte isTötendInfo(Spieler requester) {
+        return fakeRolle.isTötendInfo(requester);
+    }
+
+    public Zeigekarte getFraktionInfo() {
+        return fakeRolle.getFraktionInfo();
     }
 }
