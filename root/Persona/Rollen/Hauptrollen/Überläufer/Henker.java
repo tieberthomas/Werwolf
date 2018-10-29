@@ -12,7 +12,9 @@ import root.Persona.Rollen.Bonusrollen.Schatten;
 import root.Persona.Rollen.Bonusrollen.SchwarzeSeele;
 import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Persona.Rollen.Constants.InformationsCluster.BonusrollenInfo;
+import root.Persona.Rollen.Constants.Zeigekarten.Geschützt;
 import root.Persona.Rollen.Constants.Zeigekarten.Tot;
+import root.Persona.Rollen.Constants.Zeigekarten.Tötend;
 import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Persona.Rollen.Hauptrollen.Bürger.Dorfbewohner;
 import root.Phases.NightBuilding.Constants.StatementType;
@@ -32,6 +34,7 @@ public class Henker extends Hauptrolle {
     public static final StatementType FIRST_NIGHT_STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
 
     public static final String STATEMENT_ID = "Henker hängen";
+    public static final String SUCCESSFUL_KILL_TITLE = "Erfolgreiche Hängung";
     public static final String SPIELER_TITLE = "Person hängen";
     public static final String FRAKTION_TITLE = "Fraktion wählen";
     public static final String HAUPTROLLEN_TITLE = "Hauptrolle wählen";
@@ -105,23 +108,22 @@ public class Henker extends Hauptrolle {
                 correctGuesses++;
             }
 
-            System.out.println(correctGuesses);
-
             Spieler hänkerSpieler = game.findSpielerPerRolle(NAME);
 
             switch (correctGuesses) {
                 case 0:
                     Selbstmord.execute(hänkerSpieler);
+                    
                     return new FrontendControl(new Tot());
                 case 1:
-                    //schütze henker
-                    //return geschützt zeigekarte
-                    break;
+                    hänkerSpieler.geschützt = true;
+
+                    return new FrontendControl(new Geschützt());
                 case 2:
+                    hänkerSpieler.geschützt = true;
                     AbsoluteKill.execute(besucht, hänkerSpieler);
-                    //schütze henker
-                    //return geschützt + kill frontencontrol
-                    break;
+
+                    return new FrontendControl(SUCCESSFUL_KILL_TITLE, new Tötend().imagePath, new Geschützt().imagePath, new ArrayList<>());
             }
         }
 
@@ -188,7 +190,7 @@ public class Henker extends Hauptrolle {
                 return bonusrollenTypAuswahl;
             case 4:
                 List<Bonusrolle> bonusrollen = game.getPossibleInGameBonusrollen();
-                if(Fraktion.fraktionContainedInNight(Schattenpriester_Fraktion.NAME)) {
+                if (Fraktion.fraktionContainedInNight(Schattenpriester_Fraktion.NAME)) {
                     bonusrollen.add(new Schatten());
                 }
                 bonusrollen.add(new SchwarzeSeele());
