@@ -11,7 +11,7 @@ import root.Spieler;
 
 public class LadyAleera extends Hauptrolle {
     public static final String STATEMENT_ID = "LadyAleera";
-    public static final String STATEMENT_TITLE = "Geschützte Spieler";
+    public static final String STATEMENT_TITLE = "Information fälschen";
     public static final String STATEMENT_BESCHREIBUNG = "Lady Aleera erwacht und verschleiert die Identität eines Spielers";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
 

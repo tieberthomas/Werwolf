@@ -6,6 +6,7 @@ import root.mechanics.Rand;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public abstract class InformationsCluster {
     public static Zeigekarte getWrongInformation(List<Zeigekarte> informations, Zeigekarte existingInformation) {
@@ -13,7 +14,7 @@ public abstract class InformationsCluster {
             return existingInformation;
         }
         List<Zeigekarte> tmpInformations = new ArrayList<>(informations);
-        tmpInformations.remove(existingInformation);
+        tmpInformations = tmpInformations.stream().filter(info -> !info.equals(existingInformation)).collect(Collectors.toList());
         return Rand.getRandomElement(tmpInformations);
     }
 }
