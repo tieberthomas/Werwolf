@@ -68,8 +68,10 @@ public class Schreckenswolf extends Hauptrolle {
     private ArrayList<Angriff> werwolfAngriffe() {
         ArrayList<Angriff> werwolfAngriffe = new ArrayList<>();
         for (Angriff angriff : NormalNight.angriffe) {
-            if (angriff.täterFraktion.equals(Werwölfe.NAME)) {
-                werwolfAngriffe.add(angriff);
+            if(angriff.täterFraktion!=null) {
+                if (angriff.täterFraktion.equals(Werwölfe.NAME)) {
+                    werwolfAngriffe.add(angriff);
+                }
             }
         }
 
