@@ -34,6 +34,7 @@ public class FirstNight extends Thread {
     public static ArrayList<Statement> statements;
     public static Object lock;
     public static ArrayList<Spieler> spielerAwake = new ArrayList<>();
+    public static ArrayList<Bonusrolle> swappedRoles = new ArrayList<>();
 
     public FirstNight(Game game) {
         this.game = game;
@@ -72,6 +73,7 @@ public class FirstNight extends Thread {
                         if (newBonusrolle.equals(bonusrolle)) {
                             title = "";
                         } else {
+                            swappedRoles.add(bonusrolle);
                             title = NEUE_KARTE_TITLE;
                         }
                         showCard(statement, title, cardToDisplay);
