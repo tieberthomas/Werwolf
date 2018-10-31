@@ -18,7 +18,7 @@ public class GrafVladimir extends Hauptrolle {
     public static final String IMAGE_PATH = ImagePath.GRAF_VLADIMIR_KARTE;
     public static final Fraktion FRAKTION = new Vampire();
 
-    public static Spieler verschleierterSpieler;
+    public static Spieler verschleierterSpieler; //TODO move to night
 
     public GrafVladimir() {
         this.name = NAME;

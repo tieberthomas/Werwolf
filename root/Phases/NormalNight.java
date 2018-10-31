@@ -160,10 +160,6 @@ public class NormalNight extends Thread {
                                         henkerNächsteSeite();
                                     } else {
                                         henkerSeiteZurück();
-                                        waitForAnswer(); //TODO remove workaround
-                                        if (Henker.pagecounter == 0) {
-                                            waitForAnswer();
-                                        }
                                     }
                                 }
 
@@ -937,7 +933,6 @@ public class NormalNight extends Thread {
     }
 
     public void showHenkerPage(FrontendControl frontendControl) {
-        System.out.println(Henker.pagecounter);
         Statement henkerStatement = statements.stream()
                 .filter(statement -> statement.id.equals(Henker.STATEMENT_ID))
                 .findAny().orElse(null);

@@ -3,7 +3,6 @@ package root.mechanics.KillLogik;
 import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Vampire;
 import root.Persona.Fraktionen.Werwölfe;
-import root.Persona.Hauptrolle;
 import root.Persona.Rolle;
 import root.Persona.Rollen.Bonusrollen.Prostituierte;
 import root.Persona.Rollen.Bonusrollen.Vampirumhang;
@@ -27,7 +26,7 @@ public class Angriff {
     public boolean killVisitors;
     public boolean refreshSchamaninSchutz;
 
-    private Hauptrolle schamanin;
+    private Spieler schamaninSpieler;
     private Spieler prostituierteSpieler;
 
     public Angriff(Spieler opfer, boolean defendable, boolean hideable, boolean ressurectable, boolean killVisitors, boolean refreshSchamaninSchutz) {
@@ -83,13 +82,13 @@ public class Angriff {
     }
 
     public void execute() {
-        schamanin = game.findSpielerPerRolle(Schamanin.NAME).hauptrolle;
+        schamaninSpieler = game.findSpielerPerRolle(Schamanin.NAME);
         prostituierteSpieler = game.findSpielerPerRolle(Prostituierte.NAME);
 
         NormalNight.angriffe.add(this);
 
         if (refreshSchamaninSchutz && opferIsGeschütztSchamanin()) {
-            schamanin.abilityCharges++;
+            schamaninSpieler.hauptrolle.abilityCharges++;
         }
 
         if (isDeadly()) {
@@ -128,7 +127,7 @@ public class Angriff {
     }
 
     private boolean opferIsGeschütztSchamanin() {
-        return Rolle.rolleLebend(Schamanin.NAME) && opfer.equals(schamanin.besucht);
+        return schamaninSpieler != null && Rolle.rolleLebend(Schamanin.NAME) && opfer.equals(schamaninSpieler.hauptrolle.besucht);
     }
 
     private boolean opferIsHiding() {

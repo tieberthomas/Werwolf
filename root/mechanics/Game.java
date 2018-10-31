@@ -539,6 +539,8 @@ public class Game {
             stilleAvalableBonusrollen.remove(spieler.bonusrolle);
         }
 
+        stilleAvalableBonusrollen.removeAll(FirstNight.swappedRoles);
+
 
         return stilleAvalableBonusrollen;
     }

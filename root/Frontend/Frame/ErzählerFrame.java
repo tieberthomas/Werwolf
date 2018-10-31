@@ -438,7 +438,6 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         } else if (ae.getSource() == addPlayerTortenButton) {
             addTortenEsser();
         } else if (ae.getSource() == henkerGoBackButton) {
-            System.out.println("zurück");
             next = false;
             triggerNext();
         } else if (deleteTortenPlayerButtons.contains(ae.getSource())) {

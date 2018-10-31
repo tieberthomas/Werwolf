@@ -5,8 +5,8 @@ import root.Frontend.FrontendControl;
 import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Werwölfe;
 import root.Persona.Hauptrolle;
-import root.Persona.Rollen.Bonusrollen.Tarnumhang;
 import root.Persona.Rollen.Constants.WölfinState;
+import root.Persona.Rollen.Hauptrollen.Vampire.GrafVladimir;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.Phases.NormalNight;
 import root.ResourceManagement.ImagePath;
@@ -70,9 +70,11 @@ public class Wölfin extends Hauptrolle {
             Spieler wölfinSpieler = NormalNight.wölfinSpieler;
             if (wölfinSpieler != null) {
                 String imagePath = wölfinSpieler.bonusrolle.imagePath;
-                if (wölfinSpieler.bonusrolle.name.equals(Tarnumhang.NAME)) {
-                    imagePath = ImagePath.TARNUMHANG;
+                
+                if (GrafVladimir.verschleierterSpieler.equals(wölfinSpieler)) {
+                    imagePath = ImagePath.AUS_DEM_SPIEL;
                 }
+
                 return new FrontendControl(FrontendControlType.IMAGE, imagePath);
             }
         }
