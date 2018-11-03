@@ -1,0 +1,20 @@
+maßnamhmen zur verkürzung der normalen nacht:
+
+folgende rollen erwachen nicht mehr in erster normalen nacht:
+wirt
+henker
+dieb ?
+riese ?
+
+folgende rollen erwachen erst wenn es etwas auszusuchen gibt:
+überläufer
+totengräber
+
+tote rollen erwachen nicht mehr wenn die erweckungs phase vorbei ist ?
+
+wenn eine fraktion offenkundig tot ist, werden das fraktionsstatement und alle rollen statements etwaiger fraktionsmitglieder gelöscht
+
+weniger bamboozelrollen
+
+Quality of Life features für Erzähler
+    -alphabetisch sortierte Listen
