@@ -16,7 +16,6 @@ gefängniswärter aufgebraucht
 
 ToDo:
 StatementType ROLLE_CHOOSE_SPIELER
-Fix Problem Dieb
 new Rolle vermeiden: immer von Liste in Game holen
 Liste für buttons Liste für Rollen
 

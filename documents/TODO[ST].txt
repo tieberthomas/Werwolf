@@ -12,6 +12,7 @@ MT:
 Freigestellt -> Weiß
 
 Nach Auslieferung:
+Liste für buttons Liste für Rollen
 Phase manager
 Analytiker generisch machen
 FirstNight generisch machen
