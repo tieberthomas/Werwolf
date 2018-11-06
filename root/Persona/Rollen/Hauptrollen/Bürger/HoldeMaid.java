@@ -14,7 +14,7 @@ public class HoldeMaid extends Hauptrolle {
     public static final String IMAGE_PATH = ImagePath.HOLDE_MAID_KARTE;
     public static final Fraktion FRAKTION = new Bürger();
 
-    public static final String STATEMENT_ID = "Holde_Maid";
+    public static final String STATEMENT_ID = ID;
     public static final String STATEMENT_TITLE = "Mitspieler offenbaren";
     public static final String STATEMENT_BESCHREIBUNG = "Holde Maid erwacht und offenbart sich einem Mitspieler";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;

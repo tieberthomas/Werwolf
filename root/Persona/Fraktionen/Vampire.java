@@ -20,7 +20,7 @@ public class Vampire extends Fraktion {
     public static final Color COLOR = Color.red;
     public static final Zeigekarte ZEIGEKARTE = new VampireZeigekarte();
 
-    public static final String STATEMENT_ID = "Vampire";
+    public static final String STATEMENT_ID = ID;
     public static final String STATEMENT_TITLE = "Opfer wählen";
     public static final String STATEMENT_BESCHREIBUNG = "Die Vampire erwachen und wählen ein Opfer aus";
     public static final StatementType STATEMENT_TYPE = StatementType.FRAKTION_CHOOSE_ONE;

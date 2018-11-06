@@ -19,7 +19,7 @@ public class Lamm extends Bonusrolle {
     public static final BonusrollenType TYPE = new Passiv();
     public static final Color COLOR = Bürger.COLOR;
 
-    public static final String FIRST_NIGHT_STATEMENT_ID = "Lamm";
+    public static final String FIRST_NIGHT_STATEMENT_ID = ID;
     public static final String FIRST_NIGHT_STATEMENT_TITLE = "Neue Karte";
     public static final String FIRST_NIGHT_STATEMENT_BESCHREIBUNG = "Lamm erwacht und tauscht ggf. seine Karte aus";
     public static final StatementType FIRST_NIGHT_STATEMENT_TYPE = StatementType.ROLLE_SPECAL;

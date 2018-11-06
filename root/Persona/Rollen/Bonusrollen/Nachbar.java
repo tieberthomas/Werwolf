@@ -18,7 +18,7 @@ public class Nachbar extends Bonusrolle {
     public static final String IMAGE_PATH = ImagePath.NACHBAR_KARTE;
     public static final BonusrollenType TYPE = new Informativ();
 
-    public static final String STATEMENT_ID = "Nachbar";
+    public static final String STATEMENT_ID = ID;
     public static final String STATEMENT_TITLE = "Spieler wählen";
     public static final String STATEMENT_BESCHREIBUNG = "Nachbar erwacht, wählt einen Spieler und erfährt wer diesen Spieler besucht hat";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE_INFO;

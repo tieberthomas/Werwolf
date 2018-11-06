@@ -14,7 +14,7 @@ public class Seelenlicht extends Bonusrolle {
     public static final String IMAGE_PATH = ImagePath.SEELENLICHT_KARTE;
     public static final BonusrollenType TYPE = new Passiv();
 
-    public static final String FIRST_NIGHT_STATEMENT_ID = "Seelenlicht";
+    public static final String FIRST_NIGHT_STATEMENT_ID = ID;
     public static final String FIRST_NIGHT_STATEMENT_TITLE = "Neue Karte";
     public static final String FIRST_NIGHT_STATEMENT_BESCHREIBUNG = "Seelenlicht erwacht und tauscht seine Karte je nach Hauptrolle aus";
     public static final StatementType FIRST_NIGHT_STATEMENT_TYPE = StatementType.ROLLE_SPECAL;

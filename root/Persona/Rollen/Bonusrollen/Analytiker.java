@@ -19,7 +19,7 @@ public class Analytiker extends Bonusrolle {
     public static final String IMAGE_PATH = ImagePath.ANALYTIKER_KARTE;
     public static final BonusrollenType TYPE = new Informativ();
 
-    public static final String STATEMENT_ID = "Analytiker";
+    public static final String STATEMENT_ID = ID;
     public static final String STATEMENT_TITLE = "Spieler wählen";
     public static final String STATEMENT_BESCHREIBUNG = "Analytiker erwacht und wählt zwei Spieler, der Erzähler sagt ihm ob diese in derselben Fraktion sind";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_SPECAL;

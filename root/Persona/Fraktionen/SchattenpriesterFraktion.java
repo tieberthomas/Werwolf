@@ -24,7 +24,7 @@ public class SchattenpriesterFraktion extends Fraktion {
     public static final Color COLOR = Color.lightGray;
     public static final Zeigekarte ZEIGEKARTE = new SchattenpriesterZeigekarte();
 
-    public static final String STATEMENT_ID = "Schattenpriester_Fraktion";
+    public static final String STATEMENT_ID = ID;
     public static final String STATEMENT_TITLE = "Opfer wiederbeleben";
     public static final String STATEMENT_BESCHREIBUNG = "Die Schattenpriester erwachen und entscheiden welchen Verstorbenen dieser Nacht sie wiederbeleben und zum Kult hinzufügen möchten";
     public static final StatementType STATEMENT_TYPE = StatementType.FRAKTION_CHOOSE_ONE;

@@ -19,7 +19,7 @@ public class Schreckenswolf extends Hauptrolle {
     public static final String IMAGE_PATH = ImagePath.SCHRECKENSWOLF_KARTE;
     public static final Fraktion FRAKTION = new Werwölfe();
 
-    public static final String STATEMENT_ID = "Schreckenswolf";
+    public static final String STATEMENT_ID = ID;
     public static final String STATEMENT_TITLE = "Mitspieler verstummen";
     public static final String STATEMENT_BESCHREIBUNG = "Schreckenswolf erwacht und verstummt ggf. einen Spieler der am folgenden Tag nichtmehr reden darf";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_SPECAL;

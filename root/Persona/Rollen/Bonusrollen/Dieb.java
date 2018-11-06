@@ -18,7 +18,7 @@ public class Dieb extends Bonusrolle {
     public static final String IMAGE_PATH = ImagePath.DIEB_KARTE;
     public static final BonusrollenType TYPE = new Aktiv();
 
-    public static final String STATEMENT_ID = "Dieb";
+    public static final String STATEMENT_ID = ID;
     public static final String STATEMENT_TITLE = "Bonusrolle stehlen";
     public static final String STATEMENT_BESCHREIBUNG = "Dieb erwacht und entscheidet, ob er jemandes Bonusrolle stehlen möchte";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;

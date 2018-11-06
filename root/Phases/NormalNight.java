@@ -216,7 +216,7 @@ public class NormalNight extends Thread {
                             showFrontendControl(statement, dropdownOptions);
                             break;
 
-                        case Irrlicht.SECOND_STATEMENT_ID:
+                        case Irrlicht.INFO:
                             info = Irrlicht.processFlackerndeIrrlichter(FrontendControl.getFlackerndeIrrlichter());
                             showFrontendControl(statement, info);
                             break;

@@ -14,7 +14,7 @@ public class Gefängniswärter extends Bonusrolle {
     public static final String IMAGE_PATH = ImagePath.GEFÄNGNISWÄRTER_KARTE;
     public static final BonusrollenType TYPE = new Aktiv();
 
-    public static final String STATEMENT_ID = "Gefängniswärter";
+    public static final String STATEMENT_ID = ID;
     public static final String STATEMENT_TITLE = "Schutzhaft";
     public static final String STATEMENT_BESCHREIBUNG = "Gefängniswärter erwacht und stellt einen Spieler  unter Schutzhaft";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;

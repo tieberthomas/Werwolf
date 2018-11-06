@@ -19,7 +19,7 @@ public class Wolfspelz extends Bonusrolle {
     public static final BonusrollenType TYPE = new Passiv();
     public static final Color COLOR = Werwölfe.COLOR;
 
-    public static final String FIRST_NIGHT_STATEMENT_ID = "Wolfspelz";
+    public static final String FIRST_NIGHT_STATEMENT_ID = ID;
     public static final String FIRST_NIGHT_STATEMENT_TITLE = "Neue Karte";
     public static final String FIRST_NIGHT_STATEMENT_BESCHREIBUNG = "Träger des Wolfspelzes erwacht und tauscht ggf. seine Karte aus";
     public static final StatementType FIRST_NIGHT_STATEMENT_TYPE = StatementType.ROLLE_SPECAL;

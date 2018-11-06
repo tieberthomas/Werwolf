@@ -20,12 +20,12 @@ public class Irrlicht extends Hauptrolle {
     public static final String IMAGE_PATH = ImagePath.IRRLICHT_KARTE;
     public static final Fraktion FRAKTION = new Bürger();
 
-    public static final String STATEMENT_ID = "Irrlicht";
+    public static final String STATEMENT_ID = ID;
     public static final String STATEMENT_TITLE = "Flackern";
     public static final String STATEMENT_BESCHREIBUNG = "Irrlichter entscheiden sich, ob sie flackern möchten";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
 
-    public static final String SECOND_STATEMENT_ID = "Irrlicht_Info";
+    public static final String INFO = "Irrlicht_Info";
     public static final String SECOND_STATEMENT_TITLE = "anderes Irrlicht";
     public static final String SECOND_STATEMENT_BESCHREIBUNG = "Irrlicht erwacht und erfährt ein anderes Irrlicht";
     public static final StatementType SECOND_STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
@@ -45,7 +45,7 @@ public class Irrlicht extends Hauptrolle {
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;
 
-        this.secondStatementID = SECOND_STATEMENT_ID;
+        this.secondStatementID = INFO;
         this.secondStatementTitle = SECOND_STATEMENT_TITLE;
         this.secondStatementBeschreibung = SECOND_STATEMENT_BESCHREIBUNG;
         this.secondStatementType = SECOND_STATEMENT_TYPE;

@@ -19,7 +19,7 @@ public class Chemiker extends Hauptrolle {
     public static final String IMAGE_PATH = ImagePath.CHEMIKER_KARTE;
     public static final Fraktion FRAKTION = new Werwölfe();
 
-    public static final String STATEMENT_ID = "Chemiker";
+    public static final String STATEMENT_ID = ID;
     public static final String STATEMENT_TITLE = "Opfer wiederbeleben";
     public static final String STATEMENT_BESCHREIBUNG = "Chemiker erwacht und kann ein Wolfsopfer dieser Nacht wiederbeleben und zum Wolfsrudel hinzufügen";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;

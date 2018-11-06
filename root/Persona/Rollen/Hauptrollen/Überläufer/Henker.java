@@ -33,7 +33,7 @@ public class Henker extends Hauptrolle {
     public static final String IMAGE_PATH = ImagePath.HENKER_KARTE;
     public static final Fraktion FRAKTION = new ÜberläuferFraktion();
 
-    public static final String STATEMENT_ID = "Henker hängen";
+    public static final String STATEMENT_ID = ID;
     public static final String SUCCESSFUL_KILL_TITLE = "Erfolgreiche Hängung";
     public static final String SPIELER_TITLE = "Person hängen";
     public static final String FRAKTION_TITLE = "Fraktion wählen";
@@ -44,7 +44,7 @@ public class Henker extends Hauptrolle {
     public static final String STATEMENT_BESCHREIBUNG = "Henker erawcht und versucht die Rollen eines Mitspielers zu erraten";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
 
-    public static final String FIRST_NIGHT_STATEMENT_ID = "Henker";
+    public static final String FIRST_NIGHT_STATEMENT_ID = "First_Night_Henker";
     public static final String FIRST_NIGHT_STATEMENT_TITLE = "Nicht im Spiel";
     public static final String FIRST_NIGHT_STATEMENT_BESCHREIBUNG = "Henker erwacht und erfährt eine Bürgerrolle die nicht im Spiel ist";
     public static final StatementType FIRST_NIGHT_STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
