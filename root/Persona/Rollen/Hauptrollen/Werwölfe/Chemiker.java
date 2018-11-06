@@ -75,14 +75,16 @@ public class Chemiker extends Hauptrolle {
         ArrayList<String> resurrectableOpfer = new ArrayList<>();
 
         for (Opfer currentOpfer : NormalNight.opfer) {
-            String opferFraktion = currentOpfer.spieler.hauptrolle.fraktion.name;
-            String täterFraktion = currentOpfer.täterFraktion.name;
+            if(currentOpfer.täterFraktion != null) {
+                String opferFraktion = currentOpfer.spieler.hauptrolle.fraktion.name;
+                String täterFraktion = currentOpfer.täterFraktion.name;
 
-            if (currentOpfer.spieler.ressurectable) {
-                if (täterFraktion.equals(Werwölfe.NAME)) {
-                    if (!opferFraktion.equals(Werwölfe.NAME)) {
-                        if (!resurrectableOpfer.contains(currentOpfer.spieler.name)) {
-                            resurrectableOpfer.add(currentOpfer.spieler.name);
+                if (currentOpfer.spieler.ressurectable) {
+                    if (täterFraktion.equals(Werwölfe.NAME)) {
+                        if (!opferFraktion.equals(Werwölfe.NAME)) {
+                            if (!resurrectableOpfer.contains(currentOpfer.spieler.name)) {
+                                resurrectableOpfer.add(currentOpfer.spieler.name);
+                            }
                         }
                     }
                 }
