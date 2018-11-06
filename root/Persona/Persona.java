@@ -11,6 +11,7 @@ import java.awt.*;
 public class Persona {
     public static Game game;
 
+    public String id = "";
     public String name = "";
     public String imagePath = ImagePath.AUS_DEM_SPIEL;
 

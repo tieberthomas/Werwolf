@@ -19,6 +19,7 @@ public class Medium extends Bonusrolle {
 
     private static final String NO_BONUSROLES_OUT_OF_GAME = "Es sind alle Bonusrollen im Spiel";
 
+    public static final String ID = "Medium";
     public static final String NAME = "Medium";
     public static final String IMAGE_PATH = ImagePath.MEDIUM_KARTE;
     public static final BonusrollenType TYPE = new Informativ();
@@ -26,6 +27,7 @@ public class Medium extends Bonusrolle {
     private static ArrayList<String> geseheneBonusrollen = new ArrayList<>();
 
     public Medium() {
+        this.id = ID;
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
         this.type = TYPE;

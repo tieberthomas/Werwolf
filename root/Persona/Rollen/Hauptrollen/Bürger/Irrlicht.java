@@ -27,6 +27,7 @@ public class Irrlicht extends Hauptrolle {
 
     private static final String LAST_IRRLICHT_MESSAGE = "Du bist das letzte Irrlicht";
 
+    public static final String ID = "Irrlicht";
     public static final String NAME = "Irrlicht";
     public static final String IMAGE_PATH = ImagePath.IRRLICHT_KARTE;
     public static final Fraktion FRAKTION = new Bürger();
@@ -34,6 +35,7 @@ public class Irrlicht extends Hauptrolle {
     private static ArrayList<String> geseheneIrrlichter = new ArrayList<>();
 
     public Irrlicht() {
+        this.id = ID;
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
         this.fraktion = FRAKTION;

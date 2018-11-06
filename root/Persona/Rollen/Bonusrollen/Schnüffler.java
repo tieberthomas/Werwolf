@@ -20,6 +20,7 @@ public class Schnüffler extends Bonusrolle {
     public static final String STATEMENT_BESCHREIBUNG = "Schnüffler erwacht und lässt sich Auskunft über einen Mitspieler geben";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE_INFO;
 
+    public static final String ID = "Schnüffler";
     public static final String NAME = "Schnüffler";
     public static final String IMAGE_PATH = ImagePath.SCHNÜFFLER_KARTE;
     public static final BonusrollenType TYPE = new Informativ();
@@ -28,6 +29,7 @@ public class Schnüffler extends Bonusrolle {
     public ArrayList<SchnüfflerInformation> informationen = new ArrayList<>(); //TODO wenn dieb schnüffler nimmt dann neu anlegen
 
     public Schnüffler() {
+        this.id = ID;
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
         this.type = TYPE;

@@ -17,11 +17,13 @@ public class Totengräber extends Bonusrolle {
     public static final String STATEMENT_BESCHREIBUNG = "Totengräber erwacht und entscheidet, ob er seine Bonusrollenkarte tauschen möchte";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
 
+    public static final String ID = "Totengräber";
     public static final String NAME = "Totengräber";
     public static final String IMAGE_PATH = ImagePath.TOTENGRÄBER_KARTE;
     public static final BonusrollenType TYPE = new Aktiv();
 
     public Totengräber() {
+        this.id = ID;
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
         this.type = TYPE;

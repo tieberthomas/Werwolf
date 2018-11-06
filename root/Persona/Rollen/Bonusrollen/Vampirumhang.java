@@ -17,12 +17,14 @@ public class Vampirumhang extends Bonusrolle {
     public static final String FIRST_NIGHT_STATEMENT_BESCHREIBUNG = "Träger des Vampirumhangs erwacht und tauscht ggf. seine Karte aus";
     public static final StatementType FIRST_NIGHT_STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
 
+    public static final String ID = "Vampirumhang";
     public static final String NAME = "Vampirumhang";
     public static final String IMAGE_PATH = ImagePath.VAMPIRUMHANG_KARTE;
     public static final BonusrollenType TYPE = new Passiv();
     public static final Color COLOR = Vampire.COLOR;
 
     public Vampirumhang() {
+        this.id = ID;
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
         this.type = TYPE;

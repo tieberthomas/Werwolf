@@ -24,11 +24,13 @@ public class Chemiker extends Hauptrolle {
     public static final String SECOND_STATEMENT_BESCHREIBUNG = "Der Wiederbelebte erwacht und tauscht seine Hauptrollen- gegen eine Werwolfkarte";
     public static final StatementType SECOND_STATEMENT_TYPE = StatementType.FRAKTION_SPECAL;
 
+    public static final String ID = "Chemiker";
     public static final String NAME = "Chemiker";
     public static final String IMAGE_PATH = ImagePath.CHEMIKER_KARTE;
     public static final Fraktion FRAKTION = new Werwölfe();
 
     public Chemiker() {
+        this.id = ID;
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
         this.fraktion = FRAKTION;

@@ -19,11 +19,13 @@ public class Konditorlehrling extends Bonusrolle {
     public static final String STATEMENT_BESCHREIBUNG = "Konditor und Konditorlehrling erwachen und entscheiden sich ob es eine gute oder schlechte Torte gibt";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
 
+    public static final String ID = "Konditorlehrling";
     public static final String NAME = "Konditorlehrling";
     public static final String IMAGE_PATH = ImagePath.KONDITORLEHRLING_KARTE;
     public static final BonusrollenType TYPE = new Aktiv();
 
     public Konditorlehrling() {
+        this.id = ID;
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
         this.type = TYPE;

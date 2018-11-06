@@ -17,12 +17,14 @@ public class Wolfspelz extends Bonusrolle {
     public static final String FIRST_NIGHT_STATEMENT_BESCHREIBUNG = "Träger des Wolfspelzes erwacht und tauscht ggf. seine Karte aus";
     public static final StatementType FIRST_NIGHT_STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
 
+    public static final String ID = "Wolfspelz";
     public static final String NAME = "Wolfspelz";
     public static final String IMAGE_PATH = ImagePath.WOLFSPELZ_KARTE;
     public static final BonusrollenType TYPE = new Passiv();
     public static final Color COLOR = Werwölfe.COLOR;
 
     public Wolfspelz() {
+        this.id = ID;
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
         this.type = TYPE;

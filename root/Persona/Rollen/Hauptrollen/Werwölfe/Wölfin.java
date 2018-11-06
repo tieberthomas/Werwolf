@@ -24,12 +24,14 @@ public class Wölfin extends Hauptrolle {
     public static final String SECOND_STATEMENT_BESCHREIBUNG = "Das Dorf erfährt die Bonusrolle der Wölfin";
     public static final StatementType SECOND_STATEMENT_TYPE = StatementType.ROLLE_INFO;
 
+    public static final String ID = "Wölfin";
     public static final String NAME = "Wölfin";
     public static final String IMAGE_PATH = ImagePath.WÖLFIN_KARTE;
     public static final Fraktion FRAKTION = new Werwölfe();
     public static WölfinState state = WölfinState.WARTEND;
 
     public Wölfin() {
+        this.id = ID;
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
         this.fraktion = FRAKTION;

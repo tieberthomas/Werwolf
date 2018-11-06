@@ -24,11 +24,13 @@ public class Schreckenswolf extends Hauptrolle {
     public static final String SECOND_STATEMENT_BESCHREIBUNG = "Der verstummte Spieler wird bekannt gegeben";
     public static final StatementType SECOND_STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
 
+    public static final String ID = "Schreckenswolf";
     public static final String NAME = "Schreckenswolf";
     public static final String IMAGE_PATH = ImagePath.SCHRECKENSWOLF_KARTE;
     public static final Fraktion FRAKTION = new Werwölfe();
 
     public Schreckenswolf() {
+        this.id = ID;
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
         this.fraktion = FRAKTION;

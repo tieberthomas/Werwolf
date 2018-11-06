@@ -14,11 +14,13 @@ public class Wolfsmensch extends Hauptrolle {
     public static final String FIRST_NIGHT_STATEMENT_BESCHREIBUNG = "Wolfsmensch erwacht und erfährt eine Bürgerrolle die nicht im Spiel ist";
     public static final StatementType FIRST_NIGHT_STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
 
+    public static final String ID = "Wolfsmensch";
     public static final String NAME = "Wolfsmensch";
     public static final String IMAGE_PATH = ImagePath.WOLFSMENSCH_KARTE;
     public static final Fraktion FRAKTION = new Werwölfe();
 
     public Wolfsmensch() {
+        this.id = ID;
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
         this.fraktion = FRAKTION;

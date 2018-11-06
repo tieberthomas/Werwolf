@@ -19,11 +19,13 @@ public class Spurenleser extends Bonusrolle {
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE_INFO;
     public static final String INFO_TITLE = "Besuchte Spieler von ";
 
+    public static final String ID = "Spurenleser";
     public static final String NAME = "Spurenleser";
     public static final String IMAGE_PATH = ImagePath.SPURENLESER_KARTE;
     public static final BonusrollenType TYPE = new Informativ();
 
     public Spurenleser() {
+        this.id = ID;
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
         this.type = TYPE;

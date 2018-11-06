@@ -19,6 +19,7 @@ public class Analytiker extends Bonusrolle {
     public static final String STATEMENT_BESCHREIBUNG = "Analytiker erwacht und wählt zwei Spieler, der Erzähler sagt ihm ob diese in derselben Fraktion sind";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
 
+    public static final String ID = "Analytiker";
     public static final String NAME = "Analytiker";
     public static final String IMAGE_PATH = ImagePath.ANALYTIKER_KARTE;
     public static final BonusrollenType TYPE = new Informativ();
@@ -27,6 +28,7 @@ public class Analytiker extends Bonusrolle {
     public Spieler besuchtAnalysieren = null;
 
     public Analytiker() {
+        this.id = ID;
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
         this.type = TYPE;

@@ -18,11 +18,13 @@ public class Überläufer extends Hauptrolle {
     public static final String STATEMENT_BESCHREIBUNG = "Überläufer erwacht und entscheidet ob er seine Hauptrollenkarte tauschen möchte";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
 
+    public static final String ID = "Überläufer";
     public static final String NAME = "Überläufer";
     public static final String IMAGE_PATH = ImagePath.ÜBERLÄUFER_KARTE;
     public static final Fraktion FRAKTION = new Überläufer_Fraktion();
 
     public Überläufer() {
+        this.id = ID;
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
         this.fraktion = FRAKTION;

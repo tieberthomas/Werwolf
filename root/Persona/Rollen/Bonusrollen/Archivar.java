@@ -15,11 +15,13 @@ public class Archivar extends Bonusrolle {
     public static final String STATEMENT_BESCHREIBUNG = "Archivar erwacht und lässt sich Auskunft über die Bonusrolle eines Mitspielers geben";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE_INFO;
 
+    public static final String ID = "Archivar";
     public static final String NAME = "Archivar";
     public static final String IMAGE_PATH = ImagePath.ARCHIVAR_KARTE;
     public static final BonusrollenType TYPE = new Informativ();
 
     public Archivar() {
+        this.id = ID;
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
         this.type = TYPE;

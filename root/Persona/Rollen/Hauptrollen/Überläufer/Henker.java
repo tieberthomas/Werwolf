@@ -44,6 +44,7 @@ public class Henker extends Hauptrolle {
     public static final String STATEMENT_BESCHREIBUNG = "Henker erawcht und versucht die Rollen eines Mitspielers zu erraten";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
 
+    public static final String ID = "Henker";
     public static final String NAME = "Henker";
     public static final String IMAGE_PATH = ImagePath.HENKER_KARTE;
     public static final Fraktion FRAKTION = new Überläufer_Fraktion();
@@ -59,6 +60,7 @@ public class Henker extends Hauptrolle {
     public static Bonusrolle chosenBonusrolle;
 
     public Henker() {
+        this.id = ID;
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
         this.fraktion = FRAKTION;

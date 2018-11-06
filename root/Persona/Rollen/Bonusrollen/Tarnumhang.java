@@ -22,6 +22,7 @@ public class Tarnumhang extends Bonusrolle {
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_INFO;
     public static final String KEINE_UMHÄNGE = "Es sind keine Umhangträger mehr im Spiel";
 
+    public static final String ID = "Tarnumhang";
     public static final String NAME = "Tarnumhang";
     public static final String IMAGE_PATH = ImagePath.TARNUMHANG_KARTE;
     public static final BonusrollenType TYPE = new Tarnumhang_BonusrollenType();
@@ -32,6 +33,7 @@ public class Tarnumhang extends Bonusrolle {
     public ArrayList<String> seenSpieler = new ArrayList<>(); //TODO wenn dieb Tarnumhang nimmt dann neu anlegen
 
     public Tarnumhang() {
+        this.id = ID;
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
         this.type = TYPE;

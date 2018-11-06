@@ -14,6 +14,7 @@ public class Prostituierte extends Bonusrolle {
     public static final String STATEMENT_BESCHREIBUNG = "Prostituierte legt sich zu einem Mitspieler ins Bett";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
 
+    public static final String ID = "Prostituierte";
     public static final String NAME = "Prostituierte";
     public static final String IMAGE_PATH = ImagePath.PROSTITUIERTE_KARTE;
     public static final BonusrollenType TYPE = new Aktiv();
@@ -21,6 +22,7 @@ public class Prostituierte extends Bonusrolle {
     public static Spieler host;
 
     public Prostituierte() {
+        this.id = ID;
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
         this.type = TYPE;

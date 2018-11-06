@@ -33,6 +33,7 @@ public class Schattenpriester_Fraktion extends Fraktion {
     public static final String FIRST_NIGHT_STATEMENT_BESCHREIBUNG = "Die Schattenpriester erwachen und sehen einander";
     public static final StatementType FIRST_NIGHT_STATEMENT_TYPE = StatementType.FRAKTION_SPECAL;
 
+    public static final String ID = "Schattenpriester_Fraktion";
     public static final String NAME = "Schattenpriester";
     public static final String IMAGE_PATH = ImagePath.SCHATTENPRIESTER_ICON;
     public static final Color COLOR = Color.lightGray;
@@ -41,6 +42,7 @@ public class Schattenpriester_Fraktion extends Fraktion {
     public static int deadSchattenPriester = 0;
 
     public Schattenpriester_Fraktion() {
+        this.id = ID;
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
 

@@ -22,6 +22,7 @@ public class Orakel extends Hauptrolle {
 
     private static final String LAST_BUERGER_MESSAGE = "Du bist der letzte Bürger";
 
+    public static final String ID = "Orakel";
     public static final String NAME = "Orakel";
     public static final String IMAGE_PATH = ImagePath.ORAKEL_KARTE;
     public static final Fraktion FRAKTION = new Bürger();
@@ -29,6 +30,7 @@ public class Orakel extends Hauptrolle {
     private static ArrayList<String> geseheneBonusrollen = new ArrayList<>();
 
     public Orakel() {
+        this.id = ID;
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
         this.fraktion = FRAKTION;

@@ -16,11 +16,13 @@ public class Späher extends Hauptrolle {
     public static final String STATEMENT_BESCHREIBUNG = "Späher erwacht und lässt sich Auskunft über einen Mitspieler geben";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE_INFO;
 
+    public static final String ID = "Späher";
     public static final String NAME = "Späher";
     public static final String IMAGE_PATH = ImagePath.SPÄHER_KARTE;
     public static final Fraktion FRAKTION = new Bürger();
 
     public Späher() {
+        this.id = ID;
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
         this.fraktion = FRAKTION;

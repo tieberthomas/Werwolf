@@ -19,11 +19,13 @@ public class Nachbar extends Bonusrolle {
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE_INFO;
     public static final String INFO_TITLE = "Besucher von ";
 
+    public static final String ID = "Nachbar";
     public static final String NAME = "Nachbar";
     public static final String IMAGE_PATH = ImagePath.NACHBAR_KARTE;
     public static final BonusrollenType TYPE = new Informativ();
 
     public Nachbar() {
+        this.id = ID;
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
         this.type = TYPE;

@@ -24,12 +24,14 @@ public class Vampire extends Fraktion {
     public static final String FIRST_NIGHT_STATEMENT_BESCHREIBUNG = "Die Vampire erwachen und sehen einander";
     public static final StatementType FIRST_NIGHT_STATEMENT_TYPE = StatementType.FRAKTION_SPECAL;
 
+    public static final String ID = "Vampire";
     public static final String NAME = "Vampire";
     public static final String IMAGE_PATH = ImagePath.VAMPIRE_ICON;
     public static final Color COLOR = Color.red;
     public static final Zeigekarte zeigekarte = new VampireZeigekarte();
 
     public Vampire() {
+        this.id = ID;
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
 

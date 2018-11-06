@@ -19,12 +19,14 @@ public class Wirt extends Hauptrolle {
     public static final String STATEMENT_BESCHREIBUNG = "Wirt erwacht und entscheidet sich, ob er Freibier ausgeben will";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
 
+    public static final String ID = "Wirt";
     public static final String NAME = "Wirt";
     public static final String IMAGE_PATH = ImagePath.WIRT_KARTE;
     public static final Fraktion FRAKTION = new Bürger();
     public static int freibierCharges = 1;
 
     public Wirt() {
+        this.id = ID;
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
         this.fraktion = FRAKTION;
