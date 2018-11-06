@@ -232,7 +232,7 @@ public class FirstNight extends Thread {
             statement.title = spieler.name;
 
             String imagePath = spieler.bonusrolle.imagePath;
-            if (spieler.bonusrolle.name.equals(Tarnumhang.NAME)) {
+            if (spieler.bonusrolle.equals(Tarnumhang.NAME)) {
                 imagePath = ImagePath.TARNUMHANG;
                 statement.title = TARNUMHANG_TITLE;
             }

@@ -33,7 +33,7 @@ public class ÜbersichtsPageFactory {
 
         Liebespaar liebespaar = übersichtsFrame.game.liebespaar;
 
-        if (liebespaar != null && liebespaar.spieler1 != null && !liebespaar.spieler1.name.equals(liebespaar.spieler2.name)) {
+        if (liebespaar != null && liebespaar.spieler1 != null && !liebespaar.spieler1.equals(liebespaar.spieler2)) {
             liebespaarLabel = pageElementFactory.generateLabel(null, "Liebespaar: " + liebespaar.spieler1.name + ", " + liebespaar.spieler2.name);
             übersichtsPage.add(liebespaarLabel);
         }

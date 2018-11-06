@@ -33,7 +33,7 @@ public class Opfer {
 
     public static boolean isOpferPerRolle(String name) {
         for (Opfer currentOpfer : NormalNight.opfer) {
-            if (currentOpfer.spieler.hauptrolle.name.equals(name) || currentOpfer.spieler.bonusrolle.name.equals(name)) {
+            if (currentOpfer.spieler.hauptrolle.equals(name) || currentOpfer.spieler.bonusrolle.equals(name)) {
                 return true;
             }
         }

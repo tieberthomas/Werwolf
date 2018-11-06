@@ -70,14 +70,14 @@ public class Nachbar extends Bonusrolle {
 
         if (beobachteterSpieler != null) {
             for (Spieler spieler : game.getLivingSpieler()) {
-                if (spieler.hauptrolle.besucht != null && spieler.hauptrolle.besucht.name.equals(beobachteterSpieler.name) ||
-                        (spieler.bonusrolle.besucht != null && spieler.bonusrolle.besucht.name.equals(beobachteterSpieler.name))) {
+                if (spieler.hauptrolle.besucht != null && spieler.hauptrolle.besucht.equals(beobachteterSpieler) ||
+                        (spieler.bonusrolle.besucht != null && spieler.bonusrolle.besucht.equals(beobachteterSpieler))) {
                     besucher.add(spieler.name);
                 }
 
-                if (!besucher.contains(spieler.name) && spieler.bonusrolle.name.equals(Analytiker.NAME)) {
+                if (!besucher.contains(spieler.name) && spieler.bonusrolle.equals(Analytiker.NAME)) {
                     Analytiker analytiker = (Analytiker) spieler.bonusrolle;
-                    if (analytiker.besuchtAnalysieren != null && analytiker.besuchtAnalysieren.name.equals(beobachteterSpieler.name)) {
+                    if (analytiker.besuchtAnalysieren != null && analytiker.besuchtAnalysieren.equals(beobachteterSpieler)) {
                         besucher.add(spieler.name);
                     }
                 }

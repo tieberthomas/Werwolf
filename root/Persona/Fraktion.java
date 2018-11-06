@@ -20,7 +20,7 @@ public class Fraktion extends Persona {
         ArrayList<Spieler> fraktionsMembers = new ArrayList<>();
 
         for (Spieler currentSpieler : game.spieler) {
-            if (currentSpieler.lebend && currentSpieler.hauptrolle.fraktion.name.equals(fraktion)) {
+            if (currentSpieler.lebend && currentSpieler.hauptrolle.fraktion.equals(fraktion)) {
                 fraktionsMembers.add(currentSpieler);
             }
         }
@@ -32,7 +32,7 @@ public class Fraktion extends Persona {
         int numberOfFraktionsMembersInGame = 0;
 
         for (Hauptrolle currentHautprolle : game.hauptrollenInGame) {
-            if (currentHautprolle.fraktion.name.equals(this.name)) {
+            if (currentHautprolle.fraktion.equals(this)) {
                 numberOfFraktionsMembersInGame++;
             }
         }
@@ -44,7 +44,7 @@ public class Fraktion extends Persona {
         ArrayList<String> fraktionsMembers = new ArrayList<>();
 
         for (Spieler currentSpieler : game.spieler) {
-            if (currentSpieler.lebend && currentSpieler.hauptrolle.fraktion.name.equals(fraktion)) {
+            if (currentSpieler.lebend && currentSpieler.hauptrolle.fraktion.equals(fraktion)) {
                 fraktionsMembers.add(currentSpieler.name);
             }
         }
@@ -75,7 +75,7 @@ public class Fraktion extends Persona {
 
     public static boolean fraktionLebend(String fraktion) {
         for (Spieler currentSpieler : game.spieler) {
-            if (currentSpieler.hauptrolle.fraktion.name.equals(fraktion) && currentSpieler.lebend) {
+            if (currentSpieler.hauptrolle.fraktion.equals(fraktion) && currentSpieler.lebend) {
                 return true;
             }
         }
@@ -93,14 +93,14 @@ public class Fraktion extends Persona {
 
         int numberHauptrollenInGame = 0;
         for (Hauptrolle hauptrolle : game.hauptrollenInGame) {
-            if (hauptrolle.fraktion.name.equals(fraktion)) {
+            if (hauptrolle.fraktion.equals(fraktion)) {
                 numberHauptrollenInGame++;
             }
         }
 
         int numberMitteHauptrollen = 0;
         for (Hauptrolle mitteHauptrolle : game.mitteHauptrollen) {
-            if (mitteHauptrolle.fraktion.name.equals(fraktion)) {
+            if (mitteHauptrolle.fraktion.equals(fraktion)) {
                 numberMitteHauptrollen++;
             }
         }
@@ -231,7 +231,7 @@ public class Fraktion extends Persona {
 
     public static Fraktion findFraktion(String searchedFraktion) {
         for (Hauptrolle currentHautprolle : game.hauptrollen) {
-            if (currentHautprolle.fraktion.name.equals(searchedFraktion)) {
+            if (currentHautprolle.fraktion.equals(searchedFraktion)) {
                 return currentHautprolle.fraktion;
             }
         }

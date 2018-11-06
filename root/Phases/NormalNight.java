@@ -140,7 +140,7 @@ public class NormalNight extends Thread {
 
                     switch (statement.id) {
                         case Wirt.STATEMENT_ID:
-                            if (DropdownConstants.JA.name.equals(chosenOption)) {
+                            if (DropdownConstants.JA.equals(chosenOption)) {
                                 game.freibier = true;
                             }
                             break;
@@ -194,7 +194,7 @@ public class NormalNight extends Thread {
                             if (chosenSpieler != null) {
                                 neuerSchattenpriester = chosenSpieler.name;
 
-                                if (!chosenSpieler.hauptrolle.fraktion.name.equals(SchattenpriesterFraktion.NAME)) {
+                                if (!chosenSpieler.hauptrolle.fraktion.equals(SchattenpriesterFraktion.NAME)) {
                                     erzählerInfoIconImagePath = Schattenkutte.IMAGE_PATH;
                                 }
                             }
@@ -353,7 +353,7 @@ public class NormalNight extends Thread {
             currentBonusrolle.besuchtLastNight = currentBonusrolle.besucht;
             currentBonusrolle.besucht = null;
 
-            if (currentBonusrolle.name.equals(Analytiker.NAME)) {
+            if (currentBonusrolle.equals(Analytiker.NAME)) {
                 ((Analytiker) currentBonusrolle).besuchtAnalysieren = null;
             }
         }
@@ -366,7 +366,7 @@ public class NormalNight extends Thread {
         for (Spieler currentSpieler : game.spieler) {
             Hauptrolle hauptrolleSpieler = currentSpieler.hauptrolle;
 
-            if (hauptrolleSpieler.name.equals(Schattenpriester.NAME)) {
+            if (hauptrolleSpieler.equals(Schattenpriester.NAME)) {
                 if (((Schattenpriester) hauptrolleSpieler).neuster) {
                     currentSpieler.geschützt = true;
                     ((Schattenpriester) hauptrolleSpieler).neuster = false;
@@ -442,7 +442,7 @@ public class NormalNight extends Thread {
     public void killOpfer() {
         for (Opfer currentOpfer : opfer) {
             if (Rolle.rolleLebend(Blutwolf.NAME)) {
-                if (currentOpfer.fraktionsTäter && currentOpfer.täterFraktion.name.equals(Werwölfe.NAME)) {
+                if (currentOpfer.fraktionsTäter && currentOpfer.täterFraktion.equals(Werwölfe.NAME)) {
                     Blutwolf.deadStacks++;
                     if (Blutwolf.deadStacks >= 2) {
                         Blutwolf.deadly = true;
@@ -463,10 +463,10 @@ public class NormalNight extends Thread {
         if (liebespaar != null && liebespaar.spieler1 != null && liebespaar.spieler2 != null) {
 
             for (Opfer currentOpfer : opfer) {
-                if (currentOpfer.spieler.name.equals(liebespaar.spieler1.name)) {
+                if (currentOpfer.spieler.equals(liebespaar.spieler1)) {
                     spieler1Lebend = false;
                 }
-                if (currentOpfer.spieler.name.equals(liebespaar.spieler2.name)) {
+                if (currentOpfer.spieler.equals(liebespaar.spieler2)) {
                     spieler2Lebend = false;
                 }
             }

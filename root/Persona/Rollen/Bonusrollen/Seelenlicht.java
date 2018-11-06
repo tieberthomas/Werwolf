@@ -46,7 +46,7 @@ public class Seelenlicht extends Bonusrolle {
         if (spieler != null) {
             Bonusrolle bonusrolle;
 
-            if (spieler.hauptrolle.fraktion.name.equals(Bürger.NAME)) {
+            if (spieler.hauptrolle.fraktion.equals(Bürger.NAME)) {
                 bonusrolle = new ReineSeele();
             } else {
                 bonusrolle = new SchwarzeSeele();

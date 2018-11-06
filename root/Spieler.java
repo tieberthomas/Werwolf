@@ -69,7 +69,7 @@ public class Spieler {
         return bonusrolle;
     }
 
-    public String getName() {
+    public String getName() { //TODO remove
         return name;
     }
 

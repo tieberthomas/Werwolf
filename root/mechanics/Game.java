@@ -213,12 +213,12 @@ public class Game {
             mitteHauptrollen.add(hauptrolle);
             mitteBonusrollen.add(bonusrolle); //TODO methode auslagern?
 
-            if (hauptrolle.name.equals(Schattenpriester.NAME) && !bonusrolle.name.equals(Schatten.NAME)) {
+            if (hauptrolle.equals(Schattenpriester.NAME) && !bonusrolle.equals(Schatten.NAME)) {
                 SchattenpriesterFraktion.deadSchattenPriester++;
             }
 
             if (Rolle.rolleLebend(Wölfin.NAME) && Wölfin.state == WölfinState.WARTEND) {
-                if (hauptrolle.fraktion.name.equals(Werwölfe.NAME)) {
+                if (hauptrolle.fraktion.equals(Werwölfe.NAME)) {
                     Wölfin.state = WölfinState.TÖTEND;
                 }
             }
@@ -237,7 +237,7 @@ public class Game {
 
     public Spieler findSpieler(String name) {
         for (Spieler currentSpieler : spieler) {
-            if (currentSpieler.name.equals(name)) {
+            if (currentSpieler.equals(name)) {
                 return currentSpieler;
             }
         }
@@ -251,13 +251,13 @@ public class Game {
 
     public Spieler findSpielerPerRolle(String name) {
         for (Bonusrolle bonusrolle : mitteBonusrollen) {
-            if (bonusrolle.name.equals(name)) {
+            if (bonusrolle.equals(name)) {
                 return findSpielerPerRolle(Sammler.NAME);
             }
         }
 
         for (Spieler currentSpieler : spieler) {
-            if (currentSpieler.hauptrolle.name.equals(name) || currentSpieler.bonusrolle.name.equals(name)) {
+            if (currentSpieler.hauptrolle.equals(name) || currentSpieler.bonusrolle.equals(name)) {
                 return currentSpieler;
             }
         }
@@ -267,7 +267,7 @@ public class Game {
 
     public Spieler findSpielerOrDeadPerRolle(String name) {
         for (Spieler currentSpieler : spieler) {
-            if (currentSpieler.hauptrolle.name.equals(name) || currentSpieler.bonusrolle.name.equals(name)) {
+            if (currentSpieler.hauptrolle.equals(name) || currentSpieler.bonusrolle.equals(name)) {
                 return currentSpieler;
             }
         }
@@ -279,7 +279,7 @@ public class Game {
         ArrayList<Spieler> spielers = new ArrayList<>();
 
         for (Spieler currentSpieler : spieler) {
-            if (currentSpieler.hauptrolle.name.equals(name) || currentSpieler.bonusrolle.name.equals(name)) {
+            if (currentSpieler.hauptrolle.equals(name) || currentSpieler.bonusrolle.equals(name)) {
                 spielers.add(currentSpieler);
             }
         }
@@ -291,7 +291,7 @@ public class Game {
         ArrayList<String> spielers = new ArrayList<>();
 
         for (Spieler currentSpieler : spieler) {
-            if (currentSpieler.hauptrolle.name.equals(name) || currentSpieler.bonusrolle.name.equals(name)) {
+            if (currentSpieler.hauptrolle.equals(name) || currentSpieler.bonusrolle.equals(name)) {
                 spielers.add(currentSpieler.name);
             }
         }
@@ -409,7 +409,7 @@ public class Game {
         ArrayList<String> hauptrollenInGame = getHauptrolleInGameNames();
 
         for (Hauptrolle hauptrolle : mitteHauptrollen) {
-            if (!hauptrolle.name.equals(Schattenpriester.NAME)) {
+            if (!hauptrolle.equals(Schattenpriester.NAME)) {
                 hauptrollenInGame.remove(hauptrolle.name);
             }
         }
@@ -459,7 +459,7 @@ public class Game {
 
     public Hauptrolle findHauptrolle(String wantedName) {
         for (Hauptrolle hauptrolle : hauptrollen) {
-            if (hauptrolle.name.equals(wantedName))
+            if (hauptrolle.equals(wantedName))
                 return hauptrolle;
         }
 
@@ -469,7 +469,7 @@ public class Game {
     public int numberOfOccurencesOfHauptrolleInGame(Hauptrolle hauptrolle) {
         int occurences = 0;
         for (Hauptrolle currentHauptrolle : hauptrollenInGame) {
-            if (currentHauptrolle.name.equals(hauptrolle.name)) {
+            if (currentHauptrolle.equals(hauptrolle)) {
                 occurences++;
             }
         }
@@ -548,7 +548,7 @@ public class Game {
 
     public Bonusrolle findBonusrolle(String wantedName) {
         for (Bonusrolle bonusrolle : bonusrollen) {
-            if (bonusrolle.name.equals(wantedName))
+            if (bonusrolle.equals(wantedName))
                 return bonusrolle;
         }
 
@@ -558,7 +558,7 @@ public class Game {
     public int numberOfOccurencesOfBonusrolleInGame(Bonusrolle bonusrolle) {
         int occurences = 0;
         for (Bonusrolle currentBonusrolle : bonusrollenInGame) {
-            if (currentBonusrolle.name.equals(bonusrolle.name)) {
+            if (currentBonusrolle.equals(bonusrolle)) {
                 occurences++;
             }
         }

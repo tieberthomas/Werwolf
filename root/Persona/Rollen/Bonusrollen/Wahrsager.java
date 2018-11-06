@@ -10,7 +10,6 @@ import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class Wahrsager extends Bonusrolle {
     public static final String ID = "Wahrsager";
@@ -72,6 +71,6 @@ public class Wahrsager extends Bonusrolle {
     public boolean guessedRight() {
         return (tipp == null && Wahrsager.opferFraktion == null) ||
                 ((tipp != null && Wahrsager.opferFraktion != null) &&
-                        Objects.equals(tipp.name, Wahrsager.opferFraktion.name));
+                        tipp.equals(Wahrsager.opferFraktion));
     }
 }

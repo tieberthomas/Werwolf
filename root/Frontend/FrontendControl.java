@@ -161,7 +161,7 @@ public class FrontendControl {
         String hauptRolleImagePath = spieler.hauptrolle.imagePath;
         String bonusRolleImagePath = spieler.bonusrolle.imagePath;
         if (GrafVladimir.verschleierterSpieler != null) {
-            if (spieler.name.equals(GrafVladimir.verschleierterSpieler.name)) {
+            if (spieler.equals(GrafVladimir.verschleierterSpieler)) {
                 AusDemSpiel ausDemSpiel = new AusDemSpiel();
                 hauptRolleImagePath = ausDemSpiel.imagePath;
                 bonusRolleImagePath = ausDemSpiel.imagePath;

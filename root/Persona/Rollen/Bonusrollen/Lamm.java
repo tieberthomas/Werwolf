@@ -51,7 +51,7 @@ public class Lamm extends Bonusrolle {
             Spieler spieler = game.findSpielerPerRolle(NAME);
             Bonusrolle bonusrolle;
 
-            if (spieler.hauptrolle.fraktion.name.equals(Bürger.NAME)) {
+            if (spieler.hauptrolle.fraktion.equals(Bürger.NAME)) {
                 bonusrolle = new ReineSeele();
             } else {
                 bonusrolle = spieler.bonusrolle;
