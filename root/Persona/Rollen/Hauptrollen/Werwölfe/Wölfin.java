@@ -71,7 +71,7 @@ public class Wölfin extends Hauptrolle {
             if (wölfinSpieler != null) {
                 String imagePath = wölfinSpieler.bonusrolle.imagePath;
                 
-                if (GrafVladimir.verschleierterSpieler.equals(wölfinSpieler)) {
+                if (wölfinSpieler.equals(GrafVladimir.verschleierterSpieler)) {
                     imagePath = ImagePath.AUS_DEM_SPIEL;
                 }
 
