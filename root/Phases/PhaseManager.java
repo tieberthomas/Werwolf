@@ -6,49 +6,54 @@ import root.Frontend.FrontendControl;
 import root.mechanics.Game;
 
 public class PhaseManager extends Thread {
-    public static Object lock;
+    public static Object lock = new Object();
     public static Game game;
 
     public static PhaseMode phaseMode;
 
+    public PhaseManager(Game game) {
+        this.game = game;
+    }
+
     public void run() {
         lock = new Object();
         synchronized (lock) {
-            while (!game.freibier) {
-                waitForAnswer();
-                System.out.println("nächste Phase.");
+            firstnight();
+            while (true) {
+                day();
+                night();
             }
         }
     }
 
-    public static void firstnight(ErzählerFrame erzählerFrame) {
-        erzählerFrame.mode = ErzählerFrameMode.FIRST_NIGHT;
+    private void firstnight() {
+        ErzählerFrame.mode = ErzählerFrameMode.FIRST_NIGHT;
         phaseMode = PhaseMode.FIRST_NIGHT;
         FirstNight firstNight = new FirstNight(game);
         firstNight.start();
+        waitForAnswer();
     }
 
-    public static void night() {
+    private void night() {
         FrontendControl.erzählerFrame.mode = ErzählerFrameMode.NORMAL_NIGHT;
         phaseMode = PhaseMode.NORMAL_NIGHT;
         NormalNight normalNight = new NormalNight(game);
         normalNight.start();
+        waitForAnswer();
     }
 
-    public static void day() {
-        FrontendControl.erzählerFrame.mode = ErzählerFrameMode.DAY;
-        phaseMode = PhaseMode.DAY;
+    private void day() {
+        if (game.freibier) {
+            FrontendControl.erzählerFrame.mode = ErzählerFrameMode.FREIBIER_DAY;
+            phaseMode = PhaseMode.FREIBIER_DAY;
+        } else {
+            FrontendControl.erzählerFrame.mode = ErzählerFrameMode.DAY;
+            phaseMode = PhaseMode.DAY;
+        }
         Day day = new Day(game);
         game.day = day;
         day.start();
-    }
-
-    public static void freibierDay() {
-        FrontendControl.erzählerFrame.mode = ErzählerFrameMode.FREIBIER_DAY;
-        phaseMode = PhaseMode.FREIBIER_DAY;
-        Day day = new Day(game);
-        game.day = day;
-        day.start();
+        waitForAnswer();
     }
 
     public static ErzählerFrameMode parsePhaseMode() { //TODO automapper?
@@ -71,6 +76,12 @@ public class PhaseManager extends Thread {
             lock.wait();
         } catch (InterruptedException e) {
             e.printStackTrace();
+        }
+    }
+
+    public static void nextPhase() {
+        synchronized (lock) {
+            lock.notify();
         }
     }
 }

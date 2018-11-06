@@ -4,6 +4,7 @@ import root.Frontend.Factories.ErzählerPageFactory;
 import root.Frontend.FrontendControl;
 import root.Frontend.Page.Page;
 import root.Frontend.Page.PageTable;
+import root.Frontend.Utils.JButtonStyler;
 import root.Frontend.Utils.PageRefresher.Models.ButtonTable;
 import root.Frontend.Utils.PageRefresher.Models.DeleteButtonTable;
 import root.Frontend.Utils.PageRefresher.Models.LabelTable;
@@ -43,7 +44,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
 
     public static Object lock;
 
-    public ErzählerFrameMode mode = ErzählerFrameMode.SETUP;
+    public static ErzählerFrameMode mode = ErzählerFrameMode.SETUP;
 
     public ErzählerPageFactory pageFactory = new ErzählerPageFactory(this);
 
@@ -871,7 +872,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         spielerFrame.mode = spielerFrameMode;
         spielerFrame.buildScreenFromPage(savePage);
 
-        übersichtsFrame = new ÜbersichtsFrame(this, game);
+        übersichtsFrame = new ÜbersichtsFrame(this.frameJpanel.getHeight()+50, game);
 
         FrontendControl.spielerFrame = spielerFrame;
         if (PhaseManager.phaseMode == PhaseMode.DAY || PhaseManager.phaseMode == PhaseMode.FREIBIER_DAY) {

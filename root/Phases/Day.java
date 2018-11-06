@@ -36,15 +36,12 @@ public class Day extends Thread {
         day();
 
         if (game.freibier) {
+            //TODO michael fragen ob gebürgte/verurteilte spieler am freibiertag geresetted werden
             day();
             game.freibier = false;
         }
 
-        PhaseManager.night();//TODO remove
-
-        synchronized (PhaseManager.lock) {
-            PhaseManager.lock.notify();
-        }
+        PhaseManager.nextPhase();
     }
 
     public void day() {

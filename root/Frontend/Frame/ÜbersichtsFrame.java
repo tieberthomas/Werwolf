@@ -35,13 +35,13 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener {
 
     private Page übersichtsPage;
 
-    public ÜbersichtsFrame(ErzählerFrame erzählerFrame, Game game) {
+    public ÜbersichtsFrame(int spawnHeight, Game game) {
         this.game = game;
         WINDOW_TITLE = "Übersichts Fenster";
 
         refreshJButton = new JButton();
 
-        this.setLocation(0, erzählerFrame.frameJpanel.getHeight() + 50);
+        this.setLocation(0, spawnHeight);
 
         frameJpanel = generateDefaultPanel();
 

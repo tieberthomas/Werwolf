@@ -141,10 +141,7 @@ public class FirstNight extends Thread {
         }
 
         cleanUp();
-        PhaseManager.day();//TODO remove
-        synchronized (PhaseManager.lock) {
-            PhaseManager.lock.notify();
-        }
+        PhaseManager.nextPhase();
     }
 
     public void beginNight() {

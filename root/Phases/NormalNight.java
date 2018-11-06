@@ -331,15 +331,7 @@ public class NormalNight extends Thread {
 
         cleanUpNight();
 
-        if (game.freibier) {//TODO remove
-            PhaseManager.freibierDay();
-        } else {
-            PhaseManager.day();
-        }
-
-        synchronized (PhaseManager.lock) {
-            PhaseManager.lock.notify();
-        }
+        PhaseManager.nextPhase();
     }
 
     public void beginNight() {

@@ -2,25 +2,68 @@ package root.mechanics;
 
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.Frame.ErzählerFrame;
-import root.Frontend.Frame.ErzählerFrameMode;
 import root.Frontend.Frame.ÜbersichtsFrame;
 import root.Frontend.FrontendControl;
-import root.Persona.*;
+import root.Persona.Bonusrolle;
+import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Bürger;
 import root.Persona.Fraktionen.Schattenpriester_Fraktion;
 import root.Persona.Fraktionen.Werwölfe;
-import root.Persona.Rollen.Bonusrollen.*;
+import root.Persona.Hauptrolle;
+import root.Persona.Persona;
+import root.Persona.Rolle;
+import root.Persona.Rollen.Bonusrollen.Analytiker;
+import root.Persona.Rollen.Bonusrollen.Archivar;
+import root.Persona.Rollen.Bonusrollen.Dieb;
+import root.Persona.Rollen.Bonusrollen.Gefängniswärter;
+import root.Persona.Rollen.Bonusrollen.Konditor;
+import root.Persona.Rollen.Bonusrollen.Konditorlehrling;
+import root.Persona.Rollen.Bonusrollen.Lamm;
+import root.Persona.Rollen.Bonusrollen.Medium;
+import root.Persona.Rollen.Bonusrollen.Nachbar;
+import root.Persona.Rollen.Bonusrollen.Prostituierte;
+import root.Persona.Rollen.Bonusrollen.ReineSeele;
+import root.Persona.Rollen.Bonusrollen.Schatten;
+import root.Persona.Rollen.Bonusrollen.Schattenkutte;
+import root.Persona.Rollen.Bonusrollen.Schnüffler;
+import root.Persona.Rollen.Bonusrollen.SchwarzeSeele;
+import root.Persona.Rollen.Bonusrollen.Seelenlicht;
+import root.Persona.Rollen.Bonusrollen.Spurenleser;
+import root.Persona.Rollen.Bonusrollen.Tarnumhang;
+import root.Persona.Rollen.Bonusrollen.Totengräber;
+import root.Persona.Rollen.Bonusrollen.Vampirumhang;
+import root.Persona.Rollen.Bonusrollen.Wahrsager;
+import root.Persona.Rollen.Bonusrollen.Wolfspelz;
 import root.Persona.Rollen.Constants.WölfinState;
-import root.Persona.Rollen.Hauptrollen.Bürger.*;
+import root.Persona.Rollen.Hauptrollen.Bürger.Dorfbewohner;
+import root.Persona.Rollen.Hauptrollen.Bürger.HoldeMaid;
+import root.Persona.Rollen.Hauptrollen.Bürger.Irrlicht;
+import root.Persona.Rollen.Hauptrollen.Bürger.Orakel;
+import root.Persona.Rollen.Hauptrollen.Bürger.Riese;
+import root.Persona.Rollen.Hauptrollen.Bürger.Sammler;
+import root.Persona.Rollen.Hauptrollen.Bürger.Schamanin;
+import root.Persona.Rollen.Hauptrollen.Bürger.Seherin;
+import root.Persona.Rollen.Hauptrollen.Bürger.Späher;
+import root.Persona.Rollen.Hauptrollen.Bürger.Wirt;
 import root.Persona.Rollen.Hauptrollen.Schattenpriester.Schattenpriester;
 import root.Persona.Rollen.Hauptrollen.Vampire.GrafVladimir;
 import root.Persona.Rollen.Hauptrollen.Vampire.LadyAleera;
 import root.Persona.Rollen.Hauptrollen.Vampire.MissVerona;
-import root.Persona.Rollen.Hauptrollen.Werwölfe.*;
+import root.Persona.Rollen.Hauptrollen.Werwölfe.Blutwolf;
+import root.Persona.Rollen.Hauptrollen.Werwölfe.Chemiker;
+import root.Persona.Rollen.Hauptrollen.Werwölfe.Geisterwolf;
+import root.Persona.Rollen.Hauptrollen.Werwölfe.Schreckenswolf;
+import root.Persona.Rollen.Hauptrollen.Werwölfe.Werwolf;
+import root.Persona.Rollen.Hauptrollen.Werwölfe.Wolfsmensch;
+import root.Persona.Rollen.Hauptrollen.Werwölfe.Wölfin;
 import root.Persona.Rollen.Hauptrollen.Überläufer.Henker;
 import root.Persona.Rollen.Hauptrollen.Überläufer.Überläufer;
-import root.Phases.*;
+import root.Phases.Day;
+import root.Phases.FirstNight;
 import root.Phases.NightBuilding.NormalNightStatementBuilder;
+import root.Phases.PhaseManager;
+import root.Phases.PhaseMode;
+import root.Phases.Winner;
 import root.Spieler;
 import root.mechanics.KillLogik.Angriff;
 
@@ -45,6 +88,7 @@ public class Game {
     public ArrayList<Spieler> spielerSpecified = new ArrayList<>();
 
     public boolean secondNight = true;
+    private boolean started = false;
 
     public Game() {
         Persona.game = this;
@@ -70,28 +114,15 @@ public class Game {
     }
 
     public void startGame(ErzählerFrame erzählerFrame) {
-        erzählerFrame.übersichtsFrame = new ÜbersichtsFrame(erzählerFrame, this);
+        erzählerFrame.übersichtsFrame = new ÜbersichtsFrame(erzählerFrame.frameJpanel.getHeight() + 50, this);
         erzählerFrame.toFront();
 
         FrontendControl.erzählerFrame = erzählerFrame;
         FrontendControl.spielerFrame = erzählerFrame.spielerFrame;
         FrontendControl.übersichtsFrame = erzählerFrame.übersichtsFrame;
 
-        PhaseManager.firstnight(erzählerFrame);
-        PhaseManager phaseManager = new PhaseManager();
+        PhaseManager phaseManager = new PhaseManager(this);
         phaseManager.start();
-
-        //TODO structure below doesn't work because of multiThreading
-//        while (true) {
-//            if(freibier) {
-//                freibierDay();
-//                freibier = false;
-//            } else {
-//                day();
-//            }
-//
-//            night();
-//        }
     }
 
     private void generateAllAvailableHauptrollen() {
