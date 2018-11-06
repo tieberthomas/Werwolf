@@ -1,7 +1,7 @@
 package root.Phases.NightBuilding;
 
 import root.Persona.Fraktion;
-import root.Persona.Fraktionen.Schattenpriester_Fraktion;
+import root.Persona.Fraktionen.SchattenpriesterFraktion;
 import root.Persona.Fraktionen.Vampire;
 import root.Persona.Fraktionen.Werwölfe;
 import root.Persona.Rolle;
@@ -67,8 +67,8 @@ public class NormalNightStatementBuilder {
 
         //Nachtfürst erwacht, schätzt die Anzahl der Opfer dieser Nacht und führt ggf. seine Tötung aus
 
-        addStatementFraktion(statements, Schattenpriester_Fraktion.NAME);
-        addSecondStatementFraktion(statements, Schattenpriester_Fraktion.NAME);
+        addStatementFraktion(statements, SchattenpriesterFraktion.NAME);
+        addSecondStatementFraktion(statements, SchattenpriesterFraktion.NAME);
         addStatementRolle(statements, Chemiker.NAME);
         addSecondStatementRolle(statements, Chemiker.NAME);
 

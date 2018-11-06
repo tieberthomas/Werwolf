@@ -1,7 +1,7 @@
 package root.Persona.Rollen.Bonusrollen;
 
 import root.Persona.Bonusrolle;
-import root.Persona.Fraktionen.Schattenpriester_Fraktion;
+import root.Persona.Fraktionen.SchattenpriesterFraktion;
 import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Persona.Rollen.Constants.BonusrollenType.Passiv;
 import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
@@ -14,7 +14,7 @@ public class Schattenkutte extends Bonusrolle {
     public static final String NAME = "Schattenkutte";
     public static final String IMAGE_PATH = ImagePath.SCHATTENKUTTE_KARTE;
     public static final BonusrollenType TYPE = new Passiv();
-    public static final Color COLOR = Schattenpriester_Fraktion.COLOR;
+    public static final Color COLOR = SchattenpriesterFraktion.COLOR;
 
     public Schattenkutte() {
         this.id = ID;
@@ -26,6 +26,6 @@ public class Schattenkutte extends Bonusrolle {
     }
 
     public Zeigekarte getFraktionInfo() {
-        return new Schattenpriester_Fraktion().getZeigeKarte();
+        return new SchattenpriesterFraktion().getZeigeKarte();
     }
 }

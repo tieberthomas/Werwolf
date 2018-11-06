@@ -3,7 +3,7 @@ package root.Phases;
 import root.Frontend.FrontendControl;
 import root.Persona.Bonusrolle;
 import root.Persona.Fraktion;
-import root.Persona.Fraktionen.Schattenpriester_Fraktion;
+import root.Persona.Fraktionen.SchattenpriesterFraktion;
 import root.Persona.Fraktionen.Vampire;
 import root.Persona.Fraktionen.Werwölfe;
 import root.Persona.Hauptrolle;
@@ -187,18 +187,18 @@ public class NormalNight extends Thread {
                             }
                             break;
 
-                        case Schattenpriester_Fraktion.NEUER_SCHATTENPRIESTER:
+                        case SchattenpriesterFraktion.NEUER_SCHATTENPRIESTER:
                             chosenSpieler = game.findSpieler(chosenOptionLastStatement);
                             String neuerSchattenpriester = "";
                             erzählerInfoIconImagePath = ""; //TODO causes problem "1 Image could not be found at location: "
                             if (chosenSpieler != null) {
                                 neuerSchattenpriester = chosenSpieler.name;
 
-                                if (!chosenSpieler.hauptrolle.fraktion.name.equals(Schattenpriester_Fraktion.NAME)) {
+                                if (!chosenSpieler.hauptrolle.fraktion.name.equals(SchattenpriesterFraktion.NAME)) {
                                     erzählerInfoIconImagePath = Schattenkutte.IMAGE_PATH;
                                 }
                             }
-                            showListShowImage(statement, neuerSchattenpriester, Schattenpriester_Fraktion.zeigekarte.imagePath, erzählerInfoIconImagePath);
+                            showListShowImage(statement, neuerSchattenpriester, SchattenpriesterFraktion.zeigekarte.imagePath, erzählerInfoIconImagePath);
                             break;
 
                         case Chemiker.NEUER_WERWOLF:

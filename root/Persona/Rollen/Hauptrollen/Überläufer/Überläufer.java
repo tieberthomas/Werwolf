@@ -3,7 +3,7 @@ package root.Persona.Rollen.Hauptrollen.Überläufer;
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.Persona.Fraktion;
-import root.Persona.Fraktionen.Überläufer_Fraktion;
+import root.Persona.Fraktionen.ÜberläuferFraktion;
 import root.Persona.Hauptrolle;
 import root.Persona.Rollen.Hauptrollen.Bürger.Dorfbewohner;
 import root.Phases.NightBuilding.Constants.StatementType;
@@ -21,7 +21,7 @@ public class Überläufer extends Hauptrolle {
     public static final String ID = "Überläufer";
     public static final String NAME = "Überläufer";
     public static final String IMAGE_PATH = ImagePath.ÜBERLÄUFER_KARTE;
-    public static final Fraktion FRAKTION = new Überläufer_Fraktion();
+    public static final Fraktion FRAKTION = new ÜberläuferFraktion();
 
     public Überläufer() {
         this.id = ID;

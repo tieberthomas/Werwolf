@@ -17,7 +17,7 @@ import root.mechanics.KillLogik.Opfer;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class Schattenpriester_Fraktion extends Fraktion {
+public class SchattenpriesterFraktion extends Fraktion {
     public static final String STATEMENT_ID = "Schattenpriester_Fraktion";
     public static final String STATEMENT_TITLE = "Opfer wiederbeleben";
     public static final String STATEMENT_BESCHREIBUNG = "Die Schattenpriester erwachen und entscheiden welchen Verstorbenen dieser Nacht sie wiederbeleben und zum Kult hinzufügen möchten";
@@ -41,7 +41,7 @@ public class Schattenpriester_Fraktion extends Fraktion {
 
     public static int deadSchattenPriester = 0;
 
-    public Schattenpriester_Fraktion() {
+    public SchattenpriesterFraktion() {
         this.id = ID;
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
@@ -91,7 +91,7 @@ public class Schattenpriester_Fraktion extends Fraktion {
             if (opferSpieler != null) {
                 String fraktionDesOpfers = opferSpieler.hauptrolle.fraktion.name;
                 if (opferSpieler.bonusrolle.name.equals(Schattenkutte.NAME) ||
-                        (opferSpieler.ressurectable && !fraktionDesOpfers.equals(Schattenpriester_Fraktion.NAME))) {
+                        (opferSpieler.ressurectable && !fraktionDesOpfers.equals(SchattenpriesterFraktion.NAME))) {
                     if (!dropdownStrings.contains(opferSpieler.name)) {
                         dropdownStrings.add(opferSpieler.name);
                     }
