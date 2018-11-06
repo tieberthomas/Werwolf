@@ -674,6 +674,6 @@ public class Game {
     }
 
     public List<String> getIrrlichterStrings() {
-        return getIrrlichter().stream().map(Spieler::getName).collect(Collectors.toList());
+        return getIrrlichter().stream().map(spieler -> spieler.name).collect(Collectors.toList());
     }
 }

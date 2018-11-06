@@ -69,10 +69,6 @@ public class Spieler {
         return bonusrolle;
     }
 
-    public String getName() { //TODO remove
-        return name;
-    }
-
     public BonusrollenType getBonusrollenType() {
         return bonusrolle.type;
     }
