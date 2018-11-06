@@ -14,9 +14,7 @@ import root.mechanics.KillLogik.Opfer;
 import java.util.ArrayList;
 
 public class Fraktion extends Persona {
-    public Zeigekarte getZeigeKarte() {
-        return new BürgerZeigekarte();
-    }
+    public Zeigekarte zeigekarte = new BürgerZeigekarte();
 
     public static ArrayList<Spieler> getFraktionsMembers(String fraktion) {
         ArrayList<Spieler> fraktionsMembers = new ArrayList<>();

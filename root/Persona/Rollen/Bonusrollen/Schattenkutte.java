@@ -4,6 +4,7 @@ import root.Persona.Bonusrolle;
 import root.Persona.Fraktionen.SchattenpriesterFraktion;
 import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Persona.Rollen.Constants.BonusrollenType.Passiv;
+import root.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.SchattenpriesterZeigekarte;
 import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.ResourceManagement.ImagePath;
 
@@ -26,6 +27,6 @@ public class Schattenkutte extends Bonusrolle {
     }
 
     public Zeigekarte getFraktionInfo() {
-        return new SchattenpriesterFraktion().getZeigeKarte();
+        return new SchattenpriesterZeigekarte();
     }
 }

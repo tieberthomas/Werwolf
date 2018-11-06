@@ -34,6 +34,6 @@ public class Hauptrolle extends Rolle {
     }
 
     public Zeigekarte getFraktionInfo() {
-        return fraktion.getZeigeKarte();
+        return fraktion.zeigekarte;
     }
 }

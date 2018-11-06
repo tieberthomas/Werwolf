@@ -37,7 +37,7 @@ public class SchattenpriesterFraktion extends Fraktion {
     public static final String NAME = "Schattenpriester";
     public static final String IMAGE_PATH = ImagePath.SCHATTENPRIESTER_ICON;
     public static final Color COLOR = Color.lightGray;
-    public static final Zeigekarte zeigekarte = new SchattenpriesterZeigekarte();
+    public static final Zeigekarte ZEIGEKARTE = new SchattenpriesterZeigekarte();
 
     public static int deadSchattenPriester = 0;
 
@@ -45,8 +45,8 @@ public class SchattenpriesterFraktion extends Fraktion {
         this.id = ID;
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
-
         this.color = COLOR;
+        this.zeigekarte = ZEIGEKARTE;
 
         this.statementID = STATEMENT_ID;
         this.statementTitle = STATEMENT_TITLE;
@@ -102,10 +102,5 @@ public class SchattenpriesterFraktion extends Fraktion {
         dropdownStrings.add("");
 
         return dropdownStrings;
-    }
-
-    @Override
-    public Zeigekarte getZeigeKarte() {
-        return zeigekarte;
     }
 }

@@ -17,6 +17,6 @@ public class FraktionsInfo extends InformationsCluster {
 
     public static void generateFraktionsInfos() {
         ArrayList<Fraktion> fraktionen = Fraktion.getLivingFraktionen();
-        informations = fraktionen.stream().map(Fraktion::getZeigeKarte).collect(Collectors.toList());
+        informations = fraktionen.stream().map(fraktion -> fraktion.zeigekarte).collect(Collectors.toList());
     }
 }

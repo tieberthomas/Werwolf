@@ -198,7 +198,7 @@ public class NormalNight extends Thread {
                                     erzählerInfoIconImagePath = Schattenkutte.IMAGE_PATH;
                                 }
                             }
-                            showListShowImage(statement, neuerSchattenpriester, SchattenpriesterFraktion.zeigekarte.imagePath, erzählerInfoIconImagePath);
+                            showListShowImage(statement, neuerSchattenpriester, SchattenpriesterFraktion.IMAGE_PATH, erzählerInfoIconImagePath);
                             break;
 
                         case Chemiker.NEUER_WERWOLF:
@@ -208,7 +208,7 @@ public class NormalNight extends Thread {
                                 neuerWerwolf = chosenSpieler.name;
                             }
 
-                            showListShowImage(statement, neuerWerwolf, Werwölfe.zeigekarte.imagePath); //TODO evalueren obs schönere lösung gibt
+                            showListShowImage(statement, neuerWerwolf, Werwölfe.IMAGE_PATH); //TODO evalueren obs schönere lösung gibt
                             break;
 
                         case Irrlicht.STATEMENT_ID:

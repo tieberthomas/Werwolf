@@ -28,14 +28,14 @@ public class Vampire extends Fraktion {
     public static final String NAME = "Vampire";
     public static final String IMAGE_PATH = ImagePath.VAMPIRE_ICON;
     public static final Color COLOR = Color.red;
-    public static final Zeigekarte zeigekarte = new VampireZeigekarte();
+    public static final Zeigekarte ZEIGEKARTE = new VampireZeigekarte();
 
     public Vampire() {
         this.id = ID;
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
-
         this.color = COLOR;
+        this.zeigekarte = ZEIGEKARTE;
 
         this.statementID = STATEMENT_ID;
         this.statementTitle = STATEMENT_TITLE;
@@ -63,10 +63,5 @@ public class Vampire extends Fraktion {
         String imagePath = zeigekarte.imagePath;
 
         return new FrontendControl(typeOfContent, strings, imagePath);
-    }
-
-    @Override
-    public Zeigekarte getZeigeKarte() {
-        return zeigekarte;
     }
 }

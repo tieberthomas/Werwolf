@@ -32,14 +32,14 @@ public class Werwölfe extends Fraktion {
     public static final String NAME = "Werwölfe";
     public static final String IMAGE_PATH = ImagePath.WÖLFE_ICON; //sollte es das noch geben?
     public static final Color COLOR = Color.green;
-    public static final Zeigekarte zeigekarte = new WerwölfeZeigekarte();
+    public static final Zeigekarte ZEIGEKARTE = new WerwölfeZeigekarte();
 
     public Werwölfe() {
         this.id = ID;
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
-
         this.color = COLOR;
+        this.zeigekarte = ZEIGEKARTE;
 
         this.statementID = STATEMENT_ID;
         this.statementTitle = STATEMENT_TITLE;
@@ -74,11 +74,6 @@ public class Werwölfe extends Fraktion {
         }
 
         return new FrontendControl(typeOfContent, strings, imagePath);
-    }
-
-    @Override
-    public Zeigekarte getZeigeKarte() {
-        return zeigekarte;
     }
 
     public static boolean blutWolfIsAktiv() {

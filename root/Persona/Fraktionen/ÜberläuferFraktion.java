@@ -12,18 +12,13 @@ public class ÜberläuferFraktion extends Fraktion {
     public static final String NAME = "Überläufer";
     public static final String IMAGE_PATH = ImagePath.ÜBERLÄUFER_ICON;
     public static final Color COLOR = Color.white;
-    public static final Zeigekarte zeigekarte = new ÜberläuferZeigekarte();
+    public static final Zeigekarte ZEIGEKARTE = new ÜberläuferZeigekarte();
 
     public ÜberläuferFraktion() {
         this.id = ID;
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
-
         this.color = COLOR;
-    }
-
-    @Override
-    public Zeigekarte getZeigeKarte() {
-        return zeigekarte;
+        this.zeigekarte = ZEIGEKARTE;
     }
 }
