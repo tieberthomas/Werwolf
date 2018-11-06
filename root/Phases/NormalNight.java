@@ -336,6 +336,10 @@ public class NormalNight extends Thread {
         } else {
             PhaseManager.day();
         }
+
+        synchronized (PhaseManager.lock) {
+            PhaseManager.lock.notify();
+        }
     }
 
     public void beginNight() {

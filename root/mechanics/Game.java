@@ -78,6 +78,8 @@ public class Game {
         FrontendControl.übersichtsFrame = erzählerFrame.übersichtsFrame;
 
         PhaseManager.firstnight(erzählerFrame);
+        PhaseManager phaseManager = new PhaseManager();
+        phaseManager.start();
 
         //TODO structure below doesn't work because of multiThreading
 //        while (true) {

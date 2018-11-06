@@ -41,6 +41,10 @@ public class Day extends Thread {
         }
 
         PhaseManager.night();//TODO remove
+
+        synchronized (PhaseManager.lock) {
+            PhaseManager.lock.notify();
+        }
     }
 
     public void day() {

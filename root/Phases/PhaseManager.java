@@ -6,9 +6,20 @@ import root.Frontend.FrontendControl;
 import root.mechanics.Game;
 
 public class PhaseManager extends Thread {
+    public static Object lock;
     public static Game game;
 
     public static PhaseMode phaseMode;
+
+    public void run() {
+        lock = new Object();
+        synchronized (lock) {
+            while (!game.freibier) {
+                waitForAnswer();
+                System.out.println("nächste Phase.");
+            }
+        }
+    }
 
     public static void firstnight(ErzählerFrame erzählerFrame) {
         erzählerFrame.mode = ErzählerFrameMode.FIRST_NIGHT;
@@ -51,6 +62,15 @@ public class PhaseManager extends Thread {
             return ErzählerFrameMode.NORMAL_NIGHT;
         } else {
             return ErzählerFrameMode.SETUP;
+        }
+    }
+
+    public void waitForAnswer() {
+        FrontendControl.refreshÜbersichtsFrame();
+        try {
+            lock.wait();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }
