@@ -4,8 +4,8 @@ import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.Persona.Bonusrolle;
 import root.Persona.Fraktion;
-import root.Persona.Fraktionen.Schattenpriester_Fraktion;
-import root.Persona.Fraktionen.Überläufer_Fraktion;
+import root.Persona.Fraktionen.SchattenpriesterFraktion;
+import root.Persona.Fraktionen.ÜberläuferFraktion;
 import root.Persona.Hauptrolle;
 import root.Persona.Rollen.Bonusrollen.ReineSeele;
 import root.Persona.Rollen.Bonusrollen.Schatten;
@@ -47,7 +47,7 @@ public class Henker extends Hauptrolle {
     public static final String ID = "Henker";
     public static final String NAME = "Henker";
     public static final String IMAGE_PATH = ImagePath.HENKER_KARTE;
-    public static final Fraktion FRAKTION = new Überläufer_Fraktion();
+    public static final Fraktion FRAKTION = new ÜberläuferFraktion();
 
     public static Hauptrolle fakeRolle = new Dorfbewohner();
 
@@ -192,7 +192,7 @@ public class Henker extends Hauptrolle {
                 return bonusrollenTypAuswahl;
             case 4:
                 List<Bonusrolle> bonusrollen = game.getPossibleInGameBonusrollen();
-                if (Fraktion.fraktionContainedInNight(Schattenpriester_Fraktion.NAME)) {
+                if (Fraktion.fraktionContainedInNight(SchattenpriesterFraktion.NAME)) {
                     bonusrollen.add(new Schatten());
                 }
                 bonusrollen.add(new SchwarzeSeele());

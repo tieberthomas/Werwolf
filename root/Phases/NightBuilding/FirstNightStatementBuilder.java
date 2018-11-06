@@ -1,7 +1,7 @@
 package root.Phases.NightBuilding;
 
 import root.Persona.Fraktion;
-import root.Persona.Fraktionen.Schattenpriester_Fraktion;
+import root.Persona.Fraktionen.SchattenpriesterFraktion;
 import root.Persona.Fraktionen.Vampire;
 import root.Persona.Fraktionen.Werwölfe;
 import root.Persona.Rolle;
@@ -35,7 +35,7 @@ public class FirstNightStatementBuilder {
         addStatementRolle(statements, Wolfsmensch.NAME);
         addStatementFraktion(statements, Werwölfe.NAME);
         addStatementFraktion(statements, Vampire.NAME);
-        addStatementFraktion(statements, Schattenpriester_Fraktion.NAME);
+        addStatementFraktion(statements, SchattenpriesterFraktion.NAME);
         addStatementRolle(statements, Henker.NAME);
 
         statements.add(IndieStatements.getAlleWachenAufStatement());

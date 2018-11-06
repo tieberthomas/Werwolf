@@ -7,7 +7,7 @@ import root.Frontend.FrontendControl;
 import root.Persona.Bonusrolle;
 import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Bürger;
-import root.Persona.Fraktionen.Schattenpriester_Fraktion;
+import root.Persona.Fraktionen.SchattenpriesterFraktion;
 import root.Persona.Fraktionen.Werwölfe;
 import root.Persona.Hauptrolle;
 import root.Persona.Persona;
@@ -214,7 +214,7 @@ public class Game {
             mitteBonusrollen.add(bonusrolle); //TODO methode auslagern?
 
             if (hauptrolle.name.equals(Schattenpriester.NAME) && !bonusrolle.name.equals(Schatten.NAME)) {
-                Schattenpriester_Fraktion.deadSchattenPriester++;
+                SchattenpriesterFraktion.deadSchattenPriester++;
             }
 
             if (Rolle.rolleLebend(Wölfin.NAME) && Wölfin.state == WölfinState.WARTEND) {
@@ -414,7 +414,7 @@ public class Game {
             }
         }
 
-        for (int i = 0; i < Schattenpriester_Fraktion.deadSchattenPriester; i++) {
+        for (int i = 0; i < SchattenpriesterFraktion.deadSchattenPriester; i++) {
             hauptrollenInGame.remove(Schattenpriester.NAME);
         }
 

@@ -2,7 +2,7 @@ package root.Persona;
 
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
-import root.Persona.Fraktionen.Schattenpriester_Fraktion;
+import root.Persona.Fraktionen.SchattenpriesterFraktion;
 import root.Persona.Fraktionen.Werwölfe;
 import root.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.BürgerZeigekarte;
 import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
@@ -86,7 +86,7 @@ public class Fraktion extends Persona {
     }
 
     public static boolean fraktionOffenkundigTot(String fraktion) {
-        if (fraktion.equals(Schattenpriester_Fraktion.NAME)) {
+        if (fraktion.equals(SchattenpriesterFraktion.NAME)) {
             return false;
         }
         if (fraktion.equals(Werwölfe.NAME) && game.getHauptrolleInGameNames().contains(Chemiker.NAME)) {
