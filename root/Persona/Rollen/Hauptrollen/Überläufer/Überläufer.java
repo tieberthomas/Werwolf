@@ -13,15 +13,15 @@ import root.Spieler;
 import java.util.ArrayList;
 
 public class Überläufer extends Hauptrolle {
-    public static final String STATEMENT_ID = "Überläufer";
-    public static final String STATEMENT_TITLE = "Karte tauschen";
-    public static final String STATEMENT_BESCHREIBUNG = "Überläufer erwacht und entscheidet ob er seine Hauptrollenkarte tauschen möchte";
-    public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
-
     public static final String ID = "Überläufer";
     public static final String NAME = "Überläufer";
     public static final String IMAGE_PATH = ImagePath.ÜBERLÄUFER_KARTE;
     public static final Fraktion FRAKTION = new ÜberläuferFraktion();
+
+    public static final String STATEMENT_ID = "Überläufer";
+    public static final String STATEMENT_TITLE = "Karte tauschen";
+    public static final String STATEMENT_BESCHREIBUNG = "Überläufer erwacht und entscheidet ob er seine Hauptrollenkarte tauschen möchte";
+    public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
 
     public Überläufer() {
         this.id = ID;

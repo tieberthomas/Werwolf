@@ -13,6 +13,11 @@ import root.mechanics.Rand;
 import java.util.ArrayList;
 
 public class Dieb extends Bonusrolle {
+    public static final String ID = "Dieb";
+    public static final String NAME = "Dieb";
+    public static final String IMAGE_PATH = ImagePath.DIEB_KARTE;
+    public static final BonusrollenType TYPE = new Aktiv();
+
     public static final String STATEMENT_ID = "Dieb";
     public static final String STATEMENT_TITLE = "Bonusrolle stehlen";
     public static final String STATEMENT_BESCHREIBUNG = "Dieb erwacht und entscheidet, ob er jemandes Bonusrolle stehlen möchte";
@@ -22,11 +27,6 @@ public class Dieb extends Bonusrolle {
     public static final String SECOND_STATEMENT_TITLE = "Neue Bonusrolle";
     public static final String SECOND_STATEMENT_BESCHREIBUNG = "Der Bestohlene erwacht und erhält eine neue Bonusrolle";
     public static final StatementType SECOND_STATEMENT_TYPE = StatementType.ROLLE_INFO;
-
-    public static final String ID = "Dieb";
-    public static final String NAME = "Dieb";
-    public static final String IMAGE_PATH = ImagePath.DIEB_KARTE;
-    public static final BonusrollenType TYPE = new Aktiv();
 
     public Dieb() {
         this.id = ID;

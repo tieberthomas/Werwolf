@@ -14,15 +14,15 @@ import static root.Persona.Rollen.Constants.DropdownConstants.GUT;
 import static root.Persona.Rollen.Constants.DropdownConstants.SCHLECHT;
 
 public class Konditor extends Bonusrolle {
-    public static final String STATEMENT_ID = "Konditor";
-    public static final String STATEMENT_TITLE = "Torte";
-    public static final String STATEMENT_BESCHREIBUNG = "Konditor erwacht und entscheidet sich ob es eine gute oder schlechte Torte gibt";
-    public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
-
     public static final String ID = "Konditor";
     public static final String NAME = "Konditor";
     public static final String IMAGE_PATH = ImagePath.KONDITOR_KARTE;
     public static final BonusrollenType TYPE = new Aktiv();
+
+    public static final String STATEMENT_ID = "Konditor";
+    public static final String STATEMENT_TITLE = "Torte";
+    public static final String STATEMENT_BESCHREIBUNG = "Konditor erwacht und entscheidet sich ob es eine gute oder schlechte Torte gibt";
+    public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
 
     public Konditor() {
         this.id = ID;

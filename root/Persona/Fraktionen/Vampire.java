@@ -14,6 +14,12 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Vampire extends Fraktion {
+    public static final String ID = "Vampire";
+    public static final String NAME = "Vampire";
+    public static final String IMAGE_PATH = ImagePath.VAMPIRE_ICON;
+    public static final Color COLOR = Color.red;
+    public static final Zeigekarte ZEIGEKARTE = new VampireZeigekarte();
+
     public static final String STATEMENT_ID = "Vampire";
     public static final String STATEMENT_TITLE = "Opfer wählen";
     public static final String STATEMENT_BESCHREIBUNG = "Die Vampire erwachen und wählen ein Opfer aus";
@@ -23,12 +29,6 @@ public class Vampire extends Fraktion {
     public static final String FIRST_NIGHT_STATEMENT_TITLE = "Vampire";
     public static final String FIRST_NIGHT_STATEMENT_BESCHREIBUNG = "Die Vampire erwachen und sehen einander";
     public static final StatementType FIRST_NIGHT_STATEMENT_TYPE = StatementType.FRAKTION_SPECAL;
-
-    public static final String ID = "Vampire";
-    public static final String NAME = "Vampire";
-    public static final String IMAGE_PATH = ImagePath.VAMPIRE_ICON;
-    public static final Color COLOR = Color.red;
-    public static final Zeigekarte ZEIGEKARTE = new VampireZeigekarte();
 
     public Vampire() {
         this.id = ID;

@@ -9,15 +9,15 @@ import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
 public class GrafVladimir extends Hauptrolle {
-    public static final String STATEMENT_ID = "Graf_Vladimir";
-    public static final String STATEMENT_TITLE = "Spieler unerkennbar machen";
-    public static final String STATEMENT_BESCHREIBUNG = "Graf Vladimir erwacht und veerschleiert die Identität eines Spielers";
-    public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
-
     public static final String ID = "Graf_Vladimir";
     public static final String NAME = "Graf Vladimir";
     public static final String IMAGE_PATH = ImagePath.GRAF_VLADIMIR_KARTE;
     public static final Fraktion FRAKTION = new Vampire();
+
+    public static final String STATEMENT_ID = "Graf_Vladimir";
+    public static final String STATEMENT_TITLE = "Spieler unerkennbar machen";
+    public static final String STATEMENT_BESCHREIBUNG = "Graf Vladimir erwacht und veerschleiert die Identität eines Spielers";
+    public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
 
     public static Spieler verschleierterSpieler; //TODO move to night
 

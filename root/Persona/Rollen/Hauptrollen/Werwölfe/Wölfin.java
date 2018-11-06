@@ -14,6 +14,11 @@ import root.Spieler;
 import root.mechanics.KillLogik.NormalKill;
 
 public class Wölfin extends Hauptrolle {
+    public static final String ID = "Wölfin";
+    public static final String NAME = "Wölfin";
+    public static final String IMAGE_PATH = ImagePath.WÖLFIN_KARTE;
+    public static final Fraktion FRAKTION = new Werwölfe();
+
     public static final String STATEMENT_ID = "Wölfin";
     public static final String STATEMENT_TITLE = "Opfer wählen";
     public static final String STATEMENT_BESCHREIBUNG = "Wölfin erwacht und wählt ein Opfer aus, wenn sie das tut, erfährt das Dorf ihre Bonusrolle";
@@ -24,10 +29,6 @@ public class Wölfin extends Hauptrolle {
     public static final String SECOND_STATEMENT_BESCHREIBUNG = "Das Dorf erfährt die Bonusrolle der Wölfin";
     public static final StatementType SECOND_STATEMENT_TYPE = StatementType.ROLLE_INFO;
 
-    public static final String ID = "Wölfin";
-    public static final String NAME = "Wölfin";
-    public static final String IMAGE_PATH = ImagePath.WÖLFIN_KARTE;
-    public static final Fraktion FRAKTION = new Werwölfe();
     public static WölfinState state = WölfinState.WARTEND;
 
     public Wölfin() {

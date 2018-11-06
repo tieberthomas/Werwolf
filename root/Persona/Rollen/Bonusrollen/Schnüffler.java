@@ -15,15 +15,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Schnüffler extends Bonusrolle {
+    public static final String ID = "Schnüffler";
+    public static final String NAME = "Schnüffler";
+    public static final String IMAGE_PATH = ImagePath.SCHNÜFFLER_KARTE;
+    public static final BonusrollenType TYPE = new Informativ();
+
     public static final String STATEMENT_ID = "Schnüffler";
     public static final String STATEMENT_TITLE = "Spieler wählen";
     public static final String STATEMENT_BESCHREIBUNG = "Schnüffler erwacht und lässt sich Auskunft über einen Mitspieler geben";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE_INFO;
 
-    public static final String ID = "Schnüffler";
-    public static final String NAME = "Schnüffler";
-    public static final String IMAGE_PATH = ImagePath.SCHNÜFFLER_KARTE;
-    public static final BonusrollenType TYPE = new Informativ();
     public static int MAX_ANZAHL_AN_INFORMATIONEN = 4;
 
     public ArrayList<SchnüfflerInformation> informationen = new ArrayList<>(); //TODO wenn dieb schnüffler nimmt dann neu anlegen

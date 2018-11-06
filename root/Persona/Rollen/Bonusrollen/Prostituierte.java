@@ -9,15 +9,15 @@ import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
 public class Prostituierte extends Bonusrolle {
-    public static final String STATEMENT_ID = "Prostituierte";
-    public static final String STATEMENT_TITLE = "Bett legen";
-    public static final String STATEMENT_BESCHREIBUNG = "Prostituierte legt sich zu einem Mitspieler ins Bett";
-    public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
-
     public static final String ID = "Prostituierte";
     public static final String NAME = "Prostituierte";
     public static final String IMAGE_PATH = ImagePath.PROSTITUIERTE_KARTE;
     public static final BonusrollenType TYPE = new Aktiv();
+
+    public static final String STATEMENT_ID = "Prostituierte";
+    public static final String STATEMENT_TITLE = "Bett legen";
+    public static final String STATEMENT_BESCHREIBUNG = "Prostituierte legt sich zu einem Mitspieler ins Bett";
+    public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
 
     public static Spieler host;
 

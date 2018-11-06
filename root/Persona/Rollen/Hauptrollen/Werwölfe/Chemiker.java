@@ -14,6 +14,11 @@ import root.mechanics.KillLogik.Opfer;
 import java.util.ArrayList;
 
 public class Chemiker extends Hauptrolle {
+    public static final String ID = "Chemiker";
+    public static final String NAME = "Chemiker";
+    public static final String IMAGE_PATH = ImagePath.CHEMIKER_KARTE;
+    public static final Fraktion FRAKTION = new Werwölfe();
+
     public static final String STATEMENT_ID = "Chemiker";
     public static final String STATEMENT_TITLE = "Opfer wiederbeleben";
     public static final String STATEMENT_BESCHREIBUNG = "Chemiker erwacht und kann ein Wolfsopfer dieser Nacht wiederbeleben und zum Wolfsrudel hinzufügen";
@@ -23,11 +28,6 @@ public class Chemiker extends Hauptrolle {
     public static final String SECOND_STATEMENT_TITLE = "Neuer Werwolf";
     public static final String SECOND_STATEMENT_BESCHREIBUNG = "Der Wiederbelebte erwacht und tauscht seine Hauptrollen- gegen eine Werwolfkarte";
     public static final StatementType SECOND_STATEMENT_TYPE = StatementType.FRAKTION_SPECAL;
-
-    public static final String ID = "Chemiker";
-    public static final String NAME = "Chemiker";
-    public static final String IMAGE_PATH = ImagePath.CHEMIKER_KARTE;
-    public static final Fraktion FRAKTION = new Werwölfe();
 
     public Chemiker() {
         this.id = ID;

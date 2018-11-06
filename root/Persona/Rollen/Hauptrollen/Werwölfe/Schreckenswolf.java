@@ -14,6 +14,11 @@ import root.mechanics.KillLogik.Angriff;
 import java.util.ArrayList;
 
 public class Schreckenswolf extends Hauptrolle {
+    public static final String ID = "Schreckenswolf";
+    public static final String NAME = "Schreckenswolf";
+    public static final String IMAGE_PATH = ImagePath.SCHRECKENSWOLF_KARTE;
+    public static final Fraktion FRAKTION = new Werwölfe();
+
     public static final String STATEMENT_ID = "Schreckenswolf";
     public static final String STATEMENT_TITLE = "Mitspieler verstummen";
     public static final String STATEMENT_BESCHREIBUNG = "Schreckenswolf erwacht und verstummt ggf. einen Spieler der am folgenden Tag nichtmehr reden darf";
@@ -23,11 +28,6 @@ public class Schreckenswolf extends Hauptrolle {
     public static final String SECOND_STATEMENT_TITLE = "Verstummt";
     public static final String SECOND_STATEMENT_BESCHREIBUNG = "Der verstummte Spieler wird bekannt gegeben";
     public static final StatementType SECOND_STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
-
-    public static final String ID = "Schreckenswolf";
-    public static final String NAME = "Schreckenswolf";
-    public static final String IMAGE_PATH = ImagePath.SCHRECKENSWOLF_KARTE;
-    public static final Fraktion FRAKTION = new Werwölfe();
 
     public Schreckenswolf() {
         this.id = ID;

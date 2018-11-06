@@ -10,15 +10,14 @@ import root.Persona.Rollen.Constants.BonusrollenType.Tarnumhang_BonusrollenType;
 import root.ResourceManagement.ImagePath;
 
 public class Sammler extends Hauptrolle {
-    public static final String beschreibungAddiditon = "Der Sammler als ";
-
-    public static final String konditorlehrlingSearchString = "Konditorlehrling erwachen ";
-    public static final String beschreibungAddiditonLowerCase = "der Sammler als ";
-
     public static final String ID = "Sammler";
     public static final String NAME = "Sammler";
     public static final String IMAGE_PATH = ImagePath.SAMMLER_KARTE;
     public static final Fraktion FRAKTION = new Bürger();
+
+    public static final String beschreibungAddiditon = "Der Sammler als ";
+    public static final String konditorlehrlingSearchString = "Konditorlehrling erwachen ";
+    public static final String beschreibungAddiditonLowerCase = "der Sammler als ";
 
     public Sammler() {
         this.id = ID;

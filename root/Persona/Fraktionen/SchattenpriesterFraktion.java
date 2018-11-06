@@ -18,6 +18,12 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class SchattenpriesterFraktion extends Fraktion {
+    public static final String ID = "Schattenpriester_Fraktion";
+    public static final String NAME = "Schattenpriester";
+    public static final String IMAGE_PATH = ImagePath.SCHATTENPRIESTER_ICON;
+    public static final Color COLOR = Color.lightGray;
+    public static final Zeigekarte ZEIGEKARTE = new SchattenpriesterZeigekarte();
+
     public static final String STATEMENT_ID = "Schattenpriester_Fraktion";
     public static final String STATEMENT_TITLE = "Opfer wiederbeleben";
     public static final String STATEMENT_BESCHREIBUNG = "Die Schattenpriester erwachen und entscheiden welchen Verstorbenen dieser Nacht sie wiederbeleben und zum Kult hinzufügen möchten";
@@ -32,12 +38,6 @@ public class SchattenpriesterFraktion extends Fraktion {
     public static final String FIRST_NIGHT_STATEMENT_TITLE = "Schattenpriester";
     public static final String FIRST_NIGHT_STATEMENT_BESCHREIBUNG = "Die Schattenpriester erwachen und sehen einander";
     public static final StatementType FIRST_NIGHT_STATEMENT_TYPE = StatementType.FRAKTION_SPECAL;
-
-    public static final String ID = "Schattenpriester_Fraktion";
-    public static final String NAME = "Schattenpriester";
-    public static final String IMAGE_PATH = ImagePath.SCHATTENPRIESTER_ICON;
-    public static final Color COLOR = Color.lightGray;
-    public static final Zeigekarte ZEIGEKARTE = new SchattenpriesterZeigekarte();
 
     public static int deadSchattenPriester = 0;
 

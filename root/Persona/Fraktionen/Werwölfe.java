@@ -18,6 +18,12 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Werwölfe extends Fraktion {
+    public static final String ID = "Werwölfe";
+    public static final String NAME = "Werwölfe";
+    public static final String IMAGE_PATH = ImagePath.WÖLFE_ICON; //TODO sollte es das noch geben?
+    public static final Color COLOR = Color.green;
+    public static final Zeigekarte ZEIGEKARTE = new WerwölfeZeigekarte();
+
     public static final String STATEMENT_ID = "Werwölfe";
     public static final String STATEMENT_TITLE = "Opfer wählen";
     public static final String STATEMENT_BESCHREIBUNG = "Die Werwölfe erwachen und die Wölfe wählen ein Opfer aus";
@@ -27,12 +33,6 @@ public class Werwölfe extends Fraktion {
     public static final String FIRST_NIGHT_STATEMENT_TITLE = "Werwölfe";
     public static final String FIRST_NIGHT_STATEMENT_BESCHREIBUNG = "Die Werwölfe erwachen und sehen einander";
     public static final StatementType FIRST_NIGHT_STATEMENT_TYPE = StatementType.FRAKTION_SPECAL;
-
-    public static final String ID = "Werwölfe";
-    public static final String NAME = "Werwölfe";
-    public static final String IMAGE_PATH = ImagePath.WÖLFE_ICON; //sollte es das noch geben?
-    public static final Color COLOR = Color.green;
-    public static final Zeigekarte ZEIGEKARTE = new WerwölfeZeigekarte();
 
     public Werwölfe() {
         this.id = ID;

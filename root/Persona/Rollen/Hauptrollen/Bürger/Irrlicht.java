@@ -15,6 +15,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Irrlicht extends Hauptrolle {
+    public static final String ID = "Irrlicht";
+    public static final String NAME = "Irrlicht";
+    public static final String IMAGE_PATH = ImagePath.IRRLICHT_KARTE;
+    public static final Fraktion FRAKTION = new Bürger();
+
     public static final String STATEMENT_ID = "Irrlicht";
     public static final String STATEMENT_TITLE = "Flackern";
     public static final String STATEMENT_BESCHREIBUNG = "Irrlichter entscheiden sich, ob sie flackern möchten";
@@ -26,11 +31,6 @@ public class Irrlicht extends Hauptrolle {
     public static final StatementType SECOND_STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
 
     private static final String LAST_IRRLICHT_MESSAGE = "Du bist das letzte Irrlicht";
-
-    public static final String ID = "Irrlicht";
-    public static final String NAME = "Irrlicht";
-    public static final String IMAGE_PATH = ImagePath.IRRLICHT_KARTE;
-    public static final Fraktion FRAKTION = new Bürger();
 
     private static ArrayList<String> geseheneIrrlichter = new ArrayList<>();
 

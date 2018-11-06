@@ -16,17 +16,19 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Tarnumhang extends Bonusrolle {
-    public static final String STATEMENT_ID = "Tarnumhang";
-    public static final String STATEMENT_TITLE = "Träger eines Umhangs";
-    public static final String STATEMENT_BESCHREIBUNG = "Träger des Tarnumhangs erwacht und erfährt einen Mitspieler, bei dem ein Umhhang liegt";
-    public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_INFO;
-    public static final String KEINE_UMHÄNGE = "Es sind keine Umhangträger mehr im Spiel";
-
     public static final String ID = "Tarnumhang";
     public static final String NAME = "Tarnumhang";
     public static final String IMAGE_PATH = ImagePath.TARNUMHANG_KARTE;
     public static final BonusrollenType TYPE = new Tarnumhang_BonusrollenType();
     public static final Color COLOR = Color.BLACK;
+
+    public static final String STATEMENT_ID = "Tarnumhang";
+    public static final String STATEMENT_TITLE = "Träger eines Umhangs";
+    public static final String STATEMENT_BESCHREIBUNG = "Träger des Tarnumhangs erwacht und erfährt einen Mitspieler, bei dem ein Umhhang liegt";
+    public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_INFO;
+
+    public static final String KEINE_UMHÄNGE = "Es sind keine Umhangträger mehr im Spiel";
+
     private ArrayList<String> umhänge = new ArrayList<>(Arrays.asList(
             Lamm.NAME, Wolfspelz.NAME, Vampirumhang.NAME, Schattenkutte.NAME));
 
@@ -37,7 +39,6 @@ public class Tarnumhang extends Bonusrolle {
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
         this.type = TYPE;
-
         this.color = COLOR;
 
         this.statementID = STATEMENT_ID;

@@ -13,23 +13,22 @@ import root.Spieler;
 import java.awt.*;
 
 public class Lamm extends Bonusrolle {
-    public static final String FIRST_NIGHT_STATEMENT_ID = "Lamm";
-    public static final String FIRST_NIGHT_STATEMENT_TITLE = "Neue Karte";
-    public static final String FIRST_NIGHT_STATEMENT_BESCHREIBUNG = "Lamm erwacht und tauscht ggf. seine Karte aus";
-    public static final StatementType FIRST_NIGHT_STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
-
     public static final String ID = "Lamm";
     public static final String NAME = "Lamm";
     public static final String IMAGE_PATH = ImagePath.LAMM_KARTE;
     public static final BonusrollenType TYPE = new Passiv();
     public static final Color COLOR = Bürger.COLOR;
 
+    public static final String FIRST_NIGHT_STATEMENT_ID = "Lamm";
+    public static final String FIRST_NIGHT_STATEMENT_TITLE = "Neue Karte";
+    public static final String FIRST_NIGHT_STATEMENT_BESCHREIBUNG = "Lamm erwacht und tauscht ggf. seine Karte aus";
+    public static final StatementType FIRST_NIGHT_STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
+
     public Lamm() {
         this.id = ID;
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
         this.type = TYPE;
-
         this.color = COLOR;
 
         this.firstNightStatementID = FIRST_NIGHT_STATEMENT_ID;

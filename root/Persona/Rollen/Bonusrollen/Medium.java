@@ -12,17 +12,17 @@ import root.mechanics.Rand;
 import java.util.ArrayList;
 
 public class Medium extends Bonusrolle {
+    public static final String ID = "Medium";
+    public static final String NAME = "Medium";
+    public static final String IMAGE_PATH = ImagePath.MEDIUM_KARTE;
+    public static final BonusrollenType TYPE = new Informativ();
+
     public static final String STATEMENT_ID = "Medium";
     public static final String STATEMENT_TITLE = "Bonusrolle";
     public static final String STATEMENT_BESCHREIBUNG = "Medium erwacht und erfährt eine zufällige Bonusrolle, die nicht im Spiel ist";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_INFO;
 
     private static final String NO_BONUSROLES_OUT_OF_GAME = "Es sind alle Bonusrollen im Spiel";
-
-    public static final String ID = "Medium";
-    public static final String NAME = "Medium";
-    public static final String IMAGE_PATH = ImagePath.MEDIUM_KARTE;
-    public static final BonusrollenType TYPE = new Informativ();
 
     private static ArrayList<String> geseheneBonusrollen = new ArrayList<>();
 
