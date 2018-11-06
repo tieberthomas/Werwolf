@@ -24,12 +24,13 @@ public class Day extends Thread {
     private Spieler richterin;
     private ArrayList<Spieler> verurteilteSpieler;
 
-    public static String dayTitle = "Opfer der Dorfabstimmung";
+    public static final String dayTitle = "Opfer der Dorfabstimmung";
 
     public Day(Game game) {
         this.game = game;
     }
 
+    @Override
     public void run() {
         day();
 
@@ -41,7 +42,7 @@ public class Day extends Thread {
         PhaseManager.nextPhase();
     }
 
-    public void day() {
+    private void day() {
         lock = new Object();
         synchronized (lock) {
             gebürgteSpieler = new ArrayList<>();
@@ -97,7 +98,7 @@ public class Day extends Thread {
         }
     }
 
-    public void checkVictory() {
+    private void checkVictory() {
         Winner winner = game.checkVictory();
 
         if (winner != Winner.NO_WINNER) {
@@ -105,7 +106,7 @@ public class Day extends Thread {
         }
     }
 
-    public void checkRichterin(Spieler spieler) {
+    private void checkRichterin(Spieler spieler) {
         if (spieler.hauptrolle.fraktion.name.equals(Bürger.NAME)) {
             if (richterin != null && richterin.lebend && verurteilteSpieler.contains(spieler)) {
                 killSpielerCheckLiebespaar(richterin);
@@ -113,7 +114,7 @@ public class Day extends Thread {
         }
     }
 
-    public void killSpieler(Spieler spieler) {
+    private void killSpieler(Spieler spieler) {
         if (spieler != null) {
             game.killSpieler(spieler);
 
@@ -122,7 +123,7 @@ public class Day extends Thread {
         }
     }
 
-    public void killSpielerCheckLiebespaar(Spieler spieler) {
+    private void killSpielerCheckLiebespaar(Spieler spieler) {
         killSpieler(spieler);
 
         if (game.liebespaar.getSpielerToDie() != null) {
@@ -163,7 +164,7 @@ public class Day extends Thread {
         }
     }
 
-    public static void waitForAnswer() {
+    private static void waitForAnswer() {
         try {
             lock.wait();
         } catch (InterruptedException e) {
