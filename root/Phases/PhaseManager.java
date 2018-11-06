@@ -35,7 +35,7 @@ public class PhaseManager extends Thread {
     }
 
     private void night() {
-        FrontendControl.erzählerFrame.mode = ErzählerFrameMode.NORMAL_NIGHT;
+        ErzählerFrame.mode = ErzählerFrameMode.NORMAL_NIGHT;
         phaseMode = PhaseMode.NORMAL_NIGHT;
         NormalNight normalNight = new NormalNight(game);
         normalNight.start();
@@ -44,10 +44,10 @@ public class PhaseManager extends Thread {
 
     private void day() {
         if (game.freibier) {
-            FrontendControl.erzählerFrame.mode = ErzählerFrameMode.FREIBIER_DAY;
+            ErzählerFrame.mode = ErzählerFrameMode.FREIBIER_DAY;
             phaseMode = PhaseMode.FREIBIER_DAY;
         } else {
-            FrontendControl.erzählerFrame.mode = ErzählerFrameMode.DAY;
+            ErzählerFrame.mode = ErzählerFrameMode.DAY;
             phaseMode = PhaseMode.DAY;
         }
         Day day = new Day(game);

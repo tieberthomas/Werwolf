@@ -230,13 +230,13 @@ public class ErzählerPageElementFactory {
         ArrayList<String> statementStrings = new ArrayList<>();
         ArrayList<String> statementColors = new ArrayList<>();
 
-        Boolean found = false;
+        boolean found = false;
 
         ArrayList<Statement> statements = new ArrayList<>();
 
-        if (erzählerFrame.mode == ErzählerFrameMode.FIRST_NIGHT) {
+        if (ErzählerFrame.mode == ErzählerFrameMode.FIRST_NIGHT) {
             statements = FirstNight.statements;
-        } else if (erzählerFrame.mode == ErzählerFrameMode.NORMAL_NIGHT) {
+        } else if (ErzählerFrame.mode == ErzählerFrameMode.NORMAL_NIGHT) {
             statements = NormalNight.statements;
         }
 
