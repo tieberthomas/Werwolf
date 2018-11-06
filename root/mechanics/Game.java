@@ -29,7 +29,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Game {
-    public PhaseMode phaseMode;
     public Day day;
 
     public boolean freibier = false;
@@ -53,8 +52,9 @@ public class Game {
         FrontendControl.game = this;
         Angriff.game = this;
         NormalNightStatementBuilder.game = this;
+        PhaseManager.game = this;
 
-        phaseMode = PhaseMode.SETUP;
+        PhaseManager.phaseMode = PhaseMode.SETUP;
 
         spieler = new ArrayList<>();
         hauptrollenInGame = new ArrayList<>();
@@ -67,6 +67,29 @@ public class Game {
 
         liebespaar = new Liebespaar(this);
         Torte.tortenEsser = new ArrayList<>();
+    }
+
+    public void startGame(ErzählerFrame erzählerFrame) {
+        erzählerFrame.übersichtsFrame = new ÜbersichtsFrame(erzählerFrame, this);
+        erzählerFrame.toFront();
+
+        FrontendControl.erzählerFrame = erzählerFrame;
+        FrontendControl.spielerFrame = erzählerFrame.spielerFrame;
+        FrontendControl.übersichtsFrame = erzählerFrame.übersichtsFrame;
+
+        PhaseManager.firstnight(erzählerFrame);
+
+        //TODO structure below doesn't work because of multiThreading
+//        while (true) {
+//            if(freibier) {
+//                freibierDay();
+//                freibier = false;
+//            } else {
+//                day();
+//            }
+//
+//            night();
+//        }
     }
 
     private void generateAllAvailableHauptrollen() {
@@ -119,71 +142,6 @@ public class Game {
         bonusrollen.add(new Vampirumhang());
         bonusrollen.add(new Wahrsager());
         bonusrollen.add(new Wolfspelz());
-    }
-
-    public ErzählerFrameMode parsePhaseMode() { //TODO automapper?
-        if (phaseMode == PhaseMode.DAY) {
-            return ErzählerFrameMode.DAY;
-        } else if (phaseMode == PhaseMode.FREIBIER_DAY) {
-            return ErzählerFrameMode.FREIBIER_DAY;
-        } else if (phaseMode == PhaseMode.FIRST_NIGHT) {
-            return ErzählerFrameMode.FIRST_NIGHT;
-        } else if (phaseMode == PhaseMode.NORMAL_NIGHT) {
-            return ErzählerFrameMode.NORMAL_NIGHT;
-        } else {
-            return ErzählerFrameMode.SETUP;
-        }
-    }
-
-    public void startGame(ErzählerFrame erzählerFrame) {
-        erzählerFrame.übersichtsFrame = new ÜbersichtsFrame(erzählerFrame, this);
-        erzählerFrame.toFront();
-
-        FrontendControl.erzählerFrame = erzählerFrame;
-        FrontendControl.spielerFrame = erzählerFrame.spielerFrame;
-        FrontendControl.übersichtsFrame = erzählerFrame.übersichtsFrame;
-
-        firstnight(erzählerFrame);
-
-        //TODO structure below doesn't work because of multiThreading
-//        while (true) {
-//            if(freibier) {
-//                freibierDay();
-//                freibier = false;
-//            } else {
-//                day();
-//            }
-//
-//            night();
-//        }
-    }
-
-    public void firstnight(ErzählerFrame erzählerFrame) {
-        erzählerFrame.mode = ErzählerFrameMode.FIRST_NIGHT;
-        phaseMode = PhaseMode.FIRST_NIGHT;
-        FirstNight firstNight = new FirstNight(this);
-        firstNight.start();
-    }
-
-    public void night() {
-        FrontendControl.erzählerFrame.mode = ErzählerFrameMode.NORMAL_NIGHT;
-        phaseMode = PhaseMode.NORMAL_NIGHT;
-        NormalNight normalNight = new NormalNight(this);
-        normalNight.start();
-    }
-
-    public void day() {
-        FrontendControl.erzählerFrame.mode = ErzählerFrameMode.DAY;
-        phaseMode = PhaseMode.DAY;
-        day = new Day(this);
-        day.start();
-    }
-
-    public void freibierDay() {
-        FrontendControl.erzählerFrame.mode = ErzählerFrameMode.FREIBIER_DAY;
-        phaseMode = PhaseMode.FREIBIER_DAY;
-        day = new Day(this);
-        day.start();
     }
 
     public Winner checkVictory() {

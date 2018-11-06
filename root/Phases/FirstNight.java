@@ -141,7 +141,7 @@ public class FirstNight extends Thread {
         }
 
         cleanUp();
-        game.day();//TODO remove
+        PhaseManager.day();//TODO remove
     }
 
     public void beginNight() {

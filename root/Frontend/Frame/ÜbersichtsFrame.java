@@ -6,6 +6,7 @@ import root.Frontend.Page.PageTable;
 import root.Persona.Rolle;
 import root.Phases.FirstNight;
 import root.Phases.NormalNight;
+import root.Phases.PhaseManager;
 import root.Phases.PhaseMode;
 import root.Spieler;
 import root.mechanics.Game;
@@ -79,8 +80,8 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener {
                 label.setBackground(Spieler.ALIVE_BACKGROUND_COLOR);
             }
             label.setOpaque(true);
-            if ((game.phaseMode == PhaseMode.FIRST_NIGHT && FirstNight.spielerAwake.contains(spieler)) ||
-                    (game.phaseMode == PhaseMode.NORMAL_NIGHT && NormalNight.spielerAwake.contains(spieler))) {
+            if ((PhaseManager.phaseMode == PhaseMode.FIRST_NIGHT && FirstNight.spielerAwake.contains(spieler)) ||
+                    (PhaseManager.phaseMode == PhaseMode.NORMAL_NIGHT && NormalNight.spielerAwake.contains(spieler))) {
                 Color borderColor = defaultBorderColor;
                 //hier kann die rahmen farbe geändert werden wenn notwendig
                 label.setBorder(BorderFactory.createLineBorder(borderColor, 2));

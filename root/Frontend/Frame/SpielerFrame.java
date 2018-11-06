@@ -5,6 +5,7 @@ import root.Frontend.Factories.SpielerPageFactory;
 import root.Frontend.Page.Page;
 import root.Frontend.Utils.TimeUpdater;
 import root.Phases.Day;
+import root.Phases.PhaseManager;
 import root.Phases.PhaseMode;
 import root.mechanics.Game;
 
@@ -102,7 +103,7 @@ public class SpielerFrame extends MyFrame {
     public void generateDayPage() {
         boolean freibierDay = false;
         title = Day.dayTitle;
-        if (game.phaseMode == PhaseMode.FREIBIER_DAY) {
+        if (PhaseManager.phaseMode == PhaseMode.FREIBIER_DAY) {
             mode = SpielerFrameMode.freibierPage;
             freibierDay = true;
         }

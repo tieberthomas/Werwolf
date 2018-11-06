@@ -40,7 +40,7 @@ public class Day extends Thread {
             game.freibier = false;
         }
 
-        game.night();//TODO remove
+        PhaseManager.night();//TODO remove
     }
 
     public void day() {

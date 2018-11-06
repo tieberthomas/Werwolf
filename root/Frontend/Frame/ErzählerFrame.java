@@ -13,6 +13,7 @@ import root.Persona.Hauptrolle;
 import root.Phases.Day;
 import root.Phases.FirstNight;
 import root.Phases.NormalNight;
+import root.Phases.PhaseManager;
 import root.Phases.PhaseMode;
 import root.ResourceManagement.DataManager;
 import root.Spieler;
@@ -424,7 +425,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
             nextPage();
         } else if (goBackButtons.contains(ae.getSource())) {
             if (gameIsInDaySetupMode()) {
-                mode = game.parsePhaseMode();
+                mode = PhaseManager.parsePhaseMode();
                 showDayPage();
             } else {
                 prevPage();
@@ -534,7 +535,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
 
                     addPlayerTxtField.setText("");
 
-                    mode = game.parsePhaseMode();
+                    mode = PhaseManager.parsePhaseMode();
                     showDayPage();
 
                     if (übersichtsFrame != null) {
@@ -565,7 +566,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                     showDayPage();
                 }
 
-                mode = game.parsePhaseMode();
+                mode = PhaseManager.parsePhaseMode();
 
                 if (übersichtsFrame != null) {
                     übersichtsFrame.refresh();
@@ -597,7 +598,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                 String spieler = chosenOption2;
                 game.day.bürgen(priester, spieler);
 
-                mode = game.parsePhaseMode();
+                mode = PhaseManager.parsePhaseMode();
                 showDayPage();
             } else {
                 mode = ErzählerFrameMode.PRIESTER_SETUP;
@@ -623,7 +624,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                 String spieler = chosenOption2;
                 game.day.verurteilen(richterin, spieler);
 
-                mode = game.parsePhaseMode();
+                mode = PhaseManager.parsePhaseMode();
                 showDayPage();
             } else {
                 mode = ErzählerFrameMode.RICHTERIN_SETUP;
@@ -873,9 +874,9 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         übersichtsFrame = new ÜbersichtsFrame(this, game);
 
         FrontendControl.spielerFrame = spielerFrame;
-        if (game.phaseMode == PhaseMode.DAY || game.phaseMode == PhaseMode.FREIBIER_DAY) {
+        if (PhaseManager.phaseMode == PhaseMode.DAY || PhaseManager.phaseMode == PhaseMode.FREIBIER_DAY) {
             spielerFrame.generateDayPage();
-        } else if (game.phaseMode == PhaseMode.NORMAL_NIGHT || game.phaseMode == PhaseMode.FIRST_NIGHT) {
+        } else if (PhaseManager.phaseMode == PhaseMode.NORMAL_NIGHT || PhaseManager.phaseMode == PhaseMode.FIRST_NIGHT) {
             spielerFrame.buildScreenFromPage(savePage);
         }
     }

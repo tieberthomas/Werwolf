@@ -332,9 +332,9 @@ public class NormalNight extends Thread {
         cleanUpNight();
 
         if (game.freibier) {//TODO remove
-            game.freibierDay();
+            PhaseManager.freibierDay();
         } else {
-            game.day();
+            PhaseManager.day();
         }
     }
 
