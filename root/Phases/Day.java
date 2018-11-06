@@ -31,12 +31,9 @@ public class Day extends Thread {
     }
 
     public void run() {
-        gebürgteSpieler = new ArrayList<>();
-        verurteilteSpieler = new ArrayList<>();
         day();
 
         if (game.freibier) {
-            //TODO michael fragen ob gebürgte/verurteilte spieler am freibiertag geresetted werden
             day();
             game.freibier = false;
         }
@@ -47,6 +44,8 @@ public class Day extends Thread {
     public void day() {
         lock = new Object();
         synchronized (lock) {
+            gebürgteSpieler = new ArrayList<>();
+            verurteilteSpieler = new ArrayList<>();
             TimeUpdater.time = 0;
 
             FrontendControl.erzählerDefaultDayPage();
