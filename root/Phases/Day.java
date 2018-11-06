@@ -19,10 +19,10 @@ public class Day extends Thread {
     public static Object lock;
     public static boolean umbringenButton = false;
     public static Spieler umbringenSpieler;
-    public static Spieler priester;
-    public static ArrayList<Spieler> gebürgteSpieler;
-    public static Spieler richterin;
-    public static ArrayList<Spieler> verurteilteSpieler;
+    private Spieler priester;
+    private ArrayList<Spieler> gebürgteSpieler;
+    private Spieler richterin;
+    private ArrayList<Spieler> verurteilteSpieler;
 
     public static String dayTitle = "Opfer der Dorfabstimmung";
 
@@ -143,23 +143,23 @@ public class Day extends Thread {
         waitForAnswer();
     }
 
-    public void bürgen(String priester, String spieler) {
-        Spieler priesterSpieler = game.findSpieler(priester);
-        Spieler verbürgerSpieler = game.findSpieler(spieler);
+    public void bürgen(String priesterName, String spielerName) {
+        Spieler priesterSpieler = game.findSpieler(priesterName);
+        Spieler verbürgerSpieler = game.findSpieler(spielerName);
 
-        if (priesterSpieler != null && spieler != null) {
-            Day.priester = priesterSpieler;
-            Day.gebürgteSpieler.add(verbürgerSpieler);
+        if (priesterSpieler != null && spielerName != null) {
+            priester = priesterSpieler;
+            gebürgteSpieler.add(verbürgerSpieler);
         }
     }
 
-    public void verurteilen(String richterin, String spieler) {
-        Spieler richterinSpieler = game.findSpieler(richterin);
-        Spieler verurteilterSpieler = game.findSpieler(spieler);
+    public void verurteilen(String richterinName, String spielerName) {
+        Spieler richterinSpieler = game.findSpieler(richterinName);
+        Spieler verurteilterSpieler = game.findSpieler(spielerName);
 
-        if (richterinSpieler != null && spieler != null) {
-            Day.richterin = richterinSpieler;
-            Day.verurteilteSpieler.add(verurteilterSpieler);
+        if (richterinSpieler != null && spielerName != null) {
+            richterin = richterinSpieler;
+            verurteilteSpieler.add(verurteilterSpieler);
         }
     }
 
