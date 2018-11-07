@@ -7,6 +7,7 @@ import root.Frontend.Page.PageTable;
 import root.Frontend.Utils.PageRefresher.Models.ButtonTable;
 import root.Frontend.Utils.PageRefresher.Models.Combobox;
 import root.Frontend.Utils.PageRefresher.Models.DeleteButtonTable;
+import root.Frontend.Utils.PageRefresher.Models.Label;
 import root.Frontend.Utils.PageRefresher.Models.LabelTable;
 import root.Frontend.Utils.PageRefresher.PageRefresher;
 import root.Persona.Bonusrolle;
@@ -160,6 +161,10 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         comboBox2 = new JComboBox();
         comboBox3 = new JComboBox();
 
+        numberOfPlayersJLabel = new JLabel();
+        hauptrolleCounterJLabel = new JLabel();
+        bonusrolleCounterJLabel = new JLabel();
+
         playerSetupPage = new Page();
         hauptrolleSetupPage = new Page();
         bonusrolleSetupPage = new Page();
@@ -202,6 +207,11 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         playerPageRefresher = new PageRefresher(playerSetupPage);
         playerPageRefresher.add(new LabelTable(playerLabelTable, game::getLivingSpielerStrings));
         playerPageRefresher.add(new DeleteButtonTable(deletePlayerTable, deletePlayerButtons, game.spieler::size));
+        playerPageRefresher.add(new Label(numberOfPlayersJLabel, this::getNumberOfPlayersLabelText));
+    }
+
+    private String getNumberOfPlayersLabelText() {
+        return pageFactory.pageElementFactory.generateNumberOfPLayersLabelTitle(game.spieler.size());
     }
 
     private void generateHauptrollePageRefresher() {
@@ -209,6 +219,11 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         hauptrollePageRefresher.add(new ButtonTable(hauptrolleButtons));
         hauptrollePageRefresher.add(new LabelTable(hauptrolleLabelTable, game::getHauptrolleInGameNames));
         hauptrollePageRefresher.add(new DeleteButtonTable(deleteHauptrolleTable, deleteHauptrolleButtons, game.hauptrollenInGame::size));
+        hauptrollePageRefresher.add(new Label(hauptrolleCounterJLabel, this::getHauptrollenCounterLabelText));
+    }
+
+    private String getHauptrollenCounterLabelText() {
+        return pageFactory.pageElementFactory.generateCounterLabelTitle(game.spieler.size(), game.hauptrollenInGame.size());
     }
 
     private void generateBonusrollePageRefresher() {
@@ -216,6 +231,11 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         bonusrollePageRefresher.add(new ButtonTable(bonusrolleButtons));
         bonusrollePageRefresher.add(new LabelTable(bonusrolleLabelTable, game::getBonusrolleInGameNames));
         bonusrollePageRefresher.add(new DeleteButtonTable(deleteBonusrolleTable, deleteBonusrolleButtons, game.bonusrollenInGame::size));
+        bonusrollePageRefresher.add(new Label(bonusrolleCounterJLabel, this::getBonusrollenCounterLabeltext));
+    }
+
+    private String getBonusrollenCounterLabeltext() {
+        return pageFactory.pageElementFactory.generateCounterLabelTitle(game.spieler.size(), game.bonusrollenInGame.size());
     }
 
     private void generateTortenPageRefresher() {
@@ -281,31 +301,16 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     }
 
     private void refreshPlayerPage() {
-        refreshNumberOfPlayersLabel();
         playerPageRefresher.refreshPage();
         addPlayerTxtField.requestFocusInWindow();
     }
 
     private void refreshHauptrollePage() {
-        refreshHauptrolleCounterLabel();
         hauptrollePageRefresher.refreshPage();
     }
 
     private void refreshBonusrollePage() {
-        refreshBonusrolleCounterLabel();
         bonusrollePageRefresher.refreshPage();
-    }
-
-    public void refreshNumberOfPlayersLabel() {
-        numberOfPlayersJLabel.setText(pageFactory.pageElementFactory.generateNumberOfPLayersLabelTitle(game.spieler.size()));
-    }
-
-    public void refreshHauptrolleCounterLabel() {
-        hauptrolleCounterJLabel.setText(pageFactory.pageElementFactory.generateCounterLabelTitle(game.spieler.size(), game.hauptrollenInGame.size()));
-    }
-
-    public void refreshBonusrolleCounterLabel() {
-        bonusrolleCounterJLabel.setText(pageFactory.pageElementFactory.generateCounterLabelTitle(game.spieler.size(), game.bonusrollenInGame.size()));
     }
 
     private void refreshSpecifyPlayerPage() {

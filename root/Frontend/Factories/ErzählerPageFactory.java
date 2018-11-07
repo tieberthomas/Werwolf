@@ -58,7 +58,7 @@ public class ErzählerPageFactory {
         erzählerFrame.addPlayerButton = new JButton("Hinzufügen");
         PageElement addPlayerButton = pageElementFactory.generateSmallButton(erzählerFrame.addPlayerButton, addPlayerTxtField);
 
-        erzählerFrame.numberOfPlayersJLabel = new JLabel(pageElementFactory.generateNumberOfPLayersLabelTitle(numberOfPlayers));
+        erzählerFrame.numberOfPlayersJLabel.setText(pageElementFactory.generateNumberOfPLayersLabelTitle(numberOfPlayers));
         PageElement numberOfPlayersLabel = pageElementFactory.generateCounterLabel(erzählerFrame.numberOfPlayersJLabel, addPlayerTxtField);
 
         int tableElementHeight = 25;
@@ -101,7 +101,7 @@ public class ErzählerPageFactory {
         PageTable hauptrolleButtonTable = pageElementFactory.generateButtonTable(erzählerFrame.hauptrolleButtonTable, null);
         pageElementFactory.generateTableButtons(hauptrollen, erzählerFrame.hauptrolleButtons, hauptrolleButtonTable);
 
-        erzählerFrame.hauptrolleCounterJLabel = new JLabel(pageElementFactory.generateCounterLabelTitle(numberOfPlayers, numberOfHauptrollen));
+        erzählerFrame.hauptrolleCounterJLabel.setText(pageElementFactory.generateCounterLabelTitle(numberOfPlayers, numberOfHauptrollen));
         PageElement counterLabel = pageElementFactory.generateCounterLabel(erzählerFrame.hauptrolleCounterJLabel, hauptrolleButtonTable);
 
         int tableElementHeight = 25;
@@ -148,7 +148,7 @@ public class ErzählerPageFactory {
         PageTable bonusrolleButtonTable = pageElementFactory.generateButtonTable(erzählerFrame.bonusrolleButtonTable, null);
         pageElementFactory.generateTableButtons(bonusrollen, erzählerFrame.bonusrolleButtons, bonusrolleButtonTable);
 
-        erzählerFrame.bonusrolleCounterJLabel = new JLabel(pageElementFactory.generateCounterLabelTitle(numberOfPlayers, numberOfBonusrollen));
+        erzählerFrame.bonusrolleCounterJLabel.setText(pageElementFactory.generateCounterLabelTitle(numberOfPlayers, numberOfBonusrollen));
         PageElement counterLabel = pageElementFactory.generateCounterLabel(erzählerFrame.bonusrolleCounterJLabel, bonusrolleButtonTable);
 
         int tableElementHeight = 25;
