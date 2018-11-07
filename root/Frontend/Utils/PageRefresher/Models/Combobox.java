@@ -7,9 +7,9 @@ import java.util.function.Supplier;
 
 public class Combobox implements RefreshObject {
     private JComboBox comboBox;
-    private Supplier<ArrayList<String>> comboBoxTexts;
+    private Supplier<List<String>> comboBoxTexts;
 
-    public Combobox(JComboBox comboBox, Supplier<ArrayList<String>> comboBoxTexts) {
+    public Combobox(JComboBox comboBox, Supplier<List<String>> comboBoxTexts) {
         this.comboBox = comboBox;
         this.comboBoxTexts = comboBoxTexts;
     }

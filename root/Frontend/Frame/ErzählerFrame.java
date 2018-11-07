@@ -4,7 +4,6 @@ import root.Frontend.Factories.ErzählerPageFactory;
 import root.Frontend.FrontendControl;
 import root.Frontend.Page.Page;
 import root.Frontend.Page.PageTable;
-import root.Frontend.Utils.JButtonStyler;
 import root.Frontend.Utils.PageRefresher.Models.ButtonTable;
 import root.Frontend.Utils.PageRefresher.Models.Combobox;
 import root.Frontend.Utils.PageRefresher.Models.DeleteButtonTable;
@@ -223,6 +222,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         tortenPageRefresher = new PageRefresher(tortenPage);
         tortenPageRefresher.add(new LabelTable(tortenPlayerLabelTable, Torte::getTortenesserNames));
         tortenPageRefresher.add(new DeleteButtonTable(deleteTortenPlayerTable, deleteTortenPlayerButtons, Torte.tortenEsser::size));
+        tortenPageRefresher.add(new Combobox(comboBox1, this::getNichtTortenEsserStrings));
     }
 
     private void generateSpecifyPageRefresher() {
@@ -261,6 +261,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         irrlichtPageRefresher = new PageRefresher(irrlichtPage);
         irrlichtPageRefresher.add(new LabelTable(irrlichterLableTable, this::getFlackerndeIrrlichter));
         irrlichtPageRefresher.add(new DeleteButtonTable(deleteIrrlichterTable, deleteIrrlichterButtons, this.flackerndeIrrlichter::size));
+        irrlichtPageRefresher.add(new Combobox(comboBox1, this::getNichtFlackerndeIrrlichterStrings));
     }
 
     private void generateAllPages() {
@@ -308,17 +309,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     }
 
     private void refreshSpecifyPlayerPage() {
-        //refreshSpecifyComboBoxes();
         specifyPageRefresher.refreshPage();
-    }
-
-    public void refreshSpecifyComboBoxes() {
-        DefaultComboBoxModel model1 = new DefaultComboBoxModel(game.getSpielerUnspecifiedStrings().toArray());
-        comboBox1.setModel(model1);
-        DefaultComboBoxModel model2 = new DefaultComboBoxModel(game.getHauptrollenUnspecifiedStrings().toArray());
-        comboBox2.setModel(model2);
-        DefaultComboBoxModel model3 = new DefaultComboBoxModel(game.getBonusrollenUnspecifiedStrings().toArray());
-        comboBox3.setModel(model3);
     }
 
     public void removeSpecifiedPlayer(int index) {
@@ -330,32 +321,28 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     }
 
     private void refreshTortenPage() {
-        refreshTortenComboBoxes();
         tortenPageRefresher.refreshPage();
     }
 
-    public void refreshTortenComboBoxes() {
+    private ArrayList<String> getNichtTortenEsserStrings() {
         ArrayList<String> nichtTortenEsser = game.getLivingSpielerStrings();
         ArrayList<String> tortenEsser = new ArrayList<>();
         for (Spieler spieler : Torte.tortenEsser) {
             tortenEsser.add(spieler.name);
         }
         nichtTortenEsser.removeAll(tortenEsser);
-        DefaultComboBoxModel model1 = new DefaultComboBoxModel(nichtTortenEsser.toArray());
-        comboBox1.setModel(model1);
+        return nichtTortenEsser;
     }
 
     private void refreshIrrlichtPage() {
-        refreshIrrlichtComboBoxes();
         irrlichtPageRefresher.refreshPage();
     }
 
-    private void refreshIrrlichtComboBoxes() {
+    private List<String> getNichtFlackerndeIrrlichterStrings() {
         List<String> nichtFlackernde = game.getIrrlichterStrings();
-        ArrayList<String> flackernde = flackerndeIrrlichter;
+        List<String> flackernde = flackerndeIrrlichter;
         nichtFlackernde.removeAll(flackernde);
-        DefaultComboBoxModel model1 = new DefaultComboBoxModel(nichtFlackernde.toArray());
-        comboBox1.setModel(model1);
+        return nichtFlackernde;
     }
 
     public void nextPage() {
