@@ -11,13 +11,12 @@ alles was tötet + prostituierten interaktion
 wahrsager
 
 bugs:
-gefängniswärter aufgebraucht
-
 
 ToDo:
 StatementType ROLLE_CHOOSE_SPIELER
 new Rolle vermeiden: immer von Liste in Game holen
 Liste für buttons Liste für Rollen
+Button "Alle Rollen" - Liste vorher leeren
 
 task:
 wenn dieb karten stiehlt wie z.B. schnüffler oder tarnumhang, dann müssen arraylists der letzten nächte zurückgesetzt werden
@@ -56,6 +55,3 @@ Michael änderungs requests
 beim neuen schattenpriester werden alle SP eingerahmt
 
 michael fragen:
-
-Fallstrick:
-Henker Prostituierte Interaktion
