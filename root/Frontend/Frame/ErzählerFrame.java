@@ -6,6 +6,7 @@ import root.Frontend.Page.Page;
 import root.Frontend.Page.PageTable;
 import root.Frontend.Utils.JButtonStyler;
 import root.Frontend.Utils.PageRefresher.Models.ButtonTable;
+import root.Frontend.Utils.PageRefresher.Models.Combobox;
 import root.Frontend.Utils.PageRefresher.Models.DeleteButtonTable;
 import root.Frontend.Utils.PageRefresher.Models.LabelTable;
 import root.Frontend.Utils.PageRefresher.PageRefresher;
@@ -102,9 +103,9 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     public String chosenOption2 = "";
     public String chosenOption3 = "";
 
-    public JComboBox comboBox1 = new JComboBox();
-    public JComboBox comboBox2 = new JComboBox();
-    public JComboBox comboBox3 = new JComboBox();
+    public JComboBox comboBox1;
+    public JComboBox comboBox2;
+    public JComboBox comboBox3;
     public JButton nextJButton;
     public JButton goBackJButton;
     public JButton nachzüglerJButton;
@@ -156,6 +157,10 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     }
 
     private void initializePages() {
+        comboBox1 = new JComboBox();
+        comboBox2 = new JComboBox();
+        comboBox3 = new JComboBox();
+
         playerSetupPage = new Page();
         hauptrolleSetupPage = new Page();
         bonusrolleSetupPage = new Page();
@@ -247,6 +252,9 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                     }
                 }));
         specifyPageRefresher.add(new DeleteButtonTable(deleteSpecifyPlayerTable, deleteSpecifyPlayerButtons, game.spielerSpecified::size));
+        specifyPageRefresher.add(new Combobox(comboBox1, game::getSpielerUnspecifiedStrings));
+        specifyPageRefresher.add(new Combobox(comboBox2, game::getHauptrollenUnspecifiedStrings));
+        specifyPageRefresher.add(new Combobox(comboBox3, game::getBonusrollenUnspecifiedStrings));
     }
 
     private void generateIrrlichtPageRefresher() {
@@ -300,7 +308,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     }
 
     private void refreshSpecifyPlayerPage() {
-        refreshSpecifyComboBoxes();
+        //refreshSpecifyComboBoxes();
         specifyPageRefresher.refreshPage();
     }
 

@@ -199,17 +199,20 @@ public class ErzählerPageFactory {
         titleLabel.height = 50;
 
         PageElement playerLabel = pageElementFactory.generateLabel(titleLabel, "Spieler");
-        erzählerFrame.comboBox1 = new JComboBox(playersUnspecified.toArray());
+        DefaultComboBoxModel model = new DefaultComboBoxModel(playersUnspecified.toArray());
+        erzählerFrame.comboBox1.setModel(model);
         PageElement choosePlayer = pageElementFactory.generateDropdown(erzählerFrame.comboBox1,
                 null, playerLabel, 0, 0);
 
         PageElement hauptrolleLabel = pageElementFactory.generateLabel(choosePlayer, "Hauptrolle");
-        erzählerFrame.comboBox2 = new JComboBox(hauptrollenUnspecified.toArray());
+        DefaultComboBoxModel model2 = new DefaultComboBoxModel(hauptrollenUnspecified.toArray());
+        erzählerFrame.comboBox2.setModel(model2);
         PageElement chooseHauptrolle = pageElementFactory.generateDropdown(erzählerFrame.comboBox2,
                 null, hauptrolleLabel, 0, 0);
 
         PageElement bonusrolleLabel = pageElementFactory.generateLabel(chooseHauptrolle, "Bonusrolle");
-        erzählerFrame.comboBox3 = new JComboBox(bonusrollenUnspecified.toArray());
+        DefaultComboBoxModel model3 = new DefaultComboBoxModel(bonusrollenUnspecified.toArray());
+        erzählerFrame.comboBox3.setModel(model3);
         PageElement chooseBonusrolle = pageElementFactory.generateDropdown(erzählerFrame.comboBox3,
                 null, bonusrolleLabel, 0, 0);
 
@@ -326,7 +329,8 @@ public class ErzählerPageFactory {
 
     public Page generateDropdownPage(Page dropdownPage, Statement statement, List<String> dropdownOptions, boolean hatZurückButton) {
         dropdownPage = generateDefaultNightPage(dropdownPage, statement, hatZurückButton);
-        erzählerFrame.comboBox1 = new JComboBox(dropdownOptions.toArray());
+        DefaultComboBoxModel model = new DefaultComboBoxModel(dropdownOptions.toArray());
+        erzählerFrame.comboBox1.setModel(model);
         PageElement choosePlayer1 = pageElementFactory.generateDropdown(erzählerFrame.comboBox1,
                 null, getContinueToGeneratePagePoint(dropdownPage));
 
@@ -350,7 +354,8 @@ public class ErzählerPageFactory {
 
     public Page generateDropdownPage(Page dropdownPage, Statement statement, List<String> dropdownOptions, List<String> dropdownOptions2) {
         dropdownPage = generateDropdownPage(dropdownPage, statement, dropdownOptions);
-        erzählerFrame.comboBox2 = new JComboBox(dropdownOptions2.toArray());
+        DefaultComboBoxModel model = new DefaultComboBoxModel(dropdownOptions2.toArray());
+        erzählerFrame.comboBox2.setModel(model);
         PageElement choosePlayer2 = pageElementFactory.generateDropdown(erzählerFrame.comboBox2,
                 null, getContinueToGeneratePagePoint(dropdownPage));
 
@@ -374,7 +379,8 @@ public class ErzählerPageFactory {
 
     public Page generateDropdownPage(Page dropdownPage, Statement statement, List<String> dropdownOptions, List<String> dropdownOptions2, List<String> dropdownOptions3) {
         dropdownPage = generateDropdownPage(dropdownPage, statement, dropdownOptions, dropdownOptions2);
-        erzählerFrame.comboBox3 = new JComboBox(dropdownOptions3.toArray());
+        DefaultComboBoxModel model = new DefaultComboBoxModel(dropdownOptions3.toArray());
+        erzählerFrame.comboBox3.setModel(model);
         PageElement choosePlayer3 = pageElementFactory.generateDropdown(erzählerFrame.comboBox3,
                 null, getContinueToGeneratePagePoint(dropdownPage));
 
@@ -440,7 +446,8 @@ public class ErzählerPageFactory {
     public Page generateDayPage(List<String> livingPlayers) {
         Page dayPage = generateDefaultDayPage();
 
-        erzählerFrame.comboBox1 = new JComboBox(livingPlayers.toArray());
+        DefaultComboBoxModel model = new DefaultComboBoxModel(livingPlayers.toArray());
+        erzählerFrame.comboBox1.setModel(model);
         PageElement choosePlayer = pageElementFactory.generateDropdown(erzählerFrame.comboBox1,
                 null, continueToGenerateElement);
 
@@ -505,13 +512,15 @@ public class ErzählerPageFactory {
 
         PageElement hauptRolleLabel = pageElementFactory.generateLabel(nameTxtField, "Hauptrolle");
 
-        erzählerFrame.comboBox1 = new JComboBox(hauptrollen.toArray());
+        DefaultComboBoxModel model = new DefaultComboBoxModel(hauptrollen.toArray());
+        erzählerFrame.comboBox1.setModel(model);
         PageElement choosePlayer1 = pageElementFactory.generateDropdown(erzählerFrame.comboBox1,
                 null, hauptRolleLabel, 0, 0);
 
         PageElement bonusRolleLabel = pageElementFactory.generateLabel(choosePlayer1, "Hauptrolle");
 
-        erzählerFrame.comboBox2 = new JComboBox(bonusrollen.toArray());
+        DefaultComboBoxModel model2 = new DefaultComboBoxModel(bonusrollen.toArray());
+        erzählerFrame.comboBox2.setModel(model2);
         PageElement choosePlayer2 = pageElementFactory.generateDropdown(erzählerFrame.comboBox2,
                 null, bonusRolleLabel, 0, 0);
 
@@ -545,7 +554,8 @@ public class ErzählerPageFactory {
 
         List<String> comboBoxOptions = livingPlayers;
         comboBoxOptions.add("");
-        erzählerFrame.comboBox1 = new JComboBox(comboBoxOptions.toArray());
+        DefaultComboBoxModel model = new DefaultComboBoxModel(comboBoxOptions.toArray());
+        erzählerFrame.comboBox1.setModel(model);
         PageElement choosePlayer1 = pageElementFactory.generateDropdown(erzählerFrame.comboBox1,
                 null, nameLabel, 0, 0);
 
@@ -572,13 +582,14 @@ public class ErzählerPageFactory {
 
         PageElement priesterLabel = pageElementFactory.generateLabel(titleLabel, "Priester");
 
-        erzählerFrame.comboBox1 = new JComboBox(livingPlayers.toArray());
+        DefaultComboBoxModel model = new DefaultComboBoxModel(livingPlayers.toArray());
+        erzählerFrame.comboBox1.setModel(model);
         PageElement choosePriester = pageElementFactory.generateDropdown(erzählerFrame.comboBox1,
                 null, priesterLabel, 0, 0);
 
         PageElement spielerLabel = pageElementFactory.generateLabel(choosePriester, "Spieler");
 
-        erzählerFrame.comboBox2 = new JComboBox(livingPlayers.toArray());
+        erzählerFrame.comboBox2.setModel(model);
         PageElement choosePlayer = pageElementFactory.generateDropdown(erzählerFrame.comboBox2,
                 null, spielerLabel, 0, 0);
 
@@ -608,13 +619,14 @@ public class ErzählerPageFactory {
 
         PageElement richterinLabel = pageElementFactory.generateLabel(titleLabel, "Richterin");
 
-        erzählerFrame.comboBox1 = new JComboBox(livingPlayers.toArray());
+        DefaultComboBoxModel model = new DefaultComboBoxModel(livingPlayers.toArray());
+        erzählerFrame.comboBox1.setModel(model);
         PageElement chooseRichterin = pageElementFactory.generateDropdown(erzählerFrame.comboBox1,
                 null, richterinLabel, 0, 0);
 
         PageElement spielerLabel = pageElementFactory.generateLabel(chooseRichterin, "Spieler");
 
-        erzählerFrame.comboBox2 = new JComboBox(livingPlayers.toArray());
+        erzählerFrame.comboBox2.setModel(model);
         PageElement choosePlayer = pageElementFactory.generateDropdown(erzählerFrame.comboBox2,
                 null, spielerLabel, 0, 0);
 
@@ -648,7 +660,8 @@ public class ErzählerPageFactory {
         int spaceBetween = 10;
         int columns = 2;
 
-        erzählerFrame.comboBox1 = new JComboBox(livingPlayers.toArray());
+        DefaultComboBoxModel model = new DefaultComboBoxModel(livingPlayers.toArray());
+        erzählerFrame.comboBox1.setModel(model);
         PageElement choosePlayer1 = pageElementFactory.generateDropdown(erzählerFrame.comboBox1,
                 null, titleLabel, 0, 0);
 
