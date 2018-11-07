@@ -11,4 +11,8 @@ public enum DropdownConstants {
     DropdownConstants(String name) {
         this.name = name;
     }
+
+    public boolean equals(String string) {
+        return name.equals(string);
+    }
 }
