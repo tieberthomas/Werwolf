@@ -4,7 +4,7 @@ import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
 import java.util.ArrayList;
-import java.util.concurrent.ThreadLocalRandom;
+import java.util.List;
 
 public class Liebespaar {
     Game game;
@@ -47,10 +47,8 @@ public class Liebespaar {
         }
     }
 
-    public static Spieler generateRandomSpieler(ArrayList<Spieler> spieler) {
-        int randomNum = ThreadLocalRandom.current().nextInt(0, spieler.size());
-
-        return spieler.get(randomNum);
+    public static Spieler generateRandomSpieler(List<Spieler> spieler) {
+        return Rand.getRandomElement(spieler);
     }
 
     public Spieler getSpielerToDie() {
