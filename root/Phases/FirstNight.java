@@ -20,7 +20,7 @@ import root.ResourceManagement.ImagePath;
 import root.Spieler;
 import root.mechanics.Game;
 import root.mechanics.Liebespaar;
-import root.mechanics.Rand;
+import root.Utils.Rand;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -87,7 +87,7 @@ public class FirstNight extends Thread {
                     } else {
                         switch (statement.id) {
                             case IndieStatements.LIEBESPAAR_ID:
-                                ArrayList<String> spielerOrZufällig = game.liebespaar.getDropdownOptions();
+                                List<String> spielerOrZufällig = game.liebespaar.getDropdownOptions();
 
                                 showDropdown(statement, spielerOrZufällig, spielerOrZufällig);
 
@@ -113,7 +113,7 @@ public class FirstNight extends Thread {
                                 break;
 
                             case Henker.FIRST_NIGHT_STATEMENT_ID:
-                                ArrayList<Hauptrolle> henkerHauptrollen = game.getStillAvailableBürger();
+                                List<Hauptrolle> henkerHauptrollen = game.getStillAvailableBürger();
                                 Hauptrolle henkerHauptrolle = pickRandomHauptrolle(henkerHauptrollen);
                                 if (henkerHauptrolle == null) {
                                     henkerHauptrolle = new Dorfbewohner();
@@ -123,7 +123,7 @@ public class FirstNight extends Thread {
                                 break;
 
                             case Wolfsmensch.FIRST_NIGHT_STATEMENT_ID:
-                                ArrayList<Hauptrolle> hauptrollen = game.getStillAvailableBürger();
+                                List<Hauptrolle> hauptrollen = game.getStillAvailableBürger();
                                 Hauptrolle hauptrolle = pickRandomHauptrolle(hauptrollen);
                                 if (hauptrolle == null) {
                                     hauptrolle = new Dorfbewohner();
@@ -319,7 +319,7 @@ public class FirstNight extends Thread {
         }
     }
 
-    private Hauptrolle pickRandomHauptrolle(ArrayList<Hauptrolle> hauptrollen) {
+    private Hauptrolle pickRandomHauptrolle(List<Hauptrolle> hauptrollen) {
         int numberOfUnassignedHauptrollen = hauptrollen.size();
         if (numberOfUnassignedHauptrollen > 0) {
             return Rand.getRandomElement(hauptrollen);

@@ -228,25 +228,25 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     private void generateSpecifyPageRefresher() {
         specifyPageRefresher = new PageRefresher(playerSpecifiyPage);
         specifyPageRefresher.add(new LabelTable(playerSpecifyLabelTable,
-                new Supplier<ArrayList<String>>() {
-                    public ArrayList<String> get() {
-                        return (ArrayList<String>) game.spielerSpecified.stream()
+                new Supplier<List<String>>() {
+                    public List<String> get() {
+                        return game.spielerSpecified.stream()
                                 .map(player -> player.name)
                                 .collect(Collectors.toList());
                     }
                 }));
         specifyPageRefresher.add(new LabelTable(hauptrolleSpecifyLabelTable,
-                new Supplier<ArrayList<String>>() {
-                    public ArrayList<String> get() {
-                        return (ArrayList<String>) game.spielerSpecified.stream()
+                new Supplier<List<String>>() {
+                    public List<String> get() {
+                        return game.spielerSpecified.stream()
                                 .map(player -> player.hauptrolle.name)
                                 .collect(Collectors.toList());
                     }
                 }));
         specifyPageRefresher.add(new LabelTable(bonusrolleSpecifyLabelTable,
-                new Supplier<ArrayList<String>>() {
-                    public ArrayList<String> get() {
-                        return (ArrayList<String>) game.spielerSpecified.stream()
+                new Supplier<List<String>>() {
+                    public List<String> get() {
+                        return game.spielerSpecified.stream()
                                 .map(player -> player.bonusrolle.name)
                                 .collect(Collectors.toList());
                     }
@@ -271,8 +271,8 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         int numberOfplayers = game.spieler.size();
         int numberOfhauptrollen = game.hauptrollenInGame.size();
         int numberOfbonusrollen = game.bonusrollenInGame.size();
-        ArrayList<String> hauptrollen = game.getHauptrolleNames();
-        ArrayList<String> bonusrollen = game.getBonusrolleNames();
+        List<String> hauptrollen = game.getHauptrolleNames();
+        List<String> bonusrollen = game.getBonusrolleNames();
 
         pageFactory.generatePlayerSetupPage(playerSetupPage, numberOfplayers);
         pageFactory.generateHauptrolleSetupPage(hauptrolleSetupPage, numberOfplayers, numberOfhauptrollen, hauptrollen);
@@ -324,9 +324,9 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         tortenPageRefresher.refreshPage();
     }
 
-    private ArrayList<String> getNichtTortenEsserStrings() {
-        ArrayList<String> nichtTortenEsser = game.getLivingSpielerStrings();
-        ArrayList<String> tortenEsser = new ArrayList<>();
+    private List<String> getNichtTortenEsserStrings() {
+        List<String> nichtTortenEsser = game.getLivingSpielerStrings();
+        List<String> tortenEsser = new ArrayList<>();
         for (Spieler spieler : Torte.tortenEsser) {
             tortenEsser.add(spieler.name);
         }
@@ -709,7 +709,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                 deleteBonusrolleButtons.remove(i);
                 String bonusrolleName = game.bonusrollenInGame.get(i).name;
 
-                ArrayList<String> bonusrollenSpecified = game.getHauptrollenSpecifiedStrings();
+                List<String> bonusrollenSpecified = game.getHauptrollenSpecifiedStrings();
 
                 if (bonusrollenSpecified.contains(bonusrolleName)) {
                     int index = bonusrollenSpecified.indexOf(bonusrolleName);
@@ -743,7 +743,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                 deleteHauptrolleButtons.remove(i);
                 String hauptrolleName = game.hauptrollenInGame.get(i).name;
 
-                ArrayList<String> hauptrollenSpecified = game.getHauptrollenSpecifiedStrings();
+                List<String> hauptrollenSpecified = game.getHauptrollenSpecifiedStrings();
 
                 if (hauptrollenSpecified.contains(hauptrolleName)) {
                     int index = hauptrollenSpecified.indexOf(hauptrolleName);

@@ -3,14 +3,14 @@ package root.Frontend.Utils.PageRefresher.Models;
 import root.Frontend.Page.PageTable;
 
 import javax.swing.*;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Supplier;
 
 public class LabelTable implements RefreshObject {
     private PageTable table;
-    private Supplier<ArrayList<String>> labelTexts;
+    private Supplier<List<String>> labelTexts;
 
-    public LabelTable(PageTable table, Supplier<ArrayList<String>> labelTexts) {
+    public LabelTable(PageTable table, Supplier<List<String>> labelTexts) {
         this.table = table;
         this.labelTexts = labelTexts;
     }

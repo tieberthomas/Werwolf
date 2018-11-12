@@ -33,6 +33,7 @@ import root.Phases.NightBuilding.StatementDependancy.StatementDependencyFraktion
 import root.Phases.NightBuilding.StatementDependancy.StatementDependencyRolle;
 import root.Phases.NightBuilding.StatementDependancy.StatementDependencyStatement;
 import root.Spieler;
+import root.Utils.ListHelper;
 import root.mechanics.Game;
 import root.mechanics.KillLogik.Angriff;
 import root.mechanics.KillLogik.Opfer;
@@ -82,7 +83,7 @@ public class NormalNight extends Thread {
             wölfinSpieler = null;
             beschworenerSpieler = null;
 
-            ArrayList<String> spielerOrNon = game.getLivingSpielerOrNoneStrings();
+            List<String> spielerOrNon = game.getLivingSpielerOrNoneStrings();
 
             beginNight();
 
@@ -224,7 +225,7 @@ public class NormalNight extends Thread {
                         case Analytiker.STATEMENT_ID:
                             Spieler analytikerSpieler = game.findSpielerPerRolle(rolle.name);
 
-                            ArrayList<String> spielerOrNonWithoutAnalytiker = (ArrayList<String>) spielerOrNon.clone();
+                            List<String> spielerOrNonWithoutAnalytiker = ListHelper.cloneList(spielerOrNon);
                             if (analytikerSpieler != null) {
                                 spielerOrNonWithoutAnalytiker.remove(analytikerSpieler.name);
                             }

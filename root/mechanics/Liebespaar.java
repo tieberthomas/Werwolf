@@ -2,6 +2,7 @@ package root.mechanics;
 
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
+import root.Utils.Rand;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,8 +16,8 @@ public class Liebespaar {
     public Spieler spieler1;
     public Spieler spieler2;
 
-    public ArrayList<String> getDropdownOptions() {
-        ArrayList<String> spielerStrings = game.getLivingSpielerStrings();
+    public List<String> getDropdownOptions() {
+        List<String> spielerStrings = game.getLivingSpielerStrings();
         spielerStrings.add(ZUFÄLLIG);
         return spielerStrings;
     }

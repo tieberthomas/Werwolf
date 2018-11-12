@@ -2,7 +2,7 @@ package root.Persona.Rollen.Constants.InformationsCluster;
 
 import root.Persona.Rollen.Constants.BonusrollenType.Tarnumhang_BonusrollenType;
 import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
-import root.mechanics.Rand;
+import root.Utils.Rand;
 
 import java.util.ArrayList;
 import java.util.List;

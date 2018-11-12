@@ -12,6 +12,7 @@ import root.Spieler;
 import root.mechanics.KillLogik.Opfer;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Fraktion extends Persona {
     public Zeigekarte zeigekarte = new BürgerZeigekarte();
@@ -131,7 +132,7 @@ public class Fraktion extends Persona {
     }
 
     public static boolean fraktionAktiv(String fraktion) {
-        ArrayList<Spieler> livingSpieler = game.getLivingSpieler();
+        List<Spieler> livingSpieler = game.getLivingSpieler();
 
         for (Opfer opfer : NormalNight.opfer) {
             livingSpieler.remove(opfer.spieler);

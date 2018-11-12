@@ -10,7 +10,7 @@ import root.Persona.Rolle;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
-import root.mechanics.Rand;
+import root.Utils.Rand;
 
 import java.util.ArrayList;
 
