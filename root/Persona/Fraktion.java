@@ -11,6 +11,7 @@ import root.mechanics.KillLogik.Opfer;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Fraktion extends Persona {
@@ -138,6 +139,7 @@ public class Fraktion extends Persona {
                 .map(fraktion -> fraktion.id)
                 .distinct()
                 .map(Fraktion::findFraktion)
+                .filter(Objects::nonNull)
                 .collect(Collectors.toList());
     }
 
@@ -153,6 +155,7 @@ public class Fraktion extends Persona {
                 .map(spieler -> spieler.hauptrolle.fraktion.id)
                 .distinct()
                 .map(Fraktion::findFraktion)
+                .filter(Objects::nonNull)
                 .collect(Collectors.toList());
     }
 
