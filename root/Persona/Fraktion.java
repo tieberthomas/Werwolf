@@ -136,7 +136,7 @@ public class Fraktion extends Persona {
 
     public static List<Fraktion> getFraktionen() {
         return game.hauptrollenInGame.stream()
-                .map(fraktion -> fraktion.id)
+                .map(rolle -> rolle.fraktion.id)
                 .distinct()
                 .map(Fraktion::findFraktion)
                 .filter(Objects::nonNull)
