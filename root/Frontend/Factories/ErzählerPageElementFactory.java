@@ -131,7 +131,7 @@ public class ErzählerPageElementFactory {
 
         button.setText(title);
         button.setMargin(new Insets(0, 0, 0, 0));
-        if(button.getActionListeners().length == 0) {
+        if (button.getActionListeners().length == 0) {
             button.addActionListener(erzählerFrame);
         }
         button.setBackground(MyFrame.DEFAULT_BUTTON_COLOR);

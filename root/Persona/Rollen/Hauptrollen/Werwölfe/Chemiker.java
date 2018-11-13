@@ -76,7 +76,7 @@ public class Chemiker extends Hauptrolle {
         List<String> resurrectableOpfer = new ArrayList<>();
 
         for (Opfer currentOpfer : NormalNight.opfer) {
-            if(currentOpfer.täterFraktion != null) {
+            if (currentOpfer.täterFraktion != null) {
                 String opferFraktion = currentOpfer.spieler.hauptrolle.fraktion.name;
                 String täterFraktion = currentOpfer.täterFraktion.name;
 

@@ -115,7 +115,7 @@ public class Henker extends Hauptrolle {
             switch (correctGuesses) {
                 case 0:
                     Selbstmord.execute(hänkerSpieler);
-                    
+
                     return new FrontendControl(new Tot());
                 case 1:
                     hänkerSpieler.geschützt = true;

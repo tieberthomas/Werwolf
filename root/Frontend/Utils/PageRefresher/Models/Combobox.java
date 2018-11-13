@@ -1,7 +1,6 @@
 package root.Frontend.Utils.PageRefresher.Models;
 
 import javax.swing.*;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 

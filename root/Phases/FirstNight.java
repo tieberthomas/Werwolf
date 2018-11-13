@@ -18,9 +18,9 @@ import root.Phases.NightBuilding.StatementDependancy.StatementDependencyFraktion
 import root.Phases.NightBuilding.StatementDependancy.StatementDependencyRolle;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
+import root.Utils.Rand;
 import root.mechanics.Game;
 import root.mechanics.Liebespaar;
-import root.Utils.Rand;
 
 import java.util.ArrayList;
 import java.util.List;

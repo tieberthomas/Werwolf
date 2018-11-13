@@ -11,11 +11,7 @@ import root.Frontend.Utils.PageRefresher.Models.LabelTable;
 import root.Frontend.Utils.PageRefresher.PageRefresher;
 import root.Persona.Bonusrolle;
 import root.Persona.Hauptrolle;
-import root.Phases.Day;
-import root.Phases.FirstNight;
-import root.Phases.NormalNight;
-import root.Phases.PhaseManager;
-import root.Phases.PhaseMode;
+import root.Phases.*;
 import root.ResourceManagement.DataManager;
 import root.Spieler;
 import root.Utils.ListHelper;
@@ -868,7 +864,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         spielerFrame.mode = spielerFrameMode;
         spielerFrame.buildScreenFromPage(savePage);
 
-        übersichtsFrame = new ÜbersichtsFrame(this.frameJpanel.getHeight()+50, game);
+        übersichtsFrame = new ÜbersichtsFrame(this.frameJpanel.getHeight() + 50, game);
 
         FrontendControl.spielerFrame = spielerFrame;
         if (PhaseManager.phaseMode == PhaseMode.DAY || PhaseManager.phaseMode == PhaseMode.FREIBIER_DAY) {
