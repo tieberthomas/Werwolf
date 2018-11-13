@@ -11,6 +11,7 @@ import root.mechanics.Game;
 
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class SpielerFrame extends MyFrame {
     Game game;
@@ -92,10 +93,10 @@ public class SpielerFrame extends MyFrame {
     }
 
     public void refreshSecondarySpecifySetupPage() {
-        ArrayList<String> hauptrollen = new ArrayList<>();
+        List<String> hauptrollen = new ArrayList<>();
         hauptrollen.addAll(game.getHauptrolleInGameNames());
 
-        ArrayList<String> bonusrollen = new ArrayList<>();
+        List<String> bonusrollen = new ArrayList<>();
         bonusrollen.addAll(game.getBonusrolleInGameNames());
         buildScreenFromPage(pageFactory.generateDoubleListPage(hauptrollen, bonusrollen, "Hauptrollen", "Bonusrollen"));
     }

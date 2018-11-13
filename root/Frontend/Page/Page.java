@@ -1,10 +1,11 @@
 package root.Frontend.Page;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Page {
-    public ArrayList<PageElement> pageElements;
-    public ArrayList<PageTable> pageTables;
+    public List<PageElement> pageElements;
+    public List<PageTable> pageTables;
     private int xPageOffset;
     private int yPageOffset;
 

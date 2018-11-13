@@ -8,9 +8,10 @@ import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class BonusrollenInfo extends InformationsCluster {
-    public static ArrayList<Zeigekarte> informations = new ArrayList<>(Arrays.asList(
+    public static List<Zeigekarte> informations = new ArrayList<>(Arrays.asList(
             new Aktiv(), new Passiv(), new Informativ()));
 
     public static BonusrollenType getWrongInformation(Zeigekarte existingInformation) {

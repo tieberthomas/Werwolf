@@ -1,8 +1,9 @@
 package root.ResourceManagement;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class GameDto {
     CompositionDto compositionDto = new CompositionDto();
-    ArrayList<SpielerDto> spieler = new ArrayList<>();
+    List<SpielerDto> spieler = new ArrayList<>();
 }

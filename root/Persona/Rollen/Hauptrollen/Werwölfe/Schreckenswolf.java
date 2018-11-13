@@ -12,6 +12,7 @@ import root.Spieler;
 import root.mechanics.KillLogik.Angriff;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Schreckenswolf extends Hauptrolle {
     public static final String ID = "Schreckenswolf";
@@ -67,8 +68,8 @@ public class Schreckenswolf extends Hauptrolle {
         return didSomeoneHaveSchutz(werwolfAngriffe());
     }
 
-    private ArrayList<Angriff> werwolfAngriffe() {
-        ArrayList<Angriff> werwolfAngriffe = new ArrayList<>();
+    private List<Angriff> werwolfAngriffe() {
+        List<Angriff> werwolfAngriffe = new ArrayList<>();
         for (Angriff angriff : NormalNight.angriffe) {
             if(angriff.täterFraktion!=null) {
                 if (angriff.täterFraktion.equals(Werwölfe.NAME)) {
@@ -80,7 +81,7 @@ public class Schreckenswolf extends Hauptrolle {
         return werwolfAngriffe;
     }
 
-    private boolean didSomeoneHaveSchutz(ArrayList<Angriff> angriffe) {
+    private boolean didSomeoneHaveSchutz(List<Angriff> angriffe) {
         for (Angriff angriff : angriffe) {
             if (angriff.opfer.geschützt || angriff.opfer.bonusrolle.equals(Wolfspelz.NAME)) {
                 return true;

@@ -11,6 +11,7 @@ import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Spurenleser extends Bonusrolle {
     public static final String ID = "Spurenleser";
@@ -64,8 +65,8 @@ public class Spurenleser extends Bonusrolle {
         return new FrontendControl();
     }
 
-    public static ArrayList<String> getBesuchteSpielerStrings(Spieler beobachteterSpieler) {
-        ArrayList<String> besucher = new ArrayList<>();
+    public static List<String> getBesuchteSpielerStrings(Spieler beobachteterSpieler) {
+        List<String> besucher = new ArrayList<>();
 
         if (beobachteterSpieler != null) {
             if (beobachteterSpieler.hauptrolle.besucht != null) {

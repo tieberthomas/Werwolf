@@ -1,20 +1,21 @@
 package root.Persona.Rollen.Constants;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class RawInformation {
     public String spieler;
     public boolean isTarnumhang;
-    public ArrayList<String> imagePaths = new ArrayList<>();
+    public List<String> imagePaths = new ArrayList<>();
 
-    public RawInformation(String spieler, boolean isTarnumhang, ArrayList<String> imagePaths) {
+    public RawInformation(String spieler, boolean isTarnumhang, List<String> imagePaths) {
         this.spieler = spieler;
         this.isTarnumhang = isTarnumhang;
         this.imagePaths = imagePaths;
     }
 
     public static RawInformation convertToRawInformation(SchnüfflerInformation information) {
-        ArrayList<String> imagePaths = new ArrayList<>();
+        List<String> imagePaths = new ArrayList<>();
         if (!information.isTarnumhang) {
             imagePaths.add(information.fraktion.imagePath);
             imagePaths.add(information.tötend.imagePath);

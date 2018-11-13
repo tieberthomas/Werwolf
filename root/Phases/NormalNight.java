@@ -47,13 +47,13 @@ import java.util.List;
 public class NormalNight extends Thread {
     Game game;
 
-    public static ArrayList<Statement> statements;
+    public static List<Statement> statements;
     public static Object lock;
 
-    public static ArrayList<Angriff> angriffe = new ArrayList<>();
-    public static ArrayList<Opfer> opfer = new ArrayList<>();
+    public static List<Angriff> angriffe = new ArrayList<>();
+    public static List<Opfer> opfer = new ArrayList<>();
 
-    public static ArrayList<Spieler> spielerAwake = new ArrayList<>();
+    public static List<Spieler> spielerAwake = new ArrayList<>();
     public static boolean wölfinKilled;
     public static Spieler wölfinSpieler;
     public static Spieler beschworenerSpieler;
@@ -249,7 +249,7 @@ public class NormalNight extends Thread {
                             Spieler deadWahrsagerSpieler = game.findSpielerOrDeadPerRolle(Wahrsager.NAME);
                             if (wahrsagerSpieler2 != null) {
                                 Wahrsager wahrsager = (Wahrsager) deadWahrsagerSpieler.bonusrolle; //TODO Rolle rolle ?
-                                ArrayList<String> rewardInformation = new ArrayList<>();
+                                List<String> rewardInformation = new ArrayList<>();
                                 if (wahrsager.guessedRight() && !game.secondNight) {
                                     statement.title = Wahrsager.REWARD_TITLE;
                                     rewardInformation = wahrsager.rewardInformation();
@@ -283,7 +283,7 @@ public class NormalNight extends Thread {
                         case IndieStatements.OPFER_ID:
                             setOpfer();
 
-                            ArrayList<String> opferDerNacht = new ArrayList<>();
+                            List<String> opferDerNacht = new ArrayList<>();
 
                             for (Opfer currentOpfer : opfer) {
                                 if (!opferDerNacht.contains(currentOpfer.spieler.name)) {
@@ -829,7 +829,7 @@ public class NormalNight extends Thread {
     }
 
     public void showList(Statement statement, String string) {
-        ArrayList<String> list = new ArrayList<>();
+        List<String> list = new ArrayList<>();
         list.add(string);
         showList(statement, list);
     }
@@ -864,13 +864,13 @@ public class NormalNight extends Thread {
     }
 
     public void showListShowImage(Statement statement, String string, String spielerImagePath) {
-        ArrayList<String> list = new ArrayList<>();
+        List<String> list = new ArrayList<>();
         list.add(string);
         showListShowImage(statement, statement.title, list, spielerImagePath);
     }
 
     public void showListShowImage(Statement statement, String string, String spielerImagePath, String erzählerImagePath) {
-        ArrayList<String> list = new ArrayList<>();
+        List<String> list = new ArrayList<>();
         list.add(string);
         showListShowImage(statement, statement.title, list, spielerImagePath, erzählerImagePath);
     }
@@ -897,7 +897,7 @@ public class NormalNight extends Thread {
     }
 
     public static List<String> getEmptyStringList() {
-        ArrayList<String> emptyContent = new ArrayList<>();
+        List<String> emptyContent = new ArrayList<>();
         emptyContent.add("");
         return emptyContent;
     }

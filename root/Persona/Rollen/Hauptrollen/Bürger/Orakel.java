@@ -13,6 +13,7 @@ import root.Spieler;
 import root.Utils.Rand;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Orakel extends Hauptrolle {
     public static final String ID = "Orakel";
@@ -27,7 +28,7 @@ public class Orakel extends Hauptrolle {
 
     private static final String LAST_BUERGER_MESSAGE = "Du bist der letzte Bürger";
 
-    private static ArrayList<String> geseheneBonusrollen = new ArrayList<>();
+    private static List<String> geseheneBonusrollen = new ArrayList<>();
 
     public Orakel() {
         this.id = ID;
@@ -53,7 +54,7 @@ public class Orakel extends Hauptrolle {
     }
 
     private Bonusrolle getRandomUnseenBonusrolle() {
-        ArrayList<Spieler> unseenBürger = getAllUnseenBürger();
+        List<Spieler> unseenBürger = getAllUnseenBürger();
 
         Bonusrolle bonusrolle;
 
@@ -73,9 +74,9 @@ public class Orakel extends Hauptrolle {
         return bonusrolle;
     }
 
-    private static ArrayList<Spieler> getAllUnseenBürger() {
-        ArrayList<Spieler> bürger = Fraktion.getFraktionsMembers(Bürger.NAME);
-        ArrayList<Spieler> bürgerToRemove = new ArrayList<>();
+    private static List<Spieler> getAllUnseenBürger() {
+        List<Spieler> bürger = Fraktion.getFraktionsMembers(Bürger.NAME);
+        List<Spieler> bürgerToRemove = new ArrayList<>();
 
         if (Rolle.rolleLebend(NAME)) {
             Bonusrolle orakelSpielerBonusrolle = game.findSpielerPerRolle(NAME).bonusrolle;

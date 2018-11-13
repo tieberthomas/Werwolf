@@ -1,6 +1,6 @@
 package root.Frontend.Factories;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class HTMLStringBuilder {
     public static final String yellow = "yellow";
@@ -9,7 +9,7 @@ public class HTMLStringBuilder {
     public static final String red = "red";
     public static final String white = "white";
 
-    public static String buildHTMLText(ArrayList<String> texts, ArrayList<String> color) {
+    public static String buildHTMLText(List<String> texts, List<String> color) {
         String HTMLText = openHTML();
         StringBuilder stringBuilder = new StringBuilder();
 

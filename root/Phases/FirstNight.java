@@ -31,10 +31,10 @@ public class FirstNight extends Thread {
     public static final String TARNUMHANG_TITLE = "Tarnumhang";
     public static final String NEUE_KARTE_TITLE = "Neue Karte";
 
-    public static ArrayList<Statement> statements;
+    public static List<Statement> statements;
     public static Object lock;
-    public static ArrayList<Spieler> spielerAwake = new ArrayList<>();
-    public static ArrayList<Bonusrolle> swappedRoles = new ArrayList<>();
+    public static List<Spieler> spielerAwake = new ArrayList<>();
+    public static List<Bonusrolle> swappedRoles = new ArrayList<>();
 
     public FirstNight(Game game) {
         this.game = game;
@@ -98,7 +98,7 @@ public class FirstNight extends Thread {
                             case IndieStatements.LIEBESPAAR_FINDEN_ID:
                                 Liebespaar liebespaar = game.liebespaar;
                                 if (liebespaar != null && liebespaar.spieler1 != null) {
-                                    ArrayList<String> liebespaarStrings = new ArrayList<>();
+                                    List<String> liebespaarStrings = new ArrayList<>();
 
                                     liebespaarStrings.add(liebespaar.spieler1.name);
                                     liebespaarStrings.add(liebespaar.spieler2.name);
@@ -183,7 +183,7 @@ public class FirstNight extends Thread {
     }
 
     public void showFraktionMembers(Statement statement, Fraktion fraktion) {
-        ArrayList<String> fraktionMembers = Fraktion.getFraktionsMemberStrings(fraktion.name);
+        List<String> fraktionMembers = Fraktion.getFraktionsMemberStrings(fraktion.name);
 
         String fraktionsLogoImagePath = fraktion.imagePath;
 

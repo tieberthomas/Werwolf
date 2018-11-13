@@ -43,9 +43,9 @@ public class FileManager {
         }
 
         try (Writer writer = new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8)) {
-            writeArrayList(writer, spieler);
-            writeArrayList(writer, hauptrollen);
-            writeArrayList(writer, bonusrollen);
+            writeList(writer, spieler);
+            writeList(writer, hauptrollen);
+            writeList(writer, bonusrollen);
 
             writer.flush();
         } catch (IOException e) {
@@ -95,15 +95,15 @@ public class FileManager {
         }
 
         try (Writer writer = new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8)) {
-            ArrayList<String> compositionStrings = new ArrayList<>();
+            List<String> compositionStrings = new ArrayList<>();
 
             for (Spieler currentSpieler : spieler) {
                 compositionStrings.add(buildSpielerString(currentSpieler));
             }
 
-            writeArrayList(writer, compositionStrings);
-            writeArrayList(writer, hauptrollenLeft);
-            writeArrayList(writer, bonusrollenLeft);
+            writeList(writer, compositionStrings);
+            writeList(writer, hauptrollenLeft);
+            writeList(writer, bonusrollenLeft);
 
             writer.flush();
         } catch (IOException e) {
@@ -134,7 +134,7 @@ public class FileManager {
         return name + " " + hauptrolle + " " + bonusrolle;
     }
 
-    private void writeArrayList(Writer writer, List<String> arrayToWrite) throws IOException {
+    private void writeList(Writer writer, List<String> arrayToWrite) throws IOException {
         int numberOfLines = arrayToWrite.size();
         writer.write(Integer.toString(numberOfLines));
         writer.write("\n");
@@ -144,8 +144,8 @@ public class FileManager {
         }
     }
 
-    private ArrayList<String> readList(BufferedReader br) throws IOException {
-        ArrayList<String> listStrings = new ArrayList<>();
+    private List<String> readList(BufferedReader br) throws IOException {
+        List<String> listStrings = new ArrayList<>();
         String line = br.readLine();
         int numberOfBonusrollen = Integer.parseInt(line);
 

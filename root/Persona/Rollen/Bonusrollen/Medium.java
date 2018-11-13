@@ -25,7 +25,7 @@ public class Medium extends Bonusrolle {
 
     private static final String NO_BONUSROLES_OUT_OF_GAME = "Es sind alle Bonusrollen im Spiel";
 
-    private static ArrayList<String> geseheneBonusrollen = new ArrayList<>();
+    private static List<String> geseheneBonusrollen = new ArrayList<>();
 
     public Medium() {
         this.id = ID;

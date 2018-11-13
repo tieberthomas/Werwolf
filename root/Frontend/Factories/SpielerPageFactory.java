@@ -233,7 +233,7 @@ public class SpielerPageFactory {
         PageElement titleLabel = pageElementFactory.generateTitleLabel(title);
         listPage.add(titleLabel);
 
-        ArrayList<String> realStringsToDisplay = new ArrayList<String>(stringsToDisplay);
+        List<String> realStringsToDisplay = new ArrayList<>(stringsToDisplay);
         realStringsToDisplay.remove("");
 
         if (realStringsToDisplay.size() > 0) {
@@ -300,9 +300,9 @@ public class SpielerPageFactory {
     }
 
     public Page generateDoubleListPage(List<String> stringsToDisplay1, List<String> stringsToDisplay2, int offsetAbove, int offsetBelow) {
-        ArrayList<String> realStringsToDisplay1 = new ArrayList<String>(stringsToDisplay1);
+        List<String> realStringsToDisplay1 = new ArrayList<>(stringsToDisplay1);
         realStringsToDisplay1.remove("");
-        ArrayList<String> realStringsToDisplay2 = new ArrayList<String>(stringsToDisplay2);
+        List<String> realStringsToDisplay2 = new ArrayList<>(stringsToDisplay2);
         realStringsToDisplay2.remove("");
 
         int maxLinesPerCollumnBig = 12;
@@ -317,7 +317,7 @@ public class SpielerPageFactory {
     }
 
     public Page generateListPage(List<String> stringsToDisplay) {
-        ArrayList<String> realStringsToDisplay = new ArrayList<String>(stringsToDisplay);
+        List<String> realStringsToDisplay = new ArrayList<>(stringsToDisplay);
         realStringsToDisplay.remove("");
 
         if (realStringsToDisplay.size() < 8) {
@@ -397,7 +397,7 @@ public class SpielerPageFactory {
 
     public Page generateListPage(List<String> stringsToDisplay, int numberOfColumns, int indexOfColumn, int offsetAbove, int offsetBelow, int textSize) {
         Page listPage = new Page(0, 10);
-        ArrayList<String> realStringsToDisplay = new ArrayList<String>(stringsToDisplay);
+        List<String> realStringsToDisplay = new ArrayList<>(stringsToDisplay);
         realStringsToDisplay.remove("");
 
         if (realStringsToDisplay.size() > 0) {
@@ -490,7 +490,7 @@ public class SpielerPageFactory {
     }
 
     private List<PageElement> generateSchnüfflerInformationsColumn(RawInformation rawInformation, int maxColumns, int numberOfColumns, int indexOfColumn, int offsetAbove) {
-        ArrayList<JComponent> elementsToDisplay = new ArrayList<>();
+        List<JComponent> elementsToDisplay = new ArrayList<>();
         if (rawInformation.isTarnumhang) {
             elementsToDisplay.add(pageElementFactory.generateIcon(new Tarnumhang_BonusrollenType().imagePath));
         } else {

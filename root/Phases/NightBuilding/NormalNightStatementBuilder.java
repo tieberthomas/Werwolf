@@ -21,12 +21,13 @@ import root.Phases.NightBuilding.Constants.ProgrammStatements;
 import root.mechanics.Game;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class NormalNightStatementBuilder {
     public static Game game;
 
-    public static ArrayList<Statement> normalNightBuildStatements() {
-        ArrayList<Statement> statements = new ArrayList<>();
+    public static List<Statement> normalNightBuildStatements() {
+        List<Statement> statements = new ArrayList<>();
 
         statements.add(IndieStatements.getAlleSchlafenEinStatement());
 
@@ -111,13 +112,13 @@ public class NormalNightStatementBuilder {
         return statements;
     }
 
-    private static void addStatementRolle(ArrayList<Statement> statements, String rollenName) {
+    private static void addStatementRolle(List<Statement> statements, String rollenName) {
         Rolle rolle = Rolle.findRolle(rollenName);
         Statement statement = new Statement(rolle);
         statements.add(statement);
     }
 
-    private static void addSecondStatementRolle(ArrayList<Statement> statements, String rollenName) {
+    private static void addSecondStatementRolle(List<Statement> statements, String rollenName) {
         Rolle rolle = Rolle.findRolle(rollenName);
 
         Statement firstStatement = statements.stream()
@@ -128,13 +129,13 @@ public class NormalNightStatementBuilder {
         statements.add(statement);
     }
 
-    private static void addStatementFraktion(ArrayList<Statement> statements, String fraktionsName) {
+    private static void addStatementFraktion(List<Statement> statements, String fraktionsName) {
         Fraktion fraktion = Fraktion.findFraktion(fraktionsName);
         Statement statement = new Statement(fraktion);
         statements.add(statement);
     }
 
-    private static void addSecondStatementFraktion(ArrayList<Statement> statements, String fraktionsName) {
+    private static void addSecondStatementFraktion(List<Statement> statements, String fraktionsName) {
         Fraktion fraktion = Fraktion.findFraktion(fraktionsName);
 
         Statement firstStatement = statements.stream()

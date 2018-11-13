@@ -11,6 +11,7 @@ import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Nachbar extends Bonusrolle {
     public static final String ID = "Nachbar";
@@ -65,8 +66,8 @@ public class Nachbar extends Bonusrolle {
         return new FrontendControl();
     }
 
-    public static ArrayList<String> getBesucherStrings(Spieler beobachteterSpieler, Spieler beobachter) {
-        ArrayList<String> besucher = new ArrayList<>();
+    public static List<String> getBesucherStrings(Spieler beobachteterSpieler, Spieler beobachter) {
+        List<String> besucher = new ArrayList<>();
 
         if (beobachteterSpieler != null) {
             for (Spieler spieler : game.getLivingSpieler()) {

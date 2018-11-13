@@ -18,6 +18,7 @@ import root.Phases.PhaseManager;
 import root.Phases.PhaseMode;
 import root.ResourceManagement.DataManager;
 import root.Spieler;
+import root.Utils.ListHelper;
 import root.mechanics.Game;
 import root.mechanics.Torte;
 
@@ -38,7 +39,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     public SpielerFrame spielerFrame;
     public ÜbersichtsFrame übersichtsFrame;
     public Page savePage;
-    public ArrayList<Page> setupPages = new ArrayList<>();
+    public List<Page> setupPages = new ArrayList<>();
 
     private DataManager dataManager;
 
@@ -48,9 +49,9 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
 
     public ErzählerPageFactory pageFactory = new ErzählerPageFactory(this);
 
-    public ArrayList<JButton> goBackButtons = new ArrayList<>();
-    public ArrayList<JButton> goNextButtons = new ArrayList<>();
-    public ArrayList<JButton> startSetupButtons = new ArrayList<>();
+    public List<JButton> goBackButtons = new ArrayList<>();
+    public List<JButton> goNextButtons = new ArrayList<>();
+    public List<JButton> startSetupButtons = new ArrayList<>();
 
     public Page startPage;
     public JButton startJButton;
@@ -61,7 +62,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     public JLabel hauptrolleCounterJLabel;
     public PageTable playerLabelTable;
     public PageTable deletePlayerTable;
-    public ArrayList<JButton> deletePlayerButtons = new ArrayList<>();
+    public List<JButton> deletePlayerButtons = new ArrayList<>();
     public JButton playerGoBackJButton;
     public JButton playerGoNextJButton;
     public JTextField addPlayerTxtField;
@@ -73,20 +74,20 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     public JButton hauptrolleGoBackJButton;
     public JButton hauptrolleGoNextJButton;
     public PageTable hauptrolleButtonTable;
-    public ArrayList<JButton> hauptrolleButtons = new ArrayList<>();
+    public List<JButton> hauptrolleButtons = new ArrayList<>();
     public PageTable hauptrolleLabelTable;
     public PageTable deleteHauptrolleTable;
-    public ArrayList<JButton> deleteHauptrolleButtons = new ArrayList<>();
+    public List<JButton> deleteHauptrolleButtons = new ArrayList<>();
     public JButton addAllHauptrollenJButton;
 
     public Page bonusrolleSetupPage;
     public JButton bonusrolleGoBackJButton;
     public JButton bonusrolleGoNextJButton;
     public PageTable bonusrolleButtonTable;
-    public ArrayList<JButton> bonusrolleButtons = new ArrayList<>();
+    public List<JButton> bonusrolleButtons = new ArrayList<>();
     public PageTable bonusrolleLabelTable;
     public PageTable deleteBonusrolleTable;
-    public ArrayList<JButton> deleteBonusrolleButtons = new ArrayList<>();
+    public List<JButton> deleteBonusrolleButtons = new ArrayList<>();
     public JButton addAllBonusrollenJButton;
 
     public Page playerSpecifiyPage;
@@ -96,7 +97,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     public PageTable hauptrolleSpecifyLabelTable;
     public PageTable bonusrolleSpecifyLabelTable;
     public PageTable deleteSpecifyPlayerTable;
-    public ArrayList<JButton> deleteSpecifyPlayerButtons = new ArrayList<>();
+    public List<JButton> deleteSpecifyPlayerButtons = new ArrayList<>();
 
     public String chosenOption1 = "";
     public String chosenOption2 = "";
@@ -117,7 +118,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     public JButton addPlayerTortenButton;
     public PageTable tortenPlayerLabelTable;
     public PageTable deleteTortenPlayerTable;
-    public ArrayList<JButton> deleteTortenPlayerButtons = new ArrayList<>();
+    public List<JButton> deleteTortenPlayerButtons = new ArrayList<>();
 
     private PageRefresher playerPageRefresher;
     private PageRefresher hauptrollePageRefresher;
@@ -129,8 +130,8 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     public Page irrlichtPage;
     public PageTable deleteIrrlichterTable;
     public PageTable irrlichterLableTable;
-    public ArrayList<String> flackerndeIrrlichter; //TODO mit strings oder spielern arbeiten?
-    public ArrayList<JButton> deleteIrrlichterButtons = new ArrayList<>();
+    public List<String> flackerndeIrrlichter; //TODO mit strings oder spielern arbeiten?
+    public List<JButton> deleteIrrlichterButtons = new ArrayList<>();
     public JButton addIrrlichtButton = new JButton();
 
     public JButton henkerGoBackButton = new JButton("Zurück");
@@ -397,7 +398,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                 dataManager.loadLastComposition();
             } else if (ae.getSource() == loadLastGameJButton) {
                 dataManager.loadLastGame();
-                game.spielerSpecified = (ArrayList) game.spieler.clone();
+                game.spielerSpecified = ListHelper.cloneList(game.spieler);
             }
 
             generateAllPageRefreshers();
@@ -906,7 +907,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         return pageFactory.generatePlayerSpecifiyPage(playerSpecifiyPage, game.getSpielerUnspecifiedStrings(), game.getHauptrollenUnspecifiedStrings(), game.getBonusrollenUnspecifiedStrings());
     }
 
-    public ArrayList<String> getFlackerndeIrrlichter() {
+    public List<String> getFlackerndeIrrlichter() {
         return flackerndeIrrlichter;
     }
 }

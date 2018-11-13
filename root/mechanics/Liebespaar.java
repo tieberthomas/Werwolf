@@ -2,9 +2,9 @@ package root.mechanics;
 
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
+import root.Utils.ListHelper;
 import root.Utils.Rand;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Liebespaar {
@@ -28,7 +28,7 @@ public class Liebespaar {
 
     public Liebespaar(String spieler1Name, String spieler2Name, Game game) {
         this.game = game;
-        ArrayList<Spieler> spieler = (ArrayList<Spieler>) game.spieler.clone();
+        List<Spieler> spieler = ListHelper.cloneList(game.spieler);
 
         if (spieler1Name.equals(ZUFÄLLIG)) {
             if (!spieler2Name.equals(ZUFÄLLIG)) {

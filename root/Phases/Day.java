@@ -12,6 +12,7 @@ import root.Spieler;
 import root.mechanics.Game;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Day extends Thread {
     Game game;
@@ -20,9 +21,9 @@ public class Day extends Thread {
     public static boolean umbringenButton = false;
     public static Spieler umbringenSpieler;
     private Spieler priester;
-    private ArrayList<Spieler> gebürgteSpieler;
+    private List<Spieler> gebürgteSpieler;
     private Spieler richterin;
-    private ArrayList<Spieler> verurteilteSpieler;
+    private List<Spieler> verurteilteSpieler;
 
     public static final String dayTitle = "Opfer der Dorfabstimmung";
 

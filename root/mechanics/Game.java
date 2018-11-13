@@ -65,6 +65,7 @@ import root.Phases.PhaseManager;
 import root.Phases.PhaseMode;
 import root.Phases.Winner;
 import root.Spieler;
+import root.Utils.ListHelper;
 import root.mechanics.KillLogik.Angriff;
 
 import java.util.ArrayList;
@@ -78,14 +79,14 @@ public class Game {
 
     public Liebespaar liebespaar;
 
-    public ArrayList<Spieler> spieler = new ArrayList<>();
-    public ArrayList<Hauptrolle> hauptrollen = new ArrayList<>();
-    public ArrayList<Hauptrolle> hauptrollenInGame = new ArrayList<>();
-    public ArrayList<Bonusrolle> bonusrollen = new ArrayList<>();
-    public ArrayList<Bonusrolle> bonusrollenInGame = new ArrayList<>();
-    public ArrayList<Hauptrolle> mitteHauptrollen = new ArrayList<>();
-    public ArrayList<Bonusrolle> mitteBonusrollen = new ArrayList<>();
-    public ArrayList<Spieler> spielerSpecified = new ArrayList<>();
+    public List<Spieler> spieler = new ArrayList<>();
+    public List<Hauptrolle> hauptrollen = new ArrayList<>();
+    public List<Hauptrolle> hauptrollenInGame = new ArrayList<>();
+    public List<Bonusrolle> bonusrollen = new ArrayList<>();
+    public List<Bonusrolle> bonusrollenInGame = new ArrayList<>();
+    public List<Hauptrolle> mitteHauptrollen = new ArrayList<>();
+    public List<Bonusrolle> mitteBonusrollen = new ArrayList<>();
+    public List<Spieler> spielerSpecified = new ArrayList<>();
 
     public boolean secondNight = true;
     private boolean started = false;
@@ -178,7 +179,7 @@ public class Game {
     }
 
     public Winner checkVictory() {
-        ArrayList<Fraktion> fraktionen = Fraktion.getLivingFraktionen();
+        List<Fraktion> fraktionen = Fraktion.getLivingFraktionen();
 
         switch (fraktionen.size()) {
             case 0:
@@ -340,7 +341,7 @@ public class Game {
     public List<Hauptrolle> getPossibleInGameHauptrollen() {
         List<String> hauptrollenInGameNames = getHauptrolleInGameNames();
 
-        ArrayList<Hauptrolle> hauptrolleInGame = new ArrayList<>();
+        List<Hauptrolle> hauptrolleInGame = new ArrayList<>();
         hauptrollenInGameNames.forEach(rolle -> hauptrolleInGame.add(this.findHauptrolle(rolle)));
         return hauptrolleInGame;
     }
@@ -471,7 +472,7 @@ public class Game {
     }
 
     public List<Spieler> getSpielerUnspecified() {
-        List<Spieler> spielerUnspecified = (ArrayList) spieler.clone();
+        List<Spieler> spielerUnspecified = ListHelper.cloneList(spieler);
         spielerUnspecified.removeAll(spielerSpecified);
         return spielerUnspecified;
     }
@@ -495,7 +496,7 @@ public class Game {
     }
 
     public List<Hauptrolle> getHauptrollenUnspecified() {
-        List<Hauptrolle> hauptrollenUnspecified = (ArrayList) hauptrollenInGame.clone();
+        List<Hauptrolle> hauptrollenUnspecified = ListHelper.cloneList(hauptrollenInGame);
 
         hauptrollenUnspecified.removeAll(getHauptrollenSpecified());
 
@@ -521,7 +522,7 @@ public class Game {
     }
 
     public List<Bonusrolle> getBonusrollenUnspecified() {
-        List<Bonusrolle> bonusrollenUnspecified = (ArrayList) bonusrollenInGame.clone();
+        List<Bonusrolle> bonusrollenUnspecified = ListHelper.cloneList(bonusrollenInGame);
 
         bonusrollenUnspecified.removeAll(getBonusrollenSpecified());
 

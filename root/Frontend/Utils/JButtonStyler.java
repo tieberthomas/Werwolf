@@ -5,15 +5,15 @@ import root.Persona.Rolle;
 import javax.swing.*;
 import javax.swing.plaf.metal.MetalButtonUI;
 import java.awt.*;
-import java.util.ArrayList;
+import java.util.List;
 
 public class JButtonStyler {
-    public static void refreshRolleButtons(ArrayList<JButton> buttons) {
+    public static void refreshRolleButtons(List<JButton> buttons) {
         styleButtons(buttons);
         disableButtons(buttons);
     }
 
-    private static void styleButtons(ArrayList<JButton> buttons) {
+    private static void styleButtons(List<JButton> buttons) {
         for (JButton button : buttons) {
             button.setEnabled(true);
             Rolle rolle = Rolle.findRolle(button.getText());
@@ -35,7 +35,7 @@ public class JButtonStyler {
         }
     }
 
-    private static void disableButtons(ArrayList<JButton> buttons) {
+    private static void disableButtons(List<JButton> buttons) {
         for (JButton button : buttons) {
             if (buttonShouldBeDisabled(button)) {
                 disableButton(button);
