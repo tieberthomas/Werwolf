@@ -295,11 +295,9 @@ public class Game {
     }
 
     public List<Hauptrolle> getPossibleInGameHauptrollen() {
-        List<String> hauptrollenInGameNames = getHauptrolleInGameNames();
-
-        List<Hauptrolle> hauptrolleInGame = new ArrayList<>();
-        hauptrollenInGameNames.forEach(rolle -> hauptrolleInGame.add(this.findHauptrolle(rolle)));
-        return hauptrolleInGame;
+        return hauptrollenInGame.stream()
+                .map(rolle -> findHauptrolle(rolle.name)) //TODO does this have any effect?
+                .collect(Collectors.toList());
     }
 
     public List<String> getPossibleInGameHauptrolleNames() {
@@ -373,11 +371,9 @@ public class Game {
     }
 
     public List<Bonusrolle> getPossibleInGameBonusrollen() {
-        List<String> bonusrollenInGameNames = getBonusrolleInGameNames();
-
-        List<Bonusrolle> bonusrollenInGame = new ArrayList<>();
-        bonusrollenInGameNames.forEach(rolle -> bonusrollenInGame.add(this.findBonusrolle(rolle)));
-        return bonusrollenInGame;
+        return bonusrollenInGame.stream()
+                .map(rolle -> findBonusrolle(rolle.name)) //TODO does this have any effect?
+                .collect(Collectors.toList());
     }
 
     public List<String> getPossibleInGameBonusrolleNames() {
