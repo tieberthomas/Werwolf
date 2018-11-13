@@ -165,12 +165,9 @@ public class Fraktion extends Persona {
     }
 
     public static Fraktion findFraktion(String searchedFraktion) {
-        for (Hauptrolle currentHautprolle : game.hauptrollen) {
-            if (currentHautprolle.fraktion.equals(searchedFraktion)) {
-                return currentHautprolle.fraktion;
-            }
-        }
-
-        return null;
+        return game.hauptrollen.stream()
+                .map(rolle -> rolle.fraktion)
+                .filter(fraktion -> fraktion.equals(searchedFraktion))
+                .findAny().orElse(null);
     }
 }
