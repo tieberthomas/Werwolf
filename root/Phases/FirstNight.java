@@ -325,6 +325,6 @@ public class FirstNight extends Thread {
             return Rand.getRandomElement(hauptrollen);
         }
 
-        return Hauptrolle.DEFAULT_HAUPTROLLE;
+        return Hauptrolle.getDefaultHauptrolle();
     }
 }

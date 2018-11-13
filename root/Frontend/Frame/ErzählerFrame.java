@@ -4,15 +4,24 @@ import root.Frontend.Factories.ErzählerPageFactory;
 import root.Frontend.FrontendControl;
 import root.Frontend.Page.Page;
 import root.Frontend.Page.PageTable;
-import root.Frontend.Utils.PageRefresher.Models.ButtonTable;
+import root.Frontend.Utils.PageRefresher.InteractivePages.BonusrolePage;
+import root.Frontend.Utils.PageRefresher.InteractivePages.MainrolePage;
+import root.Frontend.Utils.PageRefresher.InteractivePages.PlayerSetupPage;
+import root.Frontend.Utils.PageRefresher.InteractivePages.SpecifyPage;
+import root.Frontend.Utils.PageRefresher.InteractivePages.StartPage;
 import root.Frontend.Utils.PageRefresher.Models.Combobox;
 import root.Frontend.Utils.PageRefresher.Models.DeleteButtonTable;
-import root.Frontend.Utils.PageRefresher.Models.Label;
+import root.Frontend.Utils.PageRefresher.Models.InteractivePage;
 import root.Frontend.Utils.PageRefresher.Models.LabelTable;
+import root.Frontend.Utils.PageRefresher.Models.LoadMode;
+import root.Frontend.Utils.PageRefresher.Models.RefreshedPage;
 import root.Frontend.Utils.PageRefresher.PageRefresher;
-import root.Persona.Bonusrolle;
 import root.Persona.Hauptrolle;
-import root.Phases.*;
+import root.Phases.Day;
+import root.Phases.FirstNight;
+import root.Phases.NormalNight;
+import root.Phases.PhaseManager;
+import root.Phases.PhaseMode;
 import root.ResourceManagement.DataManager;
 import root.Spieler;
 import root.Utils.ListHelper;
@@ -25,8 +34,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Supplier;
-import java.util.stream.Collectors;
 
 public class ErzählerFrame extends MyFrame implements ActionListener {
     public boolean next = true;
@@ -36,73 +43,31 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     public SpielerFrame spielerFrame;
     public ÜbersichtsFrame übersichtsFrame;
     public Page savePage;
-    public List<Page> setupPages = new ArrayList<>();
 
-    private DataManager dataManager;
+    public DataManager dataManager;
 
-    public static Object lock;
+    private List<InteractivePage> interactivePages = new ArrayList<>();
+    private StartPage startPage;
+    private PlayerSetupPage playerSetupPage;
+    private MainrolePage mainrolePage;
+    private BonusrolePage bonusrolePage;
+    private SpecifyPage specifyPage;
+    public InteractivePage currentInteractivePage;
 
     public static ErzählerFrameMode mode = ErzählerFrameMode.SETUP;
 
     public ErzählerPageFactory pageFactory = new ErzählerPageFactory(this);
 
-    public List<JButton> goBackButtons = new ArrayList<>();
-    public List<JButton> goNextButtons = new ArrayList<>();
-    public List<JButton> startSetupButtons = new ArrayList<>();
+    public ArrayList<JButton> goBackButtons = new ArrayList<>();
+    public ArrayList<JButton> goNextButtons = new ArrayList<>();
 
-    public Page startPage;
-    public JButton startJButton;
-    public JButton loadLastCompositionJButton;
-    public JButton loadLastGameJButton;
-
-    public Page playerSetupPage;
-    public JLabel hauptrolleCounterJLabel;
-    public PageTable playerLabelTable;
-    public PageTable deletePlayerTable;
-    public List<JButton> deletePlayerButtons = new ArrayList<>();
-    public JButton playerGoBackJButton;
-    public JButton playerGoNextJButton;
     public JTextField addPlayerTxtField;
-    public JButton addPlayerButton;
-
-    public Page hauptrolleSetupPage;
-    public JLabel bonusrolleCounterJLabel;
-    public JLabel numberOfPlayersJLabel;
-    public JButton hauptrolleGoBackJButton;
-    public JButton hauptrolleGoNextJButton;
-    public PageTable hauptrolleButtonTable;
-    public List<JButton> hauptrolleButtons = new ArrayList<>();
-    public PageTable hauptrolleLabelTable;
-    public PageTable deleteHauptrolleTable;
-    public List<JButton> deleteHauptrolleButtons = new ArrayList<>();
-    public JButton addAllHauptrollenJButton;
-
-    public Page bonusrolleSetupPage;
-    public JButton bonusrolleGoBackJButton;
-    public JButton bonusrolleGoNextJButton;
-    public PageTable bonusrolleButtonTable;
-    public List<JButton> bonusrolleButtons = new ArrayList<>();
-    public PageTable bonusrolleLabelTable;
-    public PageTable deleteBonusrolleTable;
-    public List<JButton> deleteBonusrolleButtons = new ArrayList<>();
-    public JButton addAllBonusrollenJButton;
-
-    public Page playerSpecifiyPage;
-    public JButton playerSpecifyGoNextJButton;
-    public JButton playerSpecifyGoBackJButton;
-    public PageTable playerSpecifyLabelTable;
-    public PageTable hauptrolleSpecifyLabelTable;
-    public PageTable bonusrolleSpecifyLabelTable;
-    public PageTable deleteSpecifyPlayerTable;
-    public List<JButton> deleteSpecifyPlayerButtons = new ArrayList<>();
 
     public String chosenOption1 = "";
     public String chosenOption2 = "";
-    public String chosenOption3 = "";
 
     public JComboBox comboBox1;
     public JComboBox comboBox2;
-    public JComboBox comboBox3;
     public JButton nextJButton;
     public JButton goBackJButton;
     public JButton nachzüglerJButton;
@@ -115,20 +80,16 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     public JButton addPlayerTortenButton;
     public PageTable tortenPlayerLabelTable;
     public PageTable deleteTortenPlayerTable;
-    public List<JButton> deleteTortenPlayerButtons = new ArrayList<>();
+    public ArrayList<JButton> deleteTortenPlayerButtons = new ArrayList<>();
 
-    private PageRefresher playerPageRefresher;
-    private PageRefresher hauptrollePageRefresher;
-    private PageRefresher bonusrollePageRefresher;
     private PageRefresher tortenPageRefresher;
-    private PageRefresher specifyPageRefresher;
     private PageRefresher irrlichtPageRefresher;
 
     public Page irrlichtPage;
     public PageTable deleteIrrlichterTable;
     public PageTable irrlichterLableTable;
-    public List<String> flackerndeIrrlichter; //TODO mit strings oder spielern arbeiten?
-    public List<JButton> deleteIrrlichterButtons = new ArrayList<>();
+    public ArrayList<String> flackerndeIrrlichter; //TODO mit strings oder spielern arbeiten?
+    public ArrayList<JButton> deleteIrrlichterButtons = new ArrayList<>();
     public JButton addIrrlichtButton = new JButton();
 
     public JButton henkerGoBackButton = new JButton("Zurück");
@@ -140,99 +101,64 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
 
         frameJpanel = generateDefaultPanel();
 
-        startPage = pageFactory.generateStartPage();
+        setupInteractivePages();
+        initializePageElements();
 
-        currentPage = startPage;
-
-        buildScreenFromPage(startPage);
+        startPage.showPage();
 
         showFrame();
-
-        initializePages();
 
         PageRefresher.erzählerFrame = this;
     }
 
-    private void initializePages() {
+    private void setupInteractivePages() {
+        InteractivePage.pageFactory = pageFactory;
+        InteractivePage.erzählerFrame = this;
+        startPage = new StartPage();
+        playerSetupPage = new PlayerSetupPage();
+        mainrolePage = new MainrolePage();
+        bonusrolePage = new BonusrolePage();
+        specifyPage = new SpecifyPage();
+        interactivePages.add(startPage);
+        interactivePages.add(playerSetupPage);
+        interactivePages.add(mainrolePage);
+        interactivePages.add(bonusrolePage);
+        interactivePages.add(specifyPage);
+        startPage.generatePage();
+    }
+
+    private void initializePageElements() {
         comboBox1 = new JComboBox();
         comboBox2 = new JComboBox();
-        comboBox3 = new JComboBox();
 
-        numberOfPlayersJLabel = new JLabel();
-        hauptrolleCounterJLabel = new JLabel();
-        bonusrolleCounterJLabel = new JLabel();
-
-        playerSetupPage = new Page();
-        hauptrolleSetupPage = new Page();
-        bonusrolleSetupPage = new Page();
         tortenPage = new Page();
-        playerSpecifiyPage = new Page();
         irrlichtPage = new Page();
 
-        hauptrolleButtonTable = new PageTable();
-        bonusrolleButtonTable = new PageTable();
-
-        playerLabelTable = new PageTable();
-        hauptrolleLabelTable = new PageTable();
-        bonusrolleLabelTable = new PageTable();
         tortenPlayerLabelTable = new PageTable();
-        playerSpecifyLabelTable = new PageTable();
-        hauptrolleSpecifyLabelTable = new PageTable();
-        bonusrolleSpecifyLabelTable = new PageTable();
         irrlichterLableTable = new PageTable();
 
-        deletePlayerTable = new PageTable();
-        deleteHauptrolleTable = new PageTable();
-        deleteBonusrolleTable = new PageTable();
         deleteTortenPlayerTable = new PageTable();
-        deleteSpecifyPlayerTable = new PageTable();
         deleteIrrlichterTable = new PageTable();
 
         flackerndeIrrlichter = new ArrayList<>();
     }
 
     private void generateAllPageRefreshers() {
-        generatePlayerPageRefresher();
-        generateHauptrollePageRefresher();
-        generateBonusrollePageRefresher();
+        RefreshedPage.game = game;
+        RefreshedPage.erzählerFrame = this;
+        RefreshedPage.spielerFrame = spielerFrame;
+
+        playerSetupPage.generatePage();
+        playerSetupPage.setupPageRefresher();
+        mainrolePage.generatePage();
+        mainrolePage.setupPageRefresher();
+        bonusrolePage.generatePage();
+        bonusrolePage.setupPageRefresher();
+        specifyPage.generatePage();
+        specifyPage.setupPageRefresher();
+
         generateTortenPageRefresher();
-        generateSpecifyPageRefresher();
         generateIrrlichtPageRefresher();
-    }
-
-    private void generatePlayerPageRefresher() {
-        playerPageRefresher = new PageRefresher(playerSetupPage);
-        playerPageRefresher.add(new LabelTable(playerLabelTable, game::getLivingSpielerStrings));
-        playerPageRefresher.add(new DeleteButtonTable(deletePlayerTable, deletePlayerButtons, game.spieler::size));
-        playerPageRefresher.add(new Label(numberOfPlayersJLabel, this::getNumberOfPlayersLabelText));
-    }
-
-    private String getNumberOfPlayersLabelText() {
-        return pageFactory.pageElementFactory.generateNumberOfPLayersLabelTitle(game.spieler.size());
-    }
-
-    private void generateHauptrollePageRefresher() {
-        hauptrollePageRefresher = new PageRefresher(hauptrolleSetupPage);
-        hauptrollePageRefresher.add(new ButtonTable(hauptrolleButtons));
-        hauptrollePageRefresher.add(new LabelTable(hauptrolleLabelTable, game::getHauptrolleInGameNames));
-        hauptrollePageRefresher.add(new DeleteButtonTable(deleteHauptrolleTable, deleteHauptrolleButtons, game.hauptrollenInGame::size));
-        hauptrollePageRefresher.add(new Label(hauptrolleCounterJLabel, this::getHauptrollenCounterLabelText));
-    }
-
-    private String getHauptrollenCounterLabelText() {
-        return pageFactory.pageElementFactory.generateCounterLabelTitle(game.spieler.size(), game.hauptrollenInGame.size());
-    }
-
-    private void generateBonusrollePageRefresher() {
-        bonusrollePageRefresher = new PageRefresher(bonusrolleSetupPage);
-        bonusrollePageRefresher.add(new ButtonTable(bonusrolleButtons));
-        bonusrollePageRefresher.add(new LabelTable(bonusrolleLabelTable, game::getBonusrolleInGameNames));
-        bonusrollePageRefresher.add(new DeleteButtonTable(deleteBonusrolleTable, deleteBonusrolleButtons, game.bonusrollenInGame::size));
-        bonusrollePageRefresher.add(new Label(bonusrolleCounterJLabel, this::getBonusrollenCounterLabeltext));
-    }
-
-    private String getBonusrollenCounterLabeltext() {
-        return pageFactory.pageElementFactory.generateCounterLabelTitle(game.spieler.size(), game.bonusrollenInGame.size());
     }
 
     private void generateTortenPageRefresher() {
@@ -242,84 +168,11 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         tortenPageRefresher.add(new Combobox(comboBox1, this::getNichtTortenEsserStrings));
     }
 
-    private void generateSpecifyPageRefresher() {
-        specifyPageRefresher = new PageRefresher(playerSpecifiyPage);
-        specifyPageRefresher.add(new LabelTable(playerSpecifyLabelTable,
-                new Supplier<List<String>>() {
-                    public List<String> get() {
-                        return game.spielerSpecified.stream()
-                                .map(player -> player.name)
-                                .collect(Collectors.toList());
-                    }
-                }));
-        specifyPageRefresher.add(new LabelTable(hauptrolleSpecifyLabelTable,
-                new Supplier<List<String>>() {
-                    public List<String> get() {
-                        return game.spielerSpecified.stream()
-                                .map(player -> player.hauptrolle.name)
-                                .collect(Collectors.toList());
-                    }
-                }));
-        specifyPageRefresher.add(new LabelTable(bonusrolleSpecifyLabelTable,
-                new Supplier<List<String>>() {
-                    public List<String> get() {
-                        return game.spielerSpecified.stream()
-                                .map(player -> player.bonusrolle.name)
-                                .collect(Collectors.toList());
-                    }
-                }));
-        specifyPageRefresher.add(new DeleteButtonTable(deleteSpecifyPlayerTable, deleteSpecifyPlayerButtons, game.spielerSpecified::size));
-        specifyPageRefresher.add(new Combobox(comboBox1, game::getSpielerUnspecifiedStrings));
-        specifyPageRefresher.add(new Combobox(comboBox2, game::getHauptrollenUnspecifiedStrings));
-        specifyPageRefresher.add(new Combobox(comboBox3, game::getBonusrollenUnspecifiedStrings));
-    }
-
     private void generateIrrlichtPageRefresher() {
         irrlichtPageRefresher = new PageRefresher(irrlichtPage);
         irrlichtPageRefresher.add(new LabelTable(irrlichterLableTable, this::getFlackerndeIrrlichter));
         irrlichtPageRefresher.add(new DeleteButtonTable(deleteIrrlichterTable, deleteIrrlichterButtons, this.flackerndeIrrlichter::size));
         irrlichtPageRefresher.add(new Combobox(comboBox1, this::getNichtFlackerndeIrrlichterStrings));
-    }
-
-    private void generateAllPages() {
-        setupPages = new ArrayList<>();
-        startPage = pageFactory.generateStartPage();
-
-        int numberOfplayers = game.spieler.size();
-        int numberOfhauptrollen = game.hauptrollenInGame.size();
-        int numberOfbonusrollen = game.bonusrollenInGame.size();
-        List<String> hauptrollen = game.getHauptrolleNames();
-        List<String> bonusrollen = game.getBonusrolleNames();
-
-        pageFactory.generatePlayerSetupPage(playerSetupPage, numberOfplayers);
-        pageFactory.generateHauptrolleSetupPage(hauptrolleSetupPage, numberOfplayers, numberOfhauptrollen, hauptrollen);
-        pageFactory.generateBonusrolleSetupPage(bonusrolleSetupPage, numberOfplayers, numberOfbonusrollen, bonusrollen);
-        playerSpecifiyPage = generateSpecifyPlayerPage();
-    }
-
-    private void refreshPlayerPage() {
-        playerPageRefresher.refreshPage();
-        addPlayerTxtField.requestFocusInWindow();
-    }
-
-    private void refreshHauptrollePage() {
-        hauptrollePageRefresher.refreshPage();
-    }
-
-    private void refreshBonusrollePage() {
-        bonusrollePageRefresher.refreshPage();
-    }
-
-    private void refreshSpecifyPlayerPage() {
-        specifyPageRefresher.refreshPage();
-    }
-
-    public void removeSpecifiedPlayer(int index) {
-        if (deleteSpecifyPlayerButtons.size() > index) {
-            deleteSpecifyPlayerButtons.remove(index);
-        }
-
-        game.spielerSpecified.remove(index);
     }
 
     private void refreshTortenPage() {
@@ -348,78 +201,35 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     }
 
     public void nextPage() {
-        if (currentPage != null) {
-            if (currentPage != playerSpecifiyPage && setupPages.contains(currentPage)) {
-                int index = setupPages.indexOf(currentPage);
-                generateAllPages();
-
-                currentPage = setupPages.get(index + 1);
-            }
-            buildScreenFromPage(currentPage);
-            refreshPage(currentPage);
-            if (mode == ErzählerFrameMode.SETUP) {
-                spielerFrame.refreshSetupPage();
-            }
-        }
+        changePage(1);
     }
 
     public void prevPage() {
-        int index = setupPages.indexOf(currentPage);
-        generateAllPages();
-        currentPage = setupPages.get(index - 1);
-        buildScreenFromPage(currentPage);
-        refreshPage(currentPage);
-        if (mode == ErzählerFrameMode.SETUP) {
-            spielerFrame.refreshSetupPage();
-        }
-        if (currentPage.equals(startPage)) {
-            spielerFrame.dispatchEvent(new WindowEvent(spielerFrame, WindowEvent.WINDOW_CLOSING));
-        }
+        changePage(-1);
     }
 
-    public void refreshPage(Page page) {
-        if (page == playerSetupPage)
-            refreshPlayerPage();
-        else if (page == hauptrolleSetupPage)
-            refreshHauptrollePage();
-        else if (page == bonusrolleSetupPage)
-            refreshBonusrollePage();
-        else if (page == playerSpecifiyPage)
-            refreshSpecifyPlayerPage();
+    private void changePage(int indexChange) {
+        int currentIndex = getIndexOfPage(currentInteractivePage);
+
+        InteractivePage page = interactivePages.get(currentIndex + indexChange);
+
+        page.showPage();
+    }
+
+    private int getIndexOfPage(InteractivePage currentInteractivePage) {
+        if (currentInteractivePage == null) {
+            return -1;
+        }
+
+        return interactivePages.indexOf(currentInteractivePage);
     }
 
     public void actionPerformed(ActionEvent ae) {
-        if (startSetupButtons.contains(ae.getSource())) {
-            game = new Game();
-            dataManager = new DataManager(game);
-            this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-            spielerFrame = new SpielerFrame(this, game);
+        if (currentInteractivePage != null) {
+            currentInteractivePage.processActionEvent(ae);
+        }
 
-            if (ae.getSource() == loadLastCompositionJButton) {
-                dataManager.loadLastComposition();
-            } else if (ae.getSource() == loadLastGameJButton) {
-                dataManager.loadLastGame();
-                game.spielerSpecified = ListHelper.cloneList(game.spieler);
-            }
-
-            generateAllPageRefreshers();
-            nextPage();
-        } else if (goNextButtons.contains(ae.getSource())) {
-            if (ae.getSource() == bonusrolleGoNextJButton) {
-                dataManager.writeComposition();
-            }
-
-            if (ae.getSource() == playerSpecifyGoNextJButton) {
-                if (allPlayersSpecified()) {
-                    game.startGame(this);
-                    dataManager.writeGame();
-                } else {
-                    specifyPlayer();
-                }
-            } else if (ae.getSource() == bonusrolleGoNextJButton) {
-                playerSpecifiyPage = generateSpecifyPlayerPage();
-            }
-
+        if (goNextButtons.contains(ae.getSource())) {
             nextPage();
         } else if (goBackButtons.contains(ae.getSource())) {
             if (gameIsInDaySetupMode()) {
@@ -427,10 +237,6 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                 showDayPage();
             } else {
                 prevPage();
-            }
-        } else if (ae.getSource() == addPlayerButton || ae.getSource() == addPlayerTxtField && mode == ErzählerFrameMode.SETUP) {
-            if (!addPlayerTxtField.getText().equals("") && !game.spielerExists(addPlayerTxtField.getText())) {
-                addNewPlayer();
             }
         } else if (ae.getSource() == addIrrlichtButton) {
             addIrrlicht();
@@ -443,26 +249,6 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
             deleteTortenesser(ae);
         } else if (deleteIrrlichterButtons.contains(ae.getSource())) {
             deleteFlackerndesIrrlicht(ae);
-        } else if (deletePlayerButtons.contains(ae.getSource())) {
-            deletePlayer(ae);
-        } else if (addAllHauptrollenJButton == ae.getSource()) {
-            game.addAllHauptrollenToGame();
-            refreshHauptrollePage();
-            spielerFrame.refreshHauptrolleSetupPage();
-        } else if (hauptrolleButtons.contains(ae.getSource())) {
-            addHauptrolle(ae);
-        } else if (deleteHauptrolleButtons.contains(ae.getSource())) {
-            deleteHauptrolle(ae);
-        } else if (addAllBonusrollenJButton == ae.getSource()) {
-            game.addAllBonusrollen();
-            refreshBonusrollePage();
-            spielerFrame.refreshBonusrolleSetupPage();
-        } else if (bonusrolleButtons.contains(ae.getSource())) {
-            addBonusrolle(ae);
-        } else if (deleteBonusrolleButtons.contains(ae.getSource())) {
-            deleteBonusrolle(ae);
-        } else if (deleteSpecifyPlayerButtons.contains(ae.getSource())) {
-            deleteSpecifiedPlayer(ae);
         } else if (ae.getSource() == nextJButton) {
             next = true;
             triggerNext();
@@ -496,16 +282,6 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                 }
             } catch (NullPointerException e) {
                 System.out.println("Combobox2 might not be initialized.");
-            }
-        } else if (ae.getSource() == comboBox3 && ((JComboBox) ae.getSource()).hasFocus()) {
-            try {
-                if (spielerFrame.mode == SpielerFrameMode.dropDownText) {
-                    if (spielerFrame.comboBox3Label != null && comboBox3 != null) {
-                        spielerFrame.comboBox3Label.setText(comboBox3.getSelectedItem().toString());
-                    }
-                }
-            } catch (NullPointerException e) {
-                System.out.println("Combobox3 might not be initialized.");
             }
         } else if (ae.getSource() == nachzüglerJButton || ae.getSource() == addPlayerTxtField && mode == ErzählerFrameMode.NACHZÜGLER_SETUP) {
             if (mode == ErzählerFrameMode.NACHZÜGLER_SETUP) {
@@ -644,10 +420,6 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
             if (comboBox2 != null) {
                 chosenOption2 = (String) comboBox2.getSelectedItem();
             }
-
-            if (comboBox3 != null) {
-                chosenOption3 = (String) comboBox3.getSelectedItem();
-            }
         } catch (NullPointerException e) {
             System.out.println("some comboboxes (1,2,3) might not be initialized.");
         }
@@ -668,22 +440,28 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         }
     }
 
+    public void setupGame(LoadMode loadMode) {
+        game = new Game();
+        dataManager = new DataManager(game);
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        spielerFrame = new SpielerFrame(this, game);
+
+        if (loadMode == LoadMode.COMPOSITION) {
+            dataManager.loadLastComposition();
+        } else if (loadMode == LoadMode.GAME) {
+            dataManager.loadLastGame();
+            game.spielerSpecified = ListHelper.cloneList(game.spieler);
+        }
+
+        generateAllPageRefreshers();
+    }
+
     private void addIrrlicht() {
         try {
             String spielerName = comboBox1.getSelectedItem().toString();
             flackerndeIrrlichter.add(spielerName);
             refreshIrrlichtPage();
         } catch (NullPointerException e) {
-        }
-    }
-
-    private void deleteSpecifiedPlayer(ActionEvent ae) {
-        for (int i = 0; i < deleteSpecifyPlayerButtons.size(); i++) {
-            if (ae.getSource() == deleteSpecifyPlayerButtons.get(i)) {
-                removeSpecifiedPlayer(i);
-
-                refreshSpecifyPlayerPage();
-            }
         }
     }
 
@@ -703,93 +481,6 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         }
 
         flackerndeIrrlichter.remove(index);
-    }
-
-    private void deleteBonusrolle(ActionEvent ae) {
-        for (int i = 0; i < deleteBonusrolleButtons.size(); i++) {
-            if (ae.getSource() == deleteBonusrolleButtons.get(i)) {
-                deleteBonusrolleButtons.remove(i);
-                String bonusrolleName = game.bonusrollenInGame.get(i).name;
-
-                List<String> bonusrollenSpecified = game.getHauptrollenSpecifiedStrings();
-
-                if (bonusrollenSpecified.contains(bonusrolleName)) {
-                    int index = bonusrollenSpecified.indexOf(bonusrolleName);
-                    removeSpecifiedPlayer(index);
-                }
-
-                game.bonusrollenInGame.remove(i);
-
-                refreshBonusrollePage();
-                spielerFrame.refreshBonusrolleSetupPage();
-            }
-        }
-    }
-
-    private void addBonusrolle(ActionEvent ae) {
-        for (int i = 0; i < bonusrolleButtons.size(); i++) {
-            if (ae.getSource() == bonusrolleButtons.get(i)) {
-                String bonusrolleName = bonusrolleButtons.get(i).getText();
-                Bonusrolle newBonusrolle = game.findBonusrolle(bonusrolleName);
-                game.bonusrollenInGame.add(newBonusrolle);
-
-                refreshBonusrollePage();
-                spielerFrame.refreshBonusrolleSetupPage();
-            }
-        }
-    }
-
-    private void deleteHauptrolle(ActionEvent ae) {
-        for (int i = 0; i < deleteHauptrolleButtons.size(); i++) {
-            if (ae.getSource() == deleteHauptrolleButtons.get(i)) {
-                deleteHauptrolleButtons.remove(i);
-                String hauptrolleName = game.hauptrollenInGame.get(i).name;
-
-                List<String> hauptrollenSpecified = game.getHauptrollenSpecifiedStrings();
-
-                if (hauptrollenSpecified.contains(hauptrolleName)) {
-                    int index = hauptrollenSpecified.indexOf(hauptrolleName);
-                    removeSpecifiedPlayer(index);
-                }
-
-                game.hauptrollenInGame.remove(i);
-
-                refreshHauptrollePage();
-                spielerFrame.refreshHauptrolleSetupPage();
-            }
-        }
-    }
-
-    private void addHauptrolle(ActionEvent ae) {
-        for (int i = 0; i < hauptrolleButtons.size(); i++) {
-            if (ae.getSource() == hauptrolleButtons.get(i)) {
-                String hauptrolleName = hauptrolleButtons.get(i).getText();
-                Hauptrolle newHauptrolle = game.findHauptrolle(hauptrolleName);
-                game.hauptrollenInGame.add(newHauptrolle);
-
-                refreshHauptrollePage();
-                spielerFrame.refreshHauptrolleSetupPage();
-            }
-        }
-    }
-
-    private void deletePlayer(ActionEvent ae) {
-        for (int i = 0; i < deletePlayerButtons.size(); i++) {
-            if (ae.getSource() == deletePlayerButtons.get(i)) {
-                deletePlayerButtons.remove(i);
-                Spieler spieler = game.spieler.get(i);
-
-                if (game.spielerSpecified.contains(spieler)) {
-                    int index = game.spielerSpecified.indexOf(spieler);
-                    removeSpecifiedPlayer(index);
-                }
-
-                game.spieler.remove(i);
-
-                refreshPlayerPage();
-                spielerFrame.refreshPlayerSetupPage();
-            }
-        }
     }
 
     private void deleteTortenesser(ActionEvent ae) {
@@ -816,47 +507,9 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         }
     }
 
-    private void addNewPlayer() {
-        String newPlayerName = addPlayerTxtField.getText();
-        Spieler newPlayer = new Spieler(newPlayerName);
-        game.spieler.add(newPlayer);
-        addPlayerTxtField.setText("");
-
-        refreshPlayerPage();
-        spielerFrame.refreshPlayerSetupPage();
-    }
-
     private boolean gameIsInDaySetupMode() {
         return mode == ErzählerFrameMode.NACHZÜGLER_SETUP || mode == ErzählerFrameMode.UMBRINGEN_SETUP ||
                 mode == ErzählerFrameMode.PRIESTER_SETUP || mode == ErzählerFrameMode.RICHTERIN_SETUP;
-    }
-
-    private boolean allPlayersSpecified() {
-        return game.spielerSpecified.size() == game.spieler.size();
-    }
-
-    private void specifyPlayer() {
-        try {
-            String spielerName = (String) comboBox1.getSelectedItem();
-            Spieler spieler = game.findSpieler(spielerName);
-            game.spielerSpecified.add(spieler);
-
-            String hauptrolle = (String) comboBox2.getSelectedItem();
-            spieler.hauptrolle = game.findHauptrolle(hauptrolle);
-            if (spieler.hauptrolle == null) {
-                spieler.hauptrolle = Hauptrolle.DEFAULT_HAUPTROLLE;
-            }
-
-            String bonusrolle = (String) comboBox3.getSelectedItem();
-            spieler.bonusrolle = game.findBonusrolle(bonusrolle);
-            if (spieler.bonusrolle == null) {
-                spieler.bonusrolle = Bonusrolle.DEFAULT_BONUSROLLE;
-            }
-
-            refreshSpecifyPlayerPage();
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("No player in game.");
-        }
     }
 
     public void respawnFrames() {
@@ -902,10 +555,6 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     public void showDayPage() {
         FrontendControl.erzählerDefaultDayPage();
         FrontendControl.spielerDayPage();
-    }
-
-    private Page generateSpecifyPlayerPage() {
-        return pageFactory.generatePlayerSpecifiyPage(playerSpecifiyPage, game.getSpielerUnspecifiedStrings(), game.getHauptrollenUnspecifiedStrings(), game.getBonusrollenUnspecifiedStrings());
     }
 
     public List<String> getFlackerndeIrrlichter() {

@@ -14,8 +14,6 @@ public class Hauptrolle extends Rolle {
     public Fraktion fraktion = new Bürger();
     public boolean killing = false;
 
-    public static final Hauptrolle DEFAULT_HAUPTROLLE = new Dorfbewohner();
-
     @Override
     public Color getColor() {
         return fraktion.color;
@@ -35,5 +33,9 @@ public class Hauptrolle extends Rolle {
 
     public Zeigekarte getFraktionInfo() {
         return fraktion.zeigekarte;
+    }
+
+    public static Hauptrolle getDefaultHauptrolle() {
+        return new Dorfbewohner();
     }
 }

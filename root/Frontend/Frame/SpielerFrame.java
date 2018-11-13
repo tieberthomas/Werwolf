@@ -62,24 +62,6 @@ public class SpielerFrame extends MyFrame {
         dropDownPage = pageFactory.generateDropdownPage("", 1);
     }
 
-    public void refreshSetupPage() {
-        if (erzählerFrame.currentPage.equals(erzählerFrame.playerSetupPage)) {
-            refreshPlayerSetupPage();
-        }
-
-        if (erzählerFrame.currentPage.equals(erzählerFrame.hauptrolleSetupPage)) {
-            refreshHauptrolleSetupPage();
-        }
-
-        if (erzählerFrame.currentPage.equals(erzählerFrame.bonusrolleSetupPage)) {
-            refreshBonusrolleSetupPage();
-        }
-
-        if (erzählerFrame.currentPage.equals(erzählerFrame.playerSpecifiyPage)) {
-            refreshSecondarySpecifySetupPage();
-        }
-    }
-
     public void refreshPlayerSetupPage() {
         buildScreenFromPage(pageFactory.generateListPage(game.getLivingSpielerStrings()));
     }

@@ -139,17 +139,17 @@ public class ErzählerPageElementFactory {
         return goNextButton;
     }
 
-    public PageElement generateAddPlayerTxtField(Predecessor predecessorY) {
+    public PageElement generateAddPlayerTxtField(JTextField textField, Predecessor predecessorY) {
         int addPlayerTxtFieldWidth = 120;
         int addPlayerTxtFieldHeight = 25;
         int spaceToPredecessorX = Predecessor.DEFAULT_SPACE;
         int spaceToPredecessorY = 10;
-        JTextField addPlayerJTxtField = new JTextField("");
 
-        PageElement addPlayerTxtField = new PageElement(addPlayerJTxtField, addPlayerTxtFieldWidth, addPlayerTxtFieldHeight, null, predecessorY, spaceToPredecessorX, spaceToPredecessorY);
+        textField.setText("");
 
-        erzählerFrame.addPlayerTxtField = addPlayerJTxtField;
-        erzählerFrame.addPlayerTxtField.addActionListener(erzählerFrame);
+        PageElement addPlayerTxtField = new PageElement(textField, addPlayerTxtFieldWidth, addPlayerTxtFieldHeight, null, predecessorY, spaceToPredecessorX, spaceToPredecessorY);
+
+        textField.addActionListener(erzählerFrame);
 
         return addPlayerTxtField;
     }
@@ -166,7 +166,7 @@ public class ErzählerPageElementFactory {
         return "Spieleranzahl: " + Integer.toString(numberOfPlayers);
     }
 
-    public String generateCounterLabelTitle(int numberOfPlayers, int numberOfRollen) {
+    public String generateCounterLabelString(int numberOfPlayers, int numberOfRollen) {
         return Integer.toString(numberOfRollen) + " / " + Integer.toString(numberOfPlayers);
     }
 
