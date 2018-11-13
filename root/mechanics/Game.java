@@ -450,7 +450,7 @@ public class Game {
     public List<Hauptrolle> getHauptrollenUnspecified() {
         List<Hauptrolle> hauptrollenUnspecified = ListHelper.cloneList(hauptrollenInGame);
 
-        hauptrollenUnspecified.removeAll(getHauptrollenSpecified());
+        getHauptrollenSpecified().forEach(hauptrollenUnspecified::remove);
 
         return hauptrollenUnspecified;
     }
@@ -476,7 +476,7 @@ public class Game {
     public List<Bonusrolle> getBonusrollenUnspecified() {
         List<Bonusrolle> bonusrollenUnspecified = ListHelper.cloneList(bonusrollenInGame);
 
-        bonusrollenUnspecified.removeAll(getBonusrollenSpecified());
+        getBonusrollenSpecified().forEach(bonusrollenUnspecified::remove);
 
         return bonusrollenUnspecified;
     }
