@@ -9,7 +9,7 @@ import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
 public class Gefängniswärter extends Bonusrolle {
-    public static final String ID = "Gefängniswärter";
+    public static final String ID = "ID_Gefängniswärter";
     public static final String NAME = "Gefängniswärter";
     public static final String IMAGE_PATH = ImagePath.GEFÄNGNISWÄRTER_KARTE;
     public static final BonusrollenType TYPE = new Aktiv();

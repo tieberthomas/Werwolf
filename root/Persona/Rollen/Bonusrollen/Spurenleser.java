@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Spurenleser extends Bonusrolle {
-    public static final String ID = "Spurenleser";
+    public static final String ID = "ID_Spurenleser";
     public static final String NAME = "Spurenleser";
     public static final String IMAGE_PATH = ImagePath.SPURENLESER_KARTE;
     public static final BonusrollenType TYPE = new Informativ();

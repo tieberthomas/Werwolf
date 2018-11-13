@@ -9,7 +9,7 @@ import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
 public class GrafVladimir extends Hauptrolle {
-    public static final String ID = "Graf_Vladimir";
+    public static final String ID = "ID_Graf_Vladimir";
     public static final String NAME = "Graf Vladimir";
     public static final String IMAGE_PATH = ImagePath.GRAF_VLADIMIR_KARTE;
     public static final Fraktion FRAKTION = new Vampire();

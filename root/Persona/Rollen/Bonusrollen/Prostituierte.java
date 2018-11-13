@@ -9,7 +9,7 @@ import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
 public class Prostituierte extends Bonusrolle {
-    public static final String ID = "Prostituierte";
+    public static final String ID = "ID_Prostituierte";
     public static final String NAME = "Prostituierte";
     public static final String IMAGE_PATH = ImagePath.PROSTITUIERTE_KARTE;
     public static final BonusrollenType TYPE = new Aktiv();

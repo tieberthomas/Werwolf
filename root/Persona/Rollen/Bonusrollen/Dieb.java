@@ -13,7 +13,7 @@ import root.Utils.Rand;
 import java.util.List;
 
 public class Dieb extends Bonusrolle {
-    public static final String ID = "Dieb";
+    public static final String ID = "ID_Dieb";
     public static final String NAME = "Dieb";
     public static final String IMAGE_PATH = ImagePath.DIEB_KARTE;
     public static final BonusrollenType TYPE = new Aktiv();

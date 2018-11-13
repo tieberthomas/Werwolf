@@ -6,7 +6,7 @@ import root.Persona.Hauptrolle;
 import root.ResourceManagement.ImagePath;
 
 public class Dorfbewohner extends Hauptrolle {
-    public static final String ID = "Dorfbewohner";
+    public static final String ID = "ID_Dorfbewohner";
     public static final String NAME = "Dorfbewohner";
     public static final String IMAGE_PATH = ImagePath.DORFBEWOHNER_KARTE;
     public static final Fraktion FRAKTION = new Bürger();

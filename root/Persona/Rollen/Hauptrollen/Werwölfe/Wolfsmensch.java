@@ -9,7 +9,7 @@ import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 
 public class Wolfsmensch extends Hauptrolle {
-    public static final String ID = "Wolfsmensch";
+    public static final String ID = "ID_Wolfsmensch";
     public static final String NAME = "Wolfsmensch";
     public static final String IMAGE_PATH = ImagePath.WOLFSMENSCH_KARTE;
     public static final Fraktion FRAKTION = new Werwölfe();

@@ -9,7 +9,7 @@ import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
 public class Geisterwolf extends Hauptrolle {
-    public static final String ID = "Geisterwolf";
+    public static final String ID = "ID_Geisterwolf";
     public static final String NAME = "Geisterwolf";
     public static final String IMAGE_PATH = ImagePath.GEISTERWOLF_KARTE;
     public static final Fraktion FRAKTION = new Werwölfe();

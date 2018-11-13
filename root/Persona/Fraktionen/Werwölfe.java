@@ -18,7 +18,7 @@ import java.awt.*;
 import java.util.List;
 
 public class Werwölfe extends Fraktion {
-    public static final String ID = "Werwölfe";
+    public static final String ID = "ID_Werwölfe";
     public static final String NAME = "Werwölfe";
     public static final String IMAGE_PATH = ImagePath.WÖLFE_ICON; //TODO sollte es das noch geben?
     public static final Color COLOR = Color.green;

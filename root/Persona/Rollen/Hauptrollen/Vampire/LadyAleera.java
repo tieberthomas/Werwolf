@@ -10,7 +10,7 @@ import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
 public class LadyAleera extends Hauptrolle {
-    public static final String ID = "Lady_Aleera";
+    public static final String ID = "ID_Lady_Aleera";
     public static final String NAME = "Lady Aleera";
     public static final String IMAGE_PATH = ImagePath.LADY_ALEERA_KARTE;
     public static final Fraktion FRAKTION = new Vampire();

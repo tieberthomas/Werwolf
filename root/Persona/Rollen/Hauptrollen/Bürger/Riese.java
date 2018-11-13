@@ -10,7 +10,7 @@ import root.Spieler;
 import root.mechanics.KillLogik.AbsoluteKill;
 
 public class Riese extends Hauptrolle {
-    public static final String ID = "Riese";
+    public static final String ID = "ID_Riese";
     public static final String NAME = "Riese";
     public static final String IMAGE_PATH = ImagePath.RIESE_KARTE;
     public static final Fraktion FRAKTION = new Bürger();

@@ -10,7 +10,7 @@ import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
 public class Archivar extends Bonusrolle {
-    public static final String ID = "Archivar";
+    public static final String ID = "ID_Archivar";
     public static final String NAME = "Archivar";
     public static final String IMAGE_PATH = ImagePath.ARCHIVAR_KARTE;
     public static final BonusrollenType TYPE = new Informativ();

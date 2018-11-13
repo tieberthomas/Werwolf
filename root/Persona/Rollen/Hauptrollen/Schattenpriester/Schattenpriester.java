@@ -6,7 +6,7 @@ import root.Persona.Hauptrolle;
 import root.ResourceManagement.ImagePath;
 
 public class Schattenpriester extends Hauptrolle {
-    public static final String ID = "Schattenpriester";
+    public static final String ID = "ID_Schattenpriester";
     public static final String NAME = "Schattenpriester";
     public static final String IMAGE_PATH = ImagePath.SCHATTENPRIESTER_KARTE;
     public static final Fraktion FRAKTION = new SchattenpriesterFraktion();

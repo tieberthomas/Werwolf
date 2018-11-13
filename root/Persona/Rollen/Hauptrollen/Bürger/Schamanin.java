@@ -13,7 +13,7 @@ import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
 public class Schamanin extends Hauptrolle {
-    public static final String ID = "Schamanin";
+    public static final String ID = "ID_Schamanin";
     public static final String NAME = "Schamanin";
     public static final String IMAGE_PATH = ImagePath.SCHAMANIN_KARTE;
     public static final Fraktion FRAKTION = new Bürger();

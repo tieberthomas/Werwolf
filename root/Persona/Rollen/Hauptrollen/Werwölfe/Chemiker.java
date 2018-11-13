@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Chemiker extends Hauptrolle {
-    public static final String ID = "Chemiker";
+    public static final String ID = "ID_Chemiker";
     public static final String NAME = "Chemiker";
     public static final String IMAGE_PATH = ImagePath.CHEMIKER_KARTE;
     public static final Fraktion FRAKTION = new Werwölfe();

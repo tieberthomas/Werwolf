@@ -14,7 +14,7 @@ import java.awt.*;
 import java.util.List;
 
 public class Vampire extends Fraktion {
-    public static final String ID = "Vampire";
+    public static final String ID = "ID_Vampire";
     public static final String NAME = "Vampire";
     public static final String IMAGE_PATH = ImagePath.VAMPIRE_ICON;
     public static final Color COLOR = Color.red;

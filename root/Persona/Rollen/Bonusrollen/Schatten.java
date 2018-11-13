@@ -6,7 +6,7 @@ import root.Persona.Rollen.Constants.BonusrollenType.Passiv;
 import root.ResourceManagement.ImagePath;
 
 public class Schatten extends Bonusrolle {
-    public static final String ID = "Schatten";
+    public static final String ID = "ID_Schatten";
     public static final String NAME = "Schatten";
     public static final String IMAGE_PATH = ImagePath.SCHATTEN_KARTE;
     public static final BonusrollenType TYPE = new Passiv();

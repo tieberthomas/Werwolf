@@ -14,7 +14,7 @@ import static root.Persona.Rollen.Constants.DropdownConstants.JA;
 import static root.Persona.Rollen.Constants.DropdownConstants.NEIN;
 
 public class Wirt extends Hauptrolle {
-    public static final String ID = "Wirt";
+    public static final String ID = "ID_Wirt";
     public static final String NAME = "Wirt";
     public static final String IMAGE_PATH = ImagePath.WIRT_KARTE;
     public static final Fraktion FRAKTION = new Bürger();

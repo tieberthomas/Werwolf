@@ -8,7 +8,7 @@ import root.ResourceManagement.ImagePath;
 import java.awt.*;
 
 public class ReineSeele extends Bonusrolle {
-    public static final String ID = "Reine_Seele";
+    public static final String ID = "ID_Reine_Seele";
     public static final String NAME = "Reine Seele";
     public static final String IMAGE_PATH = ImagePath.REINE_SEELE_KARTE;
     public static final BonusrollenType TYPE = new Passiv();

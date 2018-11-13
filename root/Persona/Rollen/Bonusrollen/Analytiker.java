@@ -14,7 +14,7 @@ import root.mechanics.Liebespaar;
 import java.util.Objects;
 
 public class Analytiker extends Bonusrolle {
-    public static final String ID = "Analytiker";
+    public static final String ID = "ID_Analytiker";
     public static final String NAME = "Analytiker";
     public static final String IMAGE_PATH = ImagePath.ANALYTIKER_KARTE;
     public static final BonusrollenType TYPE = new Informativ();

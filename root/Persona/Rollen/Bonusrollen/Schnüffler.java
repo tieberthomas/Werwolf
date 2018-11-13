@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Schnüffler extends Bonusrolle {
-    public static final String ID = "Schnüffler";
+    public static final String ID = "ID_Schnüffler";
     public static final String NAME = "Schnüffler";
     public static final String IMAGE_PATH = ImagePath.SCHNÜFFLER_KARTE;
     public static final BonusrollenType TYPE = new Informativ();

@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Irrlicht extends Hauptrolle {
-    public static final String ID = "Irrlicht";
+    public static final String ID = "ID_Irrlicht";
     public static final String NAME = "Irrlicht";
     public static final String IMAGE_PATH = ImagePath.IRRLICHT_KARTE;
     public static final Fraktion FRAKTION = new Bürger();

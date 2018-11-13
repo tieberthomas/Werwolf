@@ -9,7 +9,7 @@ import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
 public class Seelenlicht extends Bonusrolle {
-    public static final String ID = "Seelenlicht";
+    public static final String ID = "ID_Seelenlicht";
     public static final String NAME = "Seelenlicht";
     public static final String IMAGE_PATH = ImagePath.SEELENLICHT_KARTE;
     public static final BonusrollenType TYPE = new Passiv();

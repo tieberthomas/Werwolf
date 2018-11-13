@@ -13,7 +13,7 @@ import root.Spieler;
 import java.awt.*;
 
 public class Wolfspelz extends Bonusrolle {
-    public static final String ID = "Wolfspelz";
+    public static final String ID = "ID_Wolfspelz";
     public static final String NAME = "Wolfspelz";
     public static final String IMAGE_PATH = ImagePath.WOLFSPELZ_KARTE;
     public static final BonusrollenType TYPE = new Passiv();

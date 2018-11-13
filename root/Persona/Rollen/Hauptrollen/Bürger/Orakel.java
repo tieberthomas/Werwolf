@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Orakel extends Hauptrolle {
-    public static final String ID = "Orakel";
+    public static final String ID = "ID_Orakel";
     public static final String NAME = "Orakel";
     public static final String IMAGE_PATH = ImagePath.ORAKEL_KARTE;
     public static final Fraktion FRAKTION = new Bürger();

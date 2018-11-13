@@ -17,7 +17,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Tarnumhang extends Bonusrolle {
-    public static final String ID = "Tarnumhang";
+    public static final String ID = "ID_Tarnumhang";
     public static final String NAME = "Tarnumhang";
     public static final String IMAGE_PATH = ImagePath.TARNUMHANG_KARTE;
     public static final BonusrollenType TYPE = new Tarnumhang_BonusrollenType();

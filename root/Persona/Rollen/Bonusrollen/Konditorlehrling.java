@@ -14,7 +14,7 @@ import static root.Persona.Rollen.Constants.DropdownConstants.GUT;
 import static root.Persona.Rollen.Constants.DropdownConstants.SCHLECHT;
 
 public class Konditorlehrling extends Bonusrolle {
-    public static final String ID = "Konditorlehrling";
+    public static final String ID = "ID_Konditorlehrling";
     public static final String NAME = "Konditorlehrling";
     public static final String IMAGE_PATH = ImagePath.KONDITORLEHRLING_KARTE;
     public static final BonusrollenType TYPE = new Aktiv();

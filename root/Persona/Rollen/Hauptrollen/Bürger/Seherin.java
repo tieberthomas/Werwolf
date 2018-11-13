@@ -10,7 +10,7 @@ import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
 public class Seherin extends Hauptrolle {
-    public static final String ID = "Seherin";
+    public static final String ID = "ID_Seherin";
     public static final String NAME = "Seherin";
     public static final String IMAGE_PATH = ImagePath.SEHERIN_KARTE;
     public static final Fraktion FRAKTION = new Bürger();

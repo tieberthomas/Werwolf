@@ -14,7 +14,7 @@ import root.Spieler;
 import root.mechanics.KillLogik.NormalKill;
 
 public class Wölfin extends Hauptrolle {
-    public static final String ID = "Wölfin";
+    public static final String ID = "ID_Wölfin";
     public static final String NAME = "Wölfin";
     public static final String IMAGE_PATH = ImagePath.WÖLFIN_KARTE;
     public static final Fraktion FRAKTION = new Werwölfe();
