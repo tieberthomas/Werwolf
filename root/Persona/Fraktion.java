@@ -1,7 +1,5 @@
 package root.Persona;
 
-import root.Frontend.Constants.FrontendControlType;
-import root.Frontend.FrontendControl;
 import root.Persona.Fraktionen.SchattenpriesterFraktion;
 import root.Persona.Fraktionen.Werwölfe;
 import root.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.BürgerZeigekarte;
@@ -13,6 +11,7 @@ import root.mechanics.KillLogik.Opfer;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Fraktion extends Persona {
     public Zeigekarte zeigekarte = new BürgerZeigekarte();
@@ -29,18 +28,6 @@ public class Fraktion extends Persona {
         return fraktionsMembers;
     }
 
-    public int getNumberOfFraktionsMembersInGame() {
-        int numberOfFraktionsMembersInGame = 0;
-
-        for (Hauptrolle currentHautprolle : game.hauptrollenInGame) {
-            if (currentHautprolle.fraktion.equals(this)) {
-                numberOfFraktionsMembersInGame++;
-            }
-        }
-
-        return numberOfFraktionsMembersInGame;
-    }
-
     public static List<String> getFraktionsMemberStrings(String fraktion) {
         List<String> fraktionsMembers = new ArrayList<>();
 
@@ -51,19 +38,6 @@ public class Fraktion extends Persona {
         }
 
         return fraktionsMembers;
-    }
-
-    public FrontendControl getFraktionsMemberOrNonFrontendControl(Hauptrolle rolle) {
-        FrontendControl frontendControl = new FrontendControl();
-
-        frontendControl.typeOfContent = FrontendControlType.DROPDOWN_LIST;
-        frontendControl.dropdownStrings = getFraktionsMemberStrings(rolle.fraktion.name);
-        frontendControl.dropdownStrings.add("");
-        if (!rolle.spammable && rolle.besuchtLastNight != null) {
-            frontendControl.dropdownStrings.remove(rolle.besuchtLastNight.name);
-        }
-
-        return frontendControl;
     }
 
     public static boolean fraktionContainedInNight(String fraktion) {
@@ -159,75 +133,33 @@ public class Fraktion extends Persona {
         return false;
     }
 
-    public static List<Fraktion> getLivingFraktionen() {
-        List<Fraktion> allFraktionen = new ArrayList<>();
-
-        for (String currentFraktion : getLivingFraktionStrings()) {
-            allFraktionen.add(Fraktion.findFraktion(currentFraktion));
-        }
-
-        return allFraktionen;
-    }
-
-    public static List<String> getLivingFraktionStrings() {
-        List<String> allFraktionen = new ArrayList<>();
-
-        for (Spieler currentSpieler : game.spieler) {
-            if (currentSpieler.lebend) {
-                String currentSpielerFraktion = currentSpieler.hauptrolle.fraktion.name;
-
-                if (!allFraktionen.contains(currentSpielerFraktion)) {
-                    allFraktionen.add(currentSpielerFraktion);
-                }
-            }
-        }
-
-        return allFraktionen;
+    public static List<Fraktion> getFraktionen() {
+        return game.hauptrollenInGame.stream()
+                .map(fraktion -> fraktion.id)
+                .distinct()
+                .map(Fraktion::findFraktion)
+                .collect(Collectors.toList());
     }
 
     public static List<String> getFraktionStrings() {
-        List<String> allFraktionen = new ArrayList<>();
-
-        for (Hauptrolle hauptrolle : game.hauptrollenInGame) {
-            String currentFratkion = hauptrolle.fraktion.name;
-            if (!allFraktionen.contains(currentFratkion)) {
-                allFraktionen.add(currentFratkion);
-            }
-        }
-
-        return allFraktionen;
+        return getFraktionen().stream()
+                .map(fraktion -> fraktion.name)
+                .collect(Collectors.toList());
     }
 
-    public static List<String> getLivingFraktionOrNoneStrings() {
-        List<String> allFraktionen = getLivingFraktionStrings();
-        allFraktionen.add("");
-
-        return allFraktionen;
+    public static List<Fraktion> getLivingFraktionen() {
+        return game.spieler.stream()
+                .filter(spieler -> spieler.lebend)
+                .map(spieler -> spieler.hauptrolle.fraktion.id)
+                .distinct()
+                .map(Fraktion::findFraktion)
+                .collect(Collectors.toList());
     }
 
-    public static List<String> getFraktionOrNoneStrings() {
-        List<String> allFraktionen = getFraktionStrings();
-        allFraktionen.add("");
-
-        return allFraktionen;
-    }
-
-    public static FrontendControl getLivigFraktionOrNoneFrontendControl() {
-        FrontendControl frontendControl = new FrontendControl();
-
-        frontendControl.typeOfContent = FrontendControlType.DROPDOWN_LIST;
-        frontendControl.dropdownStrings = getLivingFraktionOrNoneStrings();
-
-        return frontendControl;
-    }
-
-    public static FrontendControl getFraktionOrNoneFrontendControl() {
-        FrontendControl frontendControl = new FrontendControl();
-
-        frontendControl.typeOfContent = FrontendControlType.DROPDOWN_LIST;
-        frontendControl.dropdownStrings = getFraktionOrNoneStrings();
-
-        return frontendControl;
+    public static List<String> getLivingFraktionStrings() {
+        return getLivingFraktionen().stream()
+                .map(fraktion -> fraktion.name)
+                .collect(Collectors.toList());
     }
 
     public static Fraktion findFraktion(String searchedFraktion) {
