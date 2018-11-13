@@ -155,7 +155,6 @@ public class Fraktion extends Persona {
                 .map(spieler -> spieler.hauptrolle.fraktion.id)
                 .distinct()
                 .map(Fraktion::findFraktion)
-                .filter(Objects::nonNull)
                 .collect(Collectors.toList());
     }
 
