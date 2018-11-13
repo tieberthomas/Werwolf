@@ -7,9 +7,10 @@ import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Persona.Rollen.Constants.BonusrollenType.Informativ;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
-import root.mechanics.Rand;
+import root.Utils.Rand;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Medium extends Bonusrolle {
     public static final String ID = "Medium";
@@ -24,7 +25,7 @@ public class Medium extends Bonusrolle {
 
     private static final String NO_BONUSROLES_OUT_OF_GAME = "Es sind alle Bonusrollen im Spiel";
 
-    private static ArrayList<String> geseheneBonusrollen = new ArrayList<>();
+    private static List<String> geseheneBonusrollen = new ArrayList<>();
 
     public Medium() {
         this.id = ID;
@@ -50,7 +51,7 @@ public class Medium extends Bonusrolle {
     }
 
     private Bonusrolle getRandomUnseenBonusrolle() {
-        ArrayList<Bonusrolle> unseenBonusrollen = getAllUnseenBonusrollen();
+        List<Bonusrolle> unseenBonusrollen = getAllUnseenBonusrollen();
 
         Bonusrolle bonusrolle;
 
@@ -70,8 +71,8 @@ public class Medium extends Bonusrolle {
         return bonusrolle;
     }
 
-    private ArrayList<Bonusrolle> getAllUnseenBonusrollen() {
-        ArrayList<Bonusrolle> bonusrollenNotInGame = game.getStillAvailableBonusrollen();
+    private List<Bonusrolle> getAllUnseenBonusrollen() {
+        List<Bonusrolle> bonusrollenNotInGame = game.getStillAvailableBonusrollen();
         bonusrollenNotInGame.removeIf(bonusrolle -> geseheneBonusrollen.contains(bonusrolle.name));
         return bonusrollenNotInGame;
     }

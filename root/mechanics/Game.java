@@ -4,67 +4,24 @@ import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.Frame.ErzählerFrame;
 import root.Frontend.Frame.ÜbersichtsFrame;
 import root.Frontend.FrontendControl;
-import root.Persona.Bonusrolle;
-import root.Persona.Fraktion;
+import root.Persona.*;
 import root.Persona.Fraktionen.Bürger;
 import root.Persona.Fraktionen.SchattenpriesterFraktion;
 import root.Persona.Fraktionen.Werwölfe;
-import root.Persona.Hauptrolle;
-import root.Persona.Persona;
-import root.Persona.Rolle;
-import root.Persona.Rollen.Bonusrollen.Analytiker;
-import root.Persona.Rollen.Bonusrollen.Archivar;
-import root.Persona.Rollen.Bonusrollen.Dieb;
-import root.Persona.Rollen.Bonusrollen.Gefängniswärter;
-import root.Persona.Rollen.Bonusrollen.Konditor;
-import root.Persona.Rollen.Bonusrollen.Konditorlehrling;
-import root.Persona.Rollen.Bonusrollen.Lamm;
-import root.Persona.Rollen.Bonusrollen.Medium;
-import root.Persona.Rollen.Bonusrollen.Nachbar;
-import root.Persona.Rollen.Bonusrollen.Prostituierte;
-import root.Persona.Rollen.Bonusrollen.ReineSeele;
-import root.Persona.Rollen.Bonusrollen.Schatten;
-import root.Persona.Rollen.Bonusrollen.Schattenkutte;
-import root.Persona.Rollen.Bonusrollen.Schnüffler;
-import root.Persona.Rollen.Bonusrollen.SchwarzeSeele;
-import root.Persona.Rollen.Bonusrollen.Seelenlicht;
-import root.Persona.Rollen.Bonusrollen.Spurenleser;
-import root.Persona.Rollen.Bonusrollen.Tarnumhang;
-import root.Persona.Rollen.Bonusrollen.Totengräber;
-import root.Persona.Rollen.Bonusrollen.Vampirumhang;
-import root.Persona.Rollen.Bonusrollen.Wahrsager;
-import root.Persona.Rollen.Bonusrollen.Wolfspelz;
+import root.Persona.Rollen.Bonusrollen.*;
 import root.Persona.Rollen.Constants.WölfinState;
-import root.Persona.Rollen.Hauptrollen.Bürger.Dorfbewohner;
-import root.Persona.Rollen.Hauptrollen.Bürger.HoldeMaid;
-import root.Persona.Rollen.Hauptrollen.Bürger.Irrlicht;
-import root.Persona.Rollen.Hauptrollen.Bürger.Orakel;
-import root.Persona.Rollen.Hauptrollen.Bürger.Riese;
-import root.Persona.Rollen.Hauptrollen.Bürger.Sammler;
-import root.Persona.Rollen.Hauptrollen.Bürger.Schamanin;
-import root.Persona.Rollen.Hauptrollen.Bürger.Seherin;
-import root.Persona.Rollen.Hauptrollen.Bürger.Späher;
-import root.Persona.Rollen.Hauptrollen.Bürger.Wirt;
+import root.Persona.Rollen.Hauptrollen.Bürger.*;
 import root.Persona.Rollen.Hauptrollen.Schattenpriester.Schattenpriester;
 import root.Persona.Rollen.Hauptrollen.Vampire.GrafVladimir;
 import root.Persona.Rollen.Hauptrollen.Vampire.LadyAleera;
 import root.Persona.Rollen.Hauptrollen.Vampire.MissVerona;
-import root.Persona.Rollen.Hauptrollen.Werwölfe.Blutwolf;
-import root.Persona.Rollen.Hauptrollen.Werwölfe.Chemiker;
-import root.Persona.Rollen.Hauptrollen.Werwölfe.Geisterwolf;
-import root.Persona.Rollen.Hauptrollen.Werwölfe.Schreckenswolf;
-import root.Persona.Rollen.Hauptrollen.Werwölfe.Werwolf;
-import root.Persona.Rollen.Hauptrollen.Werwölfe.Wolfsmensch;
-import root.Persona.Rollen.Hauptrollen.Werwölfe.Wölfin;
+import root.Persona.Rollen.Hauptrollen.Werwölfe.*;
 import root.Persona.Rollen.Hauptrollen.Überläufer.Henker;
 import root.Persona.Rollen.Hauptrollen.Überläufer.Überläufer;
-import root.Phases.Day;
-import root.Phases.FirstNight;
+import root.Phases.*;
 import root.Phases.NightBuilding.NormalNightStatementBuilder;
-import root.Phases.PhaseManager;
-import root.Phases.PhaseMode;
-import root.Phases.Winner;
 import root.Spieler;
+import root.Utils.ListHelper;
 import root.mechanics.KillLogik.Angriff;
 
 import java.util.ArrayList;
@@ -78,14 +35,14 @@ public class Game {
 
     public Liebespaar liebespaar;
 
-    public ArrayList<Spieler> spieler = new ArrayList<>();
-    public ArrayList<Hauptrolle> hauptrollen = new ArrayList<>();
-    public ArrayList<Hauptrolle> hauptrollenInGame = new ArrayList<>();
-    public ArrayList<Bonusrolle> bonusrollen = new ArrayList<>();
-    public ArrayList<Bonusrolle> bonusrollenInGame = new ArrayList<>();
-    public ArrayList<Hauptrolle> mitteHauptrollen = new ArrayList<>();
-    public ArrayList<Bonusrolle> mitteBonusrollen = new ArrayList<>();
-    public ArrayList<Spieler> spielerSpecified = new ArrayList<>();
+    public List<Spieler> spieler = new ArrayList<>();
+    public List<Hauptrolle> hauptrollen = new ArrayList<>();
+    public List<Hauptrolle> hauptrollenInGame = new ArrayList<>();
+    public List<Bonusrolle> bonusrollen = new ArrayList<>();
+    public List<Bonusrolle> bonusrollenInGame = new ArrayList<>();
+    public List<Hauptrolle> mitteHauptrollen = new ArrayList<>();
+    public List<Bonusrolle> mitteBonusrollen = new ArrayList<>();
+    public List<Spieler> spielerSpecified = new ArrayList<>();
 
     public boolean secondNight = true;
     private boolean started = false;
@@ -178,7 +135,7 @@ public class Game {
     }
 
     public Winner checkVictory() {
-        ArrayList<Fraktion> fraktionen = Fraktion.getLivingFraktionen();
+        List<Fraktion> fraktionen = Fraktion.getLivingFraktionen();
 
         switch (fraktionen.size()) {
             case 0:
@@ -236,13 +193,9 @@ public class Game {
     }
 
     public Spieler findSpieler(String name) {
-        for (Spieler currentSpieler : spieler) {
-            if (currentSpieler.equals(name)) {
-                return currentSpieler;
-            }
-        }
-
-        return null;
+        return spieler.stream()
+                .filter(spieler -> spieler.equals(name))
+                .findAny().orElse(null);
     }
 
     public boolean spielerExists(String name) {
@@ -266,81 +219,33 @@ public class Game {
     }
 
     public Spieler findSpielerOrDeadPerRolle(String name) {
-        for (Spieler currentSpieler : spieler) {
-            if (currentSpieler.hauptrolle.equals(name) || currentSpieler.bonusrolle.equals(name)) {
-                return currentSpieler;
-            }
-        }
-
-        return null;
+        return spieler.stream()
+                .filter(spieler -> spieler.hauptrolle.equals(name) || spieler.bonusrolle.equals(name))
+                .findAny().orElse(null);
     }
 
-    public ArrayList<Spieler> findSpielersPerRolle(String name) {
-        ArrayList<Spieler> spielers = new ArrayList<>();
-
-        for (Spieler currentSpieler : spieler) {
-            if (currentSpieler.hauptrolle.equals(name) || currentSpieler.bonusrolle.equals(name)) {
-                spielers.add(currentSpieler);
-            }
-        }
-
-        return spielers;
+    public List<Spieler> getLivingSpieler() {
+        return spieler.stream()
+                .filter(spieler -> spieler.lebend)
+                .collect(Collectors.toList());
     }
 
-    public ArrayList<String> findSpielersStringsPerRolle(String name) {
-        ArrayList<String> spielers = new ArrayList<>();
-
-        for (Spieler currentSpieler : spieler) {
-            if (currentSpieler.hauptrolle.equals(name) || currentSpieler.bonusrolle.equals(name)) {
-                spielers.add(currentSpieler.name);
-            }
-        }
-
-        return spielers;
+    public List<String> getLivingSpielerStrings() {
+        return spieler.stream()
+                .filter(spieler -> spieler.lebend)
+                .map(spieler -> spieler.name)
+                .collect(Collectors.toList());
     }
 
-    public ArrayList<Spieler> getLivingSpieler() {
-        ArrayList<Spieler> allSpieler = new ArrayList<>();
-
-        for (Spieler currentSpieler : spieler) {
-            if (currentSpieler.lebend) {
-                allSpieler.add(currentSpieler);
-            }
-        }
-
-        return allSpieler;
-    }
-
-    public ArrayList<String> getLivingSpielerStrings() {
-        ArrayList<String> allSpieler = new ArrayList<>();
-
-        for (Spieler currentSpieler : spieler) {
-            if (currentSpieler.lebend) {
-                allSpieler.add(currentSpieler.name);
-            }
-        }
-
-        return allSpieler;
-    }
-
-    public ArrayList<String> getLivingSpielerOrNoneStrings() {
-        ArrayList<String> allSpieler = getLivingSpielerStrings();
+    public List<String> getLivingSpielerOrNoneStrings() {
+        List<String> allSpieler = getLivingSpielerStrings();
         allSpieler.add("");
 
         return allSpieler;
     }
 
-    public FrontendControl getSpielerFrontendControl() {
-        FrontendControl frontendControl = new FrontendControl();
-
-        frontendControl.typeOfContent = FrontendControlType.DROPDOWN;
-        frontendControl.dropdownStrings = getLivingSpielerOrNoneStrings();
-
-        return frontendControl;
-    }
-
-    public ArrayList<String> getSpielerCheckSpammableStrings(Rolle rolle) {
-        ArrayList<String> allSpieler = getLivingSpielerOrNoneStrings();
+    public List<String> getSpielerCheckSpammableStrings(Rolle rolle) {
+        List<String> allSpieler = getLivingSpielerOrNoneStrings();
         if (!rolle.spammable && rolle.besuchtLastNight != null) {
             allSpieler.remove(rolle.besuchtLastNight.name);
         }
@@ -357,10 +262,10 @@ public class Game {
         return frontendControl;
     }
 
-    public ArrayList<String> getMitspielerCheckSpammableStrings(Rolle rolle) {
+    public List<String> getMitspielerCheckSpammableStrings(Rolle rolle) {
         Spieler spieler = findSpielerPerRolle(rolle.name);
 
-        ArrayList<String> mitspieler = getSpielerCheckSpammableStrings(rolle);
+        List<String> mitspieler = getSpielerCheckSpammableStrings(rolle);
         if (spieler != null) {
             mitspieler.remove(spieler.name);
         }
@@ -377,36 +282,26 @@ public class Game {
         return frontendControl;
     }
 
-    public ArrayList<String> getHauptrolleNames() {
-        ArrayList<String> names = new ArrayList<String>();
-
-        for (Hauptrolle hauptrolle : hauptrollen) {
-            names.add(hauptrolle.name);
-        }
-
-        return names;
+    public List<String> getHauptrolleNames() {
+        return hauptrollen.stream()
+                .map(rolle -> rolle.name)
+                .collect(Collectors.toList());
     }
 
-    public ArrayList<String> getHauptrolleInGameNames() {
-        ArrayList<String> names = new ArrayList<String>();
-
-        for (Hauptrolle hauptrolle : hauptrollenInGame) {
-            names.add(hauptrolle.name);
-        }
-
-        return names;
+    public List<String> getHauptrolleInGameNames() {
+        return hauptrollenInGame.stream()
+                .map(rolle -> rolle.name)
+                .collect(Collectors.toList());
     }
 
     public List<Hauptrolle> getPossibleInGameHauptrollen() {
-        ArrayList<String> hauptrollenInGameNames = getHauptrolleInGameNames();
-
-        ArrayList<Hauptrolle> hauptrolleInGame = new ArrayList<>();
-        hauptrollenInGameNames.forEach(rolle -> hauptrolleInGame.add(this.findHauptrolle(rolle)));
-        return hauptrolleInGame;
+        return hauptrollenInGame.stream()
+                .map(rolle -> findHauptrolle(rolle.name)) //TODO does this have any effect?
+                .collect(Collectors.toList());
     }
 
-    public ArrayList<String> getPossibleInGameHauptrolleNames() {
-        ArrayList<String> hauptrollenInGame = getHauptrolleInGameNames();
+    public List<String> getPossibleInGameHauptrolleNames() {
+        List<String> hauptrollenInGame = getHauptrolleInGameNames();
 
         for (Hauptrolle hauptrolle : mitteHauptrollen) {
             if (!hauptrolle.equals(Schattenpriester.NAME)) {
@@ -421,8 +316,8 @@ public class Game {
         return hauptrollenInGame;
     }
 
-    public ArrayList<Hauptrolle> getStillAvailableHauptrollen() {
-        ArrayList<Hauptrolle> stilleAvalableHauptrollen = new ArrayList<>();
+    public List<Hauptrolle> getStillAvailableHauptrollen() {
+        List<Hauptrolle> stilleAvalableHauptrollen = new ArrayList<>();
 
         stilleAvalableHauptrollen.addAll(hauptrollenInGame);
 
@@ -433,48 +328,28 @@ public class Game {
         return stilleAvalableHauptrollen;
     }
 
-    public ArrayList<Hauptrolle> getStillAvailableBürger() {
-        ArrayList<Hauptrolle> hauptrollen = getStillAvailableHauptrollen();
-        ArrayList<Hauptrolle> bürger = new ArrayList<>();
-
-        for (Hauptrolle hauptrolle : hauptrollen) {
-            if (hauptrolle.fraktion.equals(Bürger.NAME)) {
-                bürger.add(hauptrolle);
-            }
-        }
-
-        return bürger;
+    public List<Hauptrolle> getStillAvailableBürger() {
+        return getStillAvailableHauptrollen().stream()
+                .filter(hauptrolle -> hauptrolle.fraktion.equals(Bürger.NAME))
+                .collect(Collectors.toList());
     }
 
-    public ArrayList<String> getStillAvailableHauptrolleNames() {
-        ArrayList<Hauptrolle> stilleAvalableHauptrollen = getStillAvailableHauptrollen();
-        ArrayList<String> names = new ArrayList<>();
-
-        for (Hauptrolle hauptrolle : stilleAvalableHauptrollen) {
-            names.add(hauptrolle.name);
-        }
-
-        return names;
+    public List<String> getStillAvailableHauptrolleNames() {
+        return getStillAvailableHauptrollen().stream()
+                .map(rolle -> rolle.name)
+                .collect(Collectors.toList());
     }
 
     public Hauptrolle findHauptrolle(String wantedName) {
-        for (Hauptrolle hauptrolle : hauptrollen) {
-            if (hauptrolle.equals(wantedName))
-                return hauptrolle;
-        }
-
-        return null;
+        return hauptrollen.stream()
+                .filter(rolle -> rolle.equals(wantedName))
+                .findAny().orElse(null);
     }
 
     public int numberOfOccurencesOfHauptrolleInGame(Hauptrolle hauptrolle) {
-        int occurences = 0;
-        for (Hauptrolle currentHauptrolle : hauptrollenInGame) {
-            if (currentHauptrolle.equals(hauptrolle)) {
-                occurences++;
-            }
-        }
-
-        return occurences;
+        return (int) hauptrollenInGame.stream()
+                .filter(rolle -> rolle.equals(hauptrolle))
+                .count();
     }
 
     public void addAllHauptrollenToGame() {
@@ -483,36 +358,26 @@ public class Game {
         hauptrollenInGame.remove(findHauptrolle(Werwolf.NAME));
     }
 
-    public ArrayList<String> getBonusrolleNames() {
-        ArrayList<String> names = new ArrayList<String>();
-
-        for (Bonusrolle bonusrolle : bonusrollen) {
-            names.add(bonusrolle.name);
-        }
-
-        return names;
+    public List<String> getBonusrolleNames() {
+        return bonusrollen.stream()
+                .map(rolle -> rolle.name)
+                .collect(Collectors.toList());
     }
 
-    public ArrayList<String> getBonusrolleInGameNames() {
-        ArrayList<String> names = new ArrayList<String>();
-
-        for (Bonusrolle bonusrolle : bonusrollenInGame) {
-            names.add(bonusrolle.name);
-        }
-
-        return names;
+    public List<String> getBonusrolleInGameNames() {
+        return bonusrollenInGame.stream()
+                .map(rolle -> rolle.name)
+                .collect(Collectors.toList());
     }
 
     public List<Bonusrolle> getPossibleInGameBonusrollen() {
-        ArrayList<String> bonusrollenInGameNames = getBonusrolleInGameNames();
-
-        ArrayList<Bonusrolle> bonusrollenInGame = new ArrayList<>();
-        bonusrollenInGameNames.forEach(rolle -> bonusrollenInGame.add(this.findBonusrolle(rolle)));
-        return bonusrollenInGame;
+        return bonusrollenInGame.stream()
+                .map(rolle -> findBonusrolle(rolle.name)) //TODO does this have any effect?
+                .collect(Collectors.toList());
     }
 
-    public ArrayList<String> getPossibleInGameBonusrolleNames() {
-        ArrayList<String> bonusrolleInGameNames = getBonusrolleInGameNames();
+    public List<String> getPossibleInGameBonusrolleNames() {
+        List<String> bonusrolleInGameNames = getBonusrolleInGameNames();
 
         for (Bonusrolle bonusrolle : mitteBonusrollen) {
             bonusrolleInGameNames.remove(bonusrolle.name);
@@ -521,8 +386,8 @@ public class Game {
         return bonusrolleInGameNames;
     }
 
-    public ArrayList<Bonusrolle> getStillAvailableBonusrollen() {
-        ArrayList<Bonusrolle> stilleAvalableBonusrollen = new ArrayList<>();
+    public List<Bonusrolle> getStillAvailableBonusrollen() {
+        List<Bonusrolle> stilleAvalableBonusrollen = new ArrayList<>();
 
         stilleAvalableBonusrollen.addAll(bonusrollenInGame);
 
@@ -535,35 +400,22 @@ public class Game {
         return stilleAvalableBonusrollen;
     }
 
-    public ArrayList<String> getStillAvailableBonusrollenNames() {
-        ArrayList<Bonusrolle> stilleAvalableBonusrollen = getStillAvailableBonusrollen();
-        ArrayList<String> names = new ArrayList<>();
-
-        for (Bonusrolle bonusrolle : stilleAvalableBonusrollen) {
-            names.add(bonusrolle.name);
-        }
-
-        return names;
+    public List<String> getStillAvailableBonusrollenNames() {
+        return getStillAvailableBonusrollen().stream()
+                .map(rolle -> rolle.name)
+                .collect(Collectors.toList());
     }
 
     public Bonusrolle findBonusrolle(String wantedName) {
-        for (Bonusrolle bonusrolle : bonusrollen) {
-            if (bonusrolle.equals(wantedName))
-                return bonusrolle;
-        }
-
-        return null;
+        return bonusrollen.stream()
+                .filter(rolle -> rolle.equals(wantedName))
+                .findAny().orElse(null);
     }
 
     public int numberOfOccurencesOfBonusrolleInGame(Bonusrolle bonusrolle) {
-        int occurences = 0;
-        for (Bonusrolle currentBonusrolle : bonusrollenInGame) {
-            if (currentBonusrolle.equals(bonusrolle)) {
-                occurences++;
-            }
-        }
-
-        return occurences;
+        return (int) bonusrollenInGame.stream()
+                .filter(rolle -> rolle.equals(bonusrolle))
+                .count();
     }
 
     public void addAllBonusrollen() {
@@ -571,109 +423,80 @@ public class Game {
         bonusrollenInGame.remove(findBonusrolle(Schatten.NAME));
     }
 
-    public ArrayList<Spieler> getSpielerUnspecified() {
-        ArrayList<Spieler> spielerUnspecified = (ArrayList) spieler.clone();
+    public List<Spieler> getSpielerUnspecified() {
+        List<Spieler> spielerUnspecified = ListHelper.cloneList(spieler);
         spielerUnspecified.removeAll(spielerSpecified);
         return spielerUnspecified;
     }
 
-    public ArrayList<String> getSpielerUnspecifiedStrings() {
-        ArrayList<String> spielerUnspecifiedStrings = new ArrayList<>();
-
-        for (Spieler spieler : getSpielerUnspecified()) {
-            spielerUnspecifiedStrings.add(spieler.name);
-        }
-
-        return spielerUnspecifiedStrings;
+    public List<String> getSpielerUnspecifiedStrings() {
+        return getSpielerUnspecified().stream()
+                .map(spieler -> spieler.name)
+                .collect(Collectors.toList());
     }
 
-    public ArrayList<Hauptrolle> getHauptrollenSpecified() {
-        ArrayList<Hauptrolle> hauptrollenSpecified = new ArrayList<>();
-
-        for (Spieler spieler : spielerSpecified) {
-            hauptrollenSpecified.add(spieler.hauptrolle);
-        }
-
-        return hauptrollenSpecified;
+    public List<Hauptrolle> getHauptrollenSpecified() {
+        return spielerSpecified.stream()
+                .map(spieler -> spieler.hauptrolle)
+                .collect(Collectors.toList());
     }
 
-    public ArrayList<String> getHauptrollenSpecifiedStrings() {
-        ArrayList<String> hauptrollenSpecifiedStrings = new ArrayList<>();
-
-        for (Hauptrolle hauptrolle : getHauptrollenSpecified()) {
-            if (hauptrolle != null) {
-                hauptrollenSpecifiedStrings.add(hauptrolle.name);
-            }
-        }
-
-        return hauptrollenSpecifiedStrings;
+    public List<String> getHauptrollenSpecifiedStrings() {
+        return spielerSpecified.stream()
+                .map(spieler -> spieler.hauptrolle.name)
+                .collect(Collectors.toList());
     }
 
-    public ArrayList<Hauptrolle> getHauptrollenUnspecified() {
-        ArrayList<Hauptrolle> hauptrollenUnspecified = (ArrayList) hauptrollenInGame.clone();
+    public List<Hauptrolle> getHauptrollenUnspecified() {
+        List<Hauptrolle> hauptrollenUnspecified = ListHelper.cloneList(hauptrollenInGame);
 
-        MyCollectionHelper.removeAllHauptrollen(hauptrollenUnspecified, getHauptrollenSpecified());
+        hauptrollenUnspecified.removeAll(getHauptrollenSpecified());
 
         return hauptrollenUnspecified;
     }
 
-    public ArrayList<String> getHauptrollenUnspecifiedStrings() {
-        ArrayList<String> hauptrollenUnspecifiedStrings = new ArrayList<>();
-
-        for (Hauptrolle hauptrolle : getHauptrollenUnspecified()) {
-            hauptrollenUnspecifiedStrings.add(hauptrolle.name);
-        }
-
-        return hauptrollenUnspecifiedStrings;
+    public List<String> getHauptrollenUnspecifiedStrings() {
+        return getHauptrollenUnspecified().stream()
+                .map(rolle -> rolle.name)
+                .collect(Collectors.toList());
     }
 
-    public ArrayList<Bonusrolle> getBonusrollenSpecified() {
-        ArrayList<Bonusrolle> bonusrollenSpecified = new ArrayList<>();
-
-        for (Spieler spieler : spielerSpecified) {
-            bonusrollenSpecified.add(spieler.bonusrolle);
-        }
-
-        return bonusrollenSpecified;
+    public List<Bonusrolle> getBonusrollenSpecified() {
+        return spielerSpecified.stream()
+                .map(spieler -> spieler.bonusrolle)
+                .collect(Collectors.toList());
     }
 
-    public ArrayList<String> getBonusrolleSpecifiedStrings() {
-        ArrayList<String> bonusrollenSpecifiedStrings = new ArrayList<>();
-
-        for (Bonusrolle bonusrolle : getBonusrollenSpecified()) {
-            if (bonusrolle != null) {
-                bonusrollenSpecifiedStrings.add(bonusrolle.name);
-            }
-        }
-
-        return bonusrollenSpecifiedStrings;
+    public List<String> getBonusrolleSpecifiedStrings() {
+        return spielerSpecified.stream()
+                .map(spieler -> spieler.bonusrolle.name)
+                .collect(Collectors.toList());
     }
 
-    public ArrayList<Bonusrolle> getBonusrollenUnspecified() {
-        ArrayList<Bonusrolle> bonusrollenUnspecified = new ArrayList<Bonusrolle>();
-        bonusrollenUnspecified = (ArrayList) bonusrollenInGame.clone();
+    public List<Bonusrolle> getBonusrollenUnspecified() {
+        List<Bonusrolle> bonusrollenUnspecified = ListHelper.cloneList(bonusrollenInGame);
 
-        MyCollectionHelper.removeAllBonusrollen(bonusrollenUnspecified, getBonusrollenSpecified());
+        bonusrollenUnspecified.removeAll(getBonusrollenSpecified());
 
         return bonusrollenUnspecified;
     }
 
-    public ArrayList<String> getBonusrollenUnspecifiedStrings() {
-        ArrayList<String> bonusrollenUnspecifiedStrings = new ArrayList<>();
-
-        for (Bonusrolle bonusrolle : getBonusrollenUnspecified()) {
-            bonusrollenUnspecifiedStrings.add(bonusrolle.name);
-        }
-
-        return bonusrollenUnspecifiedStrings;
+    public List<String> getBonusrollenUnspecifiedStrings() {
+        return getBonusrollenUnspecified().stream()
+                .map(rolle -> rolle.name)
+                .collect(Collectors.toList());
     }
 
     public List<Spieler> getIrrlichter() {
-        ArrayList<Spieler> livingSpieler = getLivingSpieler();
-        return livingSpieler.stream().filter(p -> p.hauptrolle.equals(Irrlicht.NAME)).collect(Collectors.toList());
+        List<Spieler> livingSpieler = getLivingSpieler();
+        return livingSpieler.stream()
+                .filter(p -> p.hauptrolle.equals(Irrlicht.NAME))
+                .collect(Collectors.toList());
     }
 
     public List<String> getIrrlichterStrings() {
-        return getIrrlichter().stream().map(spieler -> spieler.name).collect(Collectors.toList());
+        return getIrrlichter().stream()
+                .map(spieler -> spieler.name)
+                .collect(Collectors.toList());
     }
 }

@@ -12,12 +12,13 @@ import root.Spieler;
 import root.mechanics.KillLogik.Opfer;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Fraktion extends Persona {
     public Zeigekarte zeigekarte = new BürgerZeigekarte();
 
-    public static ArrayList<Spieler> getFraktionsMembers(String fraktion) {
-        ArrayList<Spieler> fraktionsMembers = new ArrayList<>();
+    public static List<Spieler> getFraktionsMembers(String fraktion) {
+        List<Spieler> fraktionsMembers = new ArrayList<>();
 
         for (Spieler currentSpieler : game.spieler) {
             if (currentSpieler.lebend && currentSpieler.hauptrolle.fraktion.equals(fraktion)) {
@@ -40,8 +41,8 @@ public class Fraktion extends Persona {
         return numberOfFraktionsMembersInGame;
     }
 
-    public static ArrayList<String> getFraktionsMemberStrings(String fraktion) {
-        ArrayList<String> fraktionsMembers = new ArrayList<>();
+    public static List<String> getFraktionsMemberStrings(String fraktion) {
+        List<String> fraktionsMembers = new ArrayList<>();
 
         for (Spieler currentSpieler : game.spieler) {
             if (currentSpieler.lebend && currentSpieler.hauptrolle.fraktion.equals(fraktion)) {
@@ -131,7 +132,7 @@ public class Fraktion extends Persona {
     }
 
     public static boolean fraktionAktiv(String fraktion) {
-        ArrayList<Spieler> livingSpieler = game.getLivingSpieler();
+        List<Spieler> livingSpieler = game.getLivingSpieler();
 
         for (Opfer opfer : NormalNight.opfer) {
             livingSpieler.remove(opfer.spieler);
@@ -158,8 +159,8 @@ public class Fraktion extends Persona {
         return false;
     }
 
-    public static ArrayList<Fraktion> getLivingFraktionen() {
-        ArrayList<Fraktion> allFraktionen = new ArrayList<>();
+    public static List<Fraktion> getLivingFraktionen() {
+        List<Fraktion> allFraktionen = new ArrayList<>();
 
         for (String currentFraktion : getLivingFraktionStrings()) {
             allFraktionen.add(Fraktion.findFraktion(currentFraktion));
@@ -168,8 +169,8 @@ public class Fraktion extends Persona {
         return allFraktionen;
     }
 
-    public static ArrayList<String> getLivingFraktionStrings() {
-        ArrayList<String> allFraktionen = new ArrayList<>();
+    public static List<String> getLivingFraktionStrings() {
+        List<String> allFraktionen = new ArrayList<>();
 
         for (Spieler currentSpieler : game.spieler) {
             if (currentSpieler.lebend) {
@@ -184,8 +185,8 @@ public class Fraktion extends Persona {
         return allFraktionen;
     }
 
-    public static ArrayList<String> getFraktionStrings() {
-        ArrayList<String> allFraktionen = new ArrayList<>();
+    public static List<String> getFraktionStrings() {
+        List<String> allFraktionen = new ArrayList<>();
 
         for (Hauptrolle hauptrolle : game.hauptrollenInGame) {
             String currentFratkion = hauptrolle.fraktion.name;
@@ -197,15 +198,15 @@ public class Fraktion extends Persona {
         return allFraktionen;
     }
 
-    public static ArrayList<String> getLivingFraktionOrNoneStrings() {
-        ArrayList<String> allFraktionen = getLivingFraktionStrings();
+    public static List<String> getLivingFraktionOrNoneStrings() {
+        List<String> allFraktionen = getLivingFraktionStrings();
         allFraktionen.add("");
 
         return allFraktionen;
     }
 
-    public static ArrayList<String> getFraktionOrNoneStrings() {
-        ArrayList<String> allFraktionen = getFraktionStrings();
+    public static List<String> getFraktionOrNoneStrings() {
+        List<String> allFraktionen = getFraktionStrings();
         allFraktionen.add("");
 
         return allFraktionen;

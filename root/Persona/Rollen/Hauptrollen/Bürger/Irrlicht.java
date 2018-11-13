@@ -8,8 +8,8 @@ import root.Persona.Hauptrolle;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
+import root.Utils.Rand;
 import root.mechanics.KillLogik.Selbstmord;
-import root.mechanics.Rand;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +32,7 @@ public class Irrlicht extends Hauptrolle {
 
     private static final String LAST_IRRLICHT_MESSAGE = "Du bist das letzte Irrlicht";
 
-    private static ArrayList<String> geseheneIrrlichter = new ArrayList<>();
+    private static List<String> geseheneIrrlichter = new ArrayList<>();
 
     public Irrlicht() {
         this.id = ID;

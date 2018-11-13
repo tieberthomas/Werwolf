@@ -2,9 +2,10 @@ package root.Frontend.Page;
 
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class PageTable extends Predecessor {
-    public ArrayList<JComponent> tableElements;
+    public List<JComponent> tableElements;
     public int rows;
     public int columns;
     public int table_element_width;
@@ -35,7 +36,7 @@ public class PageTable extends Predecessor {
         this.table_element_height = table_element_height;
         table_elements_x_distance = DEFAULT_TABLE_ELEMENTS_DISTANCE;
         table_elements_y_distance = DEFAULT_TABLE_ELEMENTS_DISTANCE;
-        tableElements = new ArrayList<JComponent>();
+        tableElements = new ArrayList<>();
         calcTableHeight();
         calcTableWidth();
     }
@@ -103,8 +104,8 @@ public class PageTable extends Predecessor {
         pageCoordX = this.coordX + pageOffsetX;
         pageCoordY = this.coordY + pageOffsetY;
 
-        ArrayList<JComponent> tmp = tableElements;
-        tableElements = new ArrayList<JComponent>();
+        List<JComponent> tmp = tableElements;
+        tableElements = new ArrayList<>();
 
         for (JComponent component : tmp) {
             this.add(component);

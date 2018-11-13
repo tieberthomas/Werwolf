@@ -1,9 +1,10 @@
 package root.ResourceManagement;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CompositionDto {
-    ArrayList<String> spieler = new ArrayList<String>();
-    ArrayList<String> hauptrollen = new ArrayList<String>();
-    ArrayList<String> bonusrollen = new ArrayList<String>();
+    List<String> spieler = new ArrayList<>();
+    List<String> hauptrollen = new ArrayList<>();
+    List<String> bonusrollen = new ArrayList<>();
 }

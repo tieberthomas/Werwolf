@@ -9,11 +9,12 @@ import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
-import root.mechanics.Rand;
+import root.Utils.Rand;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Tarnumhang extends Bonusrolle {
     public static final String ID = "Tarnumhang";
@@ -29,10 +30,10 @@ public class Tarnumhang extends Bonusrolle {
 
     public static final String KEINE_UMHÄNGE = "Es sind keine Umhangträger mehr im Spiel";
 
-    private ArrayList<String> umhänge = new ArrayList<>(Arrays.asList(
+    private List<String> umhänge = new ArrayList<>(Arrays.asList(
             Lamm.NAME, Wolfspelz.NAME, Vampirumhang.NAME, Schattenkutte.NAME));
 
-    public ArrayList<String> seenSpieler = new ArrayList<>(); //TODO wenn dieb Tarnumhang nimmt dann neu anlegen
+    public List<String> seenSpieler = new ArrayList<>(); //TODO wenn dieb Tarnumhang nimmt dann neu anlegen
 
     public Tarnumhang() {
         this.id = ID;
@@ -61,7 +62,7 @@ public class Tarnumhang extends Bonusrolle {
     }
 
     private String getUnseenTräger() {
-        ArrayList<String> allTräger = getAllTräger();
+        List<String> allTräger = getAllTräger();
         allTräger.removeAll(seenSpieler);
 
         if (allTräger.size() == 0) {
@@ -76,8 +77,8 @@ public class Tarnumhang extends Bonusrolle {
         }
     }
 
-    private ArrayList<String> getAllTräger() {
-        ArrayList<String> allTräger = new ArrayList<>();
+    private List<String> getAllTräger() {
+        List<String> allTräger = new ArrayList<>();
 
         for (Spieler spieler : game.spieler) {
             if (umhänge.contains(spieler.bonusrolle.name)) {

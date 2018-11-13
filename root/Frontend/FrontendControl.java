@@ -225,7 +225,7 @@ public class FrontendControl {
     }
 
     public static void erzählerListPage(Statement statement, String string) {
-        ArrayList<String> list = new ArrayList<>();
+        List<String> list = new ArrayList<>();
         list.add(string);
         erzählerListPage(statement, list);
     }

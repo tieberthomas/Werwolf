@@ -5,11 +5,12 @@ import root.Frontend.Page.Page;
 import root.Frontend.Utils.PageRefresher.Models.RefreshObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PageRefresher {
     public static ErzählerFrame erzählerFrame;
     private Page page;
-    private ArrayList<RefreshObject> refreshObjects;
+    private List<RefreshObject> refreshObjects;
 
     public PageRefresher(Page page) {
         this.page = page;

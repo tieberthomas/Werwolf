@@ -3,12 +3,12 @@ package root.Frontend.Utils.PageRefresher.Models;
 import root.Frontend.Utils.JButtonStyler;
 
 import javax.swing.*;
-import java.util.ArrayList;
+import java.util.List;
 
 public class ButtonTable implements RefreshObject {
-    private ArrayList<JButton> buttons;
+    private List<JButton> buttons;
 
-    public ButtonTable(ArrayList<JButton> buttons) {
+    public ButtonTable(List<JButton> buttons) {
         this.buttons = buttons;
     }
 

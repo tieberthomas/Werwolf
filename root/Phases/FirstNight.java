@@ -18,9 +18,9 @@ import root.Phases.NightBuilding.StatementDependancy.StatementDependencyFraktion
 import root.Phases.NightBuilding.StatementDependancy.StatementDependencyRolle;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
+import root.Utils.Rand;
 import root.mechanics.Game;
 import root.mechanics.Liebespaar;
-import root.mechanics.Rand;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,10 +31,10 @@ public class FirstNight extends Thread {
     public static final String TARNUMHANG_TITLE = "Tarnumhang";
     public static final String NEUE_KARTE_TITLE = "Neue Karte";
 
-    public static ArrayList<Statement> statements;
+    public static List<Statement> statements;
     public static Object lock;
-    public static ArrayList<Spieler> spielerAwake = new ArrayList<>();
-    public static ArrayList<Bonusrolle> swappedRoles = new ArrayList<>();
+    public static List<Spieler> spielerAwake = new ArrayList<>();
+    public static List<Bonusrolle> swappedRoles = new ArrayList<>();
 
     public FirstNight(Game game) {
         this.game = game;
@@ -87,7 +87,7 @@ public class FirstNight extends Thread {
                     } else {
                         switch (statement.id) {
                             case IndieStatements.LIEBESPAAR_ID:
-                                ArrayList<String> spielerOrZufällig = game.liebespaar.getDropdownOptions();
+                                List<String> spielerOrZufällig = game.liebespaar.getDropdownOptions();
 
                                 showDropdown(statement, spielerOrZufällig, spielerOrZufällig);
 
@@ -98,7 +98,7 @@ public class FirstNight extends Thread {
                             case IndieStatements.LIEBESPAAR_FINDEN_ID:
                                 Liebespaar liebespaar = game.liebespaar;
                                 if (liebespaar != null && liebespaar.spieler1 != null) {
-                                    ArrayList<String> liebespaarStrings = new ArrayList<>();
+                                    List<String> liebespaarStrings = new ArrayList<>();
 
                                     liebespaarStrings.add(liebespaar.spieler1.name);
                                     liebespaarStrings.add(liebespaar.spieler2.name);
@@ -113,7 +113,7 @@ public class FirstNight extends Thread {
                                 break;
 
                             case Henker.FIRST_NIGHT_STATEMENT_ID:
-                                ArrayList<Hauptrolle> henkerHauptrollen = game.getStillAvailableBürger();
+                                List<Hauptrolle> henkerHauptrollen = game.getStillAvailableBürger();
                                 Hauptrolle henkerHauptrolle = pickRandomHauptrolle(henkerHauptrollen);
                                 if (henkerHauptrolle == null) {
                                     henkerHauptrolle = new Dorfbewohner();
@@ -123,7 +123,7 @@ public class FirstNight extends Thread {
                                 break;
 
                             case Wolfsmensch.FIRST_NIGHT_STATEMENT_ID:
-                                ArrayList<Hauptrolle> hauptrollen = game.getStillAvailableBürger();
+                                List<Hauptrolle> hauptrollen = game.getStillAvailableBürger();
                                 Hauptrolle hauptrolle = pickRandomHauptrolle(hauptrollen);
                                 if (hauptrolle == null) {
                                     hauptrolle = new Dorfbewohner();
@@ -183,7 +183,7 @@ public class FirstNight extends Thread {
     }
 
     public void showFraktionMembers(Statement statement, Fraktion fraktion) {
-        ArrayList<String> fraktionMembers = Fraktion.getFraktionsMemberStrings(fraktion.name);
+        List<String> fraktionMembers = Fraktion.getFraktionsMemberStrings(fraktion.name);
 
         String fraktionsLogoImagePath = fraktion.imagePath;
 
@@ -319,7 +319,7 @@ public class FirstNight extends Thread {
         }
     }
 
-    private Hauptrolle pickRandomHauptrolle(ArrayList<Hauptrolle> hauptrollen) {
+    private Hauptrolle pickRandomHauptrolle(List<Hauptrolle> hauptrollen) {
         int numberOfUnassignedHauptrollen = hauptrollen.size();
         if (numberOfUnassignedHauptrollen > 0) {
             return Rand.getRandomElement(hauptrollen);

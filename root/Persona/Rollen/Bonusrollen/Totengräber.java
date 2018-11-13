@@ -10,6 +10,7 @@ import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Totengräber extends Bonusrolle {
     public static final String ID = "Totengräber";
@@ -36,7 +37,7 @@ public class Totengräber extends Bonusrolle {
 
     @Override
     public FrontendControl getDropdownOptionsFrontendControl() {
-        ArrayList<String> nehmbareBonusrollen = getNehmbareBonusrollen();
+        List<String> nehmbareBonusrollen = getNehmbareBonusrollen();
         nehmbareBonusrollen.add("");
         return new FrontendControl(FrontendControlType.DROPDOWN_LIST, nehmbareBonusrollen);
     }
@@ -60,8 +61,8 @@ public class Totengräber extends Bonusrolle {
         }
     }
 
-    public static ArrayList<String> getNehmbareBonusrollen() {
-        ArrayList<String> nehmbareBonusrollen = new ArrayList<>();
+    public static List<String> getNehmbareBonusrollen() {
+        List<String> nehmbareBonusrollen = new ArrayList<>();
 
         //TODO michael fragen, welche rollen darf Totengräber nehmen
         for (Bonusrolle bonusrolle : game.mitteBonusrollen) {

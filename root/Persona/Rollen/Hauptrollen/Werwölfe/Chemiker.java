@@ -12,6 +12,7 @@ import root.Spieler;
 import root.mechanics.KillLogik.Opfer;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Chemiker extends Hauptrolle {
     public static final String ID = "Chemiker";
@@ -71,11 +72,11 @@ public class Chemiker extends Hauptrolle {
         }
     }
 
-    public ArrayList<String> findResurrectableOpfer() {
-        ArrayList<String> resurrectableOpfer = new ArrayList<>();
+    public List<String> findResurrectableOpfer() {
+        List<String> resurrectableOpfer = new ArrayList<>();
 
         for (Opfer currentOpfer : NormalNight.opfer) {
-            if(currentOpfer.täterFraktion != null) {
+            if (currentOpfer.täterFraktion != null) {
                 String opferFraktion = currentOpfer.spieler.hauptrolle.fraktion.name;
                 String täterFraktion = currentOpfer.täterFraktion.name;
 

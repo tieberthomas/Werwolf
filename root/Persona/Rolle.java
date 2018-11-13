@@ -6,6 +6,7 @@ import root.Persona.Rollen.Hauptrollen.Bürger.Sammler;
 import root.Spieler;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Rolle extends Persona {
     public Spieler besucht;
@@ -15,8 +16,8 @@ public class Rolle extends Persona {
     public boolean spammable = false;
     public int numberOfPossibleInstances = 1;
 
-    public static ArrayList<String> getMitteHauptrollenStrings() {
-        ArrayList<String> mitteHauptrollenStrings = new ArrayList<String>();
+    public static List<String> getMitteHauptrollenStrings() {
+        List<String> mitteHauptrollenStrings = new ArrayList<>();
 
         for (Hauptrolle hauptrolle : game.mitteHauptrollen) {
             mitteHauptrollenStrings.add(hauptrolle.name);

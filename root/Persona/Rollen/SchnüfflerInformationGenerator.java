@@ -13,20 +13,20 @@ import root.Persona.Rollen.Constants.InformationsCluster.TötendInfo;
 import root.Persona.Rollen.Constants.SchnüfflerInformation;
 import root.Persona.Rollen.Constants.Zeigekarten.SpäherZeigekarte;
 import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
-import root.Persona.Rollen.Hauptrollen.Bürger.Schamanin;
 import root.Persona.Rollen.Hauptrollen.Überläufer.Henker;
 import root.Spieler;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public class SchnüfflerInformationGenerator {
     private Spieler spieler;
     private Random random = new Random();
-    private ArrayList<InformationType> erhaltbareInformationen = new ArrayList<>(Arrays.asList(
+    private List<InformationType> erhaltbareInformationen = new ArrayList<>(Arrays.asList(
             InformationType.FRAKTION, InformationType.TÖTEND, InformationType.BONUSROLLEN_TYPE));
-    private ArrayList<BonusrollenType> bonusrollenTypes = new ArrayList<>(Arrays.asList(
+    private List<BonusrollenType> bonusrollenTypes = new ArrayList<>(Arrays.asList(
             new Aktiv(), new Passiv(), new Informativ()));
 
     public SchnüfflerInformationGenerator(Spieler spieler) {
@@ -93,7 +93,7 @@ public class SchnüfflerInformationGenerator {
             return spielerFraktion;
         }
 
-        ArrayList<Fraktion> fraktionen = Fraktion.getLivingFraktionen();
+        List<Fraktion> fraktionen = Fraktion.getLivingFraktionen();
         removeFraktion(fraktionen, spielerFraktion);
 
         int numberOfFraktionen = fraktionen.size();
@@ -102,7 +102,7 @@ public class SchnüfflerInformationGenerator {
         return fraktionen.get(decision);
     }
 
-    private void removeFraktion(ArrayList<Fraktion> fraktionen, Fraktion fraktionToRemove) {
+    private void removeFraktion(List<Fraktion> fraktionen, Fraktion fraktionToRemove) {
         Fraktion fraktionInListToRemove = null;
         for (Fraktion fraktion : fraktionen) {
             if (fraktion.equals(fraktionToRemove)) {
@@ -140,7 +140,7 @@ public class SchnüfflerInformationGenerator {
         return bonusrollenTypes.get(decision);
     }
 
-    private void removeBonusrollenType(ArrayList<BonusrollenType> bonusrollenTypes, BonusrollenType bonusrollenTypeToRemove) {
+    private void removeBonusrollenType(List<BonusrollenType> bonusrollenTypes, BonusrollenType bonusrollenTypeToRemove) {
         BonusrollenType bonusrollenTypeInListToRemove = null;
         for (BonusrollenType bonusrollenType : bonusrollenTypes) {
             if (bonusrollenType.equals(bonusrollenTypeToRemove)) {

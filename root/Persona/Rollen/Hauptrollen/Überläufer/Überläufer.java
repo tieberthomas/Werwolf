@@ -10,7 +10,7 @@ import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Überläufer extends Hauptrolle {
     public static final String ID = "Überläufer";
@@ -37,7 +37,7 @@ public class Überläufer extends Hauptrolle {
 
     @Override
     public FrontendControl getDropdownOptionsFrontendControl() {
-        ArrayList<String> nehmbareHauptrollen = getMitteHauptrollenStrings();
+        List<String> nehmbareHauptrollen = getMitteHauptrollenStrings();
         nehmbareHauptrollen.add("");
         return new FrontendControl(FrontendControlType.DROPDOWN_LIST, nehmbareHauptrollen);
     }

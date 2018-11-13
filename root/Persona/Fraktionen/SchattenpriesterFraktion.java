@@ -16,6 +16,7 @@ import root.mechanics.KillLogik.Opfer;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class SchattenpriesterFraktion extends Fraktion {
     public static final String ID = "Schattenpriester_Fraktion";
@@ -83,8 +84,8 @@ public class SchattenpriesterFraktion extends Fraktion {
         return new FrontendControl(FrontendControlType.DROPDOWN_LIST, getRessurectableOpfer());
     }
 
-    private ArrayList<String> getRessurectableOpfer() {
-        ArrayList<String> dropdownStrings = new ArrayList<>();
+    private List<String> getRessurectableOpfer() {
+        List<String> dropdownStrings = new ArrayList<>();
 
         for (Opfer currentOpfer : NormalNight.opfer) {
             Spieler opferSpieler = currentOpfer.spieler;

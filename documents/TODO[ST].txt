@@ -3,7 +3,6 @@ FirstNight - StatementType
 Alphabet Umlaute?
 Tötend - Killing ?
 ressurectable - erweckbar ?
-ArrayList -> List
 
 TH:
 BonusrollenType - Enum?
@@ -12,12 +11,13 @@ MT:
 Freigestellt -> Weiß
 
 Nach Auslieferung:
+Persona ID
+Rolle, Fraktion zusammenfassen Persona
 Liste für buttons Liste für Rollen
 Analytiker generisch machen
 FirstNight generisch machen
 show methoden in Night verschieben nach FrontendControl
 FrontendControl subclassen
-Persona ID
-Rolle, Fraktion zusammenfassen Persona
-Game aufräumen
 .getState() reworken
+.getMitspieler() / .getSpieler() / .getMitspielerCheckSpammable() usw. reworken (boolean flags)
+Game aufräumen

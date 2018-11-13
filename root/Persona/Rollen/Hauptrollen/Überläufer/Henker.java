@@ -115,7 +115,7 @@ public class Henker extends Hauptrolle {
             switch (correctGuesses) {
                 case 0:
                     Selbstmord.execute(hänkerSpieler);
-                    
+
                     return new FrontendControl(new Tot());
                 case 1:
                     hänkerSpieler.geschützt = true;
@@ -163,7 +163,7 @@ public class Henker extends Hauptrolle {
     public FrontendControl getPage() {
         switch (pagecounter) {
             case 0:
-                return game.getMitspielerCheckSpammableFrontendControl(new Henker());
+                return game.getMitspielerCheckSpammableFrontendControl(this);
             case 1:
                 if (besucht == null) {
                     return new FrontendControl();
@@ -214,7 +214,7 @@ public class Henker extends Hauptrolle {
                 return auswahlBestätigung;
             default:
                 System.out.println("There is no Henker Page with this number");
-                return game.getMitspielerCheckSpammableFrontendControl(new Henker());
+                return game.getMitspielerCheckSpammableFrontendControl(this);
         }
     }
 

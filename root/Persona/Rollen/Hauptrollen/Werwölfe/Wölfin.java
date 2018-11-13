@@ -73,7 +73,7 @@ public class Wölfin extends Hauptrolle {
             Spieler wölfinSpieler = NormalNight.wölfinSpieler;
             if (wölfinSpieler != null) {
                 String imagePath = wölfinSpieler.bonusrolle.imagePath;
-                
+
                 if (wölfinSpieler.equals(GrafVladimir.verschleierterSpieler)) {
                     imagePath = ImagePath.AUS_DEM_SPIEL;
                 }

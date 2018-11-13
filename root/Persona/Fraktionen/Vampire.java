@@ -11,7 +11,7 @@ import root.Spieler;
 import root.mechanics.KillLogik.NormalKill;
 
 import java.awt.*;
-import java.util.ArrayList;
+import java.util.List;
 
 public class Vampire extends Fraktion {
     public static final String ID = "Vampire";
@@ -59,7 +59,7 @@ public class Vampire extends Fraktion {
     @Override
     public FrontendControl getDropdownOptionsFrontendControl() {
         FrontendControlType typeOfContent = FrontendControlType.DROPDOWN_IMAGE;
-        ArrayList<String> strings = game.getLivingSpielerOrNoneStrings();
+        List<String> strings = game.getLivingSpielerOrNoneStrings();
         String imagePath = zeigekarte.imagePath;
 
         return new FrontendControl(typeOfContent, strings, imagePath);

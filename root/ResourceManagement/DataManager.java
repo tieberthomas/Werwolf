@@ -3,7 +3,7 @@ package root.ResourceManagement;
 import root.Spieler;
 import root.mechanics.Game;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class DataManager {
     public Game game;
@@ -54,7 +54,7 @@ public class DataManager {
         }
     }
 
-    private void evaluateSpieler(ArrayList<SpielerDto> spieler) {
+    private void evaluateSpieler(List<SpielerDto> spieler) {
         for (SpielerDto currentSpieler : spieler) {
             Spieler newSpieler = new Spieler(currentSpieler.name, currentSpieler.hauptrolle, currentSpieler.bonusrolle);
             game.hauptrollenInGame.add(newSpieler.hauptrolle);

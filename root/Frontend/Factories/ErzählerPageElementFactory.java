@@ -131,7 +131,7 @@ public class ErzählerPageElementFactory {
 
         button.setText(title);
         button.setMargin(new Insets(0, 0, 0, 0));
-        if(button.getActionListeners().length == 0) {
+        if (button.getActionListeners().length == 0) {
             button.addActionListener(erzählerFrame);
         }
         button.setBackground(MyFrame.DEFAULT_BUTTON_COLOR);
@@ -227,12 +227,12 @@ public class ErzählerPageElementFactory {
     }
 
     public PageElement generateNightLabel(String currentStatement) {
-        ArrayList<String> statementStrings = new ArrayList<>();
-        ArrayList<String> statementColors = new ArrayList<>();
+        List<String> statementStrings = new ArrayList<>();
+        List<String> statementColors = new ArrayList<>();
 
         boolean found = false;
 
-        ArrayList<Statement> statements = new ArrayList<>();
+        List<Statement> statements = new ArrayList<>();
 
         if (ErzählerFrame.mode == ErzählerFrameMode.FIRST_NIGHT) {
             statements = FirstNight.statements;

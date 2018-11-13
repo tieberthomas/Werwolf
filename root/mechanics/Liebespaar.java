@@ -2,9 +2,10 @@ package root.mechanics;
 
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
+import root.Utils.ListHelper;
+import root.Utils.Rand;
 
-import java.util.ArrayList;
-import java.util.concurrent.ThreadLocalRandom;
+import java.util.List;
 
 public class Liebespaar {
     Game game;
@@ -15,8 +16,8 @@ public class Liebespaar {
     public Spieler spieler1;
     public Spieler spieler2;
 
-    public ArrayList<String> getDropdownOptions() {
-        ArrayList<String> spielerStrings = game.getLivingSpielerStrings();
+    public List<String> getDropdownOptions() {
+        List<String> spielerStrings = game.getLivingSpielerStrings();
         spielerStrings.add(ZUFÄLLIG);
         return spielerStrings;
     }
@@ -27,7 +28,7 @@ public class Liebespaar {
 
     public Liebespaar(String spieler1Name, String spieler2Name, Game game) {
         this.game = game;
-        ArrayList<Spieler> spieler = (ArrayList<Spieler>) game.spieler.clone();
+        List<Spieler> spieler = ListHelper.cloneList(game.spieler);
 
         if (spieler1Name.equals(ZUFÄLLIG)) {
             if (!spieler2Name.equals(ZUFÄLLIG)) {
@@ -47,10 +48,8 @@ public class Liebespaar {
         }
     }
 
-    public static Spieler generateRandomSpieler(ArrayList<Spieler> spieler) {
-        int randomNum = ThreadLocalRandom.current().nextInt(0, spieler.size());
-
-        return spieler.get(randomNum);
+    public static Spieler generateRandomSpieler(List<Spieler> spieler) {
+        return Rand.getRandomElement(spieler);
     }
 
     public Spieler getSpielerToDie() {

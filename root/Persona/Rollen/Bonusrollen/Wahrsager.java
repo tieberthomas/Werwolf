@@ -10,6 +10,7 @@ import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Wahrsager extends Bonusrolle {
     public static final String ID = "Wahrsager";
@@ -44,7 +45,7 @@ public class Wahrsager extends Bonusrolle {
 
     @Override
     public FrontendControl getDropdownOptionsFrontendControl() {
-        ArrayList<String> dropdownStrings = Fraktion.getFraktionOrNoneStrings();
+        List<String> dropdownStrings = Fraktion.getFraktionOrNoneStrings();
 
         dropdownStrings.remove("");
         dropdownStrings.add(KEIN_OPFER);
@@ -57,8 +58,8 @@ public class Wahrsager extends Bonusrolle {
         return new FrontendControl(rewardInformation());
     }
 
-    public ArrayList<String> rewardInformation() {
-        ArrayList<String> list = new ArrayList<>();
+    public List<String> rewardInformation() {
+        List<String> list = new ArrayList<>();
 
         for (String fraktion : Fraktion.getFraktionStrings()) {
             int anzahl = Fraktion.getFraktionsMembers(fraktion).size();

@@ -9,6 +9,7 @@ import root.ResourceManagement.ImagePath;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class SpielerPageElementFactory {
     public static final int defaultTextSize = 36;
@@ -298,8 +299,8 @@ public class SpielerPageElementFactory {
         }
     }
 
-    public ArrayList<JComponent> generateFixedSizedImages(RawInformation rawInformation, int width, int height) {
-        ArrayList<JComponent> images = new ArrayList<>();
+    public List<JComponent> generateFixedSizedImages(RawInformation rawInformation, int width, int height) {
+        List<JComponent> images = new ArrayList<>();
 
         for (String imagepath : rawInformation.imagePaths) {
             images.add(generateFixedSizeImage(imagepath, width, height));
