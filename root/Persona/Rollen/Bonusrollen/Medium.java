@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Medium extends Bonusrolle {
-    public static final String ID = "Medium";
+    public static final String ID = "ID_Medium";
     public static final String NAME = "Medium";
     public static final String IMAGE_PATH = ImagePath.MEDIUM_KARTE;
     public static final BonusrollenType TYPE = new Informativ();

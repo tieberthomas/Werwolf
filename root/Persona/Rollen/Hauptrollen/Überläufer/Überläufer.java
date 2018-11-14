@@ -13,7 +13,7 @@ import root.Spieler;
 import java.util.List;
 
 public class Überläufer extends Hauptrolle {
-    public static final String ID = "Überläufer";
+    public static final String ID = "ID_Überläufer";
     public static final String NAME = "Überläufer";
     public static final String IMAGE_PATH = ImagePath.ÜBERLÄUFER_KARTE;
     public static final Fraktion FRAKTION = new ÜberläuferFraktion();

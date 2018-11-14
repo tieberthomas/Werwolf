@@ -10,7 +10,7 @@ import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
 public class MissVerona extends Hauptrolle {
-    public static final String ID = "Miss_Verona";
+    public static final String ID = "ID_Miss_Verona";
     public static final String NAME = "Miss Verona";
     public static final String IMAGE_PATH = ImagePath.MISS_VERONA_KARTE;
     public static final Fraktion FRAKTION = new Vampire();

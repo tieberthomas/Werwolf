@@ -9,7 +9,7 @@ import root.ResourceManagement.ImagePath;
 import root.Spieler;
 
 public class HoldeMaid extends Hauptrolle {
-    public static final String ID = "Holde_Maid";
+    public static final String ID = "ID_Holde_Maid";
     public static final String NAME = "Holde Maid";
     public static final String IMAGE_PATH = ImagePath.HOLDE_MAID_KARTE;
     public static final Fraktion FRAKTION = new Bürger();

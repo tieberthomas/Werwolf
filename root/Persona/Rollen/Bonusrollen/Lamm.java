@@ -13,7 +13,7 @@ import root.Spieler;
 import java.awt.*;
 
 public class Lamm extends Bonusrolle {
-    public static final String ID = "Lamm";
+    public static final String ID = "ID_Lamm";
     public static final String NAME = "Lamm";
     public static final String IMAGE_PATH = ImagePath.LAMM_KARTE;
     public static final BonusrollenType TYPE = new Passiv();

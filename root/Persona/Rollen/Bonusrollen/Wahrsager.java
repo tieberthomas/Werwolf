@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Wahrsager extends Bonusrolle {
-    public static final String ID = "Wahrsager";
+    public static final String ID = "ID_Wahrsager";
     public static final String NAME = "Wahrsager";
     public static final String IMAGE_PATH = ImagePath.WAHRSAGER_KARTE;
     public static final BonusrollenType TYPE = new Informativ();

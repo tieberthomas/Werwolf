@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Totengräber extends Bonusrolle {
-    public static final String ID = "Totengräber";
+    public static final String ID = "ID_Totengräber";
     public static final String NAME = "Totengräber";
     public static final String IMAGE_PATH = ImagePath.TOTENGRÄBER_KARTE;
     public static final BonusrollenType TYPE = new Aktiv();

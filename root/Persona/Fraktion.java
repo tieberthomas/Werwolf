@@ -136,7 +136,7 @@ public class Fraktion extends Persona {
 
     public static List<Fraktion> getFraktionen() {
         return game.hauptrollenInGame.stream()
-                .map(fraktion -> fraktion.id)
+                .map(rolle -> rolle.fraktion.id)
                 .distinct()
                 .map(Fraktion::findFraktion)
                 .filter(Objects::nonNull)
@@ -165,12 +165,9 @@ public class Fraktion extends Persona {
     }
 
     public static Fraktion findFraktion(String searchedFraktion) {
-        for (Hauptrolle currentHautprolle : game.hauptrollen) {
-            if (currentHautprolle.fraktion.equals(searchedFraktion)) {
-                return currentHautprolle.fraktion;
-            }
-        }
-
-        return null;
+        return game.hauptrollen.stream()
+                .map(rolle -> rolle.fraktion)
+                .filter(fraktion -> fraktion.equals(searchedFraktion))
+                .findAny().orElse(null);
     }
 }

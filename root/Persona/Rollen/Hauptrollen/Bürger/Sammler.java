@@ -10,7 +10,7 @@ import root.Persona.Rollen.Constants.BonusrollenType.Tarnumhang_BonusrollenType;
 import root.ResourceManagement.ImagePath;
 
 public class Sammler extends Hauptrolle {
-    public static final String ID = "Sammler";
+    public static final String ID = "ID_Sammler";
     public static final String NAME = "Sammler";
     public static final String IMAGE_PATH = ImagePath.SAMMLER_KARTE;
     public static final Fraktion FRAKTION = new Bürger();

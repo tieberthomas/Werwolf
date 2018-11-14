@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Henker extends Hauptrolle {
-    public static final String ID = "Henker";
+    public static final String ID = "ID_Henker";
     public static final String NAME = "Henker";
     public static final String IMAGE_PATH = ImagePath.HENKER_KARTE;
     public static final Fraktion FRAKTION = new ÜberläuferFraktion();

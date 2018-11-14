@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Schreckenswolf extends Hauptrolle {
-    public static final String ID = "Schreckenswolf";
+    public static final String ID = "ID_Schreckenswolf";
     public static final String NAME = "Schreckenswolf";
     public static final String IMAGE_PATH = ImagePath.SCHRECKENSWOLF_KARTE;
     public static final Fraktion FRAKTION = new Werwölfe();

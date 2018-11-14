@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SchattenpriesterFraktion extends Fraktion {
-    public static final String ID = "Schattenpriester_Fraktion";
+    public static final String ID = "ID_Schattenpriester_Fraktion";
     public static final String NAME = "Schattenpriester";
     public static final String IMAGE_PATH = ImagePath.SCHATTENPRIESTER_ICON;
     public static final Color COLOR = Color.lightGray;

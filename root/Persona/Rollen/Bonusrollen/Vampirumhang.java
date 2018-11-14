@@ -13,7 +13,7 @@ import root.Spieler;
 import java.awt.*;
 
 public class Vampirumhang extends Bonusrolle {
-    public static final String ID = "Vampirumhang";
+    public static final String ID = "ID_Vampirumhang";
     public static final String NAME = "Vampirumhang";
     public static final String IMAGE_PATH = ImagePath.VAMPIRUMHANG_KARTE;
     public static final BonusrollenType TYPE = new Passiv();

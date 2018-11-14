@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Nachbar extends Bonusrolle {
-    public static final String ID = "Nachbar";
+    public static final String ID = "ID_Nachbar";
     public static final String NAME = "Nachbar";
     public static final String IMAGE_PATH = ImagePath.NACHBAR_KARTE;
     public static final BonusrollenType TYPE = new Informativ();
