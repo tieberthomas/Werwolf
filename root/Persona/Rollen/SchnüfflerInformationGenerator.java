@@ -34,7 +34,7 @@ public class SchnüfflerInformationGenerator {
     }
 
     public SchnüfflerInformation generateInformation() {
-        Bonusrolle schnüffler = Schnüffler.game.findSpielerPerRolle(Schnüffler.NAME).bonusrolle;
+        Bonusrolle schnüffler = Schnüffler.game.findSpielerPerRolle(Schnüffler.ID).bonusrolle;
         if (schnüffler.showTarnumhang(schnüffler, spieler)) {
             return new SchnüfflerInformation(spieler.name);
         }
@@ -85,7 +85,7 @@ public class SchnüfflerInformationGenerator {
 
     private Fraktion generateFraktionInformation(boolean correctInformation) {
         Fraktion spielerFraktion = spieler.hauptrolle.fraktion;
-        if (spieler.bonusrolle.equals(Henker.NAME)) {
+        if (spieler.bonusrolle.equals(Henker.ID)) {
             spielerFraktion = new Bürger();
         }
 
@@ -115,7 +115,7 @@ public class SchnüfflerInformationGenerator {
 
     private SpäherZeigekarte generateTötendInformation(boolean correctInformation) {
         Zeigekarte isKilling = SpäherZeigekarte.getZeigekarte(spieler.hauptrolle.killing);
-        if (spieler.hauptrolle.equals(Henker.NAME)) {
+        if (spieler.hauptrolle.equals(Henker.ID)) {
             isKilling = spieler.hauptrolle.isTötendInfo(spieler);
         }
 

@@ -77,7 +77,7 @@ public class FirstNight extends Thread {
                             title = NEUE_KARTE_TITLE;
                         }
                         showCard(statement, title, cardToDisplay);
-                        if (Rolle.rolleLebend(rolle.name)) {
+                        if (Rolle.rolleLebend(rolle.id)) {
                             bonusrolle.tauschen(newBonusrolle);
                         }
 
@@ -175,15 +175,15 @@ public class FirstNight extends Thread {
         spielerAwake.clear();
         if (statement.dependency instanceof StatementDependencyFraktion) {
             StatementDependencyFraktion statementDependencyFraktion = (StatementDependencyFraktion) statement.dependency;
-            spielerAwake.addAll(Fraktion.getFraktionsMembers(statementDependencyFraktion.fraktion.name));
+            spielerAwake.addAll(Fraktion.getFraktionsMembers(statementDependencyFraktion.fraktion.id));
         } else if (statement.dependency instanceof StatementDependencyRolle) {
             StatementDependencyRolle statementDependencyRolle = (StatementDependencyRolle) statement.dependency;
-            spielerAwake.add(game.findSpielerPerRolle(statementDependencyRolle.rolle.name));
+            spielerAwake.add(game.findSpielerPerRolle(statementDependencyRolle.rolle.id));
         }
     }
 
     public void showFraktionMembers(Statement statement, Fraktion fraktion) {
-        List<String> fraktionMembers = Fraktion.getFraktionsMemberStrings(fraktion.name);
+        List<String> fraktionMembers = Fraktion.getFraktionsMemberStrings(fraktion.id);
 
         String fraktionsLogoImagePath = fraktion.imagePath;
 
@@ -232,7 +232,7 @@ public class FirstNight extends Thread {
             statement.title = spieler.name;
 
             String imagePath = spieler.bonusrolle.imagePath;
-            if (spieler.bonusrolle.equals(Tarnumhang.NAME)) {
+            if (spieler.bonusrolle.equals(Tarnumhang.ID)) {
                 imagePath = ImagePath.TARNUMHANG;
                 statement.title = TARNUMHANG_TITLE;
             }

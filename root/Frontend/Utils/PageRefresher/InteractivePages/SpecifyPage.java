@@ -72,13 +72,13 @@ public class SpecifyPage extends RefreshedPage {
             game.spielerSpecified.add(spieler);
 
             String hauptrolle = (String) comboBox2.getSelectedItem();
-            spieler.hauptrolle = game.findHauptrolle(hauptrolle);
+            spieler.hauptrolle = game.findHauptrollePerName(hauptrolle);
             if (spieler.hauptrolle == null) {
                 spieler.hauptrolle = Hauptrolle.getDefaultHauptrolle();
             }
 
             String bonusrolle = (String) comboBox3.getSelectedItem();
-            spieler.bonusrolle = game.findBonusrolle(bonusrolle);
+            spieler.bonusrolle = game.findBonusrollePerName(bonusrolle);
             if (spieler.bonusrolle == null) {
                 spieler.bonusrolle = Bonusrolle.DEFAULT_BONUSROLLE;
             }

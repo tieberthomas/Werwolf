@@ -44,11 +44,11 @@ public class Totengräber extends Bonusrolle {
 
     @Override
     public void processChosenOption(String chosenOption) {
-        Bonusrolle chosenBonusrolle = game.findBonusrolle(chosenOption);
+        Bonusrolle chosenBonusrolle = game.findBonusrollePerName(chosenOption);
         if (chosenBonusrolle != null) {
             try {
-                Spieler deadSpieler = game.findSpielerOrDeadPerRolle(chosenBonusrolle.name);
-                Spieler spielerTotengräber = game.findSpielerPerRolle(NAME);
+                Spieler deadSpieler = game.findSpielerOrDeadPerRolle(chosenBonusrolle.id);
+                Spieler spielerTotengräber = game.findSpielerPerRolle(this.id);
 
                 spielerTotengräber.bonusrolle = chosenBonusrolle;
                 deadSpieler.bonusrolle = new Schatten();

@@ -75,11 +75,11 @@ public class Orakel extends Hauptrolle {
     }
 
     private static List<Spieler> getAllUnseenBürger() {
-        List<Spieler> bürger = Fraktion.getFraktionsMembers(Bürger.NAME);
+        List<Spieler> bürger = Fraktion.getFraktionsMembers(Bürger.ID);
         List<Spieler> bürgerToRemove = new ArrayList<>();
 
-        if (Rolle.rolleLebend(NAME)) {
-            Bonusrolle orakelSpielerBonusrolle = game.findSpielerPerRolle(NAME).bonusrolle;
+        if (Rolle.rolleLebend(ID)) {
+            Bonusrolle orakelSpielerBonusrolle = game.findSpielerPerRolle(ID).bonusrolle;
             if (!geseheneBonusrollen.contains(orakelSpielerBonusrolle.name)) {
                 geseheneBonusrollen.add(orakelSpielerBonusrolle.name);
             }

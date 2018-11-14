@@ -43,12 +43,12 @@ public class Prostituierte extends Bonusrolle {
     @Override
     public void processChosenOption(String chosenOption) {
         Spieler chosenSpieler = game.findSpieler(chosenOption);
-        if (chosenSpieler != null && !chosenSpieler.equals(game.findSpielerPerRolle(NAME))) {
+        if (chosenSpieler != null && !chosenSpieler.equals(game.findSpielerPerRolle(this.id))) {
             besucht = chosenSpieler;
 
             host = chosenSpieler;
         } else {
-            host = game.findSpielerPerRolle(NAME);
+            host = game.findSpielerPerRolle(this.id);
         }
     }
 }

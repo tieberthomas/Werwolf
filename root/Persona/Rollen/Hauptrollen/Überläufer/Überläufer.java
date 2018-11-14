@@ -44,13 +44,13 @@ public class Überläufer extends Hauptrolle {
 
     @Override
     public void processChosenOption(String chosenOption) {
-        Hauptrolle chosenHauptrolle = game.findHauptrolle(chosenOption);
+        Hauptrolle chosenHauptrolle = game.findHauptrollePerName(chosenOption);
         if (chosenHauptrolle != null) {
             try {
-                Spieler spielerHauptrolle = game.findSpielerPerRolle(chosenHauptrolle.name);
+                Spieler spielerHauptrolle = game.findSpielerPerRolle(chosenHauptrolle.id);
                 chosenHauptrolle = spielerHauptrolle.hauptrolle;
 
-                Spieler spielerÜberläufer = game.findSpielerPerRolle(NAME);
+                Spieler spielerÜberläufer = game.findSpielerPerRolle(this.id);
                 spielerÜberläufer.hauptrolle = chosenHauptrolle;
                 spielerHauptrolle.hauptrolle = new Dorfbewohner();
 

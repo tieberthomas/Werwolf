@@ -9,7 +9,6 @@ import root.Persona.Bonusrolle;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
-import java.util.ArrayList;
 import java.util.List;
 
 public class BonusrolePage extends RolePage {
@@ -50,7 +49,7 @@ public class BonusrolePage extends RolePage {
     @Override
     protected void addRolle(ActionEvent ae) {
         String bonusrolleName = ((JButton) ae.getSource()).getText();
-        Bonusrolle newBonusrolle = game.findBonusrolle(bonusrolleName);
+        Bonusrolle newBonusrolle = game.findBonusrollePerName(bonusrolleName);
         game.bonusrollenInGame.add(newBonusrolle);
 
         refresh();

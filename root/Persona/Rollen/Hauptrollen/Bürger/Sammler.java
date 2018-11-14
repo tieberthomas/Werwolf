@@ -27,10 +27,10 @@ public class Sammler extends Hauptrolle {
     }
 
 
-    public static boolean isSammlerRolle(String rolle) {
+    public static boolean isSammlerRolle(String rolleID) {
         for (Bonusrolle currentRolle : game.mitteBonusrollen) {
-            if (currentRolle.equals(rolle) &&
-                    !currentRolle.equals(Totengräber.NAME) &&
+            if (currentRolle.equals(rolleID) &&
+                    !currentRolle.equals(Totengräber.ID) &&
                     !currentRolle.type.equals(new Passiv()) &&
                     !currentRolle.type.equals(new Tarnumhang_BonusrollenType())) {
                 return true;

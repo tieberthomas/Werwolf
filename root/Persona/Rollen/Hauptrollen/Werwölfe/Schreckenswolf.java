@@ -72,7 +72,7 @@ public class Schreckenswolf extends Hauptrolle {
         List<Angriff> werwolfAngriffe = new ArrayList<>();
         for (Angriff angriff : NormalNight.angriffe) {
             if (angriff.täterFraktion != null) {
-                if (angriff.täterFraktion.equals(Werwölfe.NAME)) {
+                if (angriff.täterFraktion.equals(Werwölfe.ID)) {
                     werwolfAngriffe.add(angriff);
                 }
             }
@@ -83,7 +83,7 @@ public class Schreckenswolf extends Hauptrolle {
 
     private boolean didSomeoneHaveSchutz(List<Angriff> angriffe) {
         for (Angriff angriff : angriffe) {
-            if (angriff.opfer.geschützt || angriff.opfer.bonusrolle.equals(Wolfspelz.NAME)) {
+            if (angriff.opfer.geschützt || angriff.opfer.bonusrolle.equals(Wolfspelz.ID)) {
                 return true;
             }
         }

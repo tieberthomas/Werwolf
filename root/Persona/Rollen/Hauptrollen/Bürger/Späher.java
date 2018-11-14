@@ -43,7 +43,7 @@ public class Späher extends Hauptrolle {
     @Override
     public FrontendControl processChosenOptionGetInfo(String chosenOption) {
         Spieler chosenSpieler = game.findSpieler(chosenOption);
-        Spieler späherSpieler = game.findSpielerPerRolle(name);
+        Spieler späherSpieler = game.findSpielerPerRolle(this.id);
 
         if (chosenSpieler != null && späherSpieler != null) {
             besucht = chosenSpieler;

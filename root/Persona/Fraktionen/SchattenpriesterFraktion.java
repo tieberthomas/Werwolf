@@ -71,7 +71,7 @@ public class SchattenpriesterFraktion extends Fraktion {
         if (chosenSpieler != null) {
             Opfer.removeOpfer(chosenSpieler);
 
-            if (!chosenSpieler.bonusrolle.equals(Schattenkutte.NAME)) {
+            if (!chosenSpieler.bonusrolle.equals(Schattenkutte.ID)) {
                 chosenSpieler.hauptrolle = new Schattenpriester();
                 ((Schattenpriester) chosenSpieler.hauptrolle).neuster = true;
             }
@@ -91,7 +91,7 @@ public class SchattenpriesterFraktion extends Fraktion {
             Spieler opferSpieler = currentOpfer.spieler;
             if (opferSpieler != null) {
                 String fraktionDesOpfers = opferSpieler.hauptrolle.fraktion.name;
-                if (opferSpieler.bonusrolle.equals(Schattenkutte.NAME) ||
+                if (opferSpieler.bonusrolle.equals(Schattenkutte.ID) ||
                         (opferSpieler.ressurectable && !fraktionDesOpfers.equals(SchattenpriesterFraktion.NAME))) {
                     if (!dropdownStrings.contains(opferSpieler.name)) {
                         dropdownStrings.add(opferSpieler.name);

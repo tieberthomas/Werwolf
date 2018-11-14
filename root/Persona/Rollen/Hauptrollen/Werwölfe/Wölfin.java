@@ -62,7 +62,7 @@ public class Wölfin extends Hauptrolle {
         if (chosenSpieler != null) {
             besucht = chosenSpieler;
 
-            Spieler täter = game.findSpielerPerRolle(NAME);
+            Spieler täter = game.findSpielerPerRolle(this.id);
             NormalKill.execute(chosenSpieler, täter);
         }
     }

@@ -39,7 +39,7 @@ public class Wolfspelz extends Bonusrolle {
 
     public void tauschen(Bonusrolle bonusrolle) {
         try {
-            Spieler spieler = game.findSpielerPerRolle(NAME);
+            Spieler spieler = game.findSpielerPerRolle(this.id);
             spieler.bonusrolle = bonusrolle;
         } catch (NullPointerException e) {
             System.out.println(NAME + " nicht gefunden");
@@ -47,12 +47,12 @@ public class Wolfspelz extends Bonusrolle {
     }
 
     public Bonusrolle getTauschErgebnis() {
-        Spieler spieler = game.findSpielerPerRolle(NAME);
+        Spieler spieler = game.findSpielerPerRolle(this.id);
 
         if (spieler != null) {
             Bonusrolle bonusrolle;
 
-            if (spieler.hauptrolle.fraktion.equals(Werwölfe.NAME)) {
+            if (spieler.hauptrolle.fraktion.equals(Werwölfe.ID)) {
                 bonusrolle = new SchwarzeSeele();
             } else {
                 bonusrolle = spieler.bonusrolle;

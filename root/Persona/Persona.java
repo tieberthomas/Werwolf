@@ -52,10 +52,10 @@ public class Persona {
     }
 
     public boolean equals(Persona persona) {
-        return persona != null && this.name.equals(persona.name);
+        return persona != null && this.id.equals(persona.id);
     }
 
-    public boolean equals(String personaName) {
-        return this.name.equals(personaName);
+    public boolean equals(String personaID) {
+        return this.id.equals(personaID);
     }
 }

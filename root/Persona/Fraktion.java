@@ -11,17 +11,16 @@ import root.mechanics.KillLogik.Opfer;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Fraktion extends Persona {
     public Zeigekarte zeigekarte = new BürgerZeigekarte();
 
-    public static List<Spieler> getFraktionsMembers(String fraktion) {
+    public static List<Spieler> getFraktionsMembers(String fraktionID) {
         List<Spieler> fraktionsMembers = new ArrayList<>();
 
         for (Spieler currentSpieler : game.spieler) {
-            if (currentSpieler.lebend && currentSpieler.hauptrolle.fraktion.equals(fraktion)) {
+            if (currentSpieler.lebend && currentSpieler.hauptrolle.fraktion.equals(fraktionID)) {
                 fraktionsMembers.add(currentSpieler);
             }
         }
@@ -29,29 +28,23 @@ public class Fraktion extends Persona {
         return fraktionsMembers;
     }
 
-    public static List<String> getFraktionsMemberStrings(String fraktion) {
-        List<String> fraktionsMembers = new ArrayList<>();
-
-        for (Spieler currentSpieler : game.spieler) {
-            if (currentSpieler.lebend && currentSpieler.hauptrolle.fraktion.equals(fraktion)) {
-                fraktionsMembers.add(currentSpieler.name);
-            }
-        }
-
-        return fraktionsMembers;
+    public static List<String> getFraktionsMemberStrings(String fraktionID) {
+        return getFraktionsMembers(fraktionID).stream()
+                .map(fraktion -> fraktion.name)
+                .collect(Collectors.toList());
     }
 
-    public static boolean fraktionContainedInNight(String fraktion) {
-        if (getFraktionStrings().contains(fraktion)) {
-            return !fraktionOffenkundigTot(fraktion);
+    public static boolean fraktionContainedInNight(String fraktionID) {
+        if (getFraktionIDs().contains(fraktionID)) {
+            return !fraktionOffenkundigTot(fraktionID);
         } else {
             return false;
         }
     }
 
-    public static boolean fraktionLebend(String fraktion) {
+    public static boolean fraktionLebend(String fraktionID) {
         for (Spieler currentSpieler : game.spieler) {
-            if (currentSpieler.hauptrolle.fraktion.equals(fraktion) && currentSpieler.lebend) {
+            if (currentSpieler.hauptrolle.fraktion.equals(fraktionID) && currentSpieler.lebend) {
                 return true;
             }
         }
@@ -59,24 +52,24 @@ public class Fraktion extends Persona {
         return false;
     }
 
-    public static boolean fraktionOffenkundigTot(String fraktion) {
-        if (fraktion.equals(SchattenpriesterFraktion.NAME)) {
+    public static boolean fraktionOffenkundigTot(String fraktionID) {
+        if (fraktionID.equals(SchattenpriesterFraktion.ID)) {
             return false;
         }
-        if (fraktion.equals(Werwölfe.NAME) && game.getHauptrolleInGameNames().contains(Chemiker.NAME)) {
+        if (fraktionID.equals(Werwölfe.ID) && game.getHauptrolleInGameIDs().contains(Chemiker.ID)) {
             return false;
         }
 
         int numberHauptrollenInGame = 0;
         for (Hauptrolle hauptrolle : game.hauptrollenInGame) {
-            if (hauptrolle.fraktion.equals(fraktion)) {
+            if (hauptrolle.fraktion.equals(fraktionID)) {
                 numberHauptrollenInGame++;
             }
         }
 
         int numberMitteHauptrollen = 0;
         for (Hauptrolle mitteHauptrolle : game.mitteHauptrollen) {
-            if (mitteHauptrolle.fraktion.equals(fraktion)) {
+            if (mitteHauptrolle.fraktion.equals(fraktionID)) {
                 numberMitteHauptrollen++;
             }
         }
@@ -136,9 +129,15 @@ public class Fraktion extends Persona {
 
     public static List<Fraktion> getFraktionen() {
         return game.hauptrollenInGame.stream()
-                .map(rolle -> rolle.fraktion.name)
+                .map(rolle -> rolle.fraktion.id)
                 .distinct()
                 .map(Fraktion::findFraktion)
+                .collect(Collectors.toList());
+    }
+
+    public static List<String> getFraktionIDs() {
+        return getFraktionen().stream()
+                .map(fraktion -> fraktion.id)
                 .collect(Collectors.toList());
     }
 
@@ -151,7 +150,7 @@ public class Fraktion extends Persona {
     public static List<Fraktion> getLivingFraktionen() {
         return game.spieler.stream()
                 .filter(spieler -> spieler.lebend)
-                .map(spieler -> spieler.hauptrolle.fraktion.name)
+                .map(spieler -> spieler.hauptrolle.fraktion.id)
                 .distinct()
                 .map(Fraktion::findFraktion)
                 .collect(Collectors.toList());
@@ -163,10 +162,17 @@ public class Fraktion extends Persona {
                 .collect(Collectors.toList());
     }
 
-    public static Fraktion findFraktion(String searchedFraktion) {
+    public static Fraktion findFraktion(String fraktionID) {
         return game.hauptrollen.stream()
                 .map(rolle -> rolle.fraktion)
-                .filter(fraktion -> fraktion.equals(searchedFraktion))
+                .filter(fraktion -> fraktion.equals(fraktionID))
+                .findAny().orElse(null);
+    }
+
+    public static Fraktion findFraktionPerName(String fraktionName) {
+        return game.hauptrollen.stream()
+                .map(rolle -> rolle.fraktion)
+                .filter(fraktion -> fraktion.name.equals(fraktionName))
                 .findAny().orElse(null);
     }
 }

@@ -42,7 +42,7 @@ public class MainrolePage extends RolePage {
     @Override
     protected void addRolle(ActionEvent ae) {
         String hauptrolleName = ((JButton) ae.getSource()).getText();
-        Hauptrolle newHauptrolle = game.findHauptrolle(hauptrolleName);
+        Hauptrolle newHauptrolle = game.findHauptrollePerName(hauptrolleName);
         game.hauptrollenInGame.add(newHauptrolle);
 
         refresh();

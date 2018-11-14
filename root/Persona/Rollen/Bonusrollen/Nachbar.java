@@ -56,7 +56,7 @@ public class Nachbar extends Bonusrolle {
                 return new FrontendControl(new Tarnumhang_BonusrollenType());
             }
 
-            Spieler nachbarSpieler = game.findSpielerPerRolle(Nachbar.NAME);
+            Spieler nachbarSpieler = game.findSpielerPerRolle(Nachbar.ID);
             FrontendControl info = new FrontendControl(FrontendControlType.LIST, getBesucherStrings(chosenSpieler, nachbarSpieler));
             info.title = INFO_TITLE + chosenSpieler.name;
 
@@ -76,7 +76,7 @@ public class Nachbar extends Bonusrolle {
                     besucher.add(spieler.name);
                 }
 
-                if (!besucher.contains(spieler.name) && spieler.bonusrolle.equals(Analytiker.NAME)) {
+                if (!besucher.contains(spieler.name) && spieler.bonusrolle.equals(Analytiker.ID)) {
                     Analytiker analytiker = (Analytiker) spieler.bonusrolle;
                     if (analytiker.besuchtAnalysieren != null && analytiker.besuchtAnalysieren.equals(beobachteterSpieler)) {
                         besucher.add(spieler.name);

@@ -96,8 +96,8 @@ public class Henker extends Hauptrolle {
     @Override
     public FrontendControl processChosenOptionsGetInfo(String chosenOption1, String chosenOption2) {
         if (besucht != null && chosenOption1 != null && !chosenOption1.isEmpty() && chosenOption2 != null && !chosenOption2.isEmpty()) {
-            Hauptrolle hauptrolle = game.findHauptrolle(chosenOption1);
-            Bonusrolle bonusrolle = game.findBonusrolle(chosenOption2);
+            Hauptrolle hauptrolle = game.findHauptrollePerName(chosenOption1);
+            Bonusrolle bonusrolle = game.findBonusrollePerName(chosenOption2);
 
             int correctGuesses = 0;
             Spieler chosenSpieler = besucht;
@@ -110,7 +110,7 @@ public class Henker extends Hauptrolle {
                 correctGuesses++;
             }
 
-            Spieler hänkerSpieler = game.findSpielerPerRolle(NAME);
+            Spieler hänkerSpieler = game.findSpielerPerRolle(this.id);
 
             switch (correctGuesses) {
                 case 0:
@@ -144,16 +144,16 @@ public class Henker extends Hauptrolle {
                 }
                 break;
             case 2:
-                chosenFraktion = Fraktion.findFraktion(chosenOption);
+                chosenFraktion = Fraktion.findFraktionPerName(chosenOption);
                 break;
             case 3:
-                chosenHauptrolle = game.findHauptrolle(chosenOption);
+                chosenHauptrolle = game.findHauptrollePerName(chosenOption);
                 break;
             case 4:
                 chosenBonusrollenType = BonusrollenType.getBonusrollenType(chosenOption);
                 break;
             case 5:
-                chosenBonusrolle = game.findBonusrolle(chosenOption);
+                chosenBonusrolle = game.findBonusrollePerName(chosenOption);
                 break;
         }
 
@@ -192,7 +192,7 @@ public class Henker extends Hauptrolle {
                 return bonusrollenTypAuswahl;
             case 4:
                 List<Bonusrolle> bonusrollen = game.getPossibleInGameBonusrollen();
-                if (Fraktion.fraktionContainedInNight(SchattenpriesterFraktion.NAME)) {
+                if (Fraktion.fraktionContainedInNight(SchattenpriesterFraktion.ID)) {
                     bonusrollen.add(new Schatten());
                 }
                 bonusrollen.add(new SchwarzeSeele());

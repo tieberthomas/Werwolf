@@ -39,7 +39,7 @@ public class Lamm extends Bonusrolle {
 
     public void tauschen(Bonusrolle bonusrolle) {
         try {
-            Spieler spieler = game.findSpielerPerRolle(NAME);
+            Spieler spieler = game.findSpielerPerRolle(this.id);
             spieler.bonusrolle = bonusrolle;
         } catch (NullPointerException e) {
             System.out.println(NAME + " nicht gefunden");
@@ -48,10 +48,10 @@ public class Lamm extends Bonusrolle {
 
     public Bonusrolle getTauschErgebnis() {
         try {
-            Spieler spieler = game.findSpielerPerRolle(NAME);
+            Spieler spieler = game.findSpielerPerRolle(this.id);
             Bonusrolle bonusrolle;
 
-            if (spieler.hauptrolle.fraktion.equals(Bürger.NAME)) {
+            if (spieler.hauptrolle.fraktion.equals(Bürger.ID)) {
                 bonusrolle = new ReineSeele();
             } else {
                 bonusrolle = spieler.bonusrolle;

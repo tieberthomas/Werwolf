@@ -42,7 +42,7 @@ public class Archivar extends Bonusrolle {
     @Override
     public FrontendControl processChosenOptionGetInfo(String chosenOption) {
         Spieler chosenSpieler = game.findSpieler(chosenOption);
-        Spieler archivarSpieler = game.findSpielerPerRolle(this.name);
+        Spieler archivarSpieler = game.findSpielerPerRolle(this.id);
 
         if (chosenSpieler != null && archivarSpieler != null) {
             besucht = chosenSpieler;

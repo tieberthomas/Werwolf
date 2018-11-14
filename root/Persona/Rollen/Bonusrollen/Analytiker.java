@@ -45,7 +45,7 @@ public class Analytiker extends Bonusrolle {
 
     public boolean showTarnumhang(Spieler spieler1, Spieler spieler2) {
         Spieler getarnterSpieler = NormalNight.getarnterSpieler;
-        Spieler analytikerSpieler = game.findSpielerPerRolle(name);
+        Spieler analytikerSpieler = game.findSpielerPerRolle(this.id);
         return showTarnumhang(this, spieler1) || showTarnumhang(this, spieler2) ||
                 analytikerSpieler.equals(getarnterSpieler) ||
                 spieler1.equals(getarnterSpieler) || spieler2.equals(getarnterSpieler);
@@ -60,11 +60,11 @@ public class Analytiker extends Bonusrolle {
         String fraktion1 = spieler1.hauptrolle.fraktion.name;
         String fraktion2 = spieler2.hauptrolle.fraktion.name;
 
-        if (spieler1.hauptrolle.equals(Henker.NAME)) {
+        if (spieler1.hauptrolle.equals(Henker.ID)) {
             fraktion1 = new Bürger().name;
         }
 
-        if (spieler2.hauptrolle.equals(Henker.NAME)) {
+        if (spieler2.hauptrolle.equals(Henker.ID)) {
             fraktion2 = new Bürger().name;
         }
 
@@ -89,7 +89,7 @@ public class Analytiker extends Bonusrolle {
             }
         }
 
-        Spieler analytikerSpieler = game.findSpielerPerRolle(name);
+        Spieler analytikerSpieler = game.findSpielerPerRolle(this.id);
 
         if (analytikerSpieler != null && (spieler1.equals(NormalNight.gefälschterSpieler) || spieler2.equals(NormalNight.gefälschterSpieler))) {
             return getWrongInformation(information);

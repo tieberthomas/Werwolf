@@ -259,7 +259,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                         spielerFrame.comboBox1Label.setText(comboBox1.getSelectedItem().toString());
                     }
                 } else if (spielerFrame.mode == SpielerFrameMode.dropDownImage) {
-                    Hauptrolle hauptrolle = game.findHauptrolle((String) comboBox1.getSelectedItem());
+                    Hauptrolle hauptrolle = game.findHauptrollePerName((String) comboBox1.getSelectedItem());
                     String imagePath = hauptrolle.imagePath;
                     Page imagePage = spielerFrame.pageFactory.generateStaticImagePage(spielerFrame.title, imagePath);
                     spielerFrame.buildScreenFromPage(imagePage);

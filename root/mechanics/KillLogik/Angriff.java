@@ -82,8 +82,8 @@ public class Angriff {
     }
 
     public void execute() {
-        schamaninSpieler = game.findSpielerPerRolle(Schamanin.NAME);
-        prostituierteSpieler = game.findSpielerPerRolle(Prostituierte.NAME);
+        schamaninSpieler = game.findSpielerPerRolle(Schamanin.ID);
+        prostituierteSpieler = game.findSpielerPerRolle(Prostituierte.ID);
 
         NormalNight.angriffe.add(this);
 
@@ -111,10 +111,10 @@ public class Angriff {
             if (opfer.geschützt) {
                 return false;
             }
-            if (opfer.bonusrolle.equals(Wolfspelz.NAME) && täterFraktion.equals(Werwölfe.NAME)) {
+            if (opfer.bonusrolle.equals(Wolfspelz.ID) && täterFraktion.equals(Werwölfe.ID)) {
                 return false;
             }
-            if (opfer.bonusrolle.equals(Vampirumhang.NAME) && täterFraktion.equals(Vampire.NAME)) {
+            if (opfer.bonusrolle.equals(Vampirumhang.ID) && täterFraktion.equals(Vampire.ID)) {
                 return false;
             }
         }
@@ -127,7 +127,7 @@ public class Angriff {
     }
 
     private boolean opferIsGeschütztSchamanin() {
-        return schamaninSpieler != null && Rolle.rolleLebend(Schamanin.NAME) && opfer.equals(schamaninSpieler.hauptrolle.besucht);
+        return schamaninSpieler != null && Rolle.rolleLebend(Schamanin.ID) && opfer.equals(schamaninSpieler.hauptrolle.besucht);
     }
 
     private boolean opferIsHiding() {

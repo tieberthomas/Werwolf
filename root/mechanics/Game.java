@@ -170,23 +170,23 @@ public class Game {
             mitteHauptrollen.add(hauptrolle);
             mitteBonusrollen.add(bonusrolle); //TODO methode auslagern?
 
-            if (hauptrolle.equals(Schattenpriester.NAME) && !bonusrolle.equals(Schatten.NAME)) {
+            if (hauptrolle.equals(Schattenpriester.ID) && !bonusrolle.equals(Schatten.ID)) {
                 SchattenpriesterFraktion.deadSchattenPriester++;
             }
 
-            if (Rolle.rolleLebend(Wölfin.NAME) && Wölfin.state == WölfinState.WARTEND) {
-                if (hauptrolle.fraktion.equals(Werwölfe.NAME)) {
+            if (Rolle.rolleLebend(Wölfin.ID) && Wölfin.state == WölfinState.WARTEND) {
+                if (hauptrolle.fraktion.equals(Werwölfe.ID)) {
                     Wölfin.state = WölfinState.TÖTEND;
                 }
             }
 
             //TODO rolle.cleanUp()
 
-            if (bonusrolle.equals(Schnüffler.NAME)) {
+            if (bonusrolle.equals(Schnüffler.ID)) {
                 ((Schnüffler) bonusrolle).informationen = new ArrayList<>();
             }
 
-            if (bonusrolle.equals(Tarnumhang.NAME)) {
+            if (bonusrolle.equals(Tarnumhang.ID)) {
                 ((Tarnumhang) bonusrolle).seenSpieler = new ArrayList<>();
             }
         }
@@ -202,15 +202,15 @@ public class Game {
         return findSpieler(name) != null;
     }
 
-    public Spieler findSpielerPerRolle(String name) {
+    public Spieler findSpielerPerRolle(String rolleID) {
         for (Bonusrolle bonusrolle : mitteBonusrollen) {
-            if (bonusrolle.equals(name)) {
-                return findSpielerPerRolle(Sammler.NAME);
+            if (bonusrolle.equals(rolleID)) {
+                return findSpielerPerRolle(Sammler.ID);
             }
         }
 
         for (Spieler currentSpieler : spieler) {
-            if (currentSpieler.hauptrolle.equals(name) || currentSpieler.bonusrolle.equals(name)) {
+            if (currentSpieler.hauptrolle.equals(rolleID) || currentSpieler.bonusrolle.equals(rolleID)) {
                 return currentSpieler;
             }
         }
@@ -218,9 +218,9 @@ public class Game {
         return null;
     }
 
-    public Spieler findSpielerOrDeadPerRolle(String name) {
+    public Spieler findSpielerOrDeadPerRolle(String rolleID) {
         return spieler.stream()
-                .filter(spieler -> spieler.hauptrolle.equals(name) || spieler.bonusrolle.equals(name))
+                .filter(spieler -> spieler.hauptrolle.equals(rolleID) || spieler.bonusrolle.equals(rolleID))
                 .findAny().orElse(null);
     }
 
@@ -263,7 +263,7 @@ public class Game {
     }
 
     public List<String> getMitspielerCheckSpammableStrings(Rolle rolle) {
-        Spieler spieler = findSpielerPerRolle(rolle.name);
+        Spieler spieler = findSpielerPerRolle(rolle.id);
 
         List<String> mitspieler = getSpielerCheckSpammableStrings(rolle);
         if (spieler != null) {
@@ -288,6 +288,12 @@ public class Game {
                 .collect(Collectors.toList());
     }
 
+    public List<String> getHauptrolleInGameIDs() {
+        return hauptrollenInGame.stream()
+                .map(rolle -> rolle.id)
+                .collect(Collectors.toList());
+    }
+
     public List<String> getHauptrolleInGameNames() {
         return hauptrollenInGame.stream()
                 .map(rolle -> rolle.name)
@@ -296,7 +302,7 @@ public class Game {
 
     public List<Hauptrolle> getPossibleInGameHauptrollen() {
         return hauptrollenInGame.stream()
-                .map(rolle -> findHauptrolle(rolle.name)) //TODO does this have any effect?
+                .map(rolle -> findHauptrolle(rolle.id)) //TODO does this have any effect?
                 .collect(Collectors.toList());
     }
 
@@ -304,7 +310,7 @@ public class Game {
         List<String> hauptrollenInGame = getHauptrolleInGameNames();
 
         for (Hauptrolle hauptrolle : mitteHauptrollen) {
-            if (!hauptrolle.equals(Schattenpriester.NAME)) {
+            if (!hauptrolle.equals(Schattenpriester.ID)) {
                 hauptrollenInGame.remove(hauptrolle.name);
             }
         }
@@ -330,7 +336,7 @@ public class Game {
 
     public List<Hauptrolle> getStillAvailableBürger() {
         return getStillAvailableHauptrollen().stream()
-                .filter(hauptrolle -> hauptrolle.fraktion.equals(Bürger.NAME))
+                .filter(hauptrolle -> hauptrolle.fraktion.equals(Bürger.ID))
                 .collect(Collectors.toList());
     }
 
@@ -340,9 +346,15 @@ public class Game {
                 .collect(Collectors.toList());
     }
 
-    public Hauptrolle findHauptrolle(String wantedName) {
+    public Hauptrolle findHauptrolle(String RolleID) {
         return hauptrollen.stream()
-                .filter(rolle -> rolle.equals(wantedName))
+                .filter(rolle -> rolle.equals(RolleID))
+                .findAny().orElse(null);
+    }
+
+    public Hauptrolle findHauptrollePerName(String rolleName) {
+        return hauptrollen.stream()
+                .filter(rolle -> rolle.name.equals(rolleName))
                 .findAny().orElse(null);
     }
 
@@ -354,13 +366,19 @@ public class Game {
 
     public void addAllHauptrollenToGame() {
         hauptrollenInGame.addAll(hauptrollen);
-        hauptrollenInGame.remove(findHauptrolle(Dorfbewohner.NAME));
-        hauptrollenInGame.remove(findHauptrolle(Werwolf.NAME));
+        hauptrollenInGame.remove(findHauptrolle(Dorfbewohner.ID));
+        hauptrollenInGame.remove(findHauptrolle(Werwolf.ID));
     }
 
     public List<String> getBonusrolleNames() {
         return bonusrollen.stream()
                 .map(rolle -> rolle.name)
+                .collect(Collectors.toList());
+    }
+
+    public List<String> getBonusrolleInGameIDs() {
+        return bonusrollenInGame.stream()
+                .map(rolle -> rolle.id)
                 .collect(Collectors.toList());
     }
 
@@ -372,7 +390,7 @@ public class Game {
 
     public List<Bonusrolle> getPossibleInGameBonusrollen() {
         return bonusrollenInGame.stream()
-                .map(rolle -> findBonusrolle(rolle.name)) //TODO does this have any effect?
+                .map(rolle -> findBonusrolle(rolle.id)) //TODO does this have any effect?
                 .collect(Collectors.toList());
     }
 
@@ -406,9 +424,15 @@ public class Game {
                 .collect(Collectors.toList());
     }
 
-    public Bonusrolle findBonusrolle(String wantedName) {
+    public Bonusrolle findBonusrolle(String rolleID) {
         return bonusrollen.stream()
-                .filter(rolle -> rolle.equals(wantedName))
+                .filter(rolle -> rolle.equals(rolleID))
+                .findAny().orElse(null);
+    }
+
+    public Bonusrolle findBonusrollePerName(String rolleName) {
+        return bonusrollen.stream()
+                .filter(rolle -> rolle.name.equals(rolleName))
                 .findAny().orElse(null);
     }
 
@@ -420,7 +444,7 @@ public class Game {
 
     public void addAllBonusrollen() {
         bonusrollenInGame.addAll(bonusrollen);
-        bonusrollenInGame.remove(findBonusrolle(Schatten.NAME));
+        bonusrollenInGame.remove(findBonusrolle(Schatten.ID));
     }
 
     public List<Spieler> getSpielerUnspecified() {
@@ -490,7 +514,7 @@ public class Game {
     public List<Spieler> getIrrlichter() {
         List<Spieler> livingSpieler = getLivingSpieler();
         return livingSpieler.stream()
-                .filter(p -> p.hauptrolle.equals(Irrlicht.NAME))
+                .filter(p -> p.hauptrolle.equals(Irrlicht.ID))
                 .collect(Collectors.toList());
     }
 

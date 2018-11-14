@@ -46,11 +46,11 @@ public class DataManager {
         }
 
         for (String hauptRollenName : composition.hauptrollen) {
-            game.hauptrollenInGame.add(game.findHauptrolle(hauptRollenName));
+            game.hauptrollenInGame.add(game.findHauptrollePerName(hauptRollenName));
         }
 
         for (String bonusRollenName : composition.bonusrollen) {
-            game.bonusrollenInGame.add(game.findBonusrolle(bonusRollenName));
+            game.bonusrollenInGame.add(game.findBonusrollePerName(bonusRollenName));
         }
     }
 

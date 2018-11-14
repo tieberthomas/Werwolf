@@ -77,6 +77,6 @@ public class Werwölfe extends Fraktion {
     }
 
     public static boolean blutWolfIsAktiv() {
-        return Rolle.rolleLebend(Blutwolf.NAME) && Rolle.rolleAktiv(Blutwolf.NAME) && Blutwolf.deadly;
+        return Rolle.rolleLebend(Blutwolf.ID) && Rolle.rolleAktiv(Blutwolf.ID) && Blutwolf.deadly;
     }
 }

@@ -41,12 +41,12 @@ public class Spieler {
     public Spieler(String name, String hauptrolleName, String bonusrolleName) {
         this(name);
 
-        Hauptrolle hauptrolle = game.findHauptrolle(hauptrolleName);
+        Hauptrolle hauptrolle = game.findHauptrollePerName(hauptrolleName);
         if (hauptrolle == null) {
             hauptrolle = new Dorfbewohner();
         }
 
-        Bonusrolle bonusrolle = game.findBonusrolle(bonusrolleName);
+        Bonusrolle bonusrolle = game.findBonusrollePerName(bonusrolleName);
         if (bonusrolle == null) {
             bonusrolle = new Schatten();
         }

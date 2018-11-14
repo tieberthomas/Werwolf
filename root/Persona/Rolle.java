@@ -26,14 +26,28 @@ public class Rolle extends Persona {
         return mitteHauptrollenStrings;
     }
 
-    public static Rolle findRolle(String wantedName) { //TODO move to Game
+    public static Rolle findRolle(String rolleID) { //TODO move to Game
         Rolle wantedRolle;
 
-        wantedRolle = game.findHauptrolle(wantedName);
+        wantedRolle = game.findHauptrolle(rolleID);
         if (wantedRolle != null)
             return wantedRolle;
 
-        wantedRolle = game.findBonusrolle(wantedName);
+        wantedRolle = game.findBonusrolle(rolleID);
+        if (wantedRolle != null)
+            return wantedRolle;
+
+        return null;
+    }
+
+    public static Rolle findRollePerName(String wantedName) { //TODO move to Game
+        Rolle wantedRolle;
+
+        wantedRolle = game.findHauptrollePerName(wantedName);
+        if (wantedRolle != null)
+            return wantedRolle;
+
+        wantedRolle = game.findBonusrollePerName(wantedName);
         if (wantedRolle != null)
             return wantedRolle;
 
@@ -41,21 +55,21 @@ public class Rolle extends Persona {
     }
 
     public static int numberOfOccurencesOfRolleInGame(Rolle rolle) {
-        Hauptrolle wantedHauptRolle = game.findHauptrolle(rolle.name);
-        if (wantedHauptRolle != null)
-            return game.numberOfOccurencesOfHauptrolleInGame(wantedHauptRolle);
+        Hauptrolle wantedHauptrolle = game.findHauptrolle(rolle.id);
+        if (wantedHauptrolle != null)
+            return game.numberOfOccurencesOfHauptrolleInGame(wantedHauptrolle);
 
-        Bonusrolle wantedBonusrolleRolle = game.findBonusrolle(rolle.name);
-        if (wantedBonusrolleRolle != null)
-            return game.numberOfOccurencesOfBonusrolleInGame(wantedBonusrolleRolle);
+        Bonusrolle wantedBonusrolle = game.findBonusrolle(rolle.id);
+        if (wantedBonusrolle != null)
+            return game.numberOfOccurencesOfBonusrolleInGame(wantedBonusrolle);
 
         return 0;
     }
 
-    public static boolean hauptRolleContainedInNight(String rolle) {
-        if (game.getHauptrolleInGameNames().contains(rolle)) {
+    public static boolean hauptRolleContainedInNight(String rolleID) {
+        if (game.getHauptrolleInGameIDs().contains(rolleID)) {
             for (Rolle currentRolle : game.mitteHauptrollen) {
-                if (currentRolle.equals(rolle)) {
+                if (currentRolle.equals(rolleID)) {
                     return false;
                 }
             }
@@ -65,21 +79,21 @@ public class Rolle extends Persona {
         }
     }
 
-    public static boolean rolleContainedInNight(String rolle) {
-        if (game.getHauptrolleInGameNames().contains(rolle) || game.getBonusrolleInGameNames().contains(rolle)) {
-            if (rolleLebend(rolle)) {
+    public static boolean rolleContainedInNight(String rolleID) {
+        if (game.getHauptrolleInGameIDs().contains(rolleID) || game.getBonusrolleInGameIDs().contains(rolleID)) {
+            if (rolleLebend(rolleID)) {
                 return true;
             }
 
             for (Rolle currentRolle : game.mitteHauptrollen) {
-                if (currentRolle.equals(rolle)) {
+                if (currentRolle.equals(rolleID)) {
                     return false;
                 }
             }
 
             for (Rolle currentRolle : game.mitteBonusrollen) {
-                if (!hauptRolleContainedInNight(Sammler.NAME) || currentRolle.equals(Totengräber.NAME)) {
-                    if (currentRolle.equals(rolle)) {
+                if (!hauptRolleContainedInNight(Sammler.ID) || currentRolle.equals(Totengräber.ID)) {
+                    if (currentRolle.equals(rolleID)) {
                         return false;
                     }
                 }
@@ -91,12 +105,12 @@ public class Rolle extends Persona {
         }
     }
 
-    public static boolean rolleLebend(String rolle) {
+    public static boolean rolleLebend(String rolleID) {
         for (Spieler currentSpieler : game.spieler) {
-            if (currentSpieler.hauptrolle.equals(rolle) && currentSpieler.lebend) {
+            if (currentSpieler.hauptrolle.equals(rolleID) && currentSpieler.lebend) {
                 return true;
             }
-            if (currentSpieler.bonusrolle.equals(rolle) && currentSpieler.lebend) {
+            if (currentSpieler.bonusrolle.equals(rolleID) && currentSpieler.lebend) {
                 return true;
             }
         }
@@ -104,12 +118,12 @@ public class Rolle extends Persona {
         return false;
     }
 
-    public static boolean rolleAktiv(String rolle) {
+    public static boolean rolleAktiv(String rolleID) {
         for (Spieler currentSpieler : game.spieler) {
-            if (currentSpieler.hauptrolle.equals(rolle) && currentSpieler.aktiv) {
+            if (currentSpieler.hauptrolle.equals(rolleID) && currentSpieler.aktiv) {
                 return true;
             }
-            if (currentSpieler.bonusrolle.equals(rolle) && currentSpieler.aktiv) {
+            if (currentSpieler.bonusrolle.equals(rolleID) && currentSpieler.aktiv) {
                 return true;
             }
         }
@@ -117,12 +131,12 @@ public class Rolle extends Persona {
         return false;
     }
 
-    public static boolean rolleAufgebraucht(String rolle) {
+    public static boolean rolleAufgebraucht(String rolleID) {
         for (Spieler currentSpieler : game.spieler) {
-            if (currentSpieler.hauptrolle.equals(rolle) && currentSpieler.hauptrolle.abilityCharges > 0) {
+            if (currentSpieler.hauptrolle.equals(rolleID) && currentSpieler.hauptrolle.abilityCharges > 0) {
                 return false;
             }
-            if (currentSpieler.bonusrolle.equals(rolle) && currentSpieler.bonusrolle.abilityCharges > 0) {
+            if (currentSpieler.bonusrolle.equals(rolleID) && currentSpieler.bonusrolle.abilityCharges > 0) {
                 return false;
             }
         }

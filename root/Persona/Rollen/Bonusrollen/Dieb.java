@@ -58,7 +58,7 @@ public class Dieb extends Bonusrolle {
             try {
                 besucht = chosenSpieler;
 
-                Spieler spielerDieb = game.findSpielerPerRolle(NAME);
+                Spieler spielerDieb = game.findSpielerPerRolle(this.id);
 
                 spielerDieb.bonusrolle = chosenSpieler.bonusrolle;
                 chosenSpieler.bonusrolle = getNewRandomBonusrolle();

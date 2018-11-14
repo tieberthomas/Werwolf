@@ -45,7 +45,7 @@ public class Riese extends Hauptrolle {
         if (chosenSpieler != null) {
             besucht = chosenSpieler;
 
-            Spieler täter = game.findSpielerPerRolle(NAME);
+            Spieler täter = game.findSpielerPerRolle(this.id);
             AbsoluteKill.execute(chosenSpieler, täter);
 
             abilityCharges--;
