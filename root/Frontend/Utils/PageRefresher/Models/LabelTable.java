@@ -3,6 +3,7 @@ package root.Frontend.Utils.PageRefresher.Models;
 import root.Frontend.Page.PageTable;
 
 import javax.swing.*;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Supplier;
 
@@ -18,8 +19,10 @@ public class LabelTable implements RefreshObject {
     @Override
     public void refresh() {
         table.tableElements.clear();
+        List<String> sortedTexts = labelTexts.get();
+        Collections.sort(sortedTexts);
 
-        for (String text : labelTexts.get()) {
+        for (String text : sortedTexts) {
             table.add(new JLabel(text));
         }
     }

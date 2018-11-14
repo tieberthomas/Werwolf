@@ -13,6 +13,7 @@ import root.Phases.NightBuilding.Statement;
 import root.ResourceManagement.ImagePath;
 
 import javax.swing.*;
+import java.util.Collections;
 import java.util.List;
 
 public class ErzählerPageFactory {
@@ -260,6 +261,7 @@ public class ErzählerPageFactory {
 
     public Page generateDropdownPage(Page dropdownPage, Statement statement, List<String> dropdownOptions, boolean hatZurückButton) {
         dropdownPage = generateDefaultNightPage(dropdownPage, statement, hatZurückButton);
+        Collections.sort(dropdownOptions);
         DefaultComboBoxModel model = new DefaultComboBoxModel(dropdownOptions.toArray());
         erzählerFrame.comboBox1.setModel(model);
         PageElement choosePlayer1 = pageElementFactory.generateDropdown(erzählerFrame.comboBox1,
@@ -285,6 +287,7 @@ public class ErzählerPageFactory {
 
     public Page generateDropdownPage(Page dropdownPage, Statement statement, List<String> dropdownOptions, List<String> dropdownOptions2) {
         dropdownPage = generateDropdownPage(dropdownPage, statement, dropdownOptions);
+        Collections.sort(dropdownOptions2);
         DefaultComboBoxModel model = new DefaultComboBoxModel(dropdownOptions2.toArray());
         erzählerFrame.comboBox2.setModel(model);
         PageElement choosePlayer2 = pageElementFactory.generateDropdown(erzählerFrame.comboBox2,
@@ -314,6 +317,8 @@ public class ErzählerPageFactory {
 
     public Page generateListPage(Page listPage, Statement statement, String title, List<String> stringsToDisplay, boolean hatZurückButton) {
         listPage = generateDefaultNightPage(listPage, statement, title, hatZurückButton);
+
+        Collections.sort(stringsToDisplay);
 
         if (stringsToDisplay.size() > 0) {
             PageElement label = pageElementFactory.generateLabel(getContinueToGeneratePagePoint(listPage), stringsToDisplay.get(0));

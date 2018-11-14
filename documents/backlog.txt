@@ -1,5 +1,5 @@
 1. Obwohl fünf Irrlichter ausgewählt wurden konnte ich nur eines vergeben 10 - 1 done
-1. Listen Alphabetisch 8 - 1
+1. Listen Alphabetisch 8 - 1 done
 1. Verschleiert gestorbene Rollen werden noch immer Totengräber und Überläufer angezeigt 5 - 1
 2. Reine/Schwarze Seele aus Auswahl entfernen 2 - 0,5
 3. Schattenmensch 3 - 4
