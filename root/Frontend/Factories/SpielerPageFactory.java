@@ -15,6 +15,7 @@ import root.mechanics.Liebespaar;
 
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class SpielerPageFactory {
@@ -288,6 +289,8 @@ public class SpielerPageFactory {
 
     public Page generateDoubleListPage(List<String> stringsToDisplay1, List<String> stringsToDisplay2, String title1, String title2) {
         int titleSpace = 80;
+        Collections.sort(stringsToDisplay1);
+        Collections.sort(stringsToDisplay2);
         Page listPage = generateDoubleListPage(stringsToDisplay1, stringsToDisplay2, titleSpace, 0);
 
         PageElement title1Element = pageElementFactory.generateColumnTitleLabel(title1, 2, 0, titleSpace);
@@ -302,8 +305,10 @@ public class SpielerPageFactory {
     public Page generateDoubleListPage(List<String> stringsToDisplay1, List<String> stringsToDisplay2, int offsetAbove, int offsetBelow) {
         List<String> realStringsToDisplay1 = new ArrayList<>(stringsToDisplay1);
         realStringsToDisplay1.remove("");
+        Collections.sort(realStringsToDisplay1);
         List<String> realStringsToDisplay2 = new ArrayList<>(stringsToDisplay2);
         realStringsToDisplay2.remove("");
+        Collections.sort(realStringsToDisplay2);
 
         int maxLinesPerCollumnBig = 12;
         int maxLinesPerCollumnSmall = 10;
@@ -317,6 +322,7 @@ public class SpielerPageFactory {
     }
 
     public Page generateListPage(List<String> stringsToDisplay) {
+        Collections.sort(stringsToDisplay);
         List<String> realStringsToDisplay = new ArrayList<>(stringsToDisplay);
         realStringsToDisplay.remove("");
 
@@ -331,6 +337,7 @@ public class SpielerPageFactory {
 
     public Page generateListPage(List<String> stringsToDisplay, int numberOfColumns) {
         Page listPage = new Page(0, 10);
+        Collections.sort(stringsToDisplay);
         float dividingPoint = ((float) stringsToDisplay.size()) / numberOfColumns;
 
         for (int i = 0; i < numberOfColumns; i++) {
@@ -353,6 +360,7 @@ public class SpielerPageFactory {
 
     public Page generateListPage(List<String> stringsToDisplay, List<String> stringsToDisplay2, int numberOfColumnsPerList, int offsetAbove, int offsetBelow) {
         Page listPage = new Page(5, 10);
+        Collections.sort(stringsToDisplay);
         float dividingPoint1 = ((float) stringsToDisplay.size()) / numberOfColumnsPerList;
         float dividingPoint2 = ((float) stringsToDisplay2.size()) / numberOfColumnsPerList;
         int textSize = 36;
@@ -399,6 +407,7 @@ public class SpielerPageFactory {
         Page listPage = new Page(0, 10);
         List<String> realStringsToDisplay = new ArrayList<>(stringsToDisplay);
         realStringsToDisplay.remove("");
+        Collections.sort(realStringsToDisplay);
 
         if (realStringsToDisplay.size() > 0) {
             int frameOffset = MyFrame.yOffset;

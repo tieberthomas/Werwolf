@@ -1,6 +1,7 @@
 package root.Frontend.Utils.PageRefresher.Models;
 
 import javax.swing.*;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Supplier;
 
@@ -16,6 +17,7 @@ public class Combobox implements RefreshObject {
     @Override
     public void refresh() {
         List<String> texts = comboBoxTexts.get();
+        Collections.sort(texts);
         DefaultComboBoxModel model = new DefaultComboBoxModel(texts.toArray());
         comboBox.setModel(model);
     }
