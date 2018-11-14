@@ -20,6 +20,7 @@ import root.Persona.Rollen.Hauptrollen.Bürger.Dorfbewohner;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
+import root.Utils.ListHelper;
 import root.mechanics.KillLogik.AbsoluteKill;
 import root.mechanics.KillLogik.Selbstmord;
 
@@ -173,7 +174,7 @@ public class Henker extends Hauptrolle {
                 fraktionsAuswahl.hatZurückButton = true;
                 return fraktionsAuswahl;
             case 2:
-                List<Hauptrolle> hauptrollen = game.getPossibleInGameHauptrollen();
+                List<Hauptrolle> hauptrollen = ListHelper.cloneList(game.hauptrollenInGame);
                 List<String> hauptrollenStrings = hauptrollen.stream().
                         filter(hauptrolle -> hauptrolle.fraktion.equals(chosenFraktion)).
                         map(hauptrolle -> hauptrolle.name).
@@ -191,7 +192,7 @@ public class Henker extends Hauptrolle {
                 bonusrollenTypAuswahl.hatZurückButton = true;
                 return bonusrollenTypAuswahl;
             case 4:
-                List<Bonusrolle> bonusrollen = game.getPossibleInGameBonusrollen();
+                List<Bonusrolle> bonusrollen = ListHelper.cloneList(game.bonusrollenInGame);
                 if (Fraktion.fraktionContainedInNight(SchattenpriesterFraktion.ID)) {
                     bonusrollen.add(new Schatten());
                 }

@@ -300,12 +300,6 @@ public class Game {
                 .collect(Collectors.toList());
     }
 
-    public List<Hauptrolle> getPossibleInGameHauptrollen() {
-        return hauptrollenInGame.stream()
-                .map(rolle -> findHauptrolle(rolle.id)) //TODO does this have any effect?
-                .collect(Collectors.toList());
-    }
-
     public List<String> getPossibleInGameHauptrolleNames() {
         List<String> hauptrollenInGame = getHauptrolleInGameNames();
 
@@ -385,12 +379,6 @@ public class Game {
     public List<String> getBonusrolleInGameNames() {
         return bonusrollenInGame.stream()
                 .map(rolle -> rolle.name)
-                .collect(Collectors.toList());
-    }
-
-    public List<Bonusrolle> getPossibleInGameBonusrollen() {
-        return bonusrollenInGame.stream()
-                .map(rolle -> findBonusrolle(rolle.id)) //TODO does this have any effect?
                 .collect(Collectors.toList());
     }
 
