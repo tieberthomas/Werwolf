@@ -59,12 +59,12 @@ public class BonusrolePage extends RolePage {
     protected void deleteRolle(ActionEvent ae) {
         int index = deleteButtons.indexOf(ae.getSource());
         deleteButtons.remove(index);
-        String bonusrolleName = game.bonusrollenInGame.get(index).name;
+        String bonusrolleID = game.bonusrollenInGame.get(index).id;
 
-        List<String> bonusrollenSpecifiedStrings = game.getBonusrolleSpecifiedStrings();
+        List<String> bonusrollenSpecifiedIDs = game.getBonusrolleSpecifiedIDs();
 
-        if (bonusrollenSpecifiedStrings.contains(bonusrolleName)) {
-            int specifedIndex = bonusrollenSpecifiedStrings.indexOf(bonusrolleName);
+        if (bonusrollenSpecifiedIDs.contains(bonusrolleID)) {
+            int specifedIndex = bonusrollenSpecifiedIDs.indexOf(bonusrolleID);
             removeSpecifiedPlayer(specifedIndex);
         }
 

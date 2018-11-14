@@ -57,7 +57,7 @@ public class Medium extends Bonusrolle {
 
         if (unseenBonusrollen.size() > 0) {
             bonusrolle = Rand.getRandomElement(unseenBonusrollen);
-            geseheneBonusrollen.add(bonusrolle.name);
+            geseheneBonusrollen.add(bonusrolle.id);
         } else {
             if (geseheneBonusrollen.size() == 0) {
                 //das heißt dass alle bonusrollen im spiel sind
@@ -73,7 +73,7 @@ public class Medium extends Bonusrolle {
 
     private List<Bonusrolle> getAllUnseenBonusrollen() {
         List<Bonusrolle> bonusrollenNotInGame = game.getStillAvailableBonusrollen();
-        bonusrollenNotInGame.removeIf(bonusrolle -> geseheneBonusrollen.contains(bonusrolle.name));
+        bonusrollenNotInGame.removeIf(bonusrolle -> geseheneBonusrollen.contains(bonusrolle.id));
         return bonusrollenNotInGame;
     }
 }

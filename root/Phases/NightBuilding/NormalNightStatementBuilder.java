@@ -92,7 +92,7 @@ public class NormalNightStatementBuilder {
 
         addStatementRolle(statements, Wahrsager.ID);
 
-        if (game.getBonusrolleInGameNames().contains(Konditorlehrling.NAME)) {
+        if (game.getBonusrolleInGameIDs().contains(Konditorlehrling.ID)) {
             addStatementRolle(statements, Konditorlehrling.ID);
         } else {
             addStatementRolle(statements, Konditor.ID);

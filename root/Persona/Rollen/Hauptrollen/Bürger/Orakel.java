@@ -60,7 +60,7 @@ public class Orakel extends Hauptrolle {
 
         if (unseenBürger.size() > 0) {
             bonusrolle = Rand.getRandomElement(unseenBürger).bonusrolle;
-            geseheneBonusrollen.add(bonusrolle.name);
+            geseheneBonusrollen.add(bonusrolle.id);
         } else {
             if (geseheneBonusrollen.size() == 1 || geseheneBonusrollen.size() == 0) {
                 //das heißt dass keine bonusrollen mehr bei bürgern sind
@@ -80,13 +80,13 @@ public class Orakel extends Hauptrolle {
 
         if (Rolle.rolleLebend(ID)) {
             Bonusrolle orakelSpielerBonusrolle = game.findSpielerPerRolle(ID).bonusrolle;
-            if (!geseheneBonusrollen.contains(orakelSpielerBonusrolle.name)) {
-                geseheneBonusrollen.add(orakelSpielerBonusrolle.name);
+            if (!geseheneBonusrollen.contains(orakelSpielerBonusrolle.id)) {
+                geseheneBonusrollen.add(orakelSpielerBonusrolle.id);
             }
         }
 
         for (Spieler currentBürger : bürger) {
-            if (geseheneBonusrollen.contains(currentBürger.bonusrolle.name)) {
+            if (geseheneBonusrollen.contains(currentBürger.bonusrolle.id)) {
                 bürgerToRemove.add(currentBürger);
             }
         }

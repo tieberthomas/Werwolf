@@ -52,12 +52,12 @@ public class MainrolePage extends RolePage {
     protected void deleteRolle(ActionEvent ae) {
         int index = deleteButtons.indexOf(ae.getSource());
         deleteButtons.remove(index);
-        String hauptrolleName = game.hauptrollenInGame.get(index).name;
+        String hauptrolleID = game.hauptrollenInGame.get(index).id;
 
-        List<String> hauptrollenSpecified = game.getHauptrollenSpecifiedStrings();
+        List<String> hauptrollenSpecifiedIDs = game.getHauptrollenSpecifiedIDs();
 
-        if (hauptrollenSpecified.contains(hauptrolleName)) {
-            int specifedIndex = hauptrollenSpecified.indexOf(hauptrolleName);
+        if (hauptrollenSpecifiedIDs.contains(hauptrolleID)) {
+            int specifedIndex = hauptrollenSpecifiedIDs.indexOf(hauptrolleID);
             removeSpecifiedPlayer(specifedIndex);
         }
 
