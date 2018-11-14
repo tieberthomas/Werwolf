@@ -90,9 +90,9 @@ public class SchattenpriesterFraktion extends Fraktion {
         for (Opfer currentOpfer : NormalNight.opfer) {
             Spieler opferSpieler = currentOpfer.spieler;
             if (opferSpieler != null) {
-                String fraktionDesOpfers = opferSpieler.hauptrolle.fraktion.name;
+                Fraktion fraktionDesOpfers = opferSpieler.hauptrolle.fraktion;
                 if (opferSpieler.bonusrolle.equals(Schattenkutte.ID) ||
-                        (opferSpieler.ressurectable && !fraktionDesOpfers.equals(SchattenpriesterFraktion.NAME))) {
+                        (opferSpieler.ressurectable && !fraktionDesOpfers.equals(SchattenpriesterFraktion.ID))) {
                     if (!dropdownStrings.contains(opferSpieler.name)) {
                         dropdownStrings.add(opferSpieler.name);
                     }

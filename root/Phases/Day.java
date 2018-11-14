@@ -3,6 +3,7 @@ package root.Phases;
 import root.Frontend.FrontendControl;
 import root.Frontend.Utils.JButtonStyler;
 import root.Frontend.Utils.TimeUpdater;
+import root.Persona.Bonusrolle;
 import root.Persona.Fraktionen.Bürger;
 import root.Persona.Hauptrolle;
 import root.Persona.Rollen.Bonusrollen.ReineSeele;
@@ -63,10 +64,10 @@ public class Day extends Thread {
             Spieler chosenSpieler = game.findSpieler(FrontendControl.erzählerFrame.chosenOption1);
 
             if (chosenSpieler != null) {
-                String bonusrolleSpieler = chosenSpieler.bonusrolle.name;
                 Hauptrolle hauptrolleSpieler = chosenSpieler.hauptrolle;
+                Bonusrolle bonusrolleSpieler = chosenSpieler.bonusrolle;
 
-                if (bonusrolleSpieler.equals(ReineSeele.NAME) && ((ReineSeele) chosenSpieler.bonusrolle).dayInvincibility ||
+                if (bonusrolleSpieler.equals(ReineSeele.ID) && ((ReineSeele) chosenSpieler.bonusrolle).dayInvincibility ||
                         (gebürgteSpieler.contains(chosenSpieler) && hauptrolleSpieler.fraktion.equals(Bürger.ID))) {
                     FrontendControl.erzählerAnnounceOpferPage(chosenSpieler, ImagePath.REINE_SEELE_OPEN_KARTE);
                     FrontendControl.spielerCardPicturePage(chosenSpieler.name, ImagePath.REINE_SEELE_OPEN_KARTE);

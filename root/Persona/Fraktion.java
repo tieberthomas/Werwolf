@@ -77,18 +77,18 @@ public class Fraktion extends Persona {
         return numberMitteHauptrollen >= numberHauptrollenInGame;
     }
 
-    public static boolean fraktionOpfer(String fraktion) {
+    public static boolean fraktionOpfer(String fraktionID) {
         for (Spieler currentSpieler : game.spieler) {
-            String fraktionSpieler = currentSpieler.hauptrolle.fraktion.name;
+            Fraktion fraktionSpieler = currentSpieler.hauptrolle.fraktion;
 
-            if (fraktion.equals(Werwölfe.NAME)) {
-                if (fraktionSpieler.equals(fraktion) && currentSpieler.hauptrolle.killing) {
+            if (fraktionID.equals(Werwölfe.ID)) {
+                if (fraktionSpieler.equals(fraktionID) && currentSpieler.hauptrolle.killing) {
                     if (currentSpieler.lebend && !Opfer.isOpfer(currentSpieler.name)) {
                         return false;
                     }
                 }
             } else {
-                if (fraktionSpieler.equals(fraktion)) {
+                if (fraktionSpieler.equals(fraktionID)) {
                     if (currentSpieler.lebend && !Opfer.isOpfer(currentSpieler.name)) {
                         return false;
                     }
@@ -99,7 +99,7 @@ public class Fraktion extends Persona {
         return true;
     }
 
-    public static boolean fraktionAktiv(String fraktion) {
+    public static boolean fraktionAktiv(String fraktionID) {
         List<Spieler> livingSpieler = game.getLivingSpieler();
 
         for (Opfer opfer : NormalNight.opfer) {
@@ -107,16 +107,16 @@ public class Fraktion extends Persona {
         }
 
         for (Spieler currentSpieler : livingSpieler) {
-            String fraktionSpieler = currentSpieler.hauptrolle.fraktion.name;
+            Fraktion fraktionSpieler = currentSpieler.hauptrolle.fraktion;
 
-            if (fraktion.equals(Werwölfe.NAME)) {
-                if (fraktionSpieler.equals(fraktion) && currentSpieler.hauptrolle.killing) {
+            if (fraktionID.equals(Werwölfe.ID)) {
+                if (fraktionSpieler.equals(fraktionID) && currentSpieler.hauptrolle.killing) {
                     if (currentSpieler.aktiv) {
                         return true;
                     }
                 }
             } else {
-                if (fraktionSpieler.equals(fraktion)) {
+                if (fraktionSpieler.equals(fraktionID)) {
                     if (currentSpieler.aktiv) {
                         return true;
                     }

@@ -337,9 +337,7 @@ public class NormalNight extends Thread {
 
     public void beginNight() {
         for (Spieler currentSpieler : game.spieler) {
-            String fraktionSpieler = currentSpieler.hauptrolle.fraktion.name;
-
-            currentSpieler.ressurectable = !fraktionSpieler.equals(Vampire.NAME);
+            currentSpieler.ressurectable = !currentSpieler.hauptrolle.fraktion.equals(Vampire.ID);
         }
 
         angriffe = new ArrayList<>();
@@ -406,9 +404,7 @@ public class NormalNight extends Thread {
 
     public void setSchütze() {
         for (Spieler currentSpieler : game.spieler) {
-            String bonusrolleCurrentSpieler = currentSpieler.bonusrolle.name;
-
-            if (bonusrolleCurrentSpieler.equals(SchwarzeSeele.NAME)) {
+            if (currentSpieler.bonusrolle.equals(SchwarzeSeele.ID)) {
                 currentSpieler.geschützt = true;
             }
         }
@@ -641,23 +637,8 @@ public class NormalNight extends Thread {
     }
 
     public String showKonditorDropdownPage(Statement statement, FrontendControl frontendControl) {
-        /*if (Rolle.rolleLebend(Konditor.NAME) || Rolle.rolleLebend(Konditorlehrling.NAME)) {
-            if (!Opfer.isOpferPerRolle(Konditor.NAME) || !Opfer.isOpferPerRolle(Konditorlehrling.NAME)) {
-                if (Rolle.rolleAktiv(Konditor.NAME) || Rolle.rolleAktiv(Konditorlehrling.NAME)) {*/
         FrontendControl.erzählerDropdownPage(statement, frontendControl.dropdownStrings);
         FrontendControl.spielerDropdownPage(statement.title, 1);
-                /*} else {
-                    FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), ResourcePath.DEAKTIVIERT);
-                    FrontendControl.spielerIconPicturePage(DEAKTIVIERT_TITLE, ResourcePath.DEAKTIVIERT);
-                }
-            } else {
-                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), ResourcePath.TOT);
-                FrontendControl.spielerIconPicturePage(TOT_TITLE, ResourcePath.TOT);
-            }
-        } else {
-            FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), ResourcePath.AUS_DEM_SPIEL);
-            FrontendControl.spielerDropdownPage(statement.title, 1);
-        }*/
 
         waitForAnswer();
 

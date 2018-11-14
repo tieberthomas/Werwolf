@@ -21,12 +21,12 @@ public class StatementDependencyFraktion extends StatementDependency {
 
     @Override
     public boolean isOpferNow() {
-        return Fraktion.fraktionOpfer(fraktion.name);
+        return Fraktion.fraktionOpfer(fraktion.id);
     }
 
     @Override
     public boolean isAktivNow() {
-        return Fraktion.fraktionAktiv(fraktion.name);
+        return Fraktion.fraktionAktiv(fraktion.id);
     }
 
     @Override

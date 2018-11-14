@@ -471,12 +471,6 @@ public class Game {
                 .collect(Collectors.toList());
     }
 
-    public List<String> getHauptrollenSpecifiedNames() {
-        return spielerSpecified.stream()
-                .map(spieler -> spieler.hauptrolle.name)
-                .collect(Collectors.toList());
-    }
-
     public List<Hauptrolle> getHauptrollenUnspecified() {
         List<Hauptrolle> hauptrollenUnspecified = ListHelper.cloneList(hauptrollenInGame);
 
@@ -500,12 +494,6 @@ public class Game {
     public List<String> getBonusrolleSpecifiedIDs() {
         return spielerSpecified.stream()
                 .map(spieler -> spieler.bonusrolle.id)
-                .collect(Collectors.toList());
-    }
-
-    public List<String> getBonusrolleSpecifiedNames() {
-        return spielerSpecified.stream()
-                .map(spieler -> spieler.bonusrolle.name)
                 .collect(Collectors.toList());
     }
 
