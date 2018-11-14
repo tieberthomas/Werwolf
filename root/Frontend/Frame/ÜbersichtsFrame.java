@@ -15,6 +15,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.stream.Collectors;
 
 public class ÜbersichtsFrame extends MyFrame implements ActionListener {
     public Game game;
@@ -44,6 +47,13 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener {
         this.setLocation(0, spawnHeight);
 
         frameJpanel = generateDefaultPanel();
+
+        Collections.sort(game.spieler, new Comparator<Spieler>() {
+            @Override
+            public int compare(Spieler spieler1, Spieler spieler2) {
+                return spieler1.name.compareTo(spieler2.name);
+            }
+        });
 
         regenerateAndRefresh();
 
