@@ -12,6 +12,7 @@ Freigestellt -> Weiß
 
 Nach Auslieferung:
 Persona ID
+Game.game
 Rolle, Fraktion zusammenfassen Persona
 Liste für buttons Liste für Rollen
 Analytiker generisch machen
