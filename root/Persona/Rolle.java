@@ -5,8 +5,8 @@ import root.Persona.Rollen.Bonusrollen.Totengräber;
 import root.Persona.Rollen.Hauptrollen.Bürger.Sammler;
 import root.Spieler;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Rolle extends Persona {
     public Spieler besucht;
@@ -16,14 +16,10 @@ public class Rolle extends Persona {
     public boolean spammable = false;
     public int numberOfPossibleInstances = 1;
 
-    public static List<String> getMitteHauptrollenStrings() {
-        List<String> mitteHauptrollenStrings = new ArrayList<>();
-
-        for (Hauptrolle hauptrolle : game.mitteHauptrollen) {
-            mitteHauptrollenStrings.add(hauptrolle.name);
-        }
-
-        return mitteHauptrollenStrings;
+    public static List<String> getMitteHauptrollenNames() {
+        return game.mitteHauptrollen.stream()
+                .map(rolle -> rolle.name)
+                .collect(Collectors.toList());
     }
 
     public static Rolle findRolle(String rolleID) { //TODO move to Game
