@@ -4,6 +4,7 @@ import root.Frontend.FrontendControl;
 import root.Persona.Rollen.Bonusrollen.Totengräber;
 import root.Persona.Rollen.Hauptrollen.Bürger.Sammler;
 import root.Spieler;
+import root.mechanics.Game;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,7 +18,7 @@ public class Rolle extends Persona {
     public int numberOfPossibleInstances = 1;
 
     public static List<String> getMitteHauptrollenNames() {
-        return game.mitteHauptrollen.stream()
+        return Game.game.mitteHauptrollen.stream()
                 .map(rolle -> rolle.name)
                 .collect(Collectors.toList());
     }
@@ -25,11 +26,11 @@ public class Rolle extends Persona {
     public static Rolle findRolle(String rolleID) { //TODO move to Game
         Rolle wantedRolle;
 
-        wantedRolle = game.findHauptrolle(rolleID);
+        wantedRolle = Game.game.findHauptrolle(rolleID);
         if (wantedRolle != null)
             return wantedRolle;
 
-        wantedRolle = game.findBonusrolle(rolleID);
+        wantedRolle = Game.game.findBonusrolle(rolleID);
         if (wantedRolle != null)
             return wantedRolle;
 
@@ -39,11 +40,11 @@ public class Rolle extends Persona {
     public static Rolle findRollePerName(String wantedName) { //TODO move to Game
         Rolle wantedRolle;
 
-        wantedRolle = game.findHauptrollePerName(wantedName);
+        wantedRolle = Game.game.findHauptrollePerName(wantedName);
         if (wantedRolle != null)
             return wantedRolle;
 
-        wantedRolle = game.findBonusrollePerName(wantedName);
+        wantedRolle = Game.game.findBonusrollePerName(wantedName);
         if (wantedRolle != null)
             return wantedRolle;
 
@@ -51,20 +52,20 @@ public class Rolle extends Persona {
     }
 
     public static int numberOfOccurencesOfRolleInGame(Rolle rolle) {
-        Hauptrolle wantedHauptrolle = game.findHauptrolle(rolle.id);
+        Hauptrolle wantedHauptrolle = Game.game.findHauptrolle(rolle.id);
         if (wantedHauptrolle != null)
-            return game.numberOfOccurencesOfHauptrolleInGame(wantedHauptrolle);
+            return Game.game.numberOfOccurencesOfHauptrolleInGame(wantedHauptrolle);
 
-        Bonusrolle wantedBonusrolle = game.findBonusrolle(rolle.id);
+        Bonusrolle wantedBonusrolle = Game.game.findBonusrolle(rolle.id);
         if (wantedBonusrolle != null)
-            return game.numberOfOccurencesOfBonusrolleInGame(wantedBonusrolle);
+            return Game.game.numberOfOccurencesOfBonusrolleInGame(wantedBonusrolle);
 
         return 0;
     }
 
     public static boolean hauptRolleContainedInNight(String rolleID) {
-        if (game.getHauptrolleInGameIDs().contains(rolleID)) {
-            for (Rolle currentRolle : game.mitteHauptrollen) {
+        if (Game.game.getHauptrolleInGameIDs().contains(rolleID)) {
+            for (Rolle currentRolle : Game.game.mitteHauptrollen) {
                 if (currentRolle.equals(rolleID)) {
                     return false;
                 }
@@ -76,18 +77,18 @@ public class Rolle extends Persona {
     }
 
     public static boolean rolleContainedInNight(String rolleID) {
-        if (game.getHauptrolleInGameIDs().contains(rolleID) || game.getBonusrolleInGameIDs().contains(rolleID)) {
+        if (Game.game.getHauptrolleInGameIDs().contains(rolleID) || Game.game.getBonusrolleInGameIDs().contains(rolleID)) {
             if (rolleLebend(rolleID)) {
                 return true;
             }
 
-            for (Rolle currentRolle : game.mitteHauptrollen) {
+            for (Rolle currentRolle : Game.game.mitteHauptrollen) {
                 if (currentRolle.equals(rolleID)) {
                     return false;
                 }
             }
 
-            for (Rolle currentRolle : game.mitteBonusrollen) {
+            for (Rolle currentRolle : Game.game.mitteBonusrollen) {
                 if (!hauptRolleContainedInNight(Sammler.ID) || currentRolle.equals(Totengräber.ID)) {
                     if (currentRolle.equals(rolleID)) {
                         return false;
@@ -102,7 +103,7 @@ public class Rolle extends Persona {
     }
 
     public static boolean rolleLebend(String rolleID) {
-        for (Spieler currentSpieler : game.spieler) {
+        for (Spieler currentSpieler : Game.game.spieler) {
             if (currentSpieler.hauptrolle.equals(rolleID) && currentSpieler.lebend) {
                 return true;
             }
@@ -115,7 +116,7 @@ public class Rolle extends Persona {
     }
 
     public static boolean rolleAktiv(String rolleID) {
-        for (Spieler currentSpieler : game.spieler) {
+        for (Spieler currentSpieler : Game.game.spieler) {
             if (currentSpieler.hauptrolle.equals(rolleID) && currentSpieler.aktiv) {
                 return true;
             }
@@ -128,7 +129,7 @@ public class Rolle extends Persona {
     }
 
     public static boolean rolleAufgebraucht(String rolleID) {
-        for (Spieler currentSpieler : game.spieler) {
+        for (Spieler currentSpieler : Game.game.spieler) {
             if (currentSpieler.hauptrolle.equals(rolleID) && currentSpieler.hauptrolle.abilityCharges > 0) {
                 return false;
             }

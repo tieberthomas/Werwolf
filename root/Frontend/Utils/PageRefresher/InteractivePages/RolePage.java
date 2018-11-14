@@ -1,9 +1,9 @@
 package root.Frontend.Utils.PageRefresher.InteractivePages;
 
-import root.Frontend.Page.Page;
 import root.Frontend.Page.PageTable;
 import root.Frontend.Utils.PageRefresher.InteractivePages.InteractiveElementsDtos.RolePageElementsDto;
 import root.Frontend.Utils.PageRefresher.Models.RefreshedPage;
+import root.mechanics.Game;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -86,7 +86,7 @@ public class RolePage extends RefreshedPage {
             deleteButtons.remove(index);
         }
 
-        game.spielerSpecified.remove(index);
+        Game.game.spielerSpecified.remove(index);
     }
 
     protected void addAllRollen() {

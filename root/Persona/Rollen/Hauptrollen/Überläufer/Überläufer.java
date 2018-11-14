@@ -9,6 +9,7 @@ import root.Persona.Rollen.Hauptrollen.Bürger.Dorfbewohner;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
+import root.mechanics.Game;
 
 import java.util.List;
 
@@ -44,18 +45,18 @@ public class Überläufer extends Hauptrolle {
 
     @Override
     public void processChosenOption(String chosenOption) {
-        Hauptrolle chosenHauptrolle = game.findHauptrollePerName(chosenOption);
+        Hauptrolle chosenHauptrolle = Game.game.findHauptrollePerName(chosenOption);
         if (chosenHauptrolle != null) {
             try {
-                Spieler spielerHauptrolle = game.findSpielerPerRolle(chosenHauptrolle.id);
+                Spieler spielerHauptrolle = Game.game.findSpielerPerRolle(chosenHauptrolle.id);
                 chosenHauptrolle = spielerHauptrolle.hauptrolle;
 
-                Spieler spielerÜberläufer = game.findSpielerPerRolle(this.id);
+                Spieler spielerÜberläufer = Game.game.findSpielerPerRolle(this.id);
                 spielerÜberläufer.hauptrolle = chosenHauptrolle;
                 spielerHauptrolle.hauptrolle = new Dorfbewohner();
 
-                game.mitteHauptrollen.remove(chosenHauptrolle);
-                game.mitteHauptrollen.add(this);
+                Game.game.mitteHauptrollen.remove(chosenHauptrolle);
+                Game.game.mitteHauptrollen.add(this);
             } catch (NullPointerException e) {
                 System.out.println(NAME + " nicht gefunden");
             }

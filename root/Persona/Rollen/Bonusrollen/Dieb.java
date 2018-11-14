@@ -9,6 +9,7 @@ import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
 import root.Utils.Rand;
+import root.mechanics.Game;
 
 import java.util.List;
 
@@ -47,18 +48,18 @@ public class Dieb extends Bonusrolle {
 
     @Override
     public FrontendControl getDropdownOptionsFrontendControl() {
-        return game.getMitspielerCheckSpammableFrontendControl(this);
+        return Game.game.getMitspielerCheckSpammableFrontendControl(this);
     }
 
     @Override
     public void processChosenOption(String chosenOption) {
-        Spieler chosenSpieler = game.findSpieler(chosenOption);
+        Spieler chosenSpieler = Game.game.findSpieler(chosenOption);
 
         if (chosenSpieler != null) {
             try {
                 besucht = chosenSpieler;
 
-                Spieler spielerDieb = game.findSpielerPerRolle(this.id);
+                Spieler spielerDieb = Game.game.findSpielerPerRolle(this.id);
 
                 spielerDieb.bonusrolle = chosenSpieler.bonusrolle;
                 chosenSpieler.bonusrolle = getNewRandomBonusrolle();
@@ -78,7 +79,7 @@ public class Dieb extends Bonusrolle {
     }
 
     private Bonusrolle getNewRandomBonusrolle() {
-        List<Bonusrolle> bonusrollen = game.getStillAvailableBonusrollen();
+        List<Bonusrolle> bonusrollen = Game.game.getStillAvailableBonusrollen();
 
         return Rand.getRandomElement(bonusrollen);
     }

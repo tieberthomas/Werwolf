@@ -10,6 +10,7 @@ import root.Persona.Rollen.SchnüfflerInformationGenerator;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
+import root.mechanics.Game;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +49,7 @@ public class Schnüffler extends Bonusrolle {
         FrontendControl frontendControl = new FrontendControl();
 
         frontendControl.typeOfContent = FrontendControlType.DROPDOWN;
-        frontendControl.dropdownStrings = game.getLivingSpielerOrNoneStrings();
+        frontendControl.dropdownStrings = Game.game.getLivingSpielerOrNoneStrings();
 
         removePreviousSpieler(frontendControl.dropdownStrings);
 
@@ -63,7 +64,7 @@ public class Schnüffler extends Bonusrolle {
 
     @Override
     public FrontendControl processChosenOptionGetInfo(String chosenOption) {
-        Spieler chosenSpieler = game.findSpieler(chosenOption);
+        Spieler chosenSpieler = Game.game.findSpieler(chosenOption);
 
         if (chosenSpieler != null) {
             besucht = chosenSpieler;

@@ -8,6 +8,7 @@ import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
+import root.mechanics.Game;
 
 public class Seherin extends Hauptrolle {
     public static final String ID = "ID_Seherin";
@@ -36,17 +37,17 @@ public class Seherin extends Hauptrolle {
 
     @Override
     public FrontendControl getDropdownOptionsFrontendControl() {
-        return game.getMitspielerCheckSpammableFrontendControl(this);
+        return Game.game.getMitspielerCheckSpammableFrontendControl(this);
     }
 
     @Override
     public FrontendControl processChosenOptionGetInfo(String chosenOption) {
-        Spieler chosenSpieler = game.findSpieler(chosenOption);
+        Spieler chosenSpieler = Game.game.findSpieler(chosenOption);
 
         if (chosenSpieler != null) {
             besucht = chosenSpieler;
 
-            Spieler seherinSpieler = game.findSpielerPerRolle(this.id);
+            Spieler seherinSpieler = Game.game.findSpielerPerRolle(this.id);
 
             Zeigekarte zeigekarte = chosenSpieler.getFraktionInfo(seherinSpieler);
 

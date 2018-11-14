@@ -13,8 +13,6 @@ import root.Spieler;
 import root.mechanics.Game;
 
 public class Angriff {
-    public static Game game;
-
     public Spieler opfer;
     public Spieler täter;
     public Fraktion täterFraktion;
@@ -82,8 +80,8 @@ public class Angriff {
     }
 
     public void execute() {
-        schamaninSpieler = game.findSpielerPerRolle(Schamanin.ID);
-        prostituierteSpieler = game.findSpielerPerRolle(Prostituierte.ID);
+        schamaninSpieler = Game.game.findSpielerPerRolle(Schamanin.ID);
+        prostituierteSpieler = Game.game.findSpielerPerRolle(Prostituierte.ID);
 
         NormalNight.angriffe.add(this);
 

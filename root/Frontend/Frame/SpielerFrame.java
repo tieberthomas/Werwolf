@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SpielerFrame extends MyFrame {
-    Game game;
     ErzählerFrame erzählerFrame;
     public SpielerPageFactory pageFactory;
     public SpielerPageElementFactory pageElementFactory;
@@ -31,8 +30,7 @@ public class SpielerFrame extends MyFrame {
     public int mode = SpielerFrameMode.blank;
     public String title = "";
 
-    public SpielerFrame(ErzählerFrame erzählerFrame, Game game) {
-        this.game = game;
+    public SpielerFrame(ErzählerFrame erzählerFrame) {
         WINDOW_TITLE = "Spieler Fenster";
         this.erzählerFrame = erzählerFrame;
 
@@ -63,23 +61,23 @@ public class SpielerFrame extends MyFrame {
     }
 
     public void refreshPlayerSetupPage() {
-        buildScreenFromPage(pageFactory.generateListPage(game.getLivingSpielerStrings()));
+        buildScreenFromPage(pageFactory.generateListPage(Game.game.getLivingSpielerStrings()));
     }
 
     public void refreshHauptrolleSetupPage() {
-        buildScreenFromPage(pageFactory.generateListPage(game.getHauptrolleInGameNames()));
+        buildScreenFromPage(pageFactory.generateListPage(Game.game.getHauptrolleInGameNames()));
     }
 
     public void refreshBonusrolleSetupPage() {
-        buildScreenFromPage(pageFactory.generateListPage(game.getBonusrolleInGameNames()));
+        buildScreenFromPage(pageFactory.generateListPage(Game.game.getBonusrolleInGameNames()));
     }
 
     public void refreshSecondarySpecifySetupPage() {
         List<String> hauptrollen = new ArrayList<>();
-        hauptrollen.addAll(game.getHauptrolleInGameNames());
+        hauptrollen.addAll(Game.game.getHauptrolleInGameNames());
 
         List<String> bonusrollen = new ArrayList<>();
-        bonusrollen.addAll(game.getBonusrolleInGameNames());
+        bonusrollen.addAll(Game.game.getBonusrolleInGameNames());
         buildScreenFromPage(pageFactory.generateDoubleListPage(hauptrollen, bonusrollen, "Hauptrollen", "Bonusrollen"));
     }
 
@@ -91,7 +89,7 @@ public class SpielerFrame extends MyFrame {
             freibierDay = true;
         }
 
-        currentPage = pageFactory.generateDayPage(game.getPossibleInGameHauptrolleNames(), game.getPossibleInGameBonusrolleNames(), freibierDay);
+        currentPage = pageFactory.generateDayPage(Game.game.getPossibleInGameHauptrolleNames(), Game.game.getPossibleInGameBonusrolleNames(), freibierDay);
         buildScreenFromPage(currentPage);
     }
 }

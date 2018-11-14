@@ -26,8 +26,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FirstNight extends Thread {
-    Game game;
-
     public static final String TARNUMHANG_TITLE = "Tarnumhang";
     public static final String NEUE_KARTE_TITLE = "Neue Karte";
 
@@ -35,10 +33,6 @@ public class FirstNight extends Thread {
     public static Object lock;
     public static List<Spieler> spielerAwake = new ArrayList<>();
     public static List<Bonusrolle> swappedRoles = new ArrayList<>();
-
-    public FirstNight(Game game) {
-        this.game = game;
-    }
 
     public void run() {
         lock = new Object();
@@ -87,16 +81,16 @@ public class FirstNight extends Thread {
                     } else {
                         switch (statement.id) {
                             case IndieStatements.LIEBESPAAR_ID:
-                                List<String> spielerOrZufällig = game.liebespaar.getDropdownOptions();
+                                List<String> spielerOrZufällig = Game.game.liebespaar.getDropdownOptions();
 
                                 showDropdown(statement, spielerOrZufällig, spielerOrZufällig);
 
-                                game.liebespaar = new Liebespaar(FrontendControl.erzählerFrame.chosenOption1, FrontendControl.erzählerFrame.chosenOption2, game);
+                                Game.game.liebespaar = new Liebespaar(FrontendControl.erzählerFrame.chosenOption1, FrontendControl.erzählerFrame.chosenOption2);
                                 FrontendControl.regenerateAndRefreshÜbersichtsFrame();
                                 break;
 
                             case IndieStatements.LIEBESPAAR_FINDEN_ID:
-                                Liebespaar liebespaar = game.liebespaar;
+                                Liebespaar liebespaar = Game.game.liebespaar;
                                 if (liebespaar != null && liebespaar.spieler1 != null) {
                                     List<String> liebespaarStrings = new ArrayList<>();
 
@@ -113,7 +107,7 @@ public class FirstNight extends Thread {
                                 break;
 
                             case Henker.FIRST_NIGHT_STATEMENT_ID:
-                                List<Hauptrolle> henkerHauptrollen = game.getStillAvailableBürger();
+                                List<Hauptrolle> henkerHauptrollen = Game.game.getStillAvailableBürger();
                                 Hauptrolle henkerHauptrolle = pickRandomHauptrolle(henkerHauptrollen);
                                 if (henkerHauptrolle == null) {
                                     henkerHauptrolle = new Dorfbewohner();
@@ -123,7 +117,7 @@ public class FirstNight extends Thread {
                                 break;
 
                             case Wolfsmensch.FIRST_NIGHT_STATEMENT_ID:
-                                List<Hauptrolle> hauptrollen = game.getStillAvailableBürger();
+                                List<Hauptrolle> hauptrollen = Game.game.getStillAvailableBürger();
                                 Hauptrolle hauptrolle = pickRandomHauptrolle(hauptrollen);
                                 if (hauptrolle == null) {
                                     hauptrolle = new Dorfbewohner();
@@ -145,11 +139,11 @@ public class FirstNight extends Thread {
     }
 
     public void beginNight() {
-        for (Hauptrolle currentHauptrolle : game.hauptrollen) {
+        for (Hauptrolle currentHauptrolle : Game.game.hauptrollen) {
             currentHauptrolle.besuchtLastNight = null;
             currentHauptrolle.besucht = null;
         }
-        for (Bonusrolle currentBonusrolle : game.bonusrollen) {
+        for (Bonusrolle currentBonusrolle : Game.game.bonusrollen) {
             currentBonusrolle.besuchtLastNight = null;
             currentBonusrolle.besucht = null;
         }
@@ -164,7 +158,7 @@ public class FirstNight extends Thread {
     }
 
     private void cleanUp() {
-        for (Spieler currentSpieler : game.spieler) {
+        for (Spieler currentSpieler : Game.game.spieler) {
             currentSpieler.aktiv = true;
             currentSpieler.geschützt = false;
             currentSpieler.ressurectable = true;
@@ -178,7 +172,7 @@ public class FirstNight extends Thread {
             spielerAwake.addAll(Fraktion.getFraktionsMembers(statementDependencyFraktion.fraktion.id));
         } else if (statement.dependency instanceof StatementDependencyRolle) {
             StatementDependencyRolle statementDependencyRolle = (StatementDependencyRolle) statement.dependency;
-            spielerAwake.add(game.findSpielerPerRolle(statementDependencyRolle.rolle.id));
+            spielerAwake.add(Game.game.findSpielerPerRolle(statementDependencyRolle.rolle.id));
         }
     }
 

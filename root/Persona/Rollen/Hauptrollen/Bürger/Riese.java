@@ -7,6 +7,7 @@ import root.Persona.Hauptrolle;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
+import root.mechanics.Game;
 import root.mechanics.KillLogik.AbsoluteKill;
 
 public class Riese extends Hauptrolle {
@@ -36,16 +37,16 @@ public class Riese extends Hauptrolle {
 
     @Override
     public FrontendControl getDropdownOptionsFrontendControl() {
-        return game.getSpielerCheckSpammableFrontendControl(this);
+        return Game.game.getSpielerCheckSpammableFrontendControl(this);
     }
 
     @Override
     public void processChosenOption(String chosenOption) {
-        Spieler chosenSpieler = game.findSpieler(chosenOption);
+        Spieler chosenSpieler = Game.game.findSpieler(chosenOption);
         if (chosenSpieler != null) {
             besucht = chosenSpieler;
 
-            Spieler täter = game.findSpielerPerRolle(this.id);
+            Spieler täter = Game.game.findSpielerPerRolle(this.id);
             AbsoluteKill.execute(chosenSpieler, täter);
 
             abilityCharges--;

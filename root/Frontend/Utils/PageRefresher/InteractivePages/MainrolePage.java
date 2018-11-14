@@ -6,6 +6,7 @@ import root.Frontend.Utils.PageRefresher.Models.Label;
 import root.Frontend.Utils.PageRefresher.Models.LabelTable;
 import root.Frontend.Utils.PageRefresher.PageRefresher;
 import root.Persona.Hauptrolle;
+import root.mechanics.Game;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -16,13 +17,13 @@ public class MainrolePage extends RolePage {
     public void setupPageRefresher() {
         pageRefresher = new PageRefresher(page);
         pageRefresher.add(new ButtonTable(roleButtons));
-        pageRefresher.add(new LabelTable(labelTable, game::getHauptrolleInGameNames));
-        pageRefresher.add(new DeleteButtonTable(deleteTable, deleteButtons, game.hauptrollenInGame::size));
+        pageRefresher.add(new LabelTable(labelTable, Game.game::getHauptrolleInGameNames));
+        pageRefresher.add(new DeleteButtonTable(deleteTable, deleteButtons, Game.game.hauptrollenInGame::size));
         pageRefresher.add(new Label(counterLabel, this::getMainroleCounterLabelText));
     }
 
     private String getMainroleCounterLabelText() {
-        return getCounterLabelText(game.spieler.size(), game.hauptrollenInGame.size());
+        return getCounterLabelText(Game.game.spieler.size(), Game.game.hauptrollenInGame.size());
     }
 
     protected void refreshSpielerFrame() {
@@ -31,9 +32,9 @@ public class MainrolePage extends RolePage {
 
     @Override
     public void generatePage() {
-        int numberOfplayers = game.spieler.size();
-        int numberOfhauptrollen = game.hauptrollenInGame.size();
-        List<String> hauptrollen = game.getHauptrolleNames();
+        int numberOfplayers = Game.game.spieler.size();
+        int numberOfhauptrollen = Game.game.hauptrollenInGame.size();
+        List<String> hauptrollen = Game.game.getHauptrolleNames();
         //TODO remove information from page generation since it already is gathered in refresh
         pageFactory.generateRollenSetupPage(page, interactiveElementsDto, numberOfplayers, numberOfhauptrollen, hauptrollen);
         //TODO generalize role-pagecreation
@@ -42,8 +43,8 @@ public class MainrolePage extends RolePage {
     @Override
     protected void addRolle(ActionEvent ae) {
         String hauptrolleName = ((JButton) ae.getSource()).getText();
-        Hauptrolle newHauptrolle = game.findHauptrollePerName(hauptrolleName);
-        game.hauptrollenInGame.add(newHauptrolle);
+        Hauptrolle newHauptrolle = Game.game.findHauptrollePerName(hauptrolleName);
+        Game.game.hauptrollenInGame.add(newHauptrolle);
 
         refresh();
     }
@@ -52,21 +53,21 @@ public class MainrolePage extends RolePage {
     protected void deleteRolle(ActionEvent ae) {
         int index = deleteButtons.indexOf(ae.getSource());
         deleteButtons.remove(index);
-        String hauptrolleID = game.hauptrollenInGame.get(index).id;
+        String hauptrolleID = Game.game.hauptrollenInGame.get(index).id;
 
-        List<String> hauptrollenSpecifiedIDs = game.getHauptrollenSpecifiedIDs();
+        List<String> hauptrollenSpecifiedIDs = Game.game.getHauptrollenSpecifiedIDs();
 
         if (hauptrollenSpecifiedIDs.contains(hauptrolleID)) {
             int specifedIndex = hauptrollenSpecifiedIDs.indexOf(hauptrolleID);
             removeSpecifiedPlayer(specifedIndex);
         }
 
-        game.hauptrollenInGame.remove(index);
+        Game.game.hauptrollenInGame.remove(index);
 
         refresh();
     }
 
     protected void addAllRollen() {
-        game.addAllHauptrollenToGame();
+        Game.game.addAllHauptrollenToGame();
     }
 }

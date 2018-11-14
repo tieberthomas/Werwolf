@@ -9,6 +9,7 @@ import root.Phases.NightBuilding.Constants.StatementType;
 import root.Phases.NormalNight;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
+import root.mechanics.Game;
 import root.mechanics.Liebespaar;
 
 import java.util.Objects;
@@ -45,7 +46,7 @@ public class Analytiker extends Bonusrolle {
 
     public boolean showTarnumhang(Spieler spieler1, Spieler spieler2) {
         Spieler getarnterSpieler = NormalNight.getarnterSpieler;
-        Spieler analytikerSpieler = game.findSpielerPerRolle(this.id);
+        Spieler analytikerSpieler = Game.game.findSpielerPerRolle(this.id);
         return showTarnumhang(this, spieler1) || showTarnumhang(this, spieler2) ||
                 analytikerSpieler.equals(getarnterSpieler) ||
                 spieler1.equals(getarnterSpieler) || spieler2.equals(getarnterSpieler);
@@ -73,7 +74,7 @@ public class Analytiker extends Bonusrolle {
         if (Objects.equals(fraktion1, fraktion2)) {
             information = GLEICH;
         } else {
-            Liebespaar liebespaar = game.liebespaar;
+            Liebespaar liebespaar = Game.game.liebespaar;
             if (liebespaar != null && liebespaar.spieler1 != null) {
                 String liebespartner1 = liebespaar.spieler1.name;
                 String liebespartner2 = liebespaar.spieler2.name;
@@ -89,7 +90,7 @@ public class Analytiker extends Bonusrolle {
             }
         }
 
-        Spieler analytikerSpieler = game.findSpielerPerRolle(this.id);
+        Spieler analytikerSpieler = Game.game.findSpielerPerRolle(this.id);
 
         if (analytikerSpieler != null && (spieler1.equals(NormalNight.gefälschterSpieler) || spieler2.equals(NormalNight.gefälschterSpieler))) {
             return getWrongInformation(information);

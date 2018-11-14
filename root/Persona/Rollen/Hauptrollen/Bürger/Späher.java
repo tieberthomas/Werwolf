@@ -9,6 +9,7 @@ import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
+import root.mechanics.Game;
 
 public class Späher extends Hauptrolle {
     public static final String ID = "ID_Späher";
@@ -37,13 +38,13 @@ public class Späher extends Hauptrolle {
 
     @Override
     public FrontendControl getDropdownOptionsFrontendControl() {
-        return game.getMitspielerCheckSpammableFrontendControl(this);
+        return Game.game.getMitspielerCheckSpammableFrontendControl(this);
     }
 
     @Override
     public FrontendControl processChosenOptionGetInfo(String chosenOption) {
-        Spieler chosenSpieler = game.findSpieler(chosenOption);
-        Spieler späherSpieler = game.findSpielerPerRolle(this.id);
+        Spieler chosenSpieler = Game.game.findSpieler(chosenOption);
+        Spieler späherSpieler = Game.game.findSpielerPerRolle(this.id);
 
         if (chosenSpieler != null && späherSpieler != null) {
             besucht = chosenSpieler;

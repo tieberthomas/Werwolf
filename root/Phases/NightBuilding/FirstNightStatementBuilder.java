@@ -12,14 +12,11 @@ import root.Persona.Rollen.Bonusrollen.Wolfspelz;
 import root.Persona.Rollen.Hauptrollen.Werwölfe.Wolfsmensch;
 import root.Persona.Rollen.Hauptrollen.Überläufer.Henker;
 import root.Phases.NightBuilding.Constants.IndieStatements;
-import root.mechanics.Game;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class FirstNightStatementBuilder {
-    public static Game game;
-
     public static List<Statement> firstNightBuildStatements() {
         List<Statement> statements = new ArrayList<>();
 

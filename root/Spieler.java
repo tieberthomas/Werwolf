@@ -20,8 +20,6 @@ public class Spieler {
     public static final Color ALIVE_BACKGROUND_COLOR = Color.WHITE;
     public static final Color DEAD_BACKGROUND_COLOR = Color.GRAY;
 
-    public static Game game;
-
     public String name;
     public Hauptrolle hauptrolle;
     public Bonusrolle bonusrolle;
@@ -41,12 +39,12 @@ public class Spieler {
     public Spieler(String name, String hauptrolleName, String bonusrolleName) {
         this(name);
 
-        Hauptrolle hauptrolle = game.findHauptrollePerName(hauptrolleName);
+        Hauptrolle hauptrolle = Game.game.findHauptrollePerName(hauptrolleName);
         if (hauptrolle == null) {
             hauptrolle = new Dorfbewohner();
         }
 
-        Bonusrolle bonusrolle = game.findBonusrollePerName(bonusrolleName);
+        Bonusrolle bonusrolle = Game.game.findBonusrollePerName(bonusrolleName);
         if (bonusrolle == null) {
             bonusrolle = new Schatten();
         }
@@ -54,7 +52,7 @@ public class Spieler {
         this.hauptrolle = hauptrolle;
         this.bonusrolle = bonusrolle;
 
-        game.spieler.add(this);
+        Game.game.spieler.add(this);
     }
 
     public boolean equals(Spieler spieler) {

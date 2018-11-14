@@ -17,8 +17,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ÜbersichtsFrame extends MyFrame implements ActionListener {
-    public Game game;
-
     private Color defaultBorderColor = Color.BLUE;
 
     private Color deactivatedColor = Color.RED;
@@ -35,8 +33,7 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener {
 
     private Page übersichtsPage;
 
-    public ÜbersichtsFrame(int spawnHeight, Game game) {
-        this.game = game;
+    public ÜbersichtsFrame(int spawnHeight) {
         WINDOW_TITLE = "Übersichts Fenster";
 
         refreshJButton = new JButton();
@@ -72,7 +69,7 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener {
 
         playerTable.add(new JLabel("Spieler"));
 
-        for (Spieler spieler : game.spieler) {
+        for (Spieler spieler : Game.game.spieler) {
             JLabel label = new JLabel(spieler.name);
             if (!spieler.lebend) {
                 label.setBackground(Spieler.DEAD_BACKGROUND_COLOR);
@@ -87,7 +84,7 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener {
                 label.setBorder(BorderFactory.createLineBorder(borderColor, 2));
             }
 
-            if (playerTable.tableElements.size() < game.spieler.size() + 1) {
+            if (playerTable.tableElements.size() < Game.game.spieler.size() + 1) {
                 playerTable.add(label);
             }
         }
@@ -98,10 +95,10 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener {
 
         hauptrolleTable.add(new JLabel("Hauptrolle"));
 
-        for (Spieler spieler : game.spieler) {
+        for (Spieler spieler : Game.game.spieler) {
             Rolle rolle = spieler.hauptrolle;
 
-            if (hauptrolleTable.tableElements.size() < game.spieler.size() + 1) {
+            if (hauptrolleTable.tableElements.size() < Game.game.spieler.size() + 1) {
                 hauptrolleTable.add(generateColorLabel(spieler, rolle));
             }
         }
@@ -112,9 +109,9 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener {
 
         bonusrolleTable.add(new JLabel("Bonusrolle"));
 
-        for (Spieler spieler : game.spieler) {
+        for (Spieler spieler : Game.game.spieler) {
             Rolle rolle = spieler.bonusrolle;
-            if (bonusrolleTable.tableElements.size() < game.spieler.size() + 1) {
+            if (bonusrolleTable.tableElements.size() < Game.game.spieler.size() + 1) {
                 bonusrolleTable.add(generateColorLabel(spieler, rolle));
             }
         }
@@ -143,7 +140,7 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener {
 
         aliveTable.add(new JLabel("Lebend"));
 
-        for (Spieler spieler : game.spieler) {
+        for (Spieler spieler : Game.game.spieler) {
             String text = "nein";
             if (spieler.lebend) {
                 text = "ja";
@@ -165,7 +162,7 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener {
 
         activeTable.add(new JLabel("Aktiv"));
 
-        for (Spieler spieler : game.spieler) {
+        for (Spieler spieler : Game.game.spieler) {
             String text = "nein";
             if (spieler.aktiv) {
                 text = "ja";
@@ -179,7 +176,7 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener {
             }
             label.setOpaque(true);
 
-            if (activeTable.tableElements.size() < game.spieler.size() + 1) {
+            if (activeTable.tableElements.size() < Game.game.spieler.size() + 1) {
                 activeTable.add(label);
             }
         }
@@ -190,7 +187,7 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener {
 
         protectedTable.add(new JLabel("Geschützt"));
 
-        for (Spieler spieler : game.spieler) {
+        for (Spieler spieler : Game.game.spieler) {
             String text = "nein";
             if (spieler.geschützt) {
                 text = "ja";
@@ -204,7 +201,7 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener {
             }
             label.setOpaque(true);
 
-            if (protectedTable.tableElements.size() < game.spieler.size() + 1) {
+            if (protectedTable.tableElements.size() < Game.game.spieler.size() + 1) {
                 protectedTable.add(label);
             }
         }

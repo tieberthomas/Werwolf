@@ -8,6 +8,7 @@ import root.Persona.Rollen.Constants.BonusrollenType.Informativ;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Utils.Rand;
+import root.mechanics.Game;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,7 +73,7 @@ public class Medium extends Bonusrolle {
     }
 
     private List<Bonusrolle> getAllUnseenBonusrollen() {
-        List<Bonusrolle> bonusrollenNotInGame = game.getStillAvailableBonusrollen();
+        List<Bonusrolle> bonusrollenNotInGame = Game.game.getStillAvailableBonusrollen();
         bonusrollenNotInGame.removeIf(bonusrolle -> geseheneBonusrollen.contains(bonusrolle.id));
         return bonusrollenNotInGame;
     }

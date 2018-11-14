@@ -6,11 +6,9 @@ import root.mechanics.Game;
 import java.util.List;
 
 public class DataManager {
-    public Game game;
     FileManager fileManager;
 
-    public DataManager(Game game) {
-        this.game = game;
+    public DataManager() {
         this.fileManager = new FileManager();
         fileManager.createFolderInAppdata();
     }
@@ -41,34 +39,34 @@ public class DataManager {
     private void evaluateComposition(CompositionDto composition, boolean evaluateSpieler) {
         if (evaluateSpieler) {
             for (String spielerName : composition.spieler) {
-                game.spieler.add(new Spieler(spielerName));
+                Game.game.spieler.add(new Spieler(spielerName));
             }
         }
 
         for (String hauptRollenName : composition.hauptrollen) {
-            game.hauptrollenInGame.add(game.findHauptrollePerName(hauptRollenName));
+            Game.game.hauptrollenInGame.add(Game.game.findHauptrollePerName(hauptRollenName));
         }
 
         for (String bonusRollenName : composition.bonusrollen) {
-            game.bonusrollenInGame.add(game.findBonusrollePerName(bonusRollenName));
+            Game.game.bonusrollenInGame.add(Game.game.findBonusrollePerName(bonusRollenName));
         }
     }
 
     private void evaluateSpieler(List<SpielerDto> spieler) {
         for (SpielerDto currentSpieler : spieler) {
             Spieler newSpieler = new Spieler(currentSpieler.name, currentSpieler.hauptrolle, currentSpieler.bonusrolle);
-            game.hauptrollenInGame.add(newSpieler.hauptrolle);
-            game.bonusrollenInGame.add(newSpieler.bonusrolle);
+            Game.game.hauptrollenInGame.add(newSpieler.hauptrolle);
+            Game.game.bonusrollenInGame.add(newSpieler.bonusrolle);
         }
     }
 
     public void writeComposition() {
-        fileManager.writeComposition(ResourcePath.LAST_GAME_COMPOSITION_FILE, game.getLivingSpielerStrings(),
-                game.getHauptrolleInGameNames(), game.getBonusrolleInGameNames());
+        fileManager.writeComposition(ResourcePath.LAST_GAME_COMPOSITION_FILE, Game.game.getLivingSpielerStrings(),
+                Game.game.getHauptrolleInGameNames(), Game.game.getBonusrolleInGameNames());
     }
 
     public void writeGame() {
-        fileManager.writeGame(ResourcePath.LAST_GAME_FILE, game.getLivingSpieler(),
-                game.getHauptrollenUnspecifiedStrings(), game.getBonusrollenUnspecifiedStrings());
+        fileManager.writeGame(ResourcePath.LAST_GAME_FILE, Game.game.getLivingSpieler(),
+                Game.game.getHauptrollenUnspecifiedStrings(), Game.game.getBonusrollenUnspecifiedStrings());
     }
 }

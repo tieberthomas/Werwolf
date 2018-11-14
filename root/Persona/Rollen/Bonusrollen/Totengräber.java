@@ -8,6 +8,7 @@ import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
+import root.mechanics.Game;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,17 +45,17 @@ public class Totengräber extends Bonusrolle {
 
     @Override
     public void processChosenOption(String chosenOption) {
-        Bonusrolle chosenBonusrolle = game.findBonusrollePerName(chosenOption);
+        Bonusrolle chosenBonusrolle = Game.game.findBonusrollePerName(chosenOption);
         if (chosenBonusrolle != null) {
             try {
-                Spieler deadSpieler = game.findSpielerOrDeadPerRolle(chosenBonusrolle.id);
-                Spieler spielerTotengräber = game.findSpielerPerRolle(this.id);
+                Spieler deadSpieler = Game.game.findSpielerOrDeadPerRolle(chosenBonusrolle.id);
+                Spieler spielerTotengräber = Game.game.findSpielerPerRolle(this.id);
 
                 spielerTotengräber.bonusrolle = chosenBonusrolle;
                 deadSpieler.bonusrolle = new Schatten();
 
-                game.mitteBonusrollen.remove(chosenBonusrolle);
-                game.mitteBonusrollen.add(this);
+                Game.game.mitteBonusrollen.remove(chosenBonusrolle);
+                Game.game.mitteBonusrollen.add(this);
             } catch (NullPointerException e) {
                 System.out.println(NAME + " nicht gefunden");
             }
@@ -65,7 +66,7 @@ public class Totengräber extends Bonusrolle {
         List<String> nehmbareBonusrollen = new ArrayList<>();
 
         //TODO michael fragen, welche rollen darf Totengräber nehmen
-        for (Bonusrolle bonusrolle : game.mitteBonusrollen) {
+        for (Bonusrolle bonusrolle : Game.game.mitteBonusrollen) {
             nehmbareBonusrollen.add(bonusrolle.name);
         }
 

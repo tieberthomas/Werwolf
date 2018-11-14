@@ -7,6 +7,7 @@ import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Persona.Rollen.Hauptrollen.Werwölfe.Chemiker;
 import root.Phases.NormalNight;
 import root.Spieler;
+import root.mechanics.Game;
 import root.mechanics.KillLogik.Opfer;
 
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ public class Fraktion extends Persona {
     public static List<Spieler> getFraktionsMembers(String fraktionID) {
         List<Spieler> fraktionsMembers = new ArrayList<>();
 
-        for (Spieler currentSpieler : game.spieler) {
+        for (Spieler currentSpieler : Game.game.spieler) {
             if (currentSpieler.lebend && currentSpieler.hauptrolle.fraktion.equals(fraktionID)) {
                 fraktionsMembers.add(currentSpieler);
             }
@@ -43,7 +44,7 @@ public class Fraktion extends Persona {
     }
 
     public static boolean fraktionLebend(String fraktionID) {
-        for (Spieler currentSpieler : game.spieler) {
+        for (Spieler currentSpieler : Game.game.spieler) {
             if (currentSpieler.hauptrolle.fraktion.equals(fraktionID) && currentSpieler.lebend) {
                 return true;
             }
@@ -56,19 +57,19 @@ public class Fraktion extends Persona {
         if (fraktionID.equals(SchattenpriesterFraktion.ID)) {
             return false;
         }
-        if (fraktionID.equals(Werwölfe.ID) && game.getHauptrolleInGameIDs().contains(Chemiker.ID)) {
+        if (fraktionID.equals(Werwölfe.ID) && Game.game.getHauptrolleInGameIDs().contains(Chemiker.ID)) {
             return false;
         }
 
         int numberHauptrollenInGame = 0;
-        for (Hauptrolle hauptrolle : game.hauptrollenInGame) {
+        for (Hauptrolle hauptrolle : Game.game.hauptrollenInGame) {
             if (hauptrolle.fraktion.equals(fraktionID)) {
                 numberHauptrollenInGame++;
             }
         }
 
         int numberMitteHauptrollen = 0;
-        for (Hauptrolle mitteHauptrolle : game.mitteHauptrollen) {
+        for (Hauptrolle mitteHauptrolle : Game.game.mitteHauptrollen) {
             if (mitteHauptrolle.fraktion.equals(fraktionID)) {
                 numberMitteHauptrollen++;
             }
@@ -78,7 +79,7 @@ public class Fraktion extends Persona {
     }
 
     public static boolean fraktionOpfer(String fraktionID) {
-        for (Spieler currentSpieler : game.spieler) {
+        for (Spieler currentSpieler : Game.game.spieler) {
             Fraktion fraktionSpieler = currentSpieler.hauptrolle.fraktion;
 
             if (fraktionID.equals(Werwölfe.ID)) {
@@ -100,7 +101,7 @@ public class Fraktion extends Persona {
     }
 
     public static boolean fraktionAktiv(String fraktionID) {
-        List<Spieler> livingSpieler = game.getLivingSpieler();
+        List<Spieler> livingSpieler = Game.game.getLivingSpieler();
 
         for (Opfer opfer : NormalNight.opfer) {
             livingSpieler.remove(opfer.spieler);
@@ -128,7 +129,7 @@ public class Fraktion extends Persona {
     }
 
     public static List<Fraktion> getFraktionen() {
-        return game.hauptrollenInGame.stream()
+        return Game.game.hauptrollenInGame.stream()
                 .map(rolle -> rolle.fraktion.id)
                 .distinct()
                 .map(Fraktion::findFraktion)
@@ -148,7 +149,7 @@ public class Fraktion extends Persona {
     }
 
     public static List<Fraktion> getLivingFraktionen() {
-        return game.spieler.stream()
+        return Game.game.spieler.stream()
                 .filter(spieler -> spieler.lebend)
                 .map(spieler -> spieler.hauptrolle.fraktion.id)
                 .distinct()
@@ -163,14 +164,14 @@ public class Fraktion extends Persona {
     }
 
     public static Fraktion findFraktion(String fraktionID) {
-        return game.hauptrollen.stream()
+        return Game.game.hauptrollen.stream()
                 .map(rolle -> rolle.fraktion)
                 .filter(fraktion -> fraktion.equals(fraktionID))
                 .findAny().orElse(null);
     }
 
     public static Fraktion findFraktionPerName(String fraktionName) {
-        return game.hauptrollen.stream()
+        return Game.game.hauptrollen.stream()
                 .map(rolle -> rolle.fraktion)
                 .filter(fraktion -> fraktion.name.equals(fraktionName))
                 .findAny().orElse(null);

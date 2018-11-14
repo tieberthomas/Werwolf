@@ -8,6 +8,7 @@ import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
+import root.mechanics.Game;
 import root.mechanics.KillLogik.NormalKill;
 
 import java.awt.*;
@@ -50,7 +51,7 @@ public class Vampire extends Fraktion {
 
     @Override
     public void processChosenOption(String chosenOption) {
-        Spieler chosenSpieler = game.findSpieler(chosenOption);
+        Spieler chosenSpieler = Game.game.findSpieler(chosenOption);
         if (chosenSpieler != null) {
             NormalKill.execute(chosenSpieler, this);
         }
@@ -59,7 +60,7 @@ public class Vampire extends Fraktion {
     @Override
     public FrontendControl getDropdownOptionsFrontendControl() {
         FrontendControlType typeOfContent = FrontendControlType.DROPDOWN_IMAGE;
-        List<String> strings = game.getLivingSpielerOrNoneStrings();
+        List<String> strings = Game.game.getLivingSpielerOrNoneStrings();
         String imagePath = zeigekarte.imagePath;
 
         return new FrontendControl(typeOfContent, strings, imagePath);

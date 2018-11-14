@@ -7,13 +7,8 @@ import root.mechanics.Game;
 
 public class PhaseManager extends Thread {
     public static Object lock = new Object();
-    public static Game game;
 
     public static PhaseMode phaseMode;
-
-    public PhaseManager(Game game) {
-        this.game = game;
-    }
 
     public void run() {
         lock = new Object();
@@ -29,7 +24,7 @@ public class PhaseManager extends Thread {
     private void firstnight() {
         ErzählerFrame.mode = ErzählerFrameMode.FIRST_NIGHT;
         phaseMode = PhaseMode.FIRST_NIGHT;
-        FirstNight firstNight = new FirstNight(game);
+        FirstNight firstNight = new FirstNight();
         firstNight.start();
         waitForAnswer();
     }
@@ -37,21 +32,21 @@ public class PhaseManager extends Thread {
     private void night() {
         ErzählerFrame.mode = ErzählerFrameMode.NORMAL_NIGHT;
         phaseMode = PhaseMode.NORMAL_NIGHT;
-        NormalNight normalNight = new NormalNight(game);
+        NormalNight normalNight = new NormalNight();
         normalNight.start();
         waitForAnswer();
     }
 
     private void day() {
-        if (game.freibier) {
+        if (Game.game.freibier) {
             ErzählerFrame.mode = ErzählerFrameMode.FREIBIER_DAY;
             phaseMode = PhaseMode.FREIBIER_DAY;
         } else {
             ErzählerFrame.mode = ErzählerFrameMode.DAY;
             phaseMode = PhaseMode.DAY;
         }
-        Day day = new Day(game);
-        game.day = day;
+        Day day = new Day();
+        Game.game.day = day;
         day.start();
         waitForAnswer();
     }

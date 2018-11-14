@@ -24,8 +24,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NormalNightStatementBuilder {
-    public static Game game;
-
     public static List<Statement> normalNightBuildStatements() {
         List<Statement> statements = new ArrayList<>();
 
@@ -43,7 +41,7 @@ public class NormalNightStatementBuilder {
 
         addStatementRolle(statements, Gefängniswärter.ID);
 
-        if (game.mitteHauptrollen.size() > 0) {
+        if (Game.game.mitteHauptrollen.size() > 0) {
             addStatementRolle(statements, Überläufer.ID);
         }
 
@@ -92,7 +90,7 @@ public class NormalNightStatementBuilder {
 
         addStatementRolle(statements, Wahrsager.ID);
 
-        if (game.getBonusrolleInGameIDs().contains(Konditorlehrling.ID)) {
+        if (Game.game.getBonusrolleInGameIDs().contains(Konditorlehrling.ID)) {
             addStatementRolle(statements, Konditorlehrling.ID);
         } else {
             addStatementRolle(statements, Konditor.ID);

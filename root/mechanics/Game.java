@@ -4,10 +4,13 @@ import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.Frame.ErzählerFrame;
 import root.Frontend.Frame.ÜbersichtsFrame;
 import root.Frontend.FrontendControl;
-import root.Persona.*;
+import root.Persona.Bonusrolle;
+import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Bürger;
 import root.Persona.Fraktionen.SchattenpriesterFraktion;
 import root.Persona.Fraktionen.Werwölfe;
+import root.Persona.Hauptrolle;
+import root.Persona.Rolle;
 import root.Persona.Rollen.Bonusrollen.*;
 import root.Persona.Rollen.Constants.WölfinState;
 import root.Persona.Rollen.Hauptrollen.Bürger.*;
@@ -19,16 +22,16 @@ import root.Persona.Rollen.Hauptrollen.Werwölfe.*;
 import root.Persona.Rollen.Hauptrollen.Überläufer.Henker;
 import root.Persona.Rollen.Hauptrollen.Überläufer.Überläufer;
 import root.Phases.*;
-import root.Phases.NightBuilding.NormalNightStatementBuilder;
 import root.Spieler;
 import root.Utils.ListHelper;
-import root.mechanics.KillLogik.Angriff;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Game {
+    public static Game game;
+
     public Day day;
 
     public boolean freibier = false;
@@ -48,12 +51,7 @@ public class Game {
     private boolean started = false;
 
     public Game() {
-        Persona.game = this;
-        Spieler.game = this;
-        FrontendControl.game = this;
-        Angriff.game = this;
-        NormalNightStatementBuilder.game = this;
-        PhaseManager.game = this;
+        Game.game = this;
 
         PhaseManager.phaseMode = PhaseMode.SETUP;
 
@@ -66,19 +64,19 @@ public class Game {
         mitteBonusrollen = new ArrayList<>();
         spielerSpecified = new ArrayList<>();
 
-        liebespaar = new Liebespaar(this);
+        liebespaar = new Liebespaar();
         Torte.tortenEsser = new ArrayList<>();
     }
 
     public void startGame(ErzählerFrame erzählerFrame) {
-        erzählerFrame.übersichtsFrame = new ÜbersichtsFrame(erzählerFrame.frameJpanel.getHeight() + 50, this);
+        erzählerFrame.übersichtsFrame = new ÜbersichtsFrame(erzählerFrame.frameJpanel.getHeight() + 50);
         erzählerFrame.toFront();
 
         FrontendControl.erzählerFrame = erzählerFrame;
         FrontendControl.spielerFrame = erzählerFrame.spielerFrame;
         FrontendControl.übersichtsFrame = erzählerFrame.übersichtsFrame;
 
-        PhaseManager phaseManager = new PhaseManager(this);
+        PhaseManager phaseManager = new PhaseManager();
         phaseManager.start();
     }
 

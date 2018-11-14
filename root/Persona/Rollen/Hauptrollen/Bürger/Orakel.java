@@ -11,6 +11,7 @@ import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
 import root.Utils.Rand;
+import root.mechanics.Game;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,7 +80,7 @@ public class Orakel extends Hauptrolle {
         List<Spieler> bürgerToRemove = new ArrayList<>();
 
         if (Rolle.rolleLebend(ID)) {
-            Bonusrolle orakelSpielerBonusrolle = game.findSpielerPerRolle(ID).bonusrolle;
+            Bonusrolle orakelSpielerBonusrolle = Game.game.findSpielerPerRolle(ID).bonusrolle;
             if (!geseheneBonusrollen.contains(orakelSpielerBonusrolle.id)) {
                 geseheneBonusrollen.add(orakelSpielerBonusrolle.id);
             }

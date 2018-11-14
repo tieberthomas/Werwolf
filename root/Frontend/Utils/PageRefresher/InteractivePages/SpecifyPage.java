@@ -10,6 +10,7 @@ import root.Frontend.Utils.PageRefresher.PageRefresher;
 import root.Persona.Bonusrolle;
 import root.Persona.Hauptrolle;
 import root.Spieler;
+import root.mechanics.Game;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -49,7 +50,7 @@ public class SpecifyPage extends RefreshedPage {
     public void processActionEvent(ActionEvent ae) {
         if (next.equals(ae.getSource())) {
             if (allPlayersSpecified()) {
-                game.startGame(erzählerFrame); //TODO auslagern in controller
+                Game.game.startGame(erzählerFrame); //TODO auslagern in controller
                 erzählerFrame.dataManager.writeGame();
             } else {
                 specifyPlayer();
@@ -62,23 +63,23 @@ public class SpecifyPage extends RefreshedPage {
     }
 
     private boolean allPlayersSpecified() {
-        return game.spielerSpecified.size() == game.spieler.size();
+        return Game.game.spielerSpecified.size() == Game.game.spieler.size();
     }
 
     private void specifyPlayer() {
         try {
             String spielerName = (String) comboBox1.getSelectedItem();
-            Spieler spieler = game.findSpieler(spielerName);
-            game.spielerSpecified.add(spieler);
+            Spieler spieler = Game.game.findSpieler(spielerName);
+            Game.game.spielerSpecified.add(spieler);
 
             String hauptrolle = (String) comboBox2.getSelectedItem();
-            spieler.hauptrolle = game.findHauptrollePerName(hauptrolle);
+            spieler.hauptrolle = Game.game.findHauptrollePerName(hauptrolle);
             if (spieler.hauptrolle == null) {
                 spieler.hauptrolle = Hauptrolle.getDefaultHauptrolle();
             }
 
             String bonusrolle = (String) comboBox3.getSelectedItem();
-            spieler.bonusrolle = game.findBonusrollePerName(bonusrolle);
+            spieler.bonusrolle = Game.game.findBonusrollePerName(bonusrolle);
             if (spieler.bonusrolle == null) {
                 spieler.bonusrolle = Bonusrolle.DEFAULT_BONUSROLLE;
             }
@@ -95,7 +96,7 @@ public class SpecifyPage extends RefreshedPage {
         pageRefresher.add(new LabelTable(playerLabelTable,
                 new Supplier<List<String>>() {
                     public ArrayList<String> get() {
-                        return (ArrayList<String>) game.spielerSpecified.stream()
+                        return (ArrayList<String>) Game.game.spielerSpecified.stream()
                                 .map(player -> player.name)
                                 .collect(Collectors.toList());
                     }
@@ -103,7 +104,7 @@ public class SpecifyPage extends RefreshedPage {
         pageRefresher.add(new LabelTable(mainroleLabelTable,
                 new Supplier<List<String>>() {
                     public ArrayList<String> get() {
-                        return (ArrayList<String>) game.spielerSpecified.stream()
+                        return (ArrayList<String>) Game.game.spielerSpecified.stream()
                                 .map(player -> player.hauptrolle.name)
                                 .collect(Collectors.toList());
                     }
@@ -111,15 +112,15 @@ public class SpecifyPage extends RefreshedPage {
         pageRefresher.add(new LabelTable(bonusroleLabelTable,
                 new Supplier<List<String>>() {
                     public ArrayList<String> get() {
-                        return (ArrayList<String>) game.spielerSpecified.stream()
+                        return (ArrayList<String>) Game.game.spielerSpecified.stream()
                                 .map(player -> player.bonusrolle.name)
                                 .collect(Collectors.toList());
                     }
                 }));
-        pageRefresher.add(new DeleteButtonTable(deleteTable, deleteButtons, game.spielerSpecified::size));
-        pageRefresher.add(new Combobox(comboBox1, game::getSpielerUnspecifiedStrings));
-        pageRefresher.add(new Combobox(comboBox2, game::getHauptrollenUnspecifiedStrings));
-        pageRefresher.add(new Combobox(comboBox3, game::getBonusrollenUnspecifiedStrings));
+        pageRefresher.add(new DeleteButtonTable(deleteTable, deleteButtons, Game.game.spielerSpecified::size));
+        pageRefresher.add(new Combobox(comboBox1, Game.game::getSpielerUnspecifiedStrings));
+        pageRefresher.add(new Combobox(comboBox2, Game.game::getHauptrollenUnspecifiedStrings));
+        pageRefresher.add(new Combobox(comboBox3, Game.game::getBonusrollenUnspecifiedStrings));
     }
 
     @Override
@@ -155,6 +156,6 @@ public class SpecifyPage extends RefreshedPage {
             deleteButtons.remove(index);
         }
 
-        game.spielerSpecified.remove(index);
+        Game.game.spielerSpecified.remove(index);
     }
 }

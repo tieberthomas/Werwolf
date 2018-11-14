@@ -10,6 +10,7 @@ import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
 import root.Utils.Rand;
+import root.mechanics.Game;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -80,7 +81,7 @@ public class Tarnumhang extends Bonusrolle {
     private List<String> getAllTräger() {
         List<String> allTräger = new ArrayList<>();
 
-        for (Spieler spieler : game.spieler) {
+        for (Spieler spieler : Game.game.spieler) {
             if (umhänge.contains(spieler.bonusrolle.id)) {
                 allTräger.add(spieler.name);
             }

@@ -2,12 +2,10 @@ package root.Frontend.Utils.PageRefresher.Models;
 
 import root.Frontend.Frame.SpielerFrame;
 import root.Frontend.Utils.PageRefresher.PageRefresher;
-import root.mechanics.Game;
 
 import java.awt.event.ActionEvent;
 
 public class RefreshedPage extends InteractivePage {
-    public static Game game;
     public static SpielerFrame spielerFrame;
     public PageRefresher pageRefresher;
 

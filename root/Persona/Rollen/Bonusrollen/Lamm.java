@@ -9,6 +9,7 @@ import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
+import root.mechanics.Game;
 
 import java.awt.*;
 
@@ -39,7 +40,7 @@ public class Lamm extends Bonusrolle {
 
     public void tauschen(Bonusrolle bonusrolle) {
         try {
-            Spieler spieler = game.findSpielerPerRolle(this.id);
+            Spieler spieler = Game.game.findSpielerPerRolle(this.id);
             spieler.bonusrolle = bonusrolle;
         } catch (NullPointerException e) {
             System.out.println(NAME + " nicht gefunden");
@@ -48,7 +49,7 @@ public class Lamm extends Bonusrolle {
 
     public Bonusrolle getTauschErgebnis() {
         try {
-            Spieler spieler = game.findSpielerPerRolle(this.id);
+            Spieler spieler = Game.game.findSpielerPerRolle(this.id);
             Bonusrolle bonusrolle;
 
             if (spieler.hauptrolle.fraktion.equals(Bürger.ID)) {

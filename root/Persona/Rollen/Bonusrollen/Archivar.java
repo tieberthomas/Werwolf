@@ -8,6 +8,7 @@ import root.Persona.Rollen.Constants.BonusrollenType.Informativ;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
+import root.mechanics.Game;
 
 public class Archivar extends Bonusrolle {
     public static final String ID = "ID_Archivar";
@@ -36,13 +37,13 @@ public class Archivar extends Bonusrolle {
 
     @Override
     public FrontendControl getDropdownOptionsFrontendControl() {
-        return game.getSpielerCheckSpammableFrontendControl(this);
+        return Game.game.getSpielerCheckSpammableFrontendControl(this);
     }
 
     @Override
     public FrontendControl processChosenOptionGetInfo(String chosenOption) {
-        Spieler chosenSpieler = game.findSpieler(chosenOption);
-        Spieler archivarSpieler = game.findSpielerPerRolle(this.id);
+        Spieler chosenSpieler = Game.game.findSpieler(chosenOption);
+        Spieler archivarSpieler = Game.game.findSpielerPerRolle(this.id);
 
         if (chosenSpieler != null && archivarSpieler != null) {
             besucht = chosenSpieler;

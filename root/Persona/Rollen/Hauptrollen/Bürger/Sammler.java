@@ -8,6 +8,7 @@ import root.Persona.Rollen.Bonusrollen.Totengräber;
 import root.Persona.Rollen.Constants.BonusrollenType.Passiv;
 import root.Persona.Rollen.Constants.BonusrollenType.Tarnumhang_BonusrollenType;
 import root.ResourceManagement.ImagePath;
+import root.mechanics.Game;
 
 public class Sammler extends Hauptrolle {
     public static final String ID = "ID_Sammler";
@@ -28,7 +29,7 @@ public class Sammler extends Hauptrolle {
 
 
     public static boolean isSammlerRolle(String rolleID) {
-        for (Bonusrolle currentRolle : game.mitteBonusrollen) {
+        for (Bonusrolle currentRolle : Game.game.mitteBonusrollen) {
             if (currentRolle.equals(rolleID) &&
                     !currentRolle.equals(Totengräber.ID) &&
                     !currentRolle.type.equals(new Passiv()) &&

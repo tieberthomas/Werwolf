@@ -15,6 +15,7 @@ import root.Persona.Rollen.Constants.Zeigekarten.SpäherZeigekarte;
 import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Persona.Rollen.Hauptrollen.Überläufer.Henker;
 import root.Spieler;
+import root.mechanics.Game;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -34,7 +35,7 @@ public class SchnüfflerInformationGenerator {
     }
 
     public SchnüfflerInformation generateInformation() {
-        Bonusrolle schnüffler = Schnüffler.game.findSpielerPerRolle(Schnüffler.ID).bonusrolle;
+        Bonusrolle schnüffler = Game.game.findSpielerPerRolle(Schnüffler.ID).bonusrolle;
         if (schnüffler.showTarnumhang(schnüffler, spieler)) {
             return new SchnüfflerInformation(spieler.name);
         }

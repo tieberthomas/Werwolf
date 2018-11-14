@@ -12,6 +12,7 @@ import root.Phases.NightBuilding.Constants.StatementType;
 import root.Phases.NormalNight;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
+import root.mechanics.Game;
 import root.mechanics.KillLogik.Opfer;
 
 import java.awt.*;
@@ -67,7 +68,7 @@ public class SchattenpriesterFraktion extends Fraktion {
 
     @Override
     public void processChosenOption(String chosenOption) {
-        Spieler chosenSpieler = game.findSpieler(chosenOption);
+        Spieler chosenSpieler = Game.game.findSpieler(chosenOption);
         if (chosenSpieler != null) {
             Opfer.removeOpfer(chosenSpieler);
 

@@ -11,6 +11,7 @@ import root.Persona.Rollen.Hauptrollen.Bürger.Schamanin;
 import root.Persona.Rollen.Hauptrollen.Überläufer.Henker;
 import root.Phases.NormalNight;
 import root.Spieler;
+import root.mechanics.Game;
 
 import java.awt.*;
 
@@ -22,7 +23,7 @@ public class Bonusrolle extends Rolle {
 
     public void tauschen(Bonusrolle bonusrolle) {
         try {
-            Spieler spieler = game.findSpielerPerRolle(this.id);
+            Spieler spieler = Game.game.findSpielerPerRolle(this.id);
             if (spieler != null) {
                 spieler.bonusrolle = bonusrolle;
             }
@@ -33,7 +34,7 @@ public class Bonusrolle extends Rolle {
 
     public Bonusrolle getTauschErgebnis() {
         try {
-            Spieler spieler = game.findSpielerPerRolle(this.id);
+            Spieler spieler = Game.game.findSpielerPerRolle(this.id);
             if (spieler != null) {
                 return spieler.bonusrolle;
             } else {
@@ -48,7 +49,7 @@ public class Bonusrolle extends Rolle {
 
     public boolean showTarnumhang(Bonusrolle requester, Spieler spieler) {
         Spieler getarnterSpieler = NormalNight.getarnterSpieler;
-        Spieler requesterSpieler = game.findSpielerPerRolle(this.id);
+        Spieler requesterSpieler = Game.game.findSpielerPerRolle(this.id);
         return spieler != null && (spieler.bonusrolle.equals(Tarnumhang.ID) ||
                 (spielerIsSchamanin(spieler) && thisRolleIsNotBuerger(requester))) ||
                 requesterSpieler.equals(getarnterSpieler) || spieler.equals(getarnterSpieler);
@@ -59,7 +60,7 @@ public class Bonusrolle extends Rolle {
     }
 
     private boolean thisRolleIsNotBuerger(Bonusrolle requester) {
-        Spieler spieler = game.findSpielerPerRolle(requester.id);
+        Spieler spieler = Game.game.findSpielerPerRolle(requester.id);
 
         return !spieler.hauptrolle.fraktion.equals(new Bürger());
     }
