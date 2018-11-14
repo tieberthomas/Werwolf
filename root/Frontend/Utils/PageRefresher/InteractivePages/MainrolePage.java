@@ -54,7 +54,7 @@ public class MainrolePage extends RolePage {
     protected void deleteRolle(ActionEvent ae) {
         int index = deleteButtons.indexOf(ae.getSource());
         deleteButtons.remove(index);
-        List<String> sortedHauptrollenInGame = game.hauptrollenInGame.stream().map(h -> h.name).sorted().collect(Collectors.toList());
+        List<String> sortedHauptrollenInGame = Game.game.hauptrollenInGame.stream().map(h -> h.id).sorted().collect(Collectors.toList());
         String hauptrolleID = sortedHauptrollenInGame.get(index);
 
         List<String> hauptrollenSpecifiedIDs = Game.game.getHauptrollenSpecifiedIDs();
@@ -64,8 +64,8 @@ public class MainrolePage extends RolePage {
             removeSpecifiedPlayer(specifedIndex);
         }
 
-        Hauptrolle hauptrolle = game.findHauptrolle(hauptrolleID);
-        game.hauptrollenInGame.remove(hauptrolle);
+        Hauptrolle hauptrolle = Game.game.findHauptrolle(hauptrolleID);
+        Game.game.hauptrollenInGame.remove(hauptrolle);
 
         refresh();
     }

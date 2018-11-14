@@ -72,7 +72,7 @@ public class BonusrolePage extends RolePage {
         }
 
         Bonusrolle bonusrolle = Game.game.findBonusrolle(bonusrolleID);
-        game.bonusrollenInGame.remove(bonusrolle);
+        Game.game.bonusrollenInGame.remove(bonusrolle);
 
         refresh();
     }

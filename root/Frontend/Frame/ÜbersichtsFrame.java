@@ -45,7 +45,7 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener {
 
         frameJpanel = generateDefaultPanel();
 
-        Collections.sort(game.spieler, new Comparator<Spieler>() {
+        Collections.sort(Game.game.spieler, new Comparator<Spieler>() {
             @Override
             public int compare(Spieler spieler1, Spieler spieler2) {
                 return spieler1.name.compareTo(spieler2.name);
