@@ -10,6 +10,7 @@ import root.Persona.Hauptrolle;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MainrolePage extends RolePage {
     @Override
@@ -52,7 +53,8 @@ public class MainrolePage extends RolePage {
     protected void deleteRolle(ActionEvent ae) {
         int index = deleteButtons.indexOf(ae.getSource());
         deleteButtons.remove(index);
-        String hauptrolleName = game.hauptrollenInGame.get(index).name;
+        List<String> sortedHauptrollenInGame = game.hauptrollenInGame.stream().map(h -> h.name).sorted().collect(Collectors.toList());
+        String hauptrolleName = sortedHauptrollenInGame.get(index);
 
         List<String> hauptrollenSpecified = game.getHauptrollenSpecifiedStrings();
 
@@ -61,7 +63,8 @@ public class MainrolePage extends RolePage {
             removeSpecifiedPlayer(specifedIndex);
         }
 
-        game.hauptrollenInGame.remove(index);
+        Hauptrolle hauptrolle = game.findHauptrolle(hauptrolleName);
+        game.hauptrollenInGame.remove(hauptrolle);
 
         refresh();
     }

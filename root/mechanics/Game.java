@@ -4,22 +4,66 @@ import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.Frame.ErzählerFrame;
 import root.Frontend.Frame.ÜbersichtsFrame;
 import root.Frontend.FrontendControl;
-import root.Persona.*;
+import root.Persona.Bonusrolle;
+import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Bürger;
 import root.Persona.Fraktionen.SchattenpriesterFraktion;
 import root.Persona.Fraktionen.Werwölfe;
-import root.Persona.Rollen.Bonusrollen.*;
+import root.Persona.Hauptrolle;
+import root.Persona.Persona;
+import root.Persona.Rolle;
+import root.Persona.Rollen.Bonusrollen.Analytiker;
+import root.Persona.Rollen.Bonusrollen.Archivar;
+import root.Persona.Rollen.Bonusrollen.Dieb;
+import root.Persona.Rollen.Bonusrollen.Gefängniswärter;
+import root.Persona.Rollen.Bonusrollen.Konditor;
+import root.Persona.Rollen.Bonusrollen.Konditorlehrling;
+import root.Persona.Rollen.Bonusrollen.Lamm;
+import root.Persona.Rollen.Bonusrollen.Medium;
+import root.Persona.Rollen.Bonusrollen.Nachbar;
+import root.Persona.Rollen.Bonusrollen.Prostituierte;
+import root.Persona.Rollen.Bonusrollen.ReineSeele;
+import root.Persona.Rollen.Bonusrollen.Schatten;
+import root.Persona.Rollen.Bonusrollen.Schattenkutte;
+import root.Persona.Rollen.Bonusrollen.Schnüffler;
+import root.Persona.Rollen.Bonusrollen.SchwarzeSeele;
+import root.Persona.Rollen.Bonusrollen.Seelenlicht;
+import root.Persona.Rollen.Bonusrollen.Spurenleser;
+import root.Persona.Rollen.Bonusrollen.Tarnumhang;
+import root.Persona.Rollen.Bonusrollen.Totengräber;
+import root.Persona.Rollen.Bonusrollen.Vampirumhang;
+import root.Persona.Rollen.Bonusrollen.Wahrsager;
+import root.Persona.Rollen.Bonusrollen.Wolfspelz;
 import root.Persona.Rollen.Constants.WölfinState;
-import root.Persona.Rollen.Hauptrollen.Bürger.*;
+import root.Persona.Rollen.Hauptrollen.Bürger.Dorfbewohner;
+import root.Persona.Rollen.Hauptrollen.Bürger.HoldeMaid;
+import root.Persona.Rollen.Hauptrollen.Bürger.Irrlicht;
+import root.Persona.Rollen.Hauptrollen.Bürger.Orakel;
+import root.Persona.Rollen.Hauptrollen.Bürger.Riese;
+import root.Persona.Rollen.Hauptrollen.Bürger.Sammler;
+import root.Persona.Rollen.Hauptrollen.Bürger.Schamanin;
+import root.Persona.Rollen.Hauptrollen.Bürger.Seherin;
+import root.Persona.Rollen.Hauptrollen.Bürger.Späher;
+import root.Persona.Rollen.Hauptrollen.Bürger.Wirt;
 import root.Persona.Rollen.Hauptrollen.Schattenpriester.Schattenpriester;
 import root.Persona.Rollen.Hauptrollen.Vampire.GrafVladimir;
 import root.Persona.Rollen.Hauptrollen.Vampire.LadyAleera;
 import root.Persona.Rollen.Hauptrollen.Vampire.MissVerona;
-import root.Persona.Rollen.Hauptrollen.Werwölfe.*;
+import root.Persona.Rollen.Hauptrollen.Werwölfe.Blutwolf;
+import root.Persona.Rollen.Hauptrollen.Werwölfe.Chemiker;
+import root.Persona.Rollen.Hauptrollen.Werwölfe.Geisterwolf;
+import root.Persona.Rollen.Hauptrollen.Werwölfe.Schreckenswolf;
+import root.Persona.Rollen.Hauptrollen.Werwölfe.Werwolf;
+import root.Persona.Rollen.Hauptrollen.Werwölfe.Wolfsmensch;
+import root.Persona.Rollen.Hauptrollen.Werwölfe.Wölfin;
 import root.Persona.Rollen.Hauptrollen.Überläufer.Henker;
 import root.Persona.Rollen.Hauptrollen.Überläufer.Überläufer;
-import root.Phases.*;
+import root.Phases.Day;
+import root.Phases.FirstNight;
 import root.Phases.NightBuilding.NormalNightStatementBuilder;
+import root.Phases.PhaseManager;
+import root.Phases.PhaseMode;
+import root.Phases.Winner;
 import root.Spieler;
 import root.Utils.ListHelper;
 import root.mechanics.KillLogik.Angriff;
@@ -62,8 +106,6 @@ public class Game {
         generateAllAvailableHauptrollen();
         bonusrollenInGame = new ArrayList<>();
         generateAllAvailableBonusrollen();
-        mitteHauptrollen = new ArrayList<>();
-        mitteBonusrollen = new ArrayList<>();
         spielerSpecified = new ArrayList<>();
 
         liebespaar = new Liebespaar(this);
@@ -167,9 +209,12 @@ public class Game {
             spieler.lebend = false;
             Hauptrolle hauptrolle = spieler.hauptrolle;
             Bonusrolle bonusrolle = spieler.bonusrolle;
-            mitteHauptrollen.add(hauptrolle);
-            mitteBonusrollen.add(bonusrolle); //TODO methode auslagern?
+            if (!(GrafVladimir.verschleierterSpieler != null && spieler.equals(GrafVladimir.verschleierterSpieler))) {
+                mitteHauptrollen.add(hauptrolle);
+                mitteBonusrollen.add(bonusrolle); //TODO methode auslagern?
+            }
 
+            //TODO funktioniert jetzt nicht mehr mit dieb
             if (hauptrolle.equals(Schattenpriester.NAME) && !bonusrolle.equals(Schatten.NAME)) {
                 SchattenpriesterFraktion.deadSchattenPriester++;
             }

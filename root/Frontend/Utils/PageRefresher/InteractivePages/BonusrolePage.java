@@ -9,8 +9,8 @@ import root.Persona.Bonusrolle;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class BonusrolePage extends RolePage {
     @Override
@@ -60,7 +60,8 @@ public class BonusrolePage extends RolePage {
     protected void deleteRolle(ActionEvent ae) {
         int index = deleteButtons.indexOf(ae.getSource());
         deleteButtons.remove(index);
-        String bonusrolleName = game.bonusrollenInGame.get(index).name;
+        List<String> sortedBonusrollenInGame = game.bonusrollenInGame.stream().map(h -> h.name).sorted().collect(Collectors.toList());
+        String bonusrolleName = sortedBonusrollenInGame.get(index);
 
         List<String> bonusrollenSpecifiedStrings = game.getBonusrolleSpecifiedStrings();
 
@@ -69,7 +70,8 @@ public class BonusrolePage extends RolePage {
             removeSpecifiedPlayer(specifedIndex);
         }
 
-        game.bonusrollenInGame.remove(index);
+        Bonusrolle bonusrolle = game.findBonusrolle(bonusrolleName);
+        game.bonusrollenInGame.remove(bonusrolle);
 
         refresh();
     }

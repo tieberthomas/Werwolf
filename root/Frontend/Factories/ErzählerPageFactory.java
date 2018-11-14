@@ -261,7 +261,7 @@ public class ErzählerPageFactory {
 
     public Page generateDropdownPage(Page dropdownPage, Statement statement, List<String> dropdownOptions, boolean hatZurückButton) {
         dropdownPage = generateDefaultNightPage(dropdownPage, statement, hatZurückButton);
-        Collections.sort(dropdownOptions);
+        sortList(dropdownOptions);
         DefaultComboBoxModel model = new DefaultComboBoxModel(dropdownOptions.toArray());
         erzählerFrame.comboBox1.setModel(model);
         PageElement choosePlayer1 = pageElementFactory.generateDropdown(erzählerFrame.comboBox1,
@@ -287,7 +287,7 @@ public class ErzählerPageFactory {
 
     public Page generateDropdownPage(Page dropdownPage, Statement statement, List<String> dropdownOptions, List<String> dropdownOptions2) {
         dropdownPage = generateDropdownPage(dropdownPage, statement, dropdownOptions);
-        Collections.sort(dropdownOptions2);
+        sortList(dropdownOptions2);
         DefaultComboBoxModel model = new DefaultComboBoxModel(dropdownOptions2.toArray());
         erzählerFrame.comboBox2.setModel(model);
         PageElement choosePlayer2 = pageElementFactory.generateDropdown(erzählerFrame.comboBox2,
@@ -359,6 +359,7 @@ public class ErzählerPageFactory {
     public Page generateDayPage(List<String> livingPlayers) {
         Page dayPage = generateDefaultDayPage();
 
+        sortList(livingPlayers);
         DefaultComboBoxModel model = new DefaultComboBoxModel(livingPlayers.toArray());
         erzählerFrame.comboBox1.setModel(model);
         PageElement choosePlayer = pageElementFactory.generateDropdown(erzählerFrame.comboBox1,
@@ -634,5 +635,20 @@ public class ErzählerPageFactory {
         irrlichtPage.add(erzählerFrame.irrlichterLableTable);
 
         return irrlichtPage;
+    }
+
+    private void sortList(List<String> strings) {
+        boolean containsEmptyOption = false;
+
+        if(strings.contains("")) {
+            containsEmptyOption = true;
+            strings.remove("");
+        }
+
+        Collections.sort(strings);
+
+        if(containsEmptyOption) {
+            strings.add("");
+        }
     }
 }
