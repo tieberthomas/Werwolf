@@ -136,7 +136,7 @@ public class Fraktion extends Persona {
 
     public static List<Fraktion> getFraktionen() {
         return game.hauptrollenInGame.stream()
-                .map(rolle -> rolle.fraktion.id)
+                .map(rolle -> rolle.fraktion.name)
                 .distinct()
                 .map(Fraktion::findFraktion)
                 .filter(Objects::nonNull)
@@ -152,7 +152,7 @@ public class Fraktion extends Persona {
     public static List<Fraktion> getLivingFraktionen() {
         return game.spieler.stream()
                 .filter(spieler -> spieler.lebend)
-                .map(spieler -> spieler.hauptrolle.fraktion.id)
+                .map(spieler -> spieler.hauptrolle.fraktion.name)
                 .distinct()
                 .map(Fraktion::findFraktion)
                 .collect(Collectors.toList());
