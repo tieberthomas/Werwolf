@@ -10,6 +10,7 @@ import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
 import root.Utils.Rand;
+import root.mechanics.Game;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ public class Tarnumhang extends Bonusrolle {
     public static final String KEINE_UMHÄNGE = "Es sind keine Umhangträger mehr im Spiel";
 
     private List<String> umhänge = new ArrayList<>(Arrays.asList(
-            Lamm.NAME, Wolfspelz.NAME, Vampirumhang.NAME, Schattenkutte.NAME));
+            Lamm.ID, Wolfspelz.ID, Vampirumhang.ID, Schattenkutte.ID));
 
     public List<String> seenSpieler = new ArrayList<>(); //TODO wenn dieb Tarnumhang nimmt dann neu anlegen
 
@@ -80,8 +81,8 @@ public class Tarnumhang extends Bonusrolle {
     private List<String> getAllTräger() {
         List<String> allTräger = new ArrayList<>();
 
-        for (Spieler spieler : game.spieler) {
-            if (umhänge.contains(spieler.bonusrolle.name)) {
+        for (Spieler spieler : Game.game.spieler) {
+            if (umhänge.contains(spieler.bonusrolle.id)) {
                 allTräger.add(spieler.name);
             }
         }

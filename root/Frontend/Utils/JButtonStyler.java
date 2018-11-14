@@ -16,7 +16,7 @@ public class JButtonStyler {
     private static void styleButtons(List<JButton> buttons) {
         for (JButton button : buttons) {
             button.setEnabled(true);
-            Rolle rolle = Rolle.findRolle(button.getText());
+            Rolle rolle = Rolle.findRollePerName(button.getText());
             if (rolle != null) {
                 button.setBackground(rolle.getColor());
             }
@@ -44,7 +44,7 @@ public class JButtonStyler {
     }
 
     private static boolean buttonShouldBeDisabled(JButton button) {
-        Rolle rolle = Rolle.findRolle(button.getText());
+        Rolle rolle = Rolle.findRollePerName(button.getText());
         if (rolle != null) {
             int occurrences = Rolle.numberOfOccurencesOfRolleInGame(rolle);
             if (rolle.numberOfPossibleInstances <= occurrences) {

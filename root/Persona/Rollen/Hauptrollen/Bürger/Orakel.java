@@ -11,6 +11,7 @@ import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
 import root.Utils.Rand;
+import root.mechanics.Game;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,7 +61,7 @@ public class Orakel extends Hauptrolle {
 
         if (unseenBürger.size() > 0) {
             bonusrolle = Rand.getRandomElement(unseenBürger).bonusrolle;
-            geseheneBonusrollen.add(bonusrolle.name);
+            geseheneBonusrollen.add(bonusrolle.id);
         } else {
             if (geseheneBonusrollen.size() == 1 || geseheneBonusrollen.size() == 0) {
                 //das heißt dass keine bonusrollen mehr bei bürgern sind
@@ -75,18 +76,18 @@ public class Orakel extends Hauptrolle {
     }
 
     private static List<Spieler> getAllUnseenBürger() {
-        List<Spieler> bürger = Fraktion.getFraktionsMembers(Bürger.NAME);
+        List<Spieler> bürger = Fraktion.getFraktionsMembers(Bürger.ID);
         List<Spieler> bürgerToRemove = new ArrayList<>();
 
-        if (Rolle.rolleLebend(NAME)) {
-            Bonusrolle orakelSpielerBonusrolle = game.findSpielerPerRolle(NAME).bonusrolle;
-            if (!geseheneBonusrollen.contains(orakelSpielerBonusrolle.name)) {
-                geseheneBonusrollen.add(orakelSpielerBonusrolle.name);
+        if (Rolle.rolleLebend(ID)) {
+            Bonusrolle orakelSpielerBonusrolle = Game.game.findSpielerPerRolle(ID).bonusrolle;
+            if (!geseheneBonusrollen.contains(orakelSpielerBonusrolle.id)) {
+                geseheneBonusrollen.add(orakelSpielerBonusrolle.id);
             }
         }
 
         for (Spieler currentBürger : bürger) {
-            if (geseheneBonusrollen.contains(currentBürger.bonusrolle.name)) {
+            if (geseheneBonusrollen.contains(currentBürger.bonusrolle.id)) {
                 bürgerToRemove.add(currentBürger);
             }
         }

@@ -7,6 +7,7 @@ import root.Persona.Rollen.Constants.BonusrollenType.Passiv;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
+import root.mechanics.Game;
 
 public class Seelenlicht extends Bonusrolle {
     public static final String ID = "ID_Seelenlicht";
@@ -33,7 +34,7 @@ public class Seelenlicht extends Bonusrolle {
 
     public void tauschen(Bonusrolle bonusrolle) {
         try {
-            Spieler spieler = game.findSpielerPerRolle(NAME);
+            Spieler spieler = Game.game.findSpielerPerRolle(this.id);
             spieler.bonusrolle = bonusrolle;
         } catch (NullPointerException e) {
             System.out.println(NAME + " nicht gefunden");
@@ -41,12 +42,12 @@ public class Seelenlicht extends Bonusrolle {
     }
 
     public Bonusrolle getTauschErgebnis() {
-        Spieler spieler = game.findSpielerPerRolle(NAME);
+        Spieler spieler = Game.game.findSpielerPerRolle(this.id);
 
         if (spieler != null) {
             Bonusrolle bonusrolle;
 
-            if (spieler.hauptrolle.fraktion.equals(Bürger.NAME)) {
+            if (spieler.hauptrolle.fraktion.equals(Bürger.ID)) {
                 bonusrolle = new ReineSeele();
             } else {
                 bonusrolle = new SchwarzeSeele();

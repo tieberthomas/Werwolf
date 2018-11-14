@@ -9,6 +9,7 @@ import root.Persona.Rollen.Constants.BonusrollenType.Tarnumhang_BonusrollenType;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
+import root.mechanics.Game;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,12 +43,12 @@ public class Spurenleser extends Bonusrolle {
 
     @Override
     public FrontendControl getDropdownOptionsFrontendControl() {
-        return game.getMitspielerCheckSpammableFrontendControl(this);
+        return Game.game.getMitspielerCheckSpammableFrontendControl(this);
     }
 
     @Override
     public FrontendControl processChosenOptionGetInfo(String chosenOption) {
-        Spieler chosenSpieler = game.findSpieler(chosenOption);
+        Spieler chosenSpieler = Game.game.findSpieler(chosenOption);
 
         if (chosenSpieler != null) {
             besucht = chosenSpieler;
@@ -79,7 +80,7 @@ public class Spurenleser extends Bonusrolle {
                 besucher.add(besuchterSpielerDerBonusrolle);
             }
 
-            if (beobachteterSpieler.bonusrolle.equals(Analytiker.NAME)) {
+            if (beobachteterSpieler.bonusrolle.equals(Analytiker.ID)) {
                 Analytiker analytiker = (Analytiker) beobachteterSpieler.bonusrolle;
                 besucher.add(analytiker.besuchtAnalysieren.name);
             }

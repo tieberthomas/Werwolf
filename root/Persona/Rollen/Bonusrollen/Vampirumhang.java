@@ -9,6 +9,7 @@ import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
+import root.mechanics.Game;
 
 import java.awt.*;
 
@@ -39,7 +40,7 @@ public class Vampirumhang extends Bonusrolle {
 
     public void tauschen(Bonusrolle bonusrolle) {
         try {
-            Spieler spieler = game.findSpielerPerRolle(NAME);
+            Spieler spieler = Game.game.findSpielerPerRolle(this.id);
             spieler.bonusrolle = bonusrolle;
         } catch (NullPointerException e) {
             System.out.println(NAME + " nicht gefunden");
@@ -47,12 +48,12 @@ public class Vampirumhang extends Bonusrolle {
     }
 
     public Bonusrolle getTauschErgebnis() {
-        Spieler spieler = game.findSpielerPerRolle(NAME);
+        Spieler spieler = Game.game.findSpielerPerRolle(this.id);
 
         if (spieler != null) {
             Bonusrolle bonusrolle;
 
-            if (spieler.hauptrolle.fraktion.equals(Vampire.NAME)) {
+            if (spieler.hauptrolle.fraktion.equals(Vampire.ID)) {
                 bonusrolle = new SchwarzeSeele();
             } else {
                 bonusrolle = spieler.bonusrolle;

@@ -8,6 +8,7 @@ import root.Phases.NightBuilding.Constants.StatementType;
 import root.Phases.NormalNight;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
+import root.mechanics.Game;
 
 public class MissVerona extends Hauptrolle {
     public static final String ID = "ID_Miss_Verona";
@@ -36,12 +37,12 @@ public class MissVerona extends Hauptrolle {
 
     @Override
     public FrontendControl getDropdownOptionsFrontendControl() {
-        return game.getSpielerCheckSpammableFrontendControl(this);
+        return Game.game.getSpielerCheckSpammableFrontendControl(this);
     }
 
     @Override
     public void processChosenOption(String chosenOption) {
-        Spieler chosenSpieler = game.findSpieler(chosenOption);
+        Spieler chosenSpieler = Game.game.findSpieler(chosenOption);
         if (chosenSpieler != null) {
             besucht = chosenSpieler;
             NormalNight.getarnterSpieler = chosenSpieler;

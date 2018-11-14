@@ -3,6 +3,7 @@ package root.Frontend.Factories;
 import root.Frontend.Frame.ÜbersichtsFrame;
 import root.Frontend.Page.Page;
 import root.Frontend.Page.PageElement;
+import root.mechanics.Game;
 import root.mechanics.Liebespaar;
 
 import javax.swing.*;
@@ -31,7 +32,7 @@ public class ÜbersichtsPageFactory {
 
         Page übersichtsPage = new Page();
 
-        Liebespaar liebespaar = übersichtsFrame.game.liebespaar;
+        Liebespaar liebespaar = Game.game.liebespaar;
 
         if (liebespaar != null && liebespaar.spieler1 != null && !liebespaar.spieler1.equals(liebespaar.spieler2)) {
             liebespaarLabel = pageElementFactory.generateLabel(null, "Liebespaar: " + liebespaar.spieler1.name + ", " + liebespaar.spieler2.name);

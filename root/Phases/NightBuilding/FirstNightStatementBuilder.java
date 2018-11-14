@@ -12,14 +12,11 @@ import root.Persona.Rollen.Bonusrollen.Wolfspelz;
 import root.Persona.Rollen.Hauptrollen.Werwölfe.Wolfsmensch;
 import root.Persona.Rollen.Hauptrollen.Überläufer.Henker;
 import root.Phases.NightBuilding.Constants.IndieStatements;
-import root.mechanics.Game;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class FirstNightStatementBuilder {
-    public static Game game;
-
     public static List<Statement> firstNightBuildStatements() {
         List<Statement> statements = new ArrayList<>();
 
@@ -28,31 +25,31 @@ public class FirstNightStatementBuilder {
         statements.add(IndieStatements.getLiebespaarStatement());
         statements.add(IndieStatements.getLiebespaarFindenStatement());
 
-        addStatementRolle(statements, Seelenlicht.NAME);
-        addStatementRolle(statements, Wolfspelz.NAME);
-        addStatementRolle(statements, Vampirumhang.NAME);
-        addStatementRolle(statements, Lamm.NAME);
+        addStatementRolle(statements, Seelenlicht.ID);
+        addStatementRolle(statements, Wolfspelz.ID);
+        addStatementRolle(statements, Vampirumhang.ID);
+        addStatementRolle(statements, Lamm.ID);
 
-        addStatementRolle(statements, Wolfsmensch.NAME);
-        addStatementFraktion(statements, Werwölfe.NAME);
-        addStatementFraktion(statements, Vampire.NAME);
-        addStatementFraktion(statements, SchattenpriesterFraktion.NAME);
-        addStatementRolle(statements, Henker.NAME);
+        addStatementRolle(statements, Wolfsmensch.ID);
+        addStatementFraktion(statements, Werwölfe.ID);
+        addStatementFraktion(statements, Vampire.ID);
+        addStatementFraktion(statements, SchattenpriesterFraktion.ID);
+        addStatementRolle(statements, Henker.ID);
 
         statements.add(IndieStatements.getAlleWachenAufStatement());
 
         return statements;
     }
 
-    private static void addStatementRolle(List<Statement> statements, String rollenName) {
-        Rolle rolle = Rolle.findRolle(rollenName);
+    private static void addStatementRolle(List<Statement> statements, String rolleID) {
+        Rolle rolle = Rolle.findRolle(rolleID);
         Statement statement = Statement.newFirstNightStatement(rolle);
         statements.add(statement);
     }
 
-    private static void addStatementFraktion(List<Statement> statements, String fraktionsName) {
-        if (Fraktion.getFraktionsMembers(fraktionsName).size() > 1) {
-            Fraktion fraktion = Fraktion.findFraktion(fraktionsName);
+    private static void addStatementFraktion(List<Statement> statements, String fraktionsID) {
+        if (Fraktion.getFraktionsMembers(fraktionsID).size() > 1) {
+            Fraktion fraktion = Fraktion.findFraktion(fraktionsID);
             Statement statement = Statement.newFirstNightStatement(fraktion);
             statements.add(statement);
         }

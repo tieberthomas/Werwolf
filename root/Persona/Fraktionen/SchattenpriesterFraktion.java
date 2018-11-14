@@ -12,6 +12,7 @@ import root.Phases.NightBuilding.Constants.StatementType;
 import root.Phases.NormalNight;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
+import root.mechanics.Game;
 import root.mechanics.KillLogik.Opfer;
 
 import java.awt.*;
@@ -67,11 +68,11 @@ public class SchattenpriesterFraktion extends Fraktion {
 
     @Override
     public void processChosenOption(String chosenOption) {
-        Spieler chosenSpieler = game.findSpieler(chosenOption);
+        Spieler chosenSpieler = Game.game.findSpieler(chosenOption);
         if (chosenSpieler != null) {
             Opfer.removeOpfer(chosenSpieler);
 
-            if (!chosenSpieler.bonusrolle.equals(Schattenkutte.NAME)) {
+            if (!chosenSpieler.bonusrolle.equals(Schattenkutte.ID)) {
                 chosenSpieler.hauptrolle = new Schattenpriester();
                 ((Schattenpriester) chosenSpieler.hauptrolle).neuster = true;
             }
@@ -90,9 +91,9 @@ public class SchattenpriesterFraktion extends Fraktion {
         for (Opfer currentOpfer : NormalNight.opfer) {
             Spieler opferSpieler = currentOpfer.spieler;
             if (opferSpieler != null) {
-                String fraktionDesOpfers = opferSpieler.hauptrolle.fraktion.name;
-                if (opferSpieler.bonusrolle.equals(Schattenkutte.NAME) ||
-                        (opferSpieler.ressurectable && !fraktionDesOpfers.equals(SchattenpriesterFraktion.NAME))) {
+                Fraktion fraktionDesOpfers = opferSpieler.hauptrolle.fraktion;
+                if (opferSpieler.bonusrolle.equals(Schattenkutte.ID) ||
+                        (opferSpieler.ressurectable && !fraktionDesOpfers.equals(SchattenpriesterFraktion.ID))) {
                     if (!dropdownStrings.contains(opferSpieler.name)) {
                         dropdownStrings.add(opferSpieler.name);
                     }

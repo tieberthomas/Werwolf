@@ -22,8 +22,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FrontendControl {
-    public static Game game;
-
     public static ErzählerFrame erzählerFrame;
     public static SpielerFrame spielerFrame;
     public static ÜbersichtsFrame übersichtsFrame;
@@ -134,7 +132,7 @@ public class FrontendControl {
     }
 
     public static void erzählerDefaultDayPage() {
-        Page dayPage = erzählerFrame.pageFactory.generateDayPage(game.getLivingSpielerOrNoneStrings());
+        Page dayPage = erzählerFrame.pageFactory.generateDayPage(Game.game.getLivingSpielerOrNoneStrings());
         erzählerFrame.buildScreenFromPage(dayPage);
     }
 
@@ -143,7 +141,7 @@ public class FrontendControl {
     }
 
     public static void erzählerTortenPage() {
-        erzählerFrame.pageFactory.generateTortenPage(erzählerFrame.tortenPage, game.getLivingSpielerStrings());
+        erzählerFrame.pageFactory.generateTortenPage(erzählerFrame.tortenPage, Game.game.getLivingSpielerStrings());
         erzählerFrame.buildScreenFromPage(erzählerFrame.tortenPage);
     }
 

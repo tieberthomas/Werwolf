@@ -20,6 +20,8 @@ import root.Persona.Rollen.Hauptrollen.Bürger.Dorfbewohner;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
+import root.Utils.ListHelper;
+import root.mechanics.Game;
 import root.mechanics.KillLogik.AbsoluteKill;
 import root.mechanics.KillLogik.Selbstmord;
 
@@ -81,12 +83,12 @@ public class Henker extends Hauptrolle {
 
     @Override
     public FrontendControl getDropdownOptionsFrontendControl() {
-        return game.getMitspielerCheckSpammableFrontendControl(this);
+        return Game.game.getMitspielerCheckSpammableFrontendControl(this);
     }
 
     @Override
     public void processChosenOption(String chosenOption) {
-        Spieler chosenSpieler = game.findSpieler(chosenOption);
+        Spieler chosenSpieler = Game.game.findSpieler(chosenOption);
 
         if (chosenSpieler != null) {
             besucht = chosenSpieler;
@@ -96,8 +98,8 @@ public class Henker extends Hauptrolle {
     @Override
     public FrontendControl processChosenOptionsGetInfo(String chosenOption1, String chosenOption2) {
         if (besucht != null && chosenOption1 != null && !chosenOption1.isEmpty() && chosenOption2 != null && !chosenOption2.isEmpty()) {
-            Hauptrolle hauptrolle = game.findHauptrolle(chosenOption1);
-            Bonusrolle bonusrolle = game.findBonusrolle(chosenOption2);
+            Hauptrolle hauptrolle = Game.game.findHauptrollePerName(chosenOption1);
+            Bonusrolle bonusrolle = Game.game.findBonusrollePerName(chosenOption2);
 
             int correctGuesses = 0;
             Spieler chosenSpieler = besucht;
@@ -110,7 +112,7 @@ public class Henker extends Hauptrolle {
                 correctGuesses++;
             }
 
-            Spieler hänkerSpieler = game.findSpielerPerRolle(NAME);
+            Spieler hänkerSpieler = Game.game.findSpielerPerRolle(this.id);
 
             switch (correctGuesses) {
                 case 0:
@@ -137,23 +139,23 @@ public class Henker extends Hauptrolle {
             case 0:
                 break;
             case 1:
-                Spieler chosenSpieler = game.findSpieler(chosenOption);
+                Spieler chosenSpieler = Game.game.findSpieler(chosenOption);
 
                 if (chosenSpieler != null) {
                     besucht = chosenSpieler;
                 }
                 break;
             case 2:
-                chosenFraktion = Fraktion.findFraktion(chosenOption);
+                chosenFraktion = Fraktion.findFraktionPerName(chosenOption);
                 break;
             case 3:
-                chosenHauptrolle = game.findHauptrolle(chosenOption);
+                chosenHauptrolle = Game.game.findHauptrollePerName(chosenOption);
                 break;
             case 4:
                 chosenBonusrollenType = BonusrollenType.getBonusrollenType(chosenOption);
                 break;
             case 5:
-                chosenBonusrolle = game.findBonusrolle(chosenOption);
+                chosenBonusrolle = Game.game.findBonusrollePerName(chosenOption);
                 break;
         }
 
@@ -163,7 +165,7 @@ public class Henker extends Hauptrolle {
     public FrontendControl getPage() {
         switch (pagecounter) {
             case 0:
-                return game.getMitspielerCheckSpammableFrontendControl(this);
+                return Game.game.getMitspielerCheckSpammableFrontendControl(this);
             case 1:
                 if (besucht == null) {
                     return new FrontendControl();
@@ -173,7 +175,7 @@ public class Henker extends Hauptrolle {
                 fraktionsAuswahl.hatZurückButton = true;
                 return fraktionsAuswahl;
             case 2:
-                List<Hauptrolle> hauptrollen = game.getPossibleInGameHauptrollen();
+                List<Hauptrolle> hauptrollen = ListHelper.cloneList(Game.game.hauptrollenInGame);
                 List<String> hauptrollenStrings = hauptrollen.stream().
                         filter(hauptrolle -> hauptrolle.fraktion.equals(chosenFraktion)).
                         map(hauptrolle -> hauptrolle.name).
@@ -191,8 +193,8 @@ public class Henker extends Hauptrolle {
                 bonusrollenTypAuswahl.hatZurückButton = true;
                 return bonusrollenTypAuswahl;
             case 4:
-                List<Bonusrolle> bonusrollen = game.getPossibleInGameBonusrollen();
-                if (Fraktion.fraktionContainedInNight(SchattenpriesterFraktion.NAME)) {
+                List<Bonusrolle> bonusrollen = ListHelper.cloneList(Game.game.bonusrollenInGame);
+                if (Fraktion.fraktionContainedInNight(SchattenpriesterFraktion.ID)) {
                     bonusrollen.add(new Schatten());
                 }
                 bonusrollen.add(new SchwarzeSeele());
@@ -214,7 +216,7 @@ public class Henker extends Hauptrolle {
                 return auswahlBestätigung;
             default:
                 System.out.println("There is no Henker Page with this number");
-                return game.getMitspielerCheckSpammableFrontendControl(this);
+                return Game.game.getMitspielerCheckSpammableFrontendControl(this);
         }
     }
 

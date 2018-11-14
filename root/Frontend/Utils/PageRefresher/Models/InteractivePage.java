@@ -2,10 +2,7 @@ package root.Frontend.Utils.PageRefresher.Models;
 
 import root.Frontend.Factories.ErzählerPageFactory;
 import root.Frontend.Frame.ErzählerFrame;
-import root.Frontend.Frame.SpielerFrame;
 import root.Frontend.Page.Page;
-import root.Frontend.Utils.PageRefresher.PageRefresher;
-import root.mechanics.Game;
 
 import java.awt.event.ActionEvent;
 

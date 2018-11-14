@@ -60,9 +60,9 @@ public class Wahrsager extends Bonusrolle {
     public List<String> rewardInformation() {
         List<String> list = new ArrayList<>();
 
-        for (String fraktion : Fraktion.getFraktionStrings()) {
-            int anzahl = Fraktion.getFraktionsMembers(fraktion).size();
-            list.add(anzahl + " " + fraktion);
+        for (Fraktion fraktion : Fraktion.getFraktionen()) {
+            int anzahl = Fraktion.getFraktionsMembers(fraktion.id).size();
+            list.add(anzahl + " " + fraktion.name);
         }
 
         return list;

@@ -1,14 +1,14 @@
 package root.Frontend.Utils.PageRefresher.InteractivePages;
 
-import root.Frontend.Page.Page;
 import root.Frontend.Page.PageTable;
 import root.Frontend.Utils.PageRefresher.InteractivePages.InteractiveElementsDtos.PlayerSetupPageElementsDto;
 import root.Frontend.Utils.PageRefresher.Models.DeleteButtonTable;
-import root.Frontend.Utils.PageRefresher.Models.RefreshedPage;
 import root.Frontend.Utils.PageRefresher.Models.Label;
 import root.Frontend.Utils.PageRefresher.Models.LabelTable;
+import root.Frontend.Utils.PageRefresher.Models.RefreshedPage;
 import root.Frontend.Utils.PageRefresher.PageRefresher;
 import root.Spieler;
+import root.mechanics.Game;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -46,7 +46,7 @@ public class PlayerSetupPage extends RefreshedPage {
             erzählerFrame.prevPage();
 
         } else if (addPlayerButton.equals(ae.getSource()) || addPlayerTxtField.equals(ae.getSource())) {
-            if (!addPlayerTxtField.getText().equals("") && !game.spielerExists(addPlayerTxtField.getText())) {
+            if (!addPlayerTxtField.getText().equals("") && !Game.game.spielerExists(addPlayerTxtField.getText())) {
                 addPlayer();
             }
         } else if (deleteButtons.contains(ae.getSource())) {
@@ -57,8 +57,8 @@ public class PlayerSetupPage extends RefreshedPage {
     @Override
     public void setupPageRefresher() {
         pageRefresher = new PageRefresher(page);
-        pageRefresher.add(new LabelTable(labelTable, game::getLivingSpielerStrings));
-        pageRefresher.add(new DeleteButtonTable(deleteTable, deleteButtons, game.spieler::size));
+        pageRefresher.add(new LabelTable(labelTable, Game.game::getLivingSpielerStrings));
+        pageRefresher.add(new DeleteButtonTable(deleteTable, deleteButtons, Game.game.spieler::size));
         pageRefresher.add(new Label(counterLabel, this::getNumberOfPlayersLabelText));
     }
 
@@ -77,19 +77,19 @@ public class PlayerSetupPage extends RefreshedPage {
     }
 
     private String getNumberOfPlayersLabelText() {
-        return pageFactory.pageElementFactory.generateNumberOfPLayersLabelTitle(game.spieler.size());
+        return pageFactory.pageElementFactory.generateNumberOfPLayersLabelTitle(Game.game.spieler.size());
     }
 
     @Override
     public void generatePage() {
-        int numberOfplayers = game.spieler.size();
+        int numberOfplayers = Game.game.spieler.size();
         pageFactory.generatePlayerSetupPage(page, interactiveElementsDto, numberOfplayers);
     }
 
     private void addPlayer() {
         String newPlayerName = addPlayerTxtField.getText();
         Spieler newPlayer = new Spieler(newPlayerName);
-        game.spieler.add(newPlayer);
+        Game.game.spieler.add(newPlayer);
         addPlayerTxtField.setText("");
 
         refresh();
@@ -99,13 +99,13 @@ public class PlayerSetupPage extends RefreshedPage {
         int index = deleteButtons.indexOf(ae.getSource());
 
         deleteButtons.remove(index);
-        Spieler spieler = game.spieler.get(index);
+        Spieler spieler = Game.game.spieler.get(index);
 
-        if (game.spielerSpecified.contains(spieler)) {
+        if (Game.game.spielerSpecified.contains(spieler)) {
             removeSpecifiedPlayer(index);
         }
 
-        game.spieler.remove(index);
+        Game.game.spieler.remove(index);
 
         refresh();
     }
@@ -115,6 +115,6 @@ public class PlayerSetupPage extends RefreshedPage {
             deleteButtons.remove(index);
         }
 
-        game.spielerSpecified.remove(index);
+        Game.game.spielerSpecified.remove(index);
     }
 }

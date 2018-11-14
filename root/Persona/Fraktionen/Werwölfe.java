@@ -11,6 +11,7 @@ import root.Persona.Rollen.Hauptrollen.Werwölfe.Blutwolf;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
+import root.mechanics.Game;
 import root.mechanics.KillLogik.BlutwolfKill;
 import root.mechanics.KillLogik.NormalKill;
 
@@ -54,7 +55,7 @@ public class Werwölfe extends Fraktion {
 
     @Override
     public void processChosenOption(String chosenOption) {
-        Spieler chosenSpieler = game.findSpieler(chosenOption);
+        Spieler chosenSpieler = Game.game.findSpieler(chosenOption);
         if (chosenSpieler != null) {
             if (blutWolfIsAktiv()) {
                 BlutwolfKill.execute(chosenSpieler, this);
@@ -67,7 +68,7 @@ public class Werwölfe extends Fraktion {
     @Override
     public FrontendControl getDropdownOptionsFrontendControl() {
         FrontendControlType typeOfContent = FrontendControlType.DROPDOWN_IMAGE;
-        List<String> strings = game.getLivingSpielerOrNoneStrings();
+        List<String> strings = Game.game.getLivingSpielerOrNoneStrings();
         String imagePath = zeigekarte.imagePath;
         if (blutWolfIsAktiv()) {
             imagePath = new Blutmond().imagePath;
@@ -77,6 +78,6 @@ public class Werwölfe extends Fraktion {
     }
 
     public static boolean blutWolfIsAktiv() {
-        return Rolle.rolleLebend(Blutwolf.NAME) && Rolle.rolleAktiv(Blutwolf.NAME) && Blutwolf.deadly;
+        return Rolle.rolleLebend(Blutwolf.ID) && Rolle.rolleAktiv(Blutwolf.ID) && Blutwolf.deadly;
     }
 }

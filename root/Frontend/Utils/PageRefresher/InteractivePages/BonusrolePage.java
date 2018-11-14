@@ -6,6 +6,7 @@ import root.Frontend.Utils.PageRefresher.Models.Label;
 import root.Frontend.Utils.PageRefresher.Models.LabelTable;
 import root.Frontend.Utils.PageRefresher.PageRefresher;
 import root.Persona.Bonusrolle;
+import root.mechanics.Game;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -17,13 +18,13 @@ public class BonusrolePage extends RolePage {
     public void setupPageRefresher() {
         pageRefresher = new PageRefresher(page);
         pageRefresher.add(new ButtonTable(roleButtons));
-        pageRefresher.add(new LabelTable(labelTable, game::getBonusrolleInGameNames));
-        pageRefresher.add(new DeleteButtonTable(deleteTable, deleteButtons, game.bonusrollenInGame::size));
+        pageRefresher.add(new LabelTable(labelTable, Game.game::getBonusrolleInGameNames));
+        pageRefresher.add(new DeleteButtonTable(deleteTable, deleteButtons, Game.game.bonusrollenInGame::size));
         pageRefresher.add(new Label(counterLabel, this::getBonusroleCounterLabelText));
     }
 
     private String getBonusroleCounterLabelText() {
-        return getCounterLabelText(game.spieler.size(), game.bonusrollenInGame.size());
+        return getCounterLabelText(Game.game.spieler.size(), Game.game.bonusrollenInGame.size());
     }
 
     protected void refreshSpielerFrame() {
@@ -32,9 +33,9 @@ public class BonusrolePage extends RolePage {
 
     @Override
     public void generatePage() {
-        int numberOfplayers = game.spieler.size();
-        int numberOfBonusrollen = game.bonusrollenInGame.size();
-        List<String> bonusrollen = game.getBonusrollenButtonNames();
+        int numberOfplayers = Game.game.spieler.size();
+        int numberOfBonusrollen = Game.game.bonusrollenInGame.size();
+        List<String> bonusrollen = Game.game.getBonusrollenButtonNames();
         //TODO remove information from page generation since it already is gathered in refresh
         pageFactory.generateRollenSetupPage(page, interactiveElementsDto, numberOfplayers, numberOfBonusrollen, bonusrollen);
         //TODO generalize role-pagecreation
@@ -50,8 +51,8 @@ public class BonusrolePage extends RolePage {
     @Override
     protected void addRolle(ActionEvent ae) {
         String bonusrolleName = ((JButton) ae.getSource()).getText();
-        Bonusrolle newBonusrolle = game.findBonusrolle(bonusrolleName);
-        game.bonusrollenInGame.add(newBonusrolle);
+        Bonusrolle newBonusrolle = Game.game.findBonusrollePerName(bonusrolleName);
+        Game.game.bonusrollenInGame.add(newBonusrolle);
 
         refresh();
     }
@@ -60,23 +61,23 @@ public class BonusrolePage extends RolePage {
     protected void deleteRolle(ActionEvent ae) {
         int index = deleteButtons.indexOf(ae.getSource());
         deleteButtons.remove(index);
-        List<String> sortedBonusrollenInGame = game.bonusrollenInGame.stream().map(h -> h.name).sorted().collect(Collectors.toList());
-        String bonusrolleName = sortedBonusrollenInGame.get(index);
+        List<String> sortedBonusrollenInGame = Game.game.bonusrollenInGame.stream().map(h -> h.id).sorted().collect(Collectors.toList());
+        String bonusrolleID = sortedBonusrollenInGame.get(index);
 
-        List<String> bonusrollenSpecifiedStrings = game.getBonusrolleSpecifiedStrings();
+        List<String> bonusrollenSpecifiedIDs = Game.game.getBonusrolleSpecifiedIDs();
 
-        if (bonusrollenSpecifiedStrings.contains(bonusrolleName)) {
-            int specifedIndex = bonusrollenSpecifiedStrings.indexOf(bonusrolleName);
+        if (bonusrollenSpecifiedIDs.contains(bonusrolleID)) {
+            int specifedIndex = bonusrollenSpecifiedIDs.indexOf(bonusrolleID);
             removeSpecifiedPlayer(specifedIndex);
         }
 
-        Bonusrolle bonusrolle = game.findBonusrolle(bonusrolleName);
+        Bonusrolle bonusrolle = Game.game.findBonusrolle(bonusrolleID);
         game.bonusrollenInGame.remove(bonusrolle);
 
         refresh();
     }
 
     protected void addAllRollen() {
-        game.addAllBonusrollen();
+        Game.game.addAllBonusrollen();
     }
 }

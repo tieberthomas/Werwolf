@@ -11,7 +11,7 @@ alles was tötet + prostituierten interaktion
 wahrsager
 
 bugs:
-hauptrollenInGame werden nie geaddet
+Leerzeile an erste stelle sortiert
 
 ToDo:
 StatementType ROLLE_CHOOSE_SPIELER

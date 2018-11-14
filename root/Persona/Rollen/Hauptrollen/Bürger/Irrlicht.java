@@ -9,6 +9,7 @@ import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
 import root.Utils.Rand;
+import root.mechanics.Game;
 import root.mechanics.KillLogik.Selbstmord;
 
 import java.util.ArrayList;
@@ -55,17 +56,17 @@ public class Irrlicht extends Hauptrolle {
 
     @Override
     public FrontendControl getDropdownOptionsFrontendControl() {
-        List<String> allSpieler = game.getIrrlichterStrings();
+        List<String> allSpieler = Game.game.getIrrlichterStrings();
 
         return new FrontendControl(FrontendControlType.IRRLICHT_DROPDOWN, allSpieler);
     }
 
     public static FrontendControl processFlackerndeIrrlichter(List<String> flackerndeIrrlichter) {
-        int numberIrrlichterInGame = game.getIrrlichterStrings().size();
+        int numberIrrlichterInGame = Game.game.getIrrlichterStrings().size();
         int numberFlackerndeIrrlichter = flackerndeIrrlichter.size();
 
         if (numberFlackerndeIrrlichter == 1) {
-            Spieler einzigesFlackerndesIrrlicht = game.findSpieler(flackerndeIrrlichter.get(0));
+            Spieler einzigesFlackerndesIrrlicht = Game.game.findSpieler(flackerndeIrrlichter.get(0));
             Irrlicht irrlicht = ((Irrlicht) einzigesFlackerndesIrrlicht.hauptrolle);
             String randomIrrlicht = irrlicht.getRandomUnseenIrrlichtSpieler(einzigesFlackerndesIrrlicht.name);
 
@@ -100,7 +101,7 @@ public class Irrlicht extends Hauptrolle {
     }
 
     private List<String> getAllUnseenIrrlichter(String einzigesFlackerndesIrrlichtName) {
-        List<String> irrlichter = game.getIrrlichterStrings();
+        List<String> irrlichter = Game.game.getIrrlichterStrings();
 
         if (irrlichter.size() == 1) {
             return null;
@@ -118,7 +119,7 @@ public class Irrlicht extends Hauptrolle {
     }
 
     private static Spieler getRandomIrrlichtToDie() {
-        List<Spieler> irrlichter = game.getIrrlichter();
+        List<Spieler> irrlichter = Game.game.getIrrlichter();
 
         if (irrlichter != null) {
             return Rand.getRandomElement(irrlichter);

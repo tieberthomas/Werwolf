@@ -4,24 +4,11 @@ import root.Frontend.Factories.ErzählerPageFactory;
 import root.Frontend.FrontendControl;
 import root.Frontend.Page.Page;
 import root.Frontend.Page.PageTable;
-import root.Frontend.Utils.PageRefresher.InteractivePages.BonusrolePage;
-import root.Frontend.Utils.PageRefresher.InteractivePages.MainrolePage;
-import root.Frontend.Utils.PageRefresher.InteractivePages.PlayerSetupPage;
-import root.Frontend.Utils.PageRefresher.InteractivePages.SpecifyPage;
-import root.Frontend.Utils.PageRefresher.InteractivePages.StartPage;
-import root.Frontend.Utils.PageRefresher.Models.Combobox;
-import root.Frontend.Utils.PageRefresher.Models.DeleteButtonTable;
-import root.Frontend.Utils.PageRefresher.Models.InteractivePage;
-import root.Frontend.Utils.PageRefresher.Models.LabelTable;
-import root.Frontend.Utils.PageRefresher.Models.LoadMode;
-import root.Frontend.Utils.PageRefresher.Models.RefreshedPage;
+import root.Frontend.Utils.PageRefresher.InteractivePages.*;
+import root.Frontend.Utils.PageRefresher.Models.*;
 import root.Frontend.Utils.PageRefresher.PageRefresher;
 import root.Persona.Hauptrolle;
-import root.Phases.Day;
-import root.Phases.FirstNight;
-import root.Phases.NormalNight;
-import root.Phases.PhaseManager;
-import root.Phases.PhaseMode;
+import root.Phases.*;
 import root.ResourceManagement.DataManager;
 import root.Spieler;
 import root.Utils.ListHelper;
@@ -37,8 +24,6 @@ import java.util.List;
 
 public class ErzählerFrame extends MyFrame implements ActionListener {
     public boolean next = true;
-
-    public static Game game;
 
     public SpielerFrame spielerFrame;
     public ÜbersichtsFrame übersichtsFrame;
@@ -144,7 +129,6 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     }
 
     private void generateAllPageRefreshers() {
-        RefreshedPage.game = game;
         RefreshedPage.erzählerFrame = this;
         RefreshedPage.spielerFrame = spielerFrame;
 
@@ -180,7 +164,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     }
 
     private List<String> getNichtTortenEsserStrings() {
-        List<String> nichtTortenEsser = game.getLivingSpielerStrings();
+        List<String> nichtTortenEsser = Game.game.getLivingSpielerStrings();
         List<String> tortenEsser = new ArrayList<>();
         for (Spieler spieler : Torte.tortenEsser) {
             tortenEsser.add(spieler.name);
@@ -194,7 +178,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     }
 
     private List<String> getNichtFlackerndeIrrlichterStrings() {
-        List<String> nichtFlackernde = game.getIrrlichterStrings();
+        List<String> nichtFlackernde = Game.game.getIrrlichterStrings();
         List<String> flackernde = flackerndeIrrlichter;
         nichtFlackernde.removeAll(flackernde);
         return nichtFlackernde;
@@ -259,7 +243,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                         spielerFrame.comboBox1Label.setText(comboBox1.getSelectedItem().toString());
                     }
                 } else if (spielerFrame.mode == SpielerFrameMode.dropDownImage) {
-                    Hauptrolle hauptrolle = game.findHauptrolle((String) comboBox1.getSelectedItem());
+                    Hauptrolle hauptrolle = Game.game.findHauptrollePerName((String) comboBox1.getSelectedItem());
                     String imagePath = hauptrolle.imagePath;
                     Page imagePage = spielerFrame.pageFactory.generateStaticImagePage(spielerFrame.title, imagePath);
                     spielerFrame.buildScreenFromPage(imagePage);
@@ -285,7 +269,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
             }
         } else if (ae.getSource() == nachzüglerJButton || ae.getSource() == addPlayerTxtField && mode == ErzählerFrameMode.NACHZÜGLER_SETUP) {
             if (mode == ErzählerFrameMode.NACHZÜGLER_SETUP) {
-                if (!addPlayerTxtField.getText().equals("") && !game.spielerExists(addPlayerTxtField.getText())) {
+                if (!addPlayerTxtField.getText().equals("") && !Game.game.spielerExists(addPlayerTxtField.getText())) {
                     try {
                         if (comboBox1 != null) {
                             chosenOption1 = (String) comboBox1.getSelectedItem();
@@ -303,9 +287,9 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                     String bonusrolle = chosenOption2;
 
                     Spieler newSpieler = new Spieler(name, hauptrolle, bonusrolle);
-                    game.bonusrollenInGame.remove(newSpieler.bonusrolle);
+                    Game.game.bonusrollenInGame.remove(newSpieler.bonusrolle);
                     newSpieler.bonusrolle = newSpieler.bonusrolle.getTauschErgebnis();
-                    game.bonusrollenInGame.add(newSpieler.bonusrolle);
+                    Game.game.bonusrollenInGame.add(newSpieler.bonusrolle);
 
                     addPlayerTxtField.setText("");
 
@@ -320,7 +304,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                 mode = ErzählerFrameMode.NACHZÜGLER_SETUP;
 
                 spielerFrame.mode = SpielerFrameMode.blank;
-                buildScreenFromPage(pageFactory.generateNachzüglerPage(game.getStillAvailableHauptrolleNames(), game.getStillAvailableBonusrollenNames()));
+                buildScreenFromPage(pageFactory.generateNachzüglerPage(Game.game.getStillAvailableHauptrolleNames(), Game.game.getStillAvailableBonusrollenNames()));
             }
         } else if (ae.getSource() == umbringenJButton) {
             if (mode == ErzählerFrameMode.UMBRINGEN_SETUP) {
@@ -331,7 +315,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                 } catch (NullPointerException e) {
                     System.out.println("combobox1 might not be initialized.");
                 }
-                Spieler spieler = game.findSpieler(chosenOption1);
+                Spieler spieler = Game.game.findSpieler(chosenOption1);
 
                 if (spieler != null) {
                     Day.umbringenSpieler = spieler;
@@ -353,7 +337,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                 mode = ErzählerFrameMode.UMBRINGEN_SETUP;
 
                 spielerFrame.mode = SpielerFrameMode.blank;
-                buildScreenFromPage(pageFactory.generateUmbringenPage(game.getLivingSpielerStrings()));
+                buildScreenFromPage(pageFactory.generateUmbringenPage(Game.game.getLivingSpielerStrings()));
             }
         } else if (ae.getSource() == priesterJButton) {
             if (mode == ErzählerFrameMode.PRIESTER_SETUP) {
@@ -370,7 +354,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                 }
                 String priester = chosenOption1;
                 String spieler = chosenOption2;
-                game.day.bürgen(priester, spieler);
+                Game.game.day.bürgen(priester, spieler);
 
                 mode = PhaseManager.parsePhaseMode();
                 showDayPage();
@@ -378,7 +362,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                 mode = ErzählerFrameMode.PRIESTER_SETUP;
 
                 spielerFrame.mode = SpielerFrameMode.blank;
-                buildScreenFromPage(pageFactory.generatePriesterPage(game.getLivingSpielerStrings()));
+                buildScreenFromPage(pageFactory.generatePriesterPage(Game.game.getLivingSpielerStrings()));
             }
         } else if (ae.getSource() == richterinJButton) {
             if (mode == ErzählerFrameMode.RICHTERIN_SETUP) {
@@ -396,7 +380,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
 
                 String richterin = chosenOption1;
                 String spieler = chosenOption2;
-                game.day.verurteilen(richterin, spieler);
+                Game.game.day.verurteilen(richterin, spieler);
 
                 mode = PhaseManager.parsePhaseMode();
                 showDayPage();
@@ -404,7 +388,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                 mode = ErzählerFrameMode.RICHTERIN_SETUP;
 
                 spielerFrame.mode = SpielerFrameMode.blank;
-                buildScreenFromPage(pageFactory.generateRichterinPage(game.getLivingSpielerStrings()));
+                buildScreenFromPage(pageFactory.generateRichterinPage(Game.game.getLivingSpielerStrings()));
             }
         } else if (ae.getSource() == respawnFramesJButton) {
             respawnFrames();
@@ -441,16 +425,16 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     }
 
     public void setupGame(LoadMode loadMode) {
-        game = new Game();
-        dataManager = new DataManager(game);
+        new Game();
+        dataManager = new DataManager();
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        spielerFrame = new SpielerFrame(this, game);
+        spielerFrame = new SpielerFrame(this);
 
         if (loadMode == LoadMode.COMPOSITION) {
             dataManager.loadLastComposition();
         } else if (loadMode == LoadMode.GAME) {
             dataManager.loadLastGame();
-            game.spielerSpecified = ListHelper.cloneList(game.spieler);
+            Game.game.spielerSpecified = ListHelper.cloneList(Game.game.spieler);
         }
 
         generateAllPageRefreshers();
@@ -500,7 +484,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     private void addTortenEsser() {
         try {
             String spielerName = comboBox1.getSelectedItem().toString();
-            Spieler spieler = game.findSpieler(spielerName);
+            Spieler spieler = Game.game.findSpieler(spielerName);
             Torte.tortenEsser.add(spieler);
             refreshTortenPage();
         } catch (NullPointerException e) {
@@ -518,11 +502,11 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
 
         int spielerFrameMode = spielerFrame.mode;
         savePage = spielerFrame.currentPage;
-        spielerFrame = new SpielerFrame(this, game);
+        spielerFrame = new SpielerFrame(this);
         spielerFrame.mode = spielerFrameMode;
         spielerFrame.buildScreenFromPage(savePage);
 
-        übersichtsFrame = new ÜbersichtsFrame(this.frameJpanel.getHeight() + 50, game);
+        übersichtsFrame = new ÜbersichtsFrame(this.frameJpanel.getHeight() + 50);
 
         FrontendControl.spielerFrame = spielerFrame;
         if (PhaseManager.phaseMode == PhaseMode.DAY || PhaseManager.phaseMode == PhaseMode.FREIBIER_DAY) {

@@ -40,7 +40,7 @@ public class StartPage extends InteractivePage {
 
     @Override
     public void processActionEvent(ActionEvent ae) {
-        if(startGameButtons.contains(ae.getSource())) {
+        if (startGameButtons.contains(ae.getSource())) {
             LoadMode loadMode = LoadMode.NOLOAD;
 
             if (startButton.equals(ae.getSource())) {

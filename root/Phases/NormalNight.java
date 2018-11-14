@@ -45,8 +45,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NormalNight extends Thread {
-    Game game;
-
     public static List<Statement> statements;
     public static Object lock;
 
@@ -59,10 +57,6 @@ public class NormalNight extends Thread {
     public static Spieler beschworenerSpieler;
     public static Spieler gefälschterSpieler;
     public static Spieler getarnterSpieler;
-
-    public NormalNight(Game game) {
-        this.game = game;
-    }
 
     public void run() {
         lock = new Object();
@@ -83,7 +77,7 @@ public class NormalNight extends Thread {
             wölfinSpieler = null;
             beschworenerSpieler = null;
 
-            List<String> spielerOrNon = game.getLivingSpielerOrNoneStrings();
+            List<String> spielerOrNon = Game.game.getLivingSpielerOrNoneStrings();
 
             beginNight();
 
@@ -142,7 +136,7 @@ public class NormalNight extends Thread {
                     switch (statement.id) {
                         case Wirt.STATEMENT_ID:
                             if (DropdownConstants.JA.equals(chosenOption)) {
-                                game.freibier = true;
+                                Game.game.freibier = true;
                             }
                             break;
 
@@ -184,18 +178,18 @@ public class NormalNight extends Thread {
                         case Wölfin.STATEMENT_ID:
                             if (!"".equals(chosenOption)) {
                                 wölfinKilled = true;
-                                wölfinSpieler = game.findSpielerPerRolle(Wölfin.NAME);
+                                wölfinSpieler = Game.game.findSpielerPerRolle(Wölfin.ID);
                             }
                             break;
 
                         case SchattenpriesterFraktion.NEUER_SCHATTENPRIESTER:
-                            chosenSpieler = game.findSpieler(chosenOptionLastStatement);
+                            chosenSpieler = Game.game.findSpieler(chosenOptionLastStatement);
                             String neuerSchattenpriester = "";
                             erzählerInfoIconImagePath = ""; //TODO causes problem "1 Image could not be found at location: "
                             if (chosenSpieler != null) {
                                 neuerSchattenpriester = chosenSpieler.name;
 
-                                if (!chosenSpieler.hauptrolle.fraktion.equals(SchattenpriesterFraktion.NAME)) {
+                                if (!chosenSpieler.hauptrolle.fraktion.equals(SchattenpriesterFraktion.ID)) {
                                     erzählerInfoIconImagePath = Schattenkutte.IMAGE_PATH;
                                 }
                             }
@@ -203,7 +197,7 @@ public class NormalNight extends Thread {
                             break;
 
                         case Chemiker.NEUER_WERWOLF:
-                            chosenSpieler = game.findSpieler(chosenOptionLastStatement);
+                            chosenSpieler = Game.game.findSpieler(chosenOptionLastStatement);
                             String neuerWerwolf = "";
                             if (chosenSpieler != null) {
                                 neuerWerwolf = chosenSpieler.name;
@@ -223,7 +217,7 @@ public class NormalNight extends Thread {
                             break;
 
                         case Analytiker.STATEMENT_ID:
-                            Spieler analytikerSpieler = game.findSpielerPerRolle(rolle.name);
+                            Spieler analytikerSpieler = Game.game.findSpielerPerRolle(rolle.id);
 
                             List<String> spielerOrNonWithoutAnalytiker = ListHelper.cloneList(spielerOrNon);
                             if (analytikerSpieler != null) {
@@ -231,8 +225,8 @@ public class NormalNight extends Thread {
                             }
                             showDropdownPage(statement, spielerOrNonWithoutAnalytiker, spielerOrNonWithoutAnalytiker);
 
-                            Spieler chosenSpieler1 = game.findSpieler(FrontendControl.erzählerFrame.chosenOption1);
-                            Spieler chosenSpieler2 = game.findSpieler(FrontendControl.erzählerFrame.chosenOption2);
+                            Spieler chosenSpieler1 = Game.game.findSpieler(FrontendControl.erzählerFrame.chosenOption1);
+                            Spieler chosenSpieler2 = Game.game.findSpieler(FrontendControl.erzählerFrame.chosenOption2);
 
                             if (chosenSpieler1 != null && chosenSpieler2 != null) {
                                 if (((Analytiker) rolle).showTarnumhang(chosenSpieler1, chosenSpieler2)) {
@@ -245,19 +239,19 @@ public class NormalNight extends Thread {
                             break;
 
                         case Wahrsager.STATEMENT_ID:
-                            Spieler wahrsagerSpieler2 = game.findSpielerPerRolle(Wahrsager.NAME);
-                            Spieler deadWahrsagerSpieler = game.findSpielerOrDeadPerRolle(Wahrsager.NAME);
+                            Spieler wahrsagerSpieler2 = Game.game.findSpielerPerRolle(Wahrsager.ID);
+                            Spieler deadWahrsagerSpieler = Game.game.findSpielerOrDeadPerRolle(Wahrsager.ID);
                             if (wahrsagerSpieler2 != null) {
                                 Wahrsager wahrsager = (Wahrsager) deadWahrsagerSpieler.bonusrolle; //TODO Rolle rolle ?
                                 List<String> rewardInformation = new ArrayList<>();
-                                if (wahrsager.guessedRight() && !game.secondNight) {
+                                if (wahrsager.guessedRight() && !Game.game.secondNight) {
                                     statement.title = Wahrsager.REWARD_TITLE;
                                     rewardInformation = wahrsager.rewardInformation();
                                 }
                                 FrontendControl dropdownShowReward = wahrsager.getDropdownOptionsFrontendControl();
                                 dropdownShowReward.displayedStrings = rewardInformation;
                                 chosenOption = showFrontendControl(statement, dropdownShowReward);
-                                wahrsager.tipp = Fraktion.findFraktion(chosenOption);
+                                wahrsager.tipp = Fraktion.findFraktionPerName(chosenOption);
                             }
                             break;
 
@@ -293,7 +287,7 @@ public class NormalNight extends Thread {
 
                             FrontendControl.erzählerListPage(statement, IndieStatements.OPFER_TITLE, opferDerNacht);
                             for (String opfer : opferDerNacht) {
-                                FrontendControl.spielerAnnounceOpferPage(game.findSpieler(opfer));
+                                FrontendControl.spielerAnnounceOpferPage(Game.game.findSpieler(opfer));
                                 waitForAnswer();
                             }
 
@@ -321,7 +315,7 @@ public class NormalNight extends Thread {
 
                     chosenOptionLastStatement = chosenOption;
 
-                    if (game.freibier) {
+                    if (Game.game.freibier) {
                         break;
                     }
                 }
@@ -336,38 +330,36 @@ public class NormalNight extends Thread {
     }
 
     public void beginNight() {
-        for (Spieler currentSpieler : game.spieler) {
-            String fraktionSpieler = currentSpieler.hauptrolle.fraktion.name;
-
-            currentSpieler.ressurectable = !fraktionSpieler.equals(Vampire.NAME);
+        for (Spieler currentSpieler : Game.game.spieler) {
+            currentSpieler.ressurectable = !currentSpieler.hauptrolle.fraktion.equals(Vampire.ID);
         }
 
         angriffe = new ArrayList<>();
         opfer = new ArrayList<>();
 
-        for (Hauptrolle currentHauptrolle : game.hauptrollen) {
+        for (Hauptrolle currentHauptrolle : Game.game.hauptrollen) {
             currentHauptrolle.besuchtLastNight = currentHauptrolle.besucht;
             currentHauptrolle.besucht = null;
         }
 
-        for (Bonusrolle currentBonusrolle : game.bonusrollen) {
+        for (Bonusrolle currentBonusrolle : Game.game.bonusrollen) {
             currentBonusrolle.besuchtLastNight = currentBonusrolle.besucht;
             currentBonusrolle.besucht = null;
 
-            if (currentBonusrolle.equals(Analytiker.NAME)) {
+            if (currentBonusrolle.equals(Analytiker.ID)) {
                 ((Analytiker) currentBonusrolle).besuchtAnalysieren = null;
             }
         }
 
-        if (Rolle.rolleLebend(Prostituierte.NAME)) {
-            Spieler prostituierte = game.findSpielerPerRolle(Prostituierte.NAME);
+        if (Rolle.rolleLebend(Prostituierte.ID)) {
+            Spieler prostituierte = Game.game.findSpielerPerRolle(Prostituierte.ID);
             Prostituierte.host = prostituierte;
         }
 
-        for (Spieler currentSpieler : game.spieler) {
+        for (Spieler currentSpieler : Game.game.spieler) {
             Hauptrolle hauptrolleSpieler = currentSpieler.hauptrolle;
 
-            if (hauptrolleSpieler.equals(Schattenpriester.NAME)) {
+            if (hauptrolleSpieler.equals(Schattenpriester.ID)) {
                 if (((Schattenpriester) hauptrolleSpieler).neuster) {
                     currentSpieler.geschützt = true;
                     ((Schattenpriester) hauptrolleSpieler).neuster = false;
@@ -405,10 +397,8 @@ public class NormalNight extends Thread {
     }
 
     public void setSchütze() {
-        for (Spieler currentSpieler : game.spieler) {
-            String bonusrolleCurrentSpieler = currentSpieler.bonusrolle.name;
-
-            if (bonusrolleCurrentSpieler.equals(SchwarzeSeele.NAME)) {
+        for (Spieler currentSpieler : Game.game.spieler) {
+            if (currentSpieler.bonusrolle.equals(SchwarzeSeele.ID)) {
                 currentSpieler.geschützt = true;
             }
         }
@@ -423,17 +413,17 @@ public class NormalNight extends Thread {
         spielerAwake.clear();
         if (statement.dependency instanceof StatementDependencyFraktion) {
             StatementDependencyFraktion statementDependencyFraktion = (StatementDependencyFraktion) statement.dependency;
-            spielerAwake.addAll(Fraktion.getFraktionsMembers(statementDependencyFraktion.fraktion.name));
+            spielerAwake.addAll(Fraktion.getFraktionsMembers(statementDependencyFraktion.fraktion.id));
         } else if (statement.dependency instanceof StatementDependencyRolle) {
             StatementDependencyRolle statementDependencyRolle = (StatementDependencyRolle) statement.dependency;
-            spielerAwake.add(game.findSpielerPerRolle(statementDependencyRolle.rolle.name));
+            spielerAwake.add(Game.game.findSpielerPerRolle(statementDependencyRolle.rolle.id));
         }
     }
 
     private void cleanUpNight() {
-        game.secondNight = false;
+        Game.game.secondNight = false;
 
-        for (Spieler currentSpieler : game.spieler) {
+        for (Spieler currentSpieler : Game.game.spieler) {
             currentSpieler.aktiv = true;
             currentSpieler.geschützt = false;
             currentSpieler.ressurectable = true;
@@ -442,8 +432,8 @@ public class NormalNight extends Thread {
 
     public void killOpfer() {
         for (Opfer currentOpfer : opfer) {
-            if (Rolle.rolleLebend(Blutwolf.NAME)) {
-                if (currentOpfer.fraktionsTäter && currentOpfer.täterFraktion.equals(Werwölfe.NAME)) {
+            if (Rolle.rolleLebend(Blutwolf.ID)) {
+                if (currentOpfer.fraktionsTäter && currentOpfer.täterFraktion.equals(Werwölfe.ID)) {
                     Blutwolf.deadStacks++;
                     if (Blutwolf.deadStacks >= 2) {
                         Blutwolf.deadly = true;
@@ -451,7 +441,7 @@ public class NormalNight extends Thread {
                 }
             }
 
-            game.killSpieler(currentOpfer.spieler);
+            Game.game.killSpieler(currentOpfer.spieler);
         }
     }
 
@@ -459,7 +449,7 @@ public class NormalNight extends Thread {
         boolean spieler1Lebend = true;
         boolean spieler2Lebend = true;
 
-        Liebespaar liebespaar = game.liebespaar;
+        Liebespaar liebespaar = Game.game.liebespaar;
 
         if (liebespaar != null && liebespaar.spieler1 != null && liebespaar.spieler2 != null) {
 
@@ -487,16 +477,16 @@ public class NormalNight extends Thread {
             return false;
         }
 
-        if (Rolle.rolleLebend(Konditor.NAME) && !Opfer.isOpferPerRolle(Konditor.NAME) && Rolle.rolleAktiv(Konditor.NAME)) {
+        if (Rolle.rolleLebend(Konditor.ID) && !Opfer.isOpferPerRolle(Konditor.ID) && Rolle.rolleAktiv(Konditor.ID)) {
             return true;
         }
 
-        if (Rolle.rolleLebend(Konditorlehrling.NAME) && !Opfer.isOpferPerRolle(Konditorlehrling.NAME) && Rolle.rolleAktiv(Konditorlehrling.NAME)) {
+        if (Rolle.rolleLebend(Konditorlehrling.ID) && !Opfer.isOpferPerRolle(Konditorlehrling.ID) && Rolle.rolleAktiv(Konditorlehrling.ID)) {
             return true;
         }
 
-        if (Sammler.isSammlerRolle(Konditor.NAME) || Sammler.isSammlerRolle(Konditorlehrling.NAME)) {
-            if (Rolle.rolleLebend(Sammler.NAME) && !Opfer.isOpferPerRolle(Sammler.NAME) && Rolle.rolleAktiv(Sammler.NAME)) { //TODO kann man durch nur rolleAktiv ersetzen?
+        if (Sammler.isSammlerRolle(Konditor.ID) || Sammler.isSammlerRolle(Konditorlehrling.ID)) {
+            if (Rolle.rolleLebend(Sammler.ID) && !Opfer.isOpferPerRolle(Sammler.ID) && Rolle.rolleAktiv(Sammler.ID)) { //TODO kann man durch nur rolleAktiv ersetzen?
                 return true;
             }
         }
@@ -505,7 +495,7 @@ public class NormalNight extends Thread {
     }
 
     private void checkVictory() {
-        Winner winner = game.checkVictory();
+        Winner winner = Game.game.checkVictory();
 
         if (winner != Winner.NO_WINNER) {
             showEndScreenPage(winner);
@@ -641,23 +631,8 @@ public class NormalNight extends Thread {
     }
 
     public String showKonditorDropdownPage(Statement statement, FrontendControl frontendControl) {
-        /*if (Rolle.rolleLebend(Konditor.NAME) || Rolle.rolleLebend(Konditorlehrling.NAME)) {
-            if (!Opfer.isOpferPerRolle(Konditor.NAME) || !Opfer.isOpferPerRolle(Konditorlehrling.NAME)) {
-                if (Rolle.rolleAktiv(Konditor.NAME) || Rolle.rolleAktiv(Konditorlehrling.NAME)) {*/
         FrontendControl.erzählerDropdownPage(statement, frontendControl.dropdownStrings);
         FrontendControl.spielerDropdownPage(statement.title, 1);
-                /*} else {
-                    FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), ResourcePath.DEAKTIVIERT);
-                    FrontendControl.spielerIconPicturePage(DEAKTIVIERT_TITLE, ResourcePath.DEAKTIVIERT);
-                }
-            } else {
-                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), ResourcePath.TOT);
-                FrontendControl.spielerIconPicturePage(TOT_TITLE, ResourcePath.TOT);
-            }
-        } else {
-            FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), ResourcePath.AUS_DEM_SPIEL);
-            FrontendControl.spielerDropdownPage(statement.title, 1);
-        }*/
 
         waitForAnswer();
 
@@ -912,7 +887,7 @@ public class NormalNight extends Thread {
     }
 
     public void henkerNächsteSeite() {
-        Henker henker = (Henker) game.findHauptrolle(Henker.NAME);
+        Henker henker = (Henker) Game.game.findHauptrolle(Henker.ID);
         Henker.pagecounter++;
         if (Henker.pagecounter < Henker.numberOfPages) {
             FrontendControl frontendControl = henker.getPage(FrontendControl.erzählerFrame.chosenOption1);
@@ -921,7 +896,7 @@ public class NormalNight extends Thread {
     }
 
     public void henkerSeiteZurück() {
-        Henker henker = (Henker) game.findHauptrolle(Henker.NAME);
+        Henker henker = (Henker) Game.game.findHauptrolle(Henker.ID);
         if (Henker.pagecounter > 0) {
             Henker.pagecounter--;
             FrontendControl frontendControl = henker.getPage();

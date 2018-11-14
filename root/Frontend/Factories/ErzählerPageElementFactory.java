@@ -246,7 +246,7 @@ public class ErzählerPageElementFactory {
 
                 if (statement.dependency instanceof StatementDependencyRolle) {
                     StatementDependencyRolle statementDependencyRolle = (StatementDependencyRolle) statement.dependency;
-                    if (Sammler.isSammlerRolle(statementDependencyRolle.rolle.name)) {
+                    if (Sammler.isSammlerRolle(statementDependencyRolle.rolle.id)) {
                         beschreibung = statement.sammlerBeschreibung;
                     }
                 }

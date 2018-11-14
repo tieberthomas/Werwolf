@@ -9,6 +9,7 @@ import root.Phases.NightBuilding.Constants.StatementType;
 import root.Phases.NormalNight;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
+import root.mechanics.Game;
 import root.mechanics.KillLogik.Angriff;
 
 import java.util.ArrayList;
@@ -52,12 +53,12 @@ public class Schreckenswolf extends Hauptrolle {
 
     @Override
     public FrontendControl getDropdownOptionsFrontendControl() {
-        return game.getSpielerCheckSpammableFrontendControl(this);
+        return Game.game.getSpielerCheckSpammableFrontendControl(this);
     }
 
     @Override
     public void processChosenOption(String chosenOption) {
-        Spieler chosenSpieler = game.findSpieler(chosenOption);
+        Spieler chosenSpieler = Game.game.findSpieler(chosenOption);
         if (chosenSpieler != null) {
             besucht = chosenSpieler;
             NormalNight.beschworenerSpieler = chosenSpieler;
@@ -72,7 +73,7 @@ public class Schreckenswolf extends Hauptrolle {
         List<Angriff> werwolfAngriffe = new ArrayList<>();
         for (Angriff angriff : NormalNight.angriffe) {
             if (angriff.täterFraktion != null) {
-                if (angriff.täterFraktion.equals(Werwölfe.NAME)) {
+                if (angriff.täterFraktion.equals(Werwölfe.ID)) {
                     werwolfAngriffe.add(angriff);
                 }
             }
@@ -83,7 +84,7 @@ public class Schreckenswolf extends Hauptrolle {
 
     private boolean didSomeoneHaveSchutz(List<Angriff> angriffe) {
         for (Angriff angriff : angriffe) {
-            if (angriff.opfer.geschützt || angriff.opfer.bonusrolle.equals(Wolfspelz.NAME)) {
+            if (angriff.opfer.geschützt || angriff.opfer.bonusrolle.equals(Wolfspelz.ID)) {
                 return true;
             }
         }

@@ -9,6 +9,7 @@ import root.Phases.NightBuilding.Constants.StatementType;
 import root.Phases.NormalNight;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
+import root.mechanics.Game;
 import root.mechanics.KillLogik.Opfer;
 
 import java.util.ArrayList;
@@ -62,7 +63,7 @@ public class Chemiker extends Hauptrolle {
 
     @Override
     public void processChosenOption(String chosenOption) {
-        Spieler chosenSpieler = game.findSpieler(chosenOption);
+        Spieler chosenSpieler = Game.game.findSpieler(chosenOption);
         if (chosenSpieler != null) {
             besucht = chosenSpieler;
 
@@ -77,12 +78,12 @@ public class Chemiker extends Hauptrolle {
 
         for (Opfer currentOpfer : NormalNight.opfer) {
             if (currentOpfer.täterFraktion != null) {
-                String opferFraktion = currentOpfer.spieler.hauptrolle.fraktion.name;
-                String täterFraktion = currentOpfer.täterFraktion.name;
+                Fraktion opferFraktion = currentOpfer.spieler.hauptrolle.fraktion;
+                Fraktion täterFraktion = currentOpfer.täterFraktion;
 
                 if (currentOpfer.spieler.ressurectable) {
-                    if (täterFraktion.equals(Werwölfe.NAME)) {
-                        if (!opferFraktion.equals(Werwölfe.NAME)) {
+                    if (täterFraktion.equals(Werwölfe.ID)) {
+                        if (!opferFraktion.equals(Werwölfe.ID)) {
                             if (!resurrectableOpfer.contains(currentOpfer.spieler.name)) {
                                 resurrectableOpfer.add(currentOpfer.spieler.name);
                             }

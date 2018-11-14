@@ -9,6 +9,7 @@ import root.Persona.Rollen.Constants.BonusrollenType.Tarnumhang_BonusrollenType;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
+import root.mechanics.Game;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,12 +43,12 @@ public class Nachbar extends Bonusrolle {
 
     @Override
     public FrontendControl getDropdownOptionsFrontendControl() {
-        return game.getSpielerCheckSpammableFrontendControl(this);
+        return Game.game.getSpielerCheckSpammableFrontendControl(this);
     }
 
     @Override
     public FrontendControl processChosenOptionGetInfo(String chosenOption) {
-        Spieler chosenSpieler = game.findSpieler(chosenOption);
+        Spieler chosenSpieler = Game.game.findSpieler(chosenOption);
 
         if (chosenSpieler != null) {
             besucht = chosenSpieler;
@@ -56,7 +57,7 @@ public class Nachbar extends Bonusrolle {
                 return new FrontendControl(new Tarnumhang_BonusrollenType());
             }
 
-            Spieler nachbarSpieler = game.findSpielerPerRolle(Nachbar.NAME);
+            Spieler nachbarSpieler = Game.game.findSpielerPerRolle(Nachbar.ID);
             FrontendControl info = new FrontendControl(FrontendControlType.LIST, getBesucherStrings(chosenSpieler, nachbarSpieler));
             info.title = INFO_TITLE + chosenSpieler.name;
 
@@ -70,13 +71,13 @@ public class Nachbar extends Bonusrolle {
         List<String> besucher = new ArrayList<>();
 
         if (beobachteterSpieler != null) {
-            for (Spieler spieler : game.getLivingSpieler()) {
+            for (Spieler spieler : Game.game.getLivingSpieler()) {
                 if (spieler.hauptrolle.besucht != null && spieler.hauptrolle.besucht.equals(beobachteterSpieler) ||
                         (spieler.bonusrolle.besucht != null && spieler.bonusrolle.besucht.equals(beobachteterSpieler))) {
                     besucher.add(spieler.name);
                 }
 
-                if (!besucher.contains(spieler.name) && spieler.bonusrolle.equals(Analytiker.NAME)) {
+                if (!besucher.contains(spieler.name) && spieler.bonusrolle.equals(Analytiker.ID)) {
                     Analytiker analytiker = (Analytiker) spieler.bonusrolle;
                     if (analytiker.besuchtAnalysieren != null && analytiker.besuchtAnalysieren.equals(beobachteterSpieler)) {
                         besucher.add(spieler.name);

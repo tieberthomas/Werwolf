@@ -13,38 +13,38 @@ public class StatementDependencyRolle extends StatementDependency {
 
     @Override
     public boolean isVisibleNow() {
-        return Rolle.rolleContainedInNight(rolle.name);
+        return Rolle.rolleContainedInNight(rolle.id);
     }
 
     @Override
     public boolean isLebendNow() {
-        if (!Sammler.isSammlerRolle(rolle.name)) {
-            return Rolle.rolleLebend(rolle.name);
+        if (!Sammler.isSammlerRolle(rolle.id)) {
+            return Rolle.rolleLebend(rolle.id);
         } else {
-            return Rolle.rolleLebend(Sammler.NAME);
+            return Rolle.rolleLebend(Sammler.ID);
         }
     }
 
     @Override
     public boolean isOpferNow() {
-        if (!Sammler.isSammlerRolle(rolle.name)) {
-            return Opfer.isOpferPerRolle(rolle.name);
+        if (!Sammler.isSammlerRolle(rolle.id)) {
+            return Opfer.isOpferPerRolle(rolle.id);
         } else {
-            return Opfer.isOpferPerRolle(Sammler.NAME);
+            return Opfer.isOpferPerRolle(Sammler.ID);
         }
     }
 
     @Override
     public boolean isAktivNow() {
-        if (!Sammler.isSammlerRolle(rolle.name)) {
-            return Rolle.rolleAktiv(rolle.name);
+        if (!Sammler.isSammlerRolle(rolle.id)) {
+            return Rolle.rolleAktiv(rolle.id);
         } else {
-            return Rolle.rolleAktiv(Sammler.NAME);
+            return Rolle.rolleAktiv(Sammler.ID);
         }
     }
 
     @Override
     public boolean isAufgebrauchtNow() {
-        return Rolle.rolleAufgebraucht(rolle.name);
+        return Rolle.rolleAufgebraucht(rolle.id);
     }
 }

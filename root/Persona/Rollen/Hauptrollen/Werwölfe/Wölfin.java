@@ -11,6 +11,7 @@ import root.Phases.NightBuilding.Constants.StatementType;
 import root.Phases.NormalNight;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
+import root.mechanics.Game;
 import root.mechanics.KillLogik.NormalKill;
 
 public class Wölfin extends Hauptrolle {
@@ -52,17 +53,17 @@ public class Wölfin extends Hauptrolle {
 
     @Override
     public FrontendControl getDropdownOptionsFrontendControl() {
-        return game.getSpielerCheckSpammableFrontendControl(this);
+        return Game.game.getSpielerCheckSpammableFrontendControl(this);
     }
 
     @Override
     public void processChosenOption(String chosenOption) {
-        Spieler chosenSpieler = game.findSpieler(chosenOption);
+        Spieler chosenSpieler = Game.game.findSpieler(chosenOption);
         state = WölfinState.FERTIG;
         if (chosenSpieler != null) {
             besucht = chosenSpieler;
 
-            Spieler täter = game.findSpielerPerRolle(NAME);
+            Spieler täter = Game.game.findSpielerPerRolle(this.id);
             NormalKill.execute(chosenSpieler, täter);
         }
     }

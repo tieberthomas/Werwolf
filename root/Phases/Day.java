@@ -3,6 +3,7 @@ package root.Phases;
 import root.Frontend.FrontendControl;
 import root.Frontend.Utils.JButtonStyler;
 import root.Frontend.Utils.TimeUpdater;
+import root.Persona.Bonusrolle;
 import root.Persona.Fraktionen.Bürger;
 import root.Persona.Hauptrolle;
 import root.Persona.Rollen.Bonusrollen.ReineSeele;
@@ -15,8 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Day extends Thread {
-    Game game;
-
     public static Object lock;
     public static boolean umbringenButton = false;
     public static Spieler umbringenSpieler;
@@ -27,17 +26,13 @@ public class Day extends Thread {
 
     public static final String dayTitle = "Opfer der Dorfabstimmung";
 
-    public Day(Game game) {
-        this.game = game;
-    }
-
     @Override
     public void run() {
         day();
 
-        if (game.freibier) {
+        if (Game.game.freibier) {
             day();
-            game.freibier = false;
+            Game.game.freibier = false;
         }
 
         PhaseManager.nextPhase();
@@ -60,17 +55,17 @@ public class Day extends Thread {
                 killSpielerCheckLiebespaar(umbringenSpieler);
             }
 
-            Spieler chosenSpieler = game.findSpieler(FrontendControl.erzählerFrame.chosenOption1);
+            Spieler chosenSpieler = Game.game.findSpieler(FrontendControl.erzählerFrame.chosenOption1);
 
             if (chosenSpieler != null) {
-                String bonusrolleSpieler = chosenSpieler.bonusrolle.name;
                 Hauptrolle hauptrolleSpieler = chosenSpieler.hauptrolle;
+                Bonusrolle bonusrolleSpieler = chosenSpieler.bonusrolle;
 
-                if (bonusrolleSpieler.equals(ReineSeele.NAME) && ((ReineSeele) chosenSpieler.bonusrolle).dayInvincibility ||
-                        (gebürgteSpieler.contains(chosenSpieler) && hauptrolleSpieler.fraktion.equals(Bürger.NAME))) {
+                if (bonusrolleSpieler.equals(ReineSeele.ID) && ((ReineSeele) chosenSpieler.bonusrolle).dayInvincibility ||
+                        (gebürgteSpieler.contains(chosenSpieler) && hauptrolleSpieler.fraktion.equals(Bürger.ID))) {
                     FrontendControl.erzählerAnnounceOpferPage(chosenSpieler, ImagePath.REINE_SEELE_OPEN_KARTE);
                     FrontendControl.spielerCardPicturePage(chosenSpieler.name, ImagePath.REINE_SEELE_OPEN_KARTE);
-                    if (chosenSpieler.bonusrolle.equals(ReineSeele.NAME)) {
+                    if (chosenSpieler.bonusrolle.equals(ReineSeele.ID)) {
                         ((ReineSeele) chosenSpieler.bonusrolle).dayInvincibility = false;
                     }
 
@@ -80,7 +75,7 @@ public class Day extends Thread {
                 } else {
                     killSpielerCheckLiebespaar(chosenSpieler);
                     Wahrsager.opferFraktion = chosenSpieler.hauptrolle.fraktion;
-                    if (!hauptrolleSpieler.fraktion.equals(Bürger.NAME)) {
+                    if (!hauptrolleSpieler.fraktion.equals(Bürger.ID)) {
                         if (priester != null && priester.lebend && gebürgteSpieler.contains(chosenSpieler)) {
                             killSpielerCheckLiebespaar(priester);
                         }
@@ -100,7 +95,7 @@ public class Day extends Thread {
     }
 
     private void checkVictory() {
-        Winner winner = game.checkVictory();
+        Winner winner = Game.game.checkVictory();
 
         if (winner != Winner.NO_WINNER) {
             showEndScreenPage(winner);
@@ -108,7 +103,7 @@ public class Day extends Thread {
     }
 
     private void checkRichterin(Spieler spieler) {
-        if (spieler.hauptrolle.fraktion.equals(Bürger.NAME)) {
+        if (spieler.hauptrolle.fraktion.equals(Bürger.ID)) {
             if (richterin != null && richterin.lebend && verurteilteSpieler.contains(spieler)) {
                 killSpielerCheckLiebespaar(richterin);
             }
@@ -117,7 +112,7 @@ public class Day extends Thread {
 
     private void killSpieler(Spieler spieler) {
         if (spieler != null) {
-            game.killSpieler(spieler);
+            Game.game.killSpieler(spieler);
 
             FrontendControl.erzählerAnnounceOpferPage(spieler);
             FrontendControl.spielerAnnounceOpferPage(spieler);
@@ -127,10 +122,10 @@ public class Day extends Thread {
     private void killSpielerCheckLiebespaar(Spieler spieler) {
         killSpieler(spieler);
 
-        if (game.liebespaar.getSpielerToDie() != null) {
+        if (Game.game.liebespaar.getSpielerToDie() != null) {
             JButtonStyler.disableButton(FrontendControl.erzählerFrame.umbringenJButton);
             waitForAnswer();
-            killSpieler(game.liebespaar.getSpielerToDie());
+            killSpieler(Game.game.liebespaar.getSpielerToDie());
         }
 
         waitForAnswer();
@@ -146,8 +141,8 @@ public class Day extends Thread {
     }
 
     public void bürgen(String priesterName, String spielerName) {
-        Spieler priesterSpieler = game.findSpieler(priesterName);
-        Spieler verbürgerSpieler = game.findSpieler(spielerName);
+        Spieler priesterSpieler = Game.game.findSpieler(priesterName);
+        Spieler verbürgerSpieler = Game.game.findSpieler(spielerName);
 
         if (priesterSpieler != null && spielerName != null) {
             priester = priesterSpieler;
@@ -156,8 +151,8 @@ public class Day extends Thread {
     }
 
     public void verurteilen(String richterinName, String spielerName) {
-        Spieler richterinSpieler = game.findSpieler(richterinName);
-        Spieler verurteilterSpieler = game.findSpieler(spielerName);
+        Spieler richterinSpieler = Game.game.findSpieler(richterinName);
+        Spieler verurteilterSpieler = Game.game.findSpieler(spielerName);
 
         if (richterinSpieler != null && spielerName != null) {
             richterin = richterinSpieler;
