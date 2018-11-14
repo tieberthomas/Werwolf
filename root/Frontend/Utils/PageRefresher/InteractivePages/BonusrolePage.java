@@ -34,7 +34,7 @@ public class BonusrolePage extends RolePage {
     public void generatePage() {
         int numberOfplayers = game.spieler.size();
         int numberOfBonusrollen = game.bonusrollenInGame.size();
-        List<String> bonusrollen = game.getBonusrolleNames();
+        List<String> bonusrollen = game.getBonusrollenButtonNames();
         //TODO remove information from page generation since it already is gathered in refresh
         pageFactory.generateRollenSetupPage(page, interactiveElementsDto, numberOfplayers, numberOfBonusrollen, bonusrollen);
         //TODO generalize role-pagecreation

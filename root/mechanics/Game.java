@@ -398,9 +398,18 @@ public class Game {
     }
 
     public void addAllHauptrollenToGame() {
+        hauptrollenInGame.clear();
+        spielerSpecified.clear();
         hauptrollenInGame.addAll(hauptrollen);
         hauptrollenInGame.remove(findHauptrolle(Dorfbewohner.NAME));
         hauptrollenInGame.remove(findHauptrolle(Werwolf.NAME));
+    }
+
+    public List<String> getBonusrollenButtonNames() {
+        return bonusrollen.stream()
+                .filter(r -> !(r.equals(SchwarzeSeele.NAME) || r.equals(ReineSeele.NAME)))
+                .map(rolle -> rolle.name)
+                .collect(Collectors.toList());
     }
 
     public List<String> getBonusrolleNames() {
@@ -464,8 +473,12 @@ public class Game {
     }
 
     public void addAllBonusrollen() {
+        bonusrollenInGame.clear();
+        spielerSpecified.clear();
         bonusrollenInGame.addAll(bonusrollen);
         bonusrollenInGame.remove(findBonusrolle(Schatten.NAME));
+        bonusrollenInGame.remove(findBonusrolle(SchwarzeSeele.NAME));
+        bonusrollenInGame.remove(findBonusrolle(ReineSeele.NAME));
     }
 
     public List<Spieler> getSpielerUnspecified() {
