@@ -8,6 +8,7 @@ import root.Persona.Fraktionen.Bürger;
 import root.Persona.Hauptrolle;
 import root.Persona.Rollen.Bonusrollen.ReineSeele;
 import root.Persona.Rollen.Bonusrollen.Wahrsager;
+import root.Persona.Rollen.Hauptrollen.Bürger.Schattenmensch;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
 import root.mechanics.Game;
@@ -65,7 +66,12 @@ public class Day extends Thread {
                         (gebürgteSpieler.contains(chosenSpieler) && hauptrolleSpieler.fraktion.equals(Bürger.ID))) {
                     FrontendControl.erzählerAnnounceOpferPage(chosenSpieler, ImagePath.REINE_SEELE_OPEN_KARTE);
                     FrontendControl.spielerCardPicturePage(chosenSpieler.name, ImagePath.REINE_SEELE_OPEN_KARTE);
-                    if (chosenSpieler.bonusrolle.equals(ReineSeele.ID)) {
+                    if (chosenSpieler.hauptrolle.equals(Schattenmensch.ID)) {
+                        Schattenmensch.transform = true;
+                    }
+
+                    if (chosenSpieler.bonusrolle.equals(ReineSeele.ID) &&
+                            !(gebürgteSpieler.contains(chosenSpieler) && hauptrolleSpieler.fraktion.equals(Bürger.ID))) {
                         ((ReineSeele) chosenSpieler.bonusrolle).dayInvincibility = false;
                     }
 

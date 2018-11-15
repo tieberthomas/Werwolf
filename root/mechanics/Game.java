@@ -7,7 +7,6 @@ import root.Frontend.FrontendControl;
 import root.Persona.Bonusrolle;
 import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Bürger;
-import root.Persona.Fraktionen.SchattenpriesterFraktion;
 import root.Persona.Fraktionen.Werwölfe;
 import root.Persona.Hauptrolle;
 import root.Persona.Rolle;
@@ -86,6 +85,7 @@ public class Game {
         hauptrollen.add(new Riese());
         hauptrollen.add(new Sammler());
         hauptrollen.add(new Schamanin());
+        hauptrollen.add(new Schattenmensch());
         hauptrollen.add(new Seherin());
         hauptrollen.add(new Späher());
         hauptrollen.add(new Wirt());
@@ -166,11 +166,6 @@ public class Game {
             if (!(GrafVladimir.verschleierterSpieler != null && spieler.equals(GrafVladimir.verschleierterSpieler))) {
                 mitteHauptrollen.add(hauptrolle);
                 mitteBonusrollen.add(bonusrolle); //TODO methode auslagern?
-            }
-
-            //TODO funktioniert jetzt nicht mehr mit dieb
-            if (hauptrolle.equals(Schattenpriester.ID) && !bonusrolle.equals(Schatten.ID)) {
-                SchattenpriesterFraktion.deadSchattenPriester++;
             }
 
             if (Rolle.rolleLebend(Wölfin.ID) && Wölfin.state == WölfinState.WARTEND) {
@@ -306,10 +301,6 @@ public class Game {
             if (!hauptrolle.equals(Schattenpriester.ID)) {
                 hauptrollenInGame.remove(hauptrolle.name);
             }
-        }
-
-        for (int i = 0; i < SchattenpriesterFraktion.deadSchattenPriester; i++) {
-            hauptrollenInGame.remove(Schattenpriester.NAME);
         }
 
         return hauptrollenInGame;

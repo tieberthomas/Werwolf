@@ -79,9 +79,9 @@ public class NormalNight extends Thread {
 
             List<String> spielerOrNon = Game.game.getLivingSpielerOrNoneStrings();
 
-            beginNight();
-
             statements = NormalNightStatementBuilder.normalNightBuildStatements();
+
+            beginNight();
 
             for (Statement statement : statements) {
                 refreshStatementStates();
@@ -184,16 +184,21 @@ public class NormalNight extends Thread {
 
                         case SchattenpriesterFraktion.NEUER_SCHATTENPRIESTER:
                             chosenSpieler = Game.game.findSpieler(chosenOptionLastStatement);
-                            String neuerSchattenpriester = "";
+                            List<String> neueSchattenpriester = new ArrayList<>();
                             erzählerInfoIconImagePath = ""; //TODO causes problem "1 Image could not be found at location: "
                             if (chosenSpieler != null) {
-                                neuerSchattenpriester = chosenSpieler.name;
+                                String neuerSchattenpriester = chosenSpieler.name;
+                                neueSchattenpriester.add(neuerSchattenpriester);
+                                if(SchattenpriesterFraktion.spielerToChangeCards!=null) {
+                                    neueSchattenpriester.add(SchattenpriesterFraktion.spielerToChangeCards.name);
+                                    SchattenpriesterFraktion.spielerToChangeCards = null;
+                                }
 
                                 if (!chosenSpieler.hauptrolle.fraktion.equals(SchattenpriesterFraktion.ID)) {
                                     erzählerInfoIconImagePath = Schattenkutte.IMAGE_PATH;
                                 }
                             }
-                            showListShowImage(statement, neuerSchattenpriester, SchattenpriesterFraktion.IMAGE_PATH, erzählerInfoIconImagePath);
+                            showListShowImage(statement, neueSchattenpriester, SchattenpriesterFraktion.IMAGE_PATH, erzählerInfoIconImagePath);
                             break;
 
                         case Chemiker.NEUER_WERWOLF:
@@ -844,10 +849,8 @@ public class NormalNight extends Thread {
         showListShowImage(statement, statement.title, list, spielerImagePath);
     }
 
-    public void showListShowImage(Statement statement, String string, String spielerImagePath, String erzählerImagePath) {
-        List<String> list = new ArrayList<>();
-        list.add(string);
-        showListShowImage(statement, statement.title, list, spielerImagePath, erzählerImagePath);
+    public void showListShowImage(Statement statement, List<String> strings, String spielerImagePath, String erzählerImagePath) {
+        showListShowImage(statement, statement.title, strings, spielerImagePath, erzählerImagePath);
     }
 
     public void showListShowImage(Statement statement, String title, List<String> strings, String spielerImagePath) {

@@ -506,7 +506,8 @@ public class ErzählerPageFactory {
 
         PageElement spielerLabel = pageElementFactory.generateLabel(choosePriester, "Spieler");
 
-        erzählerFrame.comboBox2.setModel(model);
+        DefaultComboBoxModel model2 = new DefaultComboBoxModel(livingPlayers.toArray());
+        erzählerFrame.comboBox2.setModel(model2);
         PageElement choosePlayer = pageElementFactory.generateDropdown(erzählerFrame.comboBox2,
                 null, spielerLabel, 0, 0);
 
@@ -543,7 +544,8 @@ public class ErzählerPageFactory {
 
         PageElement spielerLabel = pageElementFactory.generateLabel(chooseRichterin, "Spieler");
 
-        erzählerFrame.comboBox2.setModel(model);
+        DefaultComboBoxModel model2 = new DefaultComboBoxModel(livingPlayers.toArray());
+        erzählerFrame.comboBox2.setModel(model2);
         PageElement choosePlayer = pageElementFactory.generateDropdown(erzählerFrame.comboBox2,
                 null, spielerLabel, 0, 0);
 

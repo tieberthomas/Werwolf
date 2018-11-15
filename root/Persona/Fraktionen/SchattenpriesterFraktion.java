@@ -41,7 +41,7 @@ public class SchattenpriesterFraktion extends Fraktion {
     public static final String FIRST_NIGHT_STATEMENT_BESCHREIBUNG = "Die Schattenpriester erwachen und sehen einander";
     public static final StatementType FIRST_NIGHT_STATEMENT_TYPE = StatementType.FRAKTION_SPECAL;
 
-    public static int deadSchattenPriester = 0;
+    public static Spieler spielerToChangeCards = null; //used for Schattenmensch
 
     public SchattenpriesterFraktion() {
         this.id = ID;
