@@ -17,7 +17,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.stream.Collectors;
 
 public class ÜbersichtsFrame extends MyFrame implements ActionListener {
     private Color defaultBorderColor = Color.BLUE;

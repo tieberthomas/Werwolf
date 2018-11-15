@@ -11,7 +11,6 @@ alles was tötet + prostituierten interaktion
 wahrsager
 
 bugs:
-Leerzeile an erste stelle sortiert
 
 ToDo:
 StatementType ROLLE_CHOOSE_SPIELER

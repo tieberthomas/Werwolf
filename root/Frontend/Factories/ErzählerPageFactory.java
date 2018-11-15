@@ -640,14 +640,14 @@ public class ErzählerPageFactory {
     private void sortList(List<String> strings) {
         boolean containsEmptyOption = false;
 
-        if(strings.contains("")) {
+        if (strings.contains("")) {
             containsEmptyOption = true;
             strings.remove("");
         }
 
         Collections.sort(strings);
 
-        if(containsEmptyOption) {
+        if (containsEmptyOption) {
             strings.add("");
         }
     }
