@@ -16,7 +16,7 @@ import root.mechanics.Game;
 
 import java.awt.*;
 
-public class Spieler {
+public class Spieler implements Comparable {
     public static final Color ALIVE_BACKGROUND_COLOR = Color.WHITE;
     public static final Color DEAD_BACKGROUND_COLOR = Color.GRAY;
 
@@ -144,5 +144,10 @@ public class Spieler {
         } else {
             return information;
         }
+    }
+
+    @Override
+    public int compareTo(Object spieler) {
+        return this.name.compareTo(((Spieler)spieler).name);
     }
 }

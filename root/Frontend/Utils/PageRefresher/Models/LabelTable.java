@@ -10,17 +10,26 @@ import java.util.function.Supplier;
 public class LabelTable implements RefreshObject {
     private PageTable table;
     private Supplier<List<String>> labelTexts;
+    private boolean sorted;
 
     public LabelTable(PageTable table, Supplier<List<String>> labelTexts) {
+        this(table, labelTexts, true);
+    }
+
+    public LabelTable(PageTable table, Supplier<List<String>> labelTexts, boolean sorted) {
         this.table = table;
         this.labelTexts = labelTexts;
+        this.sorted = sorted;
     }
 
     @Override
     public void refresh() {
         table.tableElements.clear();
         List<String> sortedTexts = labelTexts.get();
-        Collections.sort(sortedTexts);
+
+        if (sorted) {
+            Collections.sort(sortedTexts);
+        }
 
         for (String text : sortedTexts) {
             table.add(new JLabel(text));

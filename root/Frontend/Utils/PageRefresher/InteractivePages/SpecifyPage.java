@@ -15,8 +15,8 @@ import root.mechanics.Game;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 public class SpecifyPage extends RefreshedPage {
@@ -94,29 +94,17 @@ public class SpecifyPage extends RefreshedPage {
     public void setupPageRefresher() {
         pageRefresher = new PageRefresher(page);
         pageRefresher.add(new LabelTable(playerLabelTable,
-                new Supplier<List<String>>() {
-                    public ArrayList<String> get() {
-                        return (ArrayList<String>) Game.game.spielerSpecified.stream()
-                                .map(player -> player.name)
-                                .collect(Collectors.toList());
-                    }
-                }));
+                () -> (ArrayList<String>) Game.game.spielerSpecified.stream()
+                        .map(player -> player.name)
+                        .collect(Collectors.toList()), false));
         pageRefresher.add(new LabelTable(mainroleLabelTable,
-                new Supplier<List<String>>() {
-                    public ArrayList<String> get() {
-                        return (ArrayList<String>) Game.game.spielerSpecified.stream()
-                                .map(player -> player.hauptrolle.name)
-                                .collect(Collectors.toList());
-                    }
-                }));
+                () -> (ArrayList<String>) Game.game.spielerSpecified.stream()
+                        .map(player -> player.hauptrolle.name)
+                        .collect(Collectors.toList()), false));
         pageRefresher.add(new LabelTable(bonusroleLabelTable,
-                new Supplier<List<String>>() {
-                    public ArrayList<String> get() {
-                        return (ArrayList<String>) Game.game.spielerSpecified.stream()
-                                .map(player -> player.bonusrolle.name)
-                                .collect(Collectors.toList());
-                    }
-                }));
+                () -> (ArrayList<String>) Game.game.spielerSpecified.stream()
+                        .map(player -> player.bonusrolle.name)
+                        .collect(Collectors.toList()), false));
         pageRefresher.add(new DeleteButtonTable(deleteTable, deleteButtons, Game.game.spielerSpecified::size));
         pageRefresher.add(new Combobox(comboBox1, Game.game::getSpielerUnspecifiedStrings));
         pageRefresher.add(new Combobox(comboBox2, Game.game::getHauptrollenUnspecifiedStrings));
@@ -130,6 +118,7 @@ public class SpecifyPage extends RefreshedPage {
     }
 
     public void refresh() {
+        Collections.sort(Game.game.spielerSpecified);
         pageRefresher.refreshPage();
         if (spielerFrame != null) {
             spielerFrame.refreshSecondarySpecifySetupPage();
