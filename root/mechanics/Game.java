@@ -367,13 +367,7 @@ public class Game {
 
     public List<String> getBonusrollenButtonNames() {
         return bonusrollen.stream()
-                .filter(r -> !(r.equals(SchwarzeSeele.NAME) || r.equals(ReineSeele.NAME)))
-                .map(rolle -> rolle.name)
-                .collect(Collectors.toList());
-    }
-
-    public List<String> getBonusrolleNames() {
-        return bonusrollen.stream()
+                .filter(r -> !(r.equals(SchwarzeSeele.ID) || r.equals(ReineSeele.ID)))
                 .map(rolle -> rolle.name)
                 .collect(Collectors.toList());
     }
