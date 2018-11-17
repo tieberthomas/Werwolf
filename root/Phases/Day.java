@@ -54,6 +54,11 @@ public class Day extends Thread {
             while (umbringenButton) {
                 umbringenButton = false;
                 killSpielerCheckLiebespaar(umbringenSpieler);
+
+                FrontendControl.erzählerDefaultDayPage();
+                FrontendControl.spielerDayPage();
+
+                waitForAnswer();
             }
 
             Spieler chosenSpieler = Game.game.findSpieler(FrontendControl.erzählerFrame.chosenOption1);

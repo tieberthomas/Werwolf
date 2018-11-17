@@ -189,7 +189,7 @@ public class NormalNight extends Thread {
                             if (chosenSpieler != null) {
                                 String neuerSchattenpriester = chosenSpieler.name;
                                 neueSchattenpriester.add(neuerSchattenpriester);
-                                if(SchattenpriesterFraktion.spielerToChangeCards!=null) {
+                                if (SchattenpriesterFraktion.spielerToChangeCards != null) {
                                     neueSchattenpriester.add(SchattenpriesterFraktion.spielerToChangeCards.name);
                                     SchattenpriesterFraktion.spielerToChangeCards = null;
                                 }

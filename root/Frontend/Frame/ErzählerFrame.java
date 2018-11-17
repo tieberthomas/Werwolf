@@ -46,8 +46,6 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     public ArrayList<JButton> goBackButtons = new ArrayList<>();
     public ArrayList<JButton> goNextButtons = new ArrayList<>();
 
-    public JTextField addPlayerTxtField;
-
     public String chosenOption1 = "";
     public String chosenOption2 = "";
 
@@ -55,7 +53,6 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     public JComboBox comboBox2;
     public JButton nextJButton;
     public JButton goBackJButton;
-    public JButton nachzüglerJButton;
     public JButton umbringenJButton;
     public JButton priesterJButton;
     public JButton richterinJButton;
@@ -267,45 +264,6 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
             } catch (NullPointerException e) {
                 System.out.println("Combobox2 might not be initialized.");
             }
-        } else if (ae.getSource() == nachzüglerJButton || ae.getSource() == addPlayerTxtField && mode == ErzählerFrameMode.NACHZÜGLER_SETUP) {
-            if (mode == ErzählerFrameMode.NACHZÜGLER_SETUP) {
-                if (!addPlayerTxtField.getText().equals("") && !Game.game.spielerExists(addPlayerTxtField.getText())) {
-                    try {
-                        if (comboBox1 != null) {
-                            chosenOption1 = (String) comboBox1.getSelectedItem();
-                        }
-
-                        if (comboBox2 != null) {
-                            chosenOption2 = (String) comboBox2.getSelectedItem();
-                        }
-                    } catch (NullPointerException e) {
-                        System.out.println("some comboboxes (1,2) might not be initialized.");
-                    }
-
-                    String name = addPlayerTxtField.getText();
-                    String hauptrolle = chosenOption1;
-                    String bonusrolle = chosenOption2;
-
-                    Spieler newSpieler = new Spieler(name, hauptrolle, bonusrolle);
-                    Game.game.bonusrollenInGame.remove(newSpieler.bonusrolle);
-                    newSpieler.bonusrolle = newSpieler.bonusrolle.getTauschErgebnis();
-                    Game.game.bonusrollenInGame.add(newSpieler.bonusrolle);
-
-                    addPlayerTxtField.setText("");
-
-                    mode = PhaseManager.parsePhaseMode();
-                    showDayPage();
-
-                    if (übersichtsFrame != null) {
-                        übersichtsFrame.refresh();
-                    }
-                }
-            } else {
-                mode = ErzählerFrameMode.NACHZÜGLER_SETUP;
-
-                spielerFrame.mode = SpielerFrameMode.blank;
-                buildScreenFromPage(pageFactory.generateNachzüglerPage(Game.game.getStillAvailableHauptrolleNames(), Game.game.getStillAvailableBonusrollenNames()));
-            }
         } else if (ae.getSource() == umbringenJButton) {
             if (mode == ErzählerFrameMode.UMBRINGEN_SETUP) {
                 try {
@@ -492,8 +450,8 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     }
 
     private boolean gameIsInDaySetupMode() {
-        return mode == ErzählerFrameMode.NACHZÜGLER_SETUP || mode == ErzählerFrameMode.UMBRINGEN_SETUP ||
-                mode == ErzählerFrameMode.PRIESTER_SETUP || mode == ErzählerFrameMode.RICHTERIN_SETUP;
+        return mode == ErzählerFrameMode.UMBRINGEN_SETUP || mode == ErzählerFrameMode.PRIESTER_SETUP
+                || mode == ErzählerFrameMode.RICHTERIN_SETUP;
     }
 
     public void respawnFrames() {

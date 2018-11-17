@@ -389,79 +389,28 @@ public class ErzählerPageFactory {
         erzählerFrame.nextJButton = new JButton();
         PageElement nextButton = pageElementFactory.generateLowestButton(erzählerFrame.nextJButton);
 
-        erzählerFrame.nachzüglerJButton = new JButton();
-        PageElement nachzüglerButton = pageElementFactory.generateLowestButton(erzählerFrame.nachzüglerJButton, "Nachzügler", false);
-
         erzählerFrame.umbringenJButton = new JButton();
-        PageElement umbringenButton = pageElementFactory.generateLowestButton(erzählerFrame.umbringenJButton, "Umbringen", false, 1);
+        PageElement umbringenButton = pageElementFactory.generateLowestButton(erzählerFrame.umbringenJButton, "Umbringen", false);
 
         erzählerFrame.priesterJButton = new JButton();
-        PageElement priesterButton = pageElementFactory.generateLowestButton(erzählerFrame.priesterJButton, "Priester", false, 2);
+        PageElement priesterButton = pageElementFactory.generateLowestButton(erzählerFrame.priesterJButton, "Priester", false, 1);
 
         erzählerFrame.richterinJButton = new JButton();
-        PageElement richterinButton = pageElementFactory.generateLowestButton(erzählerFrame.richterinJButton, "Richterin", false, 3);
+        PageElement richterinButton = pageElementFactory.generateLowestButton(erzählerFrame.richterinJButton, "Richterin", false, 2);
 
         erzählerFrame.respawnFramesJButton = new JButton();
-        PageElement respawnFramesButton = pageElementFactory.generateLowestButton(erzählerFrame.respawnFramesJButton, "Fenster neustart", false, 4);
+        PageElement respawnFramesButton = pageElementFactory.generateLowestButton(erzählerFrame.respawnFramesJButton, "Fenster neustart", false, 3);
 
         Page dayPage = new Page();
 
         dayPage.add(titleLabel);
         dayPage.add(nextButton);
-        dayPage.add(nachzüglerButton);
         dayPage.add(umbringenButton);
         dayPage.add(priesterButton);
         dayPage.add(richterinButton);
         dayPage.add(respawnFramesButton);
 
         return dayPage;
-    }
-
-    public Page generateNachzüglerPage(List<String> hauptrollen, List<String> bonusrollen) {
-        //TODO remove feature ???
-        PageElement titleLabel = pageElementFactory.generateTitleLabel(null, "Funktioniert nicht");
-        //PageElement titleLabel = pageElementFactory.generateTitleLabel(null, "Nachzügler");
-
-        PageElement nameLabel = pageElementFactory.generateLabel(titleLabel, "Name");
-
-        //PageElement nameTxtField = pageElementFactory.generateAddPlayerTxtField(nameLabel);
-
-        //PageElement hauptRolleLabel = pageElementFactory.generateLabel(nameTxtField, "Hauptrolle");
-        PageElement hauptRolleLabel = pageElementFactory.generateLabel(titleLabel, "Hauptrolle");
-
-        DefaultComboBoxModel model = new DefaultComboBoxModel(hauptrollen.toArray());
-        erzählerFrame.comboBox1.setModel(model);
-        PageElement choosePlayer1 = pageElementFactory.generateDropdown(erzählerFrame.comboBox1,
-                null, hauptRolleLabel, 0, 0);
-
-        PageElement bonusRolleLabel = pageElementFactory.generateLabel(choosePlayer1, "Hauptrolle");
-
-        DefaultComboBoxModel model2 = new DefaultComboBoxModel(bonusrollen.toArray());
-        erzählerFrame.comboBox2.setModel(model2);
-        PageElement choosePlayer2 = pageElementFactory.generateDropdown(erzählerFrame.comboBox2,
-                null, bonusRolleLabel, 0, 0);
-
-
-        erzählerFrame.nachzüglerJButton = new JButton();
-        PageElement nextButton = pageElementFactory.generateLowestButton(erzählerFrame.nachzüglerJButton);
-
-        erzählerFrame.goBackJButton = new JButton();
-        PageElement goBackButton = pageElementFactory.generateLowestButton(erzählerFrame.goBackJButton, "Zurück", false);
-        erzählerFrame.goBackButtons.add(erzählerFrame.goBackJButton);
-
-        Page nachzüglerPage = new Page();
-
-        nachzüglerPage.add(titleLabel);
-        nachzüglerPage.add(nameLabel);
-        //nachzüglerPage.add(nameTxtField);
-        nachzüglerPage.add(hauptRolleLabel);
-        nachzüglerPage.add(choosePlayer1);
-        nachzüglerPage.add(bonusRolleLabel);
-        nachzüglerPage.add(choosePlayer2);
-        nachzüglerPage.add(nextButton);
-        nachzüglerPage.add(goBackButton);
-
-        return nachzüglerPage;
     }
 
     public Page generateUmbringenPage(List<String> livingPlayers) {
