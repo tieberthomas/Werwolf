@@ -1,12 +1,13 @@
-1. Obwohl fünf Irrlichter ausgewählt wurden konnte ich nur eines vergeben 10 - 1 done
-1. Listen Alphabetisch 8 - 1 done
-1. Verschleiert gestorbene Rollen werden noch immer Totengräber und Überläufer angezeigt 5 - 1 done
-2. Reine/Schwarze Seele aus Auswahl entfernen 2 - 0,5 done
-3. Schattenmensch 3 - 4 done
+Verschleiert gestorbene Rollen werden noch immer Totengräber und Überläufer angezeigt 5 - 1 done
+Schattenmensch 3 - 4 done
+
+1. Henker ist in erster Nacht nicht geschützt 10 - 1
+1. armor liste "Zufällig" als default auswählen 8 - 1
+2. Henker aus erster Nacht entfernen 5 - 1
 3. Detektiv 1 - 3
 3. Blutwolf/Holde Maid 7 - 5
 3. Nachtfürst 5 - 7
+3. Bei Wahrsager "Kein Opfer" aus der Alphabetischen Liste herausnehmen und ans Ende setzten 3 - 1
 4. wenn dieb eine Karte stiehlt, und man auf weiter klickt wird sofort die neue Bonusrolle gezeigt, verlangt hohe vorsichtigkeit des erzählers 1 - 1
+5. Bei alphabetischer liste klein und Großbuchstaben gleichsetzten 1 - (1-10)
 5. Imitator 1 - 50
-
--- armor liste gezielt sortieren so dass "Zufällig" der untertse punkt ist (ist nur relevant bei kleinbuchstaben)
