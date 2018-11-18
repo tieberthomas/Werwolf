@@ -2,6 +2,7 @@ package root.Persona.Rollen.Bonusrollen;
 
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
+import root.Frontend.Utils.DropdownOptions;
 import root.Persona.Bonusrolle;
 import root.Persona.Fraktion;
 import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
@@ -45,11 +46,7 @@ public class Wahrsager extends Bonusrolle {
 
     @Override
     public FrontendControl getDropdownOptionsFrontendControl() {
-        List<String> dropdownStrings = Fraktion.getFraktionStrings();
-
-        dropdownStrings.add(KEIN_OPFER);
-
-        return new FrontendControl(FrontendControlType.DROPDOWN_LIST, dropdownStrings);
+        return new FrontendControl(FrontendControlType.DROPDOWN_LIST, new DropdownOptions(Fraktion.getFraktionStrings(), KEIN_OPFER));
     }
 
     @Override
