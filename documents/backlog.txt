@@ -3,6 +3,7 @@ Schattenmensch 3 - 4 done
 Henker ist in erster Nacht nicht geschützt 10 - 1 done
 armor liste "Zufällig" als default auswählen 8 - 1 done
 Henker aus erster Nacht entfernen 5 - 1 done
+Wirt aus erster Nacht entfernen ? - 0.5 done
 Bei alphabetischer liste klein und Großbuchstaben gleichsetzten 1 - (1-10) done
 Bei Wahrsager "Kein Opfer" aus der Alphabetischen Liste herausnehmen und ans Ende setzten 3 - 1 done
 

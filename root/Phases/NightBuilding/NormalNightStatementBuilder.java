@@ -34,7 +34,7 @@ public class NormalNightStatementBuilder {
             Schattenmensch.transform();
         }
 
-        if (Wirt.freibierCharges > 0) {
+        if (PhaseManager.nightCount != 1 && Wirt.freibierCharges > 0) {
             addStatementRolle(statements, Wirt.ID);
         }
 
