@@ -317,7 +317,7 @@ public class ErzählerPageFactory {
     public Page generateListPage(Page listPage, Statement statement, String title, List<String> stringsToDisplay, boolean hatZurückButton) {
         listPage = generateDefaultNightPage(listPage, statement, title, hatZurückButton);
 
-        Collections.sort(stringsToDisplay);
+        Collections.sort(stringsToDisplay, String.CASE_INSENSITIVE_ORDER);
 
         if (stringsToDisplay.size() > 0) {
             PageElement label = pageElementFactory.generateLabel(getContinueToGeneratePagePoint(listPage), stringsToDisplay.get(0));

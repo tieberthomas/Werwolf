@@ -28,7 +28,7 @@ public class LabelTable implements RefreshObject {
         List<String> sortedTexts = labelTexts.get();
 
         if (sorted) {
-            Collections.sort(sortedTexts);
+            Collections.sort(sortedTexts, String.CASE_INSENSITIVE_ORDER);
         }
 
         for (String text : sortedTexts) {

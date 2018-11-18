@@ -7,6 +7,7 @@ import root.Frontend.Frame.ÜbersichtsFrame;
 import root.Frontend.Page.Page;
 import root.Frontend.Utils.DropdownOptions;
 import root.Persona.Rollen.Bonusrollen.Schnüffler;
+import root.Persona.Rollen.Constants.DropdownConstants;
 import root.Persona.Rollen.Constants.RawInformation;
 import root.Persona.Rollen.Constants.SchnüfflerInformation;
 import root.Persona.Rollen.Constants.Zeigekarten.AusDemSpiel;
@@ -148,7 +149,7 @@ public class FrontendControl {
     }
 
     public static void erzählerDefaultDayPage() {
-        Page dayPage = erzählerFrame.pageFactory.generateDayPage(new DropdownOptions(Game.game.getLivingSpielerOrNoneStrings(),""));
+        Page dayPage = erzählerFrame.pageFactory.generateDayPage(new DropdownOptions(Game.game.getLivingSpielerOrNoneStrings(), DropdownConstants.EMPTY));
         erzählerFrame.buildScreenFromPage(dayPage);
     }
 

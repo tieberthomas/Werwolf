@@ -25,13 +25,13 @@ public class DropdownOptions {
 
     private void sort() {
         if (defaultOption == null) {
-            Collections.sort(strings);
+            Collections.sort(strings, String.CASE_INSENSITIVE_ORDER);
             return;
         }
 
         strings.remove(defaultOption);
 
-        Collections.sort(strings);
+        Collections.sort(strings, String.CASE_INSENSITIVE_ORDER);
 
         strings.add(defaultOption);
     }

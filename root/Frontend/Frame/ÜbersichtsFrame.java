@@ -47,7 +47,7 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener {
         Collections.sort(Game.game.spieler, new Comparator<Spieler>() {
             @Override
             public int compare(Spieler spieler1, Spieler spieler2) {
-                return spieler1.name.compareTo(spieler2.name);
+                return spieler1.name.compareToIgnoreCase(spieler2.name);
             }
         });
 

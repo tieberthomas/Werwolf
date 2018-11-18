@@ -17,7 +17,7 @@ public class Combobox implements RefreshObject {
     @Override
     public void refresh() {
         List<String> texts = comboBoxTexts.get();
-        Collections.sort(texts);
+        Collections.sort(texts, String.CASE_INSENSITIVE_ORDER);
         DefaultComboBoxModel model = new DefaultComboBoxModel(texts.toArray());
         comboBox.setModel(model);
     }

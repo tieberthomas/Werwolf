@@ -289,8 +289,8 @@ public class SpielerPageFactory {
 
     public Page generateDoubleListPage(List<String> stringsToDisplay1, List<String> stringsToDisplay2, String title1, String title2) {
         int titleSpace = 80;
-        Collections.sort(stringsToDisplay1);
-        Collections.sort(stringsToDisplay2);
+        Collections.sort(stringsToDisplay1, String.CASE_INSENSITIVE_ORDER);
+        Collections.sort(stringsToDisplay2, String.CASE_INSENSITIVE_ORDER);
         Page listPage = generateDoubleListPage(stringsToDisplay1, stringsToDisplay2, titleSpace, 0);
 
         PageElement title1Element = pageElementFactory.generateColumnTitleLabel(title1, 2, 0, titleSpace);
@@ -305,10 +305,10 @@ public class SpielerPageFactory {
     public Page generateDoubleListPage(List<String> stringsToDisplay1, List<String> stringsToDisplay2, int offsetAbove, int offsetBelow) {
         List<String> realStringsToDisplay1 = new ArrayList<>(stringsToDisplay1);
         realStringsToDisplay1.remove("");
-        Collections.sort(realStringsToDisplay1);
+        Collections.sort(realStringsToDisplay1, String.CASE_INSENSITIVE_ORDER);
         List<String> realStringsToDisplay2 = new ArrayList<>(stringsToDisplay2);
         realStringsToDisplay2.remove("");
-        Collections.sort(realStringsToDisplay2);
+        Collections.sort(realStringsToDisplay2, String.CASE_INSENSITIVE_ORDER);
 
         int maxLinesPerCollumnBig = 12;
         int maxLinesPerCollumnSmall = 10;
@@ -322,7 +322,7 @@ public class SpielerPageFactory {
     }
 
     public Page generateListPage(List<String> stringsToDisplay) {
-        Collections.sort(stringsToDisplay);
+        Collections.sort(stringsToDisplay, String.CASE_INSENSITIVE_ORDER);
         List<String> realStringsToDisplay = new ArrayList<>(stringsToDisplay);
         realStringsToDisplay.remove("");
 
@@ -337,7 +337,7 @@ public class SpielerPageFactory {
 
     public Page generateListPage(List<String> stringsToDisplay, int numberOfColumns) {
         Page listPage = new Page(0, 10);
-        Collections.sort(stringsToDisplay);
+        Collections.sort(stringsToDisplay, String.CASE_INSENSITIVE_ORDER);
         float dividingPoint = ((float) stringsToDisplay.size()) / numberOfColumns;
 
         for (int i = 0; i < numberOfColumns; i++) {
@@ -360,7 +360,7 @@ public class SpielerPageFactory {
 
     public Page generateListPage(List<String> stringsToDisplay, List<String> stringsToDisplay2, int numberOfColumnsPerList, int offsetAbove, int offsetBelow) {
         Page listPage = new Page(5, 10);
-        Collections.sort(stringsToDisplay);
+        Collections.sort(stringsToDisplay, String.CASE_INSENSITIVE_ORDER);
         float dividingPoint1 = ((float) stringsToDisplay.size()) / numberOfColumnsPerList;
         float dividingPoint2 = ((float) stringsToDisplay2.size()) / numberOfColumnsPerList;
         int textSize = 36;
@@ -407,7 +407,7 @@ public class SpielerPageFactory {
         Page listPage = new Page(0, 10);
         List<String> realStringsToDisplay = new ArrayList<>(stringsToDisplay);
         realStringsToDisplay.remove("");
-        Collections.sort(realStringsToDisplay);
+        Collections.sort(realStringsToDisplay, String.CASE_INSENSITIVE_ORDER);
 
         if (realStringsToDisplay.size() > 0) {
             int frameOffset = MyFrame.yOffset;

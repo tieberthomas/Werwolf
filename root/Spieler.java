@@ -148,6 +148,6 @@ public class Spieler implements Comparable {
 
     @Override
     public int compareTo(Object spieler) {
-        return this.name.compareTo(((Spieler)spieler).name);
+        return this.name.compareToIgnoreCase(((Spieler)spieler).name);
     }
 }
