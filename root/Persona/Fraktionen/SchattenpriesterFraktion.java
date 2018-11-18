@@ -2,9 +2,11 @@ package root.Persona.Fraktionen;
 
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
+import root.Frontend.Utils.DropdownOptions;
 import root.Persona.Fraktion;
 import root.Persona.Rollen.Bonusrollen.Schatten;
 import root.Persona.Rollen.Bonusrollen.Schattenkutte;
+import root.Persona.Rollen.Constants.DropdownConstants;
 import root.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.SchattenpriesterZeigekarte;
 import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Persona.Rollen.Hauptrollen.Schattenpriester.Schattenpriester;
@@ -82,7 +84,7 @@ public class SchattenpriesterFraktion extends Fraktion {
 
     @Override
     public FrontendControl getDropdownOptionsFrontendControl() {
-        return new FrontendControl(FrontendControlType.DROPDOWN_LIST, getRessurectableOpfer());
+        return new FrontendControl(FrontendControlType.DROPDOWN_LIST, new DropdownOptions(getRessurectableOpfer(), DropdownConstants.EMPTY));
     }
 
     private List<String> getRessurectableOpfer() {
@@ -100,8 +102,6 @@ public class SchattenpriesterFraktion extends Fraktion {
                 }
             }
         }
-
-        dropdownStrings.add("");
 
         return dropdownStrings;
     }

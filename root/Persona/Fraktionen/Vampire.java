@@ -2,7 +2,9 @@ package root.Persona.Fraktionen;
 
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
+import root.Frontend.Utils.DropdownOptions;
 import root.Persona.Fraktion;
+import root.Persona.Rollen.Constants.DropdownConstants;
 import root.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.VampireZeigekarte;
 import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Phases.NightBuilding.Constants.StatementType;
@@ -12,7 +14,6 @@ import root.mechanics.Game;
 import root.mechanics.KillLogik.NormalKill;
 
 import java.awt.*;
-import java.util.List;
 
 public class Vampire extends Fraktion {
     public static final String ID = "ID_Vampire";
@@ -59,10 +60,8 @@ public class Vampire extends Fraktion {
 
     @Override
     public FrontendControl getDropdownOptionsFrontendControl() {
-        FrontendControlType typeOfContent = FrontendControlType.DROPDOWN_IMAGE;
-        List<String> strings = Game.game.getLivingSpielerOrNoneStrings();
-        String imagePath = zeigekarte.imagePath;
+        DropdownOptions dropdownOptions = new DropdownOptions(Game.game.getLivingSpielerOrNoneStrings(), DropdownConstants.EMPTY);
 
-        return new FrontendControl(typeOfContent, strings, imagePath);
+        return new FrontendControl(FrontendControlType.DROPDOWN_IMAGE, dropdownOptions, zeigekarte.imagePath);
     }
 }

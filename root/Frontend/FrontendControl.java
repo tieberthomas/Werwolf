@@ -103,9 +103,9 @@ public class FrontendControl {
         this.imagePath = zeigekarte.imagePath;
     }
 
-    public FrontendControl(FrontendControlType typeOfContent, List<String> displayedStrings, String imagePath) {
+    public FrontendControl(FrontendControlType typeOfContent, DropdownOptions dropdownOptions, String imagePath) {
         this.typeOfContent = typeOfContent;
-        this.displayedStrings = displayedStrings;
+        this.dropdownOptions = dropdownOptions;
         this.imagePath = imagePath;
     }
 
