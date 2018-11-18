@@ -2,6 +2,7 @@ package root.Persona.Rollen.Hauptrollen.Bürger;
 
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
+import root.Frontend.Utils.DropdownOptions;
 import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Bürger;
 import root.Persona.Hauptrolle;
@@ -56,9 +57,7 @@ public class Irrlicht extends Hauptrolle {
 
     @Override
     public FrontendControl getDropdownOptionsFrontendControl() {
-        List<String> allSpieler = Game.game.getIrrlichterStrings();
-
-        return new FrontendControl(FrontendControlType.IRRLICHT_DROPDOWN, allSpieler);
+        return new FrontendControl(FrontendControlType.IRRLICHT_DROPDOWN, new DropdownOptions(Game.game.getIrrlichterStrings()));
     }
 
     public static FrontendControl processFlackerndeIrrlichter(List<String> flackerndeIrrlichter) {

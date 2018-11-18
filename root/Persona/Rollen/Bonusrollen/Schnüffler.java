@@ -1,10 +1,11 @@
 package root.Persona.Rollen.Bonusrollen;
 
-import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
+import root.Frontend.Utils.DropdownOptions;
 import root.Persona.Bonusrolle;
 import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Persona.Rollen.Constants.BonusrollenType.Informativ;
+import root.Persona.Rollen.Constants.DropdownConstants;
 import root.Persona.Rollen.Constants.SchnüfflerInformation;
 import root.Persona.Rollen.SchnüfflerInformationGenerator;
 import root.Phases.NightBuilding.Constants.StatementType;
@@ -46,20 +47,17 @@ public class Schnüffler extends Bonusrolle {
 
     @Override
     public FrontendControl getDropdownOptionsFrontendControl() {
-        FrontendControl frontendControl = new FrontendControl();
+        List<String> dropdownStrings = removePreviousSpieler(Game.game.getLivingSpielerOrNoneStrings());
 
-        frontendControl.typeOfContent = FrontendControlType.DROPDOWN;
-        frontendControl.dropdownStrings = Game.game.getLivingSpielerOrNoneStrings();
-
-        removePreviousSpieler(frontendControl.dropdownStrings);
-
-        return frontendControl;
+        return new FrontendControl(new DropdownOptions(dropdownStrings, DropdownConstants.EMPTY));
     }
 
-    private void removePreviousSpieler(List<String> spieler) {
+    private List<String> removePreviousSpieler(List<String> spieler) {
         for (SchnüfflerInformation information : informationen) {
             spieler.remove(information.spielerName);
         }
+
+        return spieler;
     }
 
     @Override

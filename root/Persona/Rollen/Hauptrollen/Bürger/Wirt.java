@@ -1,7 +1,7 @@
 package root.Persona.Rollen.Hauptrollen.Bürger;
 
-import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
+import root.Frontend.Utils.DropdownOptions;
 import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Bürger;
 import root.Persona.Hauptrolle;
@@ -9,6 +9,7 @@ import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static root.Persona.Rollen.Constants.DropdownConstants.JA;
 import static root.Persona.Rollen.Constants.DropdownConstants.NEIN;
@@ -40,20 +41,17 @@ public class Wirt extends Hauptrolle {
 
     @Override
     public FrontendControl getDropdownOptionsFrontendControl() {
-        FrontendControl frontendControl = new FrontendControl();
+        List<String> dropdownStrings = new ArrayList<>();
+        dropdownStrings.add(JA);
+        dropdownStrings.add(NEIN);
 
-        frontendControl.typeOfContent = FrontendControlType.DROPDOWN;
-        frontendControl.dropdownStrings = new ArrayList<>();
-        frontendControl.addString(JA);
-        frontendControl.addString(NEIN);
-
-        return frontendControl;
+        return new FrontendControl(new DropdownOptions(dropdownStrings));
     }
 
     @Override
     public void processChosenOption(String chosenOption) {
         if (chosenOption != null) {
-            if (chosenOption.equals(JA.name)) {
+            if (chosenOption.equals(JA)) {
                 freibierCharges--;
             }
         }

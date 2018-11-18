@@ -2,9 +2,11 @@ package root.Persona.Rollen.Hauptrollen.Werwölfe;
 
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
+import root.Frontend.Utils.DropdownOptions;
 import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Werwölfe;
 import root.Persona.Hauptrolle;
+import root.Persona.Rollen.Constants.DropdownConstants;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.Phases.NormalNight;
 import root.ResourceManagement.ImagePath;
@@ -52,13 +54,9 @@ public class Chemiker extends Hauptrolle {
 
     @Override
     public FrontendControl getDropdownOptionsFrontendControl() {
-        FrontendControl frontendControl = new FrontendControl();
+        DropdownOptions dropdownOptions = new DropdownOptions(findResurrectableOpfer(), DropdownConstants.EMPTY);
 
-        frontendControl.typeOfContent = FrontendControlType.DROPDOWN_LIST;
-        frontendControl.dropdownStrings = findResurrectableOpfer();
-        frontendControl.dropdownStrings.add("");
-
-        return frontendControl;
+        return new FrontendControl(FrontendControlType.DROPDOWN_LIST, dropdownOptions);
     }
 
     @Override

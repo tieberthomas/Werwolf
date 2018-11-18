@@ -1,9 +1,9 @@
 package root.mechanics;
 
-import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.Frame.ErzählerFrame;
 import root.Frontend.Frame.ÜbersichtsFrame;
 import root.Frontend.FrontendControl;
+import root.Frontend.Utils.DropdownOptions;
 import root.Persona.Bonusrolle;
 import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Bürger;
@@ -248,12 +248,7 @@ public class Game {
     }
 
     public FrontendControl getSpielerCheckSpammableFrontendControl(Rolle rolle) {
-        FrontendControl frontendControl = new FrontendControl();
-
-        frontendControl.typeOfContent = FrontendControlType.DROPDOWN;
-        frontendControl.dropdownStrings = getSpielerCheckSpammableStrings(rolle);
-
-        return frontendControl;
+        return new FrontendControl(new DropdownOptions(getSpielerCheckSpammableStrings(rolle)));
     }
 
     public List<String> getMitspielerCheckSpammableStrings(Rolle rolle) {
@@ -268,12 +263,8 @@ public class Game {
     }
 
     public FrontendControl getMitspielerCheckSpammableFrontendControl(Rolle rolle) {
-        FrontendControl frontendControl = new FrontendControl();
+        return new FrontendControl(new DropdownOptions(getMitspielerCheckSpammableStrings(rolle)));
 
-        frontendControl.typeOfContent = FrontendControlType.DROPDOWN;
-        frontendControl.dropdownStrings = getMitspielerCheckSpammableStrings(rolle);
-
-        return frontendControl;
     }
 
     public List<String> getHauptrolleNames() {

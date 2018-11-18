@@ -1,17 +1,11 @@
 package root.Persona.Rollen.Bonusrollen;
 
-import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.Persona.Bonusrolle;
 import root.Persona.Rollen.Constants.BonusrollenType.Aktiv;
 import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
-
-import java.util.ArrayList;
-
-import static root.Persona.Rollen.Constants.DropdownConstants.GUT;
-import static root.Persona.Rollen.Constants.DropdownConstants.SCHLECHT;
 
 public class Konditorlehrling extends Bonusrolle {
     public static final String ID = "ID_Konditorlehrling";
@@ -38,13 +32,6 @@ public class Konditorlehrling extends Bonusrolle {
 
     @Override
     public FrontendControl getDropdownOptionsFrontendControl() {
-        FrontendControl frontendControl = new FrontendControl();
-
-        frontendControl.typeOfContent = FrontendControlType.DROPDOWN;
-        frontendControl.dropdownStrings = new ArrayList<>();
-        frontendControl.addString(GUT);
-        frontendControl.addString(SCHLECHT);
-
-        return frontendControl;
+        return Konditor.getTortenOptionsFrontendControl();
     }
 }

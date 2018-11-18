@@ -55,9 +55,9 @@ public class Tarnumhang extends Bonusrolle {
 
         frontendControl.typeOfContent = FrontendControlType.LIST;
         frontendControl.title = STATEMENT_TITLE;
-        frontendControl.dropdownStrings = new ArrayList<>();
+        frontendControl.displayedStrings = new ArrayList<>();
         String unseenTräger = getUnseenTräger();
-        frontendControl.dropdownStrings.add(unseenTräger);
+        frontendControl.displayedStrings.add(unseenTräger);
 
         return frontendControl;
     }

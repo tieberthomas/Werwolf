@@ -1,6 +1,7 @@
 package root.Phases;
 
 import root.Frontend.FrontendControl;
+import root.Frontend.Utils.DropdownOptions;
 import root.Persona.Bonusrolle;
 import root.Persona.Fraktion;
 import root.Persona.Hauptrolle;
@@ -81,9 +82,7 @@ public class FirstNight extends Thread {
                     } else {
                         switch (statement.id) {
                             case IndieStatements.LIEBESPAAR_ID:
-                                List<String> spielerOrZufällig = Game.game.liebespaar.getDropdownOptions();
-
-                                showDropdown(statement, spielerOrZufällig, spielerOrZufällig);
+                                showDropdown(statement, Liebespaar.getDropdownOptions(), Liebespaar.getDropdownOptions());
 
                                 Game.game.liebespaar = new Liebespaar(FrontendControl.erzählerFrame.chosenOption1, FrontendControl.erzählerFrame.chosenOption2);
                                 FrontendControl.regenerateAndRefreshÜbersichtsFrame();
@@ -195,15 +194,15 @@ public class FirstNight extends Thread {
                 break;
 
             case DROPDOWN:
-                showDropdown(statement, frontendControl.title, frontendControl.dropdownStrings);
+                showDropdown(statement, frontendControl.title, frontendControl.dropdownOptions);
                 return FrontendControl.erzählerFrame.chosenOption1;
 
             case DROPDOWN_LIST:
-                showDropdownList(statement, frontendControl.title, frontendControl.dropdownStrings);
+                showDropdownList(statement, frontendControl.title, frontendControl.dropdownOptions);
                 return FrontendControl.erzählerFrame.chosenOption1;
 
             case LIST:
-                showList(statement, frontendControl.title, frontendControl.dropdownStrings);
+                showList(statement, frontendControl.title, frontendControl.displayedStrings);
                 break;
 
             case IMAGE:
@@ -215,7 +214,7 @@ public class FirstNight extends Thread {
                 break;
 
             case LIST_IMAGE:
-                showListShowImage(statement, frontendControl.title, frontendControl.dropdownStrings, frontendControl.imagePath);
+                showListShowImage(statement, frontendControl.title, frontendControl.displayedStrings, frontendControl.imagePath);
         }
 
         return null;
@@ -265,23 +264,23 @@ public class FirstNight extends Thread {
         waitForAnswer();
     }
 
-    public void showDropdown(Statement statement, String title, List<String> dropdownOptions) {
+    public void showDropdown(Statement statement, String title, DropdownOptions dropdownOptions) {
         FrontendControl.erzählerDropdownPage(statement, dropdownOptions);
         FrontendControl.spielerDropdownPage(title, 1);
 
         waitForAnswer();
     }
 
-    public void showDropdown(Statement statement, List<String> dropdownOptions1, List<String> dropdownOptions2) {
+    public void showDropdown(Statement statement, DropdownOptions dropdownOptions1, DropdownOptions dropdownOptions2) {
         FrontendControl.erzählerDropdownPage(statement, dropdownOptions1, dropdownOptions2);
         FrontendControl.spielerDropdownPage(statement.title, 2);
 
         waitForAnswer();
     }
 
-    public void showDropdownList(Statement statement, String title, List<String> strings) {
-        FrontendControl.erzählerDropdownPage(statement, strings);
-        FrontendControl.spielerDropdownListPage(title, strings);
+    public void showDropdownList(Statement statement, String title, DropdownOptions dropdownOptions) {
+        FrontendControl.erzählerDropdownPage(statement, dropdownOptions);
+        FrontendControl.spielerDropdownListPage(title, dropdownOptions.strings);
 
         waitForAnswer();
     }

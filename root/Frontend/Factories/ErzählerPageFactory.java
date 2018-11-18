@@ -4,6 +4,7 @@ import root.Frontend.Frame.ErzählerFrame;
 import root.Frontend.Page.Page;
 import root.Frontend.Page.PageElement;
 import root.Frontend.Page.PageTable;
+import root.Frontend.Utils.DropdownOptions;
 import root.Frontend.Utils.PageRefresher.InteractivePages.InteractiveElementsDtos.PlayerSetupPageElementsDto;
 import root.Frontend.Utils.PageRefresher.InteractivePages.InteractiveElementsDtos.RolePageElementsDto;
 import root.Frontend.Utils.PageRefresher.InteractivePages.InteractiveElementsDtos.SpecifyPageElementsDto;
@@ -255,14 +256,13 @@ public class ErzählerPageFactory {
         return picturePage;
     }
 
-    public Page generateDropdownPage(Page dropdownPage, Statement statement, List<String> dropdownOptions) {
+    public Page generateDropdownPage(Page dropdownPage, Statement statement, DropdownOptions dropdownOptions) {
         return generateDropdownPage(dropdownPage, statement, dropdownOptions, false);
     }
 
-    public Page generateDropdownPage(Page dropdownPage, Statement statement, List<String> dropdownOptions, boolean hatZurückButton) {
+    public Page generateDropdownPage(Page dropdownPage, Statement statement, DropdownOptions dropdownOptions, boolean hatZurückButton) {
         dropdownPage = generateDefaultNightPage(dropdownPage, statement, hatZurückButton);
-        sortList(dropdownOptions);
-        DefaultComboBoxModel model = new DefaultComboBoxModel(dropdownOptions.toArray());
+        DefaultComboBoxModel model = new DefaultComboBoxModel(dropdownOptions.strings.toArray());
         erzählerFrame.comboBox1.setModel(model);
         PageElement choosePlayer1 = pageElementFactory.generateDropdown(erzählerFrame.comboBox1,
                 null, getContinueToGeneratePagePoint(dropdownPage));
@@ -274,7 +274,7 @@ public class ErzählerPageFactory {
         return dropdownPage;
     }
 
-    public Page generateDropdownPage(Page dropdownPage, Statement statement, List<String> dropdownOptions, String imagePath) {
+    public Page generateDropdownPage(Page dropdownPage, Statement statement, DropdownOptions dropdownOptions, String imagePath) {
         dropdownPage = generateDropdownPage(dropdownPage, statement, dropdownOptions);
         PageElement modeIcon = pageElementFactory.generateSmallIcon(getContinueToGeneratePagePoint(dropdownPage), imagePath);
 
@@ -285,10 +285,9 @@ public class ErzählerPageFactory {
         return dropdownPage;
     }
 
-    public Page generateDropdownPage(Page dropdownPage, Statement statement, List<String> dropdownOptions, List<String> dropdownOptions2) {
+    public Page generateDropdownPage(Page dropdownPage, Statement statement, DropdownOptions dropdownOptions, DropdownOptions dropdownOptions2) {
         dropdownPage = generateDropdownPage(dropdownPage, statement, dropdownOptions);
-        sortList(dropdownOptions2);
-        DefaultComboBoxModel model = new DefaultComboBoxModel(dropdownOptions2.toArray());
+        DefaultComboBoxModel model = new DefaultComboBoxModel(dropdownOptions2.strings.toArray());
         erzählerFrame.comboBox2.setModel(model);
         PageElement choosePlayer2 = pageElementFactory.generateDropdown(erzählerFrame.comboBox2,
                 null, getContinueToGeneratePagePoint(dropdownPage));
@@ -300,7 +299,7 @@ public class ErzählerPageFactory {
         return dropdownPage;
     }
 
-    public Page generateDropdownPage(Page dropdownPage, Statement statement, List<String> dropdownOptions, List<String> dropdownOptions2, String imagePath) {
+    public Page generateDropdownPage(Page dropdownPage, Statement statement, DropdownOptions dropdownOptions, DropdownOptions dropdownOptions2, String imagePath) {
         dropdownPage = generateDropdownPage(dropdownPage, statement, dropdownOptions, dropdownOptions2);
         PageElement modeIcon = pageElementFactory.generateSmallIcon(getContinueToGeneratePagePoint(dropdownPage), imagePath);
 
@@ -356,11 +355,10 @@ public class ErzählerPageFactory {
         return listPage;
     }
 
-    public Page generateDayPage(List<String> livingPlayers) {
+    public Page generateDayPage(DropdownOptions livingPlayers) {
         Page dayPage = generateDefaultDayPage();
 
-        sortList(livingPlayers);
-        DefaultComboBoxModel model = new DefaultComboBoxModel(livingPlayers.toArray());
+        DefaultComboBoxModel model = new DefaultComboBoxModel(livingPlayers.strings.toArray());
         erzählerFrame.comboBox1.setModel(model);
         PageElement choosePlayer = pageElementFactory.generateDropdown(erzählerFrame.comboBox1,
                 null, continueToGenerateElement);
@@ -561,7 +559,7 @@ public class ErzählerPageFactory {
         return page.pageElements.get(continueToGeneratePagePoint);
     }
 
-    public Page generateIrrlichtDropdownPage(Page irrlichtPage, Statement statement, List<String> dropdownStrings) {
+    public Page generateIrrlichtDropdownPage(Page irrlichtPage, Statement statement, DropdownOptions dropdownStrings) {
         irrlichtPage = generateDropdownPage(irrlichtPage, statement, dropdownStrings);
 
         PageElement continueToGeneratePoint = getContinueToGeneratePagePoint(irrlichtPage);
@@ -586,20 +584,5 @@ public class ErzählerPageFactory {
         irrlichtPage.add(erzählerFrame.irrlichterLableTable);
 
         return irrlichtPage;
-    }
-
-    private void sortList(List<String> strings) {
-        boolean containsEmptyOption = false;
-
-        if (strings.contains("")) {
-            containsEmptyOption = true;
-            strings.remove("");
-        }
-
-        Collections.sort(strings);
-
-        if (containsEmptyOption) {
-            strings.add("");
-        }
     }
 }

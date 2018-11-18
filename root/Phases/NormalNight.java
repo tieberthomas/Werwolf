@@ -1,6 +1,7 @@
 package root.Phases;
 
 import root.Frontend.FrontendControl;
+import root.Frontend.Utils.DropdownOptions;
 import root.Persona.Bonusrolle;
 import root.Persona.Fraktion;
 import root.Persona.Fraktionen.SchattenpriesterFraktion;
@@ -228,7 +229,8 @@ public class NormalNight extends Thread {
                             if (analytikerSpieler != null) {
                                 spielerOrNonWithoutAnalytiker.remove(analytikerSpieler.name);
                             }
-                            showDropdownPage(statement, spielerOrNonWithoutAnalytiker, spielerOrNonWithoutAnalytiker);
+                            DropdownOptions analytikerDropdownOptions = new DropdownOptions(spielerOrNonWithoutAnalytiker);
+                            showDropdownPage(statement, analytikerDropdownOptions, analytikerDropdownOptions);
 
                             Spieler chosenSpieler1 = Game.game.findSpieler(FrontendControl.erzählerFrame.chosenOption1);
                             Spieler chosenSpieler2 = Game.game.findSpieler(FrontendControl.erzählerFrame.chosenOption2);
@@ -271,7 +273,7 @@ public class NormalNight extends Thread {
                                     chosenOption = showKonditorDropdownPage(statement, dropdownOptions);
                                     rolle.processChosenOption(chosenOption);
 
-                                    Torte.gut = chosenOption.equals(DropdownConstants.GUT.name);
+                                    Torte.gut = chosenOption.equals(DropdownConstants.GUT);
                                 } else {
                                     Torte.torte = false;
                                     Torte.gut = false;
@@ -520,23 +522,23 @@ public class NormalNight extends Thread {
                         break;
 
                     case DROPDOWN:
-                        showDropdown(statement, frontendControl.title, frontendControl.dropdownStrings);
+                        showDropdown(statement, frontendControl.title, frontendControl.dropdownOptions);
                         return FrontendControl.erzählerFrame.chosenOption1;
 
                     case DROPDOWN_LIST:
-                        showDropdownList(statement, frontendControl.title, frontendControl.dropdownStrings, frontendControl.hatZurückButton);
+                        showDropdownList(statement, frontendControl.title, frontendControl.dropdownOptions, frontendControl.hatZurückButton);
                         return FrontendControl.erzählerFrame.chosenOption1;
 
                     case DROPDOWN_SEPARATED_LIST:
-                        showDropdownSeperatedList(statement, frontendControl.title, frontendControl.dropdownStrings, frontendControl.displayedStrings, frontendControl.hatZurückButton);
+                        showDropdownSeperatedList(statement, frontendControl.title, frontendControl.dropdownOptions, frontendControl.displayedStrings, frontendControl.hatZurückButton);
                         return FrontendControl.erzählerFrame.chosenOption1;
 
                     case DROPDOWN_IMAGE:
-                        showDropdownShowImage(statement, frontendControl.title, frontendControl.dropdownStrings, frontendControl.imagePath);
+                        showDropdownShowImage(statement, frontendControl.title, frontendControl.dropdownOptions, frontendControl.imagePath);
                         return FrontendControl.erzählerFrame.chosenOption1;
 
                     case LIST:
-                        showList(statement, frontendControl.title, frontendControl.dropdownStrings, frontendControl.hatZurückButton);
+                        showList(statement, frontendControl.title, frontendControl.displayedStrings, frontendControl.hatZurückButton);
                         break;
 
                     case IMAGE:
@@ -548,7 +550,7 @@ public class NormalNight extends Thread {
                         break;
 
                     case LIST_IMAGE:
-                        showListShowImage(statement, frontendControl.title, frontendControl.dropdownStrings, frontendControl.imagePath);
+                        showListShowImage(statement, frontendControl.title, frontendControl.displayedStrings, frontendControl.imagePath);
                         break;
 
                     case SCHNÜFFLER_INFO:
@@ -556,7 +558,7 @@ public class NormalNight extends Thread {
                         break;
 
                     case IRRLICHT_DROPDOWN:
-                        showIrrlichtDropdown(statement, frontendControl.title, frontendControl.dropdownStrings);
+                        showIrrlichtDropdown(statement, frontendControl.title, frontendControl.dropdownOptions);
                         break;
 
                     case TWO_IMAGES:
@@ -593,21 +595,21 @@ public class NormalNight extends Thread {
         waitForAnswer();
     }
 
-    private void showIrrlichtDropdown(Statement statement, String title, List<String> dropdownStrings) {
+    private void showIrrlichtDropdown(Statement statement, String title, DropdownOptions dropdownStrings) {
         FrontendControl.irrlichtDropdownPage(statement, dropdownStrings);
         FrontendControl.spielerTitlePage(title);
 
         waitForAnswer();
     }
 
-    private void showDropdownShowImage(Statement statement, String title, List<String> strings, String imagePath) {
+    private void showDropdownShowImage(Statement statement, String title, DropdownOptions strings, String imagePath) {
         FrontendControl.erzählerDropdownPage(statement, strings);
         FrontendControl.spielerDropdownMirrorImagePage(title, imagePath);
 
         waitForAnswer();
     }
 
-    public void showDropdownPage(Statement statement, List<String> dropdownOptions1, List<String> dropdownOptions2) {
+    public void showDropdownPage(Statement statement, DropdownOptions dropdownOptions1, DropdownOptions dropdownOptions2) {
         switch (statement.state) {
             case NORMAL:
                 FrontendControl.erzählerDropdownPage(statement, dropdownOptions1, dropdownOptions2);
@@ -616,18 +618,18 @@ public class NormalNight extends Thread {
 
             case DEAKTIV:
                 Deaktiviert deaktiviert = new Deaktiviert();
-                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), getEmptyStringList(), deaktiviert.imagePath);
+                FrontendControl.erzählerDropdownPage(statement, getEmptyDropdownOptions(), getEmptyDropdownOptions(), deaktiviert.imagePath);
                 FrontendControl.showZeigekarteOnSpielerScreen(deaktiviert);
                 break;
 
             case DEAD:
                 Tot tot = new Tot();
-                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), getEmptyStringList(), tot.imagePath);
+                FrontendControl.erzählerDropdownPage(statement, getEmptyDropdownOptions(), getEmptyDropdownOptions(), tot.imagePath);
                 FrontendControl.showZeigekarteOnSpielerScreen(tot);
                 break;
 
             case NOT_IN_GAME:
-                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), getEmptyStringList(), new AusDemSpiel().imagePath);
+                FrontendControl.erzählerDropdownPage(statement, getEmptyDropdownOptions(), getEmptyDropdownOptions(), new AusDemSpiel().imagePath);
                 FrontendControl.spielerDropdownPage(statement.title, 2);
                 break;
         }
@@ -636,7 +638,7 @@ public class NormalNight extends Thread {
     }
 
     public String showKonditorDropdownPage(Statement statement, FrontendControl frontendControl) {
-        FrontendControl.erzählerDropdownPage(statement, frontendControl.dropdownStrings);
+        FrontendControl.erzählerDropdownPage(statement, frontendControl.dropdownOptions);
         FrontendControl.spielerDropdownPage(statement.title, 1);
 
         waitForAnswer();
@@ -667,7 +669,7 @@ public class NormalNight extends Thread {
             case DROPDOWN_LIST:
             case DROPDOWN_SEPARATED_LIST:
             case DROPDOWN_IMAGE:
-                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), aufgebraucht.imagePath);
+                FrontendControl.erzählerDropdownPage(statement, getEmptyDropdownOptions(), aufgebraucht.imagePath);
                 break;
 
             case LIST:
@@ -696,7 +698,7 @@ public class NormalNight extends Thread {
             case DROPDOWN_LIST:
             case DROPDOWN_SEPARATED_LIST:
             case DROPDOWN_IMAGE:
-                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), deaktiviert.imagePath);
+                FrontendControl.erzählerDropdownPage(statement, getEmptyDropdownOptions(), deaktiviert.imagePath);
                 break;
 
             case LIST:
@@ -725,7 +727,7 @@ public class NormalNight extends Thread {
             case DROPDOWN_LIST:
             case DROPDOWN_SEPARATED_LIST:
             case DROPDOWN_IMAGE:
-                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), tot.imagePath);
+                FrontendControl.erzählerDropdownPage(statement, getEmptyDropdownOptions(), tot.imagePath);
                 break;
             case LIST:
             case LIST_IMAGE:
@@ -753,7 +755,7 @@ public class NormalNight extends Thread {
             case DROPDOWN_LIST:
             case DROPDOWN_SEPARATED_LIST:
             case DROPDOWN_IMAGE:
-                FrontendControl.erzählerDropdownPage(statement, getEmptyStringList(), ausDemSpiel.imagePath);
+                FrontendControl.erzählerDropdownPage(statement, getEmptyDropdownOptions(), ausDemSpiel.imagePath);
                 FrontendControl.spielerDropdownPage(statement.title, 1);
                 break;
 
@@ -787,21 +789,21 @@ public class NormalNight extends Thread {
         waitForAnswer();
     }
 
-    public void showDropdown(Statement statement, String title, List<String> dropdownOptions) {
+    public void showDropdown(Statement statement, String title, DropdownOptions dropdownOptions) {
         FrontendControl.erzählerDropdownPage(statement, dropdownOptions);
         FrontendControl.spielerDropdownPage(title, 1);
 
         waitForAnswer();
     }
 
-    public void showDropdownList(Statement statement, String title, List<String> strings, boolean hatZurückButton) {
-        FrontendControl.erzählerDropdownPage(statement, strings, hatZurückButton);
-        FrontendControl.spielerDropdownListPage(title, strings);
+    public void showDropdownList(Statement statement, String title, DropdownOptions dropdownOptions, boolean hatZurückButton) {
+        FrontendControl.erzählerDropdownPage(statement, dropdownOptions, hatZurückButton);
+        FrontendControl.spielerDropdownListPage(title, dropdownOptions.strings);
 
         waitForAnswer();
     }
 
-    public void showDropdownSeperatedList(Statement statement, String title, List<String> dropdownStrings, List<String> listStrings, boolean hatZurückButton) {
+    public void showDropdownSeperatedList(Statement statement, String title, DropdownOptions dropdownStrings, List<String> listStrings, boolean hatZurückButton) {
         FrontendControl.erzählerDropdownPage(statement, dropdownStrings, hatZurückButton);
         FrontendControl.spielerDropdownListPage(title, listStrings);
 
@@ -878,6 +880,10 @@ public class NormalNight extends Thread {
         List<String> emptyContent = new ArrayList<>();
         emptyContent.add("");
         return emptyContent;
+    }
+
+    public static DropdownOptions getEmptyDropdownOptions() {
+        return new DropdownOptions(getEmptyStringList());
     }
 
     public void waitForAnswer() {

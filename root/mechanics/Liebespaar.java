@@ -1,5 +1,6 @@
 package root.mechanics;
 
+import root.Frontend.Utils.DropdownOptions;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
 import root.Utils.ListHelper;
@@ -14,10 +15,8 @@ public class Liebespaar {
     public Spieler spieler1;
     public Spieler spieler2;
 
-    public List<String> getDropdownOptions() {
-        List<String> spielerStrings = Game.game.getLivingSpielerStrings();
-        spielerStrings.add(ZUFÄLLIG);
-        return spielerStrings;
+    public static DropdownOptions getDropdownOptions() {
+        return new DropdownOptions(Game.game.getLivingSpielerStrings(), ZUFÄLLIG);
     }
 
     public Liebespaar() {
