@@ -18,6 +18,8 @@ import root.Persona.Rollen.Hauptrollen.Überläufer.Henker;
 import root.Persona.Rollen.Hauptrollen.Überläufer.Überläufer;
 import root.Phases.NightBuilding.Constants.IndieStatements;
 import root.Phases.NightBuilding.Constants.ProgrammStatements;
+import root.Phases.PhaseManager;
+import root.Spieler;
 import root.mechanics.Game;
 
 import java.util.ArrayList;
@@ -28,7 +30,7 @@ public class NormalNightStatementBuilder {
         List<Statement> statements = new ArrayList<>();
 
         statements.add(IndieStatements.getAlleSchlafenEinStatement());
-        if(Schattenmensch.transform) {
+        if (Schattenmensch.transform) {
             Schattenmensch.transform();
         }
 
@@ -58,7 +60,12 @@ public class NormalNightStatementBuilder {
 
         addStatementRolle(statements, Prostituierte.ID);
 
-        addStatementRolle(statements, Henker.ID);
+        if (PhaseManager.nightCount == 1) {
+            Spieler henkerSpieler = Game.game.findSpielerPerRolle(Henker.ID);
+            henkerSpieler.geschützt = true;
+        } else {
+            addStatementRolle(statements, Henker.ID);
+        }
         addStatementRolle(statements, Riese.ID);
         addStatementFraktion(statements, Werwölfe.ID);
         if (Wölfin.state == WölfinState.TÖTEND) {

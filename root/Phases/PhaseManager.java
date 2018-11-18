@@ -7,6 +7,7 @@ import root.mechanics.Game;
 
 public class PhaseManager extends Thread {
     public static Object lock = new Object();
+    public static int nightCount = 0;
 
     public static PhaseMode phaseMode;
 
@@ -16,6 +17,7 @@ public class PhaseManager extends Thread {
             firstnight();
             while (true) {
                 day();
+                nightCount++;
                 night();
             }
         }

@@ -1,9 +1,9 @@
 Verschleiert gestorbene Rollen werden noch immer Totengräber und Überläufer angezeigt 5 - 1 done
 Schattenmensch 3 - 4 done
 
-1. Henker ist in erster Nacht nicht geschützt 10 - 1
-1. armor liste "Zufällig" als default auswählen 8 - 1
-2. Henker aus erster Nacht entfernen 5 - 1
+1. Henker ist in erster Nacht nicht geschützt 10 - 1 done
+1. armor liste "Zufällig" als default auswählen 8 - 1 done
+2. Henker aus erster Nacht entfernen 5 - 1 done
 3. Detektiv 1 - 3
 3. Blutwolf/Holde Maid 7 - 5
 3. Nachtfürst 5 - 7
