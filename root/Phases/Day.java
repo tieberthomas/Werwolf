@@ -68,22 +68,23 @@ public class Day extends Thread {
                 Bonusrolle bonusrolleSpieler = chosenSpieler.bonusrolle;
 
                 if (bonusrolleSpieler.equals(ReineSeele.ID) && ((ReineSeele) chosenSpieler.bonusrolle).dayInvincibility ||
-                        (gebürgteSpieler.contains(chosenSpieler) && hauptrolleSpieler.fraktion.equals(Bürger.ID))) {
+                        (gebürgteSpieler.contains(chosenSpieler) && hauptrolleSpieler.fraktion.equals(Bürger.ID)) ||
+                        chosenSpieler.hauptrolle.equals(Schattenmensch.ID)) {
                     FrontendControl.erzählerAnnounceOpferPage(chosenSpieler, ImagePath.REINE_SEELE_OPEN_KARTE);
                     FrontendControl.spielerCardPicturePage(chosenSpieler.name, ImagePath.REINE_SEELE_OPEN_KARTE);
                     if (chosenSpieler.hauptrolle.equals(Schattenmensch.ID)) {
                         Schattenmensch.transform = true;
-                    }
-
-                    if (chosenSpieler.bonusrolle.equals(ReineSeele.ID) &&
-                            !(gebürgteSpieler.contains(chosenSpieler) && hauptrolleSpieler.fraktion.equals(Bürger.ID))) {
-                        ((ReineSeele) chosenSpieler.bonusrolle).dayInvincibility = false;
+                    } else {
+                        if (chosenSpieler.bonusrolle.equals(ReineSeele.ID) &&
+                                !(gebürgteSpieler.contains(chosenSpieler) && hauptrolleSpieler.fraktion.equals(Bürger.ID))) {
+                            ((ReineSeele) chosenSpieler.bonusrolle).dayInvincibility = false;
+                        }
                     }
 
                     waitForAnswer();
 
                     checkRichterin(chosenSpieler);
-                } else {
+                } else{
                     killSpielerCheckLiebespaar(chosenSpieler);
                     Wahrsager.opferFraktion = chosenSpieler.hauptrolle.fraktion;
                     if (!hauptrolleSpieler.fraktion.equals(Bürger.ID)) {
