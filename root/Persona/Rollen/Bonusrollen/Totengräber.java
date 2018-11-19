@@ -3,6 +3,7 @@ package root.Persona.Rollen.Bonusrollen;
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.Persona.Bonusrolle;
+import root.Persona.Fraktionen.Bürger;
 import root.Persona.Rollen.Constants.BonusrollenType.Aktiv;
 import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Phases.NightBuilding.Constants.StatementType;
@@ -65,9 +66,16 @@ public class Totengräber extends Bonusrolle {
     public static List<String> getNehmbareBonusrollen() {
         List<String> nehmbareBonusrollen = new ArrayList<>();
 
-        //TODO michael fragen, welche rollen darf Totengräber nehmen
+        Spieler spielerTotengräber = Game.game.findSpielerPerRolle(ID);
+
         for (Bonusrolle bonusrolle : Game.game.mitteBonusrollen) {
             nehmbareBonusrollen.add(bonusrolle.name);
+        }
+
+        if (spielerTotengräber.getFraktion().equals(Bürger.ID)) {
+            nehmbareBonusrollen.remove(SchwarzeSeele.NAME);
+        } else {
+            nehmbareBonusrollen.remove(ReineSeele.NAME);
         }
 
         return nehmbareBonusrollen;
