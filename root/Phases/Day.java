@@ -67,6 +67,7 @@ public class Day extends Thread {
                 Hauptrolle hauptrolleSpieler = chosenSpieler.hauptrolle;
                 Bonusrolle bonusrolleSpieler = chosenSpieler.bonusrolle;
 
+                //TODO cleanup and move into dayInvincibilityHandling Method
                 if (bonusrolleSpieler.equals(ReineSeele.ID) && ((ReineSeele) chosenSpieler.bonusrolle).dayInvincibility ||
                         (gebürgteSpieler.contains(chosenSpieler) && hauptrolleSpieler.fraktion.equals(Bürger.ID)) ||
                         chosenSpieler.hauptrolle.equals(Schattenmensch.ID)) {

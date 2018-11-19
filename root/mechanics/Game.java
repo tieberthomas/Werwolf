@@ -253,6 +253,11 @@ public class Game {
             if (bonusrolle.equals(Tarnumhang.ID)) {
                 ((Tarnumhang) bonusrolle).seenSpieler = new ArrayList<>();
             }
+
+            if (hauptrolle.equals(Schattenmensch.ID)) {
+                Schattenmensch.shallBeTransformed = false;
+                Schattenmensch.changeReineSeele = false;
+            }
         }
     }
 
