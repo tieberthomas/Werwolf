@@ -133,7 +133,11 @@ public class Spieler implements Comparable {
 
         Spieler getarnterSpieler = NormalNight.getarnterSpieler;
 
-        if (bonunsrollenFraktion != null || this.equals(getarnterSpieler) || requester.equals(getarnterSpieler)) {
+        if(this.equals(getarnterSpieler) || requester.equals(getarnterSpieler)) {
+            return new Tarnumhang_BonusrollenType();
+        }
+
+        if (bonunsrollenFraktion != null) {
             information = bonunsrollenFraktion;
         } else {
             information = hauptrollenFraktion;
