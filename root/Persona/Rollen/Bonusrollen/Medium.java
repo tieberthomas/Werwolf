@@ -5,6 +5,7 @@ import root.Frontend.FrontendControl;
 import root.Persona.Bonusrolle;
 import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Persona.Rollen.Constants.BonusrollenType.Informativ;
+import root.Phases.FirstNight;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Utils.Rand;
@@ -73,8 +74,14 @@ public class Medium extends Bonusrolle {
     }
 
     private List<Bonusrolle> getAllUnseenBonusrollen() {
-        List<Bonusrolle> bonusrollenNotInGame = Game.game.getStillAvailableBonusrollen();
+        List<Bonusrolle> bonusrollenNotInGame = new ArrayList<>(Game.game.bonusrollenInGame);
+        Game.game.spieler.forEach(spieler -> {
+            if (bonusrollenNotInGame.contains(spieler.bonusrolle)) {
+                bonusrollenNotInGame.remove(spieler.bonusrolle);
+            }
+        });
         bonusrollenNotInGame.removeIf(bonusrolle -> geseheneBonusrollen.contains(bonusrolle.id));
+        bonusrollenNotInGame.removeAll(FirstNight.swappedRoles);
         return bonusrollenNotInGame;
     }
 }
