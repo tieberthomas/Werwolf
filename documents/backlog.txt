@@ -1,15 +1,4 @@
-Abgenommene Tasks
-
-armor liste "Zufällig" als default auswählen
-Wirt aus erster Nacht entfernen
-Henker aus erster Nacht entfernen
-Henker ist in erster Nacht nicht geschützt
-Bei alphabetischer liste klein und Großbuchstaben gleichsetzten
-Bei Wahrsager "Kein Opfer" aus der Alphabetischen Liste herausnehmen und ans Ende setzten
-Verschleiert gestorbene Rollen werden noch immer Totengräber und Überläufer angezeigt
-neue Karten des bestohlenen (Dieb) werden jetzt auch entsprechend ausgetauscht (Wolfspelz, usw.)
-totengräber kann nurnoch zu hauptrolle passende tausch-bonusrolle nehmen
-Schattenmensch
+CODEFREEZE
 
 Eingereihte Tasks
 
