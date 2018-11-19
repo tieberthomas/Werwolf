@@ -1,19 +1,15 @@
-Erledigte Tasks
-Verschleiert gestorbene Rollen werden noch immer Totengräber und Überläufer angezeigt 5 - 1 done
-Schattenmensch 3 - 4 done
-Henker ist in erster Nacht nicht geschützt 10 - 1 done
-armor liste "Zufällig" als default auswählen 8 - 1 done
-Henker aus erster Nacht entfernen 5 - 1 done
-Wirt aus erster Nacht entfernen ? - 0.5 done
-Bei alphabetischer liste klein und Großbuchstaben gleichsetzten 1 - (1-10) done
-Bei Wahrsager "Kein Opfer" aus der Alphabetischen Liste herausnehmen und ans Ende setzten 3 - 1 done
-neue Karten des bestohlenen (Dieb) werden jetzt auch entsprechend ausgetuascht (Wolfspelz, usw.) ? - 1 done
-totengräber kann nurnoch zu hauptrolle passende tausch-bonusrolle nehmen ? - 1 done
+Abgenommene Tasks
 
-Bugs + Rettungsgassen
-
-
-
+armor liste "Zufällig" als default auswählen
+Wirt aus erster Nacht entfernen
+Henker aus erster Nacht entfernen
+Henker ist in erster Nacht nicht geschützt
+Bei alphabetischer liste klein und Großbuchstaben gleichsetzten
+Bei Wahrsager "Kein Opfer" aus der Alphabetischen Liste herausnehmen und ans Ende setzten
+Verschleiert gestorbene Rollen werden noch immer Totengräber und Überläufer angezeigt
+neue Karten des bestohlenen (Dieb) werden jetzt auch entsprechend ausgetauscht (Wolfspelz, usw.)
+totengräber kann nurnoch zu hauptrolle passende tausch-bonusrolle nehmen
+Schattenmensch
 
 Eingereihte Tasks
 
