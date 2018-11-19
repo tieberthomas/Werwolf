@@ -6,6 +6,7 @@ Henker aus erster Nacht entfernen 5 - 1 done
 Wirt aus erster Nacht entfernen ? - 0.5 done
 Bei alphabetischer liste klein und Großbuchstaben gleichsetzten 1 - (1-10) done
 Bei Wahrsager "Kein Opfer" aus der Alphabetischen Liste herausnehmen und ans Ende setzten 3 - 1 done
+neue Karten des bestohlenen (Dieb) werden jetzt auch entsprechend ausgetuascht (Wolfspelz, usw.) ? - 1 done
 
 3. Detektiv 1 - 3
 3. Blutwolf/Holde Maid 7 - 5

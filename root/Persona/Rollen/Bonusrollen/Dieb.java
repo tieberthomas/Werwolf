@@ -62,7 +62,9 @@ public class Dieb extends Bonusrolle {
                 Spieler spielerDieb = Game.game.findSpielerPerRolle(this.id);
 
                 spielerDieb.bonusrolle = chosenSpieler.bonusrolle;
-                chosenSpieler.bonusrolle = getNewRandomBonusrolle();
+                Bonusrolle randomBonusrolle = getNewRandomBonusrolle();
+                chosenSpieler.bonusrolle = randomBonusrolle;
+                randomBonusrolle.tauschen(randomBonusrolle.getTauschErgebnis());
             } catch (NullPointerException e) {
                 System.out.println(NAME + " nicht gefunden");
             }
