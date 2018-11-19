@@ -38,7 +38,7 @@ public class NormalNightStatementBuilder {
             addStatementRolle(statements, Wirt.ID);
         }
 
-        if (Totengräber.getNehmbareBonusrollen().size() > 0) {
+        if (Game.game.mitteBonusrollen.size() > 0) {
             addStatementRolle(statements, Totengräber.ID);
         }
         addStatementRolle(statements, Dieb.ID);
