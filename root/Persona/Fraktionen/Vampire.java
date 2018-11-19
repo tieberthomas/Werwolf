@@ -4,7 +4,6 @@ import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.Frontend.Utils.DropdownOptions;
 import root.Persona.Fraktion;
-import root.Persona.Rollen.Constants.DropdownConstants;
 import root.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.VampireZeigekarte;
 import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Phases.NightBuilding.Constants.StatementType;
@@ -60,7 +59,7 @@ public class Vampire extends Fraktion {
 
     @Override
     public FrontendControl getDropdownOptionsFrontendControl() {
-        DropdownOptions dropdownOptions = new DropdownOptions(Game.game.getLivingSpielerOrNoneStrings(), DropdownConstants.EMPTY);
+        DropdownOptions dropdownOptions = Game.game.getSpielerDropdownOptions(true);
 
         return new FrontendControl(FrontendControlType.DROPDOWN_IMAGE, dropdownOptions, zeigekarte.imagePath);
     }

@@ -34,7 +34,6 @@ import root.Phases.NightBuilding.StatementDependancy.StatementDependencyFraktion
 import root.Phases.NightBuilding.StatementDependancy.StatementDependencyRolle;
 import root.Phases.NightBuilding.StatementDependancy.StatementDependencyStatement;
 import root.Spieler;
-import root.Utils.ListHelper;
 import root.mechanics.Game;
 import root.mechanics.KillLogik.Angriff;
 import root.mechanics.KillLogik.Opfer;
@@ -77,8 +76,6 @@ public class NormalNight extends Thread {
             wölfinKilled = false;
             wölfinSpieler = null;
             beschworenerSpieler = null;
-
-            List<String> spielerOrNon = Game.game.getLivingSpielerOrNoneStrings();
 
             statements = NormalNightStatementBuilder.normalNightBuildStatements();
 
@@ -223,23 +220,19 @@ public class NormalNight extends Thread {
                             break;
 
                         case Analytiker.STATEMENT_ID:
-                            Spieler analytikerSpieler = Game.game.findSpielerPerRolle(rolle.id);
+                            Analytiker analytiker = (Analytiker) rolle;
 
-                            List<String> spielerOrNonWithoutAnalytiker = ListHelper.cloneList(spielerOrNon);
-                            if (analytikerSpieler != null) {
-                                spielerOrNonWithoutAnalytiker.remove(analytikerSpieler.name);
-                            }
-                            DropdownOptions analytikerDropdownOptions = new DropdownOptions(spielerOrNonWithoutAnalytiker);
+                            DropdownOptions analytikerDropdownOptions = analytiker.getDropdownOptions();
                             showDropdownPage(statement, analytikerDropdownOptions, analytikerDropdownOptions);
 
                             Spieler chosenSpieler1 = Game.game.findSpieler(FrontendControl.erzählerFrame.chosenOption1);
                             Spieler chosenSpieler2 = Game.game.findSpieler(FrontendControl.erzählerFrame.chosenOption2);
 
                             if (chosenSpieler1 != null && chosenSpieler2 != null) {
-                                if (((Analytiker) rolle).showTarnumhang(chosenSpieler1, chosenSpieler2)) {
+                                if (analytiker.showTarnumhang(chosenSpieler1, chosenSpieler2)) {
                                     showZeigekarte(statement, new Tarnumhang_BonusrollenType());
                                 } else {
-                                    String answer = ((Analytiker) rolle).analysiere(chosenSpieler1, chosenSpieler2);
+                                    String answer = analytiker.analysiere(chosenSpieler1, chosenSpieler2);
                                     showList(statement, answer);//TODO generisch machen
                                 }
                             }

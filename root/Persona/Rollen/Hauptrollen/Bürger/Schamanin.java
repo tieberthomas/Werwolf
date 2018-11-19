@@ -41,7 +41,7 @@ public class Schamanin extends Hauptrolle {
 
     @Override
     public FrontendControl getDropdownOptionsFrontendControl() {
-        return Game.game.getSpielerCheckSpammableFrontendControl(this);
+        return Game.game.getSpielerFrontendControl(this, false, true, true);
     }
 
     @Override

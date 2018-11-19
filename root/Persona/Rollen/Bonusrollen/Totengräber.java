@@ -66,16 +66,17 @@ public class Totengräber extends Bonusrolle {
     public static List<String> getNehmbareBonusrollen() {
         List<String> nehmbareBonusrollen = new ArrayList<>();
 
-        Spieler spielerTotengräber = Game.game.findSpielerPerRolle(ID);
-
         for (Bonusrolle bonusrolle : Game.game.mitteBonusrollen) {
             nehmbareBonusrollen.add(bonusrolle.name);
         }
 
-        if (spielerTotengräber.getFraktion().equals(Bürger.ID)) {
-            nehmbareBonusrollen.remove(SchwarzeSeele.NAME);
-        } else {
-            nehmbareBonusrollen.remove(ReineSeele.NAME);
+        Spieler spielerTotengräber = Game.game.findSpielerPerRolle(ID);
+        if (spielerTotengräber != null) {
+            if (spielerTotengräber.getFraktion().equals(Bürger.ID)) {
+                nehmbareBonusrollen.remove(SchwarzeSeele.NAME);
+            } else {
+                nehmbareBonusrollen.remove(ReineSeele.NAME);
+            }
         }
 
         return nehmbareBonusrollen;

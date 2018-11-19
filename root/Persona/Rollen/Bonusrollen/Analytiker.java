@@ -1,5 +1,6 @@
 package root.Persona.Rollen.Bonusrollen;
 
+import root.Frontend.Utils.DropdownOptions;
 import root.Persona.Bonusrolle;
 import root.Persona.Fraktionen.Bürger;
 import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
@@ -42,6 +43,11 @@ public class Analytiker extends Bonusrolle {
         this.statementType = STATEMENT_TYPE;
 
         this.spammable = true;
+    }
+
+
+    public DropdownOptions getDropdownOptions() {
+        return Game.game.getSpielerDropdownOptions(this, true, false, true);
     }
 
     public boolean showTarnumhang(Spieler spieler1, Spieler spieler2) {

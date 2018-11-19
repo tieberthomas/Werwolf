@@ -32,6 +32,7 @@ import root.Persona.Rollen.Bonusrollen.Totengräber;
 import root.Persona.Rollen.Bonusrollen.Vampirumhang;
 import root.Persona.Rollen.Bonusrollen.Wahrsager;
 import root.Persona.Rollen.Bonusrollen.Wolfspelz;
+import root.Persona.Rollen.Constants.DropdownConstants;
 import root.Persona.Rollen.Constants.WölfinState;
 import root.Persona.Rollen.Hauptrollen.Bürger.Dorfbewohner;
 import root.Persona.Rollen.Hauptrollen.Bürger.HoldeMaid;
@@ -287,6 +288,46 @@ public class Game {
                 .findAny().orElse(null);
     }
 
+    public DropdownOptions getSpielerDropdownOptions(boolean addNone) {
+        List<String> spielerStrings = spieler.stream()
+                .filter(spieler -> spieler.lebend)
+                .map(spieler -> spieler.name)
+                .collect(Collectors.toList());
+
+        if(addNone) {
+            return new DropdownOptions(spielerStrings, DropdownConstants.EMPTY);
+        } else {
+            return new DropdownOptions(spielerStrings);
+        }
+    }
+
+    public DropdownOptions getSpielerDropdownOptions(Rolle rolle, boolean mitspieler, boolean checkSpammable, boolean addNone) {
+        Spieler caller = findSpielerPerRolle(rolle.id);
+
+        List<String> spielerStrings = spieler.stream()
+                .filter(spieler -> spieler.lebend)
+                .map(spieler -> spieler.name)
+                .collect(Collectors.toList());
+
+        if (mitspieler && caller != null) {
+            spielerStrings.remove(caller.name);
+        }
+
+        if (checkSpammable && !rolle.spammable && rolle.besuchtLastNight != null) {
+            spielerStrings.remove(rolle.besuchtLastNight.name);
+        }
+
+        if(addNone) {
+            return new DropdownOptions(spielerStrings, DropdownConstants.EMPTY);
+        } else {
+            return new DropdownOptions(spielerStrings);
+        }
+    }
+
+    public FrontendControl getSpielerFrontendControl(Rolle rolle, boolean mitspieler, boolean checkSpammable, boolean addNone) {
+        return new FrontendControl(getSpielerDropdownOptions(rolle, mitspieler, checkSpammable, addNone));
+    }
+
     public List<Spieler> getLivingSpieler() {
         return spieler.stream()
                 .filter(spieler -> spieler.lebend)
@@ -298,42 +339,6 @@ public class Game {
                 .filter(spieler -> spieler.lebend)
                 .map(spieler -> spieler.name)
                 .collect(Collectors.toList());
-    }
-
-    public List<String> getLivingSpielerOrNoneStrings() {
-        List<String> allSpieler = getLivingSpielerStrings();
-        allSpieler.add("");
-
-        return allSpieler;
-    }
-
-    public List<String> getSpielerCheckSpammableStrings(Rolle rolle) {
-        List<String> allSpieler = getLivingSpielerOrNoneStrings();
-        if (!rolle.spammable && rolle.besuchtLastNight != null) {
-            allSpieler.remove(rolle.besuchtLastNight.name);
-        }
-
-        return allSpieler;
-    }
-
-    public FrontendControl getSpielerCheckSpammableFrontendControl(Rolle rolle) {
-        return new FrontendControl(new DropdownOptions(getSpielerCheckSpammableStrings(rolle)));
-    }
-
-    public List<String> getMitspielerCheckSpammableStrings(Rolle rolle) {
-        Spieler spieler = findSpielerPerRolle(rolle.id);
-
-        List<String> mitspieler = getSpielerCheckSpammableStrings(rolle);
-        if (spieler != null) {
-            mitspieler.remove(spieler.name);
-        }
-
-        return mitspieler;
-    }
-
-    public FrontendControl getMitspielerCheckSpammableFrontendControl(Rolle rolle) {
-        return new FrontendControl(new DropdownOptions(getMitspielerCheckSpammableStrings(rolle)));
-
     }
 
     public List<String> getHauptrolleNames() {
@@ -366,7 +371,7 @@ public class Game {
         return hauptrollenInGame;
     }
 
-    public List<Hauptrolle> getStillAvailableHauptrollen() {
+    public List<Hauptrolle> getStillAvailableHauptrollen() { //TODO remove?
         return stillAvailableHauptrollen;
     }
 

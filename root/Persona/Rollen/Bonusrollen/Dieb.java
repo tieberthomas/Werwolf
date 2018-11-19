@@ -48,7 +48,7 @@ public class Dieb extends Bonusrolle {
 
     @Override
     public FrontendControl getDropdownOptionsFrontendControl() {
-        return Game.game.getMitspielerCheckSpammableFrontendControl(this);
+        return Game.game.getSpielerFrontendControl(this, true, true, true);
     }
 
     @Override

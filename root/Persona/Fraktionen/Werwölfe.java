@@ -5,7 +5,6 @@ import root.Frontend.FrontendControl;
 import root.Frontend.Utils.DropdownOptions;
 import root.Persona.Fraktion;
 import root.Persona.Rolle;
-import root.Persona.Rollen.Constants.DropdownConstants;
 import root.Persona.Rollen.Constants.Zeigekarten.Blutmond;
 import root.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.WerwölfeZeigekarte;
 import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
@@ -73,7 +72,7 @@ public class Werwölfe extends Fraktion {
             imagePath = new Blutmond().imagePath;
         }
 
-        DropdownOptions dropdownOptions = new DropdownOptions(Game.game.getLivingSpielerOrNoneStrings(), DropdownConstants.EMPTY);
+        DropdownOptions dropdownOptions = Game.game.getSpielerDropdownOptions(true);
 
         return new FrontendControl(FrontendControlType.DROPDOWN_IMAGE, dropdownOptions, imagePath);
     }

@@ -15,6 +15,7 @@ import root.mechanics.Game;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Schnüffler extends Bonusrolle {
     public static final String ID = "ID_Schnüffler";
@@ -47,17 +48,20 @@ public class Schnüffler extends Bonusrolle {
 
     @Override
     public FrontendControl getDropdownOptionsFrontendControl() {
-        List<String> dropdownStrings = removePreviousSpieler(Game.game.getLivingSpielerOrNoneStrings());
-
-        return new FrontendControl(new DropdownOptions(dropdownStrings, DropdownConstants.EMPTY));
+        return new FrontendControl(generateDropdownOptions());
     }
 
-    private List<String> removePreviousSpieler(List<String> spieler) {
+    private DropdownOptions generateDropdownOptions() {
+        List<String> spielerStrings = Game.game.spieler.stream()
+                .filter(spieler -> spieler.lebend)
+                .map(spieler -> spieler.name)
+                .collect(Collectors.toList());
+
         for (SchnüfflerInformation information : informationen) {
-            spieler.remove(information.spielerName);
+            spielerStrings.remove(information.spielerName);
         }
 
-        return spieler;
+        return new DropdownOptions(spielerStrings, DropdownConstants.EMPTY);
     }
 
     @Override
