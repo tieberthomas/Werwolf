@@ -2,6 +2,7 @@ package root.Persona.Rollen.Hauptrollen.Überläufer;
 
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
+import root.Frontend.Utils.DropdownOptions;
 import root.Persona.Bonusrolle;
 import root.Persona.Fraktion;
 import root.Persona.Fraktionen.SchattenpriesterFraktion;
@@ -112,20 +113,20 @@ public class Henker extends Hauptrolle {
                 correctGuesses++;
             }
 
-            Spieler hänkerSpieler = Game.game.findSpielerPerRolle(this.id);
+            Spieler henkerSpieler = Game.game.findSpielerPerRolle(this.id);
 
             switch (correctGuesses) {
                 case 0:
-                    Selbstmord.execute(hänkerSpieler);
+                    Selbstmord.execute(henkerSpieler);
 
                     return new FrontendControl(new Tot());
                 case 1:
-                    hänkerSpieler.geschützt = true;
+                    henkerSpieler.geschützt = true;
 
                     return new FrontendControl(new Geschützt());
                 case 2:
-                    hänkerSpieler.geschützt = true;
-                    AbsoluteKill.execute(besucht, hänkerSpieler);
+                    henkerSpieler.geschützt = true;
+                    AbsoluteKill.execute(besucht, henkerSpieler);
 
                     return new FrontendControl(SUCCESSFUL_KILL_TITLE, new Tötend().imagePath, new Geschützt().imagePath, new ArrayList<>());
             }
@@ -171,7 +172,7 @@ public class Henker extends Hauptrolle {
                     return new FrontendControl();
                 }
 
-                FrontendControl fraktionsAuswahl = new FrontendControl(FrontendControlType.DROPDOWN_LIST, FRAKTION_TITLE, Fraktion.getLivingFraktionStrings());
+                FrontendControl fraktionsAuswahl = new FrontendControl(FrontendControlType.DROPDOWN_LIST, FRAKTION_TITLE, new DropdownOptions(Fraktion.getLivingFraktionStrings()));
                 fraktionsAuswahl.hatZurückButton = true;
                 return fraktionsAuswahl;
             case 2:
@@ -181,7 +182,7 @@ public class Henker extends Hauptrolle {
                         map(hauptrolle -> hauptrolle.name).
                         distinct().
                         collect(Collectors.toList());
-                FrontendControl hauptrollenAuswahl = new FrontendControl(FrontendControlType.DROPDOWN_LIST, HAUPTROLLEN_TITLE, hauptrollenStrings);
+                FrontendControl hauptrollenAuswahl = new FrontendControl(FrontendControlType.DROPDOWN_LIST, HAUPTROLLEN_TITLE, new DropdownOptions(hauptrollenStrings));
                 hauptrollenAuswahl.hatZurückButton = true;
                 return hauptrollenAuswahl;
             case 3:
@@ -189,7 +190,7 @@ public class Henker extends Hauptrolle {
                 List<String> bonusrollenTypeStrings = bonusrollenTypes.stream().
                         map(type -> type.name).
                         collect(Collectors.toList());
-                FrontendControl bonusrollenTypAuswahl = new FrontendControl(FrontendControlType.DROPDOWN_LIST, BONUSROLLENTYP_TITLE, bonusrollenTypeStrings);
+                FrontendControl bonusrollenTypAuswahl = new FrontendControl(FrontendControlType.DROPDOWN_LIST, BONUSROLLENTYP_TITLE, new DropdownOptions(bonusrollenTypeStrings));
                 bonusrollenTypAuswahl.hatZurückButton = true;
                 return bonusrollenTypAuswahl;
             case 4:
@@ -204,7 +205,7 @@ public class Henker extends Hauptrolle {
                         .map(bonusrolle -> bonusrolle.name)
                         .distinct()
                         .collect(Collectors.toList());
-                FrontendControl bonusrollenAuswahl = new FrontendControl(FrontendControlType.DROPDOWN_LIST, BONUSROLLEN_TITLE, bonusrollenStrings);
+                FrontendControl bonusrollenAuswahl = new FrontendControl(FrontendControlType.DROPDOWN_LIST, BONUSROLLEN_TITLE, new DropdownOptions(bonusrollenStrings));
                 bonusrollenAuswahl.hatZurückButton = true;
                 return bonusrollenAuswahl;
             case 5:
