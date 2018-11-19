@@ -82,6 +82,9 @@ public class Dieb extends Bonusrolle {
 
     private Bonusrolle getNewRandomBonusrolle() {
         List<Bonusrolle> bonusrollen = Game.game.getStillAvailableBonusrollen();
+        if(bonusrollen.isEmpty()){
+            return new Schatten();
+        }
 
         Bonusrolle randomBonusrolle = Rand.getRandomElement(bonusrollen);
 
