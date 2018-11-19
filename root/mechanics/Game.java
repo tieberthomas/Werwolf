@@ -454,6 +454,8 @@ public class Game {
     }
 
     public void addAllBonusrollen() {
+        bonusrollenInGame.clear();
+        spielerSpecified.clear();
         bonusrollenInGame.addAll(bonusrollen);
         bonusrollenInGame.remove(findBonusrolle(Schatten.ID));
         bonusrollenInGame.remove(findBonusrolle(SchwarzeSeele.ID));
