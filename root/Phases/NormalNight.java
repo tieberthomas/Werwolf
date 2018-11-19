@@ -243,14 +243,12 @@ public class NormalNight extends Thread {
                             Spieler deadWahrsagerSpieler = Game.game.findSpielerOrDeadPerRolle(Wahrsager.ID);
                             if (wahrsagerSpieler2 != null) {
                                 Wahrsager wahrsager = (Wahrsager) deadWahrsagerSpieler.bonusrolle; //TODO Rolle rolle ?
-                                List<String> rewardInformation = new ArrayList<>();
                                 if (wahrsager.guessedRight() && !Game.game.secondNight) {
                                     statement.title = Wahrsager.REWARD_TITLE;
-                                    rewardInformation = wahrsager.rewardInformation();
+                                    chosenOption = showFrontendControl(statement, wahrsager.getInfo());
+                                } else {
+                                    chosenOption = showFrontendControl(statement, wahrsager.getDropdownOptionsFrontendControl());
                                 }
-                                FrontendControl dropdownShowReward = wahrsager.getDropdownOptionsFrontendControl();
-                                dropdownShowReward.displayedStrings = rewardInformation;
-                                chosenOption = showFrontendControl(statement, dropdownShowReward);
                                 wahrsager.tipp = Fraktion.findFraktionPerName(chosenOption);
                             }
                             break;

@@ -11,6 +11,7 @@ import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Wahrsager extends Bonusrolle {
@@ -51,18 +52,44 @@ public class Wahrsager extends Bonusrolle {
 
     @Override
     public FrontendControl getInfo() {
-        return new FrontendControl(rewardInformation());
+        return new FrontendControl(statementTitle, new DropdownOptions(Fraktion.getFraktionStrings(), KEIN_OPFER), rewardInformation());
     }
 
     public List<String> rewardInformation() {
         List<String> list = new ArrayList<>();
 
-        for (Fraktion fraktion : Fraktion.getFraktionen()) {
+        List<Fraktion> fraktionen = Fraktion.getFraktionen();
+        fraktionen.sort(Comparator.comparing(fraktion2 -> fraktion2.name));
+
+        int i = 1;
+
+        for (Fraktion fraktion : fraktionen) {
             int anzahl = Fraktion.getFraktionsMembers(fraktion.id).size();
-            list.add(anzahl + " " + fraktion.name);
+            list.add(getRomanNumber(i) + "  " + fraktion.name + " " + anzahl);
+            i++;
         }
+        list.add(getRomanNumber(i) + "  " + KEIN_OPFER);
 
         return list;
+    }
+
+    public String getRomanNumber(int integer) {
+        switch (integer) {
+            case 1:
+                return "I";
+            case 2:
+                return "II";
+            case 3:
+                return "III";
+            case 4:
+                return "IV";
+            case 5:
+                return "V";
+            case 6:
+                return "VI";
+            default:
+                return "";
+        }
     }
 
     public boolean guessedRight() {
