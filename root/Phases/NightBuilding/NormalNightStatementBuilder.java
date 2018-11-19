@@ -30,7 +30,7 @@ public class NormalNightStatementBuilder {
         List<Statement> statements = new ArrayList<>();
 
         statements.add(IndieStatements.getAlleSchlafenEinStatement());
-        if (Schattenmensch.transform) {
+        if (Schattenmensch.shallBeTransformed) {
             Schattenmensch.transform();
         }
 

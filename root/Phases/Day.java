@@ -73,7 +73,11 @@ public class Day extends Thread {
                     FrontendControl.erzählerAnnounceOpferPage(chosenSpieler, ImagePath.REINE_SEELE_OPEN_KARTE);
                     FrontendControl.spielerCardPicturePage(chosenSpieler.name, ImagePath.REINE_SEELE_OPEN_KARTE);
                     if (chosenSpieler.hauptrolle.equals(Schattenmensch.ID)) {
-                        Schattenmensch.transform = true;
+                        Schattenmensch.shallBeTransformed = true;
+                        if (!(bonusrolleSpieler.equals(ReineSeele.ID) && ((ReineSeele) chosenSpieler.bonusrolle).dayInvincibility ||
+                                (gebürgteSpieler.contains(chosenSpieler) && hauptrolleSpieler.fraktion.equals(Bürger.ID)))) {
+                            Schattenmensch.changeReineSeele = true;
+                        }
                     } else {
                         if (chosenSpieler.bonusrolle.equals(ReineSeele.ID) &&
                                 !(gebürgteSpieler.contains(chosenSpieler) && hauptrolleSpieler.fraktion.equals(Bürger.ID))) {
@@ -84,7 +88,7 @@ public class Day extends Thread {
                     waitForAnswer();
 
                     checkRichterin(chosenSpieler);
-                } else{
+                } else {
                     killSpielerCheckLiebespaar(chosenSpieler);
                     Wahrsager.opferFraktion = chosenSpieler.hauptrolle.fraktion;
                     if (!hauptrolleSpieler.fraktion.equals(Bürger.ID)) {

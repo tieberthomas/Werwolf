@@ -4,6 +4,7 @@ import root.Persona.Fraktion;
 import root.Persona.Fraktionen.Bürger;
 import root.Persona.Fraktionen.SchattenpriesterFraktion;
 import root.Persona.Hauptrolle;
+import root.Persona.Rollen.Bonusrollen.ReineSeele;
 import root.Persona.Rollen.Hauptrollen.Schattenpriester.Schattenpriester;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
@@ -15,7 +16,8 @@ public class Schattenmensch extends Hauptrolle {
     public static final String IMAGE_PATH = ImagePath.SCHATTENMENSCH_KARTE;
     public static final Fraktion FRAKTION = new Bürger();
 
-    public static boolean transform = false;
+    public static boolean shallBeTransformed = false;
+    public static boolean changeReineSeele = false;
 
     public Schattenmensch() {
         this.id = ID;
@@ -32,9 +34,12 @@ public class Schattenmensch extends Hauptrolle {
             Schattenpriester schattenpriester = new Schattenpriester(); //TODO ist new hier sinnvoll?
             schattenpriester.neuster = true;
             schattenmenschSpieler.hauptrolle = schattenpriester;
+            if(changeReineSeele) {
+                schattenmenschSpieler.bonusrolle = new ReineSeele();
+            }
             SchattenpriesterFraktion.spielerToChangeCards = schattenmenschSpieler;
         }
 
-        transform = false; //TODO move into cleanup after death
+        shallBeTransformed = false; //TODO move into cleanup after death
     }
 }
