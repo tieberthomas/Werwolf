@@ -11,6 +11,7 @@ MT:
 Freigestellt -> Weiß
 
 Nach Auslieferung:
+Rolle "mitspieler" flag
 Rolle, Fraktion zusammenfassen Persona
 Analytiker generisch machen
 FirstNight generisch machen
