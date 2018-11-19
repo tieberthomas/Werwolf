@@ -38,10 +38,6 @@ public class FirstNight extends Thread {
     public void run() {
         lock = new Object();
         synchronized (lock) {
-            FrontendControl dropdownOtions;
-            FrontendControl info;
-            String chosenOption;
-
             Bonusrolle newBonusrolle;
             String cardToDisplay;
             String imagePath;

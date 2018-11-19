@@ -10,56 +10,18 @@ import root.Persona.Fraktionen.Bürger;
 import root.Persona.Fraktionen.Werwölfe;
 import root.Persona.Hauptrolle;
 import root.Persona.Rolle;
-import root.Persona.Rollen.Bonusrollen.Analytiker;
-import root.Persona.Rollen.Bonusrollen.Archivar;
-import root.Persona.Rollen.Bonusrollen.Dieb;
-import root.Persona.Rollen.Bonusrollen.Gefängniswärter;
-import root.Persona.Rollen.Bonusrollen.Konditor;
-import root.Persona.Rollen.Bonusrollen.Konditorlehrling;
-import root.Persona.Rollen.Bonusrollen.Lamm;
-import root.Persona.Rollen.Bonusrollen.Medium;
-import root.Persona.Rollen.Bonusrollen.Nachbar;
-import root.Persona.Rollen.Bonusrollen.Prostituierte;
-import root.Persona.Rollen.Bonusrollen.ReineSeele;
-import root.Persona.Rollen.Bonusrollen.Schatten;
-import root.Persona.Rollen.Bonusrollen.Schattenkutte;
-import root.Persona.Rollen.Bonusrollen.Schnüffler;
-import root.Persona.Rollen.Bonusrollen.SchwarzeSeele;
-import root.Persona.Rollen.Bonusrollen.Seelenlicht;
-import root.Persona.Rollen.Bonusrollen.Spurenleser;
-import root.Persona.Rollen.Bonusrollen.Tarnumhang;
-import root.Persona.Rollen.Bonusrollen.Totengräber;
-import root.Persona.Rollen.Bonusrollen.Vampirumhang;
-import root.Persona.Rollen.Bonusrollen.Wahrsager;
-import root.Persona.Rollen.Bonusrollen.Wolfspelz;
+import root.Persona.Rollen.Bonusrollen.*;
 import root.Persona.Rollen.Constants.DropdownConstants;
 import root.Persona.Rollen.Constants.WölfinState;
-import root.Persona.Rollen.Hauptrollen.Bürger.Dorfbewohner;
-import root.Persona.Rollen.Hauptrollen.Bürger.HoldeMaid;
-import root.Persona.Rollen.Hauptrollen.Bürger.Irrlicht;
-import root.Persona.Rollen.Hauptrollen.Bürger.Orakel;
-import root.Persona.Rollen.Hauptrollen.Bürger.Riese;
-import root.Persona.Rollen.Hauptrollen.Bürger.Sammler;
-import root.Persona.Rollen.Hauptrollen.Bürger.Schamanin;
-import root.Persona.Rollen.Hauptrollen.Bürger.Schattenmensch;
-import root.Persona.Rollen.Hauptrollen.Bürger.Seherin;
-import root.Persona.Rollen.Hauptrollen.Bürger.Späher;
-import root.Persona.Rollen.Hauptrollen.Bürger.Wirt;
+import root.Persona.Rollen.Hauptrollen.Bürger.*;
 import root.Persona.Rollen.Hauptrollen.Schattenpriester.Schattenpriester;
 import root.Persona.Rollen.Hauptrollen.Vampire.GrafVladimir;
 import root.Persona.Rollen.Hauptrollen.Vampire.LadyAleera;
 import root.Persona.Rollen.Hauptrollen.Vampire.MissVerona;
-import root.Persona.Rollen.Hauptrollen.Werwölfe.Blutwolf;
-import root.Persona.Rollen.Hauptrollen.Werwölfe.Chemiker;
-import root.Persona.Rollen.Hauptrollen.Werwölfe.Geisterwolf;
-import root.Persona.Rollen.Hauptrollen.Werwölfe.Schreckenswolf;
-import root.Persona.Rollen.Hauptrollen.Werwölfe.Werwolf;
-import root.Persona.Rollen.Hauptrollen.Werwölfe.Wolfsmensch;
-import root.Persona.Rollen.Hauptrollen.Werwölfe.Wölfin;
+import root.Persona.Rollen.Hauptrollen.Werwölfe.*;
 import root.Persona.Rollen.Hauptrollen.Überläufer.Henker;
 import root.Persona.Rollen.Hauptrollen.Überläufer.Überläufer;
 import root.Phases.Day;
-import root.Phases.FirstNight;
 import root.Phases.PhaseManager;
 import root.Phases.PhaseMode;
 import root.Phases.Winner;
@@ -306,7 +268,7 @@ public class Game {
         }
     }
 
-    public DropdownOptions getSpielerDropdownOptions(Rolle rolle, boolean mitspieler, boolean checkSpammable, boolean addNone) {
+    public DropdownOptions getSpielerDropdownOptions(Rolle rolle, boolean mitspieler) {
         Spieler caller = findSpielerPerRolle(rolle.id);
 
         List<String> spielerStrings = spieler.stream()
@@ -318,19 +280,15 @@ public class Game {
             spielerStrings.remove(caller.name);
         }
 
-        if (checkSpammable && !rolle.spammable && rolle.besuchtLastNight != null) {
+        if (!rolle.spammable && rolle.besuchtLastNight != null) {
             spielerStrings.remove(rolle.besuchtLastNight.name);
         }
 
-        if(addNone) {
-            return new DropdownOptions(spielerStrings, DropdownConstants.EMPTY);
-        } else {
-            return new DropdownOptions(spielerStrings);
-        }
+        return new DropdownOptions(spielerStrings, DropdownConstants.EMPTY);
     }
 
-    public FrontendControl getSpielerFrontendControl(Rolle rolle, boolean mitspieler, boolean checkSpammable, boolean addNone) {
-        return new FrontendControl(getSpielerDropdownOptions(rolle, mitspieler, checkSpammable, addNone));
+    public FrontendControl getSpielerFrontendControl(Rolle rolle, boolean mitspieler) { //TODO mitspieler flag statisch in rolle
+        return new FrontendControl(getSpielerDropdownOptions(rolle, mitspieler));
     }
 
     public List<Spieler> getLivingSpieler() {

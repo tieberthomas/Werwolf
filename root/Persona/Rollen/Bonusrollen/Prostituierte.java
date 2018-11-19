@@ -38,7 +38,7 @@ public class Prostituierte extends Bonusrolle {
 
     @Override
     public FrontendControl getDropdownOptionsFrontendControl() {
-        return Game.game.getSpielerFrontendControl(this, false, true, true);
+        return Game.game.getSpielerFrontendControl(this, true);
     }
 
     @Override

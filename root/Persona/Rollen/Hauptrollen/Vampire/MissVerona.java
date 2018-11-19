@@ -32,12 +32,13 @@ public class MissVerona extends Hauptrolle {
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;
 
+        this.spammable = false;
         this.killing = true;
     }
 
     @Override
     public FrontendControl getDropdownOptionsFrontendControl() {
-        return Game.game.getSpielerFrontendControl(this, false, true, true);
+        return Game.game.getSpielerFrontendControl(this, false);
     }
 
     @Override

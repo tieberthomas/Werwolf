@@ -47,7 +47,7 @@ public class Analytiker extends Bonusrolle {
 
 
     public DropdownOptions getDropdownOptions() {
-        return Game.game.getSpielerDropdownOptions(this, true, false, true);
+        return Game.game.getSpielerDropdownOptions(this, true);
     }
 
     public boolean showTarnumhang(Spieler spieler1, Spieler spieler2) {
