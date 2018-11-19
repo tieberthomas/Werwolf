@@ -81,6 +81,10 @@ public class Dieb extends Bonusrolle {
     private Bonusrolle getNewRandomBonusrolle() {
         List<Bonusrolle> bonusrollen = Game.game.getStillAvailableBonusrollen();
 
-        return Rand.getRandomElement(bonusrollen);
+        Bonusrolle randomBonusrolle = Rand.getRandomElement(bonusrollen);
+
+        Game.game.stillAvailableBonusrollen.remove(randomBonusrolle);
+
+        return randomBonusrolle;
     }
 }

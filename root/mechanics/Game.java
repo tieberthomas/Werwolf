@@ -10,17 +10,58 @@ import root.Persona.Fraktionen.Bürger;
 import root.Persona.Fraktionen.Werwölfe;
 import root.Persona.Hauptrolle;
 import root.Persona.Rolle;
-import root.Persona.Rollen.Bonusrollen.*;
+import root.Persona.Rollen.Bonusrollen.Analytiker;
+import root.Persona.Rollen.Bonusrollen.Archivar;
+import root.Persona.Rollen.Bonusrollen.Dieb;
+import root.Persona.Rollen.Bonusrollen.Gefängniswärter;
+import root.Persona.Rollen.Bonusrollen.Konditor;
+import root.Persona.Rollen.Bonusrollen.Konditorlehrling;
+import root.Persona.Rollen.Bonusrollen.Lamm;
+import root.Persona.Rollen.Bonusrollen.Medium;
+import root.Persona.Rollen.Bonusrollen.Nachbar;
+import root.Persona.Rollen.Bonusrollen.Prostituierte;
+import root.Persona.Rollen.Bonusrollen.ReineSeele;
+import root.Persona.Rollen.Bonusrollen.Schatten;
+import root.Persona.Rollen.Bonusrollen.Schattenkutte;
+import root.Persona.Rollen.Bonusrollen.Schnüffler;
+import root.Persona.Rollen.Bonusrollen.SchwarzeSeele;
+import root.Persona.Rollen.Bonusrollen.Seelenlicht;
+import root.Persona.Rollen.Bonusrollen.Spurenleser;
+import root.Persona.Rollen.Bonusrollen.Tarnumhang;
+import root.Persona.Rollen.Bonusrollen.Totengräber;
+import root.Persona.Rollen.Bonusrollen.Vampirumhang;
+import root.Persona.Rollen.Bonusrollen.Wahrsager;
+import root.Persona.Rollen.Bonusrollen.Wolfspelz;
 import root.Persona.Rollen.Constants.WölfinState;
-import root.Persona.Rollen.Hauptrollen.Bürger.*;
+import root.Persona.Rollen.Hauptrollen.Bürger.Dorfbewohner;
+import root.Persona.Rollen.Hauptrollen.Bürger.HoldeMaid;
+import root.Persona.Rollen.Hauptrollen.Bürger.Irrlicht;
+import root.Persona.Rollen.Hauptrollen.Bürger.Orakel;
+import root.Persona.Rollen.Hauptrollen.Bürger.Riese;
+import root.Persona.Rollen.Hauptrollen.Bürger.Sammler;
+import root.Persona.Rollen.Hauptrollen.Bürger.Schamanin;
+import root.Persona.Rollen.Hauptrollen.Bürger.Schattenmensch;
+import root.Persona.Rollen.Hauptrollen.Bürger.Seherin;
+import root.Persona.Rollen.Hauptrollen.Bürger.Späher;
+import root.Persona.Rollen.Hauptrollen.Bürger.Wirt;
 import root.Persona.Rollen.Hauptrollen.Schattenpriester.Schattenpriester;
 import root.Persona.Rollen.Hauptrollen.Vampire.GrafVladimir;
 import root.Persona.Rollen.Hauptrollen.Vampire.LadyAleera;
 import root.Persona.Rollen.Hauptrollen.Vampire.MissVerona;
-import root.Persona.Rollen.Hauptrollen.Werwölfe.*;
+import root.Persona.Rollen.Hauptrollen.Werwölfe.Blutwolf;
+import root.Persona.Rollen.Hauptrollen.Werwölfe.Chemiker;
+import root.Persona.Rollen.Hauptrollen.Werwölfe.Geisterwolf;
+import root.Persona.Rollen.Hauptrollen.Werwölfe.Schreckenswolf;
+import root.Persona.Rollen.Hauptrollen.Werwölfe.Werwolf;
+import root.Persona.Rollen.Hauptrollen.Werwölfe.Wolfsmensch;
+import root.Persona.Rollen.Hauptrollen.Werwölfe.Wölfin;
 import root.Persona.Rollen.Hauptrollen.Überläufer.Henker;
 import root.Persona.Rollen.Hauptrollen.Überläufer.Überläufer;
-import root.Phases.*;
+import root.Phases.Day;
+import root.Phases.FirstNight;
+import root.Phases.PhaseManager;
+import root.Phases.PhaseMode;
+import root.Phases.Winner;
 import root.Spieler;
 import root.Utils.ListHelper;
 
@@ -44,6 +85,8 @@ public class Game {
     public List<Bonusrolle> bonusrollenInGame = new ArrayList<>();
     public List<Hauptrolle> mitteHauptrollen = new ArrayList<>();
     public List<Bonusrolle> mitteBonusrollen = new ArrayList<>();
+    public List<Hauptrolle> stillAvailableHauptrollen = new ArrayList<>();
+    public List<Bonusrolle> stillAvailableBonusrollen = new ArrayList<>();
     public List<Spieler> spielerSpecified = new ArrayList<>();
 
     public boolean secondNight = true;
@@ -75,6 +118,32 @@ public class Game {
 
         PhaseManager phaseManager = new PhaseManager();
         phaseManager.start();
+        generateStillAvailableRollen();
+    }
+
+    private void generateStillAvailableRollen() {
+        generateStillAvailableHauptrollen();
+        generateStillAvailableBonusrollen();
+    }
+
+    private void generateStillAvailableHauptrollen() {
+        stillAvailableHauptrollen = new ArrayList<>();
+
+        stillAvailableHauptrollen.addAll(hauptrollenInGame);
+
+        for (Spieler spieler : spieler) {
+            stillAvailableHauptrollen.remove(spieler.hauptrolle);
+        }
+    }
+
+    private void generateStillAvailableBonusrollen() {
+        stillAvailableBonusrollen = new ArrayList<>();
+
+        stillAvailableBonusrollen.addAll(bonusrollenInGame);
+
+        for (Spieler spieler : spieler) {
+            stillAvailableBonusrollen.remove(spieler.bonusrolle);
+        }
     }
 
     private void generateAllAvailableHauptrollen() {
@@ -298,26 +367,12 @@ public class Game {
     }
 
     public List<Hauptrolle> getStillAvailableHauptrollen() {
-        List<Hauptrolle> stilleAvalableHauptrollen = new ArrayList<>();
-
-        stilleAvalableHauptrollen.addAll(hauptrollenInGame);
-
-        for (Spieler spieler : spieler) {
-            stilleAvalableHauptrollen.remove(spieler.hauptrolle);
-        }
-
-        return stilleAvalableHauptrollen;
+        return stillAvailableHauptrollen;
     }
 
     public List<Hauptrolle> getStillAvailableBürger() {
         return getStillAvailableHauptrollen().stream()
                 .filter(hauptrolle -> hauptrolle.fraktion.equals(Bürger.ID))
-                .collect(Collectors.toList());
-    }
-
-    public List<String> getStillAvailableHauptrolleNames() {
-        return getStillAvailableHauptrollen().stream()
-                .map(rolle -> rolle.name)
                 .collect(Collectors.toList());
     }
 
@@ -377,23 +432,7 @@ public class Game {
     }
 
     public List<Bonusrolle> getStillAvailableBonusrollen() {
-        List<Bonusrolle> stilleAvalableBonusrollen = new ArrayList<>();
-
-        stilleAvalableBonusrollen.addAll(bonusrollenInGame);
-
-        for (Spieler spieler : spieler) {
-            stilleAvalableBonusrollen.remove(spieler.bonusrolle);
-        }
-
-        stilleAvalableBonusrollen.removeAll(FirstNight.swappedRoles);
-
-        return stilleAvalableBonusrollen;
-    }
-
-    public List<String> getStillAvailableBonusrollenNames() {
-        return getStillAvailableBonusrollen().stream()
-                .map(rolle -> rolle.name)
-                .collect(Collectors.toList());
+        return stillAvailableBonusrollen;
     }
 
     public Bonusrolle findBonusrolle(String rolleID) {
