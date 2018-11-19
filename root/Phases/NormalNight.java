@@ -133,7 +133,7 @@ public class NormalNight extends Thread {
 
                     switch (statement.id) {
                         case Wirt.STATEMENT_ID:
-                            if (DropdownConstants.JA.equals(chosenOption)) {
+                            if (Wirt.JA.equals(chosenOption)) {
                                 Game.game.freibier = true;
                             }
                             break;
@@ -266,7 +266,7 @@ public class NormalNight extends Thread {
                                     chosenOption = showKonditorDropdownPage(statement, dropdownOptions);
                                     rolle.processChosenOption(chosenOption);
 
-                                    Torte.gut = chosenOption.equals(DropdownConstants.GUT);
+                                    Torte.gut = chosenOption.equals(Konditor.GUT);
                                 } else {
                                     Torte.torte = false;
                                     Torte.gut = false;

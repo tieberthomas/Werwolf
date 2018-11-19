@@ -11,10 +11,10 @@ import root.ResourceManagement.ImagePath;
 import java.util.ArrayList;
 import java.util.List;
 
-import static root.Persona.Rollen.Constants.DropdownConstants.JA;
-import static root.Persona.Rollen.Constants.DropdownConstants.NEIN;
-
 public class Wirt extends Hauptrolle {
+    public static final String JA = "Ja";
+    public static final String NEIN = "Nein";
+
     public static final String ID = "ID_Wirt";
     public static final String NAME = "Wirt";
     public static final String IMAGE_PATH = ImagePath.WIRT_KARTE;

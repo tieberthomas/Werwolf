@@ -11,10 +11,10 @@ import root.ResourceManagement.ImagePath;
 import java.util.ArrayList;
 import java.util.List;
 
-import static root.Persona.Rollen.Constants.DropdownConstants.GUT;
-import static root.Persona.Rollen.Constants.DropdownConstants.SCHLECHT;
-
 public class Konditor extends Bonusrolle {
+    public static final String GUT = "Gut";
+    public static final String SCHLECHT = "Schlecht";
+
     public static final String ID = "ID_Konditor";
     public static final String NAME = "Konditor";
     public static final String IMAGE_PATH = ImagePath.KONDITOR_KARTE;
