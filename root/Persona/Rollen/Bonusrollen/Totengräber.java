@@ -2,10 +2,12 @@ package root.Persona.Rollen.Bonusrollen;
 
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
+import root.Frontend.Utils.DropdownOptions;
 import root.Persona.Bonusrolle;
 import root.Persona.Fraktionen.Bürger;
 import root.Persona.Rollen.Constants.BonusrollenType.Aktiv;
 import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
+import root.Persona.Rollen.Constants.DropdownConstants;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
@@ -39,9 +41,7 @@ public class Totengräber extends Bonusrolle {
 
     @Override
     public FrontendControl getDropdownOptionsFrontendControl() {
-        List<String> nehmbareBonusrollen = getNehmbareBonusrollen();
-        nehmbareBonusrollen.add("");
-        return new FrontendControl(FrontendControlType.DROPDOWN_LIST, nehmbareBonusrollen);
+        return new FrontendControl(FrontendControlType.DROPDOWN_LIST, new DropdownOptions(getNehmbareBonusrollen(), DropdownConstants.EMPTY));
     }
 
     @Override
