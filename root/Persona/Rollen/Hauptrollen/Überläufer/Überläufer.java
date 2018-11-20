@@ -2,16 +2,16 @@ package root.Persona.Rollen.Hauptrollen.Überläufer;
 
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
+import root.Frontend.Utils.DropdownOptions;
 import root.Persona.Fraktion;
 import root.Persona.Fraktionen.ÜberläuferFraktion;
 import root.Persona.Hauptrolle;
+import root.Persona.Rollen.Constants.DropdownConstants;
 import root.Persona.Rollen.Hauptrollen.Bürger.Dorfbewohner;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Spieler;
 import root.mechanics.Game;
-
-import java.util.List;
 
 public class Überläufer extends Hauptrolle {
     public static final String ID = "ID_Überläufer";
@@ -38,9 +38,7 @@ public class Überläufer extends Hauptrolle {
 
     @Override
     public FrontendControl getDropdownOptionsFrontendControl() {
-        List<String> nehmbareHauptrollen = getMitteHauptrollenNames();
-        nehmbareHauptrollen.add("");
-        return new FrontendControl(FrontendControlType.DROPDOWN_LIST, nehmbareHauptrollen);
+        return new FrontendControl(FrontendControlType.DROPDOWN_LIST, new DropdownOptions(getMitteHauptrollenNames(), DropdownConstants.EMPTY));
     }
 
     @Override
