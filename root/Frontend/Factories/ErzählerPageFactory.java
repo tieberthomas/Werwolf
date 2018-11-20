@@ -5,6 +5,7 @@ import root.Frontend.Page.Page;
 import root.Frontend.Page.PageElement;
 import root.Frontend.Page.PageTable;
 import root.Frontend.Utils.DropdownOptions;
+import root.Frontend.Utils.JButtonStyler;
 import root.Frontend.Utils.PageRefresher.InteractivePages.InteractiveElementsDtos.PlayerSetupPageElementsDto;
 import root.Frontend.Utils.PageRefresher.InteractivePages.InteractiveElementsDtos.RolePageElementsDto;
 import root.Frontend.Utils.PageRefresher.InteractivePages.InteractiveElementsDtos.SpecifyPageElementsDto;
@@ -370,6 +371,8 @@ public class ErzählerPageFactory {
 
     public Page generateAnnounceOpferDayPage(String spieler1, String imagepath) {
         Page dayPage = generateDefaultDayPage();
+        JButtonStyler.disableButton(erzählerFrame.priesterJButton);
+        JButtonStyler.disableButton(erzählerFrame.richterinJButton);
 
         PageElement nameLabel = pageElementFactory.generateLeftCenteredLabel(new JLabel(spieler1));
         PageElement deadImage = pageElementFactory.generateRightCenteredImage(imagepath);
