@@ -13,6 +13,7 @@ import root.mechanics.Game;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class PlayerSetupPage extends RefreshedPage {
@@ -99,22 +100,12 @@ public class PlayerSetupPage extends RefreshedPage {
         int index = deleteButtons.indexOf(ae.getSource());
 
         deleteButtons.remove(index);
+        Collections.sort(Game.game.spieler);
         Spieler spieler = Game.game.spieler.get(index);
 
-        if (Game.game.spielerSpecified.contains(spieler)) {
-            removeSpecifiedPlayer(index);
-        }
-
-        Game.game.spieler.remove(index);
+        Game.game.spielerSpecified.remove(spieler);
+        Game.game.spieler.remove(spieler);
 
         refresh();
-    }
-
-    private void removeSpecifiedPlayer(int index) {
-        if (deleteButtons.size() > index) {
-            deleteButtons.remove(index);
-        }
-
-        Game.game.spielerSpecified.remove(index);
     }
 }
