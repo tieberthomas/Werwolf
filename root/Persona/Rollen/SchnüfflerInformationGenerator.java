@@ -47,7 +47,7 @@ public class SchnüfflerInformationGenerator {
 
         boolean isCorrectInformation;
 
-        for (InformationType type : erhaltbareInformationen) {
+        for (InformationType type : erhaltbareInformationen) { //TODO generalize enum
             switch (type) {
                 case FRAKTION:
                     isCorrectInformation = correctInformation.equals(InformationType.FRAKTION);
@@ -86,7 +86,7 @@ public class SchnüfflerInformationGenerator {
 
     private Fraktion generateFraktionInformation(boolean correctInformation) {
         Fraktion spielerFraktion = spieler.hauptrolle.fraktion;
-        if (spieler.bonusrolle.equals(Henker.ID)) {
+        if (spieler.hauptrolle.equals(Henker.ID)) {
             spielerFraktion = new Bürger();
         }
 
@@ -121,7 +121,7 @@ public class SchnüfflerInformationGenerator {
         }
 
         if (!correctInformation) {
-            TötendInfo.getWrongInformation(isKilling);
+            isKilling = TötendInfo.getWrongInformation(isKilling);
         }
 
         return (SpäherZeigekarte) isKilling;
