@@ -51,7 +51,7 @@ public class SpecifyPage extends RefreshedPage {
         if (next.equals(ae.getSource())) {
             if (allPlayersSpecified()) {
                 Game.game.startGame(erzählerFrame); //TODO auslagern in controller
-                erzählerFrame.dataManager.writeGame();
+                erzählerFrame.dataManager.writeGame(); //TODO thread game writing
             } else {
                 specifyPlayer();
             }
@@ -66,7 +66,7 @@ public class SpecifyPage extends RefreshedPage {
         return Game.game.spielerSpecified.size() == Game.game.spieler.size();
     }
 
-    private void specifyPlayer() {
+    private void specifyPlayer() { //TODO make strings as parameters
         try {
             String spielerName = (String) comboBox1.getSelectedItem();
             Spieler spieler = Game.game.findSpieler(spielerName);
@@ -94,15 +94,15 @@ public class SpecifyPage extends RefreshedPage {
     public void setupPageRefresher() {
         pageRefresher = new PageRefresher(page);
         pageRefresher.add(new LabelTable(playerLabelTable,
-                () -> (ArrayList<String>) Game.game.spielerSpecified.stream()
+                () -> Game.game.spielerSpecified.stream()
                         .map(player -> player.name)
                         .collect(Collectors.toList()), false));
         pageRefresher.add(new LabelTable(mainroleLabelTable,
-                () -> (ArrayList<String>) Game.game.spielerSpecified.stream()
+                () -> Game.game.spielerSpecified.stream()
                         .map(player -> player.hauptrolle.name)
                         .collect(Collectors.toList()), false));
         pageRefresher.add(new LabelTable(bonusroleLabelTable,
-                () -> (ArrayList<String>) Game.game.spielerSpecified.stream()
+                () -> Game.game.spielerSpecified.stream()
                         .map(player -> player.bonusrolle.name)
                         .collect(Collectors.toList()), false));
         pageRefresher.add(new DeleteButtonTable(deleteTable, deleteButtons, Game.game.spielerSpecified::size));
