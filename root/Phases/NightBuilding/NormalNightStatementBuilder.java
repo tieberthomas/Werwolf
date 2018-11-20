@@ -5,9 +5,30 @@ import root.Persona.Fraktionen.SchattenpriesterFraktion;
 import root.Persona.Fraktionen.Vampire;
 import root.Persona.Fraktionen.Werwölfe;
 import root.Persona.Rolle;
-import root.Persona.Rollen.Bonusrollen.*;
+import root.Persona.Rollen.Bonusrollen.Analytiker;
+import root.Persona.Rollen.Bonusrollen.Archivar;
+import root.Persona.Rollen.Bonusrollen.Dieb;
+import root.Persona.Rollen.Bonusrollen.Gefängniswärter;
+import root.Persona.Rollen.Bonusrollen.Konditor;
+import root.Persona.Rollen.Bonusrollen.Konditorlehrling;
+import root.Persona.Rollen.Bonusrollen.Medium;
+import root.Persona.Rollen.Bonusrollen.Nachbar;
+import root.Persona.Rollen.Bonusrollen.Prostituierte;
+import root.Persona.Rollen.Bonusrollen.Schnüffler;
+import root.Persona.Rollen.Bonusrollen.Spurenleser;
+import root.Persona.Rollen.Bonusrollen.Tarnumhang;
+import root.Persona.Rollen.Bonusrollen.Totengräber;
+import root.Persona.Rollen.Bonusrollen.Wahrsager;
 import root.Persona.Rollen.Constants.WölfinState;
-import root.Persona.Rollen.Hauptrollen.Bürger.*;
+import root.Persona.Rollen.Hauptrollen.Bürger.HoldeMaid;
+import root.Persona.Rollen.Hauptrollen.Bürger.Irrlicht;
+import root.Persona.Rollen.Hauptrollen.Bürger.Orakel;
+import root.Persona.Rollen.Hauptrollen.Bürger.Riese;
+import root.Persona.Rollen.Hauptrollen.Bürger.Schamanin;
+import root.Persona.Rollen.Hauptrollen.Bürger.Schattenmensch;
+import root.Persona.Rollen.Hauptrollen.Bürger.Seherin;
+import root.Persona.Rollen.Hauptrollen.Bürger.Späher;
+import root.Persona.Rollen.Hauptrollen.Bürger.Wirt;
 import root.Persona.Rollen.Hauptrollen.Vampire.GrafVladimir;
 import root.Persona.Rollen.Hauptrollen.Vampire.LadyAleera;
 import root.Persona.Rollen.Hauptrollen.Vampire.MissVerona;
@@ -62,7 +83,9 @@ public class NormalNightStatementBuilder {
 
         if (PhaseManager.nightCount == 1) {
             Spieler henkerSpieler = Game.game.findSpielerPerRolle(Henker.ID);
-            henkerSpieler.geschützt = true;
+            if (henkerSpieler != null) {
+                henkerSpieler.geschützt = true;
+            }
         } else {
             addStatementRolle(statements, Henker.ID);
         }
@@ -109,7 +132,7 @@ public class NormalNightStatementBuilder {
         statements.add(IndieStatements.getAlleWachenAufStatement());
         statements.add(IndieStatements.getOpferStatement());
 
-        addSecondStatementRolle(statements, Schreckenswolf.ID);
+        addSecondStatementRolle(statements, Schreckenswolf.ID); //TODO verstummungsstatement nicht adden wenn schreckenswolf nur bamboozelrolle ist
 
         if (Wölfin.state == WölfinState.TÖTEND) {
             addSecondStatementRolle(statements, Wölfin.ID);
