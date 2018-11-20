@@ -45,7 +45,7 @@ public class BonusrolePage extends RolePage {
     protected void next() {
         erzählerFrame.nextPage();
         erzählerFrame.dataManager.writeComposition(); //TODO access over game controller
-        //TODO generate speciyplayer page here, it cannot be created before that
+        //TODO thread composition writing
     }
 
     @Override
@@ -68,7 +68,7 @@ public class BonusrolePage extends RolePage {
 
         if (bonusrollenSpecifiedIDs.contains(bonusrolleID)) {
             int specifedIndex = bonusrollenSpecifiedIDs.indexOf(bonusrolleID);
-            removeSpecifiedPlayer(specifedIndex);
+            Game.game.spielerSpecified.remove(specifedIndex);
         }
 
         Bonusrolle bonusrolle = Game.game.findBonusrolle(bonusrolleID);

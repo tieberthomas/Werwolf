@@ -81,14 +81,6 @@ public class RolePage extends RefreshedPage {
     protected void deleteRolle(ActionEvent ae) {
     }
 
-    protected void removeSpecifiedPlayer(int index) { //TODO kann NPE werfen wegen rollen die mehrfach drin sind
-        if (deleteButtons.size() > index) {
-            deleteButtons.remove(index);
-        }
-
-        Game.game.spielerSpecified.remove(index);
-    }
-
     protected void addAllRollen() {
     }
 }

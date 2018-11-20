@@ -61,7 +61,7 @@ public class MainrolePage extends RolePage {
 
         if (hauptrollenSpecifiedIDs.contains(hauptrolleID)) {
             int specifedIndex = hauptrollenSpecifiedIDs.indexOf(hauptrolleID);
-            removeSpecifiedPlayer(specifedIndex);
+            Game.game.spielerSpecified.remove(specifedIndex);
         }
 
         Hauptrolle hauptrolle = Game.game.findHauptrolle(hauptrolleID);
