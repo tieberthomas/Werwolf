@@ -84,7 +84,7 @@ public class Henker extends Hauptrolle {
 
     @Override
     public FrontendControl getDropdownOptionsFrontendControl() {
-        return Game.game.getSpielerFrontendControl(this, true, true, true);
+        return Game.game.getSpielerFrontendControl(this, true);
     }
 
     @Override
@@ -166,7 +166,7 @@ public class Henker extends Hauptrolle {
     public FrontendControl getPage() {
         switch (pagecounter) {
             case 0:
-                return Game.game.getSpielerFrontendControl(this, true, true, true);
+                return Game.game.getSpielerFrontendControl(this, true);
             case 1:
                 if (besucht == null) {
                     return new FrontendControl();
@@ -217,7 +217,7 @@ public class Henker extends Hauptrolle {
                 return auswahlBestätigung;
             default:
                 System.out.println("There is no Henker Page with this number");
-                return Game.game.getSpielerFrontendControl(this, true, true, true);
+                return Game.game.getSpielerFrontendControl(this, true);
         }
     }
 

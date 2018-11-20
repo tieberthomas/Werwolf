@@ -31,12 +31,12 @@ public class HoldeMaid extends Hauptrolle {
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;
 
-        this.spammable = true;
+        this.spammable = false;
     }
 
     @Override
     public FrontendControl getDropdownOptionsFrontendControl() {
-        return Game.game.getSpielerFrontendControl(this, false, true, true);
+        return Game.game.getSpielerFrontendControl(this, true);
     }
 
     @Override

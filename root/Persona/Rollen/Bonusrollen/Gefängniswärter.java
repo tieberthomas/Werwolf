@@ -36,7 +36,7 @@ public class Gefängniswärter extends Bonusrolle {
 
     @Override
     public FrontendControl getDropdownOptionsFrontendControl() {
-        return Game.game.getSpielerFrontendControl(this, false, true, true);
+        return Game.game.getSpielerFrontendControl(this, false);
     }
 
     @Override

@@ -38,7 +38,7 @@ public class LadyAleera extends Hauptrolle {
 
     @Override
     public FrontendControl getDropdownOptionsFrontendControl() {
-        return Game.game.getSpielerFrontendControl(this, false, true, true);
+        return Game.game.getSpielerFrontendControl(this, false);
     }
 
     @Override

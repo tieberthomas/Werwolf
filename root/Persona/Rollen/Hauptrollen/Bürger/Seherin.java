@@ -37,7 +37,7 @@ public class Seherin extends Hauptrolle {
 
     @Override
     public FrontendControl getDropdownOptionsFrontendControl() {
-        return Game.game.getSpielerFrontendControl(this, true, true, true);
+        return Game.game.getSpielerFrontendControl(this, false);
     }
 
     @Override
