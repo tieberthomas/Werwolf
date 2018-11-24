@@ -2,6 +2,7 @@ package root.Persona;
 
 import root.Frontend.FrontendControl;
 import root.Persona.Rollen.Bonusrollen.Totengräber;
+import root.Persona.Rollen.Hauptrollen.Bürger.Irrlicht;
 import root.Persona.Rollen.Hauptrollen.Bürger.Sammler;
 import root.Spieler;
 import root.mechanics.Game;
@@ -116,6 +117,10 @@ public class Rolle extends Persona {
     }
 
     public static boolean rolleAktiv(String rolleID) {
+        if(Irrlicht.ID.equals(rolleID)) { //TODO find better solution
+            return true;
+        }
+
         for (Spieler currentSpieler : Game.game.spieler) {
             if (currentSpieler.hauptrolle.equals(rolleID) && currentSpieler.aktiv) {
                 return true;
