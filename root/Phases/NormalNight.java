@@ -9,11 +9,23 @@ import root.Persona.Fraktionen.Vampire;
 import root.Persona.Fraktionen.Werwölfe;
 import root.Persona.Hauptrolle;
 import root.Persona.Rolle;
-import root.Persona.Rollen.Bonusrollen.*;
+import root.Persona.Rollen.Bonusrollen.Analytiker;
+import root.Persona.Rollen.Bonusrollen.Konditor;
+import root.Persona.Rollen.Bonusrollen.Konditorlehrling;
+import root.Persona.Rollen.Bonusrollen.Prostituierte;
+import root.Persona.Rollen.Bonusrollen.Schattenkutte;
+import root.Persona.Rollen.Bonusrollen.SchwarzeSeele;
+import root.Persona.Rollen.Bonusrollen.Wahrsager;
 import root.Persona.Rollen.Constants.BonusrollenType.Tarnumhang_BonusrollenType;
-import root.Persona.Rollen.Constants.DropdownConstants;
 import root.Persona.Rollen.Constants.SchnüfflerInformation;
-import root.Persona.Rollen.Constants.Zeigekarten.*;
+import root.Persona.Rollen.Constants.Zeigekarten.Aufgebraucht;
+import root.Persona.Rollen.Constants.Zeigekarten.AusDemSpiel;
+import root.Persona.Rollen.Constants.Zeigekarten.Deaktiviert;
+import root.Persona.Rollen.Constants.Zeigekarten.Nicht_Aktiv;
+import root.Persona.Rollen.Constants.Zeigekarten.Torten_Zeigekarte;
+import root.Persona.Rollen.Constants.Zeigekarten.Tot;
+import root.Persona.Rollen.Constants.Zeigekarten.Verstummt;
+import root.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Persona.Rollen.Hauptrollen.Bürger.Irrlicht;
 import root.Persona.Rollen.Hauptrollen.Bürger.Sammler;
 import root.Persona.Rollen.Hauptrollen.Bürger.Wirt;
@@ -147,15 +159,15 @@ public class NormalNight extends Thread {
                             chosenOption = showFrontendControl(statement, dropdownOptions);
                             rolle.processChosenOption(chosenOption);
 
-                            if (rolle.besucht != null) {
-                                while (Henker.pagecounter < Henker.numberOfPages) {
-                                    if (FrontendControl.erzählerFrame.next) {
-                                        henkerNächsteSeite();
-                                    } else {
-                                        henkerSeiteZurück();
-                                    }
+                            while (Henker.pagecounter < Henker.numberOfPages) {
+                                if (FrontendControl.erzählerFrame.next) {
+                                    henkerNächsteSeite();
+                                } else {
+                                    henkerSeiteZurück();
                                 }
+                            }
 
+                            if (rolle.besucht != null) {
                                 Henker henker = ((Henker) rolle);
                                 info = henker.processChosenOptionsGetInfo(Henker.chosenHauptrolle.name, Henker.chosenBonusrolle.name);
                                 showFrontendControl(statement, info);
@@ -553,7 +565,7 @@ public class NormalNight extends Thread {
                         break;
 
                     case TWO_IMAGES:
-                        showTwoImages(statement, frontendControl.title, frontendControl.imagePath, frontendControl.imagePath2, frontendControl.displayedStrings);
+                        showTwoImages(statement, frontendControl.title, frontendControl.imagePath, frontendControl.imagePath2, frontendControl.displayedStrings, frontendControl.hatZurückButton);
                         break;
 
                 }
@@ -579,8 +591,8 @@ public class NormalNight extends Thread {
         return null;
     }
 
-    private void showTwoImages(Statement statement, String title, String imagePath, String imagePath2, List<String> displayedStrings) {
-        FrontendControl.erzählerListPage(statement, title, displayedStrings);
+    private void showTwoImages(Statement statement, String title, String imagePath, String imagePath2, List<String> displayedStrings, boolean hatZurückButton) {
+        FrontendControl.erzählerListPage(statement, title, displayedStrings, hatZurückButton);
         FrontendControl.spielerTwoImagePage(title, imagePath, imagePath2);
 
         waitForAnswer();

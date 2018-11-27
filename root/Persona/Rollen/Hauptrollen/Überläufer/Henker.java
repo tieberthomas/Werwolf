@@ -90,10 +90,7 @@ public class Henker extends Hauptrolle {
     @Override
     public void processChosenOption(String chosenOption) {
         Spieler chosenSpieler = Game.game.findSpieler(chosenOption);
-
-        if (chosenSpieler != null) {
-            besucht = chosenSpieler;
-        }
+        besucht = chosenSpieler;
     }
 
     @Override
@@ -141,10 +138,7 @@ public class Henker extends Hauptrolle {
                 break;
             case 1:
                 Spieler chosenSpieler = Game.game.findSpieler(chosenOption);
-
-                if (chosenSpieler != null) {
-                    besucht = chosenSpieler;
-                }
+                besucht = chosenSpieler;
                 break;
             case 2:
                 chosenFraktion = Fraktion.findFraktionPerName(chosenOption);
@@ -164,14 +158,15 @@ public class Henker extends Hauptrolle {
     }
 
     public FrontendControl getPage() {
+        if (besucht == null) {
+            pagecounter = numberOfPages;
+            return new FrontendControl();
+        }
+
         switch (pagecounter) {
             case 0:
                 return Game.game.getSpielerFrontendControl(this, true);
             case 1:
-                if (besucht == null) {
-                    return new FrontendControl();
-                }
-
                 FrontendControl fraktionsAuswahl = new FrontendControl(FrontendControlType.DROPDOWN_LIST, FRAKTION_TITLE, new DropdownOptions(Fraktion.getLivingFraktionStrings()));
                 fraktionsAuswahl.hatZurückButton = true;
                 return fraktionsAuswahl;
