@@ -224,6 +224,13 @@ public class NormalNight extends Thread {
                             showListShowImage(statement, neuerWerwolf, Werwölfe.IMAGE_PATH); //TODO evalueren obs schönere lösung gibt
                             break;
 
+                        case Nachtfürst.TÖTEN_ID:
+                            Nachtfürst nachtfürst = (Nachtfürst) rolle;
+                            dropdownOptions = nachtfürst.getSecondDropdownOptionsFrontendControl();
+                            chosenOption = showFrontendControl(statement, dropdownOptions);
+                            nachtfürst.processSecondChosenOption(chosenOption);
+                            break;
+
                         case Irrlicht.STATEMENT_ID:
                             dropdownOptions = rolle.getDropdownOptionsFrontendControl();
                             showFrontendControl(statement, dropdownOptions);
@@ -248,7 +255,7 @@ public class NormalNight extends Thread {
                                     showZeigekarte(statement, new Tarnumhang_BonusrollenType());
                                 } else {
                                     String answer = analytiker.analysiere(chosenSpieler1, chosenSpieler2);
-                                    showList(statement, answer);//TODO generisch machen
+                                    showList(statement, answer);
                                 }
                             }
                             break;
@@ -413,6 +420,21 @@ public class NormalNight extends Thread {
         for (Spieler currentSpieler : Game.game.spieler) {
             if (currentSpieler.bonusrolle.equals(SchwarzeSeele.ID)) {
                 currentSpieler.geschützt = true;
+            }
+        }
+
+        setNachtfürstSchutz();
+    }
+
+    private void setNachtfürstSchutz() {
+        Rolle rolle = Rolle.findRolle(Nachtfürst.ID);
+
+        if (rolle != null) {
+            Nachtfürst nachtfürst = (Nachtfürst) rolle;
+
+            if (!nachtfürst.isTötendeFraktion() && nachtfürst.guessedRight) {
+                Spieler nachtfürstSpieler = Game.game.findSpielerPerRolle(nachtfürst.id);
+                nachtfürstSpieler.geschützt = true;
             }
         }
     }

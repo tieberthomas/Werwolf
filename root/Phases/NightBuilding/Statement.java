@@ -41,6 +41,15 @@ public class Statement {
         }
     }
 
+    //TODO schöne konstruktorn lösung finden
+    public Statement(Rolle rolle, boolean secondStatement) {
+        this.id = rolle.secondStatementID;
+        this.title = rolle.secondStatementTitle;
+        this.beschreibung = rolle.secondStatementBeschreibung;
+        this.type = rolle.secondStatementType;
+        this.dependency = new StatementDependencyRolle(rolle);
+    }
+
     public Statement(Rolle rolle, Statement dependency) {
         this.id = rolle.secondStatementID;
         this.title = rolle.secondStatementTitle;

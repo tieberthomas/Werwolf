@@ -54,18 +54,6 @@ public class Werwölfe extends Fraktion {
     }
 
     @Override
-    public void processChosenOption(String chosenOption) {
-        Spieler chosenSpieler = Game.game.findSpieler(chosenOption);
-        if (chosenSpieler != null) {
-            if (blutWolfIsAktiv()) {
-                BlutwolfKill.execute(chosenSpieler, this);
-            } else {
-                NormalKill.execute(chosenSpieler, this);
-            }
-        }
-    }
-
-    @Override
     public FrontendControl getDropdownOptionsFrontendControl() {
         String imagePath = zeigekarte.imagePath;
         if (blutWolfIsAktiv()) {
@@ -79,5 +67,17 @@ public class Werwölfe extends Fraktion {
 
     public static boolean blutWolfIsAktiv() {
         return Rolle.rolleLebend(Blutwolf.ID) && Rolle.rolleAktiv(Blutwolf.ID) && Blutwolf.deadly;
+    }
+
+    @Override
+    public void processChosenOption(String chosenOption) {
+        Spieler chosenSpieler = Game.game.findSpieler(chosenOption);
+        if (chosenSpieler != null) {
+            if (blutWolfIsAktiv()) {
+                BlutwolfKill.execute(chosenSpieler, this);
+            } else {
+                NormalKill.execute(chosenSpieler, this);
+            }
+        }
     }
 }

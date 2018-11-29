@@ -1,13 +1,10 @@
 Fertige Tasks
 Henker hat auch am Endscreen einen Zurückbutton ? - 1
 Tote Fraktionen verschwinden wenn sie tot sind ? - 2
-
+3. Nachtfürst 5 - 7
 
 Eingereihte Tasks
-
-3. Nachtfürst 5 - 7
 4. wenn dieb eine Karte stiehlt, und man auf weiter klickt wird sofort die neue Bonusrolle gezeigt, verlangt hohe vorsichtigkeit des erzählers 1 - 1
-
 
 Fürs erste nicht umsetzbare Tasks da Gegebenheiten unklar sind oder evtl. die Karte gerext wird
 

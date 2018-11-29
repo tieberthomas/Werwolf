@@ -1,6 +1,1 @@
-nachtfürst (bonusrolle)
-    -schätzt die anzahl der opfer der nacht. wenn richtig und werwolf oder vampir bekommt er kill. sonst schutz auf ihm.
-
-fragwürdig (wird vermutlich gerext):
-detektiv (bürger)
-    -versucht die anzahl der bürger zu erraten, wenn richitg bekommt er eine bürgerrolle die im spiel ist verraten
+alle rollen sind zurzeit implementiert

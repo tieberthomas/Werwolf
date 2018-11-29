@@ -75,6 +75,7 @@ public class NormalNightStatementBuilder {
         addStatementRolle(statements, HoldeMaid.ID);
         addStatementRolle(statements, Irrlicht.ID);
         addSecondStatementRolle(statements, Irrlicht.ID);
+        //TODO comment entfernen wenn detektiv wirklich gerext wird
         //Detektiv erwacht, schätzt die Anzahl der Bürger und bekommt ggf. eine Bürgerhauptrolle die im Spiel ist gezeigt
         addStatementRolle(statements, Schamanin.ID);
 
@@ -100,6 +101,9 @@ public class NormalNightStatementBuilder {
         addStatementRolle(statements, Schreckenswolf.ID);
         addStatementFraktion(statements, Vampire.ID);
 
+        if (PhaseManager.nightCount != 1) {
+            addSecondStatementRolle(statements, Nachtfürst.ID, false);
+        }
         addStatementRolle(statements, Nachtfürst.ID);
 
         addStatementFraktion(statements, SchattenpriesterFraktion.ID);
@@ -153,13 +157,23 @@ public class NormalNightStatementBuilder {
     }
 
     private static void addSecondStatementRolle(List<Statement> statements, String rolleID) {
+        addSecondStatementRolle(statements, rolleID, true);
+    }
+
+    private static void addSecondStatementRolle(List<Statement> statements, String rolleID, boolean dependendOnFirstStatement) {
         Rolle rolle = Rolle.findRolle(rolleID);
 
-        Statement firstStatement = statements.stream()
-                .filter(statement -> statement.id.equals(rolle.statementID))
-                .findAny().orElse(null);
+        Statement statement;
 
-        Statement statement = new Statement(rolle, firstStatement);
+        if (dependendOnFirstStatement) {
+            Statement firstStatement = statements.stream()
+                    .filter(s -> s.id.equals(rolle.statementID))
+                    .findAny().orElse(null);
+            statement = new Statement(rolle, firstStatement);
+        } else {
+            statement = new Statement(rolle, true);
+        }
+
         statements.add(statement);
     }
 
