@@ -133,6 +133,7 @@ public class Day extends Thread {
 
             FrontendControl.erzählerAnnounceOpferPage(spieler);
             FrontendControl.spielerAnnounceOpferPage(spieler);
+            FrontendControl.refreshÜbersichtsFrame();
         }
     }
 
