@@ -97,6 +97,15 @@ public class Rolle extends Persona {
                 }
             }
 
+            Rolle rolle = Rolle.findRolle(rolleID);
+            if(rolle instanceof Hauptrolle) {
+                Hauptrolle hauptrolle = (Hauptrolle)rolle;
+
+                if(!Fraktion.fraktionContainedInNight(hauptrolle.fraktion.id)) {
+                    return false;
+                }
+            }
+
             return true;
         } else {
             return false;

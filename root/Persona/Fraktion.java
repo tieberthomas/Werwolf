@@ -62,7 +62,7 @@ public class Fraktion extends Persona {
         }
 
         int numberHauptrollenInGame = 0;
-        for (Hauptrolle hauptrolle : Game.game.hauptrollenInGame) {
+        for (Hauptrolle hauptrolle : Game.game.amStartZugeteilteHauptrollen) {
             if (hauptrolle.fraktion.equals(fraktionID)) {
                 numberHauptrollenInGame++;
             }
