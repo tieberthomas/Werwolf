@@ -12,6 +12,7 @@ import root.Persona.Rolle;
 import root.Persona.Rollen.Bonusrollen.Analytiker;
 import root.Persona.Rollen.Bonusrollen.Konditor;
 import root.Persona.Rollen.Bonusrollen.Konditorlehrling;
+import root.Persona.Rollen.Bonusrollen.Nachtfürst;
 import root.Persona.Rollen.Bonusrollen.Prostituierte;
 import root.Persona.Rollen.Bonusrollen.Schattenkutte;
 import root.Persona.Rollen.Bonusrollen.SchwarzeSeele;
@@ -69,6 +70,8 @@ public class NormalNight extends Thread {
     public static Spieler beschworenerSpieler;
     public static Spieler gefälschterSpieler;
     public static Spieler getarnterSpieler;
+    public List<String> opferDerNacht;
+
 
     public void run() {
         lock = new Object();
@@ -287,7 +290,7 @@ public class NormalNight extends Thread {
                         case IndieStatements.OPFER_ID:
                             setOpfer();
 
-                            List<String> opferDerNacht = new ArrayList<>();
+                            opferDerNacht = new ArrayList<>();
 
                             for (Opfer currentOpfer : opfer) {
                                 if (!opferDerNacht.contains(currentOpfer.spieler.name)) {
@@ -431,6 +434,8 @@ public class NormalNight extends Thread {
     }
 
     private void cleanUpNight() {
+        checkNachtfürstGuess();
+
         Game.game.secondNight = false;
 
         for (Spieler currentSpieler : Game.game.spieler) {
@@ -438,6 +443,21 @@ public class NormalNight extends Thread {
             currentSpieler.geschützt = false;
             currentSpieler.ressurectable = true;
         }
+    }
+
+    private void checkNachtfürstGuess() {
+        Rolle rolle = Rolle.findRolle(Nachtfürst.ID);
+
+        if (rolle != null) {
+            Nachtfürst nachtfürst = (Nachtfürst) rolle;
+
+            int anzahlOpferDerNacht = getAnzahlOpferDerNacht();
+            nachtfürst.checkGuess(anzahlOpferDerNacht);
+        }
+    }
+
+    private int getAnzahlOpferDerNacht() {
+        return opferDerNacht.size();
     }
 
     public void killOpfer() {

@@ -1,10 +1,6 @@
-detektiv (bürger)
-    -versucht die anzahl der bürger zu erraten, wenn richitg bekommt er eine bürgerrolle die im spiel ist verraten
-
 nachtfürst (bonusrolle)
     -schätzt die anzahl der opfer der nacht. wenn richtig und werwolf oder vampir bekommt er kill. sonst schutz auf ihm.
 
-schattenmensch (bürger)
-    -wird zum schattenpriester sobald er eine reine seeler erhält (wird noch diskutiert)
-
-holde maid + blutwolf rework
+fragwürdig (wird vermutlich gerext):
+detektiv (bürger)
+    -versucht die anzahl der bürger zu erraten, wenn richitg bekommt er eine bürgerrolle die im spiel ist verraten

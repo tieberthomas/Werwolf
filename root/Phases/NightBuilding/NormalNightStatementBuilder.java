@@ -13,6 +13,7 @@ import root.Persona.Rollen.Bonusrollen.Konditor;
 import root.Persona.Rollen.Bonusrollen.Konditorlehrling;
 import root.Persona.Rollen.Bonusrollen.Medium;
 import root.Persona.Rollen.Bonusrollen.Nachbar;
+import root.Persona.Rollen.Bonusrollen.Nachtfürst;
 import root.Persona.Rollen.Bonusrollen.Prostituierte;
 import root.Persona.Rollen.Bonusrollen.Schnüffler;
 import root.Persona.Rollen.Bonusrollen.Spurenleser;
@@ -99,7 +100,7 @@ public class NormalNightStatementBuilder {
         addStatementRolle(statements, Schreckenswolf.ID);
         addStatementFraktion(statements, Vampire.ID);
 
-        //Nachtfürst erwacht, schätzt die Anzahl der Opfer dieser Nacht und führt ggf. seine Tötung aus
+        addStatementRolle(statements, Nachtfürst.ID);
 
         addStatementFraktion(statements, SchattenpriesterFraktion.ID);
         addSecondStatementFraktion(statements, SchattenpriesterFraktion.ID);

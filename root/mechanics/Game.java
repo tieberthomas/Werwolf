@@ -19,6 +19,7 @@ import root.Persona.Rollen.Bonusrollen.Konditorlehrling;
 import root.Persona.Rollen.Bonusrollen.Lamm;
 import root.Persona.Rollen.Bonusrollen.Medium;
 import root.Persona.Rollen.Bonusrollen.Nachbar;
+import root.Persona.Rollen.Bonusrollen.Nachtfürst;
 import root.Persona.Rollen.Bonusrollen.Prostituierte;
 import root.Persona.Rollen.Bonusrollen.ReineSeele;
 import root.Persona.Rollen.Bonusrollen.Schatten;
@@ -200,6 +201,7 @@ public class Game {
         bonusrollen.add(new Lamm());
         bonusrollen.add(new Medium());
         bonusrollen.add(new Nachbar());
+        bonusrollen.add(new Nachtfürst());
         bonusrollen.add(new Prostituierte());
         bonusrollen.add(new ReineSeele());
         bonusrollen.add(new Schatten());

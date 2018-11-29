@@ -26,7 +26,7 @@ public class Werwölfe extends Fraktion {
     public static final Zeigekarte ZEIGEKARTE = new WerwölfeZeigekarte();
 
     public static final String STATEMENT_ID = ID;
-    public static final String STATEMENT_TITLE = "Opfer wählen";
+    public static final String STATEMENT_TITLE = "Opfer wählen"; //TODO generischen kill titel machen?
     public static final String STATEMENT_BESCHREIBUNG = "Die Werwölfe erwachen und die Wölfe wählen ein Opfer aus";
     public static final StatementType STATEMENT_TYPE = StatementType.FRAKTION_CHOOSE_ONE;
 
