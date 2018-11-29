@@ -97,18 +97,24 @@ public class Rolle extends Persona {
                 }
             }
 
-            Rolle rolle = Rolle.findRolle(rolleID);
-            if(rolle instanceof Hauptrolle) {
-                Hauptrolle hauptrolle = (Hauptrolle)rolle;
-
-                if(!Fraktion.fraktionContainedInNight(hauptrolle.fraktion.id)) {
-                    return false;
-                }
+            if (!fraktionContainedInNight(rolleID)) {
+                return false;
             }
 
             return true;
         } else {
             return false;
+        }
+    }
+
+    private static boolean fraktionContainedInNight(String rolleID) {
+        Rolle rolle = Rolle.findRolle(rolleID);
+        if (rolle instanceof Hauptrolle) {
+            Hauptrolle hauptrolle = (Hauptrolle) rolle;
+
+            return Fraktion.fraktionContainedInNight(hauptrolle.fraktion.id);
+        } else {
+            return true;
         }
     }
 
@@ -126,7 +132,7 @@ public class Rolle extends Persona {
     }
 
     public static boolean rolleAktiv(String rolleID) {
-        if(Irrlicht.ID.equals(rolleID)) { //TODO find better solution
+        if (Irrlicht.ID.equals(rolleID)) { //TODO find better solution
             return true;
         }
 
