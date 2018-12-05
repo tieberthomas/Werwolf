@@ -47,7 +47,7 @@ public class Wolfspelz extends Bonusrolle {
         }
     }
 
-    public Bonusrolle getTauschErgebnis() {
+    public Bonusrolle getTauschErgebnis() { //TODO make generic with other swap roles
         Spieler spieler = Game.game.findSpielerPerRolle(this.id);
 
         if (spieler != null) {

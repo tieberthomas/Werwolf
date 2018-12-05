@@ -48,8 +48,9 @@ public class Lamm extends Bonusrolle {
     }
 
     public Bonusrolle getTauschErgebnis() {
-        try {
-            Spieler spieler = Game.game.findSpielerPerRolle(this.id);
+        Spieler spieler = Game.game.findSpielerPerRolle(this.id);
+
+        if (spieler != null) {
             Bonusrolle bonusrolle;
 
             if (spieler.hauptrolle.fraktion.equals(Bürger.ID)) {
@@ -59,11 +60,9 @@ public class Lamm extends Bonusrolle {
             }
 
             return bonusrolle;
-        } catch (NullPointerException e) {
-            System.out.println(NAME + " nicht gefunden");
+        } else {
+            return this;
         }
-
-        return this;
     }
 
     public Zeigekarte getFraktionInfo() {
