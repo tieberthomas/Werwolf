@@ -34,7 +34,7 @@ public class Nachtfürst extends Bonusrolle {
 
     public static final String TÖTEN_ID = "Nachtfürst_Kill";
     public static final String SECOND_STATEMENT_TITLE = "Opfer wählen";
-    public static final String SECOND_STATEMENT_BESCHREIBUNG = "Nachtfürst erwacht und tötet einen Spieler wenn er letzte Nacht richtig lag";
+    public static final String SECOND_STATEMENT_BESCHREIBUNG = "Nachtfürst erwacht und tötet einen Spieler wenn er letzte Nacht richtig lag"; //TODO er ist ja schon wach, wording ändern
     public static final StatementType SECOND_STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
 
     public static final String KEIN_OPFER = "Kein Opfer";
@@ -68,7 +68,7 @@ public class Nachtfürst extends Bonusrolle {
         numbers.add("2");
         numbers.add("3");
         numbers.add("4");
-        numbers.add("5");
+        numbers.add("5"); //TODO 5 genügt?
         return new FrontendControl(FrontendControlType.DROPDOWN_LIST, new DropdownOptions(numbers, KEIN_OPFER));
     }
 

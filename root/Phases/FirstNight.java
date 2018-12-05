@@ -71,7 +71,6 @@ public class FirstNight extends Thread {
                         if (Rolle.rolleLebend(rolle.id)) {
                             bonusrolle.tauschen(newBonusrolle);
                         }
-
                     } else if (statement.dependency instanceof StatementDependencyFraktion) {
                         Fraktion fraktion = ((StatementDependencyFraktion) statement.dependency).fraktion;
                         showFraktionMembers(statement, fraktion);
