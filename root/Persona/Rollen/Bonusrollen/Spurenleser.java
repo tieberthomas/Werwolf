@@ -82,7 +82,9 @@ public class Spurenleser extends Bonusrolle {
 
             if (beobachteterSpieler.bonusrolle.equals(Analytiker.ID)) {
                 Analytiker analytiker = (Analytiker) beobachteterSpieler.bonusrolle;
-                besucher.add(analytiker.besuchtAnalysieren.name);
+                if(analytiker.besuchtAnalysieren != null) {
+                    besucher.add(analytiker.besuchtAnalysieren.name);
+                }
             }
         }
 
