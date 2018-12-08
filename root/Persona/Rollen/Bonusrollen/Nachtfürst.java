@@ -11,6 +11,8 @@ import root.Persona.Hauptrolle;
 import root.Persona.Rollen.Constants.BonusrollenType.Aktiv;
 import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Persona.Rollen.Constants.DropdownConstants;
+import root.Persona.Rollen.Constants.Zeigekarten.Geschützt;
+import root.Persona.Rollen.Constants.Zeigekarten.Nicht_Tötend;
 import root.Persona.Rollen.Hauptrollen.Überläufer.Henker;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
@@ -29,7 +31,7 @@ public class Nachtfürst extends Bonusrolle {
 
     public static final String SCHÄTZEN_ID = ID;
     public static final String STATEMENT_TITLE = "Anzahl der toten Opfer";
-    public static final String STATEMENT_BESCHREIBUNG = "Nachtfürst erwacht und schätzt, wieviele Opfer es in der Nacht wird";
+    public static final String STATEMENT_BESCHREIBUNG = "Nachtfürst erwacht und schätzt, wieviele Opfer es in der Nacht geben wird";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
 
     public static final String TÖTEN_ID = "Nachtfürst_Kill";
@@ -38,6 +40,7 @@ public class Nachtfürst extends Bonusrolle {
     public static final StatementType SECOND_STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
 
     public static final String KEIN_OPFER = "Kein Opfer";
+    public static final String NICHT_GESCHÜTZT = "Nicht geschützt";
 
     private Integer tipp = null;
     public boolean guessedRight = false;
@@ -86,10 +89,18 @@ public class Nachtfürst extends Bonusrolle {
     }
 
     public FrontendControl getSecondDropdownOptionsFrontendControl() {
-        if (isTötendeFraktion() && guessedRight) {
-            return new FrontendControl(Game.game.getSpielerDropdownOptions(true));
+        if (isTötendeFraktion()) {
+            if (guessedRight) {
+                return new FrontendControl(Game.game.getSpielerDropdownOptions(true));
+            } else {
+                return new FrontendControl(new Nicht_Tötend());
+            }
         } else {
-            return new FrontendControl(new DropdownOptions(new ArrayList<>(), DropdownConstants.EMPTY));
+            if (guessedRight) {
+                return new FrontendControl(new Geschützt());
+            } else {
+                return new FrontendControl(NICHT_GESCHÜTZT, new DropdownOptions(new ArrayList<>(), DropdownConstants.EMPTY));
+            }
         }
     }
 
@@ -119,12 +130,6 @@ public class Nachtfürst extends Bonusrolle {
             guessedRight = false;
         } else {
             guessedRight = (anzahlOpferDerNacht == tipp);
-        }
-
-        if (guessedRight) {
-            System.out.println("Nachtfürst lag richtig");
-        } else {
-            System.out.println("Nachtfürst lga falsch");
         }
     }
 }

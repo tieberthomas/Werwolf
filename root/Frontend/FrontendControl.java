@@ -80,6 +80,12 @@ public class FrontendControl {
         this.dropdownOptions = dropdownOptions;
     }
 
+    public FrontendControl(String title, DropdownOptions dropdownOptions) {
+        this.typeOfContent = FrontendControlType.DROPDOWN;
+        this.title = title;
+        this.dropdownOptions = dropdownOptions;
+    }
+
     public FrontendControl(FrontendControlType typeOfContent, String title, DropdownOptions dropdownOptions) {
         this.typeOfContent = typeOfContent;
         this.title = title;
