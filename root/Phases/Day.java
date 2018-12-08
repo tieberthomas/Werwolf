@@ -80,6 +80,7 @@ public class Day extends Thread {
                             Schattenmensch.changeReineSeele = true;
                         }
                     } else {
+                        //TODO implementieren dass jeder nur einmal erfolgreich gepriestert werden kann
                         if (chosenSpieler.bonusrolle.equals(ReineSeele.ID) &&
                                 !(gebürgteSpieler.contains(chosenSpieler) && hauptrolleSpieler.fraktion.equals(Bürger.ID))) {
                             ((ReineSeele) chosenSpieler.bonusrolle).dayInvincibility = false;

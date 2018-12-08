@@ -1,3 +1,5 @@
+CODEFREEZE
+
 Fertige Tasks
 Henker hat auch am Endscreen einen Zurückbutton ? - 1
 Tote Fraktionen verschwinden wenn sie tot sind ? - 2
@@ -5,6 +7,7 @@ Tote Fraktionen verschwinden wenn sie tot sind ? - 2
 
 Eingereihte Tasks
 4. wenn dieb eine Karte stiehlt, und man auf weiter klickt wird sofort die neue Bonusrolle gezeigt, verlangt hohe vorsichtigkeit des erzählers 1 - 1
+nachtfürst wird angezeigt wenn er als nicht tötender richtig gelegen hat ? - 1
 
 Fürs erste nicht umsetzbare Tasks da Gegebenheiten unklar sind oder evtl. die Karte gerext wird
 

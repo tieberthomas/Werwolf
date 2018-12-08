@@ -35,7 +35,9 @@ public class Schattenmensch extends Hauptrolle {
             schattenpriester.neuster = true;
             schattenmenschSpieler.hauptrolle = schattenpriester;
             if(changeReineSeele) {
-                schattenmenschSpieler.bonusrolle = new ReineSeele();
+                ReineSeele reineSeele = new ReineSeele();
+                reineSeele.dayInvincibility = false;
+                schattenmenschSpieler.bonusrolle = reineSeele;
             }
             SchattenpriesterFraktion.spielerToChangeCards = schattenmenschSpieler;
         }

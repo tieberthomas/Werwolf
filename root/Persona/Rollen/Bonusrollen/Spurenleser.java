@@ -66,7 +66,7 @@ public class Spurenleser extends Bonusrolle {
         return new FrontendControl();
     }
 
-    public static List<String> getBesuchteSpielerStrings(Spieler beobachteterSpieler) {
+    private static List<String> getBesuchteSpielerStrings(Spieler beobachteterSpieler) {
         List<String> besucher = new ArrayList<>();
 
         if (beobachteterSpieler != null) {
