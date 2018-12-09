@@ -30,19 +30,28 @@ public class ErzählerPageElementFactory {
         ErzählerPageElementFactory.erzählerFrame = erzählerFrame;
     }
 
-    public PageElement generateLabel(Predecessor predecessorY, String title) {
+    PageElement generateLabel(Predecessor predecessorY, String title) {
         JLabel titleJLabel = new JLabel(title);
 
         return generateInteractiveLabel(predecessorY, titleJLabel);
     }
 
-    public PageElement generateInteractiveLabel(Predecessor predecessorY, JLabel label) {
+    PageElement generateXLabel(Predecessor predecessorX, JLabel label) {
+        return generateXLabel(predecessorX, label, 0);
+    }
+
+    PageElement generateXLabel(Predecessor predecessorX, JLabel label, int spaceToPredecessor) {
         int numberOfPlayersLabeWidth = 300;
         int numberOfPlayersLabeHeight = 25;
 
-        PageElement titleLabel = new PageElement(label, numberOfPlayersLabeWidth, numberOfPlayersLabeHeight, null, predecessorY);
+        return new PageElement(label, numberOfPlayersLabeWidth, numberOfPlayersLabeHeight, predecessorX, null, spaceToPredecessor, 0);
+    }
 
-        return titleLabel;
+    private PageElement generateInteractiveLabel(Predecessor predecessorY, JLabel label) {
+        int numberOfPlayersLabeWidth = 300;
+        int numberOfPlayersLabeHeight = 25;
+
+        return new PageElement(label, numberOfPlayersLabeWidth, numberOfPlayersLabeHeight, null, predecessorY);
     }
 
     public PageElement generateUpperCenterStartButton(JButton button) {

@@ -27,7 +27,6 @@ public class ErzählerPageFactory {
     }
 
     public void generateStartPage(Page startPage, StartPageElementsDto pageElements) {
-        //TODO listengenerierung so machen dass buttons aus dem dto verwendet werden
         PageElement werwolfIcon = pageElementFactory.generateCenteredImageLabel(ImagePath.WÖLFE_ICON, 3, 60);
 
         pageElements.startButton.setText("Neues Spiel");
@@ -157,20 +156,31 @@ public class ErzählerPageFactory {
         int spaceBetween = 5;
         int columns = 1;
 
-        //TODO überschriften für tables hinzufügen
-        pageElements.deleteTable = pageElementFactory.generatePageTable(pageElements.deleteTable, titleLabel, null, columns, deleteButtonWidth,
+        int headingTextsize = 24;
+
+        JLabel playerHeadingLabel = pageElementFactory.generateTitleJLabel("Spieler", headingTextsize);
+        PageElement playerHeading = pageElementFactory.generateXLabel(titleLabel, playerHeadingLabel, deleteButtonWidth + 5);
+
+        pageElements.deleteTable = pageElementFactory.generatePageTable(pageElements.deleteTable, titleLabel, playerHeading, columns, deleteButtonWidth,
                 tableElementHeight, nameLabelWidth + hauptrolleLabelWidth + bonusrolleLabelWidth, spaceBetween,
                 0, spaceBetween);
 
-        pageElements.playerLabelTable = pageElementFactory.generatePageTable(pageElements.playerLabelTable, titleLabel, null, columns, nameLabelWidth,
+
+        pageElements.playerLabelTable = pageElementFactory.generatePageTable(pageElements.playerLabelTable, titleLabel, playerHeading, columns, nameLabelWidth,
                 tableElementHeight, deleteButtonWidth + hauptrolleLabelWidth + bonusrolleLabelWidth, spaceBetween,
                 deleteButtonWidth + spaceBetween, spaceBetween);
 
-        pageElements.mainroleLabelTable = pageElementFactory.generatePageTable(pageElements.mainroleLabelTable, titleLabel, null, columns, hauptrolleLabelWidth,
+        JLabel mainRoleHeadingLabel = pageElementFactory.generateTitleJLabel("Hauptrolle", headingTextsize);
+        int mainRoleHeadingSpaceToPredecessor = deleteButtonWidth + 10 + nameLabelWidth;
+        PageElement mainRoleHeading = pageElementFactory.generateXLabel(titleLabel, mainRoleHeadingLabel, mainRoleHeadingSpaceToPredecessor);
+        pageElements.mainroleLabelTable = pageElementFactory.generatePageTable(pageElements.mainroleLabelTable, titleLabel, playerHeading, columns, hauptrolleLabelWidth,
                 tableElementHeight, deleteButtonWidth + nameLabelWidth + bonusrolleLabelWidth, spaceBetween,
                 deleteButtonWidth + spaceBetween * 2 + nameLabelWidth, spaceBetween);
 
-        pageElements.bonusroleLabelTable = pageElementFactory.generatePageTable(pageElements.bonusroleLabelTable, titleLabel, null, columns, bonusrolleLabelWidth,
+        JLabel bonusRoleHeadingLabel = pageElementFactory.generateTitleJLabel("Bonusrolle", headingTextsize);
+        int bonusRoleHeadingSpaceToPredecessor = deleteButtonWidth + 15 + nameLabelWidth + hauptrolleLabelWidth;
+        PageElement bonusRoleHeading = pageElementFactory.generateXLabel(titleLabel, bonusRoleHeadingLabel, bonusRoleHeadingSpaceToPredecessor);
+        pageElements.bonusroleLabelTable = pageElementFactory.generatePageTable(pageElements.bonusroleLabelTable, titleLabel, playerHeading, columns, bonusrolleLabelWidth,
                 tableElementHeight, deleteButtonWidth + nameLabelWidth + hauptrolleLabelWidth, spaceBetween,
                 deleteButtonWidth + spaceBetween * 3 + nameLabelWidth + hauptrolleLabelWidth, spaceBetween);
 
@@ -187,6 +197,9 @@ public class ErzählerPageFactory {
         playerSpecifyPage.add(chooseHauptrolle);
         playerSpecifyPage.add(bonusrolleLabel);
         playerSpecifyPage.add(chooseBonusrolle);
+        playerSpecifyPage.add(playerHeading);
+        playerSpecifyPage.add(mainRoleHeading);
+        playerSpecifyPage.add(bonusRoleHeading);
         playerSpecifyPage.add(pageElements.deleteTable);
         playerSpecifyPage.add(pageElements.playerLabelTable);
         playerSpecifyPage.add(pageElements.mainroleLabelTable);
