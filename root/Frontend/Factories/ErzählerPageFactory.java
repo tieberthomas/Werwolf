@@ -20,6 +20,7 @@ public class ErzählerPageFactory {
     public ErzählerPageElementFactory pageElementFactory;
     private static int continueToGeneratePagePoint = 0;
     private static PageElement continueToGenerateElement = null;
+    public static boolean nightGenerationModeSetupNight = true;
 
     public ErzählerPageFactory(ErzählerFrame frame) {
         erzählerFrame = frame;
@@ -220,8 +221,8 @@ public class ErzählerPageFactory {
         return generateDefaultNightPage(nightPage, statement, statement.title, hatZurückButton);
     }
 
-    public Page generateDefaultNightPage(Page nightPage, Statement statement, String title, boolean hatZurückButton) {
-        PageElement nightLabel = pageElementFactory.generateNightLabel(statement.id);
+    private Page generateDefaultNightPage(Page nightPage, Statement statement, String title, boolean hatZurückButton) {
+        PageElement nightLabel = pageElementFactory.generateNightLabel(statement.id, nightGenerationModeSetupNight);
         PageElement titleLabel = pageElementFactory.generateTitleLabel(nightLabel, title);
         erzählerFrame.nextJButton = new JButton();
         PageElement goNextButton = pageElementFactory.generateLowestButton(erzählerFrame.nextJButton);
@@ -262,7 +263,7 @@ public class ErzählerPageFactory {
         return picturePage;
     }
 
-    public Page generateDropdownPage(Page dropdownPage, Statement statement, DropdownOptions dropdownOptions) {
+    private Page generateDropdownPage(Page dropdownPage, Statement statement, DropdownOptions dropdownOptions) {
         return generateDropdownPage(dropdownPage, statement, dropdownOptions, false);
     }
 

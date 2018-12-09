@@ -1,5 +1,6 @@
 package root.Logic.Phases;
 
+import root.Frontend.Factories.ErzählerPageFactory;
 import root.Frontend.Frame.GameMode;
 import root.Frontend.FrontendControl;
 import root.GameController;
@@ -24,11 +25,13 @@ public class PhaseManager extends Thread {
     }
 
     private void setupNight() {
+        ErzählerPageFactory.nightGenerationModeSetupNight = true;
         GameController.mode = GameMode.SETUP_NIGHT;
         phaseMode = PhaseMode.SETUP_NIGHT;
         SetupNight setupNight = new SetupNight();
         setupNight.start();
         waitForAnswer();
+        ErzählerPageFactory.nightGenerationModeSetupNight = false;
     }
 
     private void night() {

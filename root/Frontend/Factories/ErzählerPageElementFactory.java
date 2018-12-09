@@ -1,13 +1,11 @@
 package root.Frontend.Factories;
 
 import root.Frontend.Frame.ErzählerFrame;
-import root.Frontend.Frame.GameMode;
 import root.Frontend.Frame.FrameMode;
 import root.Frontend.Frame.MyFrame;
 import root.Frontend.Page.PageElement;
 import root.Frontend.Page.PageTable;
 import root.Frontend.Page.Predecessor;
-import root.GameController;
 import root.Logic.Persona.Bonusrolle;
 import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Sammler;
 import root.Logic.Phases.NormalNight;
@@ -236,18 +234,17 @@ public class ErzählerPageElementFactory {
         return deleteButton;
     }
 
-    public PageElement generateNightLabel(String currentStatement) {
+    public PageElement generateNightLabel(String currentStatement, boolean setupNight) {
         List<String> statementStrings = new ArrayList<>();
         List<String> statementColors = new ArrayList<>();
 
         boolean found = false;
 
-        List<Statement> statements = new ArrayList<>();
+        List<Statement> statements;
 
-        //TODO move into parameter
-        if (GameController.mode == GameMode.SETUP_NIGHT) {
+        if (setupNight) {
             statements = SetupNight.statements;
-        } else if (GameController.mode == GameMode.NORMAL_NIGHT) {
+        } else {
             statements = NormalNight.statements;
         }
 
