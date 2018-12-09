@@ -284,7 +284,7 @@ public class Game {
         }
     }
 
-    public DropdownOptions getSpielerDropdownOptions(Rolle rolle, boolean mitspieler) {
+    public DropdownOptions getSpielerDropdownOptions(Rolle rolle) {
         Spieler caller = findSpielerPerRolle(rolle.id);
 
         List<String> spielerStrings = spieler.stream()
@@ -292,7 +292,7 @@ public class Game {
                 .map(spieler -> spieler.name)
                 .collect(Collectors.toList());
 
-        if (mitspieler && caller != null) {
+        if (!rolle.selfuseable && caller != null) {
             spielerStrings.remove(caller.name);
         }
 
@@ -303,8 +303,8 @@ public class Game {
         return new DropdownOptions(spielerStrings, DropdownConstants.EMPTY);
     }
 
-    public FrontendControl getSpielerFrontendControl(Rolle rolle, boolean mitspieler) { //TODO mitspieler flag statisch in rolle
-        return new FrontendControl(getSpielerDropdownOptions(rolle, mitspieler));
+    public FrontendControl getSpielerFrontendControl(Rolle rolle) {
+        return new FrontendControl(getSpielerDropdownOptions(rolle));
     }
 
     public List<Spieler> getLivingSpieler() {

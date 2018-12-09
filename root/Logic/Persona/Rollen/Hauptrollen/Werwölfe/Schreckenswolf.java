@@ -54,7 +54,7 @@ public class Schreckenswolf extends Hauptrolle {
 
     @Override
     public FrontendControl getDropdownOptionsFrontendControl() {
-        return Game.game.getSpielerFrontendControl(this, false);
+        return Game.game.getSpielerFrontendControl(this);
     }
 
     @Override
