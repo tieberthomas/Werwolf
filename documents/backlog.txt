@@ -1,4 +1,4 @@
-CODEFREEZE
+CODEFREEZE ist vorbei
 
 Fertige Tasks
 Henker hat auch am Endscreen einen Zurückbutton ? - 1
@@ -9,6 +9,7 @@ nachtfürst wird angezeigt wenn er als nicht tötender richtig gelegen hat ? - 1
 Eingereihte Tasks
 4. wenn dieb eine Karte stiehlt, und man auf weiter klickt wird sofort die neue Bonusrolle gezeigt, verlangt hohe vorsichtigkeit des erzählers 1 - 1
 
+
 Fürs erste nicht umsetzbare Tasks da Gegebenheiten unklar sind oder evtl. die Karte gerext wird
 
 3. Blutwolf/Holde Maid 7 - 5
@@ -17,3 +18,4 @@ Fürs erste nicht umsetzbare Tasks da Gegebenheiten unklar sind oder evtl. die K
 
 Nicht einpriorisierte Tasks:
 "Alle Rollen Löschen" - Button
+irrlicht scheint nicht ganz zufällig zu sein

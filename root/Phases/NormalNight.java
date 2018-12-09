@@ -404,8 +404,6 @@ public class NormalNight extends Thread {
         gefälschterSpieler = null;
 
         Henker.pagecounter = 0;
-
-        FrontendControl.resetFlackerndeIrrlichter();
     }
 
     private void refreshStatementStates() {

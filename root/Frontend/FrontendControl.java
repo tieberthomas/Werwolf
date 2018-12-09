@@ -6,6 +6,7 @@ import root.Frontend.Frame.SpielerFrame;
 import root.Frontend.Frame.ÜbersichtsFrame;
 import root.Frontend.Page.Page;
 import root.Frontend.Utils.DropdownOptions;
+import root.Frontend.Utils.PageRefresher.InteractivePages.IrrlichtPage;
 import root.Persona.Rollen.Bonusrollen.Schnüffler;
 import root.Persona.Rollen.Constants.RawInformation;
 import root.Persona.Rollen.Constants.SchnüfflerInformation;
@@ -333,16 +334,10 @@ public class FrontendControl {
     }
 
     public static void irrlichtDropdownPage(Statement statement, DropdownOptions dropdownStrings) {
-        erzählerFrame.irrlichtPage.clearPage();
-        Page page = erzählerFrame.pageFactory.generateIrrlichtDropdownPage(erzählerFrame.irrlichtPage, statement, dropdownStrings);
-        erzählerFrame.buildScreenFromPage(page);
-    }
-
-    public static void resetFlackerndeIrrlichter() {
-        erzählerFrame.flackerndeIrrlichter.clear();
+        erzählerFrame.currentInteractivePage = new IrrlichtPage(statement, dropdownStrings);
     }
 
     public static List<String> getFlackerndeIrrlichter() {
-        return erzählerFrame.flackerndeIrrlichter;
+        return IrrlichtPage.flackerndeIrrlichter;
     }
 }

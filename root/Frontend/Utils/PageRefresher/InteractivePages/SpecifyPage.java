@@ -27,9 +27,9 @@ public class SpecifyPage extends RefreshedPage {
     private PageTable bonusroleLabelTable;
     private PageTable deleteTable;
     private List<JButton> deleteButtons = new ArrayList<>();
-    private JComboBox comboBox1;
-    private JComboBox comboBox2;
-    private JComboBox comboBox3;
+    private JComboBox spielerComboBox;
+    private JComboBox hauptrollenComboBox;
+    private JComboBox bonusrollenComboBox;
     private JButton next;
     private JButton back;
 
@@ -39,11 +39,16 @@ public class SpecifyPage extends RefreshedPage {
         mainroleLabelTable = new PageTable();
         bonusroleLabelTable = new PageTable();
         deleteTable = new PageTable();
-        comboBox1 = new JComboBox();
-        comboBox2 = new JComboBox();
-        comboBox3 = new JComboBox();
+        spielerComboBox = new JComboBox();
+        hauptrollenComboBox = new JComboBox();
+        bonusrollenComboBox = new JComboBox();
         next = new JButton();
         back = new JButton();
+    }
+
+    @Override
+    public void generatePage() {
+        pageFactory.generateSpecifiyPage(page, interactiveElementsDto);
     }
 
     @Override
@@ -68,17 +73,17 @@ public class SpecifyPage extends RefreshedPage {
 
     private void specifyPlayer() { //TODO make strings as parameters
         try {
-            String spielerName = (String) comboBox1.getSelectedItem();
+            String spielerName = (String) spielerComboBox.getSelectedItem();
             Spieler spieler = Game.game.findSpieler(spielerName);
             Game.game.spielerSpecified.add(spieler);
 
-            String hauptrolle = (String) comboBox2.getSelectedItem();
+            String hauptrolle = (String) hauptrollenComboBox.getSelectedItem();
             spieler.hauptrolle = Game.game.findHauptrollePerName(hauptrolle);
             if (spieler.hauptrolle == null) {
                 spieler.hauptrolle = Hauptrolle.getDefaultHauptrolle();
             }
 
-            String bonusrolle = (String) comboBox3.getSelectedItem();
+            String bonusrolle = (String) bonusrollenComboBox.getSelectedItem();
             spieler.bonusrolle = Game.game.findBonusrollePerName(bonusrolle);
             if (spieler.bonusrolle == null) {
                 spieler.bonusrolle = Bonusrolle.DEFAULT_BONUSROLLE;
@@ -106,15 +111,15 @@ public class SpecifyPage extends RefreshedPage {
                         .map(player -> player.bonusrolle.name)
                         .collect(Collectors.toList()), false));
         pageRefresher.add(new DeleteButtonTable(deleteTable, deleteButtons, Game.game.spielerSpecified::size));
-        pageRefresher.add(new Combobox(comboBox1, Game.game::getSpielerUnspecifiedStrings));
-        pageRefresher.add(new Combobox(comboBox2, Game.game::getHauptrollenUnspecifiedStrings));
-        pageRefresher.add(new Combobox(comboBox3, Game.game::getBonusrollenUnspecifiedStrings));
+        pageRefresher.add(new Combobox(spielerComboBox, Game.game::getSpielerUnspecifiedStrings));
+        pageRefresher.add(new Combobox(hauptrollenComboBox, Game.game::getHauptrollenUnspecifiedStrings));
+        pageRefresher.add(new Combobox(bonusrollenComboBox, Game.game::getBonusrollenUnspecifiedStrings));
     }
 
     @Override
     protected void setupPageElementsDtos() {
         interactiveElementsDto = new SpecifyPageElementsDto(playerLabelTable, mainroleLabelTable, bonusroleLabelTable, deleteTable,
-                deleteButtons, comboBox1, comboBox2, comboBox3, next, back);
+                deleteButtons, spielerComboBox, hauptrollenComboBox, bonusrollenComboBox, next, back);
     }
 
     public void refresh() {
@@ -123,11 +128,6 @@ public class SpecifyPage extends RefreshedPage {
         if (spielerFrame != null) {
             spielerFrame.refreshSecondarySpecifySetupPage();
         }
-    }
-
-    @Override
-    public void generatePage() {
-        pageFactory.generateSpecifiyPage(page, interactiveElementsDto);
     }
 
     private void deleteSpecifiedPlayer(ActionEvent ae) {

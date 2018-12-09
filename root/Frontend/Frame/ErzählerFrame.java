@@ -62,17 +62,9 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     public JButton addPlayerTortenButton;
     public PageTable tortenPlayerLabelTable;
     public PageTable deleteTortenPlayerTable;
-    public ArrayList<JButton> deleteTortenPlayerButtons = new ArrayList<>();
+    private ArrayList<JButton> deleteTortenPlayerButtons = new ArrayList<>();
 
     private PageRefresher tortenPageRefresher;
-    private PageRefresher irrlichtPageRefresher;
-
-    public Page irrlichtPage;
-    public PageTable deleteIrrlichterTable;
-    public PageTable irrlichterLableTable;
-    public ArrayList<String> flackerndeIrrlichter; //TODO mit strings oder spielern arbeiten?
-    public ArrayList<JButton> deleteIrrlichterButtons = new ArrayList<>();
-    public JButton addIrrlichtButton = new JButton();
 
     public JButton henkerGoBackButton = new JButton("Zurück");
 
@@ -114,15 +106,8 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         comboBox2 = new JComboBox();
 
         tortenPage = new Page();
-        irrlichtPage = new Page();
-
         tortenPlayerLabelTable = new PageTable();
-        irrlichterLableTable = new PageTable();
-
         deleteTortenPlayerTable = new PageTable();
-        deleteIrrlichterTable = new PageTable();
-
-        flackerndeIrrlichter = new ArrayList<>();
     }
 
     private void generateAllPageRefreshers() {
@@ -139,7 +124,6 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         specifyPage.setupPageRefresher();
 
         generateTortenPageRefresher();
-        generateIrrlichtPageRefresher();
     }
 
     private void generateTortenPageRefresher() {
@@ -147,13 +131,6 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         tortenPageRefresher.add(new LabelTable(tortenPlayerLabelTable, Torte::getTortenesserNames));
         tortenPageRefresher.add(new DeleteButtonTable(deleteTortenPlayerTable, deleteTortenPlayerButtons, Torte.tortenEsser::size));
         tortenPageRefresher.add(new Combobox(comboBox1, this::getNichtTortenEsserStrings));
-    }
-
-    private void generateIrrlichtPageRefresher() {
-        irrlichtPageRefresher = new PageRefresher(irrlichtPage);
-        irrlichtPageRefresher.add(new LabelTable(irrlichterLableTable, this::getFlackerndeIrrlichter));
-        irrlichtPageRefresher.add(new DeleteButtonTable(deleteIrrlichterTable, deleteIrrlichterButtons, this.flackerndeIrrlichter::size));
-        irrlichtPageRefresher.add(new Combobox(comboBox1, this::getNichtFlackerndeIrrlichterStrings));
     }
 
     private void refreshTortenPage() {
@@ -168,17 +145,6 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         }
         nichtTortenEsser.removeAll(tortenEsser);
         return nichtTortenEsser;
-    }
-
-    private void refreshIrrlichtPage() {
-        irrlichtPageRefresher.refreshPage();
-    }
-
-    private List<String> getNichtFlackerndeIrrlichterStrings() {
-        List<String> nichtFlackernde = Game.game.getIrrlichterStrings();
-        List<String> flackernde = flackerndeIrrlichter;
-        nichtFlackernde.removeAll(flackernde);
-        return nichtFlackernde;
     }
 
     public void nextPage() {
@@ -219,8 +185,6 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
             } else {
                 prevPage();
             }
-        } else if (ae.getSource() == addIrrlichtButton) {
-            addIrrlicht();
         } else if (ae.getSource() == addPlayerTortenButton) {
             addTortenEsser();
         } else if (ae.getSource() == henkerGoBackButton) {
@@ -228,8 +192,6 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
             triggerNext();
         } else if (deleteTortenPlayerButtons.contains(ae.getSource())) {
             deleteTortenesser(ae);
-        } else if (deleteIrrlichterButtons.contains(ae.getSource())) {
-            deleteFlackerndesIrrlicht(ae);
         } else if (ae.getSource() == nextJButton) {
             next = true;
             triggerNext();
@@ -398,33 +360,6 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         generateAllPageRefreshers();
     }
 
-    private void addIrrlicht() {
-        try {
-            String spielerName = comboBox1.getSelectedItem().toString();
-            flackerndeIrrlichter.add(spielerName);
-            refreshIrrlichtPage();
-        } catch (NullPointerException e) {
-        }
-    }
-
-    private void deleteFlackerndesIrrlicht(ActionEvent ae) {
-        for (int i = 0; i < deleteIrrlichterButtons.size(); i++) {
-            if (ae.getSource() == deleteIrrlichterButtons.get(i)) {
-                removeFlackerndesIrrlicht(i);
-
-                refreshIrrlichtPage();
-            }
-        }
-    }
-
-    private void removeFlackerndesIrrlicht(int index) {
-        if (deleteIrrlichterButtons.size() > index) {
-            deleteIrrlichterButtons.remove(index);
-        }
-
-        flackerndeIrrlichter.remove(index);
-    }
-
     private void deleteTortenesser(ActionEvent ae) {
         for (int i = 0; i < deleteTortenPlayerButtons.size(); i++) {
             if (ae.getSource() == deleteTortenPlayerButtons.get(i)) {
@@ -497,9 +432,5 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     public void showDayPage() {
         FrontendControl.erzählerDefaultDayPage();
         FrontendControl.spielerDayPage();
-    }
-
-    public List<String> getFlackerndeIrrlichter() {
-        return flackerndeIrrlichter;
     }
 }

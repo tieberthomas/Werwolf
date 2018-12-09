@@ -3,7 +3,6 @@ package root.Frontend.Utils.PageRefresher.InteractivePages;
 import root.Frontend.Page.PageTable;
 import root.Frontend.Utils.PageRefresher.InteractivePages.InteractiveElementsDtos.RolePageElementsDto;
 import root.Frontend.Utils.PageRefresher.Models.RefreshedPage;
-import root.mechanics.Game;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -11,14 +10,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RolePage extends RefreshedPage {
-    protected RolePageElementsDto interactiveElementsDto;
+    RolePageElementsDto interactiveElementsDto;
 
-    protected JLabel counterLabel;
+    JLabel counterLabel;
     private PageTable roleButtonTable;
-    protected List<JButton> roleButtons;
-    protected PageTable labelTable;
-    protected PageTable deleteTable;
-    protected List<JButton> deleteButtons = new ArrayList<>();
+    List<JButton> roleButtons;
+    PageTable labelTable;
+    PageTable deleteTable;
+    List<JButton> deleteButtons = new ArrayList<>();
     private JButton addAllRolesButton;
     private JButton next;
     private JButton back;
@@ -61,7 +60,7 @@ public class RolePage extends RefreshedPage {
                 addAllRolesButton, next, back);
     }
 
-    protected String getCounterLabelText(int numberOfSpieler, int numberOfRollen) {
+    String getCounterLabelText(int numberOfSpieler, int numberOfRollen) {
         return pageFactory.pageElementFactory.generateCounterLabelString(numberOfSpieler, numberOfRollen);
     }
 

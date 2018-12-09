@@ -6,10 +6,7 @@ import root.Frontend.Page.PageElement;
 import root.Frontend.Page.PageTable;
 import root.Frontend.Utils.DropdownOptions;
 import root.Frontend.Utils.JButtonStyler;
-import root.Frontend.Utils.PageRefresher.InteractivePages.InteractiveElementsDtos.PlayerSetupPageElementsDto;
-import root.Frontend.Utils.PageRefresher.InteractivePages.InteractiveElementsDtos.RolePageElementsDto;
-import root.Frontend.Utils.PageRefresher.InteractivePages.InteractiveElementsDtos.SpecifyPageElementsDto;
-import root.Frontend.Utils.PageRefresher.InteractivePages.InteractiveElementsDtos.StartPageElementsDto;
+import root.Frontend.Utils.PageRefresher.InteractivePages.InteractiveElementsDtos.*;
 import root.Phases.Day;
 import root.Phases.NightBuilding.Statement;
 import root.ResourceManagement.ImagePath;
@@ -562,13 +559,14 @@ public class ErzählerPageFactory {
         return page.pageElements.get(continueToGeneratePagePoint);
     }
 
-    public Page generateIrrlichtDropdownPage(Page irrlichtPage, Statement statement, DropdownOptions dropdownStrings) {
-        irrlichtPage = generateDropdownPage(irrlichtPage, statement, dropdownStrings);
+    public Page generateIrrlichtDropdownPage(Page irrlichtPage, IrrlichPageElementsDto pageElements, Statement statement, DropdownOptions dropdownStrings) {
+        irrlichtPage = generateDefaultNightPage(irrlichtPage, statement, false);
+        DefaultComboBoxModel model = new DefaultComboBoxModel(dropdownStrings.strings.toArray());
+        pageElements.nameComboBox.setModel(model);
+        PageElement choosePlayer = pageElementFactory.generateDropdown(pageElements.nameComboBox,
+                null, getContinueToGeneratePagePoint(irrlichtPage));
 
-        PageElement continueToGeneratePoint = getContinueToGeneratePagePoint(irrlichtPage);
-
-        erzählerFrame.addIrrlichtButton = new JButton("Hinzufügen");
-        PageElement addIrrlichtButton = pageElementFactory.generateSmallButton(erzählerFrame.addIrrlichtButton, continueToGeneratePoint);
+        PageElement addIrrlichtButton = pageElementFactory.generateSmallButton(pageElements.addIrrlichtButton, choosePlayer);
 
         int tableElementHeight = 25;
         int deleteButtonWidth = 40;
@@ -576,15 +574,16 @@ public class ErzählerPageFactory {
         int spaceBetween = 10;
         int columns = 1;
 
-        erzählerFrame.deleteIrrlichterTable = pageElementFactory.generatePageTable(erzählerFrame.deleteIrrlichterTable, continueToGeneratePoint,
+        pageElements.deleteTable = pageElementFactory.generatePageTable(pageElements.deleteTable, choosePlayer,
                 columns, deleteButtonWidth, tableElementHeight, nameLabelWidth, spaceBetween, 0, spaceBetween);
 
-        erzählerFrame.irrlichterLableTable = pageElementFactory.generatePageTable(erzählerFrame.irrlichterLableTable, continueToGeneratePoint,
+        pageElements.labelTable = pageElementFactory.generatePageTable(pageElements.labelTable, choosePlayer,
                 columns, nameLabelWidth, tableElementHeight, deleteButtonWidth, spaceBetween, deleteButtonWidth + spaceBetween, spaceBetween);
 
         irrlichtPage.add(addIrrlichtButton);
-        irrlichtPage.add(erzählerFrame.deleteIrrlichterTable);
-        irrlichtPage.add(erzählerFrame.irrlichterLableTable);
+        irrlichtPage.add(pageElements.deleteTable);
+        irrlichtPage.add(pageElements.labelTable);
+        irrlichtPage.add(choosePlayer);
 
         return irrlichtPage;
     }

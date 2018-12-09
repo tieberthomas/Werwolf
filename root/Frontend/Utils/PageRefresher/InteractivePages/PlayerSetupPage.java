@@ -40,12 +40,17 @@ public class PlayerSetupPage extends RefreshedPage {
     }
 
     @Override
+    public void generatePage() {
+        int numberOfplayers = Game.game.spieler.size();
+        pageFactory.generatePlayerSetupPage(page, interactiveElementsDto, numberOfplayers);
+    }
+
+    @Override
     public void processActionEvent(ActionEvent ae) {
         if (next.equals(ae.getSource())) {
             erzählerFrame.nextPage();
         } else if (back.equals(ae.getSource())) {
             erzählerFrame.prevPage();
-
         } else if (addPlayerButton.equals(ae.getSource()) || addPlayerTxtField.equals(ae.getSource())) {
             if (!addPlayerTxtField.getText().equals("") && !Game.game.spielerExists(addPlayerTxtField.getText())) {
                 addPlayer();
@@ -79,12 +84,6 @@ public class PlayerSetupPage extends RefreshedPage {
 
     private String getNumberOfPlayersLabelText() {
         return pageFactory.pageElementFactory.generateNumberOfPLayersLabelTitle(Game.game.spieler.size());
-    }
-
-    @Override
-    public void generatePage() {
-        int numberOfplayers = Game.game.spieler.size();
-        pageFactory.generatePlayerSetupPage(page, interactiveElementsDto, numberOfplayers);
     }
 
     private void addPlayer() {

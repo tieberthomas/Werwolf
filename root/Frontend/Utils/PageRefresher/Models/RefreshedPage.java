@@ -7,12 +7,7 @@ import java.awt.event.ActionEvent;
 
 public class RefreshedPage extends InteractivePage {
     public static SpielerFrame spielerFrame;
-    public PageRefresher pageRefresher;
-
-    public RefreshedPage() {
-        setupObjects();
-        setupPageElementsDtos();
-    }
+    protected PageRefresher pageRefresher;
 
     public void showPage() {
         erzählerFrame.currentInteractivePage = this;
