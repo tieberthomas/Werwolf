@@ -33,12 +33,8 @@ public class MainrolePage extends RolePage {
 
     @Override
     public void generatePage() {
-        int numberOfplayers = Game.game.spieler.size();
-        int numberOfhauptrollen = Game.game.hauptrollenInGame.size();
         List<String> hauptrollen = Game.game.getHauptrolleNames();
-        //TODO remove information from page generation since it already is gathered in refresh
-        pageFactory.generateRollenSetupPage(page, interactiveElementsDto, numberOfplayers, numberOfhauptrollen, hauptrollen);
-        //TODO generalize role-pagecreation
+        pageFactory.generateRollenSetupPage(page, interactiveElementsDto, hauptrollen);
     }
 
     @Override

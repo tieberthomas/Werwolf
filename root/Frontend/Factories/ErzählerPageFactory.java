@@ -89,12 +89,11 @@ public class ErzählerPageFactory {
 
     }
 
-    public void generateRollenSetupPage(Page rollenSetupPage, RolePageElementsDto interactiveElementsDto, int numberOfPlayers, int numberOfRoles, List<String> roleNames) {
+    public void generateRollenSetupPage(Page rollenSetupPage, RolePageElementsDto interactiveElementsDto, List<String> roleNames) {
         PageTable roleButtonTable = pageElementFactory.generateButtonTable(interactiveElementsDto.roleButtonTable, null);
         pageElementFactory.generateTableButtons(roleNames, interactiveElementsDto.roleButtons, roleButtonTable);
 
         JLabel counterJLabel = interactiveElementsDto.counterLabel;
-        counterJLabel.setText(pageElementFactory.generateCounterLabelString(numberOfPlayers, numberOfRoles));
         PageElement counterLabel = pageElementFactory.generateCounterLabel(counterJLabel, roleButtonTable);
 
         int tableElementHeight = 25;

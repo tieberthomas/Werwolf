@@ -3,6 +3,7 @@ package root.Frontend.Utils.PageRefresher.InteractivePages;
 import root.Frontend.Utils.PageRefresher.InteractivePages.InteractiveElementsDtos.StartPageElementsDto;
 import root.Frontend.Utils.PageRefresher.Models.InteractivePage;
 import root.Frontend.Utils.PageRefresher.Models.LoadMode;
+import root.GameController;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -22,8 +23,8 @@ public class StartPage extends InteractivePage {
         erzählerFrame.currentInteractivePage = this;
         erzählerFrame.currentPage = this.page;
         erzählerFrame.buildScreenFromPage(this.page);
-        if (erzählerFrame.spielerFrame != null) {
-            erzählerFrame.spielerFrame.dispatchEvent(new WindowEvent(erzählerFrame.spielerFrame, WindowEvent.WINDOW_CLOSING));
+        if (GameController.spielerFrame != null) {
+            GameController.spielerFrame.dispatchEvent(new WindowEvent(GameController.spielerFrame, WindowEvent.WINDOW_CLOSING));
         }
     }
 
@@ -51,7 +52,7 @@ public class StartPage extends InteractivePage {
                 loadMode = LoadMode.GAME;
             }
 
-            erzählerFrame.setupGame(loadMode);
+            GameController.setupGame(loadMode);
 
             erzählerFrame.nextPage();
         }

@@ -136,7 +136,7 @@ public class Day extends Thread {
     }
 
     private boolean isGebürgterSpieler(Spieler chosenSpieler) {
-        return gebürgterSpieler!= null && gebürgterSpieler.equals(chosenSpieler) && chosenSpieler.getFraktion().equals(Bürger.ID);
+        return gebürgterSpieler != null && gebürgterSpieler.equals(chosenSpieler) && chosenSpieler.getFraktion().equals(Bürger.ID);
     }
 
     private void checkVictory() {

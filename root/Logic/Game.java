@@ -1,6 +1,7 @@
 package root.Logic;
 
 import root.Frontend.Frame.ErzählerFrame;
+import root.Frontend.Frame.SpielerFrame;
 import root.Frontend.Frame.ÜbersichtsFrame;
 import root.Frontend.FrontendControl;
 import root.Frontend.Utils.DropdownOptions;
@@ -72,13 +73,10 @@ public class Game {
         Torte.tortenEsser = new ArrayList<>();
     }
 
-    public void startGame(ErzählerFrame erzählerFrame) {
-        erzählerFrame.übersichtsFrame = new ÜbersichtsFrame(erzählerFrame.frameJpanel.getHeight() + ÜbersichtsFrame.spaceFromErzählerFrame);
-        erzählerFrame.toFront();
-
+    public void startGame(ErzählerFrame erzählerFrame, SpielerFrame spielerFrame, ÜbersichtsFrame übersichtsFrame) {
         FrontendControl.erzählerFrame = erzählerFrame;
-        FrontendControl.spielerFrame = erzählerFrame.spielerFrame;
-        FrontendControl.übersichtsFrame = erzählerFrame.übersichtsFrame;
+        FrontendControl.spielerFrame = spielerFrame;
+        FrontendControl.übersichtsFrame = übersichtsFrame;
 
         PhaseManager phaseManager = new PhaseManager();
         phaseManager.start();

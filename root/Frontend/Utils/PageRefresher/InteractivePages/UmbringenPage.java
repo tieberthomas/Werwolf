@@ -1,18 +1,16 @@
 package root.Frontend.Utils.PageRefresher.InteractivePages;
 
 import root.Frontend.Frame.ErzählerFrame;
-import root.Frontend.Frame.ÜbersichtsFrame;
+import root.Frontend.FrontendControl;
 import root.Frontend.Utils.DropdownOptions;
 import root.Logic.Game;
 import root.Logic.Phases.Day;
 import root.Logic.Spieler;
 
 public class UmbringenPage extends OneDropdownPage {
-    private ÜbersichtsFrame übersichtsFrame;
 
-    public UmbringenPage(DropdownOptions dropdownOptions, ÜbersichtsFrame übersichtsFrame) {
+    public UmbringenPage(DropdownOptions dropdownOptions) {
         super(dropdownOptions, "Umbringen", "Name");
-        this.übersichtsFrame = übersichtsFrame;
     }
 
     @Override
@@ -26,9 +24,7 @@ public class UmbringenPage extends OneDropdownPage {
                 Day.umbringenSpieler = spieler;
                 Day.umbringenButton = true;
 
-                if (übersichtsFrame != null) {
-                    übersichtsFrame.refresh();
-                }
+                FrontendControl.refreshÜbersichtsFrame();
 
                 ErzählerFrame.continueThreads();
             }

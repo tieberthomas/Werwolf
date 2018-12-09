@@ -5,6 +5,7 @@ import root.Frontend.Factories.SpielerPageFactory;
 import root.Frontend.Page.Page;
 import root.Frontend.Utils.TimeUpdater;
 import root.Logic.Game;
+import root.Logic.Persona.Hauptrolle;
 import root.Logic.Phases.Day;
 import root.Logic.Phases.PhaseManager;
 import root.Logic.Phases.PhaseMode;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SpielerFrame extends MyFrame {
-    ErzählerFrame erzählerFrame;
+    private ErzählerFrame erzählerFrame;
     public SpielerPageFactory pageFactory;
     public SpielerPageElementFactory pageElementFactory;
 
@@ -55,7 +56,7 @@ public class SpielerFrame extends MyFrame {
         refreshPlayerSetupPage();
     }
 
-    public void generateAllPages() {
+    private void generateAllPages() {
         blankPage = new Page();
         dropDownPage = pageFactory.generateDropdownPage("", 1);
     }
@@ -91,5 +92,32 @@ public class SpielerFrame extends MyFrame {
 
         currentPage = pageFactory.generateDayPage(Game.game.getPossibleInGameHauptrolleNames(), Game.game.getPossibleInGameBonusrolleNames(), freibierDay);
         buildScreenFromPage(currentPage);
+    }
+
+    public void combobox1Changed(String newText) {
+        if (mode == SpielerFrameMode.dropDownText) {
+            if (comboBox1Label != null && newText != null) {
+                comboBox1Label.setText(newText);
+            }
+        } else if (mode == SpielerFrameMode.dropDownImage) {
+            Hauptrolle hauptrolle = Game.game.findHauptrollePerName(newText);
+            String imagePath = hauptrolle.imagePath;
+            Page imagePage = pageFactory.generateStaticImagePage(title, imagePath);
+            buildScreenFromPage(imagePage);
+            mode = SpielerFrameMode.dropDownImage;
+        } else if (mode == SpielerFrameMode.freibierPage || mode == SpielerFrameMode.listMirrorPage) {
+            Page dropDownPage = pageFactory.generateDropdownPage(title, 1);
+            buildScreenFromPage(dropDownPage);
+            comboBox1Label.setText(newText);
+            mode = SpielerFrameMode.dropDownText;
+        }
+    }
+
+    public void combobox2Changed(String newText) {
+        if (mode == SpielerFrameMode.dropDownText) {
+            if (comboBox2Label != null && newText != null) {
+                comboBox2Label.setText(newText);
+            }
+        }
     }
 }

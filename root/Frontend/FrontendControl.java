@@ -3,6 +3,7 @@ package root.Frontend;
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.Frame.ErzählerFrame;
 import root.Frontend.Frame.SpielerFrame;
+import root.Frontend.Frame.SpielerFrameMode;
 import root.Frontend.Frame.ÜbersichtsFrame;
 import root.Frontend.Page.Page;
 import root.Frontend.Utils.DropdownOptions;
@@ -361,5 +362,18 @@ public class FrontendControl {
 
     public static List<String> getFlackerndeIrrlichter() {
         return IrrlichtPage.flackerndeIrrlichter;
+    }
+
+    public static void combobox1Changed(String nexText) {
+        spielerFrame.combobox1Changed(nexText);
+    }
+
+    public static void combobox2Changed(String nexText) {
+        spielerFrame.combobox2Changed(nexText);
+    }
+
+    public static void ereaseSpielerFrame() {
+        spielerFrame.mode = SpielerFrameMode.blank;
+        spielerFrame.buildScreenFromPage(spielerFrame.blankPage);
     }
 }

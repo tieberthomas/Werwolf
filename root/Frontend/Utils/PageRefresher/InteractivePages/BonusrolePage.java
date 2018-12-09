@@ -5,6 +5,7 @@ import root.Frontend.Utils.PageRefresher.Models.DeleteButtonTable;
 import root.Frontend.Utils.PageRefresher.Models.Label;
 import root.Frontend.Utils.PageRefresher.Models.LabelTable;
 import root.Frontend.Utils.PageRefresher.PageRefresher;
+import root.GameController;
 import root.Logic.Game;
 import root.Logic.Persona.Bonusrolle;
 
@@ -33,19 +34,14 @@ public class BonusrolePage extends RolePage {
 
     @Override
     public void generatePage() {
-        int numberOfplayers = Game.game.spieler.size();
-        int numberOfBonusrollen = Game.game.bonusrollenInGame.size();
         List<String> bonusrollen = Game.game.getBonusrollenButtonNames();
-        //TODO remove information from page generation since it already is gathered in refresh
-        pageFactory.generateRollenSetupPage(page, interactiveElementsDto, numberOfplayers, numberOfBonusrollen, bonusrollen);
-        //TODO generalize role-pagecreation
+        pageFactory.generateRollenSetupPage(page, interactiveElementsDto, bonusrollen);
     }
 
     @Override
     protected void next() {
         erzählerFrame.nextPage();
-        erzählerFrame.dataManager.writeComposition(); //TODO access over game controller
-        //TODO thread composition writing
+        GameController.writeComposition();
     }
 
     @Override

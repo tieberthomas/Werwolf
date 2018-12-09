@@ -7,6 +7,7 @@ import root.Frontend.Utils.PageRefresher.Models.DeleteButtonTable;
 import root.Frontend.Utils.PageRefresher.Models.LabelTable;
 import root.Frontend.Utils.PageRefresher.Models.RefreshedPage;
 import root.Frontend.Utils.PageRefresher.PageRefresher;
+import root.GameController;
 import root.Logic.Game;
 import root.Logic.Persona.Bonusrolle;
 import root.Logic.Persona.Hauptrolle;
@@ -55,8 +56,7 @@ public class SpecifyPage extends RefreshedPage {
     public void processActionEvent(ActionEvent ae) {
         if (next.equals(ae.getSource())) {
             if (allPlayersSpecified()) {
-                Game.game.startGame(erzählerFrame); //TODO auslagern in controller
-                erzählerFrame.dataManager.writeGame(); //TODO thread game writing
+                GameController.startGame();
             } else {
                 specifyPlayer();
             }

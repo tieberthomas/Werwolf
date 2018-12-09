@@ -2,34 +2,26 @@ package root.Frontend.Frame;
 
 import root.Frontend.Factories.ErzählerPageFactory;
 import root.Frontend.FrontendControl;
-import root.Frontend.Page.Page;
 import root.Frontend.Utils.DropdownOptions;
 import root.Frontend.Utils.PageRefresher.InteractivePages.*;
 import root.Frontend.Utils.PageRefresher.Models.InteractivePage;
-import root.Frontend.Utils.PageRefresher.Models.LoadMode;
 import root.Frontend.Utils.PageRefresher.Models.RefreshedPage;
 import root.Frontend.Utils.PageRefresher.PageRefresher;
+import root.GameController;
 import root.Logic.Game;
-import root.Logic.Persona.Hauptrolle;
 import root.Logic.Persona.Rollen.Constants.DropdownConstants;
-import root.Logic.Phases.*;
-import root.ResourceManagement.DataManager;
-import root.Utils.ListHelper;
+import root.Logic.Phases.Day;
+import root.Logic.Phases.NormalNight;
+import root.Logic.Phases.SetupNight;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ErzählerFrame extends MyFrame implements ActionListener {
     public boolean next = true;
-
-    public SpielerFrame spielerFrame;
-    public ÜbersichtsFrame übersichtsFrame;
-
-    public DataManager dataManager;
 
     private List<InteractivePage> interactivePages = new ArrayList<>();
     private StartPage startPage;
@@ -95,9 +87,9 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         comboBox2 = new JComboBox();
     }
 
-    private void generateAllPageRefreshers() {
+    public void generateAllPageRefreshers() {
         RefreshedPage.erzählerFrame = this;
-        RefreshedPage.spielerFrame = spielerFrame;
+        RefreshedPage.spielerFrame = GameController.spielerFrame;
 
         playerSetupPage.generatePage();
         playerSetupPage.setupPageRefresher();
@@ -145,36 +137,9 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
             next = true;
             triggerNext();
         } else if (ae.getSource() == comboBox1 && ((JComboBox) ae.getSource()).hasFocus()) {
-            try {
-                if (spielerFrame.mode == SpielerFrameMode.dropDownText) {
-                    if (spielerFrame.comboBox1Label != null && comboBox1 != null) {
-                        spielerFrame.comboBox1Label.setText(comboBox1.getSelectedItem().toString());
-                    }
-                } else if (spielerFrame.mode == SpielerFrameMode.dropDownImage) {
-                    Hauptrolle hauptrolle = Game.game.findHauptrollePerName((String) comboBox1.getSelectedItem());
-                    String imagePath = hauptrolle.imagePath;
-                    Page imagePage = spielerFrame.pageFactory.generateStaticImagePage(spielerFrame.title, imagePath);
-                    spielerFrame.buildScreenFromPage(imagePage);
-                    spielerFrame.mode = SpielerFrameMode.dropDownImage;
-                } else if (spielerFrame.mode == SpielerFrameMode.freibierPage || spielerFrame.mode == SpielerFrameMode.listMirrorPage) {
-                    Page dropDownPage = spielerFrame.pageFactory.generateDropdownPage(spielerFrame.title, 1);
-                    spielerFrame.buildScreenFromPage(dropDownPage);
-                    spielerFrame.comboBox1Label.setText(comboBox1.getSelectedItem().toString());
-                    spielerFrame.mode = SpielerFrameMode.dropDownText;
-                }
-            } catch (NullPointerException e) {
-                System.out.println("Combobox1 might not be initialized.");
-            }
+            FrontendControl.combobox1Changed(comboBox1.getSelectedItem().toString());
         } else if (ae.getSource() == comboBox2 && ((JComboBox) ae.getSource()).hasFocus()) {
-            try {
-                if (spielerFrame.mode == SpielerFrameMode.dropDownText) {
-                    if (spielerFrame.comboBox2Label != null && comboBox2 != null) {
-                        spielerFrame.comboBox2Label.setText(comboBox2.getSelectedItem().toString());
-                    }
-                }
-            } catch (NullPointerException e) {
-                System.out.println("Combobox2 might not be initialized.");
-            }
+            FrontendControl.combobox2Changed(comboBox2.getSelectedItem().toString());
         } else if (ae.getSource() == umbringenJButton) {
             showUmbringenPage();
         } else if (ae.getSource() == priesterJButton) {
@@ -182,12 +147,12 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         } else if (ae.getSource() == richterinJButton) {
             showRichterinPage();
         } else if (ae.getSource() == respawnFramesJButton) {
-            respawnFrames();
+            GameController.respawnFrames();
         }
     }
 
     private void showUmbringenPage() {
-        UmbringenPage umbringenPage = new UmbringenPage(new DropdownOptions(Game.game.getLivingSpielerStrings(), DropdownConstants.EMPTY), übersichtsFrame);
+        UmbringenPage umbringenPage = new UmbringenPage(new DropdownOptions(Game.game.getLivingSpielerStrings(), DropdownConstants.EMPTY));
         currentInteractivePage = umbringenPage;
         buildScreenFromPage(umbringenPage.page);
     }
@@ -205,67 +170,20 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     }
 
     private void triggerNext() {
-        try {
-            if (comboBox1 != null) {
-                chosenOption1 = (String) comboBox1.getSelectedItem();
-            }
-
-            if (comboBox2 != null) {
-                chosenOption2 = (String) comboBox2.getSelectedItem();
-            }
-        } catch (NullPointerException e) {
-            System.out.println("some comboboxes (1,2,3) might not be initialized.");
+        if (comboBox1 != null) {
+            chosenOption1 = (String) comboBox1.getSelectedItem();
         }
 
-        spielerFrame.mode = SpielerFrameMode.blank;
-        spielerFrame.buildScreenFromPage(spielerFrame.blankPage);
+        if (comboBox2 != null) {
+            chosenOption2 = (String) comboBox2.getSelectedItem();
+        }
+
+        FrontendControl.ereaseSpielerFrame();
 
         continueThreads();
 
-        try {
-            if (übersichtsFrame != null) {
-                if (mode == ErzählerFrameMode.SETUP_NIGHT) {
-                    übersichtsFrame.refresh();
-                }
-            }
-        } catch (NullPointerException e) {
-            System.out.println("Übersichtsframe seems to be not there. (yet?)");
-        }
-    }
-
-    public void setupGame(LoadMode loadMode) {
-        new Game();
-        dataManager = new DataManager();
-        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        spielerFrame = new SpielerFrame(this);
-
-        if (loadMode == LoadMode.COMPOSITION) {
-            dataManager.loadLastComposition();
-        } else if (loadMode == LoadMode.GAME) {
-            dataManager.loadLastGame();
-            Game.game.spielerSpecified = ListHelper.cloneList(Game.game.spieler);
-        }
-
-        generateAllPageRefreshers();
-    }
-
-    private void respawnFrames() {
-        spielerFrame.dispatchEvent(new WindowEvent(spielerFrame, WindowEvent.WINDOW_CLOSING));
-        übersichtsFrame.dispatchEvent(new WindowEvent(übersichtsFrame, WindowEvent.WINDOW_CLOSING));
-
-        int spielerFrameMode = spielerFrame.mode;
-        Page savePage = spielerFrame.currentPage;
-        spielerFrame = new SpielerFrame(this);
-        spielerFrame.mode = spielerFrameMode;
-        spielerFrame.buildScreenFromPage(savePage);
-
-        übersichtsFrame = new ÜbersichtsFrame(this.frameJpanel.getHeight() + ÜbersichtsFrame.spaceFromErzählerFrame);
-
-        FrontendControl.spielerFrame = spielerFrame;
-        if (PhaseManager.phaseMode == PhaseMode.DAY || PhaseManager.phaseMode == PhaseMode.FREIBIER_DAY) {
-            spielerFrame.generateDayPage();
-        } else if (PhaseManager.phaseMode == PhaseMode.NORMAL_NIGHT || PhaseManager.phaseMode == PhaseMode.SETUP_NIGHT) {
-            spielerFrame.buildScreenFromPage(savePage);
+        if (mode == ErzählerFrameMode.SETUP_NIGHT) {
+            FrontendControl.refreshÜbersichtsFrame();
         }
     }
 
