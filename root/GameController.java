@@ -1,14 +1,14 @@
 package root;
 
 import root.Frontend.Frame.ErzählerFrame;
+import root.Frontend.Frame.GameMode;
 import root.Frontend.Frame.SpielerFrame;
 import root.Frontend.Frame.ÜbersichtsFrame;
 import root.Frontend.FrontendControl;
 import root.Frontend.Page.Page;
 import root.Frontend.Utils.PageRefresher.Models.LoadMode;
 import root.Logic.Game;
-import root.Logic.Phases.PhaseManager;
-import root.Logic.Phases.PhaseMode;
+import root.Logic.Phases.*;
 import root.ResourceManagement.DataManager;
 import root.Utils.ListHelper;
 
@@ -21,6 +21,8 @@ public class GameController {
     public static ErzählerFrame erzählerFrame;
     public static SpielerFrame spielerFrame;
     public static ÜbersichtsFrame übersichtsFrame;
+
+    public static GameMode mode = GameMode.SETUP;
 
     static void startProgram() {
         erzählerFrame = new ErzählerFrame();
@@ -76,6 +78,27 @@ public class GameController {
             spielerFrame.generateDayPage();
         } else if (PhaseManager.phaseMode == PhaseMode.NORMAL_NIGHT || PhaseManager.phaseMode == PhaseMode.SETUP_NIGHT) {
             spielerFrame.buildScreenFromPage(savePage);
+        }
+    }
+
+
+    public static void continueThreads() {
+        try {
+            if (mode == GameMode.SETUP_NIGHT) {
+                synchronized (SetupNight.lock) {
+                    SetupNight.lock.notify();
+                }
+            } else if (mode == GameMode.DAY || mode == GameMode.FREIBIER_DAY) {
+                synchronized (Day.lock) {
+                    Day.lock.notify();
+                }
+            } else if (mode == GameMode.NORMAL_NIGHT) {
+                synchronized (NormalNight.lock) {
+                    NormalNight.lock.notify();
+                }
+            }
+        } catch (NullPointerException e) {
+            System.out.println("Something went wrong with the Phases. (phasemode might be set wrong)");
         }
     }
 }

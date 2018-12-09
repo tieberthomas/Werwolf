@@ -10,9 +10,6 @@ import root.Frontend.Utils.PageRefresher.PageRefresher;
 import root.GameController;
 import root.Logic.Game;
 import root.Logic.Persona.Rollen.Constants.DropdownConstants;
-import root.Logic.Phases.Day;
-import root.Logic.Phases.NormalNight;
-import root.Logic.Phases.SetupNight;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -31,8 +28,6 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     private SpecifyPage specifyPage;
 
     public InteractivePage currentInteractivePage;
-
-    public static ErzählerFrameMode mode = ErzählerFrameMode.SETUP;
 
     public ErzählerPageFactory pageFactory = new ErzählerPageFactory(this);
 
@@ -180,30 +175,10 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
 
         FrontendControl.ereaseSpielerFrame();
 
-        continueThreads();
+        GameController.continueThreads();
 
-        if (mode == ErzählerFrameMode.SETUP_NIGHT) {
+        if (GameController.mode == GameMode.SETUP_NIGHT) {
             FrontendControl.refreshÜbersichtsFrame();
-        }
-    }
-
-    public static void continueThreads() {
-        try {
-            if (mode == ErzählerFrameMode.SETUP_NIGHT) {
-                synchronized (SetupNight.lock) {
-                    SetupNight.lock.notify();
-                }
-            } else if (mode == ErzählerFrameMode.DAY || mode == ErzählerFrameMode.FREIBIER_DAY) {
-                synchronized (Day.lock) {
-                    Day.lock.notify();
-                }
-            } else if (mode == ErzählerFrameMode.NORMAL_NIGHT) {
-                synchronized (NormalNight.lock) {
-                    NormalNight.lock.notify();
-                }
-            }
-        } catch (NullPointerException e) {
-            System.out.println("Something went wrong with the Phases. (phasemode might be set wrong)");
         }
     }
 }

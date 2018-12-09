@@ -1,6 +1,6 @@
 package root.Frontend.Frame;
 
-public enum ErzählerFrameMode {
+public enum GameMode {
     SETUP,
     SETUP_NIGHT,
     NORMAL_NIGHT,

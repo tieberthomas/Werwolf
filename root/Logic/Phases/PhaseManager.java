@@ -1,8 +1,8 @@
 package root.Logic.Phases;
 
-import root.Frontend.Frame.ErzählerFrame;
-import root.Frontend.Frame.ErzählerFrameMode;
+import root.Frontend.Frame.GameMode;
 import root.Frontend.FrontendControl;
+import root.GameController;
 import root.Logic.Game;
 
 public class PhaseManager extends Thread {
@@ -24,7 +24,7 @@ public class PhaseManager extends Thread {
     }
 
     private void setupNight() {
-        ErzählerFrame.mode = ErzählerFrameMode.SETUP_NIGHT;
+        GameController.mode = GameMode.SETUP_NIGHT;
         phaseMode = PhaseMode.SETUP_NIGHT;
         SetupNight setupNight = new SetupNight();
         setupNight.start();
@@ -32,7 +32,7 @@ public class PhaseManager extends Thread {
     }
 
     private void night() {
-        ErzählerFrame.mode = ErzählerFrameMode.NORMAL_NIGHT;
+        GameController.mode = GameMode.NORMAL_NIGHT;
         phaseMode = PhaseMode.NORMAL_NIGHT;
         NormalNight normalNight = new NormalNight();
         normalNight.start();
@@ -41,10 +41,10 @@ public class PhaseManager extends Thread {
 
     private void day() {
         if (Game.game.freibier) {
-            ErzählerFrame.mode = ErzählerFrameMode.FREIBIER_DAY;
+            GameController.mode = GameMode.FREIBIER_DAY;
             phaseMode = PhaseMode.FREIBIER_DAY;
         } else {
-            ErzählerFrame.mode = ErzählerFrameMode.DAY;
+            GameController.mode = GameMode.DAY;
             phaseMode = PhaseMode.DAY;
         }
         Day day = new Day();
@@ -53,17 +53,17 @@ public class PhaseManager extends Thread {
         waitForAnswer();
     }
 
-    public static ErzählerFrameMode parsePhaseMode() { //TODO automapper?
+    public static GameMode parsePhaseMode() { //TODO automapper?
         if (phaseMode == PhaseMode.DAY) {
-            return ErzählerFrameMode.DAY;
+            return GameMode.DAY;
         } else if (phaseMode == PhaseMode.FREIBIER_DAY) {
-            return ErzählerFrameMode.FREIBIER_DAY;
+            return GameMode.FREIBIER_DAY;
         } else if (phaseMode == PhaseMode.SETUP_NIGHT) {
-            return ErzählerFrameMode.SETUP_NIGHT;
+            return GameMode.SETUP_NIGHT;
         } else if (phaseMode == PhaseMode.NORMAL_NIGHT) {
-            return ErzählerFrameMode.NORMAL_NIGHT;
+            return GameMode.NORMAL_NIGHT;
         } else {
-            return ErzählerFrameMode.SETUP;
+            return GameMode.SETUP;
         }
     }
 

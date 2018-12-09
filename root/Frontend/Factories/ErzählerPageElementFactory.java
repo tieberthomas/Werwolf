@@ -1,12 +1,13 @@
 package root.Frontend.Factories;
 
 import root.Frontend.Frame.ErzählerFrame;
-import root.Frontend.Frame.ErzählerFrameMode;
+import root.Frontend.Frame.GameMode;
 import root.Frontend.Frame.FrameMode;
 import root.Frontend.Frame.MyFrame;
 import root.Frontend.Page.PageElement;
 import root.Frontend.Page.PageTable;
 import root.Frontend.Page.Predecessor;
+import root.GameController;
 import root.Logic.Persona.Bonusrolle;
 import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Sammler;
 import root.Logic.Phases.NormalNight;
@@ -243,9 +244,10 @@ public class ErzählerPageElementFactory {
 
         List<Statement> statements = new ArrayList<>();
 
-        if (ErzählerFrame.mode == ErzählerFrameMode.SETUP_NIGHT) {
+        //TODO move into parameter
+        if (GameController.mode == GameMode.SETUP_NIGHT) {
             statements = SetupNight.statements;
-        } else if (ErzählerFrame.mode == ErzählerFrameMode.NORMAL_NIGHT) {
+        } else if (GameController.mode == GameMode.NORMAL_NIGHT) {
             statements = NormalNight.statements;
         }
 
