@@ -17,37 +17,39 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SetupNightStatementBuilder {
+    public static List<Statement> statements;
+
     public static List<Statement> setupNightBuildStatements() {
-        List<Statement> statements = new ArrayList<>();
+        statements = new ArrayList<>();
 
         statements.add(IndieStatements.getAlleSchlafenEinStatement());
 
         statements.add(IndieStatements.getLiebespaarStatement());
         statements.add(IndieStatements.getLiebespaarFindenStatement());
 
-        addStatementRolle(statements, Seelenlicht.ID);
-        addStatementRolle(statements, Wolfspelz.ID);
-        addStatementRolle(statements, Vampirumhang.ID);
-        addStatementRolle(statements, Lamm.ID);
+        addStatementRolle(Seelenlicht.ID);
+        addStatementRolle(Wolfspelz.ID);
+        addStatementRolle(Vampirumhang.ID);
+        addStatementRolle(Lamm.ID);
 
-        addStatementRolle(statements, Wolfsmensch.ID);
-        addStatementFraktion(statements, Werwölfe.ID);
-        addStatementFraktion(statements, Vampire.ID);
-        addStatementFraktion(statements, SchattenpriesterFraktion.ID);
-        addStatementRolle(statements, Henker.ID);
+        addStatementRolle(Wolfsmensch.ID);
+        addStatementFraktion(Werwölfe.ID);
+        addStatementFraktion(Vampire.ID);
+        addStatementFraktion(SchattenpriesterFraktion.ID);
+        addStatementRolle(Henker.ID);
 
         statements.add(IndieStatements.getAlleWachenAufStatement());
 
         return statements;
     }
 
-    private static void addStatementRolle(List<Statement> statements, String rolleID) {
+    private static void addStatementRolle(String rolleID) {
         Rolle rolle = Rolle.findRolle(rolleID);
         Statement statement = new SetupNightStatement(rolle);
         statements.add(statement);
     }
 
-    private static void addStatementFraktion(List<Statement> statements, String fraktionsID) {
+    private static void addStatementFraktion(String fraktionsID) {
         if (Fraktion.getFraktionsMembers(fraktionsID).size() > 1) {
             Fraktion fraktion = Fraktion.findFraktion(fraktionsID);
             Statement statement = new SetupNightStatement(fraktion);

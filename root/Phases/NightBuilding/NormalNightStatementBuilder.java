@@ -48,8 +48,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NormalNightStatementBuilder {
+    public static List<Statement> statements;
+
     public static List<Statement> normalNightBuildStatements() {
-        List<Statement> statements = new ArrayList<>();
+        statements = new ArrayList<>();
 
         statements.add(IndieStatements.getAlleSchlafenEinStatement());
         if (Schattenmensch.shallBeTransformed) {
@@ -57,31 +59,31 @@ public class NormalNightStatementBuilder {
         }
 
         if (PhaseManager.nightCount != 1 && Wirt.freibierCharges > 0) {
-            addStatementRolle(statements, Wirt.ID);
+            addStatementRolle(Wirt.ID);
         }
 
         if (Game.game.mitteBonusrollen.size() > 0) {
-            addStatementRolle(statements, Totengräber.ID);
+            addStatementRolle(Totengräber.ID);
         }
-        addStatementRolle(statements, Dieb.ID);
-        addSecondStatementRolle(statements, Dieb.ID);
+        addStatementRolle(Dieb.ID);
+        addSecondStatementRolle(Dieb.ID);
 
-        addStatementRolle(statements, Gefängniswärter.ID);
+        addStatementRolle(Gefängniswärter.ID);
 
         if (Game.game.mitteHauptrollen.size() > 0) {
-            addStatementRolle(statements, Überläufer.ID);
+            addStatementRolle(Überläufer.ID);
         }
 
-        addStatementRolle(statements, HoldeMaid.ID);
-        addStatementRolle(statements, Irrlicht.ID);
-        addSecondStatementRolle(statements, Irrlicht.ID);
+        addStatementRolle(HoldeMaid.ID);
+        addStatementRolle(Irrlicht.ID);
+        addSecondStatementRolle(Irrlicht.ID);
         //TODO comment entfernen wenn detektiv wirklich gerext wird
         //Detektiv erwacht, schätzt die Anzahl der Bürger und bekommt ggf. eine Bürgerhauptrolle die im Spiel ist gezeigt
-        addStatementRolle(statements, Schamanin.ID);
+        addStatementRolle(Schamanin.ID);
 
         statements.add(ProgrammStatements.getSchützeStatement());
 
-        addStatementRolle(statements, Prostituierte.ID);
+        addStatementRolle(Prostituierte.ID);
 
         //TODO move nacht add speziallogik into rollen/fraktionen
         //TODO addstatementRolle sollte nicht immer statements mitbekommen, statements sollte eine public klassenvariable sein.
@@ -91,58 +93,58 @@ public class NormalNightStatementBuilder {
                 henkerSpieler.geschützt = true;
             }
         } else {
-            addStatementRolle(statements, Henker.ID);
+            addStatementRolle(Henker.ID);
         }
-        addStatementRolle(statements, Riese.ID);
-        addStatementFraktion(statements, Werwölfe.ID);
+        addStatementRolle(Riese.ID);
+        addStatementFraktion(Werwölfe.ID);
         if (Wölfin.state == WölfinState.TÖTEND) {
-            addStatementRolle(statements, Wölfin.ID);
+            addStatementRolle(Wölfin.ID);
         }
-        addStatementRolle(statements, Schreckenswolf.ID);
-        addStatementFraktion(statements, Vampire.ID);
+        addStatementRolle(Schreckenswolf.ID);
+        addStatementFraktion(Vampire.ID);
 
         if (PhaseManager.nightCount != 1) {
-            addSecondStatementRolle(statements, Nachtfürst.ID, false);
+            addSecondStatementRolle(Nachtfürst.ID, false);
         }
-        addStatementRolle(statements, Nachtfürst.ID);
+        addStatementRolle(Nachtfürst.ID);
 
-        addStatementFraktion(statements, SchattenpriesterFraktion.ID);
-        addSecondStatementFraktion(statements, SchattenpriesterFraktion.ID);
-        addStatementRolle(statements, Chemiker.ID);
-        addSecondStatementRolle(statements, Chemiker.ID);
+        addStatementFraktion(SchattenpriesterFraktion.ID);
+        addSecondStatementFraktion(SchattenpriesterFraktion.ID);
+        addStatementRolle(Chemiker.ID);
+        addSecondStatementRolle(Chemiker.ID);
 
-        addStatementRolle(statements, LadyAleera.ID);
-        addStatementRolle(statements, MissVerona.ID);
+        addStatementRolle(LadyAleera.ID);
+        addStatementRolle(MissVerona.ID);
 
-        addStatementRolle(statements, Analytiker.ID);
-        addStatementRolle(statements, Archivar.ID);
-        addStatementRolle(statements, Schnüffler.ID);
-        addStatementRolle(statements, Tarnumhang.ID);
-        addStatementRolle(statements, Seherin.ID);
-        addStatementRolle(statements, Späher.ID);
-        addStatementRolle(statements, Orakel.ID);
-        addStatementRolle(statements, Medium.ID);
+        addStatementRolle(Analytiker.ID);
+        addStatementRolle(Archivar.ID);
+        addStatementRolle(Schnüffler.ID);
+        addStatementRolle(Tarnumhang.ID);
+        addStatementRolle(Seherin.ID);
+        addStatementRolle(Späher.ID);
+        addStatementRolle(Orakel.ID);
+        addStatementRolle(Medium.ID);
 
-        addStatementRolle(statements, GrafVladimir.ID);
+        addStatementRolle(GrafVladimir.ID);
 
-        addStatementRolle(statements, Nachbar.ID);
-        addStatementRolle(statements, Spurenleser.ID);
+        addStatementRolle(Nachbar.ID);
+        addStatementRolle(Spurenleser.ID);
 
-        addStatementRolle(statements, Wahrsager.ID);
+        addStatementRolle(Wahrsager.ID);
 
         if (Game.game.getBonusrolleInGameIDs().contains(Konditorlehrling.ID)) {
-            addStatementRolle(statements, Konditorlehrling.ID);
+            addStatementRolle(Konditorlehrling.ID);
         } else {
-            addStatementRolle(statements, Konditor.ID);
+            addStatementRolle(Konditor.ID);
         }
 
         statements.add(IndieStatements.getAlleWachenAufStatement());
         statements.add(IndieStatements.getOpferStatement());
 
-        addSecondStatementRolle(statements, Schreckenswolf.ID); //TODO verstummungsstatement nicht adden wenn schreckenswolf nur bamboozelrolle ist
+        addSecondStatementRolle(Schreckenswolf.ID); //TODO verstummungsstatement nicht adden wenn schreckenswolf nur bamboozelrolle ist
 
         if (Wölfin.state == WölfinState.TÖTEND) {
-            addSecondStatementRolle(statements, Wölfin.ID);
+            addSecondStatementRolle(Wölfin.ID);
         }
 
         statements.add(ProgrammStatements.getTortenProgrammStatement());
@@ -150,17 +152,17 @@ public class NormalNightStatementBuilder {
         return statements;
     }
 
-    private static void addStatementRolle(List<Statement> statements, String rolleID) {
+    private static void addStatementRolle(String rolleID) {
         Rolle rolle = Rolle.findRolle(rolleID);
         Statement statement = new Statement(rolle);
         statements.add(statement);
     }
 
-    private static void addSecondStatementRolle(List<Statement> statements, String rolleID) {
-        addSecondStatementRolle(statements, rolleID, true);
+    private static void addSecondStatementRolle(String rolleID) {
+        addSecondStatementRolle(rolleID, true);
     }
 
-    private static void addSecondStatementRolle(List<Statement> statements, String rolleID, boolean dependendOnFirstStatement) {
+    private static void addSecondStatementRolle(String rolleID, boolean dependendOnFirstStatement) {
         Rolle rolle = Rolle.findRolle(rolleID);
 
         Statement statement;
@@ -177,13 +179,13 @@ public class NormalNightStatementBuilder {
         statements.add(statement);
     }
 
-    private static void addStatementFraktion(List<Statement> statements, String fraktionID) {
+    private static void addStatementFraktion(String fraktionID) {
         Fraktion fraktion = Fraktion.findFraktion(fraktionID);
         Statement statement = new Statement(fraktion);
         statements.add(statement);
     }
 
-    private static void addSecondStatementFraktion(List<Statement> statements, String fraktionID) {
+    private static void addSecondStatementFraktion(String fraktionID) {
         Fraktion fraktion = Fraktion.findFraktion(fraktionID);
 
         Statement firstStatement = statements.stream()
