@@ -329,6 +329,7 @@ public class NormalNight extends Thread {
                                 FrontendControl.showZeigekarteOnSpielerScreen(new Torten_Zeigekarte());
 
                                 waitForAnswer();
+                                Torte.setTortenEsser(FrontendControl.getTortenesser());
                             }
                             break;
                     }

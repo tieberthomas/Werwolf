@@ -517,7 +517,7 @@ public class ErzählerPageFactory {
         return richterinPage;
     }
 
-    public Page generateTortenPage(Page tortenPage, List<String> livingPlayers) {
+    public Page generateTortenPage(Page tortenPage, OneDropdownPageElementsDto pageElements, DropdownOptions livingPlayers) {
         PageElement titleLabel = pageElementFactory.generateTitleLabel(null, "Torte");
 
         int tableElementHeight = 25;
@@ -526,21 +526,19 @@ public class ErzählerPageFactory {
         int spaceBetween = 10;
         int columns = 2;
 
-        DefaultComboBoxModel model = new DefaultComboBoxModel(livingPlayers.toArray());
-        erzählerFrame.comboBox1.setModel(model);
-        PageElement choosePlayer1 = pageElementFactory.generateDropdown(erzählerFrame.comboBox1,
+        DefaultComboBoxModel model = new DefaultComboBoxModel(livingPlayers.strings.toArray());
+        pageElements.nameComboBox.setModel(model);
+        PageElement choosePlayer1 = pageElementFactory.generateDropdown(pageElements.nameComboBox,
                 null, titleLabel, 0, 0);
 
-        erzählerFrame.addPlayerTortenButton = new JButton("Hinzufügen");
-        PageElement addPlayerButton = pageElementFactory.generateSmallButton(erzählerFrame.addPlayerTortenButton, choosePlayer1);
+        PageElement addPlayerButton = pageElementFactory.generateSmallButton(pageElements.addPlayerButton, choosePlayer1);
 
-        erzählerFrame.deleteTortenPlayerTable = pageElementFactory.generatePageTable(erzählerFrame.deleteTortenPlayerTable, choosePlayer1,
+        pageElements.deleteTable = pageElementFactory.generatePageTable(pageElements.deleteTable, choosePlayer1,
                 columns, deleteButtonWidth, tableElementHeight, nameLabelWidth, spaceBetween, 0, spaceBetween);
 
-        erzählerFrame.tortenPlayerLabelTable = pageElementFactory.generatePageTable(erzählerFrame.tortenPlayerLabelTable, choosePlayer1,
+        pageElements.labelTable = pageElementFactory.generatePageTable(pageElements.labelTable, choosePlayer1,
                 columns, nameLabelWidth, tableElementHeight, deleteButtonWidth, spaceBetween, deleteButtonWidth + spaceBetween, spaceBetween);
 
-        erzählerFrame.nextJButton = new JButton();
         PageElement nextButton = pageElementFactory.generateLowestButton(erzählerFrame.nextJButton);
 
         tortenPage.clearPage();
@@ -548,8 +546,8 @@ public class ErzählerPageFactory {
         tortenPage.add(titleLabel);
         tortenPage.add(choosePlayer1);
         tortenPage.add(addPlayerButton);
-        tortenPage.add(erzählerFrame.deleteTortenPlayerTable);
-        tortenPage.add(erzählerFrame.tortenPlayerLabelTable);
+        tortenPage.add(pageElements.deleteTable);
+        tortenPage.add(pageElements.labelTable);
         tortenPage.add(nextButton);
 
         return tortenPage;
@@ -559,14 +557,14 @@ public class ErzählerPageFactory {
         return page.pageElements.get(continueToGeneratePagePoint);
     }
 
-    public Page generateIrrlichtDropdownPage(Page irrlichtPage, IrrlichPageElementsDto pageElements, Statement statement, DropdownOptions dropdownStrings) {
+    public Page generateIrrlichtDropdownPage(Page irrlichtPage, OneDropdownPageElementsDto pageElements, Statement statement, DropdownOptions dropdownStrings) {
         irrlichtPage = generateDefaultNightPage(irrlichtPage, statement, false);
         DefaultComboBoxModel model = new DefaultComboBoxModel(dropdownStrings.strings.toArray());
         pageElements.nameComboBox.setModel(model);
         PageElement choosePlayer = pageElementFactory.generateDropdown(pageElements.nameComboBox,
                 null, getContinueToGeneratePagePoint(irrlichtPage));
 
-        PageElement addIrrlichtButton = pageElementFactory.generateSmallButton(pageElements.addIrrlichtButton, choosePlayer);
+        PageElement addIrrlichtButton = pageElementFactory.generateSmallButton(pageElements.addPlayerButton, choosePlayer);
 
         int tableElementHeight = 25;
         int deleteButtonWidth = 40;

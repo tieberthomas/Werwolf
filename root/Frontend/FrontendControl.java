@@ -7,6 +7,7 @@ import root.Frontend.Frame.ÜbersichtsFrame;
 import root.Frontend.Page.Page;
 import root.Frontend.Utils.DropdownOptions;
 import root.Frontend.Utils.PageRefresher.InteractivePages.IrrlichtPage;
+import root.Frontend.Utils.PageRefresher.InteractivePages.TortenPage;
 import root.Persona.Rollen.Bonusrollen.Schnüffler;
 import root.Persona.Rollen.Constants.RawInformation;
 import root.Persona.Rollen.Constants.SchnüfflerInformation;
@@ -164,8 +165,11 @@ public class FrontendControl {
     }
 
     public static void erzählerTortenPage() {
-        erzählerFrame.pageFactory.generateTortenPage(erzählerFrame.tortenPage, Game.game.getLivingSpielerStrings());
-        erzählerFrame.buildScreenFromPage(erzählerFrame.tortenPage);
+        erzählerFrame.currentInteractivePage = new TortenPage(new DropdownOptions(Game.game.getLivingSpielerStrings()));
+    }
+
+    public static List<String> getTortenesser() {
+        return TortenPage.tortenesser;
     }
 
     public static void erzählerAnnounceOpferPage(Spieler spieler) {

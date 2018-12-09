@@ -3,9 +3,10 @@ package root.Frontend.Frame;
 import root.Frontend.Factories.ErzählerPageFactory;
 import root.Frontend.FrontendControl;
 import root.Frontend.Page.Page;
-import root.Frontend.Page.PageTable;
 import root.Frontend.Utils.PageRefresher.InteractivePages.*;
-import root.Frontend.Utils.PageRefresher.Models.*;
+import root.Frontend.Utils.PageRefresher.Models.InteractivePage;
+import root.Frontend.Utils.PageRefresher.Models.LoadMode;
+import root.Frontend.Utils.PageRefresher.Models.RefreshedPage;
 import root.Frontend.Utils.PageRefresher.PageRefresher;
 import root.Persona.Hauptrolle;
 import root.Phases.*;
@@ -13,7 +14,6 @@ import root.ResourceManagement.DataManager;
 import root.Spieler;
 import root.Utils.ListHelper;
 import root.mechanics.Game;
-import root.mechanics.Torte;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -57,15 +57,6 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     public JButton priesterJButton;
     public JButton richterinJButton;
     public JButton respawnFramesJButton;
-
-    public Page tortenPage;
-    public JButton addPlayerTortenButton;
-    public PageTable tortenPlayerLabelTable;
-    public PageTable deleteTortenPlayerTable;
-    private ArrayList<JButton> deleteTortenPlayerButtons = new ArrayList<>();
-
-    private PageRefresher tortenPageRefresher;
-
     public JButton henkerGoBackButton = new JButton("Zurück");
 
     public ErzählerFrame() {
@@ -104,10 +95,6 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     private void initializePageElements() {
         comboBox1 = new JComboBox();
         comboBox2 = new JComboBox();
-
-        tortenPage = new Page();
-        tortenPlayerLabelTable = new PageTable();
-        deleteTortenPlayerTable = new PageTable();
     }
 
     private void generateAllPageRefreshers() {
@@ -122,29 +109,6 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         bonusrolePage.setupPageRefresher();
         specifyPage.generatePage();
         specifyPage.setupPageRefresher();
-
-        generateTortenPageRefresher();
-    }
-
-    private void generateTortenPageRefresher() {
-        tortenPageRefresher = new PageRefresher(tortenPage);
-        tortenPageRefresher.add(new LabelTable(tortenPlayerLabelTable, Torte::getTortenesserNames));
-        tortenPageRefresher.add(new DeleteButtonTable(deleteTortenPlayerTable, deleteTortenPlayerButtons, Torte.tortenEsser::size));
-        tortenPageRefresher.add(new Combobox(comboBox1, this::getNichtTortenEsserStrings));
-    }
-
-    private void refreshTortenPage() {
-        tortenPageRefresher.refreshPage();
-    }
-
-    private List<String> getNichtTortenEsserStrings() {
-        List<String> nichtTortenEsser = Game.game.getLivingSpielerStrings();
-        List<String> tortenEsser = new ArrayList<>();
-        for (Spieler spieler : Torte.tortenEsser) {
-            tortenEsser.add(spieler.name);
-        }
-        nichtTortenEsser.removeAll(tortenEsser);
-        return nichtTortenEsser;
     }
 
     public void nextPage() {
@@ -185,13 +149,9 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
             } else {
                 prevPage();
             }
-        } else if (ae.getSource() == addPlayerTortenButton) {
-            addTortenEsser();
         } else if (ae.getSource() == henkerGoBackButton) {
             next = false;
             triggerNext();
-        } else if (deleteTortenPlayerButtons.contains(ae.getSource())) {
-            deleteTortenesser(ae);
         } else if (ae.getSource() == nextJButton) {
             next = true;
             triggerNext();
@@ -360,36 +320,12 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         generateAllPageRefreshers();
     }
 
-    private void deleteTortenesser(ActionEvent ae) {
-        for (int i = 0; i < deleteTortenPlayerButtons.size(); i++) {
-            if (ae.getSource() == deleteTortenPlayerButtons.get(i)) {
-                deleteTortenPlayerButtons.remove(i);
-
-                Torte.tortenEsser.remove(i);
-
-                refreshTortenPage();
-
-                return;
-            }
-        }
-    }
-
-    private void addTortenEsser() {
-        try {
-            String spielerName = comboBox1.getSelectedItem().toString();
-            Spieler spieler = Game.game.findSpieler(spielerName);
-            Torte.tortenEsser.add(spieler);
-            refreshTortenPage();
-        } catch (NullPointerException e) {
-        }
-    }
-
     private boolean gameIsInDaySetupMode() {
         return mode == ErzählerFrameMode.UMBRINGEN_SETUP || mode == ErzählerFrameMode.PRIESTER_SETUP
                 || mode == ErzählerFrameMode.RICHTERIN_SETUP;
     }
 
-    public void respawnFrames() {
+    private void respawnFrames() {
         spielerFrame.dispatchEvent(new WindowEvent(spielerFrame, WindowEvent.WINDOW_CLOSING));
         übersichtsFrame.dispatchEvent(new WindowEvent(übersichtsFrame, WindowEvent.WINDOW_CLOSING));
 
@@ -409,7 +345,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         }
     }
 
-    public void continueThreads() {
+    private void continueThreads() {
         try {
             if (mode == ErzählerFrameMode.FIRST_NIGHT) {
                 synchronized (FirstNight.lock) {
@@ -429,7 +365,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         }
     }
 
-    public void showDayPage() {
+    private void showDayPage() {
         FrontendControl.erzählerDefaultDayPage();
         FrontendControl.spielerDayPage();
     }

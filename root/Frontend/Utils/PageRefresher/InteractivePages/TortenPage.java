@@ -8,31 +8,28 @@ import root.Frontend.Utils.PageRefresher.Models.DeleteButtonTable;
 import root.Frontend.Utils.PageRefresher.Models.LabelTable;
 import root.Frontend.Utils.PageRefresher.Models.RefreshedPage;
 import root.Frontend.Utils.PageRefresher.PageRefresher;
-import root.Phases.NightBuilding.Statement;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class IrrlichtPage extends RefreshedPage {
+public class TortenPage extends RefreshedPage {
     private OneDropdownPageElementsDto interactiveElementsDto;
 
-    private JButton addIrrlichtButton;
+    private JButton addSpieler;
     private PageTable labelTable;
     private PageTable deleteTable;
     private List<JButton> deleteButtons = new ArrayList<>();
     private JComboBox nameComboBox;
 
-    public static ArrayList<String> flackerndeIrrlichter;
+    public static ArrayList<String> tortenesser;
 
-    private Statement statement;
-    private DropdownOptions irrlichtNames;
+    private DropdownOptions allPlayers;
 
-    public IrrlichtPage(Statement statement, DropdownOptions irrlichtNames) {
-        flackerndeIrrlichter = new ArrayList<>();
-        this.statement = statement;
-        this.irrlichtNames = irrlichtNames;
+    public TortenPage(DropdownOptions allPlayers) {
+        tortenesser = new ArrayList<>();
+        this.allPlayers = allPlayers;
         generatePage();
         setupPageRefresher();
         refresh();
@@ -40,7 +37,7 @@ public class IrrlichtPage extends RefreshedPage {
 
     @Override
     protected void setupObjects() {
-        addIrrlichtButton = new JButton("Hinzufügen");
+        addSpieler = new JButton("Hinzufügen");
         labelTable = new PageTable();
         deleteTable = new PageTable();
         nameComboBox = new JComboBox();
@@ -48,57 +45,57 @@ public class IrrlichtPage extends RefreshedPage {
 
     @Override
     public void generatePage() {
-        erzählerFrame.pageFactory.generateIrrlichtDropdownPage(page, interactiveElementsDto, statement, irrlichtNames);
+        erzählerFrame.pageFactory.generateTortenPage(page, interactiveElementsDto, allPlayers);
     }
 
     @Override
     public void setupPageRefresher() {
         pageRefresher = new PageRefresher(page);
-        pageRefresher.add(new LabelTable(labelTable, IrrlichtPage::getFlackerndeIrrlichter));
-        pageRefresher.add(new DeleteButtonTable(deleteTable, deleteButtons, IrrlichtPage.flackerndeIrrlichter::size));
-        pageRefresher.add(new Combobox(nameComboBox, this::getNichtFlackerndeIrrlichterStrings));
+        pageRefresher.add(new LabelTable(labelTable, TortenPage::getTortenesser));
+        pageRefresher.add(new DeleteButtonTable(deleteTable, deleteButtons, TortenPage.tortenesser::size));
+        pageRefresher.add(new Combobox(nameComboBox, this::getNichtTortenesser));
     }
 
-    private static List<String> getFlackerndeIrrlichter() {
-        return flackerndeIrrlichter;
+    private static List<String> getTortenesser() {
+        return tortenesser;
     }
 
-    private List<String> getNichtFlackerndeIrrlichterStrings() {
-        List<String> nichtFlackernde = new ArrayList<>(irrlichtNames.strings);
-        nichtFlackernde.removeAll(flackerndeIrrlichter);
+    private List<String> getNichtTortenesser() {
+        List<String> nichtFlackernde = new ArrayList<>(allPlayers.strings);
+        nichtFlackernde.removeAll(tortenesser);
         return nichtFlackernde;
     }
 
     @Override
     protected void setupPageElementsDtos() {
-        interactiveElementsDto = new OneDropdownPageElementsDto(addIrrlichtButton, labelTable, deleteTable, nameComboBox);
+        interactiveElementsDto = new OneDropdownPageElementsDto(addSpieler, labelTable, deleteTable, nameComboBox);
     }
 
     @Override
     public void processActionEvent(ActionEvent ae) {
-        if (addIrrlichtButton.equals(ae.getSource())) {
-            addIrrlicht();
+        if (addSpieler.equals(ae.getSource())) {
+            addTortenesser();
         } else if (deleteButtons.contains(ae.getSource())) {
-            deleteIrrlicht(ae);
+            deleteTortenesser(ae);
         }
     }
 
-    private void addIrrlicht() {
+    private void addTortenesser() {
         if (nameComboBox.getSelectedItem() != null) {
             String spielerName = nameComboBox.getSelectedItem().toString();
-            flackerndeIrrlichter.add(spielerName);
+            tortenesser.add(spielerName);
             refresh();
         }
     }
 
-    private void deleteIrrlicht(ActionEvent ae) {
+    private void deleteTortenesser(ActionEvent ae) {
         int index = findIndex(ae);
 
         if (index > 0 && index < deleteButtons.size()) {
             deleteButtons.remove(index);
         }
 
-        flackerndeIrrlichter.remove(index);
+        tortenesser.remove(index);
 
         refresh();
     }
