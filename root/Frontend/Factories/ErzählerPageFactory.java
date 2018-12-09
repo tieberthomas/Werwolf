@@ -26,7 +26,7 @@ public class ErzählerPageFactory {
         pageElementFactory = new ErzählerPageElementFactory(erzählerFrame);
     }
 
-    public Page generateStartPage(Page startPage, StartPageElementsDto pageElements) {
+    public void generateStartPage(Page startPage, StartPageElementsDto pageElements) {
         //TODO listengenerierung so machen dass buttons aus dem dto verwendet werden
         PageElement werwolfIcon = pageElementFactory.generateCenteredImageLabel(ImagePath.WÖLFE_ICON, 3, 60);
 
@@ -44,10 +44,9 @@ public class ErzählerPageFactory {
         startPage.add(loadLastComposition);
         startPage.add(loadLastGame);
 
-        return startPage;
     }
 
-    public Page generatePlayerSetupPage(Page playerSetupPage, PlayerSetupPageElementsDto interactiveElementsDto, int numberOfPlayers) {
+    public void generatePlayerSetupPage(Page playerSetupPage, PlayerSetupPageElementsDto interactiveElementsDto, int numberOfPlayers) {
         PageElement nameLabel = pageElementFactory.generateLabel(null, "Name");
 
         PageElement addPlayerTxtField = pageElementFactory.generateAddPlayerTxtField(interactiveElementsDto.addPlayerTxtField, nameLabel);
@@ -89,10 +88,9 @@ public class ErzählerPageFactory {
         playerSetupPage.add(deleteTable);
         playerSetupPage.add(labelTable);
 
-        return playerSetupPage;
     }
 
-    public Page generateRollenSetupPage(Page rollenSetupPage, RolePageElementsDto interactiveElementsDto, int numberOfPlayers, int numberOfRoles, List<String> roleNames) {
+    public void generateRollenSetupPage(Page rollenSetupPage, RolePageElementsDto interactiveElementsDto, int numberOfPlayers, int numberOfRoles, List<String> roleNames) {
         PageTable roleButtonTable = pageElementFactory.generateButtonTable(interactiveElementsDto.roleButtonTable, null);
         pageElementFactory.generateTableButtons(roleNames, interactiveElementsDto.roleButtons, roleButtonTable);
 
@@ -130,10 +128,9 @@ public class ErzählerPageFactory {
         rollenSetupPage.add(interactiveElementsDto.deleteTable);
         rollenSetupPage.add(interactiveElementsDto.labelTable);
 
-        return rollenSetupPage;
     }
 
-    public Page generateSpecifiyPage(Page playerSpecifyPage, SpecifyPageElementsDto pageElements) {
+    public void generateSpecifiyPage(Page playerSpecifyPage, SpecifyPageElementsDto pageElements) {
         String title = "Wählen Sie für diesen Spieler Haupt- und Bonusrolle.";
         String HTMLtitle = HTMLStringBuilder.buildHTMLText(title);
         PageElement titleLabel = pageElementFactory.generateLabel(null, HTMLtitle);
@@ -197,7 +194,6 @@ public class ErzählerPageFactory {
         playerSpecifyPage.add(goNextButton);
         playerSpecifyPage.add(goBackButton);
 
-        return playerSpecifyPage;
     }
 
     public Page generateDefaultNightPage(Page nightPage, Statement statement) {
@@ -487,7 +483,7 @@ public class ErzählerPageFactory {
         return richterinPage;
     }
 
-    public Page generateTortenPage(Page tortenPage, OneDropdownDeletePageDto pageElements, DropdownOptions livingPlayers, String title) {
+    public void generateTortenPage(Page tortenPage, OneDropdownDeletePageDto pageElements, DropdownOptions livingPlayers, String title) {
         PageElement titleLabel = pageElementFactory.generateTitleLabel(null, title);
 
         int tableElementHeight = 25;
@@ -520,17 +516,16 @@ public class ErzählerPageFactory {
         tortenPage.add(pageElements.labelTable);
         tortenPage.add(nextButton);
 
-        return tortenPage;
     }
 
-    public Page generateOneDropdownPage(Page page, OneDropdownPageDto pageElements, DropdownOptions dropdownOptions) {
+    public void generateOneDropdownPage(Page page, OneDropdownPageDto pageElements, DropdownOptions dropdownOptions) {
         PageElement titleLabel = pageElementFactory.generateTitleLabel(null, pageElements.title);
 
         PageElement nameLabel = pageElementFactory.generateLabel(titleLabel, pageElements.comboBoxName);
 
         DefaultComboBoxModel model = new DefaultComboBoxModel(dropdownOptions.strings.toArray());
         pageElements.comboBox.setModel(model);
-        PageElement choosePlayer1 = pageElementFactory.generateDropdown(pageElements.comboBox,
+        PageElement comboBox = pageElementFactory.generateDropdown(pageElements.comboBox,
                 null, nameLabel, 0, 0);
 
         PageElement nextButton = pageElementFactory.generateLowestButton(pageElements.next);
@@ -540,18 +535,48 @@ public class ErzählerPageFactory {
         page.clearPage();
         page.add(titleLabel);
         page.add(nameLabel);
-        page.add(choosePlayer1);
+        page.add(comboBox);
+        page.add(nextButton);
+        page.add(goBackButton);
+    }
+
+    public void generateTwoDropdownPage(Page page, TwoDropdownPageDto pageElements, DropdownOptions dropdownOptions) {
+        PageElement titleLabel = pageElementFactory.generateTitleLabel(null, pageElements.title);
+
+        PageElement nameLabel = pageElementFactory.generateLabel(titleLabel, pageElements.comboBoxName);
+
+        DefaultComboBoxModel model = new DefaultComboBoxModel(dropdownOptions.strings.toArray());
+        pageElements.comboBox.setModel(model);
+        PageElement comboBox = pageElementFactory.generateDropdown(pageElements.comboBox,
+                null, nameLabel, 0, 0);
+
+        PageElement nameLabel2 = pageElementFactory.generateLabel(comboBox, pageElements.comboBoxName2);
+
+        DefaultComboBoxModel model2 = new DefaultComboBoxModel(dropdownOptions.strings.toArray());
+        pageElements.comboBox2.setModel(model2);
+        PageElement comboBox2 = pageElementFactory.generateDropdown(pageElements.comboBox2,
+                null, nameLabel2, 0, 0);
+
+        PageElement nextButton = pageElementFactory.generateLowestButton(pageElements.next);
+
+        PageElement goBackButton = pageElementFactory.generateLowestButton(pageElements.back, "Zurück", false);
+
+        page.clearPage();
+        page.add(titleLabel);
+        page.add(nameLabel);
+        page.add(comboBox);
+        page.add(nameLabel2);
+        page.add(comboBox2);
         page.add(nextButton);
         page.add(goBackButton);
 
-        return page;
     }
 
     private PageElement getContinueToGeneratePagePoint(Page page) {
         return page.pageElements.get(continueToGeneratePagePoint);
     }
 
-    public Page generateIrrlichtDropdownPage(Page irrlichtPage, OneDropdownDeletePageDto pageElements, Statement statement, DropdownOptions dropdownStrings) {
+    public void generateIrrlichtDropdownPage(Page irrlichtPage, OneDropdownDeletePageDto pageElements, Statement statement, DropdownOptions dropdownStrings) {
         irrlichtPage = generateDefaultNightPage(irrlichtPage, statement, false);
         DefaultComboBoxModel model = new DefaultComboBoxModel(dropdownStrings.strings.toArray());
         pageElements.nameComboBox.setModel(model);
@@ -577,6 +602,5 @@ public class ErzählerPageFactory {
         irrlichtPage.add(pageElements.labelTable);
         irrlichtPage.add(choosePlayer);
 
-        return irrlichtPage;
     }
 }

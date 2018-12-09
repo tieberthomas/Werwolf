@@ -37,6 +37,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     private MainrolePage mainrolePage;
     private BonusrolePage bonusrolePage;
     private SpecifyPage specifyPage;
+
     public InteractivePage currentInteractivePage;
 
     public static ErzählerFrameMode mode = ErzählerFrameMode.SETUP;
@@ -188,34 +189,9 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                 System.out.println("Combobox2 might not be initialized.");
             }
         } else if (ae.getSource() == umbringenJButton) {
-            UmbringenPage umbringenPage = new UmbringenPage(new DropdownOptions(Game.game.getLivingSpielerStrings(), DropdownConstants.EMPTY), übersichtsFrame);
-            currentInteractivePage = umbringenPage;
-            buildScreenFromPage(umbringenPage.page);
+            showUmbringenPage();
         } else if (ae.getSource() == priesterJButton) {
-            if (mode == ErzählerFrameMode.PRIESTER_SETUP) {
-                try {
-                    if (comboBox1 != null) {
-                        chosenOption1 = (String) comboBox1.getSelectedItem();
-                    }
-
-                    if (comboBox2 != null) {
-                        chosenOption2 = (String) comboBox2.getSelectedItem();
-                    }
-                } catch (NullPointerException e) {
-                    System.out.println("comboboxes(1,2) might not be initialized.");
-                }
-                String priester = chosenOption1;
-                String spieler = chosenOption2;
-                Game.game.day.bürgen(priester, spieler);
-
-                mode = PhaseManager.parsePhaseMode();
-                FrontendControl.showDayPage();
-            } else {
-                mode = ErzählerFrameMode.PRIESTER_SETUP;
-
-                spielerFrame.mode = SpielerFrameMode.blank;
-                buildScreenFromPage(pageFactory.generatePriesterPage(Game.game.getLivingSpielerStrings()));
-            }
+            showPriesterPage();
         } else if (ae.getSource() == richterinJButton) {
             if (mode == ErzählerFrameMode.RICHTERIN_SETUP) {
                 try {
@@ -245,6 +221,18 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         } else if (ae.getSource() == respawnFramesJButton) {
             respawnFrames();
         }
+    }
+
+    private void showUmbringenPage() {
+        UmbringenPage umbringenPage = new UmbringenPage(new DropdownOptions(Game.game.getLivingSpielerStrings(), DropdownConstants.EMPTY), übersichtsFrame);
+        currentInteractivePage = umbringenPage;
+        buildScreenFromPage(umbringenPage.page);
+    }
+
+    private void showPriesterPage() {
+        PriesterPage priesterPage = new PriesterPage(new DropdownOptions(Game.game.getLivingSpielerStrings(), DropdownConstants.EMPTY));
+        currentInteractivePage = priesterPage;
+        buildScreenFromPage(priesterPage.page);
     }
 
     private void triggerNext() {
@@ -293,8 +281,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     }
 
     private boolean gameIsInDaySetupMode() {
-        return mode == ErzählerFrameMode.UMBRINGEN_SETUP || mode == ErzählerFrameMode.PRIESTER_SETUP
-                || mode == ErzählerFrameMode.RICHTERIN_SETUP;
+        return mode == ErzählerFrameMode.RICHTERIN_SETUP;
     }
 
     private void respawnFrames() {
@@ -323,7 +310,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                 synchronized (SetupNight.lock) {
                     SetupNight.lock.notify();
                 }
-            } else if (mode == ErzählerFrameMode.DAY || mode == ErzählerFrameMode.FREIBIER_DAY || mode == ErzählerFrameMode.UMBRINGEN_SETUP) {
+            } else if (mode == ErzählerFrameMode.DAY || mode == ErzählerFrameMode.FREIBIER_DAY) {
                 synchronized (Day.lock) {
                     Day.lock.notify();
                 }

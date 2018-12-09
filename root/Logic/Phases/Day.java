@@ -159,14 +159,9 @@ public class Day extends Thread {
         waitForAnswer();
     }
 
-    public void bürgen(String priesterName, String spielerName) {
-        Spieler priesterSpieler = Game.game.findSpieler(priesterName);
-        Spieler verbürgerSpieler = Game.game.findSpieler(spielerName);
-
-        if (priesterSpieler != null && spielerName != null) {
-            priester = priesterSpieler;
-            gebürgteSpieler.add(verbürgerSpieler);
-        }
+    public void bürgen(Spieler priesterSpieler, Spieler verbürgerSpieler) {
+        priester = priesterSpieler;
+        gebürgteSpieler.add(verbürgerSpieler);
     }
 
     public void verurteilen(String richterinName, String spielerName) {
