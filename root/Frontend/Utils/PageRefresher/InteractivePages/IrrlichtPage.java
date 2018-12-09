@@ -2,7 +2,7 @@ package root.Frontend.Utils.PageRefresher.InteractivePages;
 
 import root.Frontend.Page.PageTable;
 import root.Frontend.Utils.DropdownOptions;
-import root.Frontend.Utils.PageRefresher.InteractivePages.InteractiveElementsDtos.OneDropdownPageElementsDto;
+import root.Frontend.Utils.PageRefresher.InteractivePages.InteractiveElementsDtos.OneDropdownDeletePageDto;
 import root.Frontend.Utils.PageRefresher.Models.Combobox;
 import root.Frontend.Utils.PageRefresher.Models.DeleteButtonTable;
 import root.Frontend.Utils.PageRefresher.Models.LabelTable;
@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class IrrlichtPage extends RefreshedPage {
-    private OneDropdownPageElementsDto interactiveElementsDto;
+    private OneDropdownDeletePageDto interactiveElementsDto;
 
     private JButton addIrrlichtButton;
     private PageTable labelTable;
@@ -71,7 +71,7 @@ public class IrrlichtPage extends RefreshedPage {
 
     @Override
     protected void setupPageElementsDtos() {
-        interactiveElementsDto = new OneDropdownPageElementsDto(addIrrlichtButton, labelTable, deleteTable, nameComboBox);
+        interactiveElementsDto = new OneDropdownDeletePageDto(addIrrlichtButton, labelTable, deleteTable, nameComboBox);
     }
 
     @Override
@@ -104,7 +104,7 @@ public class IrrlichtPage extends RefreshedPage {
     }
 
     private int findIndex(ActionEvent ae) {
-        int keinIrrlicht = -1;
+        int keinIrrlichtGefunden = -1;
 
         for (int i = 0; i < deleteButtons.size(); i++) {
             if (ae.getSource() == deleteButtons.get(i)) {
@@ -112,6 +112,6 @@ public class IrrlichtPage extends RefreshedPage {
             }
         }
 
-        return keinIrrlicht;
+        return keinIrrlichtGefunden;
     }
 }

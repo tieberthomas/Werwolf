@@ -112,7 +112,7 @@ public class Game {
     }
 
     public void startGame(ErzählerFrame erzählerFrame) {
-        erzählerFrame.übersichtsFrame = new ÜbersichtsFrame(erzählerFrame.frameJpanel.getHeight() + 50);
+        erzählerFrame.übersichtsFrame = new ÜbersichtsFrame(erzählerFrame.frameJpanel.getHeight() + ÜbersichtsFrame.spaceFromErzählerFrame);
         erzählerFrame.toFront();
 
         FrontendControl.erzählerFrame = erzählerFrame;

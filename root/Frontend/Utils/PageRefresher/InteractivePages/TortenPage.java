@@ -2,7 +2,7 @@ package root.Frontend.Utils.PageRefresher.InteractivePages;
 
 import root.Frontend.Page.PageTable;
 import root.Frontend.Utils.DropdownOptions;
-import root.Frontend.Utils.PageRefresher.InteractivePages.InteractiveElementsDtos.OneDropdownPageElementsDto;
+import root.Frontend.Utils.PageRefresher.InteractivePages.InteractiveElementsDtos.OneDropdownDeletePageDto;
 import root.Frontend.Utils.PageRefresher.Models.Combobox;
 import root.Frontend.Utils.PageRefresher.Models.DeleteButtonTable;
 import root.Frontend.Utils.PageRefresher.Models.LabelTable;
@@ -15,9 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TortenPage extends RefreshedPage {
-    private OneDropdownPageElementsDto interactiveElementsDto;
+    private OneDropdownDeletePageDto interactiveElementsDto;
 
-    private JButton addSpieler;
+    private JButton addPlayer;
     private PageTable labelTable;
     private PageTable deleteTable;
     private List<JButton> deleteButtons = new ArrayList<>();
@@ -27,7 +27,10 @@ public class TortenPage extends RefreshedPage {
 
     private DropdownOptions allPlayers;
 
+    private static String TITLE;
+
     public TortenPage(DropdownOptions allPlayers) {
+        TITLE = "Torte";
         tortenesser = new ArrayList<>();
         this.allPlayers = allPlayers;
         generatePage();
@@ -37,7 +40,7 @@ public class TortenPage extends RefreshedPage {
 
     @Override
     protected void setupObjects() {
-        addSpieler = new JButton("Hinzufügen");
+        addPlayer = new JButton("Hinzufügen");
         labelTable = new PageTable();
         deleteTable = new PageTable();
         nameComboBox = new JComboBox();
@@ -45,7 +48,7 @@ public class TortenPage extends RefreshedPage {
 
     @Override
     public void generatePage() {
-        erzählerFrame.pageFactory.generateTortenPage(page, interactiveElementsDto, allPlayers);
+        erzählerFrame.pageFactory.generateTortenPage(page, interactiveElementsDto, allPlayers, TITLE);
     }
 
     @Override
@@ -68,19 +71,19 @@ public class TortenPage extends RefreshedPage {
 
     @Override
     protected void setupPageElementsDtos() {
-        interactiveElementsDto = new OneDropdownPageElementsDto(addSpieler, labelTable, deleteTable, nameComboBox);
+        interactiveElementsDto = new OneDropdownDeletePageDto(addPlayer, labelTable, deleteTable, nameComboBox);
     }
 
     @Override
     public void processActionEvent(ActionEvent ae) {
-        if (addSpieler.equals(ae.getSource())) {
-            addTortenesser();
+        if (addPlayer.equals(ae.getSource())) {
+            addPlayer();
         } else if (deleteButtons.contains(ae.getSource())) {
-            deleteTortenesser(ae);
+            deletePlayer(ae);
         }
     }
 
-    private void addTortenesser() {
+    private void addPlayer() {
         if (nameComboBox.getSelectedItem() != null) {
             String spielerName = nameComboBox.getSelectedItem().toString();
             tortenesser.add(spielerName);
@@ -88,7 +91,7 @@ public class TortenPage extends RefreshedPage {
         }
     }
 
-    private void deleteTortenesser(ActionEvent ae) {
+    private void deletePlayer(ActionEvent ae) {
         int index = findIndex(ae);
 
         if (index > 0 && index < deleteButtons.size()) {
@@ -101,7 +104,7 @@ public class TortenPage extends RefreshedPage {
     }
 
     private int findIndex(ActionEvent ae) {
-        int keinIrrlicht = -1;
+        int keinTortenesserGefunden = -1;
 
         for (int i = 0; i < deleteButtons.size(); i++) {
             if (ae.getSource() == deleteButtons.get(i)) {
@@ -109,6 +112,6 @@ public class TortenPage extends RefreshedPage {
             }
         }
 
-        return keinIrrlicht;
+        return keinTortenesserGefunden;
     }
 }

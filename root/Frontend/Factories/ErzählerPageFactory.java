@@ -517,8 +517,8 @@ public class ErzählerPageFactory {
         return richterinPage;
     }
 
-    public Page generateTortenPage(Page tortenPage, OneDropdownPageElementsDto pageElements, DropdownOptions livingPlayers) {
-        PageElement titleLabel = pageElementFactory.generateTitleLabel(null, "Torte");
+    public Page generateTortenPage(Page tortenPage, OneDropdownDeletePageDto pageElements, DropdownOptions livingPlayers, String title) {
+        PageElement titleLabel = pageElementFactory.generateTitleLabel(null, title);
 
         int tableElementHeight = 25;
         int deleteButtonWidth = 40;
@@ -553,11 +553,35 @@ public class ErzählerPageFactory {
         return tortenPage;
     }
 
+    public Page generateOneDropdownPage(Page page, OneDropdownPageDto pageElements, DropdownOptions dropdownOptions) {
+        PageElement titleLabel = pageElementFactory.generateTitleLabel(null, pageElements.title);
+
+        PageElement nameLabel = pageElementFactory.generateLabel(titleLabel, pageElements.comboBoxName);
+
+        DefaultComboBoxModel model = new DefaultComboBoxModel(dropdownOptions.strings.toArray());
+        pageElements.comboBox.setModel(model);
+        PageElement choosePlayer1 = pageElementFactory.generateDropdown(pageElements.comboBox,
+                null, nameLabel, 0, 0);
+
+        PageElement nextButton = pageElementFactory.generateLowestButton(pageElements.next);
+
+        PageElement goBackButton = pageElementFactory.generateLowestButton(pageElements.back, "Zurück", false);
+
+        page.clearPage();
+        page.add(titleLabel);
+        page.add(nameLabel);
+        page.add(choosePlayer1);
+        page.add(nextButton);
+        page.add(goBackButton);
+
+        return page;
+    }
+
     private PageElement getContinueToGeneratePagePoint(Page page) {
         return page.pageElements.get(continueToGeneratePagePoint);
     }
 
-    public Page generateIrrlichtDropdownPage(Page irrlichtPage, OneDropdownPageElementsDto pageElements, Statement statement, DropdownOptions dropdownStrings) {
+    public Page generateIrrlichtDropdownPage(Page irrlichtPage, OneDropdownDeletePageDto pageElements, Statement statement, DropdownOptions dropdownStrings) {
         irrlichtPage = generateDefaultNightPage(irrlichtPage, statement, false);
         DefaultComboBoxModel model = new DefaultComboBoxModel(dropdownStrings.strings.toArray());
         pageElements.nameComboBox.setModel(model);

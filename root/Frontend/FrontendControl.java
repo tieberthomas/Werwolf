@@ -155,6 +155,11 @@ public class FrontendControl {
         spielerFrame.buildScreenFromPage(nightPage);
     }
 
+    public static void showDayPage() {
+        FrontendControl.erzählerDefaultDayPage();
+        FrontendControl.spielerDayPage();
+    }
+
     public static void erzählerDefaultDayPage() {
         Page dayPage = erzählerFrame.pageFactory.generateDayPage(Game.game.getSpielerDropdownOptions(true));
         erzählerFrame.buildScreenFromPage(dayPage);

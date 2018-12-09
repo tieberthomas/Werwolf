@@ -3,15 +3,16 @@ package root.Frontend.Frame;
 import root.Frontend.Factories.ErzählerPageFactory;
 import root.Frontend.FrontendControl;
 import root.Frontend.Page.Page;
+import root.Frontend.Utils.DropdownOptions;
 import root.Frontend.Utils.PageRefresher.InteractivePages.*;
 import root.Frontend.Utils.PageRefresher.Models.InteractivePage;
 import root.Frontend.Utils.PageRefresher.Models.LoadMode;
 import root.Frontend.Utils.PageRefresher.Models.RefreshedPage;
 import root.Frontend.Utils.PageRefresher.PageRefresher;
 import root.Persona.Hauptrolle;
+import root.Persona.Rollen.Constants.DropdownConstants;
 import root.Phases.*;
 import root.ResourceManagement.DataManager;
-import root.Spieler;
 import root.Utils.ListHelper;
 import root.mechanics.Game;
 
@@ -27,7 +28,6 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
 
     public SpielerFrame spielerFrame;
     public ÜbersichtsFrame übersichtsFrame;
-    public Page savePage;
 
     public DataManager dataManager;
 
@@ -46,11 +46,12 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     public ArrayList<JButton> goBackButtons = new ArrayList<>();
     public ArrayList<JButton> goNextButtons = new ArrayList<>();
 
+    public JComboBox comboBox1;
+    public JComboBox comboBox2;
+
     public String chosenOption1 = "";
     public String chosenOption2 = "";
 
-    public JComboBox comboBox1;
-    public JComboBox comboBox2;
     public JButton nextJButton;
     public JButton goBackJButton;
     public JButton umbringenJButton;
@@ -145,7 +146,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         } else if (goBackButtons.contains(ae.getSource())) {
             if (gameIsInDaySetupMode()) {
                 mode = PhaseManager.parsePhaseMode();
-                showDayPage();
+                FrontendControl.showDayPage();
             } else {
                 prevPage();
             }
@@ -188,7 +189,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
             }
         } else if (ae.getSource() == umbringenJButton) {
             if (mode == ErzählerFrameMode.UMBRINGEN_SETUP) {
-                try {
+                /*try {
                     if (comboBox1 != null) {
                         chosenOption1 = (String) comboBox1.getSelectedItem();
                     }
@@ -201,7 +202,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                     Day.umbringenSpieler = spieler;
                     Day.umbringenButton = true;
                 } else {
-                    showDayPage();
+                    FrontendControl.showDayPage();
                 }
 
                 mode = PhaseManager.parsePhaseMode();
@@ -212,12 +213,16 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
 
                 if (spieler != null) {
                     continueThreads();
-                }
+                }*/
+                System.out.println("hier könnte ihre Werbung stehen");
             } else {
-                mode = ErzählerFrameMode.UMBRINGEN_SETUP;
+                /*mode = ErzählerFrameMode.UMBRINGEN_SETUP;
 
                 spielerFrame.mode = SpielerFrameMode.blank;
-                buildScreenFromPage(pageFactory.generateUmbringenPage(Game.game.getLivingSpielerStrings()));
+                buildScreenFromPage(pageFactory.generateUmbringenPage(Game.game.getLivingSpielerStrings()));*/
+                UmbringenPage umbringenPage = new UmbringenPage(new DropdownOptions(Game.game.getLivingSpielerStrings(), DropdownConstants.EMPTY), übersichtsFrame);
+                currentInteractivePage = umbringenPage;
+                buildScreenFromPage(umbringenPage.page);
             }
         } else if (ae.getSource() == priesterJButton) {
             if (mode == ErzählerFrameMode.PRIESTER_SETUP) {
@@ -237,7 +242,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                 Game.game.day.bürgen(priester, spieler);
 
                 mode = PhaseManager.parsePhaseMode();
-                showDayPage();
+                FrontendControl.showDayPage();
             } else {
                 mode = ErzählerFrameMode.PRIESTER_SETUP;
 
@@ -263,7 +268,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                 Game.game.day.verurteilen(richterin, spieler);
 
                 mode = PhaseManager.parsePhaseMode();
-                showDayPage();
+                FrontendControl.showDayPage();
             } else {
                 mode = ErzählerFrameMode.RICHTERIN_SETUP;
 
@@ -330,12 +335,12 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         übersichtsFrame.dispatchEvent(new WindowEvent(übersichtsFrame, WindowEvent.WINDOW_CLOSING));
 
         int spielerFrameMode = spielerFrame.mode;
-        savePage = spielerFrame.currentPage;
+        Page savePage = spielerFrame.currentPage;
         spielerFrame = new SpielerFrame(this);
         spielerFrame.mode = spielerFrameMode;
         spielerFrame.buildScreenFromPage(savePage);
 
-        übersichtsFrame = new ÜbersichtsFrame(this.frameJpanel.getHeight() + 50);
+        übersichtsFrame = new ÜbersichtsFrame(this.frameJpanel.getHeight() + ÜbersichtsFrame.spaceFromErzählerFrame);
 
         FrontendControl.spielerFrame = spielerFrame;
         if (PhaseManager.phaseMode == PhaseMode.DAY || PhaseManager.phaseMode == PhaseMode.FREIBIER_DAY) {
@@ -345,7 +350,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         }
     }
 
-    private void continueThreads() {
+    public static void continueThreads() {
         try {
             if (mode == ErzählerFrameMode.SETUP_NIGHT) {
                 synchronized (SetupNight.lock) {
@@ -363,10 +368,5 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         } catch (NullPointerException e) {
             System.out.println("Something went wrong with the Phases. (phasemode might be set wrong)");
         }
-    }
-
-    private void showDayPage() {
-        FrontendControl.erzählerDefaultDayPage();
-        FrontendControl.spielerDayPage();
     }
 }

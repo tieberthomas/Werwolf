@@ -15,8 +15,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Collections;
-import java.util.Comparator;
 
 public class ÜbersichtsFrame extends MyFrame implements ActionListener {
     private Color defaultBorderColor = Color.BLUE;
@@ -35,6 +33,8 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener {
 
     private Page übersichtsPage;
 
+    public static int spaceFromErzählerFrame = 50;
+
     public ÜbersichtsFrame(int spawnHeight) {
         WINDOW_TITLE = "Übersichts Fenster";
 
@@ -44,12 +44,7 @@ public class ÜbersichtsFrame extends MyFrame implements ActionListener {
 
         frameJpanel = generateDefaultPanel();
 
-        Collections.sort(Game.game.spieler, new Comparator<Spieler>() {
-            @Override
-            public int compare(Spieler spieler1, Spieler spieler2) {
-                return spieler1.name.compareToIgnoreCase(spieler2.name);
-            }
-        });
+        Game.game.spieler.sort((spieler1, spieler2) -> spieler1.name.compareToIgnoreCase(spieler2.name));
 
         regenerateAndRefresh();
 
