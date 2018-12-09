@@ -3,7 +3,7 @@ package root.Frontend.Factories;
 import root.Frontend.Frame.SpielerFrame;
 import root.Frontend.Page.PageElement;
 import root.Frontend.Page.Predecessor;
-import root.Persona.Rollen.Constants.RawInformation;
+import root.Logic.Persona.Rollen.Constants.RawInformation;
 import root.ResourceManagement.ImagePath;
 
 import javax.swing.*;

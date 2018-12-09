@@ -1,0 +1,77 @@
+package root.Logic.Persona.Rollen.Hauptrollen.Bürger;
+
+import root.Frontend.FrontendControl;
+import root.Logic.Persona.Fraktion;
+import root.Logic.Persona.Fraktionen.Bürger;
+import root.Logic.Persona.Hauptrolle;
+import root.Logic.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
+import root.Logic.Persona.Rollen.Constants.BonusrollenType.Tarnumhang_BonusrollenType;
+import root.Logic.Persona.Rollen.Constants.Zeigekarten.SpäherZeigekarte;
+import root.Logic.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
+import root.Logic.Phases.NightBuilding.Constants.StatementType;
+import root.ResourceManagement.ImagePath;
+import root.Logic.Spieler;
+import root.Logic.Game;
+
+public class Schamanin extends Hauptrolle {
+    public static final String ID = "ID_Schamanin";
+    public static final String NAME = "Schamanin";
+    public static final String IMAGE_PATH = ImagePath.SCHAMANIN_KARTE;
+    public static final Fraktion FRAKTION = new Bürger();
+
+    public static final String STATEMENT_ID = ID;
+    public static final String STATEMENT_TITLE = "Mitspieler schützen";
+    public static final String STATEMENT_BESCHREIBUNG = "Schamanin erwacht und entscheidet ob sie einen Spieler schützen möchte";
+    public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
+
+    public Schamanin() {
+        this.id = ID;
+        this.name = NAME;
+        this.imagePath = IMAGE_PATH;
+        this.fraktion = FRAKTION;
+
+        this.statementID = STATEMENT_ID;
+        this.statementTitle = STATEMENT_TITLE;
+        this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
+        this.statementType = STATEMENT_TYPE;
+
+        this.spammable = false;
+        this.killing = true;
+    }
+
+    @Override
+    public FrontendControl getDropdownOptionsFrontendControl() {
+        return Game.game.getSpielerFrontendControl(this, false);
+    }
+
+    @Override
+    public void processChosenOption(String chosenOption) {
+        Spieler chosenSpieler = Game.game.findSpieler(chosenOption);
+        if (chosenSpieler != null) {
+            besucht = chosenSpieler;
+            chosenSpieler.geschützt = true;
+            abilityCharges--;
+        }
+    }
+
+    @Override
+    public BonusrollenType getBonusrollenTypeInfo(Spieler requester) {
+        if (thisRolleIsNotBuerger(requester)) {
+            return new Tarnumhang_BonusrollenType();
+        }
+
+        return null;
+    }
+
+    public Zeigekarte isTötendInfo(Spieler requester) {
+        if (thisRolleIsNotBuerger(requester)) {
+            return new Tarnumhang_BonusrollenType();
+        }
+
+        return SpäherZeigekarte.getZeigekarte(killing);
+    }
+
+    private boolean thisRolleIsNotBuerger(Spieler requester) {
+        return requester != null && !requester.hauptrolle.fraktion.equals(new Bürger());
+    }
+}

@@ -4,10 +4,10 @@ import root.Frontend.Factories.SpielerPageElementFactory;
 import root.Frontend.Factories.SpielerPageFactory;
 import root.Frontend.Page.Page;
 import root.Frontend.Utils.TimeUpdater;
-import root.Phases.Day;
-import root.Phases.PhaseManager;
-import root.Phases.PhaseMode;
-import root.mechanics.Game;
+import root.Logic.Phases.Day;
+import root.Logic.Phases.PhaseManager;
+import root.Logic.Phases.PhaseMode;
+import root.Logic.Game;
 
 import javax.swing.*;
 import java.util.ArrayList;

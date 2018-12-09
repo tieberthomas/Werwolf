@@ -3,8 +3,8 @@ package root.Frontend.Factories;
 import root.Frontend.Frame.ÜbersichtsFrame;
 import root.Frontend.Page.Page;
 import root.Frontend.Page.PageElement;
-import root.mechanics.Game;
-import root.mechanics.Liebespaar;
+import root.Logic.Game;
+import root.Logic.Liebespaar;
 
 import javax.swing.*;
 

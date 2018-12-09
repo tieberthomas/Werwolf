@@ -1,6 +1,6 @@
 package root.ResourceManagement;
 
-import root.Spieler;
+import root.Logic.Spieler;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;

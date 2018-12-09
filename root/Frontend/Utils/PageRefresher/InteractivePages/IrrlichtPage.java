@@ -8,7 +8,7 @@ import root.Frontend.Utils.PageRefresher.Models.DeleteButtonTable;
 import root.Frontend.Utils.PageRefresher.Models.LabelTable;
 import root.Frontend.Utils.PageRefresher.Models.RefreshedPage;
 import root.Frontend.Utils.PageRefresher.PageRefresher;
-import root.Phases.NightBuilding.Statement;
+import root.Logic.Phases.NightBuilding.Statement.Statement;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

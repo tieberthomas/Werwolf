@@ -1,6 +1,6 @@
 package root.Frontend.Utils;
 
-import root.Persona.Rolle;
+import root.Logic.Persona.Rolle;
 
 import javax.swing.*;
 import javax.swing.plaf.metal.MetalButtonUI;

@@ -7,10 +7,10 @@ import root.Frontend.Utils.PageRefresher.Models.DeleteButtonTable;
 import root.Frontend.Utils.PageRefresher.Models.LabelTable;
 import root.Frontend.Utils.PageRefresher.Models.RefreshedPage;
 import root.Frontend.Utils.PageRefresher.PageRefresher;
-import root.Persona.Bonusrolle;
-import root.Persona.Hauptrolle;
-import root.Spieler;
-import root.mechanics.Game;
+import root.Logic.Persona.Bonusrolle;
+import root.Logic.Persona.Hauptrolle;
+import root.Logic.Spieler;
+import root.Logic.Game;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
