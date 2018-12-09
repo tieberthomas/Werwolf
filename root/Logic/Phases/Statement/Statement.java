@@ -9,7 +9,6 @@ import root.Logic.Phases.Statement.Constants.StatementType;
 import root.Logic.Phases.Statement.StatementDependency.StatementDependency;
 import root.Logic.Phases.Statement.StatementDependency.StatementDependencyFraktion;
 import root.Logic.Phases.Statement.StatementDependency.StatementDependencyRolle;
-import root.Logic.Phases.Statement.StatementDependency.StatementDependencyStatement;
 
 public class Statement {
     public String id;
@@ -41,37 +40,12 @@ public class Statement {
         }
     }
 
-    //TODO schöne konstruktorn lösung finden
-    public Statement(Rolle rolle, boolean secondStatement) {
-        this.id = rolle.secondStatementID;
-        this.title = rolle.secondStatementTitle;
-        this.beschreibung = rolle.secondStatementBeschreibung;
-        this.type = rolle.secondStatementType;
-        this.dependency = new StatementDependencyRolle(rolle);
-    }
-
-    public Statement(Rolle rolle, Statement dependency) {
-        this.id = rolle.secondStatementID;
-        this.title = rolle.secondStatementTitle;
-        this.beschreibung = rolle.secondStatementBeschreibung;
-        this.type = rolle.secondStatementType;
-        this.dependency = new StatementDependencyStatement(dependency);
-    }
-
     public Statement(Fraktion fraktion) {
         this.id = fraktion.statementID;
         this.title = fraktion.statementTitle;
         this.beschreibung = fraktion.statementBeschreibung;
         this.type = fraktion.statementType;
         this.dependency = new StatementDependencyFraktion(fraktion);
-    }
-
-    public Statement(Fraktion fraktion, Statement dependency) {
-        this.id = fraktion.secondStatementID;
-        this.title = fraktion.secondStatementTitle;
-        this.beschreibung = fraktion.secondStatementBeschreibung;
-        this.type = fraktion.secondStatementType;
-        this.dependency = new StatementDependencyStatement(dependency);
     }
 
     public void refreshState() {

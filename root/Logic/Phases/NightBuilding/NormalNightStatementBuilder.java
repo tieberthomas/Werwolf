@@ -20,6 +20,7 @@ import root.Logic.Persona.Rollen.Hauptrollen.Überläufer.Überläufer;
 import root.Logic.Phases.PhaseManager;
 import root.Logic.Phases.Statement.Constants.IndieStatements;
 import root.Logic.Phases.Statement.Constants.ProgramStatements;
+import root.Logic.Phases.Statement.SecondStatement;
 import root.Logic.Phases.Statement.Statement;
 import root.Logic.Spieler;
 
@@ -150,9 +151,9 @@ public class NormalNightStatementBuilder {
             Statement firstStatement = statements.stream()
                     .filter(s -> s.id.equals(rolle.statementID))
                     .findAny().orElse(null);
-            statement = new Statement(rolle, firstStatement);
+            statement = new SecondStatement(rolle, firstStatement);
         } else {
-            statement = new Statement(rolle, true);
+            statement = new SecondStatement(rolle, true);
         }
 
         statements.add(statement);
@@ -171,7 +172,7 @@ public class NormalNightStatementBuilder {
                 .filter(statement -> statement.id.equals(fraktion.statementID))
                 .findAny().orElse(null);
 
-        Statement statement = new Statement(fraktion, firstStatement);
+        Statement statement = new SecondStatement(fraktion, firstStatement);
         statements.add(statement);
     }
 }
