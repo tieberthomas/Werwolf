@@ -147,7 +147,7 @@ public class NormalNightStatementBuilder {
             addSecondStatementRolle(Wölfin.ID);
         }
 
-        statements.add(ProgrammStatements.getTortenProgrammStatement());
+        statements.add(ProgrammStatements.getTortenStatement());
 
         return statements;
     }

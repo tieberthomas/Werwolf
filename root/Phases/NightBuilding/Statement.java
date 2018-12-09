@@ -74,20 +74,6 @@ public class Statement {
         this.dependency = new StatementDependencyStatement(dependency);
     }
 
-    public Statement(String id) {
-        this.id = id;
-        this.type = StatementType.PROGRAMM;
-        this.dependency = new StatementDependency();
-    }
-
-    public Statement(String id, String title, String beschreibung, StatementType type) {
-        this.id = id;
-        this.title = title;
-        this.beschreibung = beschreibung;
-        this.type = type;
-        this.dependency = new StatementDependency();
-    }
-
     public void refreshState() {
         state = dependency.getState();
     }
