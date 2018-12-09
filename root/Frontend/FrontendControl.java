@@ -8,6 +8,7 @@ import root.Frontend.Page.Page;
 import root.Frontend.Utils.DropdownOptions;
 import root.Frontend.Utils.PageRefresher.InteractivePages.IrrlichtPage;
 import root.Frontend.Utils.PageRefresher.InteractivePages.TortenPage;
+import root.Logic.Game;
 import root.Logic.Persona.Rollen.Bonusrollen.Schnüffler;
 import root.Logic.Persona.Rollen.Constants.RawInformation;
 import root.Logic.Persona.Rollen.Constants.SchnüfflerInformation;
@@ -18,7 +19,6 @@ import root.Logic.Persona.Rollen.Hauptrollen.Vampire.GrafVladimir;
 import root.Logic.Phases.Statement.Statement;
 import root.Logic.Phases.Winner;
 import root.Logic.Spieler;
-import root.Logic.Game;
 
 import java.util.ArrayList;
 import java.util.List;

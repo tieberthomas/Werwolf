@@ -2,14 +2,14 @@ package root.Logic.Persona.Rollen.Bonusrollen;
 
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
+import root.Logic.Game;
 import root.Logic.Persona.Bonusrolle;
 import root.Logic.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Logic.Persona.Rollen.Constants.BonusrollenType.Informativ;
 import root.Logic.Persona.Rollen.Constants.BonusrollenType.Tarnumhang_BonusrollenType;
 import root.Logic.Phases.Statement.Constants.StatementType;
-import root.ResourceManagement.ImagePath;
 import root.Logic.Spieler;
-import root.Logic.Game;
+import root.ResourceManagement.ImagePath;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,7 +82,7 @@ public class Spurenleser extends Bonusrolle {
 
             if (beobachteterSpieler.bonusrolle.equals(Analytiker.ID)) {
                 Analytiker analytiker = (Analytiker) beobachteterSpieler.bonusrolle;
-                if(analytiker.besuchtAnalysieren != null) {
+                if (analytiker.besuchtAnalysieren != null) {
                     besucher.add(analytiker.besuchtAnalysieren.name);
                 }
             }

@@ -2,6 +2,8 @@ package root.Logic.Phases;
 
 import root.Frontend.FrontendControl;
 import root.Frontend.Utils.DropdownOptions;
+import root.Logic.Game;
+import root.Logic.Liebespaar;
 import root.Logic.Persona.Bonusrolle;
 import root.Logic.Persona.Fraktion;
 import root.Logic.Persona.Hauptrolle;
@@ -11,17 +13,15 @@ import root.Logic.Persona.Rollen.Constants.BonusrollenType.Passiv;
 import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Dorfbewohner;
 import root.Logic.Persona.Rollen.Hauptrollen.Werwölfe.Wolfsmensch;
 import root.Logic.Persona.Rollen.Hauptrollen.Überläufer.Henker;
+import root.Logic.Phases.NightBuilding.SetupNightStatementBuilder;
 import root.Logic.Phases.Statement.Constants.IndieStatements;
 import root.Logic.Phases.Statement.Constants.StatementState;
-import root.Logic.Phases.NightBuilding.SetupNightStatementBuilder;
 import root.Logic.Phases.Statement.Statement;
 import root.Logic.Phases.Statement.StatementDependency.StatementDependencyFraktion;
 import root.Logic.Phases.Statement.StatementDependency.StatementDependencyRolle;
-import root.ResourceManagement.ImagePath;
 import root.Logic.Spieler;
+import root.ResourceManagement.ImagePath;
 import root.Utils.Rand;
-import root.Logic.Game;
-import root.Logic.Liebespaar;
 
 import java.util.ArrayList;
 import java.util.List;

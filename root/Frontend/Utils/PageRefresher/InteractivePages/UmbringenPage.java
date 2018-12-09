@@ -3,9 +3,9 @@ package root.Frontend.Utils.PageRefresher.InteractivePages;
 import root.Frontend.Frame.ErzählerFrame;
 import root.Frontend.Frame.ÜbersichtsFrame;
 import root.Frontend.Utils.DropdownOptions;
+import root.Logic.Game;
 import root.Logic.Phases.Day;
 import root.Logic.Spieler;
-import root.Logic.Game;
 
 public class UmbringenPage extends OneDropdownPage {
     private ÜbersichtsFrame übersichtsFrame;

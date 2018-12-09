@@ -1,6 +1,7 @@
 package root.Logic.Persona;
 
 import root.Frontend.Frame.MyFrame;
+import root.Logic.Game;
 import root.Logic.Persona.Fraktionen.Bürger;
 import root.Logic.Persona.Rollen.Bonusrollen.Schatten;
 import root.Logic.Persona.Rollen.Bonusrollen.Tarnumhang;
@@ -11,7 +12,6 @@ import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Schamanin;
 import root.Logic.Persona.Rollen.Hauptrollen.Überläufer.Henker;
 import root.Logic.Phases.NormalNight;
 import root.Logic.Spieler;
-import root.Logic.Game;
 
 import java.awt.*;
 

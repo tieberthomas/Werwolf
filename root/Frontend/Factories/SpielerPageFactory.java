@@ -6,12 +6,12 @@ import root.Frontend.Frame.SpielerFrame;
 import root.Frontend.Frame.SpielerFrameMode;
 import root.Frontend.Page.Page;
 import root.Frontend.Page.PageElement;
+import root.Logic.Liebespaar;
 import root.Logic.Persona.Fraktion;
 import root.Logic.Persona.Rollen.Constants.BonusrollenType.Tarnumhang_BonusrollenType;
 import root.Logic.Persona.Rollen.Constants.RawInformation;
 import root.Logic.Persona.Rollen.Constants.Zeigekarten.Tot;
 import root.Logic.Phases.Winner;
-import root.Logic.Liebespaar;
 
 import javax.swing.*;
 import java.util.ArrayList;

@@ -1,14 +1,14 @@
 package root.Logic.Persona.Rollen.Hauptrollen.Bürger;
 
+import root.Logic.Game;
 import root.Logic.Persona.Fraktion;
 import root.Logic.Persona.Fraktionen.Bürger;
 import root.Logic.Persona.Fraktionen.SchattenpriesterFraktion;
 import root.Logic.Persona.Hauptrolle;
 import root.Logic.Persona.Rollen.Bonusrollen.ReineSeele;
 import root.Logic.Persona.Rollen.Hauptrollen.Schattenpriester.Schattenpriester;
-import root.ResourceManagement.ImagePath;
 import root.Logic.Spieler;
-import root.Logic.Game;
+import root.ResourceManagement.ImagePath;
 
 public class Schattenmensch extends Hauptrolle {
     public static final String ID = "ID_Schattenmensch";
@@ -34,7 +34,7 @@ public class Schattenmensch extends Hauptrolle {
             Schattenpriester schattenpriester = new Schattenpriester(); //TODO ist new hier sinnvoll?
             schattenpriester.neuster = true;
             schattenmenschSpieler.hauptrolle = schattenpriester;
-            if(changeReineSeele) {
+            if (changeReineSeele) {
                 ReineSeele reineSeele = new ReineSeele();
                 reineSeele.dayInvincibility = false;
                 schattenmenschSpieler.bonusrolle = reineSeele;

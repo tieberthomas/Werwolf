@@ -9,12 +9,12 @@ import root.Frontend.Utils.PageRefresher.Models.InteractivePage;
 import root.Frontend.Utils.PageRefresher.Models.LoadMode;
 import root.Frontend.Utils.PageRefresher.Models.RefreshedPage;
 import root.Frontend.Utils.PageRefresher.PageRefresher;
+import root.Logic.Game;
 import root.Logic.Persona.Hauptrolle;
 import root.Logic.Persona.Rollen.Constants.DropdownConstants;
 import root.Logic.Phases.*;
 import root.ResourceManagement.DataManager;
 import root.Utils.ListHelper;
-import root.Logic.Game;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

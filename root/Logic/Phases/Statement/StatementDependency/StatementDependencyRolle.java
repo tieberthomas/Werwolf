@@ -1,8 +1,8 @@
 package root.Logic.Phases.Statement.StatementDependency;
 
+import root.Logic.KillLogic.Opfer;
 import root.Logic.Persona.Rolle;
 import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Sammler;
-import root.Logic.KillLogic.Opfer;
 
 public class StatementDependencyRolle extends StatementDependency {
     public Rolle rolle;

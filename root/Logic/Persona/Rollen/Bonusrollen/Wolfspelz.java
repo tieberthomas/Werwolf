@@ -1,5 +1,6 @@
 package root.Logic.Persona.Rollen.Bonusrollen;
 
+import root.Logic.Game;
 import root.Logic.Persona.Bonusrolle;
 import root.Logic.Persona.Fraktionen.Werwölfe;
 import root.Logic.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
@@ -7,9 +8,8 @@ import root.Logic.Persona.Rollen.Constants.BonusrollenType.Passiv;
 import root.Logic.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.WerwölfeZeigekarte;
 import root.Logic.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Logic.Phases.Statement.Constants.StatementType;
-import root.ResourceManagement.ImagePath;
 import root.Logic.Spieler;
-import root.Logic.Game;
+import root.ResourceManagement.ImagePath;
 
 import java.awt.*;
 

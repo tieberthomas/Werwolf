@@ -5,8 +5,8 @@ import root.Logic.Persona.Fraktionen.Werwölfe;
 import root.Logic.Persona.Hauptrolle;
 import root.Logic.Persona.Rollen.Constants.Zeigekarten.Nicht_Tötend;
 import root.Logic.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
-import root.ResourceManagement.ImagePath;
 import root.Logic.Spieler;
+import root.ResourceManagement.ImagePath;
 
 public class Geisterwolf extends Hauptrolle {
     public static final String ID = "ID_Geisterwolf";

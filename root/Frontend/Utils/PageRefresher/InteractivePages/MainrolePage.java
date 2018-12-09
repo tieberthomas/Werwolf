@@ -5,8 +5,8 @@ import root.Frontend.Utils.PageRefresher.Models.DeleteButtonTable;
 import root.Frontend.Utils.PageRefresher.Models.Label;
 import root.Frontend.Utils.PageRefresher.Models.LabelTable;
 import root.Frontend.Utils.PageRefresher.PageRefresher;
-import root.Logic.Persona.Hauptrolle;
 import root.Logic.Game;
+import root.Logic.Persona.Hauptrolle;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

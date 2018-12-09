@@ -2,15 +2,15 @@ package root.Logic.Persona.Rollen.Bonusrollen;
 
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
+import root.Logic.Game;
 import root.Logic.Persona.Bonusrolle;
 import root.Logic.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Logic.Persona.Rollen.Constants.BonusrollenType.Tarnumhang_BonusrollenType;
 import root.Logic.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Logic.Phases.Statement.Constants.StatementType;
-import root.ResourceManagement.ImagePath;
 import root.Logic.Spieler;
+import root.ResourceManagement.ImagePath;
 import root.Utils.Rand;
-import root.Logic.Game;
 
 import java.awt.*;
 import java.util.ArrayList;

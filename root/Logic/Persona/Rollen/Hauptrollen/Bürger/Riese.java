@@ -1,14 +1,14 @@
 package root.Logic.Persona.Rollen.Hauptrollen.Bürger;
 
 import root.Frontend.FrontendControl;
+import root.Logic.Game;
+import root.Logic.KillLogic.AbsoluteKill;
 import root.Logic.Persona.Fraktion;
 import root.Logic.Persona.Fraktionen.Bürger;
 import root.Logic.Persona.Hauptrolle;
 import root.Logic.Phases.Statement.Constants.StatementType;
-import root.ResourceManagement.ImagePath;
 import root.Logic.Spieler;
-import root.Logic.Game;
-import root.Logic.KillLogic.AbsoluteKill;
+import root.ResourceManagement.ImagePath;
 
 public class Riese extends Hauptrolle {
     public static final String ID = "ID_Riese";

@@ -132,7 +132,7 @@ public class Spieler implements Comparable {
 
         Spieler getarnterSpieler = NormalNight.getarnterSpieler;
 
-        if(this.equals(getarnterSpieler) || requester.equals(getarnterSpieler)) {
+        if (this.equals(getarnterSpieler) || requester.equals(getarnterSpieler)) {
             return new Tarnumhang_BonusrollenType();
         }
 
@@ -151,6 +151,6 @@ public class Spieler implements Comparable {
 
     @Override
     public int compareTo(Object spieler) {
-        return this.name.compareToIgnoreCase(((Spieler)spieler).name);
+        return this.name.compareToIgnoreCase(((Spieler) spieler).name);
     }
 }

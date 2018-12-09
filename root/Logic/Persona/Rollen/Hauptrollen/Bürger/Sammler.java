@@ -1,5 +1,6 @@
 package root.Logic.Persona.Rollen.Hauptrollen.Bürger;
 
+import root.Logic.Game;
 import root.Logic.Persona.Bonusrolle;
 import root.Logic.Persona.Fraktion;
 import root.Logic.Persona.Fraktionen.Bürger;
@@ -8,7 +9,6 @@ import root.Logic.Persona.Rollen.Bonusrollen.Totengräber;
 import root.Logic.Persona.Rollen.Constants.BonusrollenType.Passiv;
 import root.Logic.Persona.Rollen.Constants.BonusrollenType.Tarnumhang_BonusrollenType;
 import root.ResourceManagement.ImagePath;
-import root.Logic.Game;
 
 public class Sammler extends Hauptrolle {
     public static final String ID = "ID_Sammler";

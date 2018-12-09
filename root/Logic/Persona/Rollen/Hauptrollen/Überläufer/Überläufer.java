@@ -3,15 +3,15 @@ package root.Logic.Persona.Rollen.Hauptrollen.Überläufer;
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.Frontend.Utils.DropdownOptions;
+import root.Logic.Game;
 import root.Logic.Persona.Fraktion;
 import root.Logic.Persona.Fraktionen.ÜberläuferFraktion;
 import root.Logic.Persona.Hauptrolle;
 import root.Logic.Persona.Rollen.Constants.DropdownConstants;
 import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Dorfbewohner;
 import root.Logic.Phases.Statement.Constants.StatementType;
-import root.ResourceManagement.ImagePath;
 import root.Logic.Spieler;
-import root.Logic.Game;
+import root.ResourceManagement.ImagePath;
 
 public class Überläufer extends Hauptrolle {
     public static final String ID = "ID_Überläufer";

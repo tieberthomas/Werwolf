@@ -3,14 +3,14 @@ package root.Logic.Persona.Fraktionen;
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.Frontend.Utils.DropdownOptions;
+import root.Logic.Game;
+import root.Logic.KillLogic.NormalKill;
 import root.Logic.Persona.Fraktion;
 import root.Logic.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.VampireZeigekarte;
 import root.Logic.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Logic.Phases.Statement.Constants.StatementType;
-import root.ResourceManagement.ImagePath;
 import root.Logic.Spieler;
-import root.Logic.Game;
-import root.Logic.KillLogic.NormalKill;
+import root.ResourceManagement.ImagePath;
 
 import java.awt.*;
 

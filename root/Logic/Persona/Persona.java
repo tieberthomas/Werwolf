@@ -2,8 +2,8 @@ package root.Logic.Persona;
 
 import root.Frontend.FrontendControl;
 import root.Logic.Phases.Statement.Constants.StatementType;
-import root.ResourceManagement.ImagePath;
 import root.Logic.Spieler;
+import root.ResourceManagement.ImagePath;
 
 import java.awt.*;
 

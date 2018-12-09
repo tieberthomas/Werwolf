@@ -1,16 +1,16 @@
 package root.Logic.Persona.Rollen.Hauptrollen.Werwölfe;
 
 import root.Frontend.FrontendControl;
+import root.Logic.Game;
+import root.Logic.KillLogic.Angriff;
 import root.Logic.Persona.Fraktion;
 import root.Logic.Persona.Fraktionen.Werwölfe;
 import root.Logic.Persona.Hauptrolle;
 import root.Logic.Persona.Rollen.Bonusrollen.Wolfspelz;
-import root.Logic.Phases.Statement.Constants.StatementType;
 import root.Logic.Phases.NormalNight;
-import root.ResourceManagement.ImagePath;
+import root.Logic.Phases.Statement.Constants.StatementType;
 import root.Logic.Spieler;
-import root.Logic.Game;
-import root.Logic.KillLogic.Angriff;
+import root.ResourceManagement.ImagePath;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,5 +1,7 @@
 package root.Logic.Persona;
 
+import root.Logic.Game;
+import root.Logic.KillLogic.Opfer;
 import root.Logic.Persona.Fraktionen.SchattenpriesterFraktion;
 import root.Logic.Persona.Fraktionen.Werwölfe;
 import root.Logic.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.BürgerZeigekarte;
@@ -7,8 +9,6 @@ import root.Logic.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Logic.Persona.Rollen.Hauptrollen.Werwölfe.Chemiker;
 import root.Logic.Phases.NormalNight;
 import root.Logic.Spieler;
-import root.Logic.Game;
-import root.Logic.KillLogic.Opfer;
 
 import java.util.ArrayList;
 import java.util.List;

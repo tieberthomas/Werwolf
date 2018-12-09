@@ -1,11 +1,11 @@
 package root.Logic.Persona;
 
 import root.Frontend.FrontendControl;
+import root.Logic.Game;
 import root.Logic.Persona.Rollen.Bonusrollen.Totengräber;
 import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Irrlicht;
 import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Sammler;
 import root.Logic.Spieler;
-import root.Logic.Game;
 
 import java.util.List;
 import java.util.stream.Collectors;

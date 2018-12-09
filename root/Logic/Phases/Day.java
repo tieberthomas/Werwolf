@@ -3,15 +3,15 @@ package root.Logic.Phases;
 import root.Frontend.FrontendControl;
 import root.Frontend.Utils.JButtonStyler;
 import root.Frontend.Utils.TimeUpdater;
+import root.Logic.Game;
 import root.Logic.Persona.Bonusrolle;
 import root.Logic.Persona.Fraktionen.Bürger;
 import root.Logic.Persona.Hauptrolle;
 import root.Logic.Persona.Rollen.Bonusrollen.ReineSeele;
 import root.Logic.Persona.Rollen.Bonusrollen.Wahrsager;
 import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Schattenmensch;
-import root.ResourceManagement.ImagePath;
 import root.Logic.Spieler;
-import root.Logic.Game;
+import root.ResourceManagement.ImagePath;
 
 import java.util.ArrayList;
 import java.util.List;

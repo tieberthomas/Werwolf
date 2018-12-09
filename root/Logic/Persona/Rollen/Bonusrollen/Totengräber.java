@@ -3,15 +3,15 @@ package root.Logic.Persona.Rollen.Bonusrollen;
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
 import root.Frontend.Utils.DropdownOptions;
+import root.Logic.Game;
 import root.Logic.Persona.Bonusrolle;
 import root.Logic.Persona.Fraktionen.Bürger;
 import root.Logic.Persona.Rollen.Constants.BonusrollenType.Aktiv;
 import root.Logic.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Logic.Persona.Rollen.Constants.DropdownConstants;
 import root.Logic.Phases.Statement.Constants.StatementType;
-import root.ResourceManagement.ImagePath;
 import root.Logic.Spieler;
-import root.Logic.Game;
+import root.ResourceManagement.ImagePath;
 
 import java.util.ArrayList;
 import java.util.List;

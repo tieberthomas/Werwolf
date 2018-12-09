@@ -9,12 +9,12 @@ import root.Frontend.Page.PageTable;
 import root.Frontend.Page.Predecessor;
 import root.Logic.Persona.Bonusrolle;
 import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Sammler;
+import root.Logic.Phases.NormalNight;
 import root.Logic.Phases.SetupNight;
 import root.Logic.Phases.Statement.Constants.StatementState;
 import root.Logic.Phases.Statement.Constants.StatementType;
 import root.Logic.Phases.Statement.Statement;
 import root.Logic.Phases.Statement.StatementDependency.StatementDependencyRolle;
-import root.Logic.Phases.NormalNight;
 
 import javax.swing.*;
 import java.awt.*;

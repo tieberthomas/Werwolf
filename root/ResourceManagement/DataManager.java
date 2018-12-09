@@ -1,7 +1,7 @@
 package root.ResourceManagement;
 
-import root.Logic.Spieler;
 import root.Logic.Game;
+import root.Logic.Spieler;
 
 import java.util.List;
 

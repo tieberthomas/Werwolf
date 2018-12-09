@@ -2,16 +2,16 @@ package root.Logic.Persona.Rollen.Hauptrollen.Bürger;
 
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
+import root.Logic.Game;
 import root.Logic.Persona.Bonusrolle;
 import root.Logic.Persona.Fraktion;
 import root.Logic.Persona.Fraktionen.Bürger;
 import root.Logic.Persona.Hauptrolle;
 import root.Logic.Persona.Rolle;
 import root.Logic.Phases.Statement.Constants.StatementType;
-import root.ResourceManagement.ImagePath;
 import root.Logic.Spieler;
+import root.ResourceManagement.ImagePath;
 import root.Utils.Rand;
-import root.Logic.Game;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,5 +1,6 @@
 package root.Logic.KillLogic;
 
+import root.Logic.Game;
 import root.Logic.Persona.Fraktion;
 import root.Logic.Persona.Fraktionen.Vampire;
 import root.Logic.Persona.Fraktionen.Werwölfe;
@@ -10,7 +11,6 @@ import root.Logic.Persona.Rollen.Bonusrollen.Wolfspelz;
 import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Schamanin;
 import root.Logic.Phases.NormalNight;
 import root.Logic.Spieler;
-import root.Logic.Game;
 
 public class Angriff {
     public Spieler opfer;

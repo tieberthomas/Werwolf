@@ -7,8 +7,8 @@ import root.Frontend.Utils.PageRefresher.Models.Label;
 import root.Frontend.Utils.PageRefresher.Models.LabelTable;
 import root.Frontend.Utils.PageRefresher.Models.RefreshedPage;
 import root.Frontend.Utils.PageRefresher.PageRefresher;
-import root.Logic.Spieler;
 import root.Logic.Game;
+import root.Logic.Spieler;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

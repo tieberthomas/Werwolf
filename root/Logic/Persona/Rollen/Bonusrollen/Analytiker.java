@@ -1,17 +1,17 @@
 package root.Logic.Persona.Rollen.Bonusrollen;
 
 import root.Frontend.Utils.DropdownOptions;
+import root.Logic.Game;
+import root.Logic.Liebespaar;
 import root.Logic.Persona.Bonusrolle;
 import root.Logic.Persona.Fraktionen.Bürger;
 import root.Logic.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Logic.Persona.Rollen.Constants.BonusrollenType.Informativ;
 import root.Logic.Persona.Rollen.Hauptrollen.Überläufer.Henker;
-import root.Logic.Phases.Statement.Constants.StatementType;
 import root.Logic.Phases.NormalNight;
-import root.ResourceManagement.ImagePath;
+import root.Logic.Phases.Statement.Constants.StatementType;
 import root.Logic.Spieler;
-import root.Logic.Game;
-import root.Logic.Liebespaar;
+import root.ResourceManagement.ImagePath;
 
 import java.util.Objects;
 

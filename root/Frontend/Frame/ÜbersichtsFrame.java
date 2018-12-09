@@ -3,13 +3,13 @@ package root.Frontend.Frame;
 import root.Frontend.Factories.ÜbersichtsPageFactory;
 import root.Frontend.Page.Page;
 import root.Frontend.Page.PageTable;
+import root.Logic.Game;
 import root.Logic.Persona.Rolle;
-import root.Logic.Phases.SetupNight;
 import root.Logic.Phases.NormalNight;
 import root.Logic.Phases.PhaseManager;
 import root.Logic.Phases.PhaseMode;
+import root.Logic.Phases.SetupNight;
 import root.Logic.Spieler;
-import root.Logic.Game;
 
 import javax.swing.*;
 import java.awt.*;

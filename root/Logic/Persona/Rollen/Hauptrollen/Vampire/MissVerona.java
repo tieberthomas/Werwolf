@@ -1,14 +1,14 @@
 package root.Logic.Persona.Rollen.Hauptrollen.Vampire;
 
 import root.Frontend.FrontendControl;
+import root.Logic.Game;
 import root.Logic.Persona.Fraktion;
 import root.Logic.Persona.Fraktionen.Vampire;
 import root.Logic.Persona.Hauptrolle;
-import root.Logic.Phases.Statement.Constants.StatementType;
 import root.Logic.Phases.NormalNight;
-import root.ResourceManagement.ImagePath;
+import root.Logic.Phases.Statement.Constants.StatementType;
 import root.Logic.Spieler;
-import root.Logic.Game;
+import root.ResourceManagement.ImagePath;
 
 public class MissVerona extends Hauptrolle {
     public static final String ID = "ID_Miss_Verona";

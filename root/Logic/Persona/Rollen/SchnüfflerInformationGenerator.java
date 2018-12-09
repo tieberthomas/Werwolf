@@ -1,5 +1,6 @@
 package root.Logic.Persona.Rollen;
 
+import root.Logic.Game;
 import root.Logic.Persona.Bonusrolle;
 import root.Logic.Persona.Fraktion;
 import root.Logic.Persona.Fraktionen.Bürger;
@@ -15,7 +16,6 @@ import root.Logic.Persona.Rollen.Constants.Zeigekarten.SpäherZeigekarte;
 import root.Logic.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Logic.Persona.Rollen.Hauptrollen.Überläufer.Henker;
 import root.Logic.Spieler;
-import root.Logic.Game;
 
 import java.util.ArrayList;
 import java.util.Arrays;

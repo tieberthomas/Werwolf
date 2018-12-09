@@ -2,14 +2,14 @@ package root.Logic.Persona.Rollen.Bonusrollen;
 
 import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.FrontendControl;
+import root.Logic.Game;
 import root.Logic.Persona.Bonusrolle;
 import root.Logic.Persona.Rollen.Constants.BonusrollenType.Aktiv;
 import root.Logic.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Logic.Phases.Statement.Constants.StatementType;
-import root.ResourceManagement.ImagePath;
 import root.Logic.Spieler;
+import root.ResourceManagement.ImagePath;
 import root.Utils.Rand;
-import root.Logic.Game;
 
 import java.util.List;
 
@@ -82,7 +82,7 @@ public class Dieb extends Bonusrolle {
 
     private Bonusrolle getNewRandomBonusrolle() {
         List<Bonusrolle> bonusrollen = Game.game.getStillAvailableBonusrollen();
-        if(bonusrollen.isEmpty()){
+        if (bonusrollen.isEmpty()) {
             return new Schatten();
         }
 
