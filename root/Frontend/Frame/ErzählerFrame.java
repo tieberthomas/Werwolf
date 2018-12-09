@@ -188,42 +188,9 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
                 System.out.println("Combobox2 might not be initialized.");
             }
         } else if (ae.getSource() == umbringenJButton) {
-            if (mode == ErzählerFrameMode.UMBRINGEN_SETUP) {
-                /*try {
-                    if (comboBox1 != null) {
-                        chosenOption1 = (String) comboBox1.getSelectedItem();
-                    }
-                } catch (NullPointerException e) {
-                    System.out.println("combobox1 might not be initialized.");
-                }
-                Spieler spieler = Game.game.findSpieler(chosenOption1);
-
-                if (spieler != null) {
-                    Day.umbringenSpieler = spieler;
-                    Day.umbringenButton = true;
-                } else {
-                    FrontendControl.showDayPage();
-                }
-
-                mode = PhaseManager.parsePhaseMode();
-
-                if (übersichtsFrame != null) {
-                    übersichtsFrame.refresh();
-                }
-
-                if (spieler != null) {
-                    continueThreads();
-                }*/
-                System.out.println("hier könnte ihre Werbung stehen");
-            } else {
-                /*mode = ErzählerFrameMode.UMBRINGEN_SETUP;
-
-                spielerFrame.mode = SpielerFrameMode.blank;
-                buildScreenFromPage(pageFactory.generateUmbringenPage(Game.game.getLivingSpielerStrings()));*/
-                UmbringenPage umbringenPage = new UmbringenPage(new DropdownOptions(Game.game.getLivingSpielerStrings(), DropdownConstants.EMPTY), übersichtsFrame);
-                currentInteractivePage = umbringenPage;
-                buildScreenFromPage(umbringenPage.page);
-            }
+            UmbringenPage umbringenPage = new UmbringenPage(new DropdownOptions(Game.game.getLivingSpielerStrings(), DropdownConstants.EMPTY), übersichtsFrame);
+            currentInteractivePage = umbringenPage;
+            buildScreenFromPage(umbringenPage.page);
         } else if (ae.getSource() == priesterJButton) {
             if (mode == ErzählerFrameMode.PRIESTER_SETUP) {
                 try {

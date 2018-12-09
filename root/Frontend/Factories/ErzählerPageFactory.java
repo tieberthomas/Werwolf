@@ -411,36 +411,6 @@ public class ErzählerPageFactory {
         return dayPage;
     }
 
-    public Page generateUmbringenPage(List<String> livingPlayers) {
-        PageElement titleLabel = pageElementFactory.generateTitleLabel(null, "Umbringen");
-
-        PageElement nameLabel = pageElementFactory.generateLabel(titleLabel, "Name");
-
-        List<String> comboBoxOptions = livingPlayers;
-        comboBoxOptions.add("");
-        DefaultComboBoxModel model = new DefaultComboBoxModel(comboBoxOptions.toArray());
-        erzählerFrame.comboBox1.setModel(model);
-        PageElement choosePlayer1 = pageElementFactory.generateDropdown(erzählerFrame.comboBox1,
-                null, nameLabel, 0, 0);
-
-        erzählerFrame.umbringenJButton = new JButton();
-        PageElement nextButton = pageElementFactory.generateLowestButton(erzählerFrame.umbringenJButton);
-
-        erzählerFrame.goBackJButton = new JButton();
-        PageElement goBackButton = pageElementFactory.generateLowestButton(erzählerFrame.goBackJButton, "Zurück", false);
-        erzählerFrame.goBackButtons.add(erzählerFrame.goBackJButton);
-
-        Page umbringenPage = new Page();
-
-        umbringenPage.add(titleLabel);
-        umbringenPage.add(nameLabel);
-        umbringenPage.add(choosePlayer1);
-        umbringenPage.add(nextButton);
-        umbringenPage.add(goBackButton);
-
-        return umbringenPage;
-    }
-
     public Page generatePriesterPage(List<String> livingPlayers) {
         PageElement titleLabel = pageElementFactory.generateTitleLabel(null, "Bürgen");
 
