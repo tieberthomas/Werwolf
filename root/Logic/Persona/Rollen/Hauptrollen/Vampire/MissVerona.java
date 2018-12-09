@@ -4,7 +4,7 @@ import root.Frontend.FrontendControl;
 import root.Logic.Persona.Fraktion;
 import root.Logic.Persona.Fraktionen.Vampire;
 import root.Logic.Persona.Hauptrolle;
-import root.Logic.Phases.NightBuilding.Constants.StatementType;
+import root.Logic.Phases.Statement.Constants.StatementType;
 import root.Logic.Phases.NormalNight;
 import root.ResourceManagement.ImagePath;
 import root.Logic.Spieler;

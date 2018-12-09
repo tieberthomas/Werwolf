@@ -5,7 +5,7 @@ import root.Logic.Persona.Fraktionen.Werwölfe;
 import root.Logic.Persona.Hauptrolle;
 import root.Logic.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.BürgerZeigekarte;
 import root.Logic.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
-import root.Logic.Phases.NightBuilding.Constants.StatementType;
+import root.Logic.Phases.Statement.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 
 public class Wolfsmensch extends Hauptrolle {

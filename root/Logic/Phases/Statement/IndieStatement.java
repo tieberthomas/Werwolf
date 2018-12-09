@@ -1,7 +1,7 @@
-package root.Logic.Phases.NightBuilding.Statement;
+package root.Logic.Phases.Statement;
 
-import root.Logic.Phases.NightBuilding.Constants.StatementType;
-import root.Logic.Phases.NightBuilding.Statement.StatementDependency.StatementDependency;
+import root.Logic.Phases.Statement.Constants.StatementType;
+import root.Logic.Phases.Statement.StatementDependency.StatementDependency;
 
 public class IndieStatement extends Statement {
     public IndieStatement(String id, String title, String beschreibung, StatementType type) {

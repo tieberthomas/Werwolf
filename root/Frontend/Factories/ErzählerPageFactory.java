@@ -8,7 +8,7 @@ import root.Frontend.Utils.DropdownOptions;
 import root.Frontend.Utils.JButtonStyler;
 import root.Frontend.Utils.PageRefresher.InteractivePages.InteractiveElementsDtos.*;
 import root.Logic.Phases.Day;
-import root.Logic.Phases.NightBuilding.Statement.Statement;
+import root.Logic.Phases.Statement.Statement;
 import root.ResourceManagement.ImagePath;
 
 import javax.swing.*;

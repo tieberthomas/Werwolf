@@ -15,7 +15,7 @@ import root.Logic.Persona.Rollen.Constants.Zeigekarten.AusDemSpiel;
 import root.Logic.Persona.Rollen.Constants.Zeigekarten.Tot;
 import root.Logic.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Logic.Persona.Rollen.Hauptrollen.Vampire.GrafVladimir;
-import root.Logic.Phases.NightBuilding.Statement.Statement;
+import root.Logic.Phases.Statement.Statement;
 import root.Logic.Phases.Winner;
 import root.Logic.Spieler;
 import root.Logic.Game;

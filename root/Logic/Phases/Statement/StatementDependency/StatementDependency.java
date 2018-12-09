@@ -1,6 +1,6 @@
-package root.Logic.Phases.NightBuilding.Statement.StatementDependency;
+package root.Logic.Phases.Statement.StatementDependency;
 
-import root.Logic.Phases.NightBuilding.Constants.StatementState;
+import root.Logic.Phases.Statement.Constants.StatementState;
 
 public class StatementDependency {
     public StatementState getState() {

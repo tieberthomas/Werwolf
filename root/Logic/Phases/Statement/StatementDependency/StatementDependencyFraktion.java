@@ -1,4 +1,4 @@
-package root.Logic.Phases.NightBuilding.Statement.StatementDependency;
+package root.Logic.Phases.Statement.StatementDependency;
 
 import root.Logic.Persona.Fraktion;
 

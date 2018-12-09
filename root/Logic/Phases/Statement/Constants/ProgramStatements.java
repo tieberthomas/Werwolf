@@ -1,6 +1,6 @@
-package root.Logic.Phases.NightBuilding.Constants;
+package root.Logic.Phases.Statement.Constants;
 
-import root.Logic.Phases.NightBuilding.Statement.ProgramStatement;
+import root.Logic.Phases.Statement.ProgramStatement;
 
 public class ProgramStatements {
     public static final String SCHÜTZE_ID = "Program_Schütze";

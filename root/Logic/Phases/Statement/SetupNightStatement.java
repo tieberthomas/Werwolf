@@ -1,9 +1,9 @@
-package root.Logic.Phases.NightBuilding.Statement;
+package root.Logic.Phases.Statement;
 
 import root.Logic.Persona.Fraktion;
 import root.Logic.Persona.Rolle;
-import root.Logic.Phases.NightBuilding.Statement.StatementDependency.StatementDependencyFraktion;
-import root.Logic.Phases.NightBuilding.Statement.StatementDependency.StatementDependencyRolle;
+import root.Logic.Phases.Statement.StatementDependency.StatementDependencyFraktion;
+import root.Logic.Phases.Statement.StatementDependency.StatementDependencyRolle;
 
 public class SetupNightStatement extends Statement {
     public SetupNightStatement(Rolle rolle) {

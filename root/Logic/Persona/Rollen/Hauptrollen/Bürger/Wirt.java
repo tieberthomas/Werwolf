@@ -5,7 +5,7 @@ import root.Frontend.Utils.DropdownOptions;
 import root.Logic.Persona.Fraktion;
 import root.Logic.Persona.Fraktionen.Bürger;
 import root.Logic.Persona.Hauptrolle;
-import root.Logic.Phases.NightBuilding.Constants.StatementType;
+import root.Logic.Phases.Statement.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 
 import java.util.ArrayList;

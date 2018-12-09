@@ -10,7 +10,7 @@ import root.Logic.Persona.Rollen.Constants.DropdownConstants;
 import root.Logic.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.SchattenpriesterZeigekarte;
 import root.Logic.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Logic.Persona.Rollen.Hauptrollen.Schattenpriester.Schattenpriester;
-import root.Logic.Phases.NightBuilding.Constants.StatementType;
+import root.Logic.Phases.Statement.Constants.StatementType;
 import root.Logic.Phases.NormalNight;
 import root.ResourceManagement.ImagePath;
 import root.Logic.Spieler;

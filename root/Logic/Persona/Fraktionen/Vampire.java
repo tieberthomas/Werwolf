@@ -6,7 +6,7 @@ import root.Frontend.Utils.DropdownOptions;
 import root.Logic.Persona.Fraktion;
 import root.Logic.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.VampireZeigekarte;
 import root.Logic.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
-import root.Logic.Phases.NightBuilding.Constants.StatementType;
+import root.Logic.Phases.Statement.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Logic.Spieler;
 import root.Logic.Game;

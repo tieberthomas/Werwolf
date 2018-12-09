@@ -1,15 +1,15 @@
-package root.Logic.Phases.NightBuilding.Statement;
+package root.Logic.Phases.Statement;
 
 import root.Logic.Persona.Fraktion;
 import root.Logic.Persona.Rolle;
 import root.Logic.Persona.Rollen.Bonusrollen.Konditorlehrling;
 import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Sammler;
-import root.Logic.Phases.NightBuilding.Constants.StatementState;
-import root.Logic.Phases.NightBuilding.Constants.StatementType;
-import root.Logic.Phases.NightBuilding.Statement.StatementDependency.StatementDependency;
-import root.Logic.Phases.NightBuilding.Statement.StatementDependency.StatementDependencyFraktion;
-import root.Logic.Phases.NightBuilding.Statement.StatementDependency.StatementDependencyRolle;
-import root.Logic.Phases.NightBuilding.Statement.StatementDependency.StatementDependencyStatement;
+import root.Logic.Phases.Statement.Constants.StatementState;
+import root.Logic.Phases.Statement.Constants.StatementType;
+import root.Logic.Phases.Statement.StatementDependency.StatementDependency;
+import root.Logic.Phases.Statement.StatementDependency.StatementDependencyFraktion;
+import root.Logic.Phases.Statement.StatementDependency.StatementDependencyRolle;
+import root.Logic.Phases.Statement.StatementDependency.StatementDependencyStatement;
 
 public class Statement {
     public String id;

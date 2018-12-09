@@ -7,7 +7,7 @@ import root.Logic.Persona.Fraktionen.Werwölfe;
 import root.Logic.Persona.Hauptrolle;
 import root.Logic.Persona.Rollen.Constants.WölfinState;
 import root.Logic.Persona.Rollen.Hauptrollen.Vampire.GrafVladimir;
-import root.Logic.Phases.NightBuilding.Constants.StatementType;
+import root.Logic.Phases.Statement.Constants.StatementType;
 import root.Logic.Phases.NormalNight;
 import root.ResourceManagement.ImagePath;
 import root.Logic.Spieler;

@@ -18,7 +18,7 @@ import root.Logic.Persona.Rollen.Constants.Zeigekarten.Tot;
 import root.Logic.Persona.Rollen.Constants.Zeigekarten.Tötend;
 import root.Logic.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Dorfbewohner;
-import root.Logic.Phases.NightBuilding.Constants.StatementType;
+import root.Logic.Phases.Statement.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Logic.Spieler;
 import root.Utils.ListHelper;

@@ -14,7 +14,7 @@ import root.Logic.Persona.Rollen.Constants.DropdownConstants;
 import root.Logic.Persona.Rollen.Constants.Zeigekarten.Geschützt;
 import root.Logic.Persona.Rollen.Constants.Zeigekarten.Nicht_Tötend;
 import root.Logic.Persona.Rollen.Hauptrollen.Überläufer.Henker;
-import root.Logic.Phases.NightBuilding.Constants.StatementType;
+import root.Logic.Phases.Statement.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Logic.Spieler;
 import root.Logic.Game;

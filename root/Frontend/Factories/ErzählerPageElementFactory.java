@@ -10,10 +10,10 @@ import root.Frontend.Page.Predecessor;
 import root.Logic.Persona.Bonusrolle;
 import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Sammler;
 import root.Logic.Phases.SetupNight;
-import root.Logic.Phases.NightBuilding.Constants.StatementState;
-import root.Logic.Phases.NightBuilding.Constants.StatementType;
-import root.Logic.Phases.NightBuilding.Statement.Statement;
-import root.Logic.Phases.NightBuilding.Statement.StatementDependency.StatementDependencyRolle;
+import root.Logic.Phases.Statement.Constants.StatementState;
+import root.Logic.Phases.Statement.Constants.StatementType;
+import root.Logic.Phases.Statement.Statement;
+import root.Logic.Phases.Statement.StatementDependency.StatementDependencyRolle;
 import root.Logic.Phases.NormalNight;
 
 import javax.swing.*;

@@ -1,4 +1,4 @@
-package root.Logic.Phases.NightBuilding.Constants;
+package root.Logic.Phases.Statement.Constants;
 
 public enum StatementType {
     PROGRAM,

@@ -11,9 +11,9 @@ import root.Logic.Persona.Rollen.Bonusrollen.Vampirumhang;
 import root.Logic.Persona.Rollen.Bonusrollen.Wolfspelz;
 import root.Logic.Persona.Rollen.Hauptrollen.Werwölfe.Wolfsmensch;
 import root.Logic.Persona.Rollen.Hauptrollen.Überläufer.Henker;
-import root.Logic.Phases.NightBuilding.Constants.IndieStatements;
-import root.Logic.Phases.NightBuilding.Statement.SetupNightStatement;
-import root.Logic.Phases.NightBuilding.Statement.Statement;
+import root.Logic.Phases.Statement.Constants.IndieStatements;
+import root.Logic.Phases.Statement.SetupNightStatement;
+import root.Logic.Phases.Statement.Statement;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,6 @@
-package root.Logic.Phases.NightBuilding.Constants;
+package root.Logic.Phases.Statement.Constants;
 
-import root.Logic.Phases.NightBuilding.Statement.IndieStatement;
+import root.Logic.Phases.Statement.IndieStatement;
 
 public class IndieStatements {
     public static final String ALLE_SCHLAFEN_EIN_ID = "Alle_schlafen_ein";

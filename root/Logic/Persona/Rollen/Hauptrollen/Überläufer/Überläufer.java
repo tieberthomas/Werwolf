@@ -8,7 +8,7 @@ import root.Logic.Persona.Fraktionen.ÜberläuferFraktion;
 import root.Logic.Persona.Hauptrolle;
 import root.Logic.Persona.Rollen.Constants.DropdownConstants;
 import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Dorfbewohner;
-import root.Logic.Phases.NightBuilding.Constants.StatementType;
+import root.Logic.Phases.Statement.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Logic.Spieler;
 import root.Logic.Game;

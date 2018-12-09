@@ -1,7 +1,7 @@
-package root.Logic.Phases.NightBuilding.Statement.StatementDependency;
+package root.Logic.Phases.Statement.StatementDependency;
 
-import root.Logic.Phases.NightBuilding.Constants.StatementState;
-import root.Logic.Phases.NightBuilding.Statement.Statement;
+import root.Logic.Phases.Statement.Constants.StatementState;
+import root.Logic.Phases.Statement.Statement;
 
 public class StatementDependencyStatement extends StatementDependency {
     public Statement statement;
