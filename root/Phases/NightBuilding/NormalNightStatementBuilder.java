@@ -39,7 +39,7 @@ import root.Persona.Rollen.Hauptrollen.Werwölfe.Wölfin;
 import root.Persona.Rollen.Hauptrollen.Überläufer.Henker;
 import root.Persona.Rollen.Hauptrollen.Überläufer.Überläufer;
 import root.Phases.NightBuilding.Constants.IndieStatements;
-import root.Phases.NightBuilding.Constants.ProgrammStatements;
+import root.Phases.NightBuilding.Constants.ProgramStatements;
 import root.Phases.PhaseManager;
 import root.Spieler;
 import root.mechanics.Game;
@@ -81,7 +81,7 @@ public class NormalNightStatementBuilder {
         //Detektiv erwacht, schätzt die Anzahl der Bürger und bekommt ggf. eine Bürgerhauptrolle die im Spiel ist gezeigt
         addStatementRolle(Schamanin.ID);
 
-        statements.add(ProgrammStatements.getSchützeStatement());
+        statements.add(ProgramStatements.getSchützeStatement());
 
         addStatementRolle(Prostituierte.ID);
 
@@ -147,7 +147,7 @@ public class NormalNightStatementBuilder {
             addSecondStatementRolle(Wölfin.ID);
         }
 
-        statements.add(ProgrammStatements.getTortenStatement());
+        statements.add(ProgramStatements.getTortenStatement());
 
         return statements;
     }

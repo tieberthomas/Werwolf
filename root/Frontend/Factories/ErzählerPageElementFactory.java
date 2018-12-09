@@ -241,7 +241,7 @@ public class ErzählerPageElementFactory {
         }
 
         for (Statement statement : statements) {
-            if (statement.state != StatementState.INVISIBLE_NOT_IN_GAME && statement.type != StatementType.PROGRAMM) {
+            if (statement.state != StatementState.INVISIBLE_NOT_IN_GAME && statement.type != StatementType.PROGRAM) {
                 String beschreibung = statement.beschreibung;
 
                 if (statement.dependency instanceof StatementDependencyRolle) {

@@ -1,7 +1,7 @@
 package root.Phases.NightBuilding.Constants;
 
 public enum StatementType {
-    PROGRAMM,
+    PROGRAM,
     SHOW_TITLE,
     INDIE,
     ROLLE_CHOOSE_ONE,

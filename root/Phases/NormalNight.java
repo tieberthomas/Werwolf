@@ -38,7 +38,7 @@ import root.Persona.Rollen.Hauptrollen.Werwölfe.Schreckenswolf;
 import root.Persona.Rollen.Hauptrollen.Werwölfe.Wölfin;
 import root.Persona.Rollen.Hauptrollen.Überläufer.Henker;
 import root.Phases.NightBuilding.Constants.IndieStatements;
-import root.Phases.NightBuilding.Constants.ProgrammStatements;
+import root.Phases.NightBuilding.Constants.ProgramStatements;
 import root.Phases.NightBuilding.Constants.StatementState;
 import root.Phases.NightBuilding.NormalNightStatementBuilder;
 import root.Phases.NightBuilding.Statement;
@@ -153,7 +153,7 @@ public class NormalNight extends Thread {
                             }
                             break;
 
-                        case ProgrammStatements.SCHÜTZE_ID:
+                        case ProgramStatements.SCHÜTZE_ID:
                             setSchütze();
                             break;
 
@@ -323,7 +323,7 @@ public class NormalNight extends Thread {
                             }
                             break;
 
-                        case ProgrammStatements.TORTE_ID:
+                        case ProgramStatements.TORTE_ID:
                             if (Torte.torte) {
                                 FrontendControl.erzählerTortenPage();
                                 FrontendControl.showZeigekarteOnSpielerScreen(new Torten_Zeigekarte());
