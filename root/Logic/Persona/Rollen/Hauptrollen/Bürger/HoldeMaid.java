@@ -32,6 +32,7 @@ public class HoldeMaid extends Hauptrolle {
         this.statementType = STATEMENT_TYPE;
 
         this.spammable = false;
+        this.selfuseable = false;
     }
 
     @Override

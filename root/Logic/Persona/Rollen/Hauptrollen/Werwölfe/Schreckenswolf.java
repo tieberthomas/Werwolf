@@ -48,6 +48,7 @@ public class Schreckenswolf extends Hauptrolle {
         this.secondStatementType = SECOND_STATEMENT_TYPE;
 
         this.spammable = false;
+        this.selfuseable = true;
         this.killing = true;
     }
 

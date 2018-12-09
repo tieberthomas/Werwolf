@@ -16,6 +16,7 @@ public class Rolle extends Persona {
     public int abilityCharges = 1;
 
     public boolean spammable = false;
+    public boolean selfuseable = true;
     public int numberOfPossibleInstances = 1;
 
     public static List<String> getMitteHauptrollenNames() {

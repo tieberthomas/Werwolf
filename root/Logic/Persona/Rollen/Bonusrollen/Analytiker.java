@@ -42,6 +42,7 @@ public class Analytiker extends Bonusrolle {
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;
 
+        this.selfuseable = false;
         this.spammable = true;
     }
 

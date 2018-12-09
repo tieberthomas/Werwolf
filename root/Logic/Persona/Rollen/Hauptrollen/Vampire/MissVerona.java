@@ -33,6 +33,7 @@ public class MissVerona extends Hauptrolle {
         this.statementType = STATEMENT_TYPE;
 
         this.spammable = false;
+        this.selfuseable = true;
         this.killing = true;
     }
 

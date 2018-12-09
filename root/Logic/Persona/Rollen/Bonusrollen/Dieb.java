@@ -44,6 +44,8 @@ public class Dieb extends Bonusrolle {
         this.secondStatementTitle = SECOND_STATEMENT_TITLE;
         this.secondStatementBeschreibung = SECOND_STATEMENT_BESCHREIBUNG;
         this.secondStatementType = SECOND_STATEMENT_TYPE;
+
+        this.selfuseable = false;
     }
 
     @Override

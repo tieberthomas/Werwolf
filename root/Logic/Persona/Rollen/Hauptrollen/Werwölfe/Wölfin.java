@@ -48,6 +48,7 @@ public class Wölfin extends Hauptrolle {
         this.secondStatementBeschreibung = SECOND_STATEMENT_BESCHREIBUNG;
         this.secondStatementType = SECOND_STATEMENT_TYPE;
 
+        this.selfuseable = true;
         this.killing = true;
     }
 

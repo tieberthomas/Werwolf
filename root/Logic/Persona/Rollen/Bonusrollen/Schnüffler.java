@@ -43,6 +43,7 @@ public class Schnüffler extends Bonusrolle {
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;
 
+        this.selfuseable = true;
         this.spammable = false;
     }
 

@@ -32,6 +32,7 @@ public class Riese extends Hauptrolle {
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;
 
+        this.selfuseable = true;
         this.killing = true;
     }
 

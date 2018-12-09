@@ -79,6 +79,7 @@ public class Henker extends Hauptrolle {
         this.setupNightStatementType = SETUP_NIGHT_STATEMENT_TYPE;
 
         this.spammable = false;
+        this.selfuseable = false;
         this.killing = true;
     }
 
