@@ -145,12 +145,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         if (goNextButtons.contains(ae.getSource())) {
             nextPage();
         } else if (goBackButtons.contains(ae.getSource())) {
-            if (gameIsInDaySetupMode()) {
-                mode = PhaseManager.parsePhaseMode();
-                FrontendControl.showDayPage();
-            } else {
-                prevPage();
-            }
+            prevPage();
         } else if (ae.getSource() == henkerGoBackButton) {
             next = false;
             triggerNext();
@@ -193,31 +188,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         } else if (ae.getSource() == priesterJButton) {
             showPriesterPage();
         } else if (ae.getSource() == richterinJButton) {
-            if (mode == ErzählerFrameMode.RICHTERIN_SETUP) {
-                try {
-                    if (comboBox1 != null) {
-                        chosenOption1 = (String) comboBox1.getSelectedItem();
-                    }
-
-                    if (comboBox2 != null) {
-                        chosenOption2 = (String) comboBox2.getSelectedItem();
-                    }
-                } catch (NullPointerException e) {
-                    System.out.println("comboboxes(1,2) might not be initialized.");
-                }
-
-                String richterin = chosenOption1;
-                String spieler = chosenOption2;
-                Game.game.day.verurteilen(richterin, spieler);
-
-                mode = PhaseManager.parsePhaseMode();
-                FrontendControl.showDayPage();
-            } else {
-                mode = ErzählerFrameMode.RICHTERIN_SETUP;
-
-                spielerFrame.mode = SpielerFrameMode.blank;
-                buildScreenFromPage(pageFactory.generateRichterinPage(Game.game.getLivingSpielerStrings()));
-            }
+            showRichterinPage();
         } else if (ae.getSource() == respawnFramesJButton) {
             respawnFrames();
         }
@@ -234,6 +205,13 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         currentInteractivePage = priesterPage;
         buildScreenFromPage(priesterPage.page);
     }
+
+    private void showRichterinPage() {
+        RichterinPage richterinPage = new RichterinPage(new DropdownOptions(Game.game.getLivingSpielerStrings(), DropdownConstants.EMPTY));
+        currentInteractivePage = richterinPage;
+        buildScreenFromPage(richterinPage.page);
+    }
+
 
     private void triggerNext() {
         try {
@@ -278,10 +256,6 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         }
 
         generateAllPageRefreshers();
-    }
-
-    private boolean gameIsInDaySetupMode() {
-        return mode == ErzählerFrameMode.RICHTERIN_SETUP;
     }
 
     private void respawnFrames() {

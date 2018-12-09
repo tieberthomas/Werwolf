@@ -164,14 +164,9 @@ public class Day extends Thread {
         gebürgteSpieler.add(verbürgerSpieler);
     }
 
-    public void verurteilen(String richterinName, String spielerName) {
-        Spieler richterinSpieler = Game.game.findSpieler(richterinName);
-        Spieler verurteilterSpieler = Game.game.findSpieler(spielerName);
-
-        if (richterinSpieler != null && spielerName != null) {
-            richterin = richterinSpieler;
-            verurteilteSpieler.add(verurteilterSpieler);
-        }
+    public void verurteilen(Spieler richterinSpieler, Spieler verurteilterSpieler) {
+        richterin = richterinSpieler;
+        verurteilteSpieler.add(verurteilterSpieler);
     }
 
     private static void waitForAnswer() {

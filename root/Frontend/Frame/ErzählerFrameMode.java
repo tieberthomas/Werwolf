@@ -5,6 +5,5 @@ public enum ErzählerFrameMode {
     SETUP_NIGHT,
     NORMAL_NIGHT,
     DAY,
-    FREIBIER_DAY,
-    RICHTERIN_SETUP
+    FREIBIER_DAY
 }
