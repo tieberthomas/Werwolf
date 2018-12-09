@@ -44,9 +44,6 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
 
     public ErzählerPageFactory pageFactory = new ErzählerPageFactory(this);
 
-    public ArrayList<JButton> goBackButtons = new ArrayList<>();
-    public ArrayList<JButton> goNextButtons = new ArrayList<>();
-
     public JComboBox comboBox1;
     public JComboBox comboBox2;
 
@@ -54,7 +51,6 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     public String chosenOption2 = "";
 
     public JButton nextJButton;
-    public JButton goBackJButton;
     public JButton umbringenJButton;
     public JButton priesterJButton;
     public JButton richterinJButton;
@@ -142,11 +138,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
             currentInteractivePage.processActionEvent(ae);
         }
 
-        if (goNextButtons.contains(ae.getSource())) {
-            nextPage();
-        } else if (goBackButtons.contains(ae.getSource())) {
-            prevPage();
-        } else if (ae.getSource() == henkerGoBackButton) {
+        if (ae.getSource() == henkerGoBackButton) {
             next = false;
             triggerNext();
         } else if (ae.getSource() == nextJButton) {
@@ -211,7 +203,6 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         currentInteractivePage = richterinPage;
         buildScreenFromPage(richterinPage.page);
     }
-
 
     private void triggerNext() {
         try {
