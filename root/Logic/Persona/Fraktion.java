@@ -8,6 +8,7 @@ import root.Logic.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.Bür
 import root.Logic.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Logic.Persona.Rollen.Hauptrollen.Werwölfe.Chemiker;
 import root.Logic.Phases.NormalNight;
+import root.Logic.Phases.Statement.Constants.StatementState;
 import root.Logic.Spieler;
 
 import java.util.ArrayList;
@@ -126,6 +127,22 @@ public class Fraktion extends Persona {
         }
 
         return false;
+    }
+
+    public static StatementState getState(Fraktion fraktion) { //TODO merge methods
+        if (!fraktionContainedInNight(fraktion.id)) {
+            return StatementState.INVISIBLE_NOT_IN_GAME;
+        }
+        if (!fraktionLebend(fraktion.id)) {
+            return StatementState.NOT_IN_GAME;
+        }
+        if (fraktionOpfer(fraktion.id)) {
+            return StatementState.DEAD;
+        }
+        if (!fraktionAktiv(fraktion.id)) {
+            return StatementState.DEAKTIV;
+        }
+        return StatementState.NORMAL;
     }
 
     public static List<Fraktion> getFraktionen() {

@@ -31,6 +31,16 @@ public class Opfer {
         return false;
     }
 
+    public static boolean isOpfer(Spieler spieler) {
+        for (Opfer currentOpfer : NormalNight.opfer) {
+            if (currentOpfer.spieler.equals(spieler)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public static boolean isOpferPerRolle(String rolleID) {
         for (Opfer currentOpfer : NormalNight.opfer) {
             if (currentOpfer.spieler.hauptrolle.equals(rolleID) || currentOpfer.spieler.bonusrolle.equals(rolleID)) {

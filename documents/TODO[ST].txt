@@ -11,12 +11,10 @@ MT:
 Freigestellt -> Weiß
 
 Nach Auslieferung:
-Rolle "mitspieler" flag
 Rolle, Fraktion zusammenfassen Persona
 Analytiker generisch machen
 SetupNight generisch machen
 show methoden in Night verschieben nach FrontendControl
 FrontendControl subclassen
 FrontendControl mehrere Seiten
-.getState() reworken
 Game aufräumen

@@ -248,10 +248,8 @@ public class Game {
     }
 
     public Spieler findSpielerPerRolle(String rolleID) {
-        for (Bonusrolle bonusrolle : mitteBonusrollen) {
-            if (bonusrolle.equals(rolleID)) {
-                return findSpielerPerRolle(Sammler.ID);
-            }
+        if (Sammler.isSammlerRolle(rolleID)) {
+            return findSpielerPerRolle(Sammler.ID);
         }
 
         for (Spieler currentSpieler : spieler) {

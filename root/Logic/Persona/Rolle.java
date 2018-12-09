@@ -2,9 +2,10 @@ package root.Logic.Persona;
 
 import root.Frontend.FrontendControl;
 import root.Logic.Game;
-import root.Logic.Persona.Rollen.Bonusrollen.Totengräber;
+import root.Logic.KillLogic.Opfer;
 import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Irrlicht;
 import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Sammler;
+import root.Logic.Phases.Statement.Constants.StatementState;
 import root.Logic.Spieler;
 
 import java.util.List;
@@ -84,6 +85,10 @@ public class Rolle extends Persona {
                 return true;
             }
 
+            if (hauptRolleContainedInNight(Sammler.ID) && Sammler.isSammlerRolle(rolleID)) {
+                return true;
+            }
+
             for (Rolle currentRolle : Game.game.mitteHauptrollen) {
                 if (currentRolle.equals(rolleID)) {
                     return false;
@@ -91,18 +96,12 @@ public class Rolle extends Persona {
             }
 
             for (Rolle currentRolle : Game.game.mitteBonusrollen) {
-                if (!hauptRolleContainedInNight(Sammler.ID) || currentRolle.equals(Totengräber.ID)) {
-                    if (currentRolle.equals(rolleID)) {
-                        return false;
-                    }
+                if (currentRolle.equals(rolleID)) {
+                    return false;
                 }
             }
 
-            if (!fraktionContainedInNight(rolleID)) {
-                return false;
-            }
-
-            return true;
+            return fraktionContainedInNight(rolleID);
         } else {
             return false;
         }
@@ -149,17 +148,35 @@ public class Rolle extends Persona {
         return false;
     }
 
-    public static boolean rolleAufgebraucht(String rolleID) {
-        for (Spieler currentSpieler : Game.game.spieler) {
-            if (currentSpieler.hauptrolle.equals(rolleID) && currentSpieler.hauptrolle.abilityCharges > 0) {
-                return false;
-            }
-            if (currentSpieler.bonusrolle.equals(rolleID) && currentSpieler.bonusrolle.abilityCharges > 0) {
-                return false;
-            }
+    public static StatementState getState(Rolle rolle) {
+        Spieler spieler;
+
+        if (!rolleContainedInNight(rolle.id)) {
+            return StatementState.INVISIBLE_NOT_IN_GAME;
         }
 
-        return true;
+        if (Irrlicht.ID.equals(rolle.id)) {
+            return StatementState.NORMAL;
+        }
+
+        spieler = Game.game.findSpielerPerRolle(rolle.id);
+        if (spieler == null) {
+            return StatementState.NOT_IN_GAME;
+        }
+
+        if (!spieler.lebend) {
+            return StatementState.NOT_IN_GAME;
+        }
+        if (Opfer.isOpfer(spieler)) {
+            return StatementState.DEAD;
+        }
+        if (!spieler.aktiv) {
+            return StatementState.DEAKTIV;
+        }
+        if (rolle.abilityCharges <= 0) {
+            return StatementState.AUFGEBRAUCHT;
+        }
+        return StatementState.NORMAL;
     }
 
     public FrontendControl processChosenOptionsGetInfo(String chosenOption1, String chosenOption2) {
