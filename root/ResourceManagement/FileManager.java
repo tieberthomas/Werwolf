@@ -15,7 +15,7 @@ public class FileManager {
             try {
                 theDir.mkdir();
             } catch (SecurityException se) {
-                System.out.println("Program does not have the permisson to create a folder in Appdata.");
+                System.out.println("Program does not have the permission to create a folder in Appdata.");
             }
         }
     }
