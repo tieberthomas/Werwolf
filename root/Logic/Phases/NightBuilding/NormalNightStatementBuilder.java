@@ -153,7 +153,7 @@ public class NormalNightStatementBuilder {
                     .findAny().orElse(null);
             statement = new SecondStatement(rolle, firstStatement);
         } else {
-            statement = new SecondStatement(rolle, true);
+            statement = new SecondStatement(rolle);
         }
 
         statements.add(statement);
