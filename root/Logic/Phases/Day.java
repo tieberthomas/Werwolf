@@ -4,31 +4,32 @@ import root.Frontend.FrontendControl;
 import root.Frontend.Utils.JButtonStyler;
 import root.Frontend.Utils.TimeUpdater;
 import root.Logic.Game;
-import root.Logic.Persona.Bonusrolle;
+import root.Logic.Persona.Fraktion;
 import root.Logic.Persona.Fraktionen.Bürger;
-import root.Logic.Persona.Hauptrolle;
 import root.Logic.Persona.Rollen.Bonusrollen.ReineSeele;
 import root.Logic.Persona.Rollen.Bonusrollen.Wahrsager;
 import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Schattenmensch;
 import root.Logic.Spieler;
 import root.ResourceManagement.ImagePath;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Day extends Thread {
     public static Object lock;
     public static boolean umbringenButton = false;
     public static Spieler umbringenSpieler;
     private Spieler priester;
-    private List<Spieler> gebürgteSpieler;
+    private Spieler gebürgterSpieler;
     private Spieler richterin;
-    private List<Spieler> verurteilteSpieler;
+    private Spieler verurteilterSpieler;
 
     public static final String dayTitle = "Opfer der Dorfabstimmung";
 
     @Override
     public void run() {
+        //TODO michael fragen ob bürgen/verurteilen am zweiten freibiertag erhalten bleiben soll
+        priester = null;
+        gebürgterSpieler = null;
+        verurteilterSpieler = null;
+
         day();
 
         if (Game.game.freibier) {
@@ -42,8 +43,6 @@ public class Day extends Thread {
     private void day() {
         lock = new Object();
         synchronized (lock) {
-            gebürgteSpieler = new ArrayList<>();
-            verurteilteSpieler = new ArrayList<>();
             TimeUpdater.time = 0;
 
             FrontendControl.erzählerDefaultDayPage();
@@ -64,43 +63,20 @@ public class Day extends Thread {
             Spieler chosenSpieler = Game.game.findSpieler(FrontendControl.erzählerFrame.chosenOption1);
 
             if (chosenSpieler != null) {
-                Hauptrolle hauptrolleSpieler = chosenSpieler.hauptrolle;
-                Bonusrolle bonusrolleSpieler = chosenSpieler.bonusrolle;
+                System.out.println("Das Dorf entscheidet sich " + chosenSpieler.name + " hinzurichten.");
+                if (isDayInvincible(chosenSpieler)) {
+                    handleInvincibility(chosenSpieler);
 
-                //TODO cleanup and move into dayInvincibilityHandling Method
-                if (bonusrolleSpieler.equals(ReineSeele.ID) && ((ReineSeele) chosenSpieler.bonusrolle).dayInvincibility ||
-                        (gebürgteSpieler.contains(chosenSpieler) && hauptrolleSpieler.fraktion.equals(Bürger.ID)) ||
-                        chosenSpieler.hauptrolle.equals(Schattenmensch.ID)) {
-                    FrontendControl.erzählerAnnounceOpferPage(chosenSpieler, ImagePath.REINE_SEELE_OPEN_KARTE);
-                    FrontendControl.spielerCardPicturePage(chosenSpieler.name, ImagePath.REINE_SEELE_OPEN_KARTE);
-                    if (chosenSpieler.hauptrolle.equals(Schattenmensch.ID)) {
-                        Schattenmensch.shallBeTransformed = true;
-                        if (!(bonusrolleSpieler.equals(ReineSeele.ID) && ((ReineSeele) chosenSpieler.bonusrolle).dayInvincibility ||
-                                (gebürgteSpieler.contains(chosenSpieler) && hauptrolleSpieler.fraktion.equals(Bürger.ID)))) {
-                            Schattenmensch.changeReineSeele = true;
-                        }
-                    } else {
-                        //TODO implementieren dass jeder nur einmal erfolgreich gepriestert werden kann
-                        if (chosenSpieler.bonusrolle.equals(ReineSeele.ID) &&
-                                !(gebürgteSpieler.contains(chosenSpieler) && hauptrolleSpieler.fraktion.equals(Bürger.ID))) {
-                            ((ReineSeele) chosenSpieler.bonusrolle).dayInvincibility = false;
-                        }
-                    }
+                    FrontendControl.announceOpferPage(chosenSpieler, ImagePath.REINE_SEELE_OPEN_KARTE);
 
                     waitForAnswer();
-
-                    checkRichterin(chosenSpieler);
                 } else {
                     killSpielerCheckLiebespaar(chosenSpieler);
-                    Wahrsager.opferFraktion = chosenSpieler.hauptrolle.fraktion;
-                    if (!hauptrolleSpieler.fraktion.equals(Bürger.ID)) {
-                        if (priester != null && priester.lebend && gebürgteSpieler.contains(chosenSpieler)) {
-                            killSpielerCheckLiebespaar(priester);
-                        }
-                    }
-
-                    checkRichterin(chosenSpieler);
+                    Wahrsager.opferFraktion = chosenSpieler.getFraktion();
+                    checkPriester(chosenSpieler);
                 }
+
+                checkRichterin(chosenSpieler);
             } else {
                 Wahrsager.opferFraktion = null;
             }
@@ -110,6 +86,45 @@ public class Day extends Thread {
                 killSpielerCheckLiebespaar(umbringenSpieler);
             }
         }
+    }
+
+    private void handleInvincibility(Spieler chosenSpieler) {
+        if (isGebürgterSpieler(chosenSpieler)) {
+            System.out.println("Der Priester " + priester.name + " hat " + chosenSpieler.name + " gerettet.");
+        } else {
+            if (chosenSpieler.hauptrolle.equals(Schattenmensch.ID)) {
+                Schattenmensch.shallBeTransformed = true;
+                if (!(isInvincibleFromReineSeele(chosenSpieler) || (isGebürgterSpieler(chosenSpieler)))) {
+                    Schattenmensch.changeReineSeele = true;
+                }
+            } else {
+                if (chosenSpieler.bonusrolle.equals(ReineSeele.ID)) {
+                    ((ReineSeele) chosenSpieler.bonusrolle).dayInvincibility = false;
+                }
+            }
+        }
+    }
+
+    private void checkPriester(Spieler chosenSpieler) {
+        Fraktion fraktion = chosenSpieler.getFraktion();
+        if (!fraktion.equals(Bürger.ID)) {
+            if (priester != null && priester.lebend && gebürgterSpieler.equals(chosenSpieler)) {
+                killSpielerCheckLiebespaar(priester);
+            }
+        }
+    }
+
+    private boolean isDayInvincible(Spieler chosenSpieler) {
+        return isInvincibleFromReineSeele(chosenSpieler) || isGebürgterSpieler(chosenSpieler) ||
+                chosenSpieler.hauptrolle.equals(Schattenmensch.ID);
+    }
+
+    private boolean isInvincibleFromReineSeele(Spieler chosenSpieler) {
+        return chosenSpieler.bonusrolle.equals(ReineSeele.ID) && ((ReineSeele) chosenSpieler.bonusrolle).dayInvincibility;
+    }
+
+    private boolean isGebürgterSpieler(Spieler chosenSpieler) {
+        return gebürgterSpieler.equals(chosenSpieler) && chosenSpieler.getFraktion().equals(Bürger.ID);
     }
 
     private void checkVictory() {
@@ -122,7 +137,7 @@ public class Day extends Thread {
 
     private void checkRichterin(Spieler spieler) {
         if (spieler.hauptrolle.fraktion.equals(Bürger.ID)) {
-            if (richterin != null && richterin.lebend && verurteilteSpieler.contains(spieler)) {
+            if (richterin != null && richterin.lebend && verurteilterSpieler.equals(spieler)) {
                 killSpielerCheckLiebespaar(richterin);
             }
         }
@@ -131,10 +146,7 @@ public class Day extends Thread {
     private void killSpieler(Spieler spieler) {
         if (spieler != null) {
             Game.game.killSpieler(spieler);
-
-            FrontendControl.erzählerAnnounceOpferPage(spieler);
-            FrontendControl.spielerAnnounceOpferPage(spieler);
-            FrontendControl.refreshÜbersichtsFrame();
+            FrontendControl.announceOpferPage(spieler);
         }
     }
 
@@ -159,14 +171,14 @@ public class Day extends Thread {
         waitForAnswer();
     }
 
-    public void bürgen(Spieler priesterSpieler, Spieler verbürgerSpieler) {
+    public void bürgen(Spieler priesterSpieler, Spieler gebürgterSpieler) {
         priester = priesterSpieler;
-        gebürgteSpieler.add(verbürgerSpieler);
+        this.gebürgterSpieler = gebürgterSpieler;
     }
 
     public void verurteilen(Spieler richterinSpieler, Spieler verurteilterSpieler) {
         richterin = richterinSpieler;
-        verurteilteSpieler.add(verurteilterSpieler);
+        this.verurteilterSpieler = verurteilterSpieler;
     }
 
     private static void waitForAnswer() {

@@ -177,6 +177,19 @@ public class FrontendControl {
         return TortenPage.tortenesser;
     }
 
+    public static void announceOpferPage(Spieler spieler) {
+        erzählerAnnounceOpferPage(spieler);
+        spielerAnnounceOpferPage(spieler);
+        refreshÜbersichtsFrame();
+    }
+
+    public static void announceOpferPage(Spieler spieler, String imagePath) {
+        FrontendControl.erzählerAnnounceOpferPage(spieler, imagePath);
+        FrontendControl.spielerCardPicturePage(spieler.name, imagePath);
+        refreshÜbersichtsFrame();
+
+    }
+
     public static void erzählerAnnounceOpferPage(Spieler spieler) {
         Page dayPage = erzählerFrame.pageFactory.generateAnnounceOpferDayPage(spieler.name, new Tot().imagePath);
         erzählerFrame.buildScreenFromPage(dayPage);
