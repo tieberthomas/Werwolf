@@ -105,11 +105,23 @@ public class Day extends Thread {
         }
     }
 
-    private void checkPriester(Spieler chosenSpieler) {
-        Fraktion fraktion = chosenSpieler.getFraktion();
+    private void checkPriester(Spieler hingerichteterSpieler) {
+        Fraktion fraktion = hingerichteterSpieler.getFraktion();
         if (!fraktion.equals(Bürger.ID)) {
-            if (priester != null && priester.lebend && gebürgterSpieler.equals(chosenSpieler)) {
+            if (priester != null && priester.lebend && gebürgterSpieler.equals(hingerichteterSpieler)) {
                 killSpielerCheckLiebespaar(priester);
+                System.out.println("Der Priester " + priester.name + " hat sich in " + hingerichteterSpieler.name +
+                        " getäuscht und wir ebenfalls hingerichtet.");
+            }
+        }
+    }
+
+    private void checkRichterin(Spieler hingerichteterSpieler) {
+        if (hingerichteterSpieler.hauptrolle.fraktion.equals(Bürger.ID)) {
+            if (richterin != null && richterin.lebend && verurteilterSpieler.equals(hingerichteterSpieler)) {
+                killSpielerCheckLiebespaar(richterin);
+                System.out.println("Die Richterin " + richterin.name + " hat sich in " + hingerichteterSpieler.name +
+                        " getäuscht und wir ebenfalls hingerichtet.");
             }
         }
     }
@@ -124,7 +136,7 @@ public class Day extends Thread {
     }
 
     private boolean isGebürgterSpieler(Spieler chosenSpieler) {
-        return gebürgterSpieler.equals(chosenSpieler) && chosenSpieler.getFraktion().equals(Bürger.ID);
+        return gebürgterSpieler!= null && gebürgterSpieler.equals(chosenSpieler) && chosenSpieler.getFraktion().equals(Bürger.ID);
     }
 
     private void checkVictory() {
@@ -132,14 +144,6 @@ public class Day extends Thread {
 
         if (winner != Winner.NO_WINNER) {
             showEndScreenPage(winner);
-        }
-    }
-
-    private void checkRichterin(Spieler spieler) {
-        if (spieler.hauptrolle.fraktion.equals(Bürger.ID)) {
-            if (richterin != null && richterin.lebend && verurteilterSpieler.equals(spieler)) {
-                killSpielerCheckLiebespaar(richterin);
-            }
         }
     }
 
@@ -153,10 +157,12 @@ public class Day extends Thread {
     private void killSpielerCheckLiebespaar(Spieler spieler) {
         killSpieler(spieler);
 
-        if (Game.game.liebespaar.getSpielerToDie() != null) {
+        Spieler liebespartner = Game.game.liebespaar.getSpielerToDie();
+        if (liebespartner != null) {
             JButtonStyler.disableButton(FrontendControl.erzählerFrame.umbringenJButton);
             waitForAnswer();
-            killSpieler(Game.game.liebespaar.getSpielerToDie());
+            System.out.println(liebespartner.name + " sieht dass sein Liebespaartner " + spieler.name + " gestorben ist und begeht Suizid.");
+            killSpieler(liebespartner);
         }
 
         waitForAnswer();
