@@ -5,7 +5,7 @@ import root.Frontend.FrontendControl;
 import root.Persona.Bonusrolle;
 import root.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Persona.Rollen.Constants.BonusrollenType.Informativ;
-import root.Phases.FirstNight;
+import root.Phases.SetupNight;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.ResourceManagement.ImagePath;
 import root.Utils.Rand;
@@ -81,7 +81,7 @@ public class Medium extends Bonusrolle {
             }
         });
         bonusrollenNotInGame.removeIf(bonusrolle -> geseheneBonusrollen.contains(bonusrolle.id));
-        bonusrollenNotInGame.removeAll(FirstNight.swappedRoles);
+        bonusrollenNotInGame.removeAll(SetupNight.swappedRoles);
         return bonusrollenNotInGame;
     }
 }

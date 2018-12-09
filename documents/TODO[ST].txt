@@ -1,5 +1,5 @@
 ST:
-FirstNight - StatementType
+SetupNight - StatementType
 Alphabet Umlaute?
 Tötend - Killing ?
 ressurectable - erweckbar ?
@@ -11,11 +11,10 @@ MT:
 Freigestellt -> Weiß
 
 Nach Auslieferung:
-newFirstNightStatement
 Rolle "mitspieler" flag
 Rolle, Fraktion zusammenfassen Persona
 Analytiker generisch machen
-FirstNight generisch machen
+SetupNight generisch machen
 show methoden in Night verschieben nach FrontendControl
 FrontendControl subclassen
 FrontendControl mehrere Seiten

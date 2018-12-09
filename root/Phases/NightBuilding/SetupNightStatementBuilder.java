@@ -16,8 +16,8 @@ import root.Phases.NightBuilding.Constants.IndieStatements;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FirstNightStatementBuilder {
-    public static List<Statement> firstNightBuildStatements() {
+public class SetupNightStatementBuilder {
+    public static List<Statement> setupNightBuildStatements() {
         List<Statement> statements = new ArrayList<>();
 
         statements.add(IndieStatements.getAlleSchlafenEinStatement());
@@ -43,14 +43,14 @@ public class FirstNightStatementBuilder {
 
     private static void addStatementRolle(List<Statement> statements, String rolleID) {
         Rolle rolle = Rolle.findRolle(rolleID);
-        Statement statement = new FirstNightStatement(rolle);
+        Statement statement = new SetupNightStatement(rolle);
         statements.add(statement);
     }
 
     private static void addStatementFraktion(List<Statement> statements, String fraktionsID) {
         if (Fraktion.getFraktionsMembers(fraktionsID).size() > 1) {
             Fraktion fraktion = Fraktion.findFraktion(fraktionsID);
-            Statement statement = new FirstNightStatement(fraktion);
+            Statement statement = new SetupNightStatement(fraktion);
             statements.add(statement);
         }
     }

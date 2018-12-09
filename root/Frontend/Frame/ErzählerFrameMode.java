@@ -2,7 +2,7 @@ package root.Frontend.Frame;
 
 public enum ErzählerFrameMode {
     SETUP,
-    FIRST_NIGHT,
+    SETUP_NIGHT,
     NORMAL_NIGHT,
     DAY,
     FREIBIER_DAY,

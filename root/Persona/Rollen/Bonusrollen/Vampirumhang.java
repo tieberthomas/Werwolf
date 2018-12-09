@@ -20,10 +20,10 @@ public class Vampirumhang extends Bonusrolle {
     public static final BonusrollenType TYPE = new Passiv();
     public static final Color COLOR = Vampire.COLOR;
 
-    public static final String FIRST_NIGHT_STATEMENT_ID = ID;
-    public static final String FIRST_NIGHT_STATEMENT_TITLE = "Neue Karte";
-    public static final String FIRST_NIGHT_STATEMENT_BESCHREIBUNG = "Träger des Vampirumhangs erwacht und tauscht ggf. seine Karte aus";
-    public static final StatementType FIRST_NIGHT_STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
+    public static final String SETUP_NIGHT_STATEMENT_ID = ID;
+    public static final String SETUP_NIGHT_STATEMENT_TITLE = "Neue Karte";
+    public static final String SETUP_NIGHT_STATEMENT_BESCHREIBUNG = "Träger des Vampirumhangs erwacht und tauscht ggf. seine Karte aus";
+    public static final StatementType SETUP_NIGHT_STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
 
     public Vampirumhang() {
         this.id = ID;
@@ -32,10 +32,10 @@ public class Vampirumhang extends Bonusrolle {
         this.type = TYPE;
         this.color = COLOR;
 
-        this.firstNightStatementID = FIRST_NIGHT_STATEMENT_ID;
-        this.firstNightStatementTitle = FIRST_NIGHT_STATEMENT_TITLE;
-        this.firstNightStatementBeschreibung = FIRST_NIGHT_STATEMENT_BESCHREIBUNG;
-        this.firstNightStatementType = FIRST_NIGHT_STATEMENT_TYPE;
+        this.setupNightStatementID = SETUP_NIGHT_STATEMENT_ID;
+        this.setupNightStatementTitle = SETUP_NIGHT_STATEMENT_TITLE;
+        this.setupNightStatementBeschreibung = SETUP_NIGHT_STATEMENT_BESCHREIBUNG;
+        this.setupNightStatementType = SETUP_NIGHT_STATEMENT_TYPE;
     }
 
     public void tauschen(Bonusrolle bonusrolle) {

@@ -9,7 +9,7 @@ import root.Frontend.Page.PageTable;
 import root.Frontend.Page.Predecessor;
 import root.Persona.Bonusrolle;
 import root.Persona.Rollen.Hauptrollen.Bürger.Sammler;
-import root.Phases.FirstNight;
+import root.Phases.SetupNight;
 import root.Phases.NightBuilding.Constants.StatementState;
 import root.Phases.NightBuilding.Constants.StatementType;
 import root.Phases.NightBuilding.Statement;
@@ -234,8 +234,8 @@ public class ErzählerPageElementFactory {
 
         List<Statement> statements = new ArrayList<>();
 
-        if (ErzählerFrame.mode == ErzählerFrameMode.FIRST_NIGHT) {
-            statements = FirstNight.statements;
+        if (ErzählerFrame.mode == ErzählerFrameMode.SETUP_NIGHT) {
+            statements = SetupNight.statements;
         } else if (ErzählerFrame.mode == ErzählerFrameMode.NORMAL_NIGHT) {
             statements = NormalNight.statements;
         }

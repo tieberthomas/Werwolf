@@ -47,10 +47,10 @@ public class Henker extends Hauptrolle {
     public static final String STATEMENT_BESCHREIBUNG = "Henker erawcht und versucht die Rollen eines Mitspielers zu erraten";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
 
-    public static final String FIRST_NIGHT_STATEMENT_ID = "First_Night_Henker";
-    public static final String FIRST_NIGHT_STATEMENT_TITLE = "Nicht im Spiel";
-    public static final String FIRST_NIGHT_STATEMENT_BESCHREIBUNG = "Henker erwacht und erfährt eine Bürgerrolle die nicht im Spiel ist";
-    public static final StatementType FIRST_NIGHT_STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
+    public static final String SETUP_NIGHT_STATEMENT_ID = "Setup_Night_Henker";
+    public static final String SETUP_NIGHT_STATEMENT_TITLE = "Nicht im Spiel";
+    public static final String SETUP_NIGHT_STATEMENT_BESCHREIBUNG = "Henker erwacht und erfährt eine Bürgerrolle die nicht im Spiel ist";
+    public static final StatementType SETUP_NIGHT_STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
 
     public static Hauptrolle fakeRolle = new Dorfbewohner();
 
@@ -73,10 +73,10 @@ public class Henker extends Hauptrolle {
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;
 
-        this.firstNightStatementID = FIRST_NIGHT_STATEMENT_ID;
-        this.firstNightStatementTitle = FIRST_NIGHT_STATEMENT_TITLE;
-        this.firstNightStatementBeschreibung = FIRST_NIGHT_STATEMENT_BESCHREIBUNG;
-        this.firstNightStatementType = FIRST_NIGHT_STATEMENT_TYPE;
+        this.setupNightStatementID = SETUP_NIGHT_STATEMENT_ID;
+        this.setupNightStatementTitle = SETUP_NIGHT_STATEMENT_TITLE;
+        this.setupNightStatementBeschreibung = SETUP_NIGHT_STATEMENT_BESCHREIBUNG;
+        this.setupNightStatementType = SETUP_NIGHT_STATEMENT_TYPE;
 
         this.spammable = false;
         this.killing = true;

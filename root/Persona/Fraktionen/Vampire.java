@@ -26,10 +26,10 @@ public class Vampire extends Fraktion {
     public static final String STATEMENT_BESCHREIBUNG = "Die Vampire erwachen und wählen ein Opfer aus";
     public static final StatementType STATEMENT_TYPE = StatementType.FRAKTION_CHOOSE_ONE;
 
-    public static final String FIRST_NIGHT_STATEMENT_ID = "First_Night_Vampire";
-    public static final String FIRST_NIGHT_STATEMENT_TITLE = "Vampire";
-    public static final String FIRST_NIGHT_STATEMENT_BESCHREIBUNG = "Die Vampire erwachen und sehen einander";
-    public static final StatementType FIRST_NIGHT_STATEMENT_TYPE = StatementType.FRAKTION_SPECAL;
+    public static final String SETUP_NIGHT_STATEMENT_ID = "Setup_Night_Vampire";
+    public static final String SETUP_NIGHT_STATEMENT_TITLE = "Vampire";
+    public static final String SETUP_NIGHT_STATEMENT_BESCHREIBUNG = "Die Vampire erwachen und sehen einander";
+    public static final StatementType SETUP_NIGHT_STATEMENT_TYPE = StatementType.FRAKTION_SPECAL;
 
     public Vampire() {
         this.id = ID;
@@ -43,10 +43,10 @@ public class Vampire extends Fraktion {
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;
 
-        this.firstNightStatementID = FIRST_NIGHT_STATEMENT_ID;
-        this.firstNightStatementTitle = FIRST_NIGHT_STATEMENT_TITLE;
-        this.firstNightStatementBeschreibung = FIRST_NIGHT_STATEMENT_BESCHREIBUNG;
-        this.firstNightStatementType = FIRST_NIGHT_STATEMENT_TYPE;
+        this.setupNightStatementID = SETUP_NIGHT_STATEMENT_ID;
+        this.setupNightStatementTitle = SETUP_NIGHT_STATEMENT_TITLE;
+        this.setupNightStatementBeschreibung = SETUP_NIGHT_STATEMENT_BESCHREIBUNG;
+        this.setupNightStatementType = SETUP_NIGHT_STATEMENT_TYPE;
     }
 
     @Override

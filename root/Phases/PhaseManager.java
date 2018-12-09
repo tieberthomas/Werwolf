@@ -14,7 +14,7 @@ public class PhaseManager extends Thread {
     public void run() {
         lock = new Object();
         synchronized (lock) {
-            firstnight();
+            setupNight();
             while (true) {
                 day();
                 nightCount++;
@@ -23,11 +23,11 @@ public class PhaseManager extends Thread {
         }
     }
 
-    private void firstnight() {
-        ErzählerFrame.mode = ErzählerFrameMode.FIRST_NIGHT;
-        phaseMode = PhaseMode.FIRST_NIGHT;
-        FirstNight firstNight = new FirstNight();
-        firstNight.start();
+    private void setupNight() {
+        ErzählerFrame.mode = ErzählerFrameMode.SETUP_NIGHT;
+        phaseMode = PhaseMode.SETUP_NIGHT;
+        SetupNight setupNight = new SetupNight();
+        setupNight.start();
         waitForAnswer();
     }
 
@@ -58,8 +58,8 @@ public class PhaseManager extends Thread {
             return ErzählerFrameMode.DAY;
         } else if (phaseMode == PhaseMode.FREIBIER_DAY) {
             return ErzählerFrameMode.FREIBIER_DAY;
-        } else if (phaseMode == PhaseMode.FIRST_NIGHT) {
-            return ErzählerFrameMode.FIRST_NIGHT;
+        } else if (phaseMode == PhaseMode.SETUP_NIGHT) {
+            return ErzählerFrameMode.SETUP_NIGHT;
         } else if (phaseMode == PhaseMode.NORMAL_NIGHT) {
             return ErzählerFrameMode.NORMAL_NIGHT;
         } else {

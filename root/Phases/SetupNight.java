@@ -13,7 +13,7 @@ import root.Persona.Rollen.Hauptrollen.Werwölfe.Wolfsmensch;
 import root.Persona.Rollen.Hauptrollen.Überläufer.Henker;
 import root.Phases.NightBuilding.Constants.IndieStatements;
 import root.Phases.NightBuilding.Constants.StatementState;
-import root.Phases.NightBuilding.FirstNightStatementBuilder;
+import root.Phases.NightBuilding.SetupNightStatementBuilder;
 import root.Phases.NightBuilding.Statement;
 import root.Phases.NightBuilding.StatementDependancy.StatementDependencyFraktion;
 import root.Phases.NightBuilding.StatementDependancy.StatementDependencyRolle;
@@ -26,7 +26,7 @@ import root.mechanics.Liebespaar;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FirstNight extends Thread {
+public class SetupNight extends Thread {
     public static final String TARNUMHANG_TITLE = "Tarnumhang";
     public static final String NEUE_KARTE_TITLE = "Neue Karte";
 
@@ -44,7 +44,7 @@ public class FirstNight extends Thread {
 
             beginNight();
 
-            statements = FirstNightStatementBuilder.firstNightBuildStatements();
+            statements = SetupNightStatementBuilder.setupNightBuildStatements();
 
             for (Statement statement : statements) {
                 refreshStatementStates();
@@ -100,7 +100,7 @@ public class FirstNight extends Thread {
                                 }
                                 break;
 
-                            case Henker.FIRST_NIGHT_STATEMENT_ID:
+                            case Henker.SETUP_NIGHT_STATEMENT_ID:
                                 List<Hauptrolle> henkerHauptrollen = Game.game.getStillAvailableBürger();
                                 Hauptrolle henkerHauptrolle = pickRandomHauptrolle(henkerHauptrollen);
                                 if (henkerHauptrolle == null) {
@@ -110,7 +110,7 @@ public class FirstNight extends Thread {
                                 showCard(statement, statement.title, henkerHauptrolle.imagePath);
                                 break;
 
-                            case Wolfsmensch.FIRST_NIGHT_STATEMENT_ID:
+                            case Wolfsmensch.SETUP_NIGHT_STATEMENT_ID:
                                 List<Hauptrolle> hauptrollen = Game.game.getStillAvailableBürger();
                                 Hauptrolle hauptrolle = pickRandomHauptrolle(hauptrollen);
                                 if (hauptrolle == null) {

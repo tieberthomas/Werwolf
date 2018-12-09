@@ -38,10 +38,10 @@ public class SchattenpriesterFraktion extends Fraktion {
     public static final String SECOND_STATEMENT_BESCHREIBUNG = "Der Wiederbelebte erwacht und tauscht seine Karten gegen Schattenkarten";
     public static final StatementType SECOND_STATEMENT_TYPE = StatementType.FRAKTION_SPECAL;
 
-    public static final String FIRST_NIGHT_STATEMENT_ID = "First_Night_Schattenpriester_Fraktion";
-    public static final String FIRST_NIGHT_STATEMENT_TITLE = "Schattenpriester";
-    public static final String FIRST_NIGHT_STATEMENT_BESCHREIBUNG = "Die Schattenpriester erwachen und sehen einander";
-    public static final StatementType FIRST_NIGHT_STATEMENT_TYPE = StatementType.FRAKTION_SPECAL;
+    public static final String SETUP_NIGHT_STATEMENT_ID = "Setup_Night_Schattenpriester_Fraktion";
+    public static final String SETUP_NIGHT_STATEMENT_TITLE = "Schattenpriester";
+    public static final String SETUP_NIGHT_STATEMENT_BESCHREIBUNG = "Die Schattenpriester erwachen und sehen einander";
+    public static final StatementType SETUP_NIGHT_STATEMENT_TYPE = StatementType.FRAKTION_SPECAL;
 
     public static Spieler spielerToChangeCards = null; //used for Schattenmensch
 
@@ -62,10 +62,10 @@ public class SchattenpriesterFraktion extends Fraktion {
         this.secondStatementBeschreibung = SECOND_STATEMENT_BESCHREIBUNG;
         this.secondStatementType = SECOND_STATEMENT_TYPE;
 
-        this.firstNightStatementID = FIRST_NIGHT_STATEMENT_ID;
-        this.firstNightStatementTitle = FIRST_NIGHT_STATEMENT_TITLE;
-        this.firstNightStatementBeschreibung = FIRST_NIGHT_STATEMENT_BESCHREIBUNG;
-        this.firstNightStatementType = FIRST_NIGHT_STATEMENT_TYPE;
+        this.setupNightStatementID = SETUP_NIGHT_STATEMENT_ID;
+        this.setupNightStatementTitle = SETUP_NIGHT_STATEMENT_TITLE;
+        this.setupNightStatementBeschreibung = SETUP_NIGHT_STATEMENT_BESCHREIBUNG;
+        this.setupNightStatementType = SETUP_NIGHT_STATEMENT_TYPE;
     }
 
     @Override

@@ -15,10 +15,10 @@ public class Seelenlicht extends Bonusrolle {
     public static final String IMAGE_PATH = ImagePath.SEELENLICHT_KARTE;
     public static final BonusrollenType TYPE = new Passiv();
 
-    public static final String FIRST_NIGHT_STATEMENT_ID = ID;
-    public static final String FIRST_NIGHT_STATEMENT_TITLE = "Neue Karte";
-    public static final String FIRST_NIGHT_STATEMENT_BESCHREIBUNG = "Seelenlicht erwacht und tauscht seine Karte je nach Hauptrolle aus";
-    public static final StatementType FIRST_NIGHT_STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
+    public static final String SETUP_NIGHT_STATEMENT_ID = ID;
+    public static final String SETUP_NIGHT_STATEMENT_TITLE = "Neue Karte";
+    public static final String SETUP_NIGHT_STATEMENT_BESCHREIBUNG = "Seelenlicht erwacht und tauscht seine Karte je nach Hauptrolle aus";
+    public static final StatementType SETUP_NIGHT_STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
 
     public Seelenlicht() {
         this.id = ID;
@@ -26,10 +26,10 @@ public class Seelenlicht extends Bonusrolle {
         this.imagePath = IMAGE_PATH;
         this.type = TYPE;
 
-        this.firstNightStatementID = FIRST_NIGHT_STATEMENT_ID;
-        this.firstNightStatementTitle = FIRST_NIGHT_STATEMENT_TITLE;
-        this.firstNightStatementBeschreibung = FIRST_NIGHT_STATEMENT_BESCHREIBUNG;
-        this.firstNightStatementType = FIRST_NIGHT_STATEMENT_TYPE;
+        this.setupNightStatementID = SETUP_NIGHT_STATEMENT_ID;
+        this.setupNightStatementTitle = SETUP_NIGHT_STATEMENT_TITLE;
+        this.setupNightStatementBeschreibung = SETUP_NIGHT_STATEMENT_BESCHREIBUNG;
+        this.setupNightStatementType = SETUP_NIGHT_STATEMENT_TYPE;
     }
 
     public void tauschen(Bonusrolle bonusrolle) {

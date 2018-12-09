@@ -2,7 +2,7 @@ package root.Phases;
 
 public enum PhaseMode {
     SETUP,
-    FIRST_NIGHT,
+    SETUP_NIGHT,
     NORMAL_NIGHT,
     DAY,
     FREIBIER_DAY

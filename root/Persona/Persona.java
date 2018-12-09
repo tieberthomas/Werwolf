@@ -24,10 +24,10 @@ public class Persona {
     public String secondStatementBeschreibung = "";
     public StatementType secondStatementType = StatementType.EMPTY_STATEMENT;
 
-    public String firstNightStatementID = "";
-    public String firstNightStatementTitle = "";
-    public String firstNightStatementBeschreibung = "";
-    public StatementType firstNightStatementType = StatementType.EMPTY_STATEMENT;
+    public String setupNightStatementID = "";
+    public String setupNightStatementTitle = "";
+    public String setupNightStatementBeschreibung = "";
+    public StatementType setupNightStatementType = StatementType.EMPTY_STATEMENT;
 
     public FrontendControl getDropdownOptionsFrontendControl() {
         return new FrontendControl();

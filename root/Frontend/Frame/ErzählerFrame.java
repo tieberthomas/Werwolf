@@ -295,7 +295,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
 
         try {
             if (übersichtsFrame != null) {
-                if (mode == ErzählerFrameMode.FIRST_NIGHT) {
+                if (mode == ErzählerFrameMode.SETUP_NIGHT) {
                     übersichtsFrame.refresh();
                 }
             }
@@ -340,16 +340,16 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         FrontendControl.spielerFrame = spielerFrame;
         if (PhaseManager.phaseMode == PhaseMode.DAY || PhaseManager.phaseMode == PhaseMode.FREIBIER_DAY) {
             spielerFrame.generateDayPage();
-        } else if (PhaseManager.phaseMode == PhaseMode.NORMAL_NIGHT || PhaseManager.phaseMode == PhaseMode.FIRST_NIGHT) {
+        } else if (PhaseManager.phaseMode == PhaseMode.NORMAL_NIGHT || PhaseManager.phaseMode == PhaseMode.SETUP_NIGHT) {
             spielerFrame.buildScreenFromPage(savePage);
         }
     }
 
     private void continueThreads() {
         try {
-            if (mode == ErzählerFrameMode.FIRST_NIGHT) {
-                synchronized (FirstNight.lock) {
-                    FirstNight.lock.notify();
+            if (mode == ErzählerFrameMode.SETUP_NIGHT) {
+                synchronized (SetupNight.lock) {
+                    SetupNight.lock.notify();
                 }
             } else if (mode == ErzählerFrameMode.DAY || mode == ErzählerFrameMode.FREIBIER_DAY || mode == ErzählerFrameMode.UMBRINGEN_SETUP) {
                 synchronized (Day.lock) {
