@@ -8,8 +8,6 @@ import root.Frontend.Page.PageTable;
 import root.Frontend.Page.Predecessor;
 import root.Logic.Persona.Bonusrolle;
 import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Sammler;
-import root.Logic.Phases.NormalNight;
-import root.Logic.Phases.SetupNight;
 import root.Logic.Phases.Statement.Constants.StatementState;
 import root.Logic.Phases.Statement.Constants.StatementType;
 import root.Logic.Phases.Statement.Statement;
@@ -234,19 +232,11 @@ public class ErzählerPageElementFactory {
         return deleteButton;
     }
 
-    public PageElement generateNightLabel(String currentStatement, boolean setupNight) {
+    public PageElement generateNightLabel(String currentStatement, List<Statement> statements) {
         List<String> statementStrings = new ArrayList<>();
         List<String> statementColors = new ArrayList<>();
 
         boolean found = false;
-
-        List<Statement> statements;
-
-        if (setupNight) {
-            statements = SetupNight.statements;
-        } else {
-            statements = NormalNight.statements;
-        }
 
         for (Statement statement : statements) {
             if (statement.state != StatementState.INVISIBLE_NOT_IN_GAME && statement.type != StatementType.PROGRAM) {

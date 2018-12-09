@@ -8,6 +8,8 @@ import root.Frontend.Utils.DropdownOptions;
 import root.Frontend.Utils.JButtonStyler;
 import root.Frontend.Utils.PageRefresher.InteractivePages.InteractiveElementsDtos.*;
 import root.Logic.Phases.Day;
+import root.Logic.Phases.NormalNight;
+import root.Logic.Phases.SetupNight;
 import root.Logic.Phases.Statement.Statement;
 import root.ResourceManagement.ImagePath;
 
@@ -222,7 +224,9 @@ public class ErzählerPageFactory {
     }
 
     private Page generateDefaultNightPage(Page nightPage, Statement statement, String title, boolean hatZurückButton) {
-        PageElement nightLabel = pageElementFactory.generateNightLabel(statement.id, nightGenerationModeSetupNight);
+        List<Statement> statements = getNightStatements();
+
+        PageElement nightLabel = pageElementFactory.generateNightLabel(statement.id, statements);
         PageElement titleLabel = pageElementFactory.generateTitleLabel(nightLabel, title);
         erzählerFrame.nextJButton = new JButton();
         PageElement goNextButton = pageElementFactory.generateLowestButton(erzählerFrame.nextJButton);
@@ -239,6 +243,18 @@ public class ErzählerPageFactory {
         continueToGeneratePagePoint = nightPage.pageElements.indexOf(titleLabel);
 
         return nightPage;
+    }
+
+    private List<Statement> getNightStatements() {
+        List<Statement> statements;
+
+        if (nightGenerationModeSetupNight) {
+            statements = SetupNight.statements;
+        } else {
+            statements = NormalNight.statements;
+        }
+
+        return statements;
     }
 
     public Page generateIconPicturePage(Page iconPage, Statement statement, String imagePath) {
