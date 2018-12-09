@@ -88,34 +88,6 @@ public class Statement {
         this.dependency = new StatementDependency();
     }
 
-    public Statement(String id, String title, String beschreibung, StatementType type, StatementDependency dependency) {
-        this.id = id;
-        this.title = title;
-        this.beschreibung = beschreibung;
-        this.type = type;
-        this.dependency = dependency;
-    }
-
-    public static Statement newFirstNightStatement(Rolle rolle) {
-        String id = rolle.firstNightStatementID;
-        String title = rolle.firstNightStatementTitle;
-        String beschreibung = rolle.firstNightStatementBeschreibung;
-        StatementType type = rolle.firstNightStatementType;
-        StatementDependency dependency = new StatementDependencyRolle(rolle);
-
-        return new Statement(id, title, beschreibung, type, dependency);
-    }
-
-    public static Statement newFirstNightStatement(Fraktion fraktion) {
-        String id = fraktion.firstNightStatementID;
-        String title = fraktion.firstNightStatementTitle;
-        String beschreibung = fraktion.firstNightStatementBeschreibung;
-        StatementType type = fraktion.firstNightStatementType;
-        StatementDependency dependency = new StatementDependencyFraktion(fraktion);
-
-        return new Statement(id, title, beschreibung, type, dependency);
-    }
-
     public void refreshState() {
         state = dependency.getState();
     }

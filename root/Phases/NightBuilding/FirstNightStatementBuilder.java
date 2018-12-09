@@ -43,14 +43,14 @@ public class FirstNightStatementBuilder {
 
     private static void addStatementRolle(List<Statement> statements, String rolleID) {
         Rolle rolle = Rolle.findRolle(rolleID);
-        Statement statement = Statement.newFirstNightStatement(rolle);
+        Statement statement = new FirstNightStatement(rolle);
         statements.add(statement);
     }
 
     private static void addStatementFraktion(List<Statement> statements, String fraktionsID) {
         if (Fraktion.getFraktionsMembers(fraktionsID).size() > 1) {
             Fraktion fraktion = Fraktion.findFraktion(fraktionsID);
-            Statement statement = Statement.newFirstNightStatement(fraktion);
+            Statement statement = new FirstNightStatement(fraktion);
             statements.add(statement);
         }
     }
