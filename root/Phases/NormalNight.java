@@ -265,7 +265,7 @@ public class NormalNight extends Thread {
                             Spieler deadWahrsagerSpieler = Game.game.findSpielerOrDeadPerRolle(Wahrsager.ID);
                             if (wahrsagerSpieler2 != null) {
                                 Wahrsager wahrsager = (Wahrsager) deadWahrsagerSpieler.bonusrolle; //TODO Rolle rolle ?
-                                if (wahrsager.guessedRight() && !Game.game.secondNight) {
+                                if (wahrsager.guessedRight() && !Game.game.firstNight) {
                                     statement.title = Wahrsager.REWARD_TITLE;
                                     chosenOption = showFrontendControl(statement, wahrsager.getInfo());
                                 } else {
@@ -457,7 +457,7 @@ public class NormalNight extends Thread {
     private void cleanUpNight() {
         checkNachtfürstGuess();
 
-        Game.game.secondNight = false;
+        Game.game.firstNight = false;
 
         for (Spieler currentSpieler : Game.game.spieler) {
             currentSpieler.aktiv = true;

@@ -92,7 +92,7 @@ public class Game {
     public List<Bonusrolle> stillAvailableBonusrollen = new ArrayList<>();
     public List<Spieler> spielerSpecified = new ArrayList<>();
 
-    public boolean secondNight = true;
+    public boolean firstNight = true;
     private boolean started = false;
 
     public Game() {
