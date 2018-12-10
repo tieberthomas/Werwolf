@@ -71,28 +71,29 @@ public class SpecifyPage extends RefreshedPage {
         return Game.game.spielerSpecified.size() == Game.game.spieler.size();
     }
 
-    private void specifyPlayer() { //TODO make strings as parameters
-        try {
-            String spielerName = (String) spielerComboBox.getSelectedItem();
-            Spieler spieler = Game.game.findSpieler(spielerName);
-            Game.game.spielerSpecified.add(spieler);
+    private void specifyPlayer() {
+        String name = (String) spielerComboBox.getSelectedItem();
+        String hauptrolle = (String) hauptrollenComboBox.getSelectedItem();
+        String bonusrolle = (String) bonusrollenComboBox.getSelectedItem();
 
-            String hauptrolle = (String) hauptrollenComboBox.getSelectedItem();
-            spieler.hauptrolle = Game.game.findHauptrollePerName(hauptrolle);
-            if (spieler.hauptrolle == null) {
-                spieler.hauptrolle = Hauptrolle.getDefaultHauptrolle();
-            }
+        specifyPlayer(name, hauptrolle, bonusrolle);
+    }
 
-            String bonusrolle = (String) bonusrollenComboBox.getSelectedItem();
-            spieler.bonusrolle = Game.game.findBonusrollePerName(bonusrolle);
-            if (spieler.bonusrolle == null) {
-                spieler.bonusrolle = Bonusrolle.DEFAULT_BONUSROLLE;
-            }
+    private void specifyPlayer(String name, String hauptrolle, String bonusrolle) {
+        Spieler spieler = Game.game.findSpieler(name);
+        Game.game.spielerSpecified.add(spieler);
 
-            refresh();
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("No player in game.");
+        spieler.hauptrolle = Game.game.findHauptrollePerName(hauptrolle);
+        if (spieler.hauptrolle == null) {
+            spieler.hauptrolle = Hauptrolle.getDefaultHauptrolle();
         }
+
+        spieler.bonusrolle = Game.game.findBonusrollePerName(bonusrolle);
+        if (spieler.bonusrolle == null) {
+            spieler.bonusrolle = Bonusrolle.DEFAULT_BONUSROLLE;
+        }
+
+        refresh();
     }
 
     @Override
