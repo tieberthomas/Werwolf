@@ -13,6 +13,8 @@ import root.ResourceManagement.ImagePath;
 
 import java.awt.*;
 
+import static root.Logic.Persona.Constants.TitleConstants.NEUE_KARTE_TITLE;
+
 public class Wolfspelz extends Bonusrolle {
     public static final String ID = "ID_Wolfspelz";
     public static final String NAME = "Wolfspelz";
@@ -21,7 +23,7 @@ public class Wolfspelz extends Bonusrolle {
     public static final Color COLOR = Werwölfe.COLOR;
 
     public static final String SETUP_NIGHT_STATEMENT_ID = ID;
-    public static final String SETUP_NIGHT_STATEMENT_TITLE = "Neue Karte";
+    public static final String SETUP_NIGHT_STATEMENT_TITLE = NEUE_KARTE_TITLE;
     public static final String SETUP_NIGHT_STATEMENT_BESCHREIBUNG = "Träger des Wolfspelzes erwacht und tauscht ggf. seine Karte aus";
     public static final StatementType SETUP_NIGHT_STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
 

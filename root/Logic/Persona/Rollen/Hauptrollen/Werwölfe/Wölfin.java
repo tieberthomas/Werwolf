@@ -14,6 +14,8 @@ import root.Logic.Phases.Statement.Constants.StatementType;
 import root.Logic.Spieler;
 import root.ResourceManagement.ImagePath;
 
+import static root.Logic.Persona.Constants.TitleConstants.CHOSE_OPFER_TITLE;
+
 public class Wölfin extends Hauptrolle {
     public static final String ID = "ID_Wölfin";
     public static final String NAME = "Wölfin";
@@ -21,7 +23,7 @@ public class Wölfin extends Hauptrolle {
     public static final Fraktion FRAKTION = new Werwölfe();
 
     public static final String STATEMENT_ID = ID;
-    public static final String STATEMENT_TITLE = "Opfer wählen";
+    public static final String STATEMENT_TITLE = CHOSE_OPFER_TITLE;
     public static final String STATEMENT_BESCHREIBUNG = "Wölfin erwacht und wählt ein Opfer aus, wenn sie das tut, erfährt das Dorf ihre Bonusrolle";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
 

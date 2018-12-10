@@ -9,6 +9,8 @@ import root.Logic.Phases.Statement.Constants.StatementType;
 import root.Logic.Spieler;
 import root.ResourceManagement.ImagePath;
 
+import static root.Logic.Persona.Constants.TitleConstants.NEUE_KARTE_TITLE;
+
 public class Seelenlicht extends Bonusrolle {
     public static final String ID = "ID_Seelenlicht";
     public static final String NAME = "Seelenlicht";
@@ -16,7 +18,7 @@ public class Seelenlicht extends Bonusrolle {
     public static final BonusrollenType TYPE = new Passiv();
 
     public static final String SETUP_NIGHT_STATEMENT_ID = ID;
-    public static final String SETUP_NIGHT_STATEMENT_TITLE = "Neue Karte";
+    public static final String SETUP_NIGHT_STATEMENT_TITLE = NEUE_KARTE_TITLE;
     public static final String SETUP_NIGHT_STATEMENT_BESCHREIBUNG = "Seelenlicht erwacht und tauscht seine Karte je nach Hauptrolle aus";
     public static final StatementType SETUP_NIGHT_STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
 

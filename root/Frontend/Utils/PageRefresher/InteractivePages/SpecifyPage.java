@@ -123,6 +123,7 @@ public class SpecifyPage extends RefreshedPage {
                 deleteButtons, spielerComboBox, hauptrollenComboBox, bonusrollenComboBox, next, back);
     }
 
+    @Override
     public void refresh() {
         Collections.sort(Game.game.spielerSpecified);
         pageRefresher.refreshPage();

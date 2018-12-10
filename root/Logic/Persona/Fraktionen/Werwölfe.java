@@ -18,6 +18,8 @@ import root.ResourceManagement.ImagePath;
 
 import java.awt.*;
 
+import static root.Logic.Persona.Constants.TitleConstants.CHOSE_OPFER_TITLE;
+
 public class Werwölfe extends Fraktion {
     public static final String ID = "ID_Werwölfe";
     public static final String NAME = "Werwölfe";
@@ -26,7 +28,7 @@ public class Werwölfe extends Fraktion {
     public static final Zeigekarte ZEIGEKARTE = new WerwölfeZeigekarte();
 
     public static final String STATEMENT_ID = ID;
-    public static final String STATEMENT_TITLE = "Opfer wählen"; //TODO generischen kill titel machen?
+    public static final String STATEMENT_TITLE = CHOSE_OPFER_TITLE;
     public static final String STATEMENT_BESCHREIBUNG = "Die Werwölfe erwachen und die Wölfe wählen ein Opfer aus";
     public static final StatementType STATEMENT_TYPE = StatementType.FRAKTION_CHOOSE_ONE;
 

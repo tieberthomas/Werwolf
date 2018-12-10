@@ -23,6 +23,8 @@ import root.ResourceManagement.ImagePath;
 import java.util.ArrayList;
 import java.util.List;
 
+import static root.Logic.Persona.Constants.TitleConstants.CHOSE_OPFER_TITLE;
+
 public class Nachtfürst extends Bonusrolle {
     public static final String ID = "ID_Nachtfürst";
     public static final String NAME = "Nachtfürst";
@@ -35,7 +37,7 @@ public class Nachtfürst extends Bonusrolle {
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
 
     public static final String TÖTEN_ID = "Nachtfürst_Kill";
-    public static final String SECOND_STATEMENT_TITLE = "Opfer wählen";
+    public static final String SECOND_STATEMENT_TITLE = CHOSE_OPFER_TITLE;
     public static final String SECOND_STATEMENT_BESCHREIBUNG = "Nachtfürst erwacht und tötet einen Spieler wenn er letzte Nacht richtig lag"; //TODO er ist ja schon wach, wording ändern
     public static final StatementType SECOND_STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
 

@@ -14,6 +14,8 @@ import root.ResourceManagement.ImagePath;
 
 import java.awt.*;
 
+import static root.Logic.Persona.Constants.TitleConstants.CHOSE_OPFER_TITLE;
+
 public class Vampire extends Fraktion {
     public static final String ID = "ID_Vampire";
     public static final String NAME = "Vampire";
@@ -22,7 +24,7 @@ public class Vampire extends Fraktion {
     public static final Zeigekarte ZEIGEKARTE = new VampireZeigekarte();
 
     public static final String STATEMENT_ID = ID;
-    public static final String STATEMENT_TITLE = "Opfer wählen";
+    public static final String STATEMENT_TITLE = CHOSE_OPFER_TITLE;
     public static final String STATEMENT_BESCHREIBUNG = "Die Vampire erwachen und wählen ein Opfer aus";
     public static final StatementType STATEMENT_TYPE = StatementType.FRAKTION_CHOOSE_ONE;
 
