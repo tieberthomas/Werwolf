@@ -65,7 +65,7 @@ public class NormalNightStatementBuilder {
 
         addStatementRolle(Prostituierte.ID);
 
-        //TODO move nacht add speziallogik into rollen/fraktionen
+        //TODO move nacht addSorted speziallogik into rollen/fraktionen
         //TODO addstatementRolle sollte nicht immer statements mitbekommen, statements sollte eine public klassenvariable sein.
         if (PhaseManager.nightCount == 1) {
             Spieler henkerSpieler = Game.game.findSpielerPerRolle(Henker.ID);

@@ -39,8 +39,6 @@ public class FrontendControl {
 
     public boolean hatZurückButton = false;
 
-    public List<FrontendControl> pages;
-
     public FrontendControl() {
         this.typeOfContent = FrontendControlType.SKIP;
     }
@@ -57,20 +55,9 @@ public class FrontendControl {
         displayedStrings.add(listString);
     }
 
-    public FrontendControl(List<String> displayedStrings) {
-        this.typeOfContent = FrontendControlType.LIST;
-        this.displayedStrings = displayedStrings;
-    }
-
-    public FrontendControl(FrontendControlType typeOfContent, List<String> displayedStrings) {
-        this.typeOfContent = typeOfContent;
-        this.displayedStrings = displayedStrings;
-    }
-
-    public FrontendControl(FrontendControlType typeOfContent, String title, List<String> displayedStrings) {
-        this.typeOfContent = typeOfContent;
+    public FrontendControl(FrontendControlType typeOfContent, String title, List<String> strings) {
+        this(typeOfContent, strings);
         this.title = title;
-        this.displayedStrings = displayedStrings;
     }
 
     public FrontendControl(DropdownOptions dropdownOptions) {
@@ -78,19 +65,17 @@ public class FrontendControl {
         this.dropdownOptions = dropdownOptions;
     }
 
-    public FrontendControl(FrontendControlType typeOfContent, DropdownOptions dropdownOptions) {
+    public FrontendControl(FrontendControlType typeOfContent, List<String> strings) {
         this.typeOfContent = typeOfContent;
-        this.dropdownOptions = dropdownOptions;
+        if(typeOfContent.isDropdown()) {
+            dropdownOptions = (DropdownOptions) strings;
+        } else {
+            displayedStrings = strings;
+        }
     }
 
     public FrontendControl(String title, DropdownOptions dropdownOptions) {
         this.typeOfContent = FrontendControlType.DROPDOWN;
-        this.title = title;
-        this.dropdownOptions = dropdownOptions;
-    }
-
-    public FrontendControl(FrontendControlType typeOfContent, String title, DropdownOptions dropdownOptions) {
-        this.typeOfContent = typeOfContent;
         this.title = title;
         this.dropdownOptions = dropdownOptions;
     }

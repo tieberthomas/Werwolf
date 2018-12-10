@@ -285,7 +285,7 @@ public class ErzählerPageFactory {
 
     public Page generateDropdownPage(Page dropdownPage, Statement statement, DropdownOptions dropdownOptions, boolean hatZurückButton) {
         dropdownPage = generateDefaultNightPage(dropdownPage, statement, hatZurückButton);
-        DefaultComboBoxModel model = new DefaultComboBoxModel(dropdownOptions.strings.toArray());
+        DefaultComboBoxModel model = new DefaultComboBoxModel(dropdownOptions.toArray());
         erzählerFrame.comboBox1.setModel(model);
         PageElement choosePlayer1 = pageElementFactory.generateDropdown(erzählerFrame.comboBox1,
                 null, getContinueToGeneratePagePoint(dropdownPage));
@@ -310,7 +310,7 @@ public class ErzählerPageFactory {
 
     public Page generateDropdownPage(Page dropdownPage, Statement statement, DropdownOptions dropdownOptions, DropdownOptions dropdownOptions2) {
         dropdownPage = generateDropdownPage(dropdownPage, statement, dropdownOptions);
-        DefaultComboBoxModel model = new DefaultComboBoxModel(dropdownOptions2.strings.toArray());
+        DefaultComboBoxModel model = new DefaultComboBoxModel(dropdownOptions2.toArray());
         erzählerFrame.comboBox2.setModel(model);
         PageElement choosePlayer2 = pageElementFactory.generateDropdown(erzählerFrame.comboBox2,
                 null, getContinueToGeneratePagePoint(dropdownPage));
@@ -381,7 +381,7 @@ public class ErzählerPageFactory {
     public Page generateDayPage(DropdownOptions livingPlayers) {
         Page dayPage = generateDefaultDayPage();
 
-        DefaultComboBoxModel model = new DefaultComboBoxModel(livingPlayers.strings.toArray());
+        DefaultComboBoxModel model = new DefaultComboBoxModel(livingPlayers.toArray());
         erzählerFrame.comboBox1.setModel(model);
         PageElement choosePlayer = pageElementFactory.generateDropdown(erzählerFrame.comboBox1,
                 null, continueToGenerateElement);
@@ -445,7 +445,7 @@ public class ErzählerPageFactory {
         int spaceBetween = 10;
         int columns = 2;
 
-        DefaultComboBoxModel model = new DefaultComboBoxModel(livingPlayers.strings.toArray());
+        DefaultComboBoxModel model = new DefaultComboBoxModel(livingPlayers.toArray());
         pageElements.nameComboBox.setModel(model);
         PageElement choosePlayer1 = pageElementFactory.generateDropdown(pageElements.nameComboBox,
                 null, titleLabel, 0, 0);
@@ -476,7 +476,7 @@ public class ErzählerPageFactory {
 
         PageElement nameLabel = pageElementFactory.generateLabel(titleLabel, pageElements.comboBoxName);
 
-        DefaultComboBoxModel model = new DefaultComboBoxModel(dropdownOptions.strings.toArray());
+        DefaultComboBoxModel model = new DefaultComboBoxModel(dropdownOptions.toArray());
         pageElements.comboBox.setModel(model);
         PageElement comboBox = pageElementFactory.generateDropdown(pageElements.comboBox,
                 null, nameLabel, 0, 0);
@@ -498,14 +498,14 @@ public class ErzählerPageFactory {
 
         PageElement nameLabel = pageElementFactory.generateLabel(titleLabel, pageElements.comboBoxName);
 
-        DefaultComboBoxModel model = new DefaultComboBoxModel(dropdownOptions.strings.toArray());
+        DefaultComboBoxModel model = new DefaultComboBoxModel(dropdownOptions.toArray());
         pageElements.comboBox.setModel(model);
         PageElement comboBox = pageElementFactory.generateDropdown(pageElements.comboBox,
                 null, nameLabel, 0, 0);
 
         PageElement nameLabel2 = pageElementFactory.generateLabel(comboBox, pageElements.comboBoxName2);
 
-        DefaultComboBoxModel model2 = new DefaultComboBoxModel(dropdownOptions.strings.toArray());
+        DefaultComboBoxModel model2 = new DefaultComboBoxModel(dropdownOptions.toArray());
         pageElements.comboBox2.setModel(model2);
         PageElement comboBox2 = pageElementFactory.generateDropdown(pageElements.comboBox2,
                 null, nameLabel2, 0, 0);
@@ -531,7 +531,7 @@ public class ErzählerPageFactory {
 
     public void generateIrrlichtDropdownPage(Page irrlichtPage, OneDropdownDeletePageDto pageElements, Statement statement, DropdownOptions dropdownStrings) {
         irrlichtPage = generateDefaultNightPage(irrlichtPage, statement, false);
-        DefaultComboBoxModel model = new DefaultComboBoxModel(dropdownStrings.strings.toArray());
+        DefaultComboBoxModel model = new DefaultComboBoxModel(dropdownStrings.toArray());
         pageElements.nameComboBox.setModel(model);
         PageElement choosePlayer = pageElementFactory.generateDropdown(pageElements.nameComboBox,
                 null, getContinueToGeneratePagePoint(irrlichtPage));

@@ -64,7 +64,7 @@ public class TortenPage extends RefreshedPage {
     }
 
     private List<String> getNichtTortenesser() {
-        List<String> nichtFlackernde = new ArrayList<>(allPlayers.strings);
+        List<String> nichtFlackernde = new ArrayList<>(allPlayers);
         nichtFlackernde.removeAll(tortenesser);
         return nichtFlackernde;
     }

@@ -275,7 +275,7 @@ public class SetupNight extends Thread {
 
     public void showDropdownList(Statement statement, String title, DropdownOptions dropdownOptions) {
         FrontendControl.erzählerDropdownPage(statement, dropdownOptions);
-        FrontendControl.spielerDropdownListPage(title, dropdownOptions.strings);
+        FrontendControl.spielerDropdownListPage(title, dropdownOptions);
 
         waitForAnswer();
     }

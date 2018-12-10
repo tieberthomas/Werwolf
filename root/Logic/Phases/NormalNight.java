@@ -14,10 +14,24 @@ import root.Logic.Persona.Fraktionen.Vampire;
 import root.Logic.Persona.Fraktionen.Werwölfe;
 import root.Logic.Persona.Hauptrolle;
 import root.Logic.Persona.Rolle;
-import root.Logic.Persona.Rollen.Bonusrollen.*;
+import root.Logic.Persona.Rollen.Bonusrollen.Analytiker;
+import root.Logic.Persona.Rollen.Bonusrollen.Konditor;
+import root.Logic.Persona.Rollen.Bonusrollen.Konditorlehrling;
+import root.Logic.Persona.Rollen.Bonusrollen.Nachtfürst;
+import root.Logic.Persona.Rollen.Bonusrollen.Prostituierte;
+import root.Logic.Persona.Rollen.Bonusrollen.Schattenkutte;
+import root.Logic.Persona.Rollen.Bonusrollen.SchwarzeSeele;
+import root.Logic.Persona.Rollen.Bonusrollen.Wahrsager;
 import root.Logic.Persona.Rollen.Constants.BonusrollenType.Tarnumhang_BonusrollenType;
 import root.Logic.Persona.Rollen.Constants.SchnüfflerInformation;
-import root.Logic.Persona.Rollen.Constants.Zeigekarten.*;
+import root.Logic.Persona.Rollen.Constants.Zeigekarten.Aufgebraucht;
+import root.Logic.Persona.Rollen.Constants.Zeigekarten.AusDemSpiel;
+import root.Logic.Persona.Rollen.Constants.Zeigekarten.Deaktiviert;
+import root.Logic.Persona.Rollen.Constants.Zeigekarten.Nicht_Aktiv;
+import root.Logic.Persona.Rollen.Constants.Zeigekarten.Torten_Zeigekarte;
+import root.Logic.Persona.Rollen.Constants.Zeigekarten.Tot;
+import root.Logic.Persona.Rollen.Constants.Zeigekarten.Verstummt;
+import root.Logic.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Irrlicht;
 import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Sammler;
 import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Wirt;
@@ -419,7 +433,9 @@ public class NormalNight extends Thread {
 
             if (!nachtfürst.isTötendeFraktion() && nachtfürst.guessedRight) {
                 Spieler nachtfürstSpieler = Game.game.findSpielerPerRolle(nachtfürst.id);
-                nachtfürstSpieler.geschützt = true;
+                if (nachtfürstSpieler != null) {
+                    nachtfürstSpieler.geschützt = true;
+                }
             }
         }
     }
@@ -828,7 +844,7 @@ public class NormalNight extends Thread {
 
     public void showDropdownList(Statement statement, String title, DropdownOptions dropdownOptions, boolean hatZurückButton) {
         FrontendControl.erzählerDropdownPage(statement, dropdownOptions, hatZurückButton);
-        FrontendControl.spielerDropdownListPage(title, dropdownOptions.strings);
+        FrontendControl.spielerDropdownListPage(title, dropdownOptions);
 
         waitForAnswer();
     }

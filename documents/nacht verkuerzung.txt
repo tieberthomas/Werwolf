@@ -3,8 +3,8 @@ maßnamhmen zur verkürzung der normalen nacht:
 folgende rollen erwachen nicht mehr in erster normalen nacht:
 wirt //umgesetzt
 henker //umgesetzt
-dieb ?
-riese ?
+dieb //wird nicht umgesetzt wegen kreativer freiheit
+riese //wird nicht umgesetzt wegen kreativer freiheit
 
 folgende rollen erwachen erst wenn es etwas auszusuchen gibt:
 überläufer //umgesetzt

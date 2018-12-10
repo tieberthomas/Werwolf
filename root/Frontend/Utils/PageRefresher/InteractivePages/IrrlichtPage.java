@@ -64,7 +64,7 @@ public class IrrlichtPage extends RefreshedPage {
     }
 
     private List<String> getNichtFlackerndeIrrlichterStrings() {
-        List<String> nichtFlackernde = new ArrayList<>(irrlichtNames.strings);
+        List<String> nichtFlackernde = new ArrayList<>(irrlichtNames);
         nichtFlackernde.removeAll(flackerndeIrrlichter);
         return nichtFlackernde;
     }
