@@ -65,12 +65,12 @@ public class SpielerFrame extends MyFrame {
         buildScreenFromPage(pageFactory.generateListPage(Game.game.getLivingSpielerStrings()));
     }
 
-    public void refreshHauptrolleSetupPage() {
-        buildScreenFromPage(pageFactory.generateListPage(Game.game.getHauptrolleInGameNames()));
+    public void refreshHauptrolleSetupPage(List<String> mainrolesInGame) {
+        buildScreenFromPage(pageFactory.generateListPage(mainrolesInGame));
     }
 
-    public void refreshBonusrolleSetupPage() {
-        buildScreenFromPage(pageFactory.generateListPage(Game.game.getBonusrolleInGameNames()));
+    public void refreshBonusrolleSetupPage(List<String> bonusrolesInGame) {
+        buildScreenFromPage(pageFactory.generateListPage(bonusrolesInGame));
     }
 
     public void refreshSecondarySpecifySetupPage() {

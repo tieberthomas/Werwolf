@@ -12,17 +12,19 @@ public class RolePageElementsDto {
     public PageTable labelTable;
     public PageTable deleteTable;
     public JButton addAllRolesButton;
+    public JButton deleteAllRolesButton;
     public JButton next;
     public JButton back;
 
     public RolePageElementsDto(JLabel counterLabel, PageTable roleButtonTable, List<JButton> roleButtons, PageTable labelTable, PageTable deleteTable,
-                               JButton addAllRolesButton, JButton next, JButton back) {
+                               JButton addAllRolesButton, JButton deleteAllRolesButton, JButton next, JButton back) {
         this.counterLabel = counterLabel;
         this.roleButtonTable = roleButtonTable;
         this.roleButtons = roleButtons;
         this.labelTable = labelTable;
         this.deleteTable = deleteTable;
         this.addAllRolesButton = addAllRolesButton;
+        this.deleteAllRolesButton = deleteAllRolesButton;
         this.next = next;
         this.back = back;
     }

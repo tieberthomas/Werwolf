@@ -5,12 +5,14 @@ import root.Logic.Persona.Rolle;
 import javax.swing.*;
 import javax.swing.plaf.metal.MetalButtonUI;
 import java.awt.*;
+import java.util.Collections;
 import java.util.List;
 
 public class JButtonStyler {
-    public static void refreshRolleButtons(List<JButton> buttons) {
+
+    public static void refreshRolleButtons(List<JButton> buttons, List<String> rolesInGame) {
         styleButtons(buttons);
-        disableButtons(buttons);
+        disableButtons(buttons, rolesInGame);
     }
 
     private static void styleButtons(List<JButton> buttons) {
@@ -35,18 +37,18 @@ public class JButtonStyler {
         }
     }
 
-    private static void disableButtons(List<JButton> buttons) {
+    private static void disableButtons(List<JButton> buttons, List<String> rolesInGame) {
         for (JButton button : buttons) {
-            if (buttonShouldBeDisabled(button)) {
+            if (buttonShouldBeDisabled(button, rolesInGame)) {
                 disableButton(button);
             }
         }
     }
 
-    private static boolean buttonShouldBeDisabled(JButton button) {
+    private static boolean buttonShouldBeDisabled(JButton button, List<String> rolesInGame) {
         Rolle rolle = Rolle.findRollePerName(button.getText());
         if (rolle != null) {
-            int occurrences = Rolle.numberOfOccurencesOfRolleInGame(rolle);
+            int occurrences = Collections.frequency(rolesInGame, rolle.name);
             if (rolle.numberOfPossibleInstances <= occurrences) {
                 if (button.isEnabled()) {
                     return true;

@@ -7,13 +7,15 @@ import java.util.List;
 
 public class ButtonTable implements RefreshObject {
     private List<JButton> buttons;
+    private List<String> rolesInGame;
 
-    public ButtonTable(List<JButton> buttons) {
+    public ButtonTable(List<JButton> buttons, List<String> rolesInGame) {
         this.buttons = buttons;
+        this.rolesInGame = rolesInGame;
     }
 
     @Override
     public void refresh() {
-        JButtonStyler.refreshRolleButtons(buttons);
+        JButtonStyler.refreshRolleButtons(buttons, rolesInGame);
     }
 }

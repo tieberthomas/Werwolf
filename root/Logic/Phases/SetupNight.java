@@ -27,8 +27,6 @@ import java.util.List;
 import static root.Logic.Persona.Constants.TitleConstants.NEUE_KARTE_TITLE;
 
 public class SetupNight extends Thread {
-    public static final String TARNUMHANG_TITLE = "Tarnumhang";
-
     public static List<Statement> statements;
     public static Object lock;
     public static List<Spieler> spielerAwake = new ArrayList<>();

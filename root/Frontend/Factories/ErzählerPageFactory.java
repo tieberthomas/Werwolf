@@ -119,11 +119,15 @@ public class ErzählerPageFactory {
         PageElement addAllRolesButton = pageElementFactory.generateLowestButton(interactiveElementsDto.addAllRolesButton,
                 "Alle Rollen", true, 1);
 
+        PageElement deleteAllRolesButton = pageElementFactory.generateLowestButton(interactiveElementsDto.deleteAllRolesButton,
+                "Alle löschen", true, 2);
+
         rollenSetupPage.clearPage();
 
         rollenSetupPage.add(goNextButton);
         rollenSetupPage.add(goBackButton);
         rollenSetupPage.add(addAllRolesButton);
+        rollenSetupPage.add(deleteAllRolesButton);
         rollenSetupPage.add(roleButtonTable);
         rollenSetupPage.add(counterLabel);
         rollenSetupPage.add(interactiveElementsDto.deleteTable);
