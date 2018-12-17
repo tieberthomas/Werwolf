@@ -16,20 +16,20 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class RolePage extends RefreshedPage {
+public abstract class RolePage extends RefreshedPage {
     RolePageElementsDto interactiveElementsDto;
 
-    JLabel counterLabel;
+    private JLabel counterLabel;
     private PageTable roleButtonTable;
-    List<JButton> roleButtons;
-    PageTable labelTable;
-    PageTable deleteTable;
-    List<JButton> deleteButtons = new ArrayList<>();
+    private List<JButton> roleButtons;
+    private PageTable labelTable;
+    private PageTable deleteTable;
+    private List<JButton> deleteButtons = new ArrayList<>();
     private JButton addAllRolesButton;
     private JButton deleteAllRolesButton;
     private JButton next;
     private JButton back;
-    protected List<String> roles;
+    List<String> roles;
 
     @Override
     protected void setupObjects() {
@@ -94,7 +94,7 @@ public class RolePage extends RefreshedPage {
                 addAllRolesButton, deleteAllRolesButton, next, back);
     }
 
-    String getCounterLabelText(int numberOfSpieler, int numberOfRollen) {
+    private String getCounterLabelText(int numberOfSpieler, int numberOfRollen) {
         return pageFactory.pageElementFactory.generateCounterLabelString(numberOfSpieler, numberOfRollen);
     }
 
@@ -123,8 +123,7 @@ public class RolePage extends RefreshedPage {
         roles.remove(index);
     }
 
-    protected void addAllRollen() {
-    }
+    protected abstract void addAllRollen();
 
     private void deleteAllRollen() {
         int numberOfButtons = deleteButtons.size();
@@ -139,9 +138,7 @@ public class RolePage extends RefreshedPage {
         super.showPage();
     }
 
-    protected void getRollenFromGame() {
-    }
+    protected abstract void getRollenFromGame();
 
-    protected void storeRollenInGame() {
-    }
+    protected abstract void storeRollenInGame();
 }

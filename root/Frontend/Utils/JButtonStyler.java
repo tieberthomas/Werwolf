@@ -9,6 +9,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class JButtonStyler {
+    private JButtonStyler() {
+    }
 
     public static void refreshRolleButtons(List<JButton> buttons, List<String> rolesInGame) {
         styleButtons(buttons);
