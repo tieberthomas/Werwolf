@@ -64,7 +64,6 @@ public class RolePage extends RefreshedPage {
 
     @Override
     public void processActionEvent(ActionEvent ae) {
-
         JButton source = (JButton) ae.getSource();
         if (next.equals(source)) {
             storeRollenInGame();

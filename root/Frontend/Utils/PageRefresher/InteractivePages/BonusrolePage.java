@@ -2,6 +2,8 @@ package root.Frontend.Utils.PageRefresher.InteractivePages;
 
 import root.GameController;
 import root.Logic.Game;
+import root.Logic.Persona.Bonusrolle;
+import root.Logic.Persona.Rolle;
 import root.Logic.Persona.Rollen.Bonusrollen.ReineSeele;
 import root.Logic.Persona.Rollen.Bonusrollen.Schatten;
 import root.Logic.Persona.Rollen.Bonusrollen.SchwarzeSeele;
@@ -38,5 +40,11 @@ public class BonusrolePage extends RolePage {
     protected void getRollenFromGame() {
         roles.clear();
         Game.game.bonusrollenInGame.forEach(role -> roles.add(role.name));
+    }
+
+    @Override
+    protected void storeRollenInGame() {
+        Game.game.bonusrollenInGame.clear();
+        roles.forEach(role -> Game.game.bonusrollenInGame.add((Bonusrolle) Rolle.findRollePerName(role)));
     }
 }

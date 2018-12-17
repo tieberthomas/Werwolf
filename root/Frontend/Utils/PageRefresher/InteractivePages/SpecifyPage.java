@@ -149,4 +149,26 @@ public class SpecifyPage extends RefreshedPage {
 
         Game.game.spielerSpecified.remove(index);
     }
+
+    @Override
+    public void showPage() {
+        deleteRemovedPlayersFromList();
+        super.showPage();
+    }
+
+    private void deleteRemovedPlayersFromList() {
+        List<Integer> indexesToRemove = new ArrayList<>();
+
+        for (Spieler spieler : Game.game.spielerSpecified) {
+            if (!Game.game.hauptrollenInGame.contains(spieler.hauptrolle)
+                    || !Game.game.bonusrollenInGame.contains(spieler.bonusrolle)) {
+                int index = Game.game.spielerSpecified.indexOf(spieler);
+                indexesToRemove.add(index);
+            }
+        }
+
+        for (int index : indexesToRemove) {
+            removeSpecifiedPlayer(index);
+        }
+    }
 }
