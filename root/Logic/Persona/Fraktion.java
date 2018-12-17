@@ -111,17 +111,13 @@ public class Fraktion extends Persona {
         for (Spieler currentSpieler : livingSpieler) {
             Fraktion fraktionSpieler = currentSpieler.hauptrolle.fraktion;
 
-            if (fraktionID.equals(Werwölfe.ID)) {
-                if (fraktionSpieler.equals(fraktionID) && currentSpieler.hauptrolle.killing) {
-                    if (currentSpieler.aktiv) {
+            if (fraktionSpieler.equals(fraktionID) && currentSpieler.aktiv) {
+                if (fraktionID.equals(Werwölfe.ID)) {
+                    if(currentSpieler.hauptrolle.killing) {
                         return true;
                     }
-                }
-            } else {
-                if (fraktionSpieler.equals(fraktionID)) {
-                    if (currentSpieler.aktiv) {
-                        return true;
-                    }
+                } else {
+                    return true;
                 }
             }
         }
