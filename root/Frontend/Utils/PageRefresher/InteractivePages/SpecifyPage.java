@@ -56,6 +56,7 @@ public class SpecifyPage extends RefreshedPage {
     public void processActionEvent(ActionEvent ae) {
         JButton source = (JButton) ae.getSource();
         if (next.equals(source)) {
+            erzählerFrame.currentInteractivePage = null;
             if (allPlayersSpecified()) {
                 GameController.startGame();
             } else {

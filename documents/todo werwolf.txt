@@ -1,44 +1,19 @@
-michael testen:
-vladimir
-spurenleser
-zeigekarten
-analytiker
-schamanin (schutz und informations interaktionen)
-wolfsmensch
-schnüffler
-tarnumhang
-alles was tötet + prostituierten interaktion
-wahrsager
-
-bugs:
-
 ToDo:
 StatementType ROLLE_CHOOSE_SPIELER
 new Rolle vermeiden: immer von Liste in Game holen
-Liste für buttons Liste für Rollen
-Button "Alle Rollen" - Liste vorher leeren
 
 task:
 wenn dieb karten stiehlt wie z.B. schnüffler oder tarnumhang, dann müssen arraylists der letzten nächte zurückgesetzt werden
 
 CherryOnTop:
-Schattenpriester und Tote farblich unterscheiden
 Statements farblich markieren nach status
 seher bamboozlekarten dem erzähler zeigen während der seher aktion damit dieser nicht verwirrt ist
-siegüberprüfung generischer machen (tag und nacht)
-tauschkarten quasi aus bonusrollenInGame removen (für nachzügler) aber nicht wirklich, weil ja der spielerscreen am tag anzeigen soll dass es drin war
 bei übersichtspage rahmen von mehreren personen anzeigen (die nicht die ganze fraktion sind)
 showDeaktivPages und showTotPages schön zusammenfassen zu einer Methode die eine Zeigekarte kriegt
-markup für vampirumhang geschützen spieler bei lady aleera überlegen (für erzähler)
 aufgebraucht page interaktiv gestalten
-im Setup Dropdown alphabetisch sortieren
-fraktionsbamboozelstatements
 getInstance (findSpielerOrDead) in game
-analytiker aussehen generisch in showFrontend von nach inkludieren
-erste nacht generisch machen wie normale nacht
-get dropdown options von werwölfen und vampiren ist duplicated
 is tötend in werwolffraktion generischer machen
-
+rahmen am übersichtsframe richtig anzeigen
 
 
 zuviel arbeit fürs erste:

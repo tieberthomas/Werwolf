@@ -1,10 +1,9 @@
-CODEFREEZE ist vorbei
-
 Fertige Tasks
 Henker hat auch am Endscreen einen Zurückbutton ? - 1
 Tote Fraktionen verschwinden wenn sie tot sind ? - 2
 3. Nachtfürst 5 - 7
 nachtfürst wird angezeigt wenn er als nicht tötender richtig gelegen hat ? - 1
+"Alle Rollen Löschen" Button ? - 2
 
 Eingereihte Tasks
 4. wenn dieb eine Karte stiehlt, und man auf weiter klickt wird sofort die neue Bonusrolle gezeigt, verlangt hohe vorsichtigkeit des erzählers 1 - 1
@@ -16,6 +15,5 @@ Fürs erste nicht umsetzbare Tasks da Gegebenheiten unklar sind oder evtl. die K
 3. Detektiv 1 - 3
 5. Imitator 1 - 50
 
+
 Nicht einpriorisierte Tasks:
-"Alle Rollen Löschen" - Button
-irrlicht scheint nicht ganz zufällig zu sein

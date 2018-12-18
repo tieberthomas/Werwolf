@@ -2,6 +2,7 @@ package root.ResourceManagement;
 
 import root.Logic.Game;
 import root.Logic.Spieler;
+import root.Utils.ListHelper;
 
 import java.util.List;
 
@@ -50,6 +51,8 @@ public class DataManager {
         for (String bonusRollenName : composition.bonusrollen) {
             Game.game.bonusrollenInGame.add(Game.game.findBonusrollePerName(bonusRollenName));
         }
+
+        Game.game.spielerSpecified = ListHelper.cloneList(Game.game.spieler);
     }
 
     private void evaluateSpieler(List<SpielerDto> spieler) {

@@ -8,7 +8,11 @@ import root.Frontend.FrontendControl;
 import root.Frontend.Page.Page;
 import root.Frontend.Utils.PageRefresher.Models.LoadMode;
 import root.Logic.Game;
-import root.Logic.Phases.*;
+import root.Logic.Phases.Day;
+import root.Logic.Phases.NormalNight;
+import root.Logic.Phases.PhaseManager;
+import root.Logic.Phases.PhaseMode;
+import root.Logic.Phases.SetupNight;
 import root.ResourceManagement.DataManager;
 import root.Utils.ListHelper;
 
@@ -35,10 +39,9 @@ public class GameController {
         spielerFrame = new SpielerFrame(erzählerFrame);
 
         if (loadMode == LoadMode.COMPOSITION) {
-            dataManager.loadLastComposition();
+            dataManager.loadLastComposition(); //TODO load with a thread so playersetuppage can be displayed as soon as all the players are loaded
         } else if (loadMode == LoadMode.GAME) {
             dataManager.loadLastGame();
-            Game.game.spielerSpecified = ListHelper.cloneList(Game.game.spieler);
         }
 
         erzählerFrame.generateAllPageRefreshers();
@@ -52,13 +55,11 @@ public class GameController {
     }
 
     public static void writeComposition() {
-        //TODO thread composition writing
-        dataManager.writeComposition();
+        new Thread(() -> dataManager.writeComposition()).start();
     }
 
     public static void writeGame() {
-        //TODO thread composition writing
-        dataManager.writeGame();
+        new Thread(() -> dataManager.writeGame()).start();
     }
 
     public static void respawnFrames() {
