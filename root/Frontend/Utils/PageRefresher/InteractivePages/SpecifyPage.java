@@ -54,17 +54,16 @@ public class SpecifyPage extends RefreshedPage {
 
     @Override
     public void processActionEvent(ActionEvent ae) {
-        JButton source = (JButton) ae.getSource();
-        if (next.equals(source)) {
-            erzählerFrame.currentInteractivePage = null;
+        if (next.equals(ae.getSource())) {
             if (allPlayersSpecified()) {
+                erzählerFrame.currentInteractivePage = null;
                 GameController.startGame();
             } else {
                 specifyPlayer();
             }
-        } else if (back.equals(source)) {
+        } else if (back.equals(ae.getSource())) {
             erzählerFrame.prevPage();
-        } else if (deleteButtons.contains(source)) {
+        } else if (deleteButtons.contains(ae.getSource())) {
             deleteSpecifiedPlayer(ae);
         }
     }
