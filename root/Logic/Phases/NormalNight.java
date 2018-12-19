@@ -262,9 +262,8 @@ public class NormalNight extends Thread {
 
                         case Wahrsager.STATEMENT_ID:
                             Spieler wahrsagerSpieler2 = Game.game.findSpielerPerRolle(Wahrsager.ID);
-                            Spieler deadWahrsagerSpieler = Game.game.findSpielerOrDeadPerRolle(Wahrsager.ID);
                             if (wahrsagerSpieler2 != null) {
-                                Wahrsager wahrsager = (Wahrsager) deadWahrsagerSpieler.bonusrolle; //TODO Rolle rolle ?
+                                Wahrsager wahrsager = (Wahrsager) rolle;
                                 if (wahrsager.guessedRight() && !Game.game.firstNight) {
                                     statement.title = Wahrsager.REWARD_TITLE;
                                     chosenOption = showFrontendControl(statement, wahrsager.getInfo());
