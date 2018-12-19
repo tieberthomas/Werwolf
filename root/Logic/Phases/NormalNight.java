@@ -189,7 +189,7 @@ public class NormalNight extends Thread {
                             break;
 
                         case Wölfin.STATEMENT_ID:
-                            if (!"".equals(chosenOption)) {
+                            if (!chosenOption.isEmpty()) {
                                 wölfinKilled = true;
                                 wölfinSpieler = Game.game.findSpielerPerRolle(Wölfin.ID);
                             }
@@ -221,7 +221,7 @@ public class NormalNight extends Thread {
                                 neuerWerwolf = chosenSpieler.name;
                             }
 
-                            showListShowImage(statement, neuerWerwolf, Werwölfe.IMAGE_PATH); //TODO evalueren obs schönere lösung gibt
+                            showListShowImage(statement, neuerWerwolf, Chemiker.FRAKTION.imagePath);
                             break;
 
                         case Nachtfürst.TÖTEN_ID:
