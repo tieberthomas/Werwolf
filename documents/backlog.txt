@@ -4,6 +4,7 @@ Tote Fraktionen verschwinden wenn sie tot sind ? - 2
 3. Nachtfürst 5 - 7
 nachtfürst wird angezeigt wenn er als nicht tötender richtig gelegen hat ? - 1
 "Alle Rollen Löschen" Button ? - 2
+Holde Maid, Sammler, Detektiv, Schreckenswolf und Wahrsager einrexen 2
 
 Eingereihte Tasks
 4. wenn dieb eine Karte stiehlt, und man auf weiter klickt wird sofort die neue Bonusrolle gezeigt, verlangt hohe vorsichtigkeit des erzählers 1 - 1
@@ -16,7 +17,6 @@ Fürs erste nicht umsetzbare Tasks da Gegebenheiten unklar sind oder evtl. die K
 
 Nicht einpriorisierte Tasks:
 
-Holde Maid, Sammler, Detektiv, Schreckenswolf und Wahrsager einrexen 2
 Blutwolf bekommt alle Wolfskills 3
 Wölfin verliert Nachteil + bei jeden Wolf kill 5
 Neuer Wolf (arbeitstitel Alphawolf) der jede 3. Nacht extrakill bekommt 5
