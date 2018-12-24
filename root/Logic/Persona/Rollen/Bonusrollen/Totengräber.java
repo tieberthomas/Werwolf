@@ -49,7 +49,7 @@ public class Totengräber extends Bonusrolle {
         Bonusrolle chosenBonusrolle = Game.game.findBonusrollePerName(chosenOption);
         if (chosenBonusrolle != null) {
             try {
-                Spieler deadSpieler = Game.game.findSpielerOrDeadPerRolle(chosenBonusrolle.id);
+                Spieler deadSpieler = Game.game.findSpielerPerRolle(chosenBonusrolle.id);
                 Spieler spielerTotengräber = Game.game.findSpielerPerRolle(this.id);
 
                 spielerTotengräber.bonusrolle = chosenBonusrolle;

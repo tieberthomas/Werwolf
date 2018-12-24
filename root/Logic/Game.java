@@ -246,12 +246,6 @@ public class Game {
                 .findAny().orElse(null);
     }
 
-    public Spieler findSpielerOrDeadPerRolle(String rolleID) { //TODO zusammenfassen (Artefakt von Sammler)
-        return spieler.stream()
-                .filter(spieler -> spieler.hauptrolle.equals(rolleID) || spieler.bonusrolle.equals(rolleID))
-                .findAny().orElse(null);
-    }
-
     public DropdownOptions getSpielerDropdownOptions(boolean addNone) {
         List<String> spielerStrings = spieler.stream()
                 .filter(spieler -> spieler.lebend)
