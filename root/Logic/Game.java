@@ -124,7 +124,6 @@ public class Game {
 
     private void generateAllAvailableHauptrollen() {
         hauptrollen.add(new Dorfbewohner());
-        hauptrollen.add(new HoldeMaid());
         hauptrollen.add(new Irrlicht());
         hauptrollen.add(new Orakel());
         hauptrollen.add(new Riese());

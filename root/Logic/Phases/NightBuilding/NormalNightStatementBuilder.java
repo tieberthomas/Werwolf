@@ -54,7 +54,6 @@ public class NormalNightStatementBuilder {
             addStatementRolle(Überläufer.ID);
         }
 
-        addStatementRolle(HoldeMaid.ID);
         addStatementRolle(Irrlicht.ID);
         addSecondStatementRolle(Irrlicht.ID);
         //TODO comment entfernen wenn detektiv wirklich gerext wird
