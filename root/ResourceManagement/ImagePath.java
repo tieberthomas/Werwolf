@@ -46,7 +46,6 @@ public class ImagePath {
     public static String IRRLICHT_KARTE = BÜRGER_PATH + "Irrlicht" + IMAGE_FILE_EXTENSION;
     public static String ORAKEL_KARTE = BÜRGER_PATH + "Orakel" + IMAGE_FILE_EXTENSION;
     public static String RIESE_KARTE = BÜRGER_PATH + "Riese" + IMAGE_FILE_EXTENSION;
-    public static String SAMMLER_KARTE = BÜRGER_PATH + "Sammler" + IMAGE_FILE_EXTENSION;
     public static String SCHAMANIN_KARTE = BÜRGER_PATH + "Schamanin" + IMAGE_FILE_EXTENSION;
     public static String SCHATTENMENSCH_KARTE = BÜRGER_PATH + "Schattenmensch" + IMAGE_FILE_EXTENSION;
     public static String SEHERIN_KARTE = BÜRGER_PATH + "Seherin" + IMAGE_FILE_EXTENSION;

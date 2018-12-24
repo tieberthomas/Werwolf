@@ -4,7 +4,6 @@ import root.Frontend.FrontendControl;
 import root.Logic.Game;
 import root.Logic.KillLogic.Opfer;
 import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Irrlicht;
-import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Sammler;
 import root.Logic.Phases.Statement.Constants.StatementState;
 import root.Logic.Spieler;
 
@@ -82,10 +81,6 @@ public class Rolle extends Persona {
     public static boolean rolleContainedInNight(String rolleID) {
         if (Game.game.getHauptrolleInGameIDs().contains(rolleID) || Game.game.getBonusrolleInGameIDs().contains(rolleID)) {
             if (rolleLebend(rolleID)) {
-                return true;
-            }
-
-            if (hauptRolleContainedInNight(Sammler.ID) && Sammler.isSammlerRolle(rolleID)) {
                 return true;
             }
 

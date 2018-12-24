@@ -19,7 +19,6 @@ import root.Logic.Persona.Rollen.Constants.BonusrollenType.Tarnumhang_Bonusrolle
 import root.Logic.Persona.Rollen.Constants.SchnüfflerInformation;
 import root.Logic.Persona.Rollen.Constants.Zeigekarten.*;
 import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Irrlicht;
-import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Sammler;
 import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Wirt;
 import root.Logic.Persona.Rollen.Hauptrollen.Schattenpriester.Schattenpriester;
 import root.Logic.Persona.Rollen.Hauptrollen.Vampire.GrafVladimir;
@@ -482,12 +481,6 @@ public class NormalNight extends Thread {
 
         if (Rolle.rolleLebend(Konditorlehrling.ID) && !Opfer.isOpferPerRolle(Konditorlehrling.ID) && Rolle.rolleAktiv(Konditorlehrling.ID)) {
             return true;
-        }
-
-        if (Sammler.isSammlerRolle(Konditor.ID) || Sammler.isSammlerRolle(Konditorlehrling.ID)) {
-            if (Rolle.rolleLebend(Sammler.ID) && !Opfer.isOpferPerRolle(Sammler.ID) && Rolle.rolleAktiv(Sammler.ID)) { //TODO kann man durch nur rolleAktiv ersetzen?
-                return true;
-            }
         }
 
         return false;

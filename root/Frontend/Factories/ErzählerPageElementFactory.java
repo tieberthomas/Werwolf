@@ -7,11 +7,9 @@ import root.Frontend.Page.PageElement;
 import root.Frontend.Page.PageTable;
 import root.Frontend.Page.Predecessor;
 import root.Logic.Persona.Bonusrolle;
-import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Sammler;
 import root.Logic.Phases.Statement.Constants.StatementState;
 import root.Logic.Phases.Statement.Constants.StatementType;
 import root.Logic.Phases.Statement.Statement;
-import root.Logic.Phases.Statement.StatementDependency.StatementDependencyRolle;
 
 import javax.swing.*;
 import java.awt.*;
@@ -240,16 +238,7 @@ public class ErzählerPageElementFactory {
 
         for (Statement statement : statements) {
             if (statement.state != StatementState.INVISIBLE_NOT_IN_GAME && statement.type != StatementType.PROGRAM) {
-                String beschreibung = statement.beschreibung;
-
-                if (statement.dependency instanceof StatementDependencyRolle) {
-                    StatementDependencyRolle statementDependencyRolle = (StatementDependencyRolle) statement.dependency;
-                    if (Sammler.isSammlerRolle(statementDependencyRolle.rolle.id)) {
-                        beschreibung = statement.sammlerBeschreibung;
-                    }
-                }
-
-                statementStrings.add(beschreibung);
+                statementStrings.add(statement.beschreibung);
 
                 if ((statement.state == StatementState.NOT_IN_GAME)) {
                     if (statement.id.equals(currentStatement)) {

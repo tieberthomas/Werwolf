@@ -124,7 +124,6 @@ public class Game {
         hauptrollen.add(new Irrlicht());
         hauptrollen.add(new Orakel());
         hauptrollen.add(new Riese());
-        hauptrollen.add(new Sammler());
         hauptrollen.add(new Schamanin());
         hauptrollen.add(new Schattenmensch());
         hauptrollen.add(new Seherin());
@@ -242,20 +241,12 @@ public class Game {
     }
 
     public Spieler findSpielerPerRolle(String rolleID) {
-        if (Sammler.isSammlerRolle(rolleID)) {
-            return findSpielerPerRolle(Sammler.ID);
-        }
-
-        for (Spieler currentSpieler : spieler) {
-            if (currentSpieler.hauptrolle.equals(rolleID) || currentSpieler.bonusrolle.equals(rolleID)) {
-                return currentSpieler;
-            }
-        }
-
-        return null;
+        return spieler.stream()
+                .filter(spieler -> spieler.hauptrolle.equals(rolleID) || spieler.bonusrolle.equals(rolleID))
+                .findAny().orElse(null);
     }
 
-    public Spieler findSpielerOrDeadPerRolle(String rolleID) {
+    public Spieler findSpielerOrDeadPerRolle(String rolleID) { //TODO zusammenfassen (Artefakt von Sammler)
         return spieler.stream()
                 .filter(spieler -> spieler.hauptrolle.equals(rolleID) || spieler.bonusrolle.equals(rolleID))
                 .findAny().orElse(null);
