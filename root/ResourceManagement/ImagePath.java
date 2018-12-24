@@ -65,7 +65,6 @@ public class ImagePath {
     public static String BLUTWOLF_KARTE = WÖLFE_PATH + "Blutwolf" + IMAGE_FILE_EXTENSION;
     public static String CHEMIKER_KARTE = WÖLFE_PATH + "Chemiker" + IMAGE_FILE_EXTENSION;
     public static String GEISTERWOLF_KARTE = WÖLFE_PATH + "Geisterwolf" + IMAGE_FILE_EXTENSION;
-    public static String SCHRECKENSWOLF_KARTE = WÖLFE_PATH + "Schreckenswolf" + IMAGE_FILE_EXTENSION;
     public static String WERWOLF_KARTE = WÖLFE_PATH + "Werwolf" + IMAGE_FILE_EXTENSION;
     public static String WÖLFIN_KARTE = WÖLFE_PATH + "Wölfin" + IMAGE_FILE_EXTENSION;
     public static String WOLFSMENSCH_KARTE = WÖLFE_PATH + "Wolfsmensch" + IMAGE_FILE_EXTENSION;

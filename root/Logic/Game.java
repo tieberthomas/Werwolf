@@ -137,7 +137,6 @@ public class Game {
         hauptrollen.add(new Blutwolf());
         hauptrollen.add(new Chemiker());
         hauptrollen.add(new Geisterwolf());
-        hauptrollen.add(new Schreckenswolf());
         hauptrollen.add(new Werwolf());
         hauptrollen.add(new Wolfsmensch());
         hauptrollen.add(new Wölfin());

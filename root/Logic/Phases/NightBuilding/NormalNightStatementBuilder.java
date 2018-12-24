@@ -13,7 +13,6 @@ import root.Logic.Persona.Rollen.Hauptrollen.Vampire.GrafVladimir;
 import root.Logic.Persona.Rollen.Hauptrollen.Vampire.LadyAleera;
 import root.Logic.Persona.Rollen.Hauptrollen.Vampire.MissVerona;
 import root.Logic.Persona.Rollen.Hauptrollen.Werwölfe.Chemiker;
-import root.Logic.Persona.Rollen.Hauptrollen.Werwölfe.Schreckenswolf;
 import root.Logic.Persona.Rollen.Hauptrollen.Werwölfe.Wölfin;
 import root.Logic.Persona.Rollen.Hauptrollen.Überläufer.Henker;
 import root.Logic.Persona.Rollen.Hauptrollen.Überläufer.Überläufer;
@@ -78,7 +77,6 @@ public class NormalNightStatementBuilder {
         if (Wölfin.state == WölfinState.TÖTEND) {
             addStatementRolle(Wölfin.ID);
         }
-        addStatementRolle(Schreckenswolf.ID);
         addStatementFraktion(Vampire.ID);
 
         if (PhaseManager.nightCount != 1) {
@@ -116,8 +114,6 @@ public class NormalNightStatementBuilder {
 
         statements.add(IndieStatements.getAlleWachenAufStatement());
         statements.add(IndieStatements.getOpferStatement());
-
-        addSecondStatementRolle(Schreckenswolf.ID); //TODO verstummungsstatement nicht adden wenn schreckenswolf nur bamboozelrolle ist
 
         if (Wölfin.state == WölfinState.TÖTEND) {
             addSecondStatementRolle(Wölfin.ID);

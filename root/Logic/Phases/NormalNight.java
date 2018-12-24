@@ -25,7 +25,6 @@ import root.Logic.Persona.Rollen.Hauptrollen.Schattenpriester.Schattenpriester;
 import root.Logic.Persona.Rollen.Hauptrollen.Vampire.GrafVladimir;
 import root.Logic.Persona.Rollen.Hauptrollen.Werwölfe.Blutwolf;
 import root.Logic.Persona.Rollen.Hauptrollen.Werwölfe.Chemiker;
-import root.Logic.Persona.Rollen.Hauptrollen.Werwölfe.Schreckenswolf;
 import root.Logic.Persona.Rollen.Hauptrollen.Werwölfe.Wölfin;
 import root.Logic.Persona.Rollen.Hauptrollen.Überläufer.Henker;
 import root.Logic.Phases.NightBuilding.NormalNightStatementBuilder;
@@ -53,7 +52,6 @@ public class NormalNight extends Thread {
     public static List<Spieler> spielerAwake = new ArrayList<>();
     public static boolean wölfinKilled;
     public static Spieler wölfinSpieler;
-    public static Spieler beschworenerSpieler;
     public static Spieler gefälschterSpieler;
     public static Spieler getarnterSpieler;
     public List<String> opferDerNacht;
@@ -76,7 +74,6 @@ public class NormalNight extends Thread {
 
             wölfinKilled = false;
             wölfinSpieler = null;
-            beschworenerSpieler = null;
 
             statements = NormalNightStatementBuilder.normalNightBuildStatements();
 
@@ -160,17 +157,6 @@ public class NormalNight extends Thread {
                                 Henker henker = ((Henker) rolle);
                                 info = henker.processChosenOptionsGetInfo(Henker.chosenHauptrolle.name, Henker.chosenBonusrolle.name);
                                 showFrontendControl(statement, info);
-                            }
-                            break;
-
-                        case Schreckenswolf.STATEMENT_ID:
-                            Schreckenswolf schreckenswolf = (Schreckenswolf) rolle;
-                            if (schreckenswolf != null && schreckenswolf.werwölfeKilledOnSchutz()) {
-                                dropdownOptions = schreckenswolf.getDropdownOptionsFrontendControl();
-                                chosenOption = showFrontendControl(statement, dropdownOptions);
-                                schreckenswolf.processChosenOption(chosenOption);
-                            } else {
-                                showZeigekarte(statement, new Nicht_Aktiv());
                             }
                             break;
 
@@ -283,15 +269,6 @@ public class NormalNight extends Thread {
                             }
 
                             checkVictory();
-                            break;
-
-                        case Schreckenswolf.VERSTUMMT:
-                            if (beschworenerSpieler != null) {
-                                FrontendControl.erzählerListPage(statement, beschworenerSpieler.name);
-                                FrontendControl.spielerIconPicturePage(beschworenerSpieler.name, new Verstummt().imagePath);
-
-                                waitForAnswer();
-                            }
                             break;
 
                         case ProgramStatements.TORTE_ID:
