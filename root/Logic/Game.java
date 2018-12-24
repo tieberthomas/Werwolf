@@ -171,7 +171,6 @@ public class Game {
         bonusrollen.add(new Tarnumhang());
         bonusrollen.add(new Totengräber());
         bonusrollen.add(new Vampirumhang());
-        bonusrollen.add(new Wahrsager());
         bonusrollen.add(new Wolfspelz());
     }
 

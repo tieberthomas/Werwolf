@@ -14,24 +14,10 @@ import root.Logic.Persona.Fraktionen.Vampire;
 import root.Logic.Persona.Fraktionen.Werwölfe;
 import root.Logic.Persona.Hauptrolle;
 import root.Logic.Persona.Rolle;
-import root.Logic.Persona.Rollen.Bonusrollen.Analytiker;
-import root.Logic.Persona.Rollen.Bonusrollen.Konditor;
-import root.Logic.Persona.Rollen.Bonusrollen.Konditorlehrling;
-import root.Logic.Persona.Rollen.Bonusrollen.Nachtfürst;
-import root.Logic.Persona.Rollen.Bonusrollen.Prostituierte;
-import root.Logic.Persona.Rollen.Bonusrollen.Schattenkutte;
-import root.Logic.Persona.Rollen.Bonusrollen.SchwarzeSeele;
-import root.Logic.Persona.Rollen.Bonusrollen.Wahrsager;
+import root.Logic.Persona.Rollen.Bonusrollen.*;
 import root.Logic.Persona.Rollen.Constants.BonusrollenType.Tarnumhang_BonusrollenType;
 import root.Logic.Persona.Rollen.Constants.SchnüfflerInformation;
-import root.Logic.Persona.Rollen.Constants.Zeigekarten.Aufgebraucht;
-import root.Logic.Persona.Rollen.Constants.Zeigekarten.AusDemSpiel;
-import root.Logic.Persona.Rollen.Constants.Zeigekarten.Deaktiviert;
-import root.Logic.Persona.Rollen.Constants.Zeigekarten.Nicht_Aktiv;
-import root.Logic.Persona.Rollen.Constants.Zeigekarten.Torten_Zeigekarte;
-import root.Logic.Persona.Rollen.Constants.Zeigekarten.Tot;
-import root.Logic.Persona.Rollen.Constants.Zeigekarten.Verstummt;
-import root.Logic.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
+import root.Logic.Persona.Rollen.Constants.Zeigekarten.*;
 import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Irrlicht;
 import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Sammler;
 import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Wirt;
@@ -257,20 +243,6 @@ public class NormalNight extends Thread {
                                     String answer = analytiker.analysiere(chosenSpieler1, chosenSpieler2);
                                     showList(statement, answer);
                                 }
-                            }
-                            break;
-
-                        case Wahrsager.STATEMENT_ID:
-                            Spieler wahrsagerSpieler2 = Game.game.findSpielerPerRolle(Wahrsager.ID);
-                            if (wahrsagerSpieler2 != null) {
-                                Wahrsager wahrsager = (Wahrsager) rolle;
-                                if (wahrsager.guessedRight() && !Game.game.firstNight) {
-                                    statement.title = Wahrsager.REWARD_TITLE;
-                                    chosenOption = showFrontendControl(statement, wahrsager.getInfo());
-                                } else {
-                                    chosenOption = showFrontendControl(statement, wahrsager.getDropdownOptionsFrontendControl());
-                                }
-                                wahrsager.tipp = Fraktion.findFraktionPerName(chosenOption);
                             }
                             break;
 

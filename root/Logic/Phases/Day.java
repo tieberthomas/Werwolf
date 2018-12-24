@@ -7,7 +7,6 @@ import root.Logic.Game;
 import root.Logic.Persona.Fraktion;
 import root.Logic.Persona.Fraktionen.Bürger;
 import root.Logic.Persona.Rollen.Bonusrollen.ReineSeele;
-import root.Logic.Persona.Rollen.Bonusrollen.Wahrsager;
 import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Schattenmensch;
 import root.Logic.Spieler;
 import root.ResourceManagement.ImagePath;
@@ -72,13 +71,10 @@ public class Day extends Thread {
                     waitForAnswer();
                 } else {
                     killSpielerCheckLiebespaar(chosenSpieler);
-                    Wahrsager.opferFraktion = chosenSpieler.getFraktion();
                     checkPriester(chosenSpieler);
                 }
 
                 checkRichterin(chosenSpieler);
-            } else {
-                Wahrsager.opferFraktion = null;
             }
 
             while (umbringenButton) {

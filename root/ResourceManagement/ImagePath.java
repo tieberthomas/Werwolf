@@ -92,7 +92,6 @@ public class ImagePath {
     public static String TARNUMHANG_KARTE = BONUSROLLEN_PATH + "Tarnumhang" + IMAGE_FILE_EXTENSION;
     public static String TOTENGRÄBER_KARTE = BONUSROLLEN_PATH + "Totengräber" + IMAGE_FILE_EXTENSION;
     public static String VAMPIRUMHANG_KARTE = BONUSROLLEN_PATH + "Vampirumhang" + IMAGE_FILE_EXTENSION;
-    public static String WAHRSAGER_KARTE = BONUSROLLEN_PATH + "Wahrsager" + IMAGE_FILE_EXTENSION;
     public static String WOLFSPELZ_KARTE = BONUSROLLEN_PATH + "Wolfspelz" + IMAGE_FILE_EXTENSION;
 
     public static String FEINSCHMECKER_KARTE = OFFENE_BONUSROLLEN_PATH + "Feinschmecker" + IMAGE_FILE_EXTENSION;
