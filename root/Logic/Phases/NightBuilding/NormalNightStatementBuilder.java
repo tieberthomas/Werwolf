@@ -56,8 +56,7 @@ public class NormalNightStatementBuilder {
 
         addStatementRolle(Irrlicht.ID);
         addSecondStatementRolle(Irrlicht.ID);
-        //TODO comment entfernen wenn detektiv wirklich gerext wird
-        //Detektiv erwacht, schätzt die Anzahl der Bürger und bekommt ggf. eine Bürgerhauptrolle die im Spiel ist gezeigt
+
         addStatementRolle(Schamanin.ID);
 
         statements.add(ProgramStatements.getSchützeStatement());
