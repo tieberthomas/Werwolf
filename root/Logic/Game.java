@@ -54,9 +54,6 @@ public class Game {
     public List<Bonusrolle> stillAvailableBonusrollen = new ArrayList<>();
     public List<Spieler> spielerSpecified = new ArrayList<>();
 
-    public boolean firstNight = true;
-    private boolean started = false;
-
     public Game() {
         Game.game = this;
 

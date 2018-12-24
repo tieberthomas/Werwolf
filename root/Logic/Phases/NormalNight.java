@@ -430,8 +430,6 @@ public class NormalNight extends Thread {
     private void cleanUpNight() {
         checkNachtfürstGuess();
 
-        Game.game.firstNight = false;
-
         for (Spieler currentSpieler : Game.game.spieler) {
             currentSpieler.aktiv = true;
             currentSpieler.geschützt = false;
