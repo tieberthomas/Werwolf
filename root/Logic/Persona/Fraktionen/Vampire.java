@@ -49,6 +49,8 @@ public class Vampire extends Fraktion {
         this.setupNightStatementTitle = SETUP_NIGHT_STATEMENT_TITLE;
         this.setupNightStatementBeschreibung = SETUP_NIGHT_STATEMENT_BESCHREIBUNG;
         this.setupNightStatementType = SETUP_NIGHT_STATEMENT_TYPE;
+
+        this.toetend = true;
     }
 
     @Override

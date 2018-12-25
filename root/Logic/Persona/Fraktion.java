@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 
 public class Fraktion extends Persona {
     public Zeigekarte zeigekarte = new BürgerZeigekarte();
+    public boolean toetend = false;
 
     public static List<Spieler> getFraktionsMembers(String fraktionID) {
         List<Spieler> fraktionsMembers = new ArrayList<>();
@@ -113,7 +114,7 @@ public class Fraktion extends Persona {
 
             if (fraktionSpieler.equals(fraktionID) && currentSpieler.aktiv) {
                 if (fraktionID.equals(Werwölfe.ID)) {
-                    if(currentSpieler.hauptrolle.killing) {
+                    if (currentSpieler.hauptrolle.killing) {
                         return true;
                     }
                 } else {

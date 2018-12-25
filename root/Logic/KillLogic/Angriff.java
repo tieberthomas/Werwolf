@@ -89,7 +89,7 @@ public class Angriff {
             schamaninSpieler.hauptrolle.abilityCharges++;
         }
 
-        if (isDeadly()) {
+        if (killIsSuccessfull()) {
             NormalNight.opfer.add(new Opfer(this));
 
             if (!ressurectable) {
@@ -104,24 +104,28 @@ public class Angriff {
         }
     }
 
-    private boolean isDeadly() {
+    private boolean killIsSuccessfull() {
         if (defendable) {
             if (opfer.geschützt) {
                 return false;
             }
             if (opfer.bonusrolle.equals(Wolfspelz.ID) && täterFraktion.equals(Werwölfe.ID)) {
-                return false;
+                Wolfspelz wolfspelz = (Wolfspelz) opfer.bonusrolle;
+                if(wolfspelz.schutzAktiv) {
+                    wolfspelz.consumeSchutzIfNecessary();
+                    return false;
+                }
             }
             if (opfer.bonusrolle.equals(Vampirumhang.ID) && täterFraktion.equals(Vampire.ID)) {
-                return false;
+                Vampirumhang vampirumhang = (Vampirumhang) opfer.bonusrolle;
+                if(vampirumhang.schutzAktiv) {
+                    vampirumhang.consumeSchutzIfNecessary();
+                    return false;
+                }
             }
         }
 
-        if (hideable && opferIsHiding()) {
-            return false;
-        }
-
-        return true;
+        return !(hideable && opferIsHiding());
     }
 
     private boolean opferIsGeschütztSchamanin() {

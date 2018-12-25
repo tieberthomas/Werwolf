@@ -27,6 +27,8 @@ public class Wolfspelz extends Bonusrolle {
     public static final String SETUP_NIGHT_STATEMENT_BESCHREIBUNG = "Träger des Wolfspelzes erwacht und tauscht ggf. seine Karte aus";
     public static final StatementType SETUP_NIGHT_STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
 
+    public boolean schutzAktiv = true;
+
     public Wolfspelz() {
         this.id = ID;
         this.name = NAME;
@@ -69,5 +71,11 @@ public class Wolfspelz extends Bonusrolle {
 
     public Zeigekarte getFraktionInfo() {
         return new WerwölfeZeigekarte();
+    }
+
+    public void consumeSchutzIfNecessary() { //TODO make überklasse for wolfspelz and vampirumhang
+        if (Game.game.onlyOneToetendeFraktion()) {
+            schutzAktiv = false;
+        }
     }
 }

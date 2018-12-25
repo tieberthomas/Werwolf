@@ -30,6 +30,7 @@ import root.Utils.ListHelper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Game {
@@ -496,5 +497,20 @@ public class Game {
         return getIrrlichter().stream()
                 .map(spieler -> spieler.name)
                 .collect(Collectors.toList());
+    }
+
+    public boolean onlyOneToetendeFraktion() {
+        Map<String, Long> counters = amStartZugeteilteHauptrollen.stream()
+                .collect(Collectors.groupingBy(hauptrolle -> hauptrolle.fraktion.id, Collectors.counting()));
+
+        int numberOfToetendeFraktion = 0;
+
+        for (Map.Entry<String, Long> entry : counters.entrySet()) {
+            if (Fraktion.findFraktion(entry.getKey()).toetend) {
+                numberOfToetendeFraktion++;
+            }
+        }
+
+        return numberOfToetendeFraktion == 1;
     }
 }
