@@ -7,7 +7,6 @@ import root.Logic.Persona.Fraktionen.Vampire;
 import root.Logic.Persona.Fraktionen.Werwölfe;
 import root.Logic.Persona.Rolle;
 import root.Logic.Persona.Rollen.Bonusrollen.*;
-import root.Logic.Persona.Rollen.Constants.WölfinState;
 import root.Logic.Persona.Rollen.Hauptrollen.Bürger.*;
 import root.Logic.Persona.Rollen.Hauptrollen.Vampire.GrafVladimir;
 import root.Logic.Persona.Rollen.Hauptrollen.Vampire.LadyAleera;
@@ -78,7 +77,7 @@ public class NormalNightStatementBuilder {
         if (PhaseManager.nightCount % 3 == 0) {
             addStatementRolle(Alphawolf.ID);
         }
-        if (Wölfin.state == WölfinState.TÖTEND) {
+        if (Wölfin.stateKilling) {
             addStatementRolle(Wölfin.ID);
         }
         addStatementFraktion(Vampire.ID);
@@ -118,10 +117,6 @@ public class NormalNightStatementBuilder {
 
         statements.add(IndieStatements.getAlleWachenAufStatement());
         statements.add(IndieStatements.getOpferStatement());
-
-        if (Wölfin.state == WölfinState.TÖTEND) {
-            addSecondStatementRolle(Wölfin.ID);
-        }
 
         statements.add(ProgramStatements.getTortenStatement());
 

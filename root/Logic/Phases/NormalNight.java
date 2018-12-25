@@ -24,7 +24,6 @@ import root.Logic.Persona.Rollen.Hauptrollen.Schattenpriester.Schattenpriester;
 import root.Logic.Persona.Rollen.Hauptrollen.Vampire.GrafVladimir;
 import root.Logic.Persona.Rollen.Hauptrollen.Werwölfe.Blutwolf;
 import root.Logic.Persona.Rollen.Hauptrollen.Werwölfe.Chemiker;
-import root.Logic.Persona.Rollen.Hauptrollen.Werwölfe.Wölfin;
 import root.Logic.Persona.Rollen.Hauptrollen.Überläufer.Henker;
 import root.Logic.Phases.NightBuilding.NormalNightStatementBuilder;
 import root.Logic.Phases.Statement.Constants.IndieStatements;
@@ -49,8 +48,6 @@ public class NormalNight extends Thread {
     public static List<Opfer> opfer = new ArrayList<>();
 
     public static List<Spieler> spielerAwake = new ArrayList<>();
-    public static boolean wölfinKilled;
-    public static Spieler wölfinSpieler;
     public static Spieler gefälschterSpieler;
     public static Spieler getarnterSpieler;
     public List<String> opferDerNacht;
@@ -70,9 +67,6 @@ public class NormalNight extends Thread {
             Fraktion fraktion = null;
 
             String erzählerInfoIconImagePath;
-
-            wölfinKilled = false;
-            wölfinSpieler = null;
 
             statements = NormalNightStatementBuilder.normalNightBuildStatements();
 
@@ -158,13 +152,6 @@ public class NormalNight extends Thread {
                                 Henker henker = ((Henker) rolle);
                                 info = henker.processChosenOptionsGetInfo(Henker.chosenHauptrolle.name, Henker.chosenBonusrolle.name);
                                 showFrontendControl(statement, info);
-                            }
-                            break;
-
-                        case Wölfin.STATEMENT_ID:
-                            if (!chosenOption.isEmpty()) {
-                                wölfinKilled = true;
-                                wölfinSpieler = Game.game.findSpielerPerRolle(Wölfin.ID);
                             }
                             break;
 

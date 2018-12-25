@@ -13,7 +13,6 @@ import root.Logic.Persona.Hauptrolle;
 import root.Logic.Persona.Rolle;
 import root.Logic.Persona.Rollen.Bonusrollen.*;
 import root.Logic.Persona.Rollen.Constants.DropdownConstants;
-import root.Logic.Persona.Rollen.Constants.WölfinState;
 import root.Logic.Persona.Rollen.Hauptrollen.Bürger.*;
 import root.Logic.Persona.Rollen.Hauptrollen.Schattenpriester.Schattenpriester;
 import root.Logic.Persona.Rollen.Hauptrollen.Vampire.GrafVladimir;
@@ -209,10 +208,8 @@ public class Game {
                 mitteBonusrollen.add(bonusrolle); //TODO methode auslagern?
             }
 
-            if (Rolle.rolleLebend(Wölfin.ID) && Wölfin.state == WölfinState.WARTEND) {
-                if (hauptrolle.fraktion.equals(Werwölfe.ID)) {
-                    Wölfin.state = WölfinState.TÖTEND;
-                }
+            if (Rolle.rolleLebend(Wölfin.ID) && hauptrolle.fraktion.equals(Werwölfe.ID)) {
+                Wölfin.stateKilling = true;
             }
 
             //TODO rolle.cleanUp()
