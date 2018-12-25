@@ -354,14 +354,6 @@ public class Game {
                 .count();
     }
 
-    public void addAllHauptrollenToGame() {
-        hauptrollenInGame.clear();
-        spielerSpecified.clear();
-        hauptrollenInGame.addAll(hauptrollen);
-        hauptrollenInGame.remove(findHauptrolle(Dorfbewohner.ID));
-        hauptrollenInGame.remove(findHauptrolle(Werwolf.ID));
-    }
-
     public List<String> getBonusrollenButtonNames() {
         return bonusrollen.stream()
                 .filter(r -> !(r.equals(SchwarzeSeele.ID) || r.equals(ReineSeele.ID)))
@@ -413,15 +405,6 @@ public class Game {
                 .count();
     }
 
-    public void addAllBonusrollen() {
-        bonusrollenInGame.clear();
-        spielerSpecified.clear();
-        bonusrollenInGame.addAll(bonusrollen);
-        bonusrollenInGame.remove(findBonusrolle(Schatten.ID));
-        bonusrollenInGame.remove(findBonusrolle(SchwarzeSeele.ID));
-        bonusrollenInGame.remove(findBonusrolle(ReineSeele.ID));
-    }
-
     public List<Spieler> getSpielerUnspecified() {
         List<Spieler> spielerUnspecified = ListHelper.cloneList(spieler);
         spielerUnspecified.removeAll(spielerSpecified);
@@ -449,7 +432,7 @@ public class Game {
     public List<Hauptrolle> getHauptrollenUnspecified() {
         List<Hauptrolle> hauptrollenUnspecified = ListHelper.cloneList(hauptrollenInGame);
 
-        getHauptrollenSpecified().forEach(hauptrollenUnspecified::remove);
+        hauptrollenUnspecified.removeAll(getHauptrollenSpecified());
 
         return hauptrollenUnspecified;
     }
@@ -472,10 +455,10 @@ public class Game {
                 .collect(Collectors.toList());
     }
 
-    public List<Bonusrolle> getBonusrollenUnspecified() {
+    private List<Bonusrolle> getBonusrollenUnspecified() {
         List<Bonusrolle> bonusrollenUnspecified = ListHelper.cloneList(bonusrollenInGame);
 
-        getBonusrollenSpecified().forEach(bonusrollenUnspecified::remove);
+        bonusrollenUnspecified.removeAll(getBonusrollenSpecified());
 
         return bonusrollenUnspecified;
     }
@@ -489,13 +472,14 @@ public class Game {
     public List<Spieler> getIrrlichter() {
         List<Spieler> livingSpieler = getLivingSpieler();
         return livingSpieler.stream()
-                .filter(p -> p.hauptrolle.equals(Irrlicht.ID))
+                .filter(spieler -> spieler.hauptrolle.equals(Irrlicht.ID) || spieler.bonusrolle.equals(SchwarzeSeele.ID))
                 .collect(Collectors.toList());
     }
 
     public List<String> getIrrlichterStrings() {
         return getIrrlichter().stream()
                 .map(spieler -> spieler.name)
+                .distinct()
                 .collect(Collectors.toList());
     }
 

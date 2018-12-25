@@ -8,6 +8,7 @@ import root.Logic.KillLogic.Selbstmord;
 import root.Logic.Persona.Fraktion;
 import root.Logic.Persona.Fraktionen.Bürger;
 import root.Logic.Persona.Hauptrolle;
+import root.Logic.Persona.Rollen.Bonusrollen.SchwarzeSeele;
 import root.Logic.Phases.Statement.Constants.StatementType;
 import root.Logic.Spieler;
 import root.ResourceManagement.ImagePath;
@@ -34,7 +35,7 @@ public class Irrlicht extends Hauptrolle {
 
     private static final String LAST_IRRLICHT_MESSAGE = "Du bist das letzte Irrlicht";
 
-    private static List<String> geseheneIrrlichter = new ArrayList<>();
+    public List<String> geseheneIrrlichter = new ArrayList<>();
 
     public Irrlicht() {
         this.id = ID;
@@ -66,8 +67,7 @@ public class Irrlicht extends Hauptrolle {
 
         if (numberFlackerndeIrrlichter == 1) {
             Spieler einzigesFlackerndesIrrlicht = Game.game.findSpieler(flackerndeIrrlichter.get(0));
-            Irrlicht irrlicht = ((Irrlicht) einzigesFlackerndesIrrlicht.hauptrolle);
-            String randomIrrlicht = irrlicht.getRandomUnseenIrrlichtSpieler(einzigesFlackerndesIrrlicht.name);
+            String randomIrrlicht = getRandomUnseenIrrlichtSpieler(einzigesFlackerndesIrrlicht);
 
             if (randomIrrlicht != null) {
                 return new FrontendControl(SECOND_STATEMENT_TITLE, randomIrrlicht);
@@ -82,8 +82,8 @@ public class Irrlicht extends Hauptrolle {
         return new FrontendControl(SECOND_STATEMENT_TITLE);
     }
 
-    private String getRandomUnseenIrrlichtSpieler(String einzigesFlackerndesIrrlichtName) {
-        List<String> unseenIrrlichter = getAllUnseenIrrlichter(einzigesFlackerndesIrrlichtName);
+    private static String getRandomUnseenIrrlichtSpieler(Spieler einzigesFlackerndesIrrlicht) {
+        List<String> unseenIrrlichter = getAllUnseenIrrlichter(einzigesFlackerndesIrrlicht);
 
         if (unseenIrrlichter == null) {
             return null;
@@ -93,28 +93,47 @@ public class Irrlicht extends Hauptrolle {
 
         if (unseenIrrlichter.size() > 0) {
             irrlichtName = Rand.getRandomElement(unseenIrrlichter);
-            geseheneIrrlichter.add(irrlichtName);
+            addGesehenesIrrlicht(einzigesFlackerndesIrrlicht, irrlichtName);
         }
 
         return irrlichtName;
     }
 
-    private List<String> getAllUnseenIrrlichter(String einzigesFlackerndesIrrlichtName) {
+    private static void addGesehenesIrrlicht(Spieler irrlichtSpieler, String name) {
+        if (irrlichtSpieler.hauptrolle.equals(Irrlicht.ID)) {
+            ((Irrlicht) irrlichtSpieler.hauptrolle).geseheneIrrlichter.add(name);
+        } else if (irrlichtSpieler.bonusrolle.equals(SchwarzeSeele.ID)) {
+            ((SchwarzeSeele) irrlichtSpieler.bonusrolle).geseheneIrrlichter.add(name);
+        }
+    }
+
+    private static List<String> getAllUnseenIrrlichter(Spieler irrlichtSpieler) {
         List<String> irrlichter = Game.game.getIrrlichterStrings();
 
         if (irrlichter.size() == 1) {
             return null;
         }
 
+        List<String> geseheneIrrlichter = getGeseheneIrrlichter(irrlichtSpieler);
+
         irrlichter.removeAll(geseheneIrrlichter);
-        irrlichter.remove(einzigesFlackerndesIrrlichtName);
+        irrlichter.remove(irrlichtSpieler.name);
 
         if (irrlichter.size() == 0) {
             geseheneIrrlichter.clear();
-            return getAllUnseenIrrlichter(einzigesFlackerndesIrrlichtName);
+            return getAllUnseenIrrlichter(irrlichtSpieler);
         }
 
         return irrlichter;
+    }
+
+    private static List<String> getGeseheneIrrlichter(Spieler irrlichtSpieler) {
+        if (irrlichtSpieler.hauptrolle.equals(Irrlicht.ID)) {
+            return ((Irrlicht) irrlichtSpieler.hauptrolle).geseheneIrrlichter;
+        } else if (irrlichtSpieler.bonusrolle.equals(SchwarzeSeele.ID)) {
+            return ((SchwarzeSeele) irrlichtSpieler.bonusrolle).geseheneIrrlichter;
+        }
+        return new ArrayList<>();
     }
 
     private static Spieler getRandomIrrlichtToDie() {
