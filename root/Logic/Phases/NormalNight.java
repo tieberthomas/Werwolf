@@ -78,6 +78,8 @@ public class NormalNight extends Thread {
 
             beginNight();
 
+            System.out.println(PhaseManager.nightCount + ". Nacht beginnt!");
+
             for (Statement statement : statements) {
                 refreshStatementStates();
 
@@ -320,8 +322,7 @@ public class NormalNight extends Thread {
         }
 
         if (Rolle.rolleLebend(Prostituierte.ID)) {
-            Spieler prostituierte = Game.game.findSpielerPerRolle(Prostituierte.ID);
-            Prostituierte.host = prostituierte;
+            Prostituierte.host = Game.game.findSpielerPerRolle(Prostituierte.ID);
         }
 
         for (Spieler currentSpieler : Game.game.spieler) {

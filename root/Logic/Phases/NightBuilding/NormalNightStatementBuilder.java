@@ -12,6 +12,7 @@ import root.Logic.Persona.Rollen.Hauptrollen.Bürger.*;
 import root.Logic.Persona.Rollen.Hauptrollen.Vampire.GrafVladimir;
 import root.Logic.Persona.Rollen.Hauptrollen.Vampire.LadyAleera;
 import root.Logic.Persona.Rollen.Hauptrollen.Vampire.MissVerona;
+import root.Logic.Persona.Rollen.Hauptrollen.Werwölfe.Alphawolf;
 import root.Logic.Persona.Rollen.Hauptrollen.Werwölfe.Chemiker;
 import root.Logic.Persona.Rollen.Hauptrollen.Werwölfe.Wölfin;
 import root.Logic.Persona.Rollen.Hauptrollen.Überläufer.Henker;
@@ -74,6 +75,9 @@ public class NormalNightStatementBuilder {
         }
         addStatementRolle(Riese.ID);
         addStatementFraktion(Werwölfe.ID);
+        if (PhaseManager.nightCount % 3 == 0) {
+            addStatementRolle(Alphawolf.ID);
+        }
         if (Wölfin.state == WölfinState.TÖTEND) {
             addStatementRolle(Wölfin.ID);
         }

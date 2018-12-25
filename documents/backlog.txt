@@ -7,6 +7,7 @@ nachtfürst wird angezeigt wenn er als nicht tötender richtig gelegen hat ? - 1
 Holde Maid, Sammler, Detektiv, Schreckenswolf und Wahrsager einrexen ? - 2
 Änderung Vampirumhang und Wolfspelz 9 - 3
 Scharze Seele bekommt flackern 7 - 4
+Neuer Wolf (arbeitstitel Alphawolf) der jede 3. Nacht extrakill bekommt 5 - 4
 
 
 Eingereihte Tasks
@@ -22,6 +23,5 @@ Nicht einpriorisierte Tasks:
 
 Wölfin verliert Nachteil + kriegt kill bei jeden Wolf kill 5 - 3
 Blutwolf bekommt alle Wolfskills 3 - 1
-Neuer Wolf (arbeitstitel Alphawolf) der jede 3. Nacht extrakill bekommt 5 - 4
 Orakel erwacht nicht mehr wenn es alles gesehen hat 4 - 5
 Neuer Konditorlehrling 4 - 6
