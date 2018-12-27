@@ -11,10 +11,10 @@ Neuer Wolf (arbeitstitel Alphawolf) der jede 3. Nacht extrakill bekommt 5 - 4
 Wölfin verliert Nachteil + kriegt kill bei jeden Wolf kill 5 - 3
 Orakel erwacht nicht mehr wenn es alles gesehen hat 4 - 5
 Blutwolf bekommt alle Wolfskills 3 - 1
+Schwarze Seele auf Dunkles Licht umbenennen 9 - 1
 
 
 Eingereihte Tasks
-1. Schwarze Seele auf "Dunkles Irrlicht"(working title) umbenennen 9 - 1
 2. Neuer Konditorlehrling 4 - 6
 3. Liebespaar auch speichern/laden 1 - 3
 3. wenn dieb eine Karte stiehlt, und man auf weiter klickt wird sofort die neue Bonusrolle gezeigt, verlangt hohe vorsichtigkeit des erzählers 1 - 3

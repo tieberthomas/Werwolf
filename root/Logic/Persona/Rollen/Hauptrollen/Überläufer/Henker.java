@@ -13,7 +13,7 @@ import root.Logic.Persona.Fraktionen.ÜberläuferFraktion;
 import root.Logic.Persona.Hauptrolle;
 import root.Logic.Persona.Rollen.Bonusrollen.ReineSeele;
 import root.Logic.Persona.Rollen.Bonusrollen.Schatten;
-import root.Logic.Persona.Rollen.Bonusrollen.SchwarzeSeele;
+import root.Logic.Persona.Rollen.Bonusrollen.DunklesLicht;
 import root.Logic.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Logic.Persona.Rollen.Constants.InformationsCluster.BonusrollenInfo;
 import root.Logic.Persona.Rollen.Constants.Zeigekarten.Geschützt;
@@ -194,7 +194,7 @@ public class Henker extends Hauptrolle {
                 if (Fraktion.fraktionContainedInNight(SchattenpriesterFraktion.ID)) {
                     bonusrollen.add(new Schatten());
                 }
-                bonusrollen.add(new SchwarzeSeele());
+                bonusrollen.add(new DunklesLicht());
                 bonusrollen.add(new ReineSeele());
                 List<String> bonusrollenStrings = bonusrollen.stream()
                         .filter(bonusrolle -> bonusrolle.type.equals(chosenBonusrollenType))

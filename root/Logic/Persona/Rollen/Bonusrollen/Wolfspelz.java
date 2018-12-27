@@ -58,7 +58,7 @@ public class Wolfspelz extends Bonusrolle {
             Bonusrolle bonusrolle;
 
             if (spieler.hauptrolle.fraktion.equals(Werwölfe.ID)) {
-                bonusrolle = new SchwarzeSeele();
+                bonusrolle = new DunklesLicht();
             } else {
                 bonusrolle = spieler.bonusrolle;
             }

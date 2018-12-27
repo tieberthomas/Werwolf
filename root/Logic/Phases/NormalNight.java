@@ -39,6 +39,7 @@ import root.Logic.Torte;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class NormalNight extends Thread {
     public static List<Statement> statements;
@@ -221,7 +222,6 @@ public class NormalNight extends Thread {
                             break;
 
                         case Konditor.STATEMENT_ID:
-                        case Konditorlehrling.STATEMENT_ID:
                             //TODO evaluieren ob Page angezeigt werden soll wenn gibtEsTorte();
                             if (opfer.size() == 0) {
                                 if (gibtEsTorte()) {
@@ -242,13 +242,9 @@ public class NormalNight extends Thread {
                         case IndieStatements.OPFER_ID:
                             setOpfer();
 
-                            opferDerNacht = new ArrayList<>(); //TODO lambda
-
-                            for (Opfer currentOpfer : opfer) {
-                                if (!opferDerNacht.contains(currentOpfer.spieler.name)) {
-                                    opferDerNacht.add(currentOpfer.spieler.name);
-                                }
-                            }
+                            opferDerNacht = opfer.stream()
+                                    .map(opfer -> opfer.spieler.name).distinct()
+                                    .collect(Collectors.toList());
 
                             FrontendControl.erzählerListPage(statement, IndieStatements.OPFER_TITLE, opferDerNacht);
                             for (String opfer : opferDerNacht) {
@@ -352,7 +348,7 @@ public class NormalNight extends Thread {
 
     public void setSchütze() {
         for (Spieler currentSpieler : Game.game.spieler) {
-            if (currentSpieler.bonusrolle.equals(SchwarzeSeele.ID)) {
+            if (currentSpieler.bonusrolle.equals(DunklesLicht.ID)) {
                 currentSpieler.geschützt = true;
             }
         }
@@ -459,19 +455,7 @@ public class NormalNight extends Thread {
     }
 
     public boolean gibtEsTorte() {
-        if (Torte.gut) {
-            return false;
-        }
-
-        if (Rolle.rolleLebend(Konditor.ID) && !Opfer.isOpferPerRolle(Konditor.ID) && Rolle.rolleAktiv(Konditor.ID)) {
-            return true;
-        }
-
-        if (Rolle.rolleLebend(Konditorlehrling.ID) && !Opfer.isOpferPerRolle(Konditorlehrling.ID) && Rolle.rolleAktiv(Konditorlehrling.ID)) {
-            return true;
-        }
-
-        return false;
+        return !Torte.gut && Rolle.rolleLebend(Konditor.ID) && !Opfer.isOpferPerRolle(Konditor.ID) && Rolle.rolleAktiv(Konditor.ID);
     }
 
     private void checkVictory() {

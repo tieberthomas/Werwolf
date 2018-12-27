@@ -72,10 +72,10 @@ public class ImagePath {
     public static String ANALYTIKER_KARTE = BONUSROLLEN_PATH + "Analytiker" + IMAGE_FILE_EXTENSION;
     public static String ARCHIVAR_KARTE = BONUSROLLEN_PATH + "Archivar" + IMAGE_FILE_EXTENSION;
     public static String DIEB_KARTE = BONUSROLLEN_PATH + "Dieb" + IMAGE_FILE_EXTENSION;
+    public static String DUNKLES_LICHT_KARTE = BONUSROLLEN_PATH + "Dunkles_Licht" + IMAGE_FILE_EXTENSION;
     public static String GEFÄNGNISWÄRTER_KARTE = BONUSROLLEN_PATH + "Gefängniswärter" + IMAGE_FILE_EXTENSION;
     public static String IMITATOR_KARTE = BONUSROLLEN_PATH + "Imitator" + IMAGE_FILE_EXTENSION;
     public static String KONDITOR_KARTE = BONUSROLLEN_PATH + "Konditor" + IMAGE_FILE_EXTENSION;
-    public static String KONDITORLEHRLING_KARTE = BONUSROLLEN_PATH + "Konditorlehrling" + IMAGE_FILE_EXTENSION;
     public static String LAMM_KARTE = BONUSROLLEN_PATH + "Lamm" + IMAGE_FILE_EXTENSION;
     public static String MEDIUM_KARTE = BONUSROLLEN_PATH + "Medium" + IMAGE_FILE_EXTENSION;
     public static String NACHBAR_KARTE = BONUSROLLEN_PATH + "Nachbar" + IMAGE_FILE_EXTENSION;
@@ -85,7 +85,6 @@ public class ImagePath {
     public static String SCHATTEN_KARTE = BONUSROLLEN_PATH + "Schatten" + IMAGE_FILE_EXTENSION;
     public static String SCHATTENKUTTE_KARTE = BONUSROLLEN_PATH + "Schattenkutte" + IMAGE_FILE_EXTENSION;
     public static String SCHNÜFFLER_KARTE = BONUSROLLEN_PATH + "Schnüffler" + IMAGE_FILE_EXTENSION;
-    public static String SCHWARZE_SEELE_KARTE = BONUSROLLEN_PATH + "Schwarze_Seele" + IMAGE_FILE_EXTENSION;
     public static String SEELENLICHT_KARTE = BONUSROLLEN_PATH + "Seelenlicht" + IMAGE_FILE_EXTENSION;
     public static String SPURENLESER_KARTE = BONUSROLLEN_PATH + "Spurenleser" + IMAGE_FILE_EXTENSION;
     public static String TARNUMHANG_KARTE = BONUSROLLEN_PATH + "Tarnumhang" + IMAGE_FILE_EXTENSION;
