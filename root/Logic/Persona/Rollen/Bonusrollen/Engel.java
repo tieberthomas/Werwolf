@@ -11,18 +11,18 @@ import root.ResourceManagement.ImagePath;
 
 import static root.Logic.Persona.Constants.TitleConstants.NEUE_KARTE_TITLE;
 
-public class Seelenlicht extends Bonusrolle {
-    public static final String ID = "ID_Seelenlicht";
-    public static final String NAME = "Seelenlicht";
-    public static final String IMAGE_PATH = ImagePath.SEELENLICHT_KARTE;
+public class Engel extends Bonusrolle {
+    public static final String ID = "ID_Engel";
+    public static final String NAME = "Engel";
+    public static final String IMAGE_PATH = ImagePath.ENGEL_KARTE;
     public static final BonusrollenType TYPE = new Passiv();
 
     public static final String SETUP_NIGHT_STATEMENT_ID = ID;
     public static final String SETUP_NIGHT_STATEMENT_TITLE = NEUE_KARTE_TITLE;
-    public static final String SETUP_NIGHT_STATEMENT_BESCHREIBUNG = "Seelenlicht erwacht und tauscht seine Karte je nach Hauptrolle aus";
+    public static final String SETUP_NIGHT_STATEMENT_BESCHREIBUNG = "Engel erwacht und tauscht seine Karte je nach Hauptrolle aus";
     public static final StatementType SETUP_NIGHT_STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
 
-    public Seelenlicht() {
+    public Engel() {
         this.id = ID;
         this.name = NAME;
         this.imagePath = IMAGE_PATH;

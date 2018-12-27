@@ -149,6 +149,7 @@ public class Game {
         bonusrollen.add(new Archivar());
         bonusrollen.add(new Dieb());
         bonusrollen.add(new DunklesLicht());
+        bonusrollen.add(new Engel());
         bonusrollen.add(new Gefängniswärter());
         //Imitator
         bonusrollen.add(new Konditor());
@@ -162,7 +163,6 @@ public class Game {
         bonusrollen.add(new Schattenkutte());
         bonusrollen.add(new Schnüffler());
         bonusrollen.add(new Schutzengel());
-        bonusrollen.add(new Seelenlicht());
         bonusrollen.add(new Spurenleser());
         bonusrollen.add(new Tarnumhang());
         bonusrollen.add(new Totengräber());

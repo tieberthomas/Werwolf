@@ -6,7 +6,7 @@ import root.Logic.Persona.Fraktionen.Vampire;
 import root.Logic.Persona.Fraktionen.Werwölfe;
 import root.Logic.Persona.Rolle;
 import root.Logic.Persona.Rollen.Bonusrollen.Schafspelz;
-import root.Logic.Persona.Rollen.Bonusrollen.Seelenlicht;
+import root.Logic.Persona.Rollen.Bonusrollen.Engel;
 import root.Logic.Persona.Rollen.Bonusrollen.Vampirumhang;
 import root.Logic.Persona.Rollen.Bonusrollen.Wolfspelz;
 import root.Logic.Persona.Rollen.Hauptrollen.Werwölfe.Wolfsmensch;
@@ -29,7 +29,7 @@ public class SetupNightStatementBuilder {
         statements.add(IndieStatements.getLiebespaarStatement());
         statements.add(IndieStatements.getLiebespaarFindenStatement());
 
-        addStatementRolle(Seelenlicht.ID);
+        addStatementRolle(Engel.ID);
         addStatementRolle(Wolfspelz.ID);
         addStatementRolle(Vampirumhang.ID);
         addStatementRolle(Schafspelz.ID);
