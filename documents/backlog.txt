@@ -12,6 +12,7 @@ Wölfin verliert Nachteil + kriegt kill bei jeden Wolf kill 5 - 3
 Orakel erwacht nicht mehr wenn es alles gesehen hat 4 - 5
 Blutwolf bekommt alle Wolfskills 3 - 1
 Schwarze Seele auf Dunkles Licht umbenennen 9 - 1
+Schattenmensch Reiner Scheiß änderung ? - 2
 
 
 Eingereihte Tasks

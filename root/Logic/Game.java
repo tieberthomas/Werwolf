@@ -224,7 +224,6 @@ public class Game {
 
             if (hauptrolle.equals(Schattenmensch.ID)) {
                 Schattenmensch.shallBeTransformed = false;
-                Schattenmensch.changeReineSeele = false;
             }
         }
     }

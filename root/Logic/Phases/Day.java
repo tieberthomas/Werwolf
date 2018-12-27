@@ -87,17 +87,14 @@ public class Day extends Thread {
     private void handleInvincibility(Spieler chosenSpieler) {
         if (isGebürgterSpieler(chosenSpieler)) {
             System.out.println("Der Priester " + priester.name + " hat " + chosenSpieler.name + " gerettet.");
-        } else {
-            if (chosenSpieler.hauptrolle.equals(Schattenmensch.ID)) {
-                Schattenmensch.shallBeTransformed = true;
-                if (!(isInvincibleFromReineSeele(chosenSpieler) || (isGebürgterSpieler(chosenSpieler)))) {
-                    Schattenmensch.changeReineSeele = true;
-                }
-            } else {
-                if (chosenSpieler.bonusrolle.equals(Schutzengel.ID)) {
-                    ((Schutzengel) chosenSpieler.bonusrolle).dayInvincibility = false;
-                }
-            }
+        }
+
+        if (chosenSpieler.bonusrolle.equals(Schutzengel.ID)) {
+            ((Schutzengel) chosenSpieler.bonusrolle).dayInvincibility = false;
+        }
+
+        if (chosenSpieler.hauptrolle.equals(Schattenmensch.ID)) {
+            Schattenmensch.shallBeTransformed = true;
         }
     }
 

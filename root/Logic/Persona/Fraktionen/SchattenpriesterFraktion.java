@@ -75,8 +75,9 @@ public class SchattenpriesterFraktion extends Fraktion {
             Opfer.removeOpfer(chosenSpieler);
 
             if (!chosenSpieler.bonusrolle.equals(Schattenkutte.ID)) {
-                chosenSpieler.hauptrolle = new Schattenpriester();
-                ((Schattenpriester) chosenSpieler.hauptrolle).neuster = true;
+                Schattenpriester schattenpriester = new Schattenpriester();
+                schattenpriester.neuster = true;
+                chosenSpieler.hauptrolle = schattenpriester;
             }
             chosenSpieler.bonusrolle = new Schatten();
         }

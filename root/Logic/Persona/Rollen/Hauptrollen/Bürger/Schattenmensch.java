@@ -5,7 +5,6 @@ import root.Logic.Persona.Fraktion;
 import root.Logic.Persona.Fraktionen.Bürger;
 import root.Logic.Persona.Fraktionen.SchattenpriesterFraktion;
 import root.Logic.Persona.Hauptrolle;
-import root.Logic.Persona.Rollen.Bonusrollen.Schutzengel;
 import root.Logic.Persona.Rollen.Hauptrollen.Schattenpriester.Schattenpriester;
 import root.Logic.Spieler;
 import root.ResourceManagement.ImagePath;
@@ -17,7 +16,6 @@ public class Schattenmensch extends Hauptrolle {
     public static final Fraktion FRAKTION = new Bürger();
 
     public static boolean shallBeTransformed = false;
-    public static boolean changeReineSeele = false;
 
     public Schattenmensch() {
         this.id = ID;
@@ -34,11 +32,7 @@ public class Schattenmensch extends Hauptrolle {
             Schattenpriester schattenpriester = new Schattenpriester(); //TODO ist new hier sinnvoll?
             schattenpriester.neuster = true;
             schattenmenschSpieler.hauptrolle = schattenpriester;
-            if (changeReineSeele) {
-                Schutzengel schutzengel = new Schutzengel();
-                schutzengel.dayInvincibility = false;
-                schattenmenschSpieler.bonusrolle = schutzengel;
-            }
+
             SchattenpriesterFraktion.spielerToChangeCards = schattenmenschSpieler;
         }
 
