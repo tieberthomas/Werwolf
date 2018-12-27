@@ -242,7 +242,7 @@ public class NormalNight extends Thread {
                         case IndieStatements.OPFER_ID:
                             setOpfer();
 
-                            opferDerNacht = new ArrayList<>();
+                            opferDerNacht = new ArrayList<>(); //TODO lambda
 
                             for (Opfer currentOpfer : opfer) {
                                 if (!opferDerNacht.contains(currentOpfer.spieler.name)) {
@@ -418,12 +418,10 @@ public class NormalNight extends Thread {
 
     public void killOpfer() {
         for (Opfer currentOpfer : opfer) {
-            if (Rolle.rolleLebend(Blutwolf.ID)) {
-                if (currentOpfer.fraktionsTäter && currentOpfer.täterFraktion.equals(Werwölfe.ID)) {
-                    Blutwolf.deadStacks++;
-                    if (Blutwolf.deadStacks >= 2) {
-                        Blutwolf.deadly = true;
-                    }
+            if (Rolle.rolleLebend(Blutwolf.ID) && currentOpfer.täterFraktion.equals(Werwölfe.ID)) {
+                Blutwolf.deadStacks++;
+                if (Blutwolf.deadStacks >= 2) {
+                    Blutwolf.deadly = true;
                 }
             }
 

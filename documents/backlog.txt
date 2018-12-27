@@ -9,10 +9,10 @@ Holde Maid, Sammler, Detektiv, Schreckenswolf und Wahrsager einrexen ? - 2
 Scharze Seele bekommt flackern 7 - 4
 Neuer Wolf (arbeitstitel Alphawolf) der jede 3. Nacht extrakill bekommt 5 - 4
 Wölfin verliert Nachteil + kriegt kill bei jeden Wolf kill 5 - 3
+Blutwolf bekommt alle Wolfskills 3 - 1
 
 
 Eingereihte Tasks
-1. Blutwolf bekommt alle Wolfskills 3 - 1
 1. Schwarze Seele auf "Dunkles Irrlicht"(working title) umbenennen 9 - 1
 2. Neuer Konditorlehrling 4 - 6
 2. Orakel erwacht nicht mehr wenn es alles gesehen hat 4 - 5
