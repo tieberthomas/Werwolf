@@ -111,11 +111,7 @@ public class NormalNightStatementBuilder {
         addStatementRolle(Nachbar.ID);
         addStatementRolle(Spurenleser.ID);
 
-        if (Game.game.getBonusrolleInGameIDs().contains(Konditorlehrling.ID)) {
-            addStatementRolle(Konditorlehrling.ID);
-        } else {
-            addStatementRolle(Konditor.ID);
-        }
+        addStatementRolle(Konditor.ID);
 
         statements.add(IndieStatements.getAlleWachenAufStatement());
         statements.add(IndieStatements.getOpferStatement());
