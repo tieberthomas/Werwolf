@@ -20,7 +20,7 @@ public class Wölfin extends Hauptrolle {
 
     public static final String STATEMENT_ID = ID;
     public static final String STATEMENT_TITLE = CHOSE_OPFER_TITLE;
-    public static final String STATEMENT_BESCHREIBUNG = "Wölfin erwacht und wählt ein Opfer aus, wenn sie das tut, erfährt das Dorf ihre Bonusrolle";
+    public static final String STATEMENT_BESCHREIBUNG = "Wölfin erwacht und wählt ein Opfer aus";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
 
     public static boolean stateKilling = false;

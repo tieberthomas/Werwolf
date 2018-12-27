@@ -34,7 +34,7 @@ public class NormalNightStatementBuilder {
 
         statements.add(IndieStatements.getAlleSchlafenEinStatement());
         if (Schattenmensch.shallBeTransformed) {
-            Schattenmensch.transform();
+            Schattenmensch.transform(); //TODO program statement
         }
 
         if (PhaseManager.nightCount != 1 && Wirt.freibierCharges > 0) {
