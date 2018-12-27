@@ -168,6 +168,8 @@ public class SpecifyPage extends RefreshedPage {
             }
         }
 
+        Collections.reverse(indexesToRemove);
+
         for (int index : indexesToRemove) {
             removeSpecifiedPlayer(index);
         }

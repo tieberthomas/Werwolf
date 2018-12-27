@@ -69,6 +69,7 @@ public abstract class RolePage extends RefreshedPage {
             storeRollenInGame();
             next();
         } else if (back.equals(source)) {
+            storeRollenInGame();
             erzählerFrame.prevPage();
         } else {
             if (roleButtons.contains(source)) {
