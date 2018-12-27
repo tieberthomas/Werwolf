@@ -18,8 +18,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SpielerPageFactory {
-    SpielerFrame spielerFrame;
-    public SpielerPageElementFactory pageElementFactory;
+    private SpielerFrame spielerFrame;
+    private SpielerPageElementFactory pageElementFactory;
+
+    private static int defaultBigTextSize = 36;
 
     public SpielerPageFactory(SpielerFrame frame) {
         spielerFrame = frame;
@@ -224,51 +226,15 @@ public class SpielerPageFactory {
         return imagePage;
     }
 
-    private Page generateListPage(String title, List<String> stringsToDisplay, int frameHeight) {
-        spielerFrame.title = title;
-        spielerFrame.mode = SpielerFrameMode.staticListPage;
-
-        Page listPage = new Page(0, 10);
-
-        PageElement titleLabel = pageElementFactory.generateTitleLabel(title);
-        listPage.add(titleLabel);
-
-        List<String> realStringsToDisplay = new ArrayList<>(stringsToDisplay);
-        realStringsToDisplay.remove("");
-
-        if (realStringsToDisplay.size() > 0) {
-            int frameOffset = MyFrame.yOffset;
-            int titleHeight = titleLabel.height;
-            int stringHeight = pageElementFactory.getJLabelStandardHeight();
-            int spaceToUse = frameHeight - frameOffset - titleHeight - stringHeight;
-            int spacePerString = spaceToUse / realStringsToDisplay.size();
-            int spacingBetweenStrings = spacePerString - stringHeight;
-            int startpoint = titleHeight + ((spacePerString / 2) - (stringHeight / 2));
-
-            PageElement label = pageElementFactory.generateCenteredLabel(new JLabel(realStringsToDisplay.get(0)), titleLabel, startpoint);
-            listPage.add(label);
-
-            int i = 0;
-            for (String string : realStringsToDisplay) {
-                if (i != 0) {
-                    label = pageElementFactory.generateCenteredLabel(new JLabel(string), label, spacingBetweenStrings);
-                    listPage.add(label);
-                }
-
-                i++;
-            }
-        }
-
-        return listPage;
-    }
-
     public Page generateListPageWithNote(String title, List<String> stringsToDisplay, String note) {
         int noteHeight = 120;
-        int listSize = spielerFrame.frameJpanel.getHeight() - noteHeight;
-        Page page = generateListPage(title, stringsToDisplay, listSize);
 
+        PageElement titleLabel = pageElementFactory.generateTitleLabel(title);
+        Page page = generateListPage(stringsToDisplay, 1, 0, titleLabel.height,
+                noteHeight, defaultBigTextSize);
         PageElement noteLabel = pageElementFactory.generateNoteLabel(note, noteHeight, 50);
 
+        page.add(titleLabel);
         page.add(noteLabel);
 
         return page;
