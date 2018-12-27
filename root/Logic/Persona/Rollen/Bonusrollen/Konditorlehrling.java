@@ -1,11 +1,15 @@
 package root.Logic.Persona.Rollen.Bonusrollen;
 
+import root.Frontend.FrontendControl;
 import root.Frontend.Utils.DropdownOptions;
 import root.Logic.Game;
 import root.Logic.Persona.Bonusrolle;
 import root.Logic.Persona.Rollen.Constants.BonusrollenType.Aktiv;
 import root.Logic.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
+import root.Logic.Phases.NormalNight;
 import root.Logic.Phases.Statement.Constants.StatementType;
+import root.Logic.Spieler;
+import root.Logic.Torte;
 import root.ResourceManagement.ImagePath;
 
 public class Konditorlehrling extends Bonusrolle {
@@ -15,9 +19,9 @@ public class Konditorlehrling extends Bonusrolle {
     public static final BonusrollenType TYPE = new Aktiv();
 
     public static final String STATEMENT_ID = ID;
-    public static final String STATEMENT_TITLE = "Torte";
+    public static final String STATEMENT_TITLE = "Tortenstück";
     public static final String STATEMENT_BESCHREIBUNG = "Konditorlehrling erwacht und kackt jemandem in die Suppe";
-    public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
+    public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
 
     public Konditorlehrling() {
         this.id = ID;
@@ -37,4 +41,16 @@ public class Konditorlehrling extends Bonusrolle {
     public DropdownOptions getDropdownOptionsSpieler() {
         return Game.game.getSpielerDropdownOptions(this);
     }
+
+    @Override
+    public void processChosenOption(String chosenOption) {
+        Spieler chosenSpieler = Game.game.findSpieler(chosenOption);
+
+        if (chosenSpieler != null) {
+            besucht = chosenSpieler;
+            NormalNight.torteSpieler = chosenSpieler;
+            Torte.stückGut = FrontendControl.erzählerFrame.chosenOption2.equals(Konditor.GUT);
+        }
+    }
+
 }

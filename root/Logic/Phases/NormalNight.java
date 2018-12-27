@@ -38,6 +38,7 @@ import root.Logic.Spieler;
 import root.Logic.Torte;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -52,7 +53,7 @@ public class NormalNight extends Thread {
     public static List<Spieler> spielerAwake = new ArrayList<>();
     public static Spieler gefälschterSpieler;
     public static Spieler getarnterSpieler;
-    public Spieler torteSpieler;
+    public static Spieler torteSpieler;
     private static boolean letzteTorteGut;
 
 
@@ -243,12 +244,7 @@ public class NormalNight extends Thread {
                                 DropdownOptions dropdownOptionsTorte = Konditor.getTortenOptions();
                                 showDropdownPage(statement, dropdownOptionsSpieler, dropdownOptionsTorte);
 
-                                chosenSpieler = Game.game.findSpieler(FrontendControl.erzählerFrame.chosenOption1);
-
-                                if (chosenSpieler != null) {
-                                    torteSpieler = chosenSpieler;
-                                    Torte.stückGut = FrontendControl.erzählerFrame.chosenOption2.equals(Konditor.GUT);
-                                }
+                                konditorlehrling.processChosenOption(FrontendControl.erzählerFrame.chosenOption1);
                             }
                             break;
 
@@ -275,6 +271,17 @@ public class NormalNight extends Thread {
 
                                 waitForAnswer();
                                 Torte.setTortenEsser(FrontendControl.getTortenesser());
+                            } else {
+                                if (torteSpieler != null) {
+                                    dropdownOptions = Torte.getDropdownOptionsFrontendControl();
+                                    statement.title = Torte.TORTENSTUECK_TITLE;
+                                    chosenOption = showFrontendControl(statement, dropdownOptions);
+
+                                    if (chosenOption.equals(Torte.TORTE_NEHMEN)) {
+                                        Torte.tortenStück = true;
+                                        Torte.setTortenEsser(Collections.singletonList(torteSpieler.name));
+                                    }
+                                }
                             }
                             break;
                     }
@@ -342,6 +349,17 @@ public class NormalNight extends Thread {
             }
         }
 
+        if (Torte.tortenStück) {
+            for (Spieler currentSpieler : Torte.tortenEsser) {
+                if (Torte.stückGut) {
+                    currentSpieler.geschützt = true;
+                } else {
+                    currentSpieler.aktiv = false;
+                }
+            }
+        }
+
+        Torte.tortenEsser.clear();
         Torte.torte = false;
         letzteTorteGut = Torte.gut;
         Torte.gut = false;
@@ -411,9 +429,6 @@ public class NormalNight extends Thread {
             currentSpieler.geschützt = false;
             currentSpieler.ressurectable = true;
         }
-
-        System.out.println(torteSpieler.name);
-        System.out.println(Torte.stückGut);
     }
 
     private void checkNachtfürstGuess() {
