@@ -5,6 +5,7 @@ import root.Frontend.FrontendControl;
 import root.Logic.Game;
 import root.Logic.Persona.Bonusrolle;
 import root.Logic.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
+import root.Logic.Persona.Rollen.Constants.BonusrollenType.Informativ;
 import root.Logic.Persona.Rollen.Constants.BonusrollenType.Tarnumhang_BonusrollenType;
 import root.Logic.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Logic.Phases.Statement.Constants.StatementType;
@@ -21,7 +22,7 @@ public class Tarnumhang extends Bonusrolle {
     public static final String ID = "ID_Tarnumhang";
     public static final String NAME = "Tarnumhang";
     public static final String IMAGE_PATH = ImagePath.TARNUMHANG_KARTE;
-    public static final BonusrollenType TYPE = new Tarnumhang_BonusrollenType();
+    public static final BonusrollenType TYPE = new Informativ();
     public static final Color COLOR = Color.BLACK;
 
     public static final String STATEMENT_ID = ID;
@@ -29,7 +30,7 @@ public class Tarnumhang extends Bonusrolle {
     public static final String STATEMENT_BESCHREIBUNG = "Träger des Tarnumhangs erwacht und erfährt einen Mitspieler, bei dem ein Umhhang liegt";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_INFO;
 
-    public static final String KEINE_UMHÄNGE = "Es sind keine Umhangträger mehr im Spiel";
+    private static final String KEINE_UMHÄNGE = "Es sind keine Umhangträger mehr im Spiel";
 
     private List<String> umhänge = new ArrayList<>(Arrays.asList(
             Lamm.ID, Wolfspelz.ID, Vampirumhang.ID, Schattenkutte.ID));
@@ -90,11 +91,18 @@ public class Tarnumhang extends Bonusrolle {
         return allTräger;
     }
 
+    @Override
     public Zeigekarte isTötendInfo() {
         return new Tarnumhang_BonusrollenType();
     }
 
+    @Override
     public Zeigekarte getFraktionInfo() {
+        return new Tarnumhang_BonusrollenType();
+    }
+
+    @Override
+    public BonusrollenType getBonusrollenTypeInfo() {
         return new Tarnumhang_BonusrollenType();
     }
 }
