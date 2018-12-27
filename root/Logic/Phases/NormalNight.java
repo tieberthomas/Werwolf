@@ -418,10 +418,12 @@ public class NormalNight extends Thread {
 
     public void killOpfer() {
         for (Opfer currentOpfer : opfer) {
-            if (Rolle.rolleLebend(Blutwolf.ID) && currentOpfer.täterFraktion.equals(Werwölfe.ID)) {
-                Blutwolf.deadStacks++;
-                if (Blutwolf.deadStacks >= 2) {
-                    Blutwolf.deadly = true;
+            if (Rolle.rolleLebend(Blutwolf.ID)) {
+                if (currentOpfer.täterFraktion != null && currentOpfer.täterFraktion.equals(Werwölfe.ID)) {
+                    Blutwolf.deadStacks++;
+                    if (Blutwolf.deadStacks >= 2) {
+                        Blutwolf.deadly = true;
+                    }
                 }
             }
 
