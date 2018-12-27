@@ -68,7 +68,7 @@ public class FrontendControl {
 
     public FrontendControl(FrontendControlType typeOfContent, List<String> strings) {
         this.typeOfContent = typeOfContent;
-        if(typeOfContent.isDropdown()) {
+        if (typeOfContent.isDropdown()) {
             dropdownOptions = (DropdownOptions) strings;
         } else {
             displayedStrings = strings;

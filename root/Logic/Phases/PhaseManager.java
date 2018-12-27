@@ -16,7 +16,7 @@ public class PhaseManager extends Thread {
         lock = new Object();
         synchronized (lock) {
             setupNight();
-            for(nightCount = 1; true; nightCount++) {
+            for (nightCount = 1; true; nightCount++) {
                 day();
                 night();
             }

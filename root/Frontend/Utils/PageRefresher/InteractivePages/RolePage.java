@@ -2,11 +2,7 @@ package root.Frontend.Utils.PageRefresher.InteractivePages;
 
 import root.Frontend.Page.PageTable;
 import root.Frontend.Utils.PageRefresher.InteractivePages.InteractiveElementsDtos.RolePageElementsDto;
-import root.Frontend.Utils.PageRefresher.Models.ButtonTable;
-import root.Frontend.Utils.PageRefresher.Models.DeleteButtonTable;
-import root.Frontend.Utils.PageRefresher.Models.Label;
-import root.Frontend.Utils.PageRefresher.Models.LabelTable;
-import root.Frontend.Utils.PageRefresher.Models.RefreshedPage;
+import root.Frontend.Utils.PageRefresher.Models.*;
 import root.Frontend.Utils.PageRefresher.PageRefresher;
 import root.Logic.Game;
 

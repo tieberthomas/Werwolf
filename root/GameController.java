@@ -8,13 +8,8 @@ import root.Frontend.FrontendControl;
 import root.Frontend.Page.Page;
 import root.Frontend.Utils.PageRefresher.Models.LoadMode;
 import root.Logic.Game;
-import root.Logic.Phases.Day;
-import root.Logic.Phases.NormalNight;
-import root.Logic.Phases.PhaseManager;
-import root.Logic.Phases.PhaseMode;
-import root.Logic.Phases.SetupNight;
+import root.Logic.Phases.*;
 import root.ResourceManagement.DataManager;
-import root.Utils.ListHelper;
 
 import javax.swing.*;
 import java.awt.event.WindowEvent;

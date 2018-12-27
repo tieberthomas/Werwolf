@@ -111,14 +111,14 @@ public class Angriff {
             }
             if (opfer.bonusrolle.equals(Wolfspelz.ID) && täterFraktion.equals(Werwölfe.ID)) {
                 Wolfspelz wolfspelz = (Wolfspelz) opfer.bonusrolle;
-                if(wolfspelz.schutzAktiv) {
+                if (wolfspelz.schutzAktiv) {
                     wolfspelz.consumeSchutzIfNecessary();
                     return false;
                 }
             }
             if (opfer.bonusrolle.equals(Vampirumhang.ID) && täterFraktion.equals(Vampire.ID)) {
                 Vampirumhang vampirumhang = (Vampirumhang) opfer.bonusrolle;
-                if(vampirumhang.schutzAktiv) {
+                if (vampirumhang.schutzAktiv) {
                     vampirumhang.consumeSchutzIfNecessary();
                     return false;
                 }

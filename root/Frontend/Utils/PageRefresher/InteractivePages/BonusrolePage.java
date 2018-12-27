@@ -4,9 +4,9 @@ import root.GameController;
 import root.Logic.Game;
 import root.Logic.Persona.Bonusrolle;
 import root.Logic.Persona.Rolle;
+import root.Logic.Persona.Rollen.Bonusrollen.DunklesLicht;
 import root.Logic.Persona.Rollen.Bonusrollen.ReineSeele;
 import root.Logic.Persona.Rollen.Bonusrollen.Schatten;
-import root.Logic.Persona.Rollen.Bonusrollen.DunklesLicht;
 
 import java.util.List;
 import java.util.stream.Collectors;
