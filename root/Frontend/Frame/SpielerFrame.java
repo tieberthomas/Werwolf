@@ -52,8 +52,6 @@ public class SpielerFrame extends MyFrame {
         this.setLocation(erzählerFrame.frameJpanel.getWidth() + 20, 0);
 
         showFrame();
-
-        refreshPlayerSetupPage();
     }
 
     private void generateAllPages() {
@@ -61,16 +59,16 @@ public class SpielerFrame extends MyFrame {
         dropDownPage = pageFactory.generateDropdownPage("", 1);
     }
 
-    public void refreshPlayerSetupPage() {
-        buildScreenFromPage(pageFactory.generateListPage(Game.game.getLivingSpielerStrings()));
+    public void refreshPlayerSetupPage(List<String> playersInGame) {
+        buildScreenFromPage(pageFactory.generateListPage("Spieler", playersInGame));
     }
 
     public void refreshHauptrolleSetupPage(List<String> mainrolesInGame) {
-        buildScreenFromPage(pageFactory.generateListPage(mainrolesInGame));
+        buildScreenFromPage(pageFactory.generateListPage("Hauptrollen", mainrolesInGame));
     }
 
     public void refreshBonusrolleSetupPage(List<String> bonusrolesInGame) {
-        buildScreenFromPage(pageFactory.generateListPage(bonusrolesInGame));
+        buildScreenFromPage(pageFactory.generateListPage("Bonusrollen", bonusrolesInGame));
     }
 
     public void refreshSecondarySpecifySetupPage() {

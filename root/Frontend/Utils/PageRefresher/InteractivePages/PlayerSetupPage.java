@@ -77,7 +77,7 @@ public class PlayerSetupPage extends RefreshedPage {
     public void refresh() {
         pageRefresher.refreshPage();
         if (spielerFrame != null) {
-            spielerFrame.refreshPlayerSetupPage();
+            spielerFrame.refreshPlayerSetupPage(Game.game.getLivingSpielerStrings());
         }
         addPlayerTxtField.requestFocusInWindow();
     }

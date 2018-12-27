@@ -15,7 +15,6 @@ import root.Logic.Phases.Winner;
 
 import javax.swing.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class SpielerPageFactory {
@@ -225,10 +224,6 @@ public class SpielerPageFactory {
         return imagePage;
     }
 
-    public Page generateListPage(String title, List<String> stringsToDisplay) {
-        return generateListPage(title, stringsToDisplay, spielerFrame.frameJpanel.getHeight());
-    }
-
     private Page generateListPage(String title, List<String> stringsToDisplay, int frameHeight) {
         spielerFrame.title = title;
         spielerFrame.mode = SpielerFrameMode.staticListPage;
@@ -305,8 +300,8 @@ public class SpielerPageFactory {
 
     public Page generateDoubleListPage(List<String> stringsToDisplay1, List<String> stringsToDisplay2, String title1, String title2) {
         int titleSpace = 80;
-        Collections.sort(stringsToDisplay1, String.CASE_INSENSITIVE_ORDER);
-        Collections.sort(stringsToDisplay2, String.CASE_INSENSITIVE_ORDER);
+        stringsToDisplay1.sort(String.CASE_INSENSITIVE_ORDER);
+        stringsToDisplay2.sort(String.CASE_INSENSITIVE_ORDER);
         Page listPage = generateDoubleListPage(stringsToDisplay1, stringsToDisplay2, titleSpace, 0);
 
         PageElement title1Element = pageElementFactory.generateColumnTitleLabel(title1, 2, 0, titleSpace);
@@ -321,46 +316,72 @@ public class SpielerPageFactory {
     public Page generateDoubleListPage(List<String> stringsToDisplay1, List<String> stringsToDisplay2, int offsetAbove, int offsetBelow) {
         List<String> realStringsToDisplay1 = new ArrayList<>(stringsToDisplay1);
         realStringsToDisplay1.remove("");
-        Collections.sort(realStringsToDisplay1, String.CASE_INSENSITIVE_ORDER);
+        realStringsToDisplay1.sort(String.CASE_INSENSITIVE_ORDER);
         List<String> realStringsToDisplay2 = new ArrayList<>(stringsToDisplay2);
         realStringsToDisplay2.remove("");
-        Collections.sort(realStringsToDisplay2, String.CASE_INSENSITIVE_ORDER);
+        realStringsToDisplay2.sort(String.CASE_INSENSITIVE_ORDER);
 
-        int maxLinesPerCollumnBig = 12;
-        int maxLinesPerCollumnSmall = 10;
+        int columns = getNumberOfColumns(realStringsToDisplay1, realStringsToDisplay2);
 
-        if ((spielerFrame.frameMode == FrameMode.big && (realStringsToDisplay1.size() > maxLinesPerCollumnBig || realStringsToDisplay2.size() > maxLinesPerCollumnBig)) ||
-                (spielerFrame.frameMode == FrameMode.small && (realStringsToDisplay1.size() > maxLinesPerCollumnSmall || realStringsToDisplay2.size() > maxLinesPerCollumnSmall))) {
-            return generateListPage(realStringsToDisplay1, realStringsToDisplay2, 2, offsetAbove, offsetBelow);
+        return generateListPage(realStringsToDisplay1, realStringsToDisplay2, columns, offsetAbove, offsetBelow);
+    }
+
+    private int getNumberOfColumns(List<String> realStringsToDisplay1, List<String> realStringsToDisplay2) {
+        int maxLinesPerColumnBig = 12;
+        int maxLinesPerColumnSmall = 10;
+        int maxLinesPerColumn = maxLinesPerColumnBig;
+
+        if (spielerFrame.frameMode == FrameMode.big) {
+            maxLinesPerColumn = maxLinesPerColumnBig;
+        } else if (spielerFrame.frameMode == FrameMode.small) {
+            maxLinesPerColumn = maxLinesPerColumnSmall;
         } else {
-            return generateListPage(realStringsToDisplay1, realStringsToDisplay2, 1, offsetAbove, offsetBelow);
+            System.out.println("Unknown FrameSizemode");
+        }
+
+        if ((realStringsToDisplay1.size() > maxLinesPerColumn || realStringsToDisplay2.size() > maxLinesPerColumn)) {
+            return 2;
+        } else {
+            return 1;
         }
     }
 
-    public Page generateListPage(List<String> stringsToDisplay) {
-        Collections.sort(stringsToDisplay, String.CASE_INSENSITIVE_ORDER);
+    public Page generateListPage(String title, List<String> stringsToDisplay) {
+        stringsToDisplay.sort(String.CASE_INSENSITIVE_ORDER);
         List<String> realStringsToDisplay = new ArrayList<>(stringsToDisplay);
         realStringsToDisplay.remove("");
 
-        if (realStringsToDisplay.size() < 8) {
-            return generateListPage(realStringsToDisplay, 1);
-        } else if (stringsToDisplay.size() < 16) {
-            return generateListPage(realStringsToDisplay, 2);
+        PageElement titleLabel = pageElementFactory.generateTitleLabel(title);
+
+        int titleHeight = titleLabel.height;
+        int numberOfColumns = getNumberOfColumns(realStringsToDisplay.size());
+        Page listPage = generateListPage(realStringsToDisplay, numberOfColumns, titleHeight);
+
+        listPage.add(titleLabel);
+
+        return listPage;
+    }
+
+    private int getNumberOfColumns(int numberOfStrings) {
+        if (numberOfStrings < 8) {
+            return 1;
+        } else if (numberOfStrings < 16) {
+            return 2;
         } else {
-            return generateListPage(realStringsToDisplay, 3);
+            return 3;
         }
     }
 
-    public Page generateListPage(List<String> stringsToDisplay, int numberOfColumns) {
+    public Page generateListPage(List<String> stringsToDisplay, int numberOfColumns, int titleHeight) {
         Page listPage = new Page(0, 10);
-        Collections.sort(stringsToDisplay, String.CASE_INSENSITIVE_ORDER);
+        stringsToDisplay.sort(String.CASE_INSENSITIVE_ORDER);
         float dividingPoint = ((float) stringsToDisplay.size()) / numberOfColumns;
 
         for (int i = 0; i < numberOfColumns; i++) {
             int start = Math.round(dividingPoint * i);
             int end = Math.round(dividingPoint * (i + 1));
 
-            Page pageToAdd = generateListPage(new ArrayList<>(stringsToDisplay.subList(start, end)), numberOfColumns, i);
+            Page pageToAdd = generateListPage(new ArrayList<>(stringsToDisplay.subList(start, end)), numberOfColumns, i, titleHeight);
 
             for (PageElement element : pageToAdd.pageElements) {
                 listPage.add(element);
@@ -376,7 +397,7 @@ public class SpielerPageFactory {
 
     public Page generateListPage(List<String> stringsToDisplay, List<String> stringsToDisplay2, int numberOfColumnsPerList, int offsetAbove, int offsetBelow) {
         Page listPage = new Page(5, 10);
-        Collections.sort(stringsToDisplay, String.CASE_INSENSITIVE_ORDER);
+        stringsToDisplay.sort(String.CASE_INSENSITIVE_ORDER);
         float dividingPoint1 = ((float) stringsToDisplay.size()) / numberOfColumnsPerList;
         float dividingPoint2 = ((float) stringsToDisplay2.size()) / numberOfColumnsPerList;
         int textSize = 36;
@@ -411,19 +432,16 @@ public class SpielerPageFactory {
         return listPage;
     }
 
-    public Page generateListPage(List<String> stringsToDisplay, int numberOfColumns, int indexOfColumn) {
-        return generateListPage(stringsToDisplay, numberOfColumns, indexOfColumn, 0, 0, pageElementFactory.defaultTextSize);
+    public Page generateListPage(List<String> stringsToDisplay, int numberOfColumns, int indexOfColumn, int offsetAbove) {
+        return generateListPage(stringsToDisplay, numberOfColumns, indexOfColumn, offsetAbove, 0, SpielerPageElementFactory.defaultTextSize);
     }
 
-    public Page generateListPage(List<String> stringsToDisplay, int numberOfColumns, int indexOfColumn, int textSize) {
-        return generateListPage(stringsToDisplay, numberOfColumns, indexOfColumn, 0, 0, textSize);
-    }
-
-    public Page generateListPage(List<String> stringsToDisplay, int numberOfColumns, int indexOfColumn, int offsetAbove, int offsetBelow, int textSize) {
+    private Page generateListPage(List<String> stringsToDisplay, int numberOfColumns, int indexOfColumn, int offsetAbove,
+                                  int offsetBelow, int textSize) {
         Page listPage = new Page(0, 10);
         List<String> realStringsToDisplay = new ArrayList<>(stringsToDisplay);
         realStringsToDisplay.remove("");
-        Collections.sort(realStringsToDisplay, String.CASE_INSENSITIVE_ORDER);
+        realStringsToDisplay.sort(String.CASE_INSENSITIVE_ORDER);
 
         if (realStringsToDisplay.size() > 0) {
             int frameOffset = MyFrame.yOffset;
