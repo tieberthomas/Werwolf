@@ -153,11 +153,11 @@ public class Game {
         //Imitator
         bonusrollen.add(new Konditor());
         bonusrollen.add(new Konditorlehrling());
-        bonusrollen.add(new Lamm());
         bonusrollen.add(new Medium());
         bonusrollen.add(new Nachbar());
         bonusrollen.add(new Nachtfürst());
         bonusrollen.add(new Prostituierte());
+        bonusrollen.add(new Schafspelz());
         bonusrollen.add(new Schatten());
         bonusrollen.add(new Schattenkutte());
         bonusrollen.add(new Schnüffler());

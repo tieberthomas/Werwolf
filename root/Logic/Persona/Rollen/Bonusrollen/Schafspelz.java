@@ -15,19 +15,19 @@ import java.awt.*;
 
 import static root.Logic.Persona.Constants.TitleConstants.NEUE_KARTE_TITLE;
 
-public class Lamm extends Bonusrolle {
-    public static final String ID = "ID_Lamm";
-    public static final String NAME = "Lamm";
-    public static final String IMAGE_PATH = ImagePath.LAMM_KARTE;
+public class Schafspelz extends Bonusrolle {
+    public static final String ID = "ID_Schafspelz";
+    public static final String NAME = "Schafspelz";
+    public static final String IMAGE_PATH = ImagePath.SCHAFSPELZ_KARTE;
     public static final BonusrollenType TYPE = new Passiv();
     public static final Color COLOR = Bürger.COLOR;
 
     public static final String SETUP_NIGHT_STATEMENT_ID = ID;
     public static final String SETUP_NIGHT_STATEMENT_TITLE = NEUE_KARTE_TITLE; //TODO wird nicht verwendet, auch nicht in anderen tauschrollen
-    public static final String SETUP_NIGHT_STATEMENT_BESCHREIBUNG = "Lamm erwacht und tauscht ggf. seine Karte aus";
+    public static final String SETUP_NIGHT_STATEMENT_BESCHREIBUNG = "Träger des Schafspelzes erwacht und tauscht ggf. seine Karte aus";
     public static final StatementType SETUP_NIGHT_STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
 
-    public Lamm() {
+    public Schafspelz() {
         this.id = ID;
         this.name = NAME;
         this.imagePath = IMAGE_PATH;

@@ -33,7 +33,7 @@ public class Tarnumhang extends Bonusrolle {
     private static final String KEINE_UMHÄNGE = "Es sind keine Umhangträger mehr im Spiel";
 
     private List<String> umhänge = new ArrayList<>(Arrays.asList(
-            Lamm.ID, Wolfspelz.ID, Vampirumhang.ID, Schattenkutte.ID));
+            Schafspelz.ID, Wolfspelz.ID, Vampirumhang.ID, Schattenkutte.ID));
 
     public List<String> seenSpieler = new ArrayList<>(); //TODO wenn dieb Tarnumhang nimmt dann neu anlegen
 

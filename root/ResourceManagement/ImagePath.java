@@ -77,11 +77,11 @@ public class ImagePath {
     public static String IMITATOR_KARTE = BONUSROLLEN_PATH + "Imitator" + IMAGE_FILE_EXTENSION;
     public static String KONDITOR_KARTE = BONUSROLLEN_PATH + "Konditor" + IMAGE_FILE_EXTENSION;
     public static String KONDITORLEHRLING_KARTE = BONUSROLLEN_PATH + "Konditorlehrling" + IMAGE_FILE_EXTENSION;
-    public static String LAMM_KARTE = BONUSROLLEN_PATH + "Lamm" + IMAGE_FILE_EXTENSION;
     public static String MEDIUM_KARTE = BONUSROLLEN_PATH + "Medium" + IMAGE_FILE_EXTENSION;
     public static String NACHBAR_KARTE = BONUSROLLEN_PATH + "Nachbar" + IMAGE_FILE_EXTENSION;
     public static String NACHTFÜRST_KARTE = BONUSROLLEN_PATH + "Nachtfürst" + IMAGE_FILE_EXTENSION;
     public static String PROSTITUIERTE_KARTE = BONUSROLLEN_PATH + "Prostituierte" + IMAGE_FILE_EXTENSION;
+    public static String SCHAFSPELZ_KARTE = BONUSROLLEN_PATH + "Schafspelz" + IMAGE_FILE_EXTENSION;
     public static String SCHATTEN_KARTE = BONUSROLLEN_PATH + "Schatten" + IMAGE_FILE_EXTENSION;
     public static String SCHATTENKUTTE_KARTE = BONUSROLLEN_PATH + "Schattenkutte" + IMAGE_FILE_EXTENSION;
     public static String SCHNÜFFLER_KARTE = BONUSROLLEN_PATH + "Schnüffler" + IMAGE_FILE_EXTENSION;

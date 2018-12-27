@@ -5,7 +5,7 @@ import root.Logic.Persona.Fraktionen.SchattenpriesterFraktion;
 import root.Logic.Persona.Fraktionen.Vampire;
 import root.Logic.Persona.Fraktionen.Werwölfe;
 import root.Logic.Persona.Rolle;
-import root.Logic.Persona.Rollen.Bonusrollen.Lamm;
+import root.Logic.Persona.Rollen.Bonusrollen.Schafspelz;
 import root.Logic.Persona.Rollen.Bonusrollen.Seelenlicht;
 import root.Logic.Persona.Rollen.Bonusrollen.Vampirumhang;
 import root.Logic.Persona.Rollen.Bonusrollen.Wolfspelz;
@@ -32,7 +32,7 @@ public class SetupNightStatementBuilder {
         addStatementRolle(Seelenlicht.ID);
         addStatementRolle(Wolfspelz.ID);
         addStatementRolle(Vampirumhang.ID);
-        addStatementRolle(Lamm.ID);
+        addStatementRolle(Schafspelz.ID);
 
         addStatementRolle(Wolfsmensch.ID);
         addStatementFraktion(Werwölfe.ID);
