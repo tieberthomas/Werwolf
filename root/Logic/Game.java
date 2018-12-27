@@ -152,6 +152,7 @@ public class Game {
         bonusrollen.add(new Gefängniswärter());
         //Imitator
         bonusrollen.add(new Konditor());
+        bonusrollen.add(new Konditorlehrling());
         bonusrollen.add(new Lamm());
         bonusrollen.add(new Medium());
         bonusrollen.add(new Nachbar());

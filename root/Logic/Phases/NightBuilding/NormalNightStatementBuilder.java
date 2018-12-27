@@ -112,6 +112,7 @@ public class NormalNightStatementBuilder {
         addStatementRolle(Spurenleser.ID);
 
         addStatementRolle(Konditor.ID);
+        addStatementRolle(Konditorlehrling.ID);
 
         statements.add(IndieStatements.getAlleWachenAufStatement());
         statements.add(IndieStatements.getOpferStatement());

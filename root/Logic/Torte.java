@@ -6,6 +6,7 @@ import java.util.List;
 public class Torte {
     public static boolean torte;
     public static boolean gut;
+    public static boolean stückGut;
 
     public static List<Spieler> tortenEsser = new ArrayList<>();
 

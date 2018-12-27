@@ -47,11 +47,13 @@ public class NormalNight extends Thread {
 
     public static List<Angriff> angriffe = new ArrayList<>();
     public static List<Opfer> opfer = new ArrayList<>();
+    public List<String> opferDerNacht;
 
     public static List<Spieler> spielerAwake = new ArrayList<>();
     public static Spieler gefälschterSpieler;
     public static Spieler getarnterSpieler;
-    public List<String> opferDerNacht;
+    public Spieler torteSpieler;
+    private static boolean letzteTorteGut;
 
 
     public void run() {
@@ -222,19 +224,30 @@ public class NormalNight extends Thread {
                             break;
 
                         case Konditor.STATEMENT_ID:
-                            //TODO evaluieren ob Page angezeigt werden soll wenn gibtEsTorte();
-                            if (opfer.size() == 0) {
-                                if (gibtEsTorte()) {
-                                    Torte.torte = true;
+                            if (gibtEsTorte()) {
+                                Torte.torte = true;
 
-                                    dropdownOptions = rolle.getDropdownOptionsFrontendControl();
-                                    chosenOption = showKonditorDropdownPage(statement, dropdownOptions);
-                                    rolle.processChosenOption(chosenOption);
+                                dropdownOptions = rolle.getDropdownOptionsFrontendControl();
+                                chosenOption = showKonditorDropdownPage(statement, dropdownOptions);
+                                rolle.processChosenOption(chosenOption);
 
-                                    Torte.gut = chosenOption.equals(Konditor.GUT);
-                                } else {
-                                    Torte.torte = false;
-                                    Torte.gut = false;
+                                Torte.gut = chosenOption.equals(Konditor.GUT);
+                            }
+                            break;
+
+                        case Konditorlehrling.STATEMENT_ID:
+                            if (!gibtEsTorte()) {
+                                Konditorlehrling konditorlehrling = (Konditorlehrling) rolle;
+
+                                DropdownOptions dropdownOptionsSpieler = konditorlehrling.getDropdownOptionsSpieler();
+                                DropdownOptions dropdownOptionsTorte = Konditor.getTortenOptions();
+                                showDropdownPage(statement, dropdownOptionsSpieler, dropdownOptionsTorte);
+
+                                chosenSpieler = Game.game.findSpieler(FrontendControl.erzählerFrame.chosenOption1);
+
+                                if (chosenSpieler != null) {
+                                    torteSpieler = chosenSpieler;
+                                    Torte.stückGut = FrontendControl.erzählerFrame.chosenOption2.equals(Konditor.GUT);
                                 }
                             }
                             break;
@@ -330,10 +343,13 @@ public class NormalNight extends Thread {
         }
 
         Torte.torte = false;
+        letzteTorteGut = Torte.gut;
+        Torte.gut = false;
 
         GrafVladimir.verschleierterSpieler = null;
         getarnterSpieler = null;
         gefälschterSpieler = null;
+        torteSpieler = null;
 
         Henker.pagecounter = 0;
     }
@@ -395,6 +411,9 @@ public class NormalNight extends Thread {
             currentSpieler.geschützt = false;
             currentSpieler.ressurectable = true;
         }
+
+        System.out.println(torteSpieler.name);
+        System.out.println(Torte.stückGut);
     }
 
     private void checkNachtfürstGuess() {
@@ -454,8 +473,12 @@ public class NormalNight extends Thread {
         }
     }
 
-    public boolean gibtEsTorte() {
-        return !Torte.gut && Rolle.rolleLebend(Konditor.ID) && !Opfer.isOpferPerRolle(Konditor.ID) && Rolle.rolleAktiv(Konditor.ID);
+    public static boolean gibtEsTorte() {
+        return opfer.size() == 0 &&
+                !letzteTorteGut &&
+                Rolle.rolleLebend(Konditor.ID) &&
+                !Opfer.isOpferPerRolle(Konditor.ID) &&
+                Rolle.rolleAktiv(Konditor.ID);
     }
 
     private void checkVictory() {

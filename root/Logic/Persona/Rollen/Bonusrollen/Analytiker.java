@@ -46,7 +46,6 @@ public class Analytiker extends Bonusrolle {
         this.spammable = true;
     }
 
-
     public DropdownOptions getDropdownOptions() {
         return Game.game.getSpielerDropdownOptions(this);
     }

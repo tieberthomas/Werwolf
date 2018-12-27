@@ -41,14 +41,14 @@ public class Konditor extends Bonusrolle {
 
     @Override
     public FrontendControl getDropdownOptionsFrontendControl() {
-        return getTortenOptionsFrontendControl();
+        return new FrontendControl(getTortenOptions());
     }
 
-    public static FrontendControl getTortenOptionsFrontendControl() {
+    public static DropdownOptions getTortenOptions() {
         List<String> dropdownStrings = new ArrayList<>();
         dropdownStrings.add(GUT);
         dropdownStrings.add(SCHLECHT);
 
-        return new FrontendControl(new DropdownOptions(dropdownStrings));
+        return new DropdownOptions(dropdownStrings);
     }
 }

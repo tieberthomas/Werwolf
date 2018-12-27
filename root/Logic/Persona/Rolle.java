@@ -4,7 +4,10 @@ import root.Frontend.FrontendControl;
 import root.Logic.Game;
 import root.Logic.KillLogic.Opfer;
 import root.Logic.Persona.Rollen.Bonusrollen.DunklesLicht;
+import root.Logic.Persona.Rollen.Bonusrollen.Konditor;
+import root.Logic.Persona.Rollen.Bonusrollen.Konditorlehrling;
 import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Irrlicht;
+import root.Logic.Phases.NormalNight;
 import root.Logic.Phases.Statement.Constants.StatementState;
 import root.Logic.Spieler;
 
@@ -100,6 +103,14 @@ public class Rolle extends Persona {
         Spieler spieler;
 
         if (!rolleContainedInNight(rolle.id)) {
+            return StatementState.INVISIBLE_NOT_IN_GAME;
+        }
+
+        if (rolle.equals(Konditor.ID) && !NormalNight.gibtEsTorte()) {
+            return StatementState.INVISIBLE_NOT_IN_GAME;
+        }
+
+        if (rolle.equals(Konditorlehrling.ID) && NormalNight.gibtEsTorte()) {
             return StatementState.INVISIBLE_NOT_IN_GAME;
         }
 
