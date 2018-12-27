@@ -39,6 +39,7 @@ import root.Logic.Torte;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class NormalNight extends Thread {
     public static List<Statement> statements;
@@ -242,13 +243,9 @@ public class NormalNight extends Thread {
                         case IndieStatements.OPFER_ID:
                             setOpfer();
 
-                            opferDerNacht = new ArrayList<>(); //TODO lambda
-
-                            for (Opfer currentOpfer : opfer) {
-                                if (!opferDerNacht.contains(currentOpfer.spieler.name)) {
-                                    opferDerNacht.add(currentOpfer.spieler.name);
-                                }
-                            }
+                            opferDerNacht = opfer.stream()
+                                    .map(opfer -> opfer.spieler.name).distinct()
+                                    .collect(Collectors.toList());
 
                             FrontendControl.erzählerListPage(statement, IndieStatements.OPFER_TITLE, opferDerNacht);
                             for (String opfer : opferDerNacht) {
