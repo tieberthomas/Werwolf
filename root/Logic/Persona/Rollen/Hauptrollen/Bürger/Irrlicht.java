@@ -8,7 +8,7 @@ import root.Logic.KillLogic.Selbstmord;
 import root.Logic.Persona.Fraktion;
 import root.Logic.Persona.Fraktionen.Bürger;
 import root.Logic.Persona.Hauptrolle;
-import root.Logic.Persona.Rollen.Bonusrollen.SchwarzeSeele;
+import root.Logic.Persona.Rollen.Bonusrollen.DunklesLicht;
 import root.Logic.Phases.Statement.Constants.StatementType;
 import root.Logic.Spieler;
 import root.ResourceManagement.ImagePath;
@@ -102,8 +102,8 @@ public class Irrlicht extends Hauptrolle {
     private static void addGesehenesIrrlicht(Spieler irrlichtSpieler, String name) {
         if (irrlichtSpieler.hauptrolle.equals(Irrlicht.ID)) {
             ((Irrlicht) irrlichtSpieler.hauptrolle).geseheneIrrlichter.add(name);
-        } else if (irrlichtSpieler.bonusrolle.equals(SchwarzeSeele.ID)) {
-            ((SchwarzeSeele) irrlichtSpieler.bonusrolle).geseheneIrrlichter.add(name);
+        } else if (irrlichtSpieler.bonusrolle.equals(DunklesLicht.ID)) {
+            ((DunklesLicht) irrlichtSpieler.bonusrolle).geseheneIrrlichter.add(name);
         }
     }
 
@@ -130,8 +130,8 @@ public class Irrlicht extends Hauptrolle {
     private static List<String> getGeseheneIrrlichter(Spieler irrlichtSpieler) {
         if (irrlichtSpieler.hauptrolle.equals(Irrlicht.ID)) {
             return ((Irrlicht) irrlichtSpieler.hauptrolle).geseheneIrrlichter;
-        } else if (irrlichtSpieler.bonusrolle.equals(SchwarzeSeele.ID)) {
-            return ((SchwarzeSeele) irrlichtSpieler.bonusrolle).geseheneIrrlichter;
+        } else if (irrlichtSpieler.bonusrolle.equals(DunklesLicht.ID)) {
+            return ((DunklesLicht) irrlichtSpieler.bonusrolle).geseheneIrrlichter;
         }
         return new ArrayList<>();
     }

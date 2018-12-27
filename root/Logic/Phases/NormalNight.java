@@ -349,7 +349,7 @@ public class NormalNight extends Thread {
 
     public void setSchütze() {
         for (Spieler currentSpieler : Game.game.spieler) {
-            if (currentSpieler.bonusrolle.equals(SchwarzeSeele.ID)) {
+            if (currentSpieler.bonusrolle.equals(DunklesLicht.ID)) {
                 currentSpieler.geschützt = true;
             }
         }

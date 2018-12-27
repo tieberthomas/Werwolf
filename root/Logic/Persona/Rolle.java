@@ -3,7 +3,7 @@ package root.Logic.Persona;
 import root.Frontend.FrontendControl;
 import root.Logic.Game;
 import root.Logic.KillLogic.Opfer;
-import root.Logic.Persona.Rollen.Bonusrollen.SchwarzeSeele;
+import root.Logic.Persona.Rollen.Bonusrollen.DunklesLicht;
 import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Irrlicht;
 import root.Logic.Phases.Statement.Constants.StatementState;
 import root.Logic.Spieler;
@@ -133,7 +133,7 @@ public class Rolle extends Persona {
                 return true;
             }
 
-            if (rolleID.equals(Irrlicht.ID) && rolleLebend(SchwarzeSeele.ID)) {
+            if (rolleID.equals(Irrlicht.ID) && rolleLebend(DunklesLicht.ID)) {
                 return true;
             }
 

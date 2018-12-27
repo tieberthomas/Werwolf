@@ -148,6 +148,7 @@ public class Game {
         bonusrollen.add(new Analytiker());
         bonusrollen.add(new Archivar());
         bonusrollen.add(new Dieb());
+        bonusrollen.add(new DunklesLicht());
         bonusrollen.add(new Gefängniswärter());
         //Imitator
         bonusrollen.add(new Konditor());
@@ -161,7 +162,6 @@ public class Game {
         bonusrollen.add(new Schatten());
         bonusrollen.add(new Schattenkutte());
         bonusrollen.add(new Schnüffler());
-        bonusrollen.add(new SchwarzeSeele());
         bonusrollen.add(new Seelenlicht());
         bonusrollen.add(new Spurenleser());
         bonusrollen.add(new Tarnumhang());
@@ -354,7 +354,7 @@ public class Game {
 
     public List<String> getBonusrollenButtonNames() {
         return bonusrollen.stream()
-                .filter(r -> !(r.equals(SchwarzeSeele.ID) || r.equals(ReineSeele.ID)))
+                .filter(r -> !(r.equals(DunklesLicht.ID) || r.equals(ReineSeele.ID)))
                 .map(rolle -> rolle.name)
                 .collect(Collectors.toList());
     }
@@ -470,7 +470,7 @@ public class Game {
     public List<Spieler> getIrrlichter() {
         List<Spieler> livingSpieler = getLivingSpieler();
         return livingSpieler.stream()
-                .filter(spieler -> spieler.hauptrolle.equals(Irrlicht.ID) || spieler.bonusrolle.equals(SchwarzeSeele.ID))
+                .filter(spieler -> spieler.hauptrolle.equals(Irrlicht.ID) || spieler.bonusrolle.equals(DunklesLicht.ID))
                 .collect(Collectors.toList());
     }
 

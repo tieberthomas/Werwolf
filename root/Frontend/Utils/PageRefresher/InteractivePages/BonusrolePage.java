@@ -6,7 +6,7 @@ import root.Logic.Persona.Bonusrolle;
 import root.Logic.Persona.Rolle;
 import root.Logic.Persona.Rollen.Bonusrollen.ReineSeele;
 import root.Logic.Persona.Rollen.Bonusrollen.Schatten;
-import root.Logic.Persona.Rollen.Bonusrollen.SchwarzeSeele;
+import root.Logic.Persona.Rollen.Bonusrollen.DunklesLicht;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -33,7 +33,7 @@ public class BonusrolePage extends RolePage {
         roles.addAll(Game.game.bonusrollen.stream().map(bonusrolle -> bonusrolle.name).collect(Collectors.toList()));
         roles.remove(Schatten.NAME);
         roles.remove(ReineSeele.NAME);
-        roles.remove(SchwarzeSeele.NAME);
+        roles.remove(DunklesLicht.NAME);
     }
 
     @Override

@@ -58,7 +58,7 @@ public class Vampirumhang extends Bonusrolle {
             Bonusrolle bonusrolle;
 
             if (spieler.hauptrolle.fraktion.equals(Vampire.ID)) {
-                bonusrolle = new SchwarzeSeele();
+                bonusrolle = new DunklesLicht();
             } else {
                 bonusrolle = spieler.bonusrolle;
             }
