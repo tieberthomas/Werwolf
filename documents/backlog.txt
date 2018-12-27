@@ -9,20 +9,20 @@ Holde Maid, Sammler, Detektiv, Schreckenswolf und Wahrsager einrexen ? - 2
 Scharze Seele bekommt flackern 7 - 4
 Neuer Wolf (arbeitstitel Alphawolf) der jede 3. Nacht extrakill bekommt 5 - 4
 Wölfin verliert Nachteil + kriegt kill bei jeden Wolf kill 5 - 3
+Orakel erwacht nicht mehr wenn es alles gesehen hat 4 - 5
 
 
 Eingereihte Tasks
 1. Blutwolf bekommt alle Wolfskills 3 - 1
 1. Schwarze Seele auf "Dunkles Irrlicht"(working title) umbenennen 9 - 1
 2. Neuer Konditorlehrling 4 - 6
-2. Orakel erwacht nicht mehr wenn es alles gesehen hat 4 - 5
 3. Liebespaar auch speichern/laden 1 - 3
 3. wenn dieb eine Karte stiehlt, und man auf weiter klickt wird sofort die neue Bonusrolle gezeigt, verlangt hohe vorsichtigkeit des erzählers 1 - 3
 
 
 Fürs erste nicht umsetzbare Tasks da Gegebenheiten unklar sind oder evtl. die Karte gerext wird
 
-5. Imitator 1 - 50
+Imitator 1 - 50
 
 
 Nicht einpriorisierte Tasks:

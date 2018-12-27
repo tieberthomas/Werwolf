@@ -226,6 +226,10 @@ public class SpielerPageFactory {
     }
 
     public Page generateListPage(String title, List<String> stringsToDisplay) {
+        return generateListPage(title, stringsToDisplay, spielerFrame.frameJpanel.getHeight());
+    }
+
+    private Page generateListPage(String title, List<String> stringsToDisplay, int frameHeight) {
         spielerFrame.title = title;
         spielerFrame.mode = SpielerFrameMode.staticListPage;
 
@@ -241,7 +245,7 @@ public class SpielerPageFactory {
             int frameOffset = MyFrame.yOffset;
             int titleHeight = titleLabel.height;
             int stringHeight = pageElementFactory.getJLabelStandardHeight();
-            int spaceToUse = spielerFrame.frameJpanel.getHeight() - frameOffset - titleHeight - stringHeight;
+            int spaceToUse = frameHeight - frameOffset - titleHeight - stringHeight;
             int spacePerString = spaceToUse / realStringsToDisplay.size();
             int spacingBetweenStrings = spacePerString - stringHeight;
             int startpoint = titleHeight + ((spacePerString / 2) - (stringHeight / 2));
@@ -261,6 +265,18 @@ public class SpielerPageFactory {
         }
 
         return listPage;
+    }
+
+    public Page generateListPageWithNote(String title, List<String> stringsToDisplay, String note) {
+        int noteHeight = 120;
+        int listSize = spielerFrame.frameJpanel.getHeight() - noteHeight;
+        Page page = generateListPage(title, stringsToDisplay, listSize);
+
+        PageElement noteLabel = pageElementFactory.generateNoteLabel(note, noteHeight, 50);
+
+        page.add(noteLabel);
+
+        return page;
     }
 
     public Page generateListMirrorPage(String title, List<String> stringsToDisplay) {

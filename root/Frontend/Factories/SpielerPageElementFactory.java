@@ -1,5 +1,6 @@
 package root.Frontend.Factories;
 
+import root.Frontend.Frame.MyFrame;
 import root.Frontend.Frame.SpielerFrame;
 import root.Frontend.Page.PageElement;
 import root.Frontend.Page.Predecessor;
@@ -20,7 +21,6 @@ public class SpielerPageElementFactory {
     public SpielerPageElementFactory(SpielerFrame spielerFrame) {
         this.spielerFrame = spielerFrame;
     }
-
 
     public PageElement generateBierImage(Corner corner, int heigth) {
         int xSpace = 10;
@@ -174,6 +174,14 @@ public class SpielerPageElementFactory {
         centeredLabel.setCoordX(xCoord);
 
         return centeredLabel;
+    }
+
+    public PageElement generateNoteLabel(String note, int height, int spaceFromTheSide) {
+        int width = spielerFrame.getWidth() - spaceFromTheSide * 2;
+        int spaceFromTop = spielerFrame.getHeight() - height - MyFrame.yOffset - 20;
+
+        String HTMLnote = HTMLStringBuilder.buildHTMLText(note);
+        return new PageElement(generateBigJLabel(HTMLnote), width, height, null, null, spaceFromTheSide, spaceFromTop);
     }
 
     public PageElement generateColumnCenteredLabel(JLabel label, Predecessor predecessorY, int spaceToPredecessorY, int numberOfColumns, int indexOfColumn) {

@@ -24,12 +24,15 @@ public class Orakel extends Hauptrolle {
 
     public static final String STATEMENT_ID = ID;
     public static final String STATEMENT_TITLE = "Bonusrolle";
+    private static final String LIST_TITLE = "Bonusrollen";
     public static final String STATEMENT_BESCHREIBUNG = "Orakel erwacht und lässt sich vom Erzähler die Bonusrollenkarte eines zufälligen Bürgers zeigen";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_INFO;
 
-    private static final String LAST_BUERGER_MESSAGE = "Du bist der letzte Bürger";
+    private static final String note = "Du hast die Bonusrollen von allen Bürgern gesehen, du erwachst jetzt nicht mehr.";
 
     private static List<String> geseheneBonusrollen = new ArrayList<>();
+
+    public static boolean seenEverything = false;
 
     public Orakel() {
         this.id = ID;
@@ -45,34 +48,30 @@ public class Orakel extends Hauptrolle {
 
     @Override
     public FrontendControl getInfo() {
+        if (seenEverything) {
+            return new FrontendControl();
+        }
+
         Bonusrolle randomBonusrolle = getRandomUnseenBonusrolle();
 
         if (randomBonusrolle != null) {
             return new FrontendControl(FrontendControlType.CARD, randomBonusrolle.imagePath);
         } else {
-            return new FrontendControl(STATEMENT_TITLE, LAST_BUERGER_MESSAGE);
+            seenEverything = true;
+            return allSeenBonusrollen();
         }
     }
 
     private Bonusrolle getRandomUnseenBonusrolle() {
         List<Spieler> unseenBürger = getAllUnseenBürger();
 
-        Bonusrolle bonusrolle;
-
         if (unseenBürger.size() > 0) {
-            bonusrolle = Rand.getRandomElement(unseenBürger).bonusrolle;
-            geseheneBonusrollen.add(bonusrolle.id);
+            Bonusrolle bonusrolle = Rand.getRandomElement(unseenBürger).bonusrolle;
+            geseheneBonusrollen.add(bonusrolle.name);
+            return bonusrolle;
         } else {
-            if (geseheneBonusrollen.size() == 1 || geseheneBonusrollen.size() == 0) {
-                //das heißt dass keine bonusrollen mehr bei bürgern sind
-                return null;
-            } else {
-                geseheneBonusrollen.clear();
-                return getRandomUnseenBonusrolle();
-            }
+            return null;
         }
-
-        return bonusrolle;
     }
 
     private static List<Spieler> getAllUnseenBürger() {
@@ -81,18 +80,24 @@ public class Orakel extends Hauptrolle {
 
         if (Rolle.rolleLebend(ID)) {
             Bonusrolle orakelSpielerBonusrolle = Game.game.findSpielerPerRolle(ID).bonusrolle;
-            if (!geseheneBonusrollen.contains(orakelSpielerBonusrolle.id)) {
-                geseheneBonusrollen.add(orakelSpielerBonusrolle.id);
+            if (!geseheneBonusrollen.contains(orakelSpielerBonusrolle.name)) {
+                geseheneBonusrollen.add(orakelSpielerBonusrolle.name);
             }
         }
 
         for (Spieler currentBürger : bürger) {
-            if (geseheneBonusrollen.contains(currentBürger.bonusrolle.id)) {
+            if (geseheneBonusrollen.contains(currentBürger.bonusrolle.name)) {
                 bürgerToRemove.add(currentBürger);
             }
         }
 
         bürger.removeAll(bürgerToRemove);
         return bürger;
+    }
+
+    private FrontendControl allSeenBonusrollen() {
+        Bonusrolle orakelSpielerBonusrolle = Game.game.findSpielerPerRolle(ID).bonusrolle;
+        geseheneBonusrollen.remove(orakelSpielerBonusrolle.name);
+        return new FrontendControl(FrontendControlType.LIST_WITH_NOTE, LIST_TITLE, note, geseheneBonusrollen);
     }
 }

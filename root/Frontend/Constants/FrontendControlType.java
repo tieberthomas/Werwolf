@@ -8,6 +8,7 @@ public enum FrontendControlType {
     DROPDOWN_SEPARATED_LIST,
     DROPDOWN_IMAGE,
     LIST,
+    LIST_WITH_NOTE,
     IMAGE,
     CARD,
     LIST_IMAGE,

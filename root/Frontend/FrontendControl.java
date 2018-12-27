@@ -36,6 +36,7 @@ public class FrontendControl {
     public List<SchnüfflerInformation> informationen;
     public String imagePath;
     public String imagePath2;
+    public String note;
 
     public boolean hatZurückButton = false;
 
@@ -108,6 +109,13 @@ public class FrontendControl {
         this.title = title;
         this.displayedStrings = displayedStrings;
         this.imagePath = imagePath;
+    }
+
+    public FrontendControl(FrontendControlType typeOfContent, String title, String note, List<String> displayedStrings) {
+        this.typeOfContent = typeOfContent;
+        this.title = title;
+        this.note = note;
+        this.displayedStrings = displayedStrings;
     }
 
     public FrontendControl(List<SchnüfflerInformation> informationen, String title) {
@@ -283,6 +291,11 @@ public class FrontendControl {
 
     public static void spielerListPage(String title, List<String> strings) {
         Page nightPage = spielerFrame.pageFactory.generateListPage(title, strings);
+        spielerFrame.buildScreenFromPage(nightPage);
+    }
+
+    public static void spielerListPageWithNote(String title, List<String> strings, String note) {
+        Page nightPage = spielerFrame.pageFactory.generateListPageWithNote(title, strings, note);
         spielerFrame.buildScreenFromPage(nightPage);
     }
 

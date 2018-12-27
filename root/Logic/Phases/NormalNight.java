@@ -482,7 +482,7 @@ public class NormalNight extends Thread {
         }
     }
 
-    public String showFrontendControl(Statement statement, FrontendControl frontendControl) {
+    private String showFrontendControl(Statement statement, FrontendControl frontendControl) {
         if (frontendControl.title == null) {
             frontendControl.title = statement.title;
         }
@@ -512,6 +512,10 @@ public class NormalNight extends Thread {
 
                     case LIST:
                         showList(statement, frontendControl.title, frontendControl.displayedStrings, frontendControl.hatZurückButton);
+                        break;
+
+                    case LIST_WITH_NOTE:
+                        showListWithNote(statement, frontendControl.title, frontendControl.displayedStrings, frontendControl.hatZurückButton, frontendControl.note);
                         break;
 
                     case IMAGE:
@@ -796,6 +800,13 @@ public class NormalNight extends Thread {
     public void showList(Statement statement, String title, List<String> strings, boolean hatZurückButton) {
         FrontendControl.erzählerListPage(statement, title, strings, hatZurückButton);
         FrontendControl.spielerListPage(title, strings);
+
+        waitForAnswer();
+    }
+
+    public void showListWithNote(Statement statement, String title, List<String> strings, boolean hatZurückButton, String note) {
+        FrontendControl.erzählerListPage(statement, title, strings, hatZurückButton);
+        FrontendControl.spielerListPageWithNote(title, strings, note);
 
         waitForAnswer();
     }
