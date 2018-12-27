@@ -6,7 +6,7 @@ import root.Frontend.Utils.TimeUpdater;
 import root.Logic.Game;
 import root.Logic.Persona.Fraktion;
 import root.Logic.Persona.Fraktionen.Bürger;
-import root.Logic.Persona.Rollen.Bonusrollen.ReineSeele;
+import root.Logic.Persona.Rollen.Bonusrollen.Schutzengel;
 import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Schattenmensch;
 import root.Logic.Spieler;
 import root.ResourceManagement.ImagePath;
@@ -66,7 +66,7 @@ public class Day extends Thread {
                 if (isDayInvincible(chosenSpieler)) {
                     handleInvincibility(chosenSpieler);
 
-                    FrontendControl.announceOpferPage(chosenSpieler, ImagePath.REINE_SEELE_OPEN_KARTE);
+                    FrontendControl.announceOpferPage(chosenSpieler, ImagePath.REINE_SEELE_KARTE);
 
                     waitForAnswer();
                 } else {
@@ -94,8 +94,8 @@ public class Day extends Thread {
                     Schattenmensch.changeReineSeele = true;
                 }
             } else {
-                if (chosenSpieler.bonusrolle.equals(ReineSeele.ID)) {
-                    ((ReineSeele) chosenSpieler.bonusrolle).dayInvincibility = false;
+                if (chosenSpieler.bonusrolle.equals(Schutzengel.ID)) {
+                    ((Schutzengel) chosenSpieler.bonusrolle).dayInvincibility = false;
                 }
             }
         }
@@ -128,7 +128,7 @@ public class Day extends Thread {
     }
 
     private boolean isInvincibleFromReineSeele(Spieler chosenSpieler) {
-        return chosenSpieler.bonusrolle.equals(ReineSeele.ID) && ((ReineSeele) chosenSpieler.bonusrolle).dayInvincibility;
+        return chosenSpieler.bonusrolle.equals(Schutzengel.ID) && ((Schutzengel) chosenSpieler.bonusrolle).dayInvincibility;
     }
 
     private boolean isGebürgterSpieler(Spieler chosenSpieler) {

@@ -75,7 +75,7 @@ public class Totengräber extends Bonusrolle {
             if (spielerTotengräber.getFraktion().equals(Bürger.ID)) {
                 nehmbareBonusrollen.remove(DunklesLicht.NAME);
             } else {
-                nehmbareBonusrollen.remove(ReineSeele.NAME);
+                nehmbareBonusrollen.remove(Schutzengel.NAME);
             }
         }
 

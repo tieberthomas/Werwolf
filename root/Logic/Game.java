@@ -158,10 +158,10 @@ public class Game {
         bonusrollen.add(new Nachbar());
         bonusrollen.add(new Nachtfürst());
         bonusrollen.add(new Prostituierte());
-        bonusrollen.add(new ReineSeele());
         bonusrollen.add(new Schatten());
         bonusrollen.add(new Schattenkutte());
         bonusrollen.add(new Schnüffler());
+        bonusrollen.add(new Schutzengel());
         bonusrollen.add(new Seelenlicht());
         bonusrollen.add(new Spurenleser());
         bonusrollen.add(new Tarnumhang());
@@ -354,7 +354,7 @@ public class Game {
 
     public List<String> getBonusrollenButtonNames() {
         return bonusrollen.stream()
-                .filter(r -> !(r.equals(DunklesLicht.ID) || r.equals(ReineSeele.ID)))
+                .filter(r -> !(r.equals(DunklesLicht.ID) || r.equals(Schutzengel.ID)))
                 .map(rolle -> rolle.name)
                 .collect(Collectors.toList());
     }

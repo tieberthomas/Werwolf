@@ -7,15 +7,15 @@ import root.ResourceManagement.ImagePath;
 
 import java.awt.*;
 
-public class ReineSeele extends Bonusrolle {
-    public static final String ID = "ID_Reine_Seele";
-    public static final String NAME = "Reine Seele";
-    public static final String IMAGE_PATH = ImagePath.REINE_SEELE_KARTE;
+public class Schutzengel extends Bonusrolle {
+    public static final String ID = "ID_Schutzengel";
+    public static final String NAME = "Schutzengel";
+    public static final String IMAGE_PATH = ImagePath.SCHUTZENGEL_KARTE;
     public static final BonusrollenType TYPE = new Passiv();
     public boolean dayInvincibility = true;
     public static final Color COLOR = Color.MAGENTA;
 
-    public ReineSeele() {
+    public Schutzengel() {
         this.id = ID;
         this.name = NAME;
         this.imagePath = IMAGE_PATH;

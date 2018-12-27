@@ -82,10 +82,10 @@ public class ImagePath {
     public static String NACHBAR_KARTE = BONUSROLLEN_PATH + "Nachbar" + IMAGE_FILE_EXTENSION;
     public static String NACHTFÜRST_KARTE = BONUSROLLEN_PATH + "Nachtfürst" + IMAGE_FILE_EXTENSION;
     public static String PROSTITUIERTE_KARTE = BONUSROLLEN_PATH + "Prostituierte" + IMAGE_FILE_EXTENSION;
-    public static String REINE_SEELE_KARTE = BONUSROLLEN_PATH + "Reine_Seele" + IMAGE_FILE_EXTENSION;
     public static String SCHATTEN_KARTE = BONUSROLLEN_PATH + "Schatten" + IMAGE_FILE_EXTENSION;
     public static String SCHATTENKUTTE_KARTE = BONUSROLLEN_PATH + "Schattenkutte" + IMAGE_FILE_EXTENSION;
     public static String SCHNÜFFLER_KARTE = BONUSROLLEN_PATH + "Schnüffler" + IMAGE_FILE_EXTENSION;
+    public static String SCHUTZENGEL_KARTE = BONUSROLLEN_PATH + "Schutzengel" + IMAGE_FILE_EXTENSION;
     public static String SEELENLICHT_KARTE = BONUSROLLEN_PATH + "Seelenlicht" + IMAGE_FILE_EXTENSION;
     public static String SPURENLESER_KARTE = BONUSROLLEN_PATH + "Spurenleser" + IMAGE_FILE_EXTENSION;
     public static String TARNUMHANG_KARTE = BONUSROLLEN_PATH + "Tarnumhang" + IMAGE_FILE_EXTENSION;
@@ -96,6 +96,6 @@ public class ImagePath {
     public static String FEINSCHMECKER_KARTE = OFFENE_BONUSROLLEN_PATH + "Feinschmecker" + IMAGE_FILE_EXTENSION;
     public static String HAUPTMANN_KARTE = OFFENE_BONUSROLLEN_PATH + "Hauptmann" + IMAGE_FILE_EXTENSION;
     public static String PRIESTER_KARTE = OFFENE_BONUSROLLEN_PATH + "Priester" + IMAGE_FILE_EXTENSION;
-    public static String REINE_SEELE_OPEN_KARTE = OFFENE_BONUSROLLEN_PATH + "Reine_Seele" + IMAGE_FILE_EXTENSION;
+    public static String REINE_SEELE_KARTE = OFFENE_BONUSROLLEN_PATH + "Reine_Seele" + IMAGE_FILE_EXTENSION;
     public static String RICHTERIN_KARTE = OFFENE_BONUSROLLEN_PATH + "Richterin" + IMAGE_FILE_EXTENSION;
 }

@@ -56,7 +56,7 @@ public class Lamm extends Bonusrolle {
             Bonusrolle bonusrolle;
 
             if (spieler.hauptrolle.fraktion.equals(Bürger.ID)) {
-                bonusrolle = new ReineSeele();
+                bonusrolle = new Schutzengel();
             } else {
                 bonusrolle = spieler.bonusrolle;
             }
