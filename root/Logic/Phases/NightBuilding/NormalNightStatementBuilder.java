@@ -12,7 +12,6 @@ import root.Logic.Persona.Rollen.Hauptrollen.Vampire.GrafVladimir;
 import root.Logic.Persona.Rollen.Hauptrollen.Vampire.LadyAleera;
 import root.Logic.Persona.Rollen.Hauptrollen.Vampire.MissVerona;
 import root.Logic.Persona.Rollen.Hauptrollen.Werwölfe.Alphawolf;
-import root.Logic.Persona.Rollen.Hauptrollen.Werwölfe.Chemiker;
 import root.Logic.Persona.Rollen.Hauptrollen.Werwölfe.Wölfin;
 import root.Logic.Persona.Rollen.Hauptrollen.Überläufer.Henker;
 import root.Logic.Persona.Rollen.Hauptrollen.Überläufer.Überläufer;
@@ -89,8 +88,6 @@ public class NormalNightStatementBuilder {
 
         addStatementFraktion(SchattenpriesterFraktion.ID);
         addSecondStatementFraktion(SchattenpriesterFraktion.ID);
-        addStatementRolle(Chemiker.ID);
-        addSecondStatementRolle(Chemiker.ID);
 
         addStatementRolle(LadyAleera.ID);
         addStatementRolle(MissVerona.ID);

@@ -23,7 +23,6 @@ import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Wirt;
 import root.Logic.Persona.Rollen.Hauptrollen.Schattenpriester.Schattenpriester;
 import root.Logic.Persona.Rollen.Hauptrollen.Vampire.GrafVladimir;
 import root.Logic.Persona.Rollen.Hauptrollen.Werwölfe.Blutwolf;
-import root.Logic.Persona.Rollen.Hauptrollen.Werwölfe.Chemiker;
 import root.Logic.Persona.Rollen.Hauptrollen.Überläufer.Henker;
 import root.Logic.Phases.NightBuilding.NormalNightStatementBuilder;
 import root.Logic.Phases.Statement.Constants.IndieStatements;
@@ -176,16 +175,6 @@ public class NormalNight extends Thread {
                                 }
                             }
                             showListShowImage(statement, neueSchattenpriester, SchattenpriesterFraktion.IMAGE_PATH, erzählerInfoIconImagePath);
-                            break;
-
-                        case Chemiker.NEUER_WERWOLF:
-                            chosenSpieler = Game.game.findSpieler(chosenOptionLastStatement);
-                            String neuerWerwolf = "";
-                            if (chosenSpieler != null) {
-                                neuerWerwolf = chosenSpieler.name;
-                            }
-
-                            showListShowImage(statement, neuerWerwolf, Chemiker.FRAKTION.imagePath);
                             break;
 
                         case Nachtfürst.TÖTEN_ID:

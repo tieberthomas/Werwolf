@@ -34,8 +34,6 @@ Die Vampire erwachen und wählen ein Opfer aus
 Nachtfürst erwacht, schätzt die Anzahl der Opfer dieser Nacht und führt ggf. seine Tötung aus
 Die Schattenpriester erwachen und entscheiden welchen Verstorbenen dieser Nacht sie wiederbeleben und zum Kult hinzufügen möchten
 Der Wiederbelebte erwacht und tauscht seine Karten gegen Schattenkarten
-Chemiker erwacht und kann ein Wolfsopfer dieser Nacht wiederbeleben und zum Wolfsrudel hinzufügen
-Der Wiederbelebte erwacht und tauscht seine Hauptrollen- gegen eine Werwolfkarte
 Lady Aleera erwacht und fälscht die Identität eines Spielers
 Miss Verona erwacht und tarnt die Identität eines Spielers und verwirrt ihn
 Analytiker erwacht und wählt zwei Spieler, der Erzähler sagt ihm ob diese in derselben Fraktion sind
