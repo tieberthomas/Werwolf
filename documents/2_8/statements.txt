@@ -22,7 +22,7 @@ Der Bestohlene erwacht und erhält eine neue Bonusrolle
 Gefängniswärter erwacht und stellt einen Spieler  unter Schutzhaft
 Überläufer erwacht und entscheidet ob er seine Hauptrollenkarte tauschen möchte
 Lichter entscheiden sich, ob sie flackern möchten
-Licht erwacht und erfährt ein anderes Irrlicht
+Das angetippte Licht erwacht und erfährt ein anderes Irrlicht
 Schamanin erwacht und entscheidet ob sie einen Spieler schützen möchte
 Prostituierte legt sich zu einem Mitspieler ins Bett
 Henker erwcht und versucht die Rollen eines Mitspielers zu erraten
