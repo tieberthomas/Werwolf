@@ -1,1 +1,1 @@
-zurzeit sind keine bugs bekannt
+Man kann eine Rollen Mehrfach reingeben

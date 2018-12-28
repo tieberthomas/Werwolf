@@ -14,7 +14,8 @@ aufgebraucht page interaktiv gestalten
 getInstance (findSpielerOrDead) in game
 is tötend in werwolffraktion generischer machen
 rahmen am übersichtsframe richtig anzeigen
-
+Dunkles Licht bekommt wenn es keine Irrlichter mehr gibt "du bist das letzte Irrlicht" -> "es gibt keine Irrlichter mehr"
+Trote soll am Screan angezeigt werden, ob sie gut oder schlecht ist
 
 zuviel arbeit fürs erste:
 nach jeder nacht und tag persistierung
