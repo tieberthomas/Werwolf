@@ -10,7 +10,7 @@ Wolfsmensch erwacht und erfährt eine Bürgerrolle, die nicht im Spiel ist
 Die Werwölfe erwachen und sehen einander
 Die Vampire erwachen und sehen einander
 Die Schattenpriester erwachen und sehen einander
-Henker rwacht und erfährt eine Bürgerrolle, die nicht im Spiel ist
+Henker erwacht und erfährt eine Bürgerrolle die nicht im Spiel ist
 Alle wachen auf
 
 Normale Nacht:
@@ -25,7 +25,7 @@ Lichter entscheiden sich, ob sie flackern möchten
 Das angetippte Licht erwacht und erfährt ein anderes Irrlicht
 Schamanin erwacht und entscheidet ob sie einen Spieler schützen möchte
 Prostituierte legt sich zu einem Mitspieler ins Bett
-Henker erwcht und versucht die Rollen eines Mitspielers zu erraten
+Henker erwacht und versucht die Rollen eines Mitspielers zu erraten
 Riese erwacht und entscheidet sich ob einen Mitspieler töten möchte
 Die Werwölfe erwachen und die Wölfe wählen ein Opfer aus
 Alphawolf erwacht und wählt ein Opfer aus
@@ -44,7 +44,7 @@ Seherin erwacht und lässt sich Auskunft über die Fraktion eines Mitspielers ge
 Späher erwacht und lässt sich Auskunft über einen Mitspieler geben
 Orakel erwacht und lässt sich vom Erzähler die Bonusrollenkarte eines zufälligen Bürgers zeigen
 Medium erwacht und erfährt eine zufällige Bonusrolle, die nicht im Spiel ist
-Graf Vladimir erwacht und veerschleiert die Identität eines Spielers
+Graf Vladimir erwacht und verschleiert die Identität eines Spielers
 Nachbar erwacht, wählt einen Spieler und erfährt wer diesen Spieler besucht hat
 Spurenleser erwacht, wählt einen Mitspieler und erfährt wen dieser Spieler besucht hat
 Konditor erwacht und entscheidet sich ob es eine gute oder schlechte Torte gibt

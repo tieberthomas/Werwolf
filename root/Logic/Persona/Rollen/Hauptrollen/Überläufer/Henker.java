@@ -44,7 +44,7 @@ public class Henker extends Hauptrolle {
     public static final String BONUSROLLENTYP_TITLE = "Bonusrollentyp wählen";
     public static final String BONUSROLLEN_TITLE = "Bonusrolle wählen";
     public static final String AUSWAHL_BESTÄTIGUNG_TITLE = "Person hängen";
-    public static final String STATEMENT_BESCHREIBUNG = "Henker erawcht und versucht die Rollen eines Mitspielers zu erraten";
+    public static final String STATEMENT_BESCHREIBUNG = "Henker erwacht und versucht die Rollen eines Mitspielers zu erraten";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
 
     public static final String SETUP_NIGHT_STATEMENT_ID = "Setup_Night_Henker";

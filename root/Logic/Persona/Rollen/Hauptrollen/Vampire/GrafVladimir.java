@@ -17,7 +17,7 @@ public class GrafVladimir extends Hauptrolle {
 
     public static final String STATEMENT_ID = ID;
     public static final String STATEMENT_TITLE = "Spieler unerkennbar machen";
-    public static final String STATEMENT_BESCHREIBUNG = "Graf Vladimir erwacht und veerschleiert die Identität eines Spielers";
+    public static final String STATEMENT_BESCHREIBUNG = "Graf Vladimir erwacht und verschleiert die Identität eines Spielers";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
 
     public static Spieler verschleierterSpieler; //TODO move to night
