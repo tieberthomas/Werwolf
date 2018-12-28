@@ -428,7 +428,7 @@ public class Game {
     public List<Hauptrolle> getHauptrollenUnspecified() {
         List<Hauptrolle> hauptrollenUnspecified = ListHelper.cloneList(hauptrollenInGame);
 
-        hauptrollenUnspecified.removeAll(getHauptrollenSpecified());
+        getHauptrollenSpecified().forEach(hauptrolle -> hauptrollenUnspecified.remove(hauptrolle)); //dont remove its necessary for the number of instances
 
         return hauptrollenUnspecified;
     }
