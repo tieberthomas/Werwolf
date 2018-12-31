@@ -1,7 +1,7 @@
 package root.Frontend.Frame;
 
+import root.Controller.FrontendControl;
 import root.Frontend.Factories.ErzählerPageFactory;
-import root.Controller.FrontendObject;
 import root.Frontend.Utils.DropdownOptions;
 import root.Frontend.Utils.PageRefresher.InteractivePages.*;
 import root.Frontend.Utils.PageRefresher.Models.InteractivePage;
@@ -132,9 +132,9 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
             next = true;
             triggerNext();
         } else if (ae.getSource() == comboBox1 && ((JComboBox) ae.getSource()).hasFocus()) {
-            FrontendObject.combobox1Changed(comboBox1.getSelectedItem().toString());
+            FrontendControl.combobox1Changed(comboBox1.getSelectedItem().toString());
         } else if (ae.getSource() == comboBox2 && ((JComboBox) ae.getSource()).hasFocus()) {
-            FrontendObject.combobox2Changed(comboBox2.getSelectedItem().toString());
+            FrontendControl.combobox2Changed(comboBox2.getSelectedItem().toString());
         } else if (ae.getSource() == umbringenJButton) {
             showUmbringenPage();
         } else if (ae.getSource() == priesterJButton) {
@@ -173,12 +173,12 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
             chosenOption2 = (String) comboBox2.getSelectedItem();
         }
 
-        FrontendObject.ereaseSpielerFrame();
+        FrontendControl.ereaseSpielerFrame();
 
         GameController.continueThreads();
 
         if (GameController.mode == GameMode.SETUP_NIGHT) {
-            FrontendObject.refreshÜbersichtsFrame();
+            FrontendControl.refreshÜbersichtsFrame();
         }
     }
 }

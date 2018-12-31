@@ -1,6 +1,6 @@
 package root.Logic.Persona.Rollen.Bonusrollen;
 
-import root.Controller.FrontendObject;
+import root.Controller.FrontendControl;
 import root.Frontend.Utils.DropdownOptions;
 import root.Logic.Game;
 import root.Logic.Persona.Bonusrolle;
@@ -49,7 +49,7 @@ public class Konditorlehrling extends Bonusrolle {
         if (chosenSpieler != null) {
             besucht = chosenSpieler;
             NormalNight.torteSpieler = chosenSpieler;
-            Torte.stückGut = FrontendObject.erzählerFrame.chosenOption2.equals(Konditor.GUT);
+            Torte.stückGut = FrontendControl.erzählerFrame.chosenOption2.equals(Konditor.GUT);
         }
     }
 

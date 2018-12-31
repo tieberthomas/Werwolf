@@ -1,6 +1,6 @@
 package root.Frontend.Utils.PageRefresher.InteractivePages;
 
-import root.Controller.FrontendObject;
+import root.Controller.FrontendControl;
 import root.Frontend.Utils.DropdownOptions;
 import root.GameController;
 import root.Logic.Game;
@@ -24,7 +24,7 @@ public class UmbringenPage extends OneDropdownPage {
                 Day.umbringenSpieler = spieler;
                 Day.umbringenButton = true;
 
-                FrontendObject.refreshÜbersichtsFrame();
+                FrontendControl.refreshÜbersichtsFrame();
 
                 GameController.continueThreads();
             }

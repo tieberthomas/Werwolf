@@ -1,5 +1,6 @@
 package root.Logic.Phases;
 
+import root.Controller.FrontendControl;
 import root.Controller.FrontendObject;
 import root.Frontend.Utils.DropdownOptions;
 import root.Logic.Game;
@@ -16,8 +17,7 @@ import root.Logic.Persona.Hauptrolle;
 import root.Logic.Persona.Rolle;
 import root.Logic.Persona.Rollen.Bonusrollen.*;
 import root.Logic.Persona.Rollen.Constants.BonusrollenType.Tarnumhang_BonusrollenType;
-import root.Logic.Persona.Rollen.Constants.SchnüfflerInformation;
-import root.Logic.Persona.Rollen.Constants.Zeigekarten.*;
+import root.Logic.Persona.Rollen.Constants.Zeigekarten.Torten_Zeigekarte;
 import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Irrlicht;
 import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Wirt;
 import root.Logic.Persona.Rollen.Hauptrollen.Schattenpriester.Schattenpriester;
@@ -59,6 +59,8 @@ public class NormalNight extends Thread {
     public void run() {
         lock = new Object();
         synchronized (lock) {
+            FrontendControl.lock = lock;
+
             FrontendObject dropdownOptions;
             FrontendObject info;
 
@@ -99,30 +101,30 @@ public class NormalNight extends Thread {
 
                     switch (statement.type) {
                         case SHOW_TITLE:
-                            showTitle(statement);
+                            FrontendControl.showTitle(statement);
                             break;
 
                         case ROLLE_CHOOSE_ONE:
                             dropdownOptions = rolle.getFrontendObject();
-                            chosenOption = showFrontendObject(statement, dropdownOptions);
+                            chosenOption = FrontendControl.showFrontendObject(statement, dropdownOptions);
                             rolle.processChosenOption(chosenOption);
                             break;
 
                         case ROLLE_CHOOSE_ONE_INFO:
                             dropdownOptions = rolle.getFrontendObject();
-                            chosenOption = showFrontendObject(statement, dropdownOptions);
+                            chosenOption = FrontendControl.showFrontendObject(statement, dropdownOptions);
                             info = rolle.processChosenOptionGetInfo(chosenOption);
-                            showFrontendObject(statement, info);
+                            FrontendControl.showFrontendObject(statement, info);
                             break;
 
                         case ROLLE_INFO:
                             info = rolle.getInfo();
-                            showFrontendObject(statement, info);
+                            FrontendControl.showFrontendObject(statement, info);
                             break;
 
                         case FRAKTION_CHOOSE_ONE:
                             dropdownOptions = fraktion.getFrontendObject();
-                            chosenOption = showFrontendObject(statement, dropdownOptions);
+                            chosenOption = FrontendControl.showFrontendObject(statement, dropdownOptions);
                             fraktion.processChosenOption(chosenOption);
                             break;
                     }
@@ -140,11 +142,11 @@ public class NormalNight extends Thread {
 
                         case Henker.STATEMENT_ID:
                             dropdownOptions = rolle.getFrontendObject();
-                            chosenOption = showFrontendObject(statement, dropdownOptions);
+                            chosenOption = FrontendControl.showFrontendObject(statement, dropdownOptions);
                             rolle.processChosenOption(chosenOption);
 
                             while (Henker.pagecounter < Henker.numberOfPages) {
-                                if (FrontendObject.erzählerFrame.next) {
+                                if (FrontendControl.erzählerFrame.next) {
                                     henkerNächsteSeite();
                                 } else {
                                     henkerSeiteZurück();
@@ -154,7 +156,7 @@ public class NormalNight extends Thread {
                             if (rolle.besucht != null) {
                                 Henker henker = ((Henker) rolle);
                                 info = henker.processChosenOptionsGetInfo(Henker.chosenHauptrolle.name, Henker.chosenBonusrolle.name);
-                                showFrontendObject(statement, info);
+                                FrontendControl.showFrontendObject(statement, info);
                             }
                             break;
 
@@ -174,41 +176,41 @@ public class NormalNight extends Thread {
                                     erzählerInfoIconImagePath = Schattenkutte.IMAGE_PATH;
                                 }
                             }
-                            showListShowImage(statement, neueSchattenpriester, SchattenpriesterFraktion.IMAGE_PATH, erzählerInfoIconImagePath);
+                            FrontendControl.showListShowImage(statement, neueSchattenpriester, SchattenpriesterFraktion.IMAGE_PATH, erzählerInfoIconImagePath);
                             break;
 
                         case Nachtfürst.TÖTEN_ID:
                             Nachtfürst nachtfürst = (Nachtfürst) rolle;
                             dropdownOptions = nachtfürst.getSecondFrontendObject();
-                            chosenOption = showFrontendObject(statement, dropdownOptions);
+                            chosenOption = FrontendControl.showFrontendObject(statement, dropdownOptions);
                             nachtfürst.processSecondChosenOption(chosenOption);
                             break;
 
                         case Irrlicht.STATEMENT_ID:
                             dropdownOptions = rolle.getFrontendObject();
-                            showFrontendObject(statement, dropdownOptions);
+                            FrontendControl.showFrontendObject(statement, dropdownOptions);
                             break;
 
                         case Irrlicht.INFO:
-                            info = Irrlicht.processFlackerndeIrrlichter(FrontendObject.getFlackerndeIrrlichter());
-                            showFrontendObject(statement, info);
+                            info = Irrlicht.processFlackerndeIrrlichter(FrontendControl.getFlackerndeIrrlichter());
+                            FrontendControl.showFrontendObject(statement, info);
                             break;
 
                         case Analytiker.STATEMENT_ID:
                             Analytiker analytiker = (Analytiker) rolle;
 
                             DropdownOptions analytikerDropdownOptions = analytiker.getDropdownOptions();
-                            showDropdownPage(statement, analytikerDropdownOptions, analytikerDropdownOptions);
+                            FrontendControl.showDropdownPage(statement, analytikerDropdownOptions, analytikerDropdownOptions);
 
-                            Spieler chosenSpieler1 = Game.game.findSpieler(FrontendObject.erzählerFrame.chosenOption1);
-                            Spieler chosenSpieler2 = Game.game.findSpieler(FrontendObject.erzählerFrame.chosenOption2);
+                            Spieler chosenSpieler1 = Game.game.findSpieler(FrontendControl.erzählerFrame.chosenOption1);
+                            Spieler chosenSpieler2 = Game.game.findSpieler(FrontendControl.erzählerFrame.chosenOption2);
 
                             if (chosenSpieler1 != null && chosenSpieler2 != null) {
                                 if (analytiker.showTarnumhang(chosenSpieler1, chosenSpieler2)) {
-                                    showZeigekarte(statement, new Tarnumhang_BonusrollenType());
+                                    FrontendControl.showZeigekarte(statement, new Tarnumhang_BonusrollenType());
                                 } else {
                                     String answer = analytiker.analysiere(chosenSpieler1, chosenSpieler2);
-                                    showList(statement, answer);
+                                    FrontendControl.showList(statement, answer);
                                 }
                             }
                             break;
@@ -218,7 +220,7 @@ public class NormalNight extends Thread {
                                 Torte.torte = true;
 
                                 dropdownOptions = rolle.getFrontendObject();
-                                chosenOption = showKonditorDropdownPage(statement, dropdownOptions);
+                                chosenOption = FrontendControl.showKonditorDropdownPage(statement, dropdownOptions);
                                 rolle.processChosenOption(chosenOption);
 
                                 Torte.gut = chosenOption.equals(Konditor.GUT);
@@ -231,9 +233,9 @@ public class NormalNight extends Thread {
 
                                 DropdownOptions dropdownOptionsSpieler = konditorlehrling.getDropdownOptionsSpieler();
                                 DropdownOptions dropdownOptionsTorte = Konditor.getTortenOptions();
-                                showDropdownPage(statement, dropdownOptionsSpieler, dropdownOptionsTorte);
+                                FrontendControl.showDropdownPage(statement, dropdownOptionsSpieler, dropdownOptionsTorte);
 
-                                konditorlehrling.processChosenOption(FrontendObject.erzählerFrame.chosenOption1);
+                                konditorlehrling.processChosenOption(FrontendControl.erzählerFrame.chosenOption1);
                             }
                             break;
 
@@ -244,10 +246,10 @@ public class NormalNight extends Thread {
                                     .map(opfer -> opfer.spieler.name).distinct()
                                     .collect(Collectors.toList());
 
-                            FrontendObject.erzählerListPage(statement, IndieStatements.OPFER_TITLE, opferDerNacht);
+                            FrontendControl.erzählerListPage(statement, IndieStatements.OPFER_TITLE, opferDerNacht);
                             for (String opfer : opferDerNacht) {
-                                FrontendObject.spielerAnnounceOpferPage(Game.game.findSpieler(opfer));
-                                waitForAnswer();
+                                FrontendControl.spielerAnnounceOpferPage(Game.game.findSpieler(opfer));
+                                FrontendControl.waitForAnswer();
                             }
 
                             checkVictory();
@@ -255,16 +257,16 @@ public class NormalNight extends Thread {
 
                         case ProgramStatements.TORTE_ID:
                             if (Torte.torte) {
-                                FrontendObject.erzählerTortenPage();
-                                FrontendObject.showZeigekarteOnSpielerScreen(new Torten_Zeigekarte());
+                                FrontendControl.erzählerTortenPage();
+                                FrontendControl.showZeigekarteOnSpielerScreen(new Torten_Zeigekarte());
 
-                                waitForAnswer();
-                                Torte.setTortenEsser(FrontendObject.getTortenesser());
+                                FrontendControl.waitForAnswer();
+                                Torte.setTortenEsser(FrontendControl.getTortenesser());
                             } else {
                                 if (torteSpieler != null) {
                                     dropdownOptions = Torte.getFrontendObject();
                                     statement.title = Torte.TORTENSTUECK_TITLE;
-                                    chosenOption = showFrontendObject(statement, dropdownOptions);
+                                    chosenOption = FrontendControl.showFrontendObject(statement, dropdownOptions);
 
                                     if (chosenOption.equals(Torte.TORTE_NEHMEN)) {
                                         Torte.tortenStück = true;
@@ -489,404 +491,7 @@ public class NormalNight extends Thread {
         Winner winner = Game.game.checkVictory();
 
         if (winner != Winner.NO_WINNER) {
-            showEndScreenPage(winner);
-        }
-    }
-
-    private String showFrontendObject(Statement statement, FrontendObject frontendObject) {
-        if (frontendObject.title == null) {
-            frontendObject.title = statement.title;
-        }
-
-        switch (statement.state) {
-            case NORMAL:
-                switch (frontendObject.typeOfContent) {
-                    case TITLE:
-                        showTitle(statement, frontendObject.title);
-                        break;
-
-                    case DROPDOWN:
-                        showDropdown(statement, frontendObject.title, frontendObject.dropdownOptions);
-                        return FrontendObject.erzählerFrame.chosenOption1;
-
-                    case DROPDOWN_LIST:
-                        showDropdownList(statement, frontendObject.title, frontendObject.dropdownOptions, frontendObject.hatZurückButton);
-                        return FrontendObject.erzählerFrame.chosenOption1;
-
-                    case DROPDOWN_SEPARATED_LIST:
-                        showDropdownSeperatedList(statement, frontendObject.title, frontendObject.dropdownOptions, frontendObject.displayedStrings, frontendObject.hatZurückButton);
-                        return FrontendObject.erzählerFrame.chosenOption1;
-
-                    case DROPDOWN_IMAGE:
-                        showDropdownShowImage(statement, frontendObject.title, frontendObject.dropdownOptions, frontendObject.imagePath);
-                        return FrontendObject.erzählerFrame.chosenOption1;
-
-                    case LIST:
-                        showList(statement, frontendObject.title, frontendObject.displayedStrings, frontendObject.hatZurückButton);
-                        break;
-
-                    case LIST_WITH_NOTE:
-                        showListWithNote(statement, frontendObject.title, frontendObject.displayedStrings, frontendObject.hatZurückButton, frontendObject.note);
-                        break;
-
-                    case IMAGE:
-                        showImage(statement, frontendObject.title, frontendObject.imagePath);
-                        break;
-
-                    case CARD:
-                        showCard(statement, frontendObject.title, frontendObject.imagePath);
-                        break;
-
-                    case LIST_IMAGE:
-                        showListShowImage(statement, frontendObject.title, frontendObject.displayedStrings, frontendObject.imagePath);
-                        break;
-
-                    case SCHNÜFFLER_INFO:
-                        showSchnüfflerInfo(statement, frontendObject.informationen);
-                        break;
-
-                    case IRRLICHT_DROPDOWN:
-                        showIrrlichtDropdown(statement, frontendObject.title, frontendObject.dropdownOptions);
-                        break;
-
-                    case TWO_IMAGES:
-                        showTwoImages(statement, frontendObject.title, frontendObject.imagePath, frontendObject.imagePath2, frontendObject.displayedStrings, frontendObject.hatZurückButton);
-                        break;
-
-                }
-                break;
-
-            case AUFGEBRAUCHT:
-                showAufgebrauchtPages(statement, frontendObject);
-                break;
-
-            case DEAKTIV:
-                showDeaktivPages(statement, frontendObject);
-                break;
-
-            case DEAD:
-                showTotPages(statement, frontendObject);
-                break;
-
-            case NOT_IN_GAME:
-                showAusDemSpielPages(statement, frontendObject);
-                break;
-        }
-
-        return null;
-    }
-
-    private void showTwoImages(Statement statement, String title, String imagePath, String imagePath2, List<String> displayedStrings, boolean hatZurückButton) {
-        FrontendObject.erzählerListPage(statement, title, displayedStrings, hatZurückButton);
-        FrontendObject.spielerTwoImagePage(title, imagePath, imagePath2);
-
-        waitForAnswer();
-    }
-
-    private void showIrrlichtDropdown(Statement statement, String title, DropdownOptions dropdownStrings) {
-        FrontendObject.irrlichtDropdownPage(statement, dropdownStrings);
-        FrontendObject.spielerTitlePage(title);
-
-        waitForAnswer();
-    }
-
-    private void showDropdownShowImage(Statement statement, String title, DropdownOptions strings, String imagePath) {
-        FrontendObject.erzählerDropdownPage(statement, strings);
-        FrontendObject.spielerDropdownMirrorImagePage(title, imagePath);
-
-        waitForAnswer();
-    }
-
-    public void showDropdownPage(Statement statement, DropdownOptions dropdownOptions1, DropdownOptions dropdownOptions2) {
-        switch (statement.state) {
-            case NORMAL:
-                FrontendObject.erzählerDropdownPage(statement, dropdownOptions1, dropdownOptions2);
-                FrontendObject.spielerDropdownPage(statement.title, 2);
-                break;
-
-            case DEAKTIV:
-                Deaktiviert deaktiviert = new Deaktiviert();
-                FrontendObject.erzählerDropdownPage(statement, getEmptyDropdownOptions(), getEmptyDropdownOptions(), deaktiviert.imagePath);
-                FrontendObject.showZeigekarteOnSpielerScreen(deaktiviert);
-                break;
-
-            case DEAD:
-                Tot tot = new Tot();
-                FrontendObject.erzählerDropdownPage(statement, getEmptyDropdownOptions(), getEmptyDropdownOptions(), tot.imagePath);
-                FrontendObject.showZeigekarteOnSpielerScreen(tot);
-                break;
-
-            case NOT_IN_GAME:
-                FrontendObject.erzählerDropdownPage(statement, getEmptyDropdownOptions(), getEmptyDropdownOptions(), new AusDemSpiel().imagePath);
-                FrontendObject.spielerDropdownPage(statement.title, 2);
-                break;
-        }
-
-        waitForAnswer();
-    }
-
-    public String showKonditorDropdownPage(Statement statement, FrontendObject frontendObject) {
-        FrontendObject.erzählerDropdownPage(statement, frontendObject.dropdownOptions);
-        FrontendObject.spielerDropdownPage(statement.title, 1);
-
-        waitForAnswer();
-
-        return FrontendObject.erzählerFrame.chosenOption1;
-    }
-
-    private void showEndScreenPage(Winner winner) {
-        FrontendObject.erzählerEndScreenPage(winner);
-        FrontendObject.spielerEndScreenPage(winner);
-
-        waitForAnswer();
-    }
-
-    private void showZeigekarte(Statement statement, Zeigekarte zeigekarte) {
-        FrontendObject.erzählerIconPicturePage(statement, zeigekarte.imagePath);
-        FrontendObject.spielerIconPicturePage(zeigekarte.title, zeigekarte.imagePath);
-
-        waitForAnswer();
-    }
-
-    //TODO Cases die sowieso gleich aussehen zusammenfassen
-    public void showAufgebrauchtPages(Statement statement, FrontendObject frontendObject) {
-        Zeigekarte aufgebraucht = new Aufgebraucht();
-
-        switch (frontendObject.typeOfContent) {
-            case DROPDOWN:
-            case DROPDOWN_LIST:
-            case DROPDOWN_SEPARATED_LIST:
-            case DROPDOWN_IMAGE:
-                FrontendObject.erzählerDropdownPage(statement, getEmptyDropdownOptions(), aufgebraucht.imagePath);
-                break;
-
-            case LIST:
-            case LIST_IMAGE:
-                FrontendObject.erzählerListPage(statement, getEmptyStringList(), aufgebraucht.imagePath);
-                break;
-
-            case TITLE:
-            case IMAGE:
-            case CARD:
-            case SCHNÜFFLER_INFO:
-            default:
-                FrontendObject.erzählerIconPicturePage(statement, aufgebraucht.imagePath);
-                break;
-        }
-
-        FrontendObject.showZeigekarteOnSpielerScreen(aufgebraucht);
-        waitForAnswer();
-    }
-
-    public void showDeaktivPages(Statement statement, FrontendObject frontendObject) {
-        Zeigekarte deaktiviert = new Deaktiviert();
-
-        switch (frontendObject.typeOfContent) {
-            case DROPDOWN:
-            case DROPDOWN_LIST:
-            case DROPDOWN_SEPARATED_LIST:
-            case DROPDOWN_IMAGE:
-                FrontendObject.erzählerDropdownPage(statement, getEmptyDropdownOptions(), deaktiviert.imagePath);
-                break;
-
-            case LIST:
-            case LIST_IMAGE:
-                FrontendObject.erzählerListPage(statement, getEmptyStringList(), deaktiviert.imagePath);
-                break;
-
-            case TITLE:
-            case IMAGE:
-            case CARD:
-            case SCHNÜFFLER_INFO:
-            default:
-                FrontendObject.erzählerIconPicturePage(statement, deaktiviert.imagePath);
-                break;
-        }
-
-        FrontendObject.showZeigekarteOnSpielerScreen(deaktiviert);
-        waitForAnswer();
-    }
-
-    public void showTotPages(Statement statement, FrontendObject frontendObject) {
-        Zeigekarte tot = new Tot();
-
-        switch (frontendObject.typeOfContent) {
-            case DROPDOWN:
-            case DROPDOWN_LIST:
-            case DROPDOWN_SEPARATED_LIST:
-            case DROPDOWN_IMAGE:
-                FrontendObject.erzählerDropdownPage(statement, getEmptyDropdownOptions(), tot.imagePath);
-                break;
-            case LIST:
-            case LIST_IMAGE:
-                FrontendObject.erzählerListPage(statement, getEmptyStringList(), tot.imagePath);
-                break;
-
-            case TITLE:
-            case IMAGE:
-            case CARD:
-            case SCHNÜFFLER_INFO:
-            default:
-                FrontendObject.erzählerIconPicturePage(statement, tot.imagePath);
-                break;
-        }
-
-        FrontendObject.showZeigekarteOnSpielerScreen(tot);
-        waitForAnswer();
-    }
-
-    public void showAusDemSpielPages(Statement statement, FrontendObject frontendObject) {
-        Zeigekarte ausDemSpiel = new AusDemSpiel();
-
-        switch (frontendObject.typeOfContent) {
-            case DROPDOWN:
-            case DROPDOWN_LIST:
-            case DROPDOWN_SEPARATED_LIST:
-            case DROPDOWN_IMAGE:
-                FrontendObject.erzählerDropdownPage(statement, getEmptyDropdownOptions(), ausDemSpiel.imagePath);
-                FrontendObject.spielerDropdownPage(statement.title, 1);
-                break;
-
-            case LIST:
-            case LIST_IMAGE:
-                FrontendObject.erzählerListPage(statement, getEmptyStringList(), ausDemSpiel.imagePath);
-                FrontendObject.spielerListPage(statement.title, getEmptyStringList());
-                break;
-
-            case TITLE:
-            case IMAGE:
-            case CARD:
-            case SCHNÜFFLER_INFO:
-            default:
-                FrontendObject.erzählerIconPicturePage(statement, ausDemSpiel.imagePath);
-                FrontendObject.spielerIconPicturePage(statement.title, "");
-                break;
-        }
-
-        waitForAnswer();
-    }
-
-    public void showTitle(Statement statement) {
-        showTitle(statement, statement.title);
-    }
-
-    public void showTitle(Statement statement, String title) {
-        FrontendObject.erzählerDefaultNightPage(statement);
-        FrontendObject.spielerTitlePage(title);
-
-        waitForAnswer();
-    }
-
-    public void showDropdown(Statement statement, String title, DropdownOptions dropdownOptions) {
-        FrontendObject.erzählerDropdownPage(statement, dropdownOptions);
-        FrontendObject.spielerDropdownPage(title, 1);
-
-        waitForAnswer();
-    }
-
-    public void showDropdownList(Statement statement, String title, DropdownOptions dropdownOptions, boolean hatZurückButton) {
-        FrontendObject.erzählerDropdownPage(statement, dropdownOptions, hatZurückButton);
-        FrontendObject.spielerDropdownListPage(title, dropdownOptions);
-
-        waitForAnswer();
-    }
-
-    public void showDropdownSeperatedList(Statement statement, String title, DropdownOptions dropdownStrings, List<String> listStrings, boolean hatZurückButton) {
-        FrontendObject.erzählerDropdownPage(statement, dropdownStrings, hatZurückButton);
-        FrontendObject.spielerDropdownListPage(title, listStrings);
-
-        waitForAnswer();
-    }
-
-    public void showList(Statement statement, String string) {
-        List<String> list = new ArrayList<>();
-        list.add(string);
-        showList(statement, list);
-    }
-
-    public void showList(Statement statement, List<String> strings) {
-        showList(statement, statement.title, strings, false);
-    }
-
-    public void showList(Statement statement, String title, List<String> strings, boolean hatZurückButton) {
-        FrontendObject.erzählerListPage(statement, title, strings, hatZurückButton);
-        FrontendObject.spielerListPage(title, strings);
-
-        waitForAnswer();
-    }
-
-    public void showListWithNote(Statement statement, String title, List<String> strings, boolean hatZurückButton, String note) {
-        FrontendObject.erzählerListPage(statement, title, strings, hatZurückButton);
-        FrontendObject.spielerListPageWithNote(title, strings, note);
-
-        waitForAnswer();
-    }
-
-    public void showImage(Statement statement, String imagePath) {
-        showImage(statement, statement.title, imagePath);
-    }
-
-    public void showImage(Statement statement, String title, String imagePath) {
-        FrontendObject.erzählerIconPicturePage(statement, title, imagePath);
-        FrontendObject.spielerIconPicturePage(title, imagePath);
-
-        waitForAnswer();
-    }
-
-    public void showCard(Statement statement, String title, String imagePath) {
-        FrontendObject.erzählerCardPicturePage(statement, title, imagePath);
-        FrontendObject.spielerCardPicturePage(title, imagePath);
-
-        waitForAnswer();
-    }
-
-    public void showListShowImage(Statement statement, String string, String spielerImagePath) {
-        List<String> list = new ArrayList<>();
-        list.add(string);
-        showListShowImage(statement, statement.title, list, spielerImagePath);
-    }
-
-    public void showListShowImage(Statement statement, List<String> strings, String spielerImagePath, String erzählerImagePath) {
-        showListShowImage(statement, statement.title, strings, spielerImagePath, erzählerImagePath);
-    }
-
-    public void showListShowImage(Statement statement, String title, List<String> strings, String spielerImagePath) {
-        FrontendObject.erzählerListPage(statement, strings);
-        FrontendObject.spielerIconPicturePage(title, spielerImagePath);
-
-        waitForAnswer();
-    }
-
-    public void showListShowImage(Statement statement, String title, List<String> strings, String spielerImagePath, String erzählerImagePath) {
-        FrontendObject.erzählerListPage(statement, strings, erzählerImagePath);
-        FrontendObject.spielerIconPicturePage(title, spielerImagePath);
-
-        waitForAnswer();
-    }
-
-    public void showSchnüfflerInfo(Statement statement, List<SchnüfflerInformation> informationen) {
-        FrontendObject.erzählerDefaultNightPage(statement);
-        FrontendObject.spielerSchnüfflerInfoPage(informationen);
-
-        waitForAnswer();
-    }
-
-    public static List<String> getEmptyStringList() {
-        List<String> emptyContent = new ArrayList<>();
-        emptyContent.add("");
-        return emptyContent;
-    }
-
-    public static DropdownOptions getEmptyDropdownOptions() {
-        return new DropdownOptions(getEmptyStringList());
-    }
-
-    public void waitForAnswer() {
-        FrontendObject.refreshÜbersichtsFrame();
-        try {
-            lock.wait();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            FrontendControl.showEndScreenPage(winner);
         }
     }
 
@@ -894,7 +499,7 @@ public class NormalNight extends Thread {
         Henker henker = (Henker) Game.game.findHauptrolle(Henker.ID);
         Henker.pagecounter++;
         if (Henker.pagecounter < Henker.numberOfPages) {
-            FrontendObject frontendObject = henker.getPage(FrontendObject.erzählerFrame.chosenOption1);
+            FrontendObject frontendObject = henker.getPage(FrontendControl.erzählerFrame.chosenOption1);
             showHenkerPage(frontendObject);
         }
     }
@@ -913,6 +518,6 @@ public class NormalNight extends Thread {
                 .filter(statement -> statement.id.equals(Henker.STATEMENT_ID))
                 .findAny().orElse(null);
 
-        showFrontendObject(henkerStatement, frontendObject);
+        FrontendControl.showFrontendObject(henkerStatement, frontendObject);
     }
 }

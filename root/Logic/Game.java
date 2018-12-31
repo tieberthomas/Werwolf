@@ -1,5 +1,6 @@
 package root.Logic;
 
+import root.Controller.FrontendControl;
 import root.Frontend.Frame.ErzählerFrame;
 import root.Frontend.Frame.SpielerFrame;
 import root.Frontend.Frame.ÜbersichtsFrame;
@@ -71,9 +72,9 @@ public class Game {
     }
 
     public void startGame(ErzählerFrame erzählerFrame, SpielerFrame spielerFrame, ÜbersichtsFrame übersichtsFrame) {
-        FrontendObject.erzählerFrame = erzählerFrame;
-        FrontendObject.spielerFrame = spielerFrame;
-        FrontendObject.übersichtsFrame = übersichtsFrame;
+        FrontendControl.erzählerFrame = erzählerFrame;
+        FrontendControl.spielerFrame = spielerFrame;
+        FrontendControl.übersichtsFrame = übersichtsFrame;
 
         PhaseManager phaseManager = new PhaseManager();
         phaseManager.start();
