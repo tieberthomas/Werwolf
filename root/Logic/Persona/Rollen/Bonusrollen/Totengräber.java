@@ -1,7 +1,7 @@
 package root.Logic.Persona.Rollen.Bonusrollen;
 
-import root.Frontend.Constants.FrontendControlType;
-import root.Frontend.FrontendControl;
+import root.Controller.FrontendObjectType;
+import root.Controller.FrontendObject;
 import root.Frontend.Utils.DropdownOptions;
 import root.Logic.Game;
 import root.Logic.Persona.Bonusrolle;
@@ -40,8 +40,8 @@ public class Totengräber extends Bonusrolle {
     }
 
     @Override
-    public FrontendControl getDropdownOptionsFrontendControl() {
-        return new FrontendControl(FrontendControlType.DROPDOWN_LIST, new DropdownOptions(getNehmbareBonusrollen(), DropdownConstants.EMPTY));
+    public FrontendObject getFrontendObject() {
+        return new FrontendObject(FrontendObjectType.DROPDOWN_LIST, new DropdownOptions(getNehmbareBonusrollen(), DropdownConstants.EMPTY));
     }
 
     @Override

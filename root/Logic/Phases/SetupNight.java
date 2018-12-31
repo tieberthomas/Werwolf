@@ -1,6 +1,6 @@
 package root.Logic.Phases;
 
-import root.Frontend.FrontendControl;
+import root.Controller.FrontendObject;
 import root.Frontend.Utils.DropdownOptions;
 import root.Logic.Game;
 import root.Logic.Liebespaar;
@@ -77,8 +77,8 @@ public class SetupNight extends Thread {
                                 showDropdown(statement, Liebespaar.getDropdownOptions(), Liebespaar.getDropdownOptions());
 
                                 //TODO chosen options sollten direkt über frontendcontrol accessed werden
-                                Game.game.liebespaar = new Liebespaar(FrontendControl.erzählerFrame.chosenOption1, FrontendControl.erzählerFrame.chosenOption2);
-                                FrontendControl.regenerateAndRefreshÜbersichtsFrame();
+                                Game.game.liebespaar = new Liebespaar(FrontendObject.erzählerFrame.chosenOption1, FrontendObject.erzählerFrame.chosenOption2);
+                                FrontendObject.regenerateAndRefreshÜbersichtsFrame();
                                 break;
 
                             case IndieStatements.LIEBESPAAR_FINDEN_ID:
@@ -91,8 +91,8 @@ public class SetupNight extends Thread {
 
                                     imagePath = Liebespaar.IMAGE_PATH;
 
-                                    FrontendControl.erzählerListPage(statement, liebespaarStrings);
-                                    FrontendControl.spielerIconPicturePage(statement.title, imagePath);
+                                    FrontendObject.erzählerListPage(statement, liebespaarStrings);
+                                    FrontendObject.spielerIconPicturePage(statement.title, imagePath);
 
                                     waitForAnswer();
                                 }
@@ -172,22 +172,22 @@ public class SetupNight extends Thread {
     }
 
     private void showTitle(Statement statement, String title) {
-        FrontendControl.erzählerDefaultNightPage(statement);
-        FrontendControl.spielerTitlePage(title);
+        FrontendObject.erzählerDefaultNightPage(statement);
+        FrontendObject.spielerTitlePage(title);
 
         waitForAnswer();
     }
 
     private void showDropdown(Statement statement, DropdownOptions dropdownOptions1, DropdownOptions dropdownOptions2) {
-        FrontendControl.erzählerDropdownPage(statement, dropdownOptions1, dropdownOptions2);
-        FrontendControl.spielerDropdownPage(statement.title, 2);
+        FrontendObject.erzählerDropdownPage(statement, dropdownOptions1, dropdownOptions2);
+        FrontendObject.spielerDropdownPage(statement.title, 2);
 
         waitForAnswer();
     }
 
     private void showCard(Statement statement, String title, String imagePath) {
-        FrontendControl.erzählerCardPicturePage(statement, title, imagePath);
-        FrontendControl.spielerCardPicturePage(title, imagePath);
+        FrontendObject.erzählerCardPicturePage(statement, title, imagePath);
+        FrontendObject.spielerCardPicturePage(title, imagePath);
 
         waitForAnswer();
     }
@@ -197,14 +197,14 @@ public class SetupNight extends Thread {
     }
 
     private void showListShowImage(Statement statement, String title, List<String> strings, String spielerImagePath) {
-        FrontendControl.erzählerListPage(statement, strings);
-        FrontendControl.spielerIconPicturePage(title, spielerImagePath);
+        FrontendObject.erzählerListPage(statement, strings);
+        FrontendObject.spielerIconPicturePage(title, spielerImagePath);
 
         waitForAnswer();
     }
 
     private void waitForAnswer() {
-        FrontendControl.refreshÜbersichtsFrame();
+        FrontendObject.refreshÜbersichtsFrame();
         try {
             lock.wait();
         } catch (InterruptedException e) {

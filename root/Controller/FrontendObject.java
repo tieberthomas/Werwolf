@@ -1,6 +1,5 @@
-package root.Frontend;
+package root.Controller;
 
-import root.Frontend.Constants.FrontendControlType;
 import root.Frontend.Frame.ErzählerFrame;
 import root.Frontend.Frame.SpielerFrame;
 import root.Frontend.Frame.SpielerFrameMode;
@@ -24,12 +23,12 @@ import root.Logic.Spieler;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FrontendControl {
+public class FrontendObject {
     public static ErzählerFrame erzählerFrame;
     public static SpielerFrame spielerFrame;
     public static ÜbersichtsFrame übersichtsFrame;
 
-    public FrontendControlType typeOfContent;
+    public FrontendObjectType typeOfContent;
     public String title;
     public DropdownOptions dropdownOptions;
     public List<String> displayedStrings;
@@ -40,33 +39,33 @@ public class FrontendControl {
 
     public boolean hatZurückButton = false;
 
-    public FrontendControl() {
-        this.typeOfContent = FrontendControlType.SKIP;
+    public FrontendObject() {
+        this.typeOfContent = FrontendObjectType.SKIP;
     }
 
-    public FrontendControl(String title) {
-        this.typeOfContent = FrontendControlType.TITLE;
+    public FrontendObject(String title) {
+        this.typeOfContent = FrontendObjectType.TITLE;
         this.title = title;
     }
 
-    public FrontendControl(String title, String listString) {
-        this.typeOfContent = FrontendControlType.LIST;
+    public FrontendObject(String title, String listString) {
+        this.typeOfContent = FrontendObjectType.LIST;
         this.title = title;
         displayedStrings = new ArrayList<>();
         displayedStrings.add(listString);
     }
 
-    public FrontendControl(FrontendControlType typeOfContent, String title, List<String> strings) {
+    public FrontendObject(FrontendObjectType typeOfContent, String title, List<String> strings) {
         this(typeOfContent, strings);
         this.title = title;
     }
 
-    public FrontendControl(DropdownOptions dropdownOptions) {
-        this.typeOfContent = FrontendControlType.DROPDOWN;
+    public FrontendObject(DropdownOptions dropdownOptions) {
+        this.typeOfContent = FrontendObjectType.DROPDOWN;
         this.dropdownOptions = dropdownOptions;
     }
 
-    public FrontendControl(FrontendControlType typeOfContent, List<String> strings) {
+    public FrontendObject(FrontendObjectType typeOfContent, List<String> strings) {
         this.typeOfContent = typeOfContent;
         if (typeOfContent.isDropdown()) {
             dropdownOptions = (DropdownOptions) strings;
@@ -75,68 +74,68 @@ public class FrontendControl {
         }
     }
 
-    public FrontendControl(String title, DropdownOptions dropdownOptions) {
-        this.typeOfContent = FrontendControlType.DROPDOWN;
+    public FrontendObject(String title, DropdownOptions dropdownOptions) {
+        this.typeOfContent = FrontendObjectType.DROPDOWN;
         this.title = title;
         this.dropdownOptions = dropdownOptions;
     }
 
-    public FrontendControl(FrontendControlType typeOfContent, String imagePath) {
+    public FrontendObject(FrontendObjectType typeOfContent, String imagePath) {
         this.typeOfContent = typeOfContent;
         this.imagePath = imagePath;
     }
 
-    public FrontendControl(FrontendControlType typeOfContent, String title, String imagePath) {
+    public FrontendObject(FrontendObjectType typeOfContent, String title, String imagePath) {
         this.typeOfContent = typeOfContent;
         this.title = title;
         this.imagePath = imagePath;
     }
 
-    public FrontendControl(Zeigekarte zeigekarte) {
-        this.typeOfContent = FrontendControlType.IMAGE;
+    public FrontendObject(Zeigekarte zeigekarte) {
+        this.typeOfContent = FrontendObjectType.IMAGE;
         this.title = zeigekarte.title;
         this.imagePath = zeigekarte.imagePath;
     }
 
-    public FrontendControl(FrontendControlType typeOfContent, DropdownOptions dropdownOptions, String imagePath) {
+    public FrontendObject(FrontendObjectType typeOfContent, DropdownOptions dropdownOptions, String imagePath) {
         this.typeOfContent = typeOfContent;
         this.dropdownOptions = dropdownOptions;
         this.imagePath = imagePath;
     }
 
-    public FrontendControl(FrontendControlType typeOfContent, String title, List<String> displayedStrings, String imagePath) {
+    public FrontendObject(FrontendObjectType typeOfContent, String title, List<String> displayedStrings, String imagePath) {
         this.typeOfContent = typeOfContent;
         this.title = title;
         this.displayedStrings = displayedStrings;
         this.imagePath = imagePath;
     }
 
-    public FrontendControl(FrontendControlType typeOfContent, String title, String note, List<String> displayedStrings) {
+    public FrontendObject(FrontendObjectType typeOfContent, String title, String note, List<String> displayedStrings) {
         this.typeOfContent = typeOfContent;
         this.title = title;
         this.note = note;
         this.displayedStrings = displayedStrings;
     }
 
-    public FrontendControl(List<SchnüfflerInformation> informationen, String title) {
-        this.typeOfContent = FrontendControlType.SCHNÜFFLER_INFO;
+    public FrontendObject(List<SchnüfflerInformation> informationen, String title) {
+        this.typeOfContent = FrontendObjectType.SCHNÜFFLER_INFO;
         this.title = title;
         this.informationen = informationen;
     }
 
-    public FrontendControl(String title, DropdownOptions dropdownOptions, List<String> displayedStrings) {
-        this.typeOfContent = FrontendControlType.DROPDOWN_SEPARATED_LIST;
+    public FrontendObject(String title, DropdownOptions dropdownOptions, List<String> displayedStrings) {
+        this.typeOfContent = FrontendObjectType.DROPDOWN_SEPARATED_LIST;
         this.title = title;
         this.dropdownOptions = dropdownOptions;
         this.displayedStrings = displayedStrings;
     }
 
-    public FrontendControl(String title, String imagePath1, String imagePath2, List<String> displayedStrings) {
+    public FrontendObject(String title, String imagePath1, String imagePath2, List<String> displayedStrings) {
         this.title = title;
         this.imagePath = imagePath1;
         this.imagePath2 = imagePath2;
         this.displayedStrings = displayedStrings;
-        typeOfContent = FrontendControlType.TWO_IMAGES;
+        typeOfContent = FrontendObjectType.TWO_IMAGES;
     }
 
     public static void erzählerDefaultNightPage(Statement statement) {
@@ -150,8 +149,8 @@ public class FrontendControl {
     }
 
     public static void showDayPage() {
-        FrontendControl.erzählerDefaultDayPage();
-        FrontendControl.spielerDayPage();
+        FrontendObject.erzählerDefaultDayPage();
+        FrontendObject.spielerDayPage();
     }
 
     public static void erzählerDefaultDayPage() {
@@ -178,8 +177,8 @@ public class FrontendControl {
     }
 
     public static void announceOpferPage(Spieler spieler, String imagePath) {
-        FrontendControl.erzählerAnnounceOpferPage(spieler, imagePath);
-        FrontendControl.spielerCardPicturePage(spieler.name, imagePath);
+        FrontendObject.erzählerAnnounceOpferPage(spieler, imagePath);
+        FrontendObject.spielerCardPicturePage(spieler.name, imagePath);
         refreshÜbersichtsFrame();
 
     }
@@ -223,7 +222,7 @@ public class FrontendControl {
     }
 
     public static void erzählerDropdownPage(Statement statement, DropdownOptions dropdownOptions) {
-        FrontendControl.erzählerDropdownPage(statement, dropdownOptions, false);
+        FrontendObject.erzählerDropdownPage(statement, dropdownOptions, false);
     }
 
     public static void erzählerDropdownPage(Statement statement, DropdownOptions dropdownOptions, boolean hatZurückButton) {

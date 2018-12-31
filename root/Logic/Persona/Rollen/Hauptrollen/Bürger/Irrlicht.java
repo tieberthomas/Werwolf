@@ -1,7 +1,7 @@
 package root.Logic.Persona.Rollen.Hauptrollen.Bürger;
 
-import root.Frontend.Constants.FrontendControlType;
-import root.Frontend.FrontendControl;
+import root.Controller.FrontendObjectType;
+import root.Controller.FrontendObject;
 import root.Frontend.Utils.DropdownOptions;
 import root.Logic.Game;
 import root.Logic.KillLogic.Selbstmord;
@@ -57,11 +57,11 @@ public class Irrlicht extends Hauptrolle {
     }
 
     @Override
-    public FrontendControl getDropdownOptionsFrontendControl() {
-        return new FrontendControl(FrontendControlType.IRRLICHT_DROPDOWN, new DropdownOptions(Game.game.getIrrlichterStrings()));
+    public FrontendObject getFrontendObject() {
+        return new FrontendObject(FrontendObjectType.IRRLICHT_DROPDOWN, new DropdownOptions(Game.game.getIrrlichterStrings()));
     }
 
-    public static FrontendControl processFlackerndeIrrlichter(List<String> flackerndeIrrlichter) {
+    public static FrontendObject processFlackerndeIrrlichter(List<String> flackerndeIrrlichter) {
         int numberIrrlichterInGame = Game.game.getIrrlichterStrings().size();
         int numberFlackerndeIrrlichter = flackerndeIrrlichter.size();
 
@@ -70,16 +70,16 @@ public class Irrlicht extends Hauptrolle {
             String randomIrrlicht = getRandomUnseenIrrlichtSpieler(einzigesFlackerndesIrrlicht);
 
             if (randomIrrlicht != null) {
-                return new FrontendControl(SECOND_STATEMENT_TITLE, randomIrrlicht);
+                return new FrontendObject(SECOND_STATEMENT_TITLE, randomIrrlicht);
             } else {
-                return new FrontendControl(SECOND_STATEMENT_TITLE, LAST_IRRLICHT_MESSAGE);
+                return new FrontendObject(SECOND_STATEMENT_TITLE, LAST_IRRLICHT_MESSAGE);
             }
         } else if (numberFlackerndeIrrlichter == numberIrrlichterInGame && numberIrrlichterInGame != 0) {
             Spieler spieler = getRandomIrrlichtToDie();
             Selbstmord.execute(spieler);
         }
 
-        return new FrontendControl(SECOND_STATEMENT_TITLE);
+        return new FrontendObject(SECOND_STATEMENT_TITLE);
     }
 
     private static String getRandomUnseenIrrlichtSpieler(Spieler einzigesFlackerndesIrrlicht) {

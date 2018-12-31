@@ -1,7 +1,7 @@
 package root.Logic.Persona.Fraktionen;
 
-import root.Frontend.Constants.FrontendControlType;
-import root.Frontend.FrontendControl;
+import root.Controller.FrontendObjectType;
+import root.Controller.FrontendObject;
 import root.Frontend.Utils.DropdownOptions;
 import root.Logic.Game;
 import root.Logic.KillLogic.NormalKill;
@@ -62,9 +62,9 @@ public class Vampire extends Fraktion {
     }
 
     @Override
-    public FrontendControl getDropdownOptionsFrontendControl() {
+    public FrontendObject getFrontendObject() {
         DropdownOptions dropdownOptions = Game.game.getSpielerDropdownOptions(true);
 
-        return new FrontendControl(FrontendControlType.DROPDOWN_IMAGE, dropdownOptions, zeigekarte.imagePath);
+        return new FrontendObject(FrontendObjectType.DROPDOWN_IMAGE, dropdownOptions, zeigekarte.imagePath);
     }
 }

@@ -1,6 +1,6 @@
 package root.Logic.Persona.Rollen.Bonusrollen;
 
-import root.Frontend.FrontendControl;
+import root.Controller.FrontendObject;
 import root.Frontend.Utils.DropdownOptions;
 import root.Logic.Game;
 import root.Logic.Persona.Bonusrolle;
@@ -48,8 +48,8 @@ public class Schnüffler extends Bonusrolle {
     }
 
     @Override
-    public FrontendControl getDropdownOptionsFrontendControl() {
-        return new FrontendControl(generateDropdownOptions());
+    public FrontendObject getFrontendObject() {
+        return new FrontendObject(generateDropdownOptions());
     }
 
     private DropdownOptions generateDropdownOptions() {
@@ -66,7 +66,7 @@ public class Schnüffler extends Bonusrolle {
     }
 
     @Override
-    public FrontendControl processChosenOptionGetInfo(String chosenOption) {
+    public FrontendObject processChosenOptionGetInfo(String chosenOption) {
         Spieler chosenSpieler = Game.game.findSpieler(chosenOption);
 
         if (chosenSpieler != null) {
@@ -81,9 +81,9 @@ public class Schnüffler extends Bonusrolle {
             }
 
             String pageTitle = chosenSpieler.name;
-            return new FrontendControl(informationen, pageTitle);
+            return new FrontendObject(informationen, pageTitle);
         }
 
-        return new FrontendControl();
+        return new FrontendObject();
     }
 }

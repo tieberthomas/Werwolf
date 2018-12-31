@@ -1,6 +1,6 @@
 package root.Logic.Phases;
 
-import root.Frontend.FrontendControl;
+import root.Controller.FrontendObject;
 import root.Frontend.Utils.JButtonStyler;
 import root.Frontend.Utils.TimeUpdater;
 import root.Logic.Game;
@@ -44,8 +44,8 @@ public class Day extends Thread {
         synchronized (lock) {
             TimeUpdater.time = 0;
 
-            FrontendControl.erzählerDefaultDayPage();
-            FrontendControl.spielerDayPage();
+            FrontendObject.erzählerDefaultDayPage();
+            FrontendObject.spielerDayPage();
 
             waitForAnswer();
 
@@ -53,20 +53,20 @@ public class Day extends Thread {
                 umbringenButton = false;
                 killSpielerCheckLiebespaar(umbringenSpieler);
 
-                FrontendControl.erzählerDefaultDayPage();
-                FrontendControl.spielerDayPage();
+                FrontendObject.erzählerDefaultDayPage();
+                FrontendObject.spielerDayPage();
 
                 waitForAnswer();
             }
 
-            Spieler chosenSpieler = Game.game.findSpieler(FrontendControl.erzählerFrame.chosenOption1);
+            Spieler chosenSpieler = Game.game.findSpieler(FrontendObject.erzählerFrame.chosenOption1);
 
             if (chosenSpieler != null) {
                 System.out.println("Das Dorf entscheidet sich " + chosenSpieler.name + " hinzurichten.");
                 if (isDayInvincible(chosenSpieler)) {
                     handleInvincibility(chosenSpieler);
 
-                    FrontendControl.announceOpferPage(chosenSpieler, ImagePath.REINE_SEELE_KARTE);
+                    FrontendObject.announceOpferPage(chosenSpieler, ImagePath.REINE_SEELE_KARTE);
 
                     waitForAnswer();
                 } else {
@@ -143,7 +143,7 @@ public class Day extends Thread {
     private void killSpieler(Spieler spieler) {
         if (spieler != null) {
             Game.game.killSpieler(spieler);
-            FrontendControl.announceOpferPage(spieler);
+            FrontendObject.announceOpferPage(spieler);
         }
     }
 
@@ -152,7 +152,7 @@ public class Day extends Thread {
 
         Spieler liebespartner = Game.game.liebespaar.getSpielerToDie();
         if (liebespartner != null) {
-            JButtonStyler.disableButton(FrontendControl.erzählerFrame.umbringenJButton);
+            JButtonStyler.disableButton(FrontendObject.erzählerFrame.umbringenJButton);
             waitForAnswer();
             System.out.println(liebespartner.name + " sieht dass sein Liebespaartner " + spieler.name + " gestorben ist und begeht Suizid.");
             killSpieler(liebespartner);
@@ -164,8 +164,8 @@ public class Day extends Thread {
     }
 
     private void showEndScreenPage(Winner winner) {
-        FrontendControl.erzählerEndScreenPage(winner);
-        FrontendControl.spielerEndScreenPage(winner);
+        FrontendObject.erzählerEndScreenPage(winner);
+        FrontendObject.spielerEndScreenPage(winner);
 
         waitForAnswer();
     }

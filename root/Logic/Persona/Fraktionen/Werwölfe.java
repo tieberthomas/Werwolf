@@ -1,7 +1,7 @@
 package root.Logic.Persona.Fraktionen;
 
-import root.Frontend.Constants.FrontendControlType;
-import root.Frontend.FrontendControl;
+import root.Controller.FrontendObjectType;
+import root.Controller.FrontendObject;
 import root.Frontend.Utils.DropdownOptions;
 import root.Logic.Game;
 import root.Logic.KillLogic.BlutwolfKill;
@@ -58,7 +58,7 @@ public class Werwölfe extends Fraktion {
     }
 
     @Override
-    public FrontendControl getDropdownOptionsFrontendControl() {
+    public FrontendObject getFrontendObject() {
         String imagePath = zeigekarte.imagePath;
         if (blutWolfIsAktiv()) {
             imagePath = new Blutmond().imagePath;
@@ -66,7 +66,7 @@ public class Werwölfe extends Fraktion {
 
         DropdownOptions dropdownOptions = Game.game.getSpielerDropdownOptions(true);
 
-        return new FrontendControl(FrontendControlType.DROPDOWN_IMAGE, dropdownOptions, imagePath);
+        return new FrontendObject(FrontendObjectType.DROPDOWN_IMAGE, dropdownOptions, imagePath);
     }
 
     public static boolean blutWolfIsAktiv() {

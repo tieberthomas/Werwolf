@@ -1,7 +1,7 @@
 package root.Logic.Persona.Rollen.Hauptrollen.Bürger;
 
-import root.Frontend.Constants.FrontendControlType;
-import root.Frontend.FrontendControl;
+import root.Controller.FrontendObjectType;
+import root.Controller.FrontendObject;
 import root.Logic.Game;
 import root.Logic.Persona.Bonusrolle;
 import root.Logic.Persona.Fraktion;
@@ -47,15 +47,15 @@ public class Orakel extends Hauptrolle {
     }
 
     @Override
-    public FrontendControl getInfo() {
+    public FrontendObject getInfo() {
         if (seenEverything) {
-            return new FrontendControl();
+            return new FrontendObject();
         }
 
         Bonusrolle randomBonusrolle = getRandomUnseenBonusrolle();
 
         if (randomBonusrolle != null) {
-            return new FrontendControl(FrontendControlType.CARD, randomBonusrolle.imagePath);
+            return new FrontendObject(FrontendObjectType.CARD, randomBonusrolle.imagePath);
         } else {
             seenEverything = true;
             return allSeenBonusrollen();
@@ -95,9 +95,9 @@ public class Orakel extends Hauptrolle {
         return bürger;
     }
 
-    private FrontendControl allSeenBonusrollen() {
+    private FrontendObject allSeenBonusrollen() {
         Bonusrolle orakelSpielerBonusrolle = Game.game.findSpielerPerRolle(ID).bonusrolle;
         geseheneBonusrollen.remove(orakelSpielerBonusrolle.name);
-        return new FrontendControl(FrontendControlType.LIST_WITH_NOTE, LIST_TITLE, note, geseheneBonusrollen);
+        return new FrontendObject(FrontendObjectType.LIST_WITH_NOTE, LIST_TITLE, note, geseheneBonusrollen);
     }
 }

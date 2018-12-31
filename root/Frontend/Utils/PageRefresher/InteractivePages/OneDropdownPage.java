@@ -1,6 +1,6 @@
 package root.Frontend.Utils.PageRefresher.InteractivePages;
 
-import root.Frontend.FrontendControl;
+import root.Controller.FrontendObject;
 import root.Frontend.Utils.DropdownOptions;
 import root.Frontend.Utils.PageRefresher.InteractivePages.InteractiveElementsDtos.OneDropdownPageDto;
 import root.Frontend.Utils.PageRefresher.Models.InteractivePage;
@@ -49,9 +49,9 @@ public class OneDropdownPage extends InteractivePage {
     public void processActionEvent(ActionEvent ae) {
         if (next.equals(ae.getSource())) {
             executeAction();
-            FrontendControl.showDayPage();
+            FrontendObject.showDayPage();
         } else if (back.equals((ae.getSource()))) {
-            FrontendControl.showDayPage();
+            FrontendObject.showDayPage();
         }
     }
 

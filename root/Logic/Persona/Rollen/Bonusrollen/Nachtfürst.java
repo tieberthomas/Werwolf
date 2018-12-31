@@ -1,7 +1,7 @@
 package root.Logic.Persona.Rollen.Bonusrollen;
 
-import root.Frontend.Constants.FrontendControlType;
-import root.Frontend.FrontendControl;
+import root.Controller.FrontendObjectType;
+import root.Controller.FrontendObject;
 import root.Frontend.Utils.DropdownOptions;
 import root.Logic.Game;
 import root.Logic.KillLogic.NormalKill;
@@ -67,14 +67,14 @@ public class Nachtfürst extends Bonusrolle {
     }
 
     @Override
-    public FrontendControl getDropdownOptionsFrontendControl() {
+    public FrontendObject getFrontendObject() {
         List<String> numbers = new ArrayList<>();
         numbers.add("1");
         numbers.add("2");
         numbers.add("3");
         numbers.add("4");
         numbers.add("5"); //TODO 5 genügt?
-        return new FrontendControl(FrontendControlType.DROPDOWN_LIST, new DropdownOptions(numbers, KEIN_OPFER));
+        return new FrontendObject(FrontendObjectType.DROPDOWN_LIST, new DropdownOptions(numbers, KEIN_OPFER));
     }
 
     @Override
@@ -90,18 +90,18 @@ public class Nachtfürst extends Bonusrolle {
         }
     }
 
-    public FrontendControl getSecondDropdownOptionsFrontendControl() {
+    public FrontendObject getSecondFrontendObject() {
         if (isTötendeFraktion()) {
             if (guessedRight) {
-                return new FrontendControl(Game.game.getSpielerDropdownOptions(true));
+                return new FrontendObject(Game.game.getSpielerDropdownOptions(true));
             } else {
-                return new FrontendControl(new Nicht_Tötend());
+                return new FrontendObject(new Nicht_Tötend());
             }
         } else {
             if (guessedRight) {
-                return new FrontendControl(new Geschützt());
+                return new FrontendObject(new Geschützt());
             } else {
-                return new FrontendControl(NICHT_GESCHÜTZT, new DropdownOptions(new ArrayList<>(), DropdownConstants.EMPTY));
+                return new FrontendObject(NICHT_GESCHÜTZT, new DropdownOptions(new ArrayList<>(), DropdownConstants.EMPTY));
             }
         }
     }

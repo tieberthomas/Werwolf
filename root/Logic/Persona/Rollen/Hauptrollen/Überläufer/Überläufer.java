@@ -1,7 +1,7 @@
 package root.Logic.Persona.Rollen.Hauptrollen.Überläufer;
 
-import root.Frontend.Constants.FrontendControlType;
-import root.Frontend.FrontendControl;
+import root.Controller.FrontendObjectType;
+import root.Controller.FrontendObject;
 import root.Frontend.Utils.DropdownOptions;
 import root.Logic.Game;
 import root.Logic.Persona.Fraktion;
@@ -37,8 +37,8 @@ public class Überläufer extends Hauptrolle {
     }
 
     @Override
-    public FrontendControl getDropdownOptionsFrontendControl() {
-        return new FrontendControl(FrontendControlType.DROPDOWN_LIST, new DropdownOptions(getMitteHauptrollenNames(), DropdownConstants.EMPTY));
+    public FrontendObject getFrontendObject() {
+        return new FrontendObject(FrontendObjectType.DROPDOWN_LIST, new DropdownOptions(getMitteHauptrollenNames(), DropdownConstants.EMPTY));
     }
 
     @Override

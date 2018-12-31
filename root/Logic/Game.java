@@ -3,7 +3,7 @@ package root.Logic;
 import root.Frontend.Frame.ErzählerFrame;
 import root.Frontend.Frame.SpielerFrame;
 import root.Frontend.Frame.ÜbersichtsFrame;
-import root.Frontend.FrontendControl;
+import root.Controller.FrontendObject;
 import root.Frontend.Utils.DropdownOptions;
 import root.Logic.Persona.Bonusrolle;
 import root.Logic.Persona.Fraktion;
@@ -71,9 +71,9 @@ public class Game {
     }
 
     public void startGame(ErzählerFrame erzählerFrame, SpielerFrame spielerFrame, ÜbersichtsFrame übersichtsFrame) {
-        FrontendControl.erzählerFrame = erzählerFrame;
-        FrontendControl.spielerFrame = spielerFrame;
-        FrontendControl.übersichtsFrame = übersichtsFrame;
+        FrontendObject.erzählerFrame = erzählerFrame;
+        FrontendObject.spielerFrame = spielerFrame;
+        FrontendObject.übersichtsFrame = übersichtsFrame;
 
         PhaseManager phaseManager = new PhaseManager();
         phaseManager.start();
@@ -275,8 +275,8 @@ public class Game {
         return new DropdownOptions(spielerStrings, DropdownConstants.EMPTY);
     }
 
-    public FrontendControl getSpielerFrontendControl(Rolle rolle) {
-        return new FrontendControl(getSpielerDropdownOptions(rolle));
+    public FrontendObject getSpielerFrontendObject(Rolle rolle) {
+        return new FrontendObject(getSpielerDropdownOptions(rolle));
     }
 
     public List<Spieler> getLivingSpieler() {

@@ -2,7 +2,7 @@ package root.Logic.Phases;
 
 import root.Frontend.Factories.ErzählerPageFactory;
 import root.Frontend.Frame.GameMode;
-import root.Frontend.FrontendControl;
+import root.Controller.FrontendObject;
 import root.GameController;
 import root.Logic.Game;
 
@@ -70,7 +70,7 @@ public class PhaseManager extends Thread {
     }
 
     public void waitForAnswer() {
-        FrontendControl.refreshÜbersichtsFrame();
+        FrontendObject.refreshÜbersichtsFrame();
         try {
             lock.wait();
         } catch (InterruptedException e) {

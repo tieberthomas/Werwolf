@@ -1,6 +1,6 @@
-package root.Frontend.Constants;
+package root.Controller;
 
-public enum FrontendControlType {
+public enum FrontendObjectType {
     SKIP,
     TITLE,
     DROPDOWN,

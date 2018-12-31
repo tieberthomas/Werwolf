@@ -1,6 +1,6 @@
 package root.Logic.Persona.Rollen.Bonusrollen;
 
-import root.Frontend.FrontendControl;
+import root.Controller.FrontendObject;
 import root.Frontend.Utils.DropdownOptions;
 import root.Logic.Persona.Bonusrolle;
 import root.Logic.Persona.Rollen.Constants.BonusrollenType.Aktiv;
@@ -40,8 +40,8 @@ public class Konditor extends Bonusrolle {
     }
 
     @Override
-    public FrontendControl getDropdownOptionsFrontendControl() {
-        return new FrontendControl(getTortenOptions());
+    public FrontendObject getFrontendObject() {
+        return new FrontendObject(getTortenOptions());
     }
 
     public static DropdownOptions getTortenOptions() {

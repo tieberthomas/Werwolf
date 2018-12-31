@@ -1,6 +1,6 @@
 package root.Logic.Persona;
 
-import root.Frontend.FrontendControl;
+import root.Controller.FrontendObject;
 import root.Logic.Phases.Statement.Constants.StatementType;
 import root.Logic.Spieler;
 import root.ResourceManagement.ImagePath;
@@ -29,19 +29,19 @@ public class Persona {
     public String setupNightStatementBeschreibung = "";
     public StatementType setupNightStatementType = StatementType.EMPTY_STATEMENT;
 
-    public FrontendControl getDropdownOptionsFrontendControl() {
-        return new FrontendControl();
+    public FrontendObject getFrontendObject() {
+        return new FrontendObject();
     }
 
     public void processChosenOption(String chosenOption) {
     }
 
-    public FrontendControl processChosenOptionGetInfo(String chosenOption) {
-        return new FrontendControl();
+    public FrontendObject processChosenOptionGetInfo(String chosenOption) {
+        return new FrontendObject();
     }
 
-    public FrontendControl getInfo() {
-        return new FrontendControl();
+    public FrontendObject getInfo() {
+        return new FrontendObject();
     }
 
     public Color getColor() {

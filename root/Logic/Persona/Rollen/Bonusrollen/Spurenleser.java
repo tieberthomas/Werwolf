@@ -1,7 +1,7 @@
 package root.Logic.Persona.Rollen.Bonusrollen;
 
-import root.Frontend.Constants.FrontendControlType;
-import root.Frontend.FrontendControl;
+import root.Controller.FrontendObjectType;
+import root.Controller.FrontendObject;
 import root.Logic.Game;
 import root.Logic.Persona.Bonusrolle;
 import root.Logic.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
@@ -43,28 +43,28 @@ public class Spurenleser extends Bonusrolle {
     }
 
     @Override
-    public FrontendControl getDropdownOptionsFrontendControl() {
-        return Game.game.getSpielerFrontendControl(this);
+    public FrontendObject getFrontendObject() {
+        return Game.game.getSpielerFrontendObject(this);
     }
 
     @Override
-    public FrontendControl processChosenOptionGetInfo(String chosenOption) {
+    public FrontendObject processChosenOptionGetInfo(String chosenOption) {
         Spieler chosenSpieler = Game.game.findSpieler(chosenOption);
 
         if (chosenSpieler != null) {
             besucht = chosenSpieler;
 
             if (showTarnumhang(this, chosenSpieler)) {
-                return new FrontendControl(new Tarnumhang_BonusrollenType());
+                return new FrontendObject(new Tarnumhang_BonusrollenType());
             }
 
-            FrontendControl info = new FrontendControl(FrontendControlType.LIST, getBesuchteSpielerStrings(chosenSpieler));
+            FrontendObject info = new FrontendObject(FrontendObjectType.LIST, getBesuchteSpielerStrings(chosenSpieler));
             info.title = INFO_TITLE + chosenSpieler.name;
 
             return info;
         }
 
-        return new FrontendControl();
+        return new FrontendObject();
     }
 
     private static List<String> getBesuchteSpielerStrings(Spieler beobachteterSpieler) {

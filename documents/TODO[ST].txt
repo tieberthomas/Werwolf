@@ -8,6 +8,7 @@ TH:
 BonusrollenType - Enum?
 
 MT:
+Alpha Wolf -> Alphawolf
 Freigestellt -> Weiß
 
 Nach Auslieferung:

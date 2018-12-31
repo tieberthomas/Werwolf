@@ -1,6 +1,6 @@
 package root.Logic.Persona;
 
-import root.Frontend.FrontendControl;
+import root.Controller.FrontendObject;
 import root.Logic.Game;
 import root.Logic.KillLogic.Opfer;
 import root.Logic.Persona.Rollen.Bonusrollen.DunklesLicht;
@@ -177,7 +177,7 @@ public class Rolle extends Persona {
         }
     }
 
-    public FrontendControl processChosenOptionsGetInfo(String chosenOption1, String chosenOption2) {
-        return new FrontendControl();
+    public FrontendObject processChosenOptionsGetInfo(String chosenOption1, String chosenOption2) {
+        return new FrontendObject();
     }
 }

@@ -1,7 +1,7 @@
 package root.Logic;
 
-import root.Frontend.Constants.FrontendControlType;
-import root.Frontend.FrontendControl;
+import root.Controller.FrontendObjectType;
+import root.Controller.FrontendObject;
 import root.Frontend.Utils.DropdownOptions;
 import root.ResourceManagement.ImagePath;
 
@@ -24,11 +24,11 @@ public class Torte {
         names.forEach(name -> tortenEsser.add(Game.game.findSpieler(name)));
     }
 
-    public static FrontendControl getDropdownOptionsFrontendControl() {
+    public static FrontendObject getFrontendObject() {
         List<String> dropdownStrings = new ArrayList<>();
         dropdownStrings.add(TORTE_NEHMEN);
         dropdownStrings.add(TORTE_NICHT_NEHMEN);
 
-        return new FrontendControl(FrontendControlType.DROPDOWN_IMAGE, new DropdownOptions(dropdownStrings), ImagePath.TORTE);
+        return new FrontendObject(FrontendObjectType.DROPDOWN_IMAGE, new DropdownOptions(dropdownStrings), ImagePath.TORTE);
     }
 }

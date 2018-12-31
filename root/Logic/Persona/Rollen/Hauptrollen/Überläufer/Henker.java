@@ -1,7 +1,7 @@
 package root.Logic.Persona.Rollen.Hauptrollen.Überläufer;
 
-import root.Frontend.Constants.FrontendControlType;
-import root.Frontend.FrontendControl;
+import root.Controller.FrontendObjectType;
+import root.Controller.FrontendObject;
 import root.Frontend.Utils.DropdownOptions;
 import root.Logic.Game;
 import root.Logic.KillLogic.AbsoluteKill;
@@ -84,8 +84,8 @@ public class Henker extends Hauptrolle {
     }
 
     @Override
-    public FrontendControl getDropdownOptionsFrontendControl() {
-        return Game.game.getSpielerFrontendControl(this);
+    public FrontendObject getFrontendObject() {
+        return Game.game.getSpielerFrontendObject(this);
     }
 
     @Override
@@ -95,7 +95,7 @@ public class Henker extends Hauptrolle {
     }
 
     @Override
-    public FrontendControl processChosenOptionsGetInfo(String chosenOption1, String chosenOption2) {
+    public FrontendObject processChosenOptionsGetInfo(String chosenOption1, String chosenOption2) {
         if (besucht != null && chosenOption1 != null && !chosenOption1.isEmpty() && chosenOption2 != null && !chosenOption2.isEmpty()) {
             Hauptrolle hauptrolle = Game.game.findHauptrollePerName(chosenOption1);
             Bonusrolle bonusrolle = Game.game.findBonusrollePerName(chosenOption2);
@@ -117,23 +117,23 @@ public class Henker extends Hauptrolle {
                 case 0:
                     Selbstmord.execute(henkerSpieler);
 
-                    return new FrontendControl(new Tot());
+                    return new FrontendObject(new Tot());
                 case 1:
                     henkerSpieler.geschützt = true;
 
-                    return new FrontendControl(new Geschützt());
+                    return new FrontendObject(new Geschützt());
                 case 2:
                     henkerSpieler.geschützt = true;
                     AbsoluteKill.execute(besucht, henkerSpieler);
 
-                    return new FrontendControl(SUCCESSFUL_KILL_TITLE, new Tötend().imagePath, new Geschützt().imagePath, new ArrayList<>());
+                    return new FrontendObject(SUCCESSFUL_KILL_TITLE, new Tötend().imagePath, new Geschützt().imagePath, new ArrayList<>());
             }
         }
 
-        return new FrontendControl();
+        return new FrontendObject();
     }
 
-    public FrontendControl getPage(String chosenOption) {
+    public FrontendObject getPage(String chosenOption) {
         switch (pagecounter) {
             case 0:
                 break;
@@ -158,17 +158,17 @@ public class Henker extends Hauptrolle {
         return getPage();
     }
 
-    public FrontendControl getPage() {
+    public FrontendObject getPage() {
         if (besucht == null) {
             pagecounter = numberOfPages;
-            return new FrontendControl();
+            return new FrontendObject();
         }
 
         switch (pagecounter) {
             case 0:
-                return Game.game.getSpielerFrontendControl(this);
+                return Game.game.getSpielerFrontendObject(this);
             case 1:
-                FrontendControl fraktionsAuswahl = new FrontendControl(FrontendControlType.DROPDOWN_LIST, FRAKTION_TITLE, new DropdownOptions(Fraktion.getLivingFraktionStrings()));
+                FrontendObject fraktionsAuswahl = new FrontendObject(FrontendObjectType.DROPDOWN_LIST, FRAKTION_TITLE, new DropdownOptions(Fraktion.getLivingFraktionStrings()));
                 fraktionsAuswahl.hatZurückButton = true;
                 return fraktionsAuswahl;
             case 2:
@@ -178,7 +178,7 @@ public class Henker extends Hauptrolle {
                         map(hauptrolle -> hauptrolle.name).
                         distinct().
                         collect(Collectors.toList());
-                FrontendControl hauptrollenAuswahl = new FrontendControl(FrontendControlType.DROPDOWN_LIST, HAUPTROLLEN_TITLE, new DropdownOptions(hauptrollenStrings));
+                FrontendObject hauptrollenAuswahl = new FrontendObject(FrontendObjectType.DROPDOWN_LIST, HAUPTROLLEN_TITLE, new DropdownOptions(hauptrollenStrings));
                 hauptrollenAuswahl.hatZurückButton = true;
                 return hauptrollenAuswahl;
             case 3:
@@ -186,7 +186,7 @@ public class Henker extends Hauptrolle {
                 List<String> bonusrollenTypeStrings = bonusrollenTypes.stream().
                         map(type -> type.name).
                         collect(Collectors.toList());
-                FrontendControl bonusrollenTypAuswahl = new FrontendControl(FrontendControlType.DROPDOWN_LIST, BONUSROLLENTYP_TITLE, new DropdownOptions(bonusrollenTypeStrings));
+                FrontendObject bonusrollenTypAuswahl = new FrontendObject(FrontendObjectType.DROPDOWN_LIST, BONUSROLLENTYP_TITLE, new DropdownOptions(bonusrollenTypeStrings));
                 bonusrollenTypAuswahl.hatZurückButton = true;
                 return bonusrollenTypAuswahl;
             case 4:
@@ -201,19 +201,19 @@ public class Henker extends Hauptrolle {
                         .map(bonusrolle -> bonusrolle.name)
                         .distinct()
                         .collect(Collectors.toList());
-                FrontendControl bonusrollenAuswahl = new FrontendControl(FrontendControlType.DROPDOWN_LIST, BONUSROLLEN_TITLE, new DropdownOptions(bonusrollenStrings));
+                FrontendObject bonusrollenAuswahl = new FrontendObject(FrontendObjectType.DROPDOWN_LIST, BONUSROLLEN_TITLE, new DropdownOptions(bonusrollenStrings));
                 bonusrollenAuswahl.hatZurückButton = true;
                 return bonusrollenAuswahl;
             case 5:
                 List<String> namenDerRollen = new ArrayList<>();
                 namenDerRollen.add(chosenHauptrolle.name);
                 namenDerRollen.add(chosenBonusrolle.name);
-                FrontendControl auswahlBestätigung = new FrontendControl(besucht.name, chosenHauptrolle.imagePath, chosenBonusrolle.imagePath, namenDerRollen);
+                FrontendObject auswahlBestätigung = new FrontendObject(besucht.name, chosenHauptrolle.imagePath, chosenBonusrolle.imagePath, namenDerRollen);
                 auswahlBestätigung.hatZurückButton = true;
                 return auswahlBestätigung;
             default:
                 System.out.println("There is no Henker Page with this number");
-                return Game.game.getSpielerFrontendControl(this);
+                return Game.game.getSpielerFrontendObject(this);
         }
     }
 

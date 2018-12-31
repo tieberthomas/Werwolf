@@ -1,6 +1,6 @@
 package root.Logic.Persona.Rollen.Hauptrollen.Bürger;
 
-import root.Frontend.FrontendControl;
+import root.Controller.FrontendObject;
 import root.Logic.Game;
 import root.Logic.Persona.Fraktion;
 import root.Logic.Persona.Fraktionen.Bürger;
@@ -41,8 +41,8 @@ public class Schamanin extends Hauptrolle {
     }
 
     @Override
-    public FrontendControl getDropdownOptionsFrontendControl() {
-        return Game.game.getSpielerFrontendControl(this);
+    public FrontendObject getFrontendObject() {
+        return Game.game.getSpielerFrontendObject(this);
     }
 
     @Override

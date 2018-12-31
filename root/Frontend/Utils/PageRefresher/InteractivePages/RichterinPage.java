@@ -1,6 +1,6 @@
 package root.Frontend.Utils.PageRefresher.InteractivePages;
 
-import root.Frontend.FrontendControl;
+import root.Controller.FrontendObject;
 import root.Frontend.Utils.DropdownOptions;
 import root.Logic.Game;
 import root.Logic.Spieler;
@@ -23,6 +23,6 @@ public class RichterinPage extends TwoDropdownPage {
             Game.game.day.verurteilen(richterin, spieler);
         }
 
-        FrontendControl.showDayPage();
+        FrontendObject.showDayPage();
     }
 }

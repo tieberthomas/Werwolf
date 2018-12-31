@@ -4,7 +4,7 @@ import root.Frontend.Frame.ErzählerFrame;
 import root.Frontend.Frame.GameMode;
 import root.Frontend.Frame.SpielerFrame;
 import root.Frontend.Frame.ÜbersichtsFrame;
-import root.Frontend.FrontendControl;
+import root.Controller.FrontendObject;
 import root.Frontend.Page.Page;
 import root.Frontend.Utils.PageRefresher.Models.LoadMode;
 import root.Logic.Game;
@@ -69,7 +69,7 @@ public class GameController {
 
         übersichtsFrame = new ÜbersichtsFrame(erzählerFrame.frameJpanel.getHeight() + ÜbersichtsFrame.spaceFromErzählerFrame);
 
-        FrontendControl.spielerFrame = spielerFrame;
+        FrontendObject.spielerFrame = spielerFrame;
         if (PhaseManager.phaseMode == PhaseMode.DAY || PhaseManager.phaseMode == PhaseMode.FREIBIER_DAY) {
             spielerFrame.generateDayPage();
         } else if (PhaseManager.phaseMode == PhaseMode.NORMAL_NIGHT || PhaseManager.phaseMode == PhaseMode.SETUP_NIGHT) {

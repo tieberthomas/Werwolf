@@ -1,6 +1,6 @@
 package root.Logic.Persona.Rollen.Hauptrollen.Bürger;
 
-import root.Frontend.FrontendControl;
+import root.Controller.FrontendObject;
 import root.Logic.Game;
 import root.Logic.Persona.Fraktion;
 import root.Logic.Persona.Fraktionen.Bürger;
@@ -38,12 +38,12 @@ public class Späher extends Hauptrolle {
     }
 
     @Override
-    public FrontendControl getDropdownOptionsFrontendControl() {
-        return Game.game.getSpielerFrontendControl(this);
+    public FrontendObject getFrontendObject() {
+        return Game.game.getSpielerFrontendObject(this);
     }
 
     @Override
-    public FrontendControl processChosenOptionGetInfo(String chosenOption) {
+    public FrontendObject processChosenOptionGetInfo(String chosenOption) {
         Spieler chosenSpieler = Game.game.findSpieler(chosenOption);
         Spieler späherSpieler = Game.game.findSpielerPerRolle(this.id);
 
@@ -56,9 +56,9 @@ public class Späher extends Hauptrolle {
                 abilityCharges--;
             }
 
-            return new FrontendControl(info);
+            return new FrontendObject(info);
         }
 
-        return new FrontendControl();
+        return new FrontendObject();
     }
 }

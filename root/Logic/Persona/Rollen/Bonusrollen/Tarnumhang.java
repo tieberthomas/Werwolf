@@ -1,7 +1,7 @@
 package root.Logic.Persona.Rollen.Bonusrollen;
 
-import root.Frontend.Constants.FrontendControlType;
-import root.Frontend.FrontendControl;
+import root.Controller.FrontendObjectType;
+import root.Controller.FrontendObject;
 import root.Logic.Game;
 import root.Logic.Persona.Bonusrolle;
 import root.Logic.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
@@ -51,16 +51,16 @@ public class Tarnumhang extends Bonusrolle {
     }
 
     @Override
-    public FrontendControl getInfo() {
-        FrontendControl frontendControl = new FrontendControl();
+    public FrontendObject getInfo() {
+        FrontendObject frontendObject = new FrontendObject();
 
-        frontendControl.typeOfContent = FrontendControlType.LIST;
-        frontendControl.title = STATEMENT_TITLE;
-        frontendControl.displayedStrings = new ArrayList<>();
+        frontendObject.typeOfContent = FrontendObjectType.LIST;
+        frontendObject.title = STATEMENT_TITLE;
+        frontendObject.displayedStrings = new ArrayList<>();
         String unseenTräger = getUnseenTräger();
-        frontendControl.displayedStrings.add(unseenTräger);
+        frontendObject.displayedStrings.add(unseenTräger);
 
-        return frontendControl;
+        return frontendObject;
     }
 
     private String getUnseenTräger() {
