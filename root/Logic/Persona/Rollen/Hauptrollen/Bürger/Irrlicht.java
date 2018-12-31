@@ -1,7 +1,7 @@
 package root.Logic.Persona.Rollen.Hauptrollen.Bürger;
 
-import root.Controller.FrontendObjectType;
 import root.Controller.FrontendObject;
+import root.Controller.FrontendObjectType;
 import root.Frontend.Utils.DropdownOptions;
 import root.Logic.Game;
 import root.Logic.KillLogic.Selbstmord;
@@ -58,11 +58,11 @@ public class Irrlicht extends Hauptrolle {
 
     @Override
     public FrontendObject getFrontendObject() {
-        return new FrontendObject(FrontendObjectType.IRRLICHT_DROPDOWN, new DropdownOptions(Game.game.getIrrlichterStrings()));
+        return new FrontendObject(FrontendObjectType.IRRLICHT_DROPDOWN, new DropdownOptions(Game.game.getLichterStrings()));
     }
 
     public static FrontendObject processFlackerndeIrrlichter(List<String> flackerndeIrrlichter) {
-        int numberIrrlichterInGame = Game.game.getIrrlichterStrings().size();
+        int numberIrrlichterInGame = Game.game.getLichterStrings().size();
         int numberFlackerndeIrrlichter = flackerndeIrrlichter.size();
 
         if (numberFlackerndeIrrlichter == 1) {
@@ -85,18 +85,13 @@ public class Irrlicht extends Hauptrolle {
     private static String getRandomUnseenIrrlichtSpieler(Spieler einzigesFlackerndesIrrlicht) {
         List<String> unseenIrrlichter = getAllUnseenIrrlichter(einzigesFlackerndesIrrlicht);
 
-        if (unseenIrrlichter == null) {
+        if (unseenIrrlichter.size() > 0) {
+            String irrlichtName = Rand.getRandomElement(unseenIrrlichter);
+            addGesehenesIrrlicht(einzigesFlackerndesIrrlicht, irrlichtName);
+            return irrlichtName;
+        } else {
             return null;
         }
-
-        String irrlichtName = null;
-
-        if (unseenIrrlichter.size() > 0) {
-            irrlichtName = Rand.getRandomElement(unseenIrrlichter);
-            addGesehenesIrrlicht(einzigesFlackerndesIrrlicht, irrlichtName);
-        }
-
-        return irrlichtName;
     }
 
     private static void addGesehenesIrrlicht(Spieler irrlichtSpieler, String name) {
@@ -108,22 +103,24 @@ public class Irrlicht extends Hauptrolle {
     }
 
     private static List<String> getAllUnseenIrrlichter(Spieler irrlichtSpieler) {
-        List<String> irrlichter = Game.game.getIrrlichterStrings();
-
-        if (irrlichter.size() == 1) {
-            return null;
-        }
-
+        List<String> irrlichter = getSehbareIrrlichter(irrlichtSpieler);
         List<String> geseheneIrrlichter = getGeseheneIrrlichter(irrlichtSpieler);
-
         irrlichter.removeAll(geseheneIrrlichter);
-        irrlichter.remove(irrlichtSpieler.name);
 
         if (irrlichter.size() == 0) {
             geseheneIrrlichter.clear();
-            return getAllUnseenIrrlichter(irrlichtSpieler);
+            return getSehbareIrrlichter(irrlichtSpieler);
         }
 
+        return irrlichter;
+    }
+
+    private static List<String> getSehbareIrrlichter(Spieler irrlichtSpieler) {
+        List<String> irrlichter = Game.game.getIrrlichterStrings();
+        irrlichter.remove(irrlichtSpieler.name);
+        if (irrlichter.size() == 0) {
+            return new ArrayList<>();
+        }
         return irrlichter;
     }
 
@@ -137,7 +134,7 @@ public class Irrlicht extends Hauptrolle {
     }
 
     private static Spieler getRandomIrrlichtToDie() {
-        List<Spieler> irrlichter = Game.game.getIrrlichter();
+        List<Spieler> irrlichter = Game.game.getLichter();
 
         if (irrlichter != null) {
             return Rand.getRandomElement(irrlichter);
