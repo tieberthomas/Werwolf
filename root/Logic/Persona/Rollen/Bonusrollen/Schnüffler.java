@@ -2,6 +2,7 @@ package root.Logic.Persona.Rollen.Bonusrollen;
 
 import root.Controller.FrontendObject.DropdownFrontendObject;
 import root.Controller.FrontendObject.FrontendObject;
+import root.Controller.FrontendObject.SchnüfflerInfoFrontendObject;
 import root.Frontend.Utils.DropdownOptions;
 import root.Logic.Game;
 import root.Logic.Persona.Bonusrolle;
@@ -82,7 +83,7 @@ public class Schnüffler extends Bonusrolle {
             }
 
             String pageTitle = chosenSpieler.name;
-            return new FrontendObject(informationen, pageTitle);
+            return new SchnüfflerInfoFrontendObject(informationen, pageTitle);
         }
 
         return new FrontendObject();

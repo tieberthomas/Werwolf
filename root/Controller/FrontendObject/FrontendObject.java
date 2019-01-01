@@ -21,12 +21,6 @@ public class FrontendObject {
         this.typeOfContent = FrontendObjectType.SKIP;
     }
 
-    public FrontendObject(List<SchnüfflerInformation> informationen, String title) {
-        this.typeOfContent = FrontendObjectType.SCHNÜFFLER_INFO;
-        this.title = title;
-        this.informationen = informationen;
-    }
-
     public FrontendObject(String title, String imagePath1, String imagePath2, List<String> displayedStrings) {
         this.title = title;
         this.imagePath = imagePath1;
