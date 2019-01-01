@@ -55,4 +55,7 @@ public class Persona {
     public boolean equals(String personaID) {
         return this.id.equals(personaID);
     }
+
+    public void beginNight() {
+    }
 }

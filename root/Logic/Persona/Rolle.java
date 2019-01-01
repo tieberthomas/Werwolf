@@ -180,4 +180,10 @@ public class Rolle extends Persona {
     public FrontendObject processChosenOptionsGetInfo(String chosenOption1, String chosenOption2) {
         return new FrontendObject();
     }
+
+    @Override
+    public void beginNight() {
+        besuchtLastNight = besucht;
+        besucht = null;
+    }
 }

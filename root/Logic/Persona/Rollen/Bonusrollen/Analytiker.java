@@ -5,6 +5,7 @@ import root.Logic.Game;
 import root.Logic.Liebespaar;
 import root.Logic.Persona.Bonusrolle;
 import root.Logic.Persona.Fraktionen.Bürger;
+import root.Logic.Persona.Rolle;
 import root.Logic.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Logic.Persona.Rollen.Constants.BonusrollenType.Informativ;
 import root.Logic.Persona.Rollen.Hauptrollen.Vampire.LadyAleera;
@@ -27,8 +28,8 @@ public class Analytiker extends Bonusrolle {
     public static final String STATEMENT_BESCHREIBUNG = "Analytiker erwacht und wählt zwei Spieler, der Erzähler sagt ihm ob diese in derselben Fraktion sind";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
 
-    public static final String GLEICH = "gleich";
-    public static final String UNGLEICH = "ungleich";
+    private static final String GLEICH = "gleich";
+    private static final String UNGLEICH = "ungleich";
 
     public Spieler besuchtAnalysieren = null;
 
@@ -120,5 +121,11 @@ public class Analytiker extends Bonusrolle {
                 System.out.println("Analytiker.getWrongInformation was called with wrong Parameters.");
                 return null;
         }
+    }
+
+    @Override
+    public void beginNight() {
+        super.beginNight();
+        besuchtAnalysieren = null;
     }
 }

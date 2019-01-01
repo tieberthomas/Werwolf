@@ -3,6 +3,8 @@ package root.Logic.Persona.Rollen.Bonusrollen;
 import root.Controller.FrontendObject.FrontendObject;
 import root.Logic.Game;
 import root.Logic.Persona.Bonusrolle;
+import root.Logic.Persona.Fraktionen.Vampire;
+import root.Logic.Persona.Rolle;
 import root.Logic.Persona.Rollen.Constants.BonusrollenType.Aktiv;
 import root.Logic.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Logic.Phases.Statement.Constants.StatementType;
@@ -45,12 +47,18 @@ public class Prostituierte extends Bonusrolle {
     @Override
     public void processChosenOption(String chosenOption) {
         Spieler chosenSpieler = Game.game.findSpieler(chosenOption);
-        if (chosenSpieler != null && !chosenSpieler.equals(Game.game.findSpielerPerRolle(this.id))) {
+        if (chosenSpieler != null && !chosenSpieler.equals(Game.game.findSpielerPerRolle(id))) {
             besucht = chosenSpieler;
-
             host = chosenSpieler;
         } else {
-            host = Game.game.findSpielerPerRolle(this.id);
+            host = Game.game.findSpielerPerRolle(id);
+        }
+    }
+
+    @Override
+    public void beginNight() {
+        if (Rolle.rolleLebend(id)) {
+            host = Game.game.findSpielerPerRolle(id);
         }
     }
 }

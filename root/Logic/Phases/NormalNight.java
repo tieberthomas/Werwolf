@@ -294,30 +294,22 @@ public class NormalNight extends Thread {
     }
 
     private void beginNight() {
-        for (Spieler currentSpieler : Game.game.spieler) {
-            currentSpieler.ressurectable = !currentSpieler.hauptrolle.fraktion.equals(Vampire.ID);
+        setDefaultPlayerStates();
+
+        for (Fraktion fraktion : Fraktion.getFraktionen()) {
+            fraktion.beginNight();
+        }
+
+        for (Hauptrolle hauptrolle : Game.game.hauptrollenInGame) {
+            hauptrolle.beginNight();
+        }
+
+        for (Bonusrolle bonusrolle : Game.game.bonusrollenInGame) {
+            bonusrolle.beginNight();
         }
 
         angriffe = new ArrayList<>();
         opfer = new ArrayList<>();
-
-        for (Hauptrolle currentHauptrolle : Game.game.hauptrollen) {
-            currentHauptrolle.besuchtLastNight = currentHauptrolle.besucht;
-            currentHauptrolle.besucht = null;
-        }
-
-        for (Bonusrolle currentBonusrolle : Game.game.bonusrollen) {
-            currentBonusrolle.besuchtLastNight = currentBonusrolle.besucht;
-            currentBonusrolle.besucht = null;
-
-            if (currentBonusrolle.equals(Analytiker.ID)) {
-                ((Analytiker) currentBonusrolle).besuchtAnalysieren = null;
-            }
-        }
-
-        if (Rolle.rolleLebend(Prostituierte.ID)) {
-            Prostituierte.host = Game.game.findSpielerPerRolle(Prostituierte.ID);
-        }
 
         for (Spieler currentSpieler : Game.game.spieler) {
             Hauptrolle hauptrolleSpieler = currentSpieler.hauptrolle;
@@ -414,7 +406,10 @@ public class NormalNight extends Thread {
 
     private void cleanUpNight() {
         checkNachtfürstGuess();
+        setDefaultPlayerStates();
+    }
 
+    private void setDefaultPlayerStates() {
         for (Spieler currentSpieler : Game.game.spieler) {
             currentSpieler.aktiv = true;
             currentSpieler.geschützt = false;

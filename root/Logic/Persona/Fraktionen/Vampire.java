@@ -67,4 +67,13 @@ public class Vampire extends Fraktion {
 
         return new FrontendObject(FrontendObjectType.DROPDOWN_IMAGE, dropdownOptions, zeigekarte.imagePath);
     }
+
+    @Override
+    public void beginNight() {
+        for (Spieler currentSpieler : Game.game.spieler) {
+            if (currentSpieler.hauptrolle.fraktion.equals(Vampire.ID)) {
+                currentSpieler.ressurectable = false;
+            }
+        }
+    }
 }

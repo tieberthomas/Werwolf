@@ -42,18 +42,18 @@ public class Game {
 
     public Liebespaar liebespaar;
 
-    public List<Spieler> spieler = new ArrayList<>();
+    public List<Spieler> spieler;
     public List<Hauptrolle> hauptrollen = new ArrayList<>();
-    public List<Hauptrolle> hauptrollenInGame = new ArrayList<>();
+    public List<Hauptrolle> hauptrollenInGame;
     public List<Hauptrolle> amStartZugeteilteHauptrollen = new ArrayList<>();
     public List<Bonusrolle> amStartZugeteilteBonusrollen = new ArrayList<>();
     public List<Bonusrolle> bonusrollen = new ArrayList<>();
-    public List<Bonusrolle> bonusrollenInGame = new ArrayList<>();
+    public List<Bonusrolle> bonusrollenInGame;
     public List<Hauptrolle> mitteHauptrollen = new ArrayList<>();
     public List<Bonusrolle> mitteBonusrollen = new ArrayList<>();
     public List<Hauptrolle> stillAvailableHauptrollen = new ArrayList<>();
     public List<Bonusrolle> stillAvailableBonusrollen = new ArrayList<>();
-    public List<Spieler> spielerSpecified = new ArrayList<>();
+    public List<Spieler> spielerSpecified;
 
     public Game() {
         Game.game = this;
@@ -507,5 +507,15 @@ public class Game {
         }
 
         return numberOfToetendeFraktion == 1;
+    }
+
+    public Spieler findSpieler(Hauptrolle hauptrolle) {
+        for(Spieler spieler : spieler) {
+            if(hauptrolle.hashCode() == spieler.hauptrolle.hashCode()) {
+                return spieler;
+            }
+        }
+
+        return null;
     }
 }
