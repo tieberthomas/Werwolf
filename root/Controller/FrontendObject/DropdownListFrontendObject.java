@@ -10,11 +10,6 @@ public class DropdownListFrontendObject extends FrontendObject {
         this.dropdownOptions = (DropdownOptions) strings;
     }
 
-    public DropdownListFrontendObject(FrontendObjectType typeOfContent, List<String> strings) {
-        this.typeOfContent = typeOfContent;
-        this.dropdownOptions = (DropdownOptions) strings;
-    }
-
     public DropdownListFrontendObject(String title, List<String> strings) {
         this.typeOfContent = FrontendObjectType.DROPDOWN_LIST;
         this.title = title;

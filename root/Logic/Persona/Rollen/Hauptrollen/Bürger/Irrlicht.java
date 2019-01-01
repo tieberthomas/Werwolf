@@ -57,7 +57,7 @@ public class Irrlicht extends Hauptrolle {
 
     @Override
     public FrontendObject getFrontendObject() {
-        return new DropdownListFrontendObject(FrontendObjectType.IRRLICHT_DROPDOWN, new DropdownOptions(Game.game.getLichterStrings()));
+        return new IrrlichtDropdownFrontendObject(new DropdownOptions(Game.game.getLichterStrings()));
     }
 
     public static FrontendObject processFlackerndeIrrlichter(List<String> flackerndeIrrlichter) {
