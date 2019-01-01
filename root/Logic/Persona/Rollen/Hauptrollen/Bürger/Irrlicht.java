@@ -1,9 +1,6 @@
 package root.Logic.Persona.Rollen.Hauptrollen.Bürger;
 
-import root.Controller.FrontendObject.DropdownFrontendObject;
-import root.Controller.FrontendObject.FrontendObject;
-import root.Controller.FrontendObject.FrontendObjectType;
-import root.Controller.FrontendObject.ListFrontendObject;
+import root.Controller.FrontendObject.*;
 import root.Frontend.Utils.DropdownOptions;
 import root.Logic.Game;
 import root.Logic.KillLogic.Selbstmord;
@@ -81,7 +78,7 @@ public class Irrlicht extends Hauptrolle {
             Selbstmord.execute(spieler);
         }
 
-        return new FrontendObject(SECOND_STATEMENT_TITLE);
+        return new TitleFrontendObject(SECOND_STATEMENT_TITLE);
     }
 
     private static String getRandomUnseenIrrlichtSpieler(Spieler einzigesFlackerndesIrrlicht) {

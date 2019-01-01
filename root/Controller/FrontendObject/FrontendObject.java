@@ -22,11 +22,6 @@ public class FrontendObject {
         this.typeOfContent = FrontendObjectType.SKIP;
     }
 
-    public FrontendObject(String title) {
-        this.typeOfContent = FrontendObjectType.TITLE;
-        this.title = title;
-    }
-
     public FrontendObject(FrontendObjectType typeOfContent, String imagePath) {
         this.typeOfContent = typeOfContent;
         this.imagePath = imagePath;
