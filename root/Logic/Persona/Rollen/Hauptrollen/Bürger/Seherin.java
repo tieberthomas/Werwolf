@@ -1,6 +1,7 @@
 package root.Logic.Persona.Rollen.Hauptrollen.Bürger;
 
 import root.Controller.FrontendObject.FrontendObject;
+import root.Controller.FrontendObject.ImageFrontendObject;
 import root.Logic.Game;
 import root.Logic.Persona.Fraktion;
 import root.Logic.Persona.Fraktionen.Bürger;
@@ -52,7 +53,7 @@ public class Seherin extends Hauptrolle {
 
             Zeigekarte zeigekarte = chosenSpieler.getFraktionInfo(seherinSpieler);
 
-            return new FrontendObject(zeigekarte);
+            return new ImageFrontendObject(zeigekarte);
         }
 
         return new FrontendObject();

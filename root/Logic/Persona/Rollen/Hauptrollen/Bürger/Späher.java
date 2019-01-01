@@ -1,6 +1,7 @@
 package root.Logic.Persona.Rollen.Hauptrollen.Bürger;
 
 import root.Controller.FrontendObject.FrontendObject;
+import root.Controller.FrontendObject.ImageFrontendObject;
 import root.Logic.Game;
 import root.Logic.Persona.Fraktion;
 import root.Logic.Persona.Fraktionen.Bürger;
@@ -56,7 +57,7 @@ public class Späher extends Hauptrolle {
                 abilityCharges--;
             }
 
-            return new FrontendObject(info);
+            return new ImageFrontendObject(info);
         }
 
         return new FrontendObject();

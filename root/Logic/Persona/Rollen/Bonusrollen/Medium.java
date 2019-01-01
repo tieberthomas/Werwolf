@@ -2,6 +2,7 @@ package root.Logic.Persona.Rollen.Bonusrollen;
 
 import root.Controller.FrontendObject.FrontendObjectType;
 import root.Controller.FrontendObject.FrontendObject;
+import root.Controller.FrontendObject.ImageFrontendObject;
 import root.Controller.FrontendObject.ListFrontendObject;
 import root.Logic.Game;
 import root.Logic.Persona.Bonusrolle;
@@ -47,7 +48,7 @@ public class Medium extends Bonusrolle {
         Bonusrolle randomBonusrolle = getRandomUnseenBonusrolle();
 
         if (randomBonusrolle != null) {
-            return new FrontendObject(FrontendObjectType.CARD, randomBonusrolle.imagePath);
+            return new ImageFrontendObject(FrontendObjectType.CARD, randomBonusrolle.imagePath);
         } else {
             return new ListFrontendObject(statementTitle, NO_BONUSROLES_OUT_OF_GAME);
         }

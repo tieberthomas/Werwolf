@@ -2,7 +2,6 @@ package root.Controller.FrontendObject;
 
 import root.Frontend.Utils.DropdownOptions;
 import root.Logic.Persona.Rollen.Constants.SchnüfflerInformation;
-import root.Logic.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 
 import java.util.List;
 
@@ -20,23 +19,6 @@ public class FrontendObject {
 
     public FrontendObject() {
         this.typeOfContent = FrontendObjectType.SKIP;
-    }
-
-    public FrontendObject(FrontendObjectType typeOfContent, String imagePath) {
-        this.typeOfContent = typeOfContent;
-        this.imagePath = imagePath;
-    }
-
-    public FrontendObject(FrontendObjectType typeOfContent, String title, String imagePath) {
-        this.typeOfContent = typeOfContent;
-        this.title = title;
-        this.imagePath = imagePath;
-    }
-
-    public FrontendObject(Zeigekarte zeigekarte) {
-        this.typeOfContent = FrontendObjectType.IMAGE;
-        this.title = zeigekarte.title;
-        this.imagePath = zeigekarte.imagePath;
     }
 
     public FrontendObject(FrontendObjectType typeOfContent, DropdownOptions dropdownOptions, String imagePath) {

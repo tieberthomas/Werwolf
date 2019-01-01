@@ -3,6 +3,7 @@ package root.Logic.Persona.Rollen.Hauptrollen.Überläufer;
 import root.Controller.FrontendObject.DropdownFrontendObject;
 import root.Controller.FrontendObject.FrontendObjectType;
 import root.Controller.FrontendObject.FrontendObject;
+import root.Controller.FrontendObject.ImageFrontendObject;
 import root.Frontend.Utils.DropdownOptions;
 import root.Logic.Game;
 import root.Logic.KillLogic.AbsoluteKill;
@@ -118,11 +119,11 @@ public class Henker extends Hauptrolle {
                 case 0:
                     Selbstmord.execute(henkerSpieler);
 
-                    return new FrontendObject(new Tot());
+                    return new ImageFrontendObject(new Tot());
                 case 1:
                     henkerSpieler.geschützt = true;
 
-                    return new FrontendObject(new Geschützt());
+                    return new ImageFrontendObject(new Geschützt());
                 case 2:
                     henkerSpieler.geschützt = true;
                     AbsoluteKill.execute(besucht, henkerSpieler);
