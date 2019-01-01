@@ -1,9 +1,6 @@
 package root.Logic.Persona.Rollen.Bonusrollen;
 
-import root.Controller.FrontendObject.DropdownFrontendObject;
-import root.Controller.FrontendObject.FrontendObject;
-import root.Controller.FrontendObject.FrontendObjectType;
-import root.Controller.FrontendObject.ImageFrontendObject;
+import root.Controller.FrontendObject.*;
 import root.Frontend.Utils.DropdownOptions;
 import root.Logic.Game;
 import root.Logic.KillLogic.NormalKill;
@@ -76,7 +73,7 @@ public class Nachtfürst extends Bonusrolle {
         numbers.add("3");
         numbers.add("4");
         numbers.add("5"); //TODO 5 genügt?
-        return new DropdownFrontendObject(FrontendObjectType.DROPDOWN_LIST, new DropdownOptions(numbers, KEIN_OPFER));
+        return new DropdownListFrontendObject(new DropdownOptions(numbers, KEIN_OPFER));
     }
 
     @Override

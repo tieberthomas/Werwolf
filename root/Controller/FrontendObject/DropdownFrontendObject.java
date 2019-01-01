@@ -16,17 +16,6 @@ public class DropdownFrontendObject extends FrontendObject {
         this.dropdownOptions = dropdownOptions;
     }
 
-    public DropdownFrontendObject(FrontendObjectType typeOfContent, List<String> strings) {
-        this.typeOfContent = typeOfContent;
-        this.dropdownOptions = (DropdownOptions) strings;
-    }
-
-    public DropdownFrontendObject(FrontendObjectType typeOfContent, String title, List<String> strings) {
-        this.typeOfContent = typeOfContent;
-        this.title = title;
-        this.dropdownOptions = (DropdownOptions) strings;
-    }
-
     public DropdownFrontendObject(FrontendObjectType typeOfContent, DropdownOptions dropdownOptions, String imagePath) {
         this.typeOfContent = typeOfContent;
         this.dropdownOptions = dropdownOptions;
