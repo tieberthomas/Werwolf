@@ -1,10 +1,11 @@
 package root.Logic;
 
 import root.Controller.FrontendControl;
+import root.Controller.FrontendObject.DropdownFrontendObject;
+import root.Controller.FrontendObject.FrontendObject;
 import root.Frontend.Frame.ErzählerFrame;
 import root.Frontend.Frame.SpielerFrame;
 import root.Frontend.Frame.ÜbersichtsFrame;
-import root.Controller.FrontendObject.FrontendObject;
 import root.Frontend.Utils.DropdownOptions;
 import root.Logic.Persona.Bonusrolle;
 import root.Logic.Persona.Fraktion;
@@ -277,7 +278,7 @@ public class Game {
     }
 
     public FrontendObject getSpielerFrontendObject(Rolle rolle) {
-        return new FrontendObject(getSpielerDropdownOptions(rolle));
+        return new DropdownFrontendObject(getSpielerDropdownOptions(rolle));
     }
 
     public List<Spieler> getLivingSpieler() {

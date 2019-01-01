@@ -1,5 +1,6 @@
 package root.Logic.Persona.Rollen.Bonusrollen;
 
+import root.Controller.FrontendObject.DropdownFrontendObject;
 import root.Controller.FrontendObject.FrontendObject;
 import root.Frontend.Utils.DropdownOptions;
 import root.Logic.Game;
@@ -49,7 +50,7 @@ public class Schnüffler extends Bonusrolle {
 
     @Override
     public FrontendObject getFrontendObject() {
-        return new FrontendObject(generateDropdownOptions());
+        return new DropdownFrontendObject(generateDropdownOptions());
     }
 
     private DropdownOptions generateDropdownOptions() {

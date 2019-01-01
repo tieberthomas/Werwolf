@@ -40,11 +40,6 @@ public class FrontendObject {
         this.title = title;
     }
 
-    public FrontendObject(DropdownOptions dropdownOptions) {
-        this.typeOfContent = FrontendObjectType.DROPDOWN;
-        this.dropdownOptions = dropdownOptions;
-    }
-
     public FrontendObject(FrontendObjectType typeOfContent, List<String> strings) {
         this.typeOfContent = typeOfContent;
         if (typeOfContent.isDropdown()) {
@@ -52,12 +47,6 @@ public class FrontendObject {
         } else {
             displayedStrings = strings;
         }
-    }
-
-    public FrontendObject(String title, DropdownOptions dropdownOptions) {
-        this.typeOfContent = FrontendObjectType.DROPDOWN;
-        this.title = title;
-        this.dropdownOptions = dropdownOptions;
     }
 
     public FrontendObject(FrontendObjectType typeOfContent, String imagePath) {

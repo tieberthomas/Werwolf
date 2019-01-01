@@ -1,5 +1,6 @@
 package root.Logic.Persona.Rollen.Hauptrollen.Bürger;
 
+import root.Controller.FrontendObject.DropdownFrontendObject;
 import root.Controller.FrontendObject.FrontendObject;
 import root.Frontend.Utils.DropdownOptions;
 import root.Logic.Persona.Fraktion;
@@ -45,7 +46,7 @@ public class Wirt extends Hauptrolle {
         dropdownStrings.add(JA);
         dropdownStrings.add(NEIN);
 
-        return new FrontendObject(new DropdownOptions(dropdownStrings));
+        return new DropdownFrontendObject(new DropdownOptions(dropdownStrings));
     }
 
     @Override

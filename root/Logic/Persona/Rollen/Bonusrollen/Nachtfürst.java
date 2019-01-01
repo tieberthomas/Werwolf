@@ -1,7 +1,8 @@
 package root.Logic.Persona.Rollen.Bonusrollen;
 
-import root.Controller.FrontendObject.FrontendObjectType;
+import root.Controller.FrontendObject.DropdownFrontendObject;
 import root.Controller.FrontendObject.FrontendObject;
+import root.Controller.FrontendObject.FrontendObjectType;
 import root.Frontend.Utils.DropdownOptions;
 import root.Logic.Game;
 import root.Logic.KillLogic.NormalKill;
@@ -93,7 +94,7 @@ public class Nachtfürst extends Bonusrolle {
     public FrontendObject getSecondFrontendObject() {
         if (isTötendeFraktion()) {
             if (guessedRight) {
-                return new FrontendObject(Game.game.getSpielerDropdownOptions(true));
+                return new DropdownFrontendObject(Game.game.getSpielerDropdownOptions(true));
             } else {
                 return new FrontendObject(new Nicht_Tötend());
             }
@@ -101,7 +102,7 @@ public class Nachtfürst extends Bonusrolle {
             if (guessedRight) {
                 return new FrontendObject(new Geschützt());
             } else {
-                return new FrontendObject(NICHT_GESCHÜTZT, new DropdownOptions(new ArrayList<>(), DropdownConstants.EMPTY));
+                return new DropdownFrontendObject(NICHT_GESCHÜTZT, new DropdownOptions(new ArrayList<>(), DropdownConstants.EMPTY));
             }
         }
     }
