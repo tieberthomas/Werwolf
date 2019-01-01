@@ -1,4 +1,4 @@
-package root.Controller;
+package root.Controller.FrontendObject;
 
 public enum FrontendObjectType {
     SKIP,

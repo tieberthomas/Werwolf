@@ -1,6 +1,6 @@
 package root.Logic.Persona.Rollen.Hauptrollen.Vampire;
 
-import root.Controller.FrontendObject;
+import root.Controller.FrontendObject.FrontendObject;
 import root.Logic.Game;
 import root.Logic.Persona.Fraktion;
 import root.Logic.Persona.Fraktionen.Vampire;

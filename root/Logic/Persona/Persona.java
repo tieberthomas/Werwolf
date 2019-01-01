@@ -1,6 +1,6 @@
 package root.Logic.Persona;
 
-import root.Controller.FrontendObject;
+import root.Controller.FrontendObject.FrontendObject;
 import root.Logic.Phases.Statement.Constants.StatementType;
 import root.Logic.Spieler;
 import root.ResourceManagement.ImagePath;

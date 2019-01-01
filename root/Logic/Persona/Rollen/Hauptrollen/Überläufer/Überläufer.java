@@ -1,7 +1,7 @@
 package root.Logic.Persona.Rollen.Hauptrollen.Überläufer;
 
-import root.Controller.FrontendObjectType;
-import root.Controller.FrontendObject;
+import root.Controller.FrontendObject.FrontendObjectType;
+import root.Controller.FrontendObject.FrontendObject;
 import root.Frontend.Utils.DropdownOptions;
 import root.Logic.Game;
 import root.Logic.Persona.Fraktion;

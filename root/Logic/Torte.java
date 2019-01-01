@@ -1,7 +1,7 @@
 package root.Logic;
 
-import root.Controller.FrontendObjectType;
-import root.Controller.FrontendObject;
+import root.Controller.FrontendObject.FrontendObjectType;
+import root.Controller.FrontendObject.FrontendObject;
 import root.Frontend.Utils.DropdownOptions;
 import root.ResourceManagement.ImagePath;
 

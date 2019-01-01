@@ -1,6 +1,6 @@
 package root.Logic.Persona.Rollen.Hauptrollen.Bürger;
 
-import root.Controller.FrontendObject;
+import root.Controller.FrontendObject.FrontendObject;
 import root.Logic.Game;
 import root.Logic.KillLogic.AbsoluteKill;
 import root.Logic.Persona.Fraktion;

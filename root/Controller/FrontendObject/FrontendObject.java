@@ -1,4 +1,4 @@
-package root.Controller;
+package root.Controller.FrontendObject;
 
 import root.Frontend.Utils.DropdownOptions;
 import root.Logic.Persona.Rollen.Constants.SchnüfflerInformation;

@@ -1,7 +1,7 @@
 package root.Logic.Phases;
 
 import root.Controller.FrontendControl;
-import root.Controller.FrontendObject;
+import root.Controller.FrontendObject.FrontendObject;
 import root.Frontend.Utils.DropdownOptions;
 import root.Logic.Game;
 import root.Logic.KillLogic.Angriff;

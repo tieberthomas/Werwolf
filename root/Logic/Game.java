@@ -4,7 +4,7 @@ import root.Controller.FrontendControl;
 import root.Frontend.Frame.ErzählerFrame;
 import root.Frontend.Frame.SpielerFrame;
 import root.Frontend.Frame.ÜbersichtsFrame;
-import root.Controller.FrontendObject;
+import root.Controller.FrontendObject.FrontendObject;
 import root.Frontend.Utils.DropdownOptions;
 import root.Logic.Persona.Bonusrolle;
 import root.Logic.Persona.Fraktion;

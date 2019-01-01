@@ -1,5 +1,6 @@
 package root.Controller;
 
+import root.Controller.FrontendObject.FrontendObject;
 import root.Frontend.Frame.ErzählerFrame;
 import root.Frontend.Frame.SpielerFrame;
 import root.Frontend.Frame.SpielerFrameMode;

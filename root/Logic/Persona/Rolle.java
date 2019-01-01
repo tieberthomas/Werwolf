@@ -1,6 +1,6 @@
 package root.Logic.Persona;
 
-import root.Controller.FrontendObject;
+import root.Controller.FrontendObject.FrontendObject;
 import root.Logic.Game;
 import root.Logic.KillLogic.Opfer;
 import root.Logic.Persona.Rollen.Bonusrollen.DunklesLicht;

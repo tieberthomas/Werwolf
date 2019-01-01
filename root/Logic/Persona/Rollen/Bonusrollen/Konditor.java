@@ -1,6 +1,6 @@
 package root.Logic.Persona.Rollen.Bonusrollen;
 
-import root.Controller.FrontendObject;
+import root.Controller.FrontendObject.FrontendObject;
 import root.Frontend.Utils.DropdownOptions;
 import root.Logic.Persona.Bonusrolle;
 import root.Logic.Persona.Rollen.Constants.BonusrollenType.Aktiv;
