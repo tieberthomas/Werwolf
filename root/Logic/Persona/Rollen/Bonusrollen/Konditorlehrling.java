@@ -48,9 +48,9 @@ public class Konditorlehrling extends Bonusrolle {
 
         if (chosenSpieler != null) {
             besucht = chosenSpieler;
-            NormalNight.torteSpieler = chosenSpieler;
+            Torte.tortenStück = true;
+            Torte.tortenStückEsser = chosenSpieler;
             Torte.stückGut = FrontendControl.erzählerFrame.chosenOption2.equals(Konditor.GUT);
         }
     }
-
 }

@@ -11,7 +11,6 @@ import root.Logic.Liebespaar;
 import root.Logic.Persona.Bonusrolle;
 import root.Logic.Persona.Fraktion;
 import root.Logic.Persona.Fraktionen.SchattenpriesterFraktion;
-import root.Logic.Persona.Fraktionen.Vampire;
 import root.Logic.Persona.Fraktionen.Werwölfe;
 import root.Logic.Persona.Hauptrolle;
 import root.Logic.Persona.Rolle;
@@ -21,9 +20,6 @@ import root.Logic.Persona.Rollen.Constants.Zeigekarten.Torten_Zeigekarte;
 import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Irrlicht;
 import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Wirt;
 import root.Logic.Persona.Rollen.Hauptrollen.Schattenpriester.Schattenpriester;
-import root.Logic.Persona.Rollen.Hauptrollen.Vampire.GrafVladimir;
-import root.Logic.Persona.Rollen.Hauptrollen.Vampire.LadyAleera;
-import root.Logic.Persona.Rollen.Hauptrollen.Vampire.MissVerona;
 import root.Logic.Persona.Rollen.Hauptrollen.Werwölfe.Blutwolf;
 import root.Logic.Persona.Rollen.Hauptrollen.Überläufer.Henker;
 import root.Logic.Phases.NightBuilding.NormalNightStatementBuilder;
@@ -39,7 +35,6 @@ import root.Logic.Spieler;
 import root.Logic.Torte;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -52,9 +47,6 @@ public class NormalNight extends Thread {
     public List<String> opferDerNacht;
 
     public static List<Spieler> spielerAwake = new ArrayList<>();
-    public static Spieler torteSpieler;
-    private static boolean letzteTorteGut;
-
 
     public void run() {
         lock = new Object();
@@ -263,14 +255,13 @@ public class NormalNight extends Thread {
                                 FrontendControl.waitForAnswer();
                                 Torte.setTortenEsser(FrontendControl.getTortenesser());
                             } else {
-                                if (torteSpieler != null) {
+                                if (Torte.tortenStück) {
                                     dropdownOptions = Torte.getFrontendObject();
                                     statement.title = Torte.TORTENSTUECK_TITLE;
                                     chosenOption = FrontendControl.showFrontendObject(statement, dropdownOptions);
 
                                     if (chosenOption.equals(Torte.TORTE_NEHMEN)) {
-                                        Torte.tortenStück = true;
-                                        Torte.setTortenEsser(Collections.singletonList(torteSpieler.name));
+                                        Torte.stückEssen = true;
                                     }
                                 }
                             }
@@ -322,31 +313,7 @@ public class NormalNight extends Thread {
             }
         }
 
-        if (Torte.torte) {
-            for (Spieler currentSpieler : Torte.tortenEsser) {
-                if (Torte.gut) {
-                    currentSpieler.geschützt = true;
-                } else {
-                    currentSpieler.aktiv = false;
-                }
-            }
-        }
-
-        if (Torte.tortenStück) {
-            for (Spieler currentSpieler : Torte.tortenEsser) {
-                if (Torte.stückGut) {
-                    currentSpieler.geschützt = true;
-                } else {
-                    currentSpieler.aktiv = false;
-                }
-            }
-        }
-
-        Torte.tortenEsser.clear();
-        Torte.torte = false;
-        letzteTorteGut = Torte.gut;
-        Torte.gut = false;
-        torteSpieler = null;
+        Torte.beginNight();
 
         Henker.pagecounter = 0;
     }
@@ -472,7 +439,7 @@ public class NormalNight extends Thread {
 
     public static boolean gibtEsTorte() {
         return opfer.size() == 0 &&
-                !letzteTorteGut &&
+                !Torte.letzteTorteGut &&
                 Rolle.rolleLebend(Konditor.ID) &&
                 !Opfer.isOpferPerRolle(Konditor.ID) &&
                 Rolle.rolleAktiv(Konditor.ID);
