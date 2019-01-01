@@ -1,5 +1,6 @@
 package root.Logic;
 
+import root.Controller.FrontendObject.DropdownFrontendObject;
 import root.Controller.FrontendObject.FrontendObjectType;
 import root.Controller.FrontendObject.FrontendObject;
 import root.Frontend.Utils.DropdownOptions;
@@ -33,7 +34,7 @@ public class Torte {
         dropdownStrings.add(TORTE_NEHMEN);
         dropdownStrings.add(TORTE_NICHT_NEHMEN);
 
-        return new FrontendObject(FrontendObjectType.DROPDOWN_IMAGE, new DropdownOptions(dropdownStrings), ImagePath.TORTE);
+        return new DropdownFrontendObject(FrontendObjectType.DROPDOWN_IMAGE, new DropdownOptions(dropdownStrings), ImagePath.TORTE);
     }
 
     public static void beginNight() {

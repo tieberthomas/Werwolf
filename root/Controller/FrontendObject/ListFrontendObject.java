@@ -21,4 +21,18 @@ public class ListFrontendObject extends FrontendObject {
         this.displayedStrings = new ArrayList<>();
         this.displayedStrings.add(listString);
     }
+
+    public ListFrontendObject(FrontendObjectType typeOfContent, String title, List<String> displayedStrings, String imagePath) {
+        this.typeOfContent = typeOfContent;
+        this.title = title;
+        this.displayedStrings = displayedStrings;
+        this.imagePath = imagePath;
+    }
+
+    public ListFrontendObject(FrontendObjectType typeOfContent, String title, String note, List<String> displayedStrings) {
+        this.typeOfContent = typeOfContent;
+        this.title = title;
+        this.note = note;
+        this.displayedStrings = displayedStrings;
+    }
 }

@@ -3,6 +3,7 @@ package root.Logic.Persona.Rollen.Hauptrollen.Bürger;
 import root.Controller.FrontendObject.FrontendObjectType;
 import root.Controller.FrontendObject.FrontendObject;
 import root.Controller.FrontendObject.ImageFrontendObject;
+import root.Controller.FrontendObject.ListFrontendObject;
 import root.Logic.Game;
 import root.Logic.Persona.Bonusrolle;
 import root.Logic.Persona.Fraktion;
@@ -99,6 +100,6 @@ public class Orakel extends Hauptrolle {
     private FrontendObject allSeenBonusrollen() {
         Bonusrolle orakelSpielerBonusrolle = Game.game.findSpielerPerRolle(ID).bonusrolle;
         geseheneBonusrollen.remove(orakelSpielerBonusrolle.name);
-        return new FrontendObject(FrontendObjectType.LIST_WITH_NOTE, LIST_TITLE, note, geseheneBonusrollen);
+        return new ListFrontendObject(FrontendObjectType.LIST_WITH_NOTE, LIST_TITLE, note, geseheneBonusrollen);
     }
 }

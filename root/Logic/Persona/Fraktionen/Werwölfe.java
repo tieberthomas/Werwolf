@@ -1,5 +1,6 @@
 package root.Logic.Persona.Fraktionen;
 
+import root.Controller.FrontendObject.DropdownFrontendObject;
 import root.Controller.FrontendObject.FrontendObjectType;
 import root.Controller.FrontendObject.FrontendObject;
 import root.Frontend.Utils.DropdownOptions;
@@ -66,7 +67,7 @@ public class Werwölfe extends Fraktion {
 
         DropdownOptions dropdownOptions = Game.game.getSpielerDropdownOptions(true);
 
-        return new FrontendObject(FrontendObjectType.DROPDOWN_IMAGE, dropdownOptions, imagePath);
+        return new DropdownFrontendObject(FrontendObjectType.DROPDOWN_IMAGE, dropdownOptions, imagePath);
     }
 
     public static boolean blutWolfIsAktiv() {
