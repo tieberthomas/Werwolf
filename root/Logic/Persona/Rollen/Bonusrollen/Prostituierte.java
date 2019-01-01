@@ -33,7 +33,7 @@ public class Prostituierte extends Bonusrolle {
         this.statementBeschreibung = STATEMENT_BESCHREIBUNG;
         this.statementType = STATEMENT_TYPE;
 
-        this.selfuseable = false; //TODO true?
+        this.selfuseable = false;
         this.spammable = false;
     }
 

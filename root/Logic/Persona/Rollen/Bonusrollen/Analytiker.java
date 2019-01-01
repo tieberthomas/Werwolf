@@ -7,8 +7,9 @@ import root.Logic.Persona.Bonusrolle;
 import root.Logic.Persona.Fraktionen.Bürger;
 import root.Logic.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Logic.Persona.Rollen.Constants.BonusrollenType.Informativ;
+import root.Logic.Persona.Rollen.Hauptrollen.Vampire.LadyAleera;
+import root.Logic.Persona.Rollen.Hauptrollen.Vampire.MissVerona;
 import root.Logic.Persona.Rollen.Hauptrollen.Überläufer.Henker;
-import root.Logic.Phases.NormalNight;
 import root.Logic.Phases.Statement.Constants.StatementType;
 import root.Logic.Spieler;
 import root.ResourceManagement.ImagePath;
@@ -51,7 +52,7 @@ public class Analytiker extends Bonusrolle {
     }
 
     public boolean showTarnumhang(Spieler spieler1, Spieler spieler2) {
-        Spieler getarnterSpieler = NormalNight.getarnterSpieler;
+        Spieler getarnterSpieler = MissVerona.getarnterSpieler;
         Spieler analytikerSpieler = Game.game.findSpielerPerRolle(this.id);
         return showTarnumhang(this, spieler1) || showTarnumhang(this, spieler2) ||
                 analytikerSpieler.equals(getarnterSpieler) ||
@@ -98,7 +99,7 @@ public class Analytiker extends Bonusrolle {
 
         Spieler analytikerSpieler = Game.game.findSpielerPerRolle(this.id);
 
-        if (analytikerSpieler != null && (spieler1.equals(NormalNight.gefälschterSpieler) || spieler2.equals(NormalNight.gefälschterSpieler))) {
+        if (analytikerSpieler != null && (spieler1.equals(LadyAleera.gefälschterSpieler) || spieler2.equals(LadyAleera.gefälschterSpieler))) {
             return getWrongInformation(information);
         } else {
             return information;

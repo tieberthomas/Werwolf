@@ -5,7 +5,6 @@ import root.Logic.Game;
 import root.Logic.Persona.Fraktion;
 import root.Logic.Persona.Fraktionen.Vampire;
 import root.Logic.Persona.Hauptrolle;
-import root.Logic.Phases.NormalNight;
 import root.Logic.Phases.Statement.Constants.StatementType;
 import root.Logic.Spieler;
 import root.ResourceManagement.ImagePath;
@@ -20,6 +19,8 @@ public class LadyAleera extends Hauptrolle {
     public static final String STATEMENT_TITLE = "Information fälschen";
     public static final String STATEMENT_BESCHREIBUNG = "Lady Aleera erwacht und fälscht die Identität eines Spielers";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
+
+    public static Spieler gefälschterSpieler;
 
     public LadyAleera() {
         this.id = ID;
@@ -47,7 +48,7 @@ public class LadyAleera extends Hauptrolle {
         Spieler chosenSpieler = Game.game.findSpieler(chosenOption);
         if (chosenSpieler != null) {
             besucht = chosenSpieler;
-            NormalNight.gefälschterSpieler = chosenSpieler;
+            gefälschterSpieler = chosenSpieler;
         }
     }
 }

@@ -20,7 +20,7 @@ public class GrafVladimir extends Hauptrolle {
     public static final String STATEMENT_BESCHREIBUNG = "Graf Vladimir erwacht und verschleiert die Identität eines Spielers";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
 
-    public static Spieler verschleierterSpieler; //TODO move to night
+    public static Spieler verschleierterSpieler;
 
     public GrafVladimir() {
         this.id = ID;
@@ -48,7 +48,6 @@ public class GrafVladimir extends Hauptrolle {
         Spieler chosenSpieler = Game.game.findSpieler(chosenOption);
         if (chosenSpieler != null) {
             besucht = chosenSpieler;
-
             verschleierterSpieler = chosenSpieler;
         }
     }

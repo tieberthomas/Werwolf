@@ -25,7 +25,7 @@ public class GameController {
 
     static void startProgram() {
         erzählerFrame = new ErzählerFrame();
-        dataManager = new DataManager();
+        dataManager = new DataManager(); //TODO start loading data as soon as the frame is spawned
     }
 
     public static void setupGame(LoadMode loadMode) {

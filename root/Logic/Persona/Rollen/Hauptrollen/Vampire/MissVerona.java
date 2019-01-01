@@ -5,7 +5,6 @@ import root.Logic.Game;
 import root.Logic.Persona.Fraktion;
 import root.Logic.Persona.Fraktionen.Vampire;
 import root.Logic.Persona.Hauptrolle;
-import root.Logic.Phases.NormalNight;
 import root.Logic.Phases.Statement.Constants.StatementType;
 import root.Logic.Spieler;
 import root.ResourceManagement.ImagePath;
@@ -20,6 +19,8 @@ public class MissVerona extends Hauptrolle {
     public static final String STATEMENT_TITLE = "Spieler tarnen";
     public static final String STATEMENT_BESCHREIBUNG = "Miss Verona erwacht und tarnt die Identität eines Spielers und verwirrt ihn";
     public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
+
+    public static Spieler getarnterSpieler;
 
     public MissVerona() {
         this.id = ID;
@@ -47,7 +48,7 @@ public class MissVerona extends Hauptrolle {
         Spieler chosenSpieler = Game.game.findSpieler(chosenOption);
         if (chosenSpieler != null) {
             besucht = chosenSpieler;
-            NormalNight.getarnterSpieler = chosenSpieler;
+            getarnterSpieler = chosenSpieler;
         }
     }
 }

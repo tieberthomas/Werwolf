@@ -22,6 +22,8 @@ import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Irrlicht;
 import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Wirt;
 import root.Logic.Persona.Rollen.Hauptrollen.Schattenpriester.Schattenpriester;
 import root.Logic.Persona.Rollen.Hauptrollen.Vampire.GrafVladimir;
+import root.Logic.Persona.Rollen.Hauptrollen.Vampire.LadyAleera;
+import root.Logic.Persona.Rollen.Hauptrollen.Vampire.MissVerona;
 import root.Logic.Persona.Rollen.Hauptrollen.Werwölfe.Blutwolf;
 import root.Logic.Persona.Rollen.Hauptrollen.Überläufer.Henker;
 import root.Logic.Phases.NightBuilding.NormalNightStatementBuilder;
@@ -50,8 +52,6 @@ public class NormalNight extends Thread {
     public List<String> opferDerNacht;
 
     public static List<Spieler> spielerAwake = new ArrayList<>();
-    public static Spieler gefälschterSpieler;
-    public static Spieler getarnterSpieler;
     public static Spieler torteSpieler;
     private static boolean letzteTorteGut;
 
@@ -293,7 +293,7 @@ public class NormalNight extends Thread {
         PhaseManager.nextPhase();
     }
 
-    public void beginNight() {
+    private void beginNight() {
         for (Spieler currentSpieler : Game.game.spieler) {
             currentSpieler.ressurectable = !currentSpieler.hauptrolle.fraktion.equals(Vampire.ID);
         }
@@ -356,8 +356,8 @@ public class NormalNight extends Thread {
         Torte.gut = false;
 
         GrafVladimir.verschleierterSpieler = null;
-        getarnterSpieler = null;
-        gefälschterSpieler = null;
+        LadyAleera.gefälschterSpieler = null;
+        MissVerona.getarnterSpieler = null;
         torteSpieler = null;
 
         Henker.pagecounter = 0;
@@ -371,7 +371,7 @@ public class NormalNight extends Thread {
         }
     }
 
-    public void setSchütze() {
+    private void setSchütze() {
         for (Spieler currentSpieler : Game.game.spieler) {
             if (currentSpieler.bonusrolle.equals(DunklesLicht.ID)) {
                 currentSpieler.geschützt = true;
@@ -396,12 +396,12 @@ public class NormalNight extends Thread {
         }
     }
 
-    public void setOpfer() {
+    private void setOpfer() {
         checkLiebespaar();
         killOpfer();
     }
 
-    public void setSpielerAwake(Statement statement) {
+    private void setSpielerAwake(Statement statement) {
         spielerAwake.clear();
         if (statement.dependency instanceof StatementDependencyFraktion) {
             StatementDependencyFraktion statementDependencyFraktion = (StatementDependencyFraktion) statement.dependency;
@@ -437,7 +437,7 @@ public class NormalNight extends Thread {
         return opferDerNacht.size();
     }
 
-    public void killOpfer() {
+    private void killOpfer() {
         for (Opfer currentOpfer : opfer) {
             if (Rolle.rolleLebend(Blutwolf.ID)) {
                 if (currentOpfer.täterFraktion != null && currentOpfer.täterFraktion.equals(Werwölfe.ID)) {
@@ -452,7 +452,7 @@ public class NormalNight extends Thread {
         }
     }
 
-    public void checkLiebespaar() {
+    private void checkLiebespaar() {
         boolean spieler1Lebend = true;
         boolean spieler2Lebend = true;
 
@@ -495,7 +495,7 @@ public class NormalNight extends Thread {
         }
     }
 
-    public void henkerNächsteSeite() {
+    private void henkerNächsteSeite() {
         Henker henker = (Henker) Game.game.findHauptrolle(Henker.ID);
         Henker.pagecounter++;
         if (Henker.pagecounter < Henker.numberOfPages) {
@@ -504,7 +504,7 @@ public class NormalNight extends Thread {
         }
     }
 
-    public void henkerSeiteZurück() {
+    private void henkerSeiteZurück() {
         Henker henker = (Henker) Game.game.findHauptrolle(Henker.ID);
         if (Henker.pagecounter > 0) {
             Henker.pagecounter--;
@@ -513,7 +513,7 @@ public class NormalNight extends Thread {
         }
     }
 
-    public void showHenkerPage(FrontendObject frontendObject) {
+    private void showHenkerPage(FrontendObject frontendObject) {
         Statement henkerStatement = statements.stream()
                 .filter(statement -> statement.id.equals(Henker.STATEMENT_ID))
                 .findAny().orElse(null);

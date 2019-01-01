@@ -9,6 +9,7 @@ import root.Logic.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Logic.Persona.Rollen.Constants.BonusrollenType.Passiv;
 import root.Logic.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Schamanin;
+import root.Logic.Persona.Rollen.Hauptrollen.Vampire.MissVerona;
 import root.Logic.Persona.Rollen.Hauptrollen.Überläufer.Henker;
 import root.Logic.Phases.NormalNight;
 import root.Logic.Spieler;
@@ -48,7 +49,7 @@ public class Bonusrolle extends Rolle {
     }
 
     public boolean showTarnumhang(Bonusrolle requester, Spieler spieler) {
-        Spieler getarnterSpieler = NormalNight.getarnterSpieler;
+        Spieler getarnterSpieler = MissVerona.getarnterSpieler;
         Spieler requesterSpieler = Game.game.findSpielerPerRolle(this.id);
         return spieler != null && (spieler.bonusrolle.equals(Tarnumhang.ID) ||
                 (spielerIsSchamanin(spieler) && thisRolleIsNotBuerger(requester))) ||

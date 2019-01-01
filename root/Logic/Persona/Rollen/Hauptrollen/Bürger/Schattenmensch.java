@@ -29,7 +29,7 @@ public class Schattenmensch extends Hauptrolle {
     public static void transform() {
         Spieler schattenmenschSpieler = Game.game.findSpielerPerRolle(ID);
         if (schattenmenschSpieler != null) {
-            Schattenpriester schattenpriester = new Schattenpriester(); //TODO ist new hier sinnvoll?
+            Schattenpriester schattenpriester = new Schattenpriester();
             schattenpriester.neuster = true;
             schattenmenschSpieler.hauptrolle = schattenpriester;
 

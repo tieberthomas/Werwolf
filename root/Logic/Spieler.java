@@ -11,6 +11,8 @@ import root.Logic.Persona.Rollen.Constants.InformationsCluster.FraktionsInfo;
 import root.Logic.Persona.Rollen.Constants.InformationsCluster.TötendInfo;
 import root.Logic.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Dorfbewohner;
+import root.Logic.Persona.Rollen.Hauptrollen.Vampire.LadyAleera;
+import root.Logic.Persona.Rollen.Hauptrollen.Vampire.MissVerona;
 import root.Logic.Phases.NormalNight;
 
 import java.awt.*;
@@ -76,7 +78,7 @@ public class Spieler implements Comparable {
 
         BonusrollenType information;
 
-        Spieler getarnterSpieler = NormalNight.getarnterSpieler;
+        Spieler getarnterSpieler = MissVerona.getarnterSpieler;
 
         if (hauptrollenInfo != null || this.equals(getarnterSpieler) || requester.equals(getarnterSpieler)) {
             information = new Tarnumhang_BonusrollenType();
@@ -84,7 +86,7 @@ public class Spieler implements Comparable {
             information = bonunsrollenInfo;
         }
 
-        if (this.equals(NormalNight.gefälschterSpieler)) {
+        if (this.equals(LadyAleera.gefälschterSpieler)) {
             return BonusrollenInfo.getWrongInformation(information);
         } else {
             return information;
@@ -105,7 +107,7 @@ public class Spieler implements Comparable {
 
         Zeigekarte information;
 
-        Spieler getarnterSpieler = NormalNight.getarnterSpieler;
+        Spieler getarnterSpieler = MissVerona.getarnterSpieler;
 
         if (bonunsrolleIsTötend instanceof Tarnumhang_BonusrollenType || this.equals(getarnterSpieler) || requester.equals(getarnterSpieler)) {
             information = new Tarnumhang_BonusrollenType();
@@ -113,7 +115,7 @@ public class Spieler implements Comparable {
             information = hauptrolleIsTötend;
         }
 
-        if (this.equals(NormalNight.gefälschterSpieler)) {
+        if (this.equals(LadyAleera.gefälschterSpieler)) {
             return TötendInfo.getWrongInformation(information);
         } else {
             return information;
@@ -130,7 +132,7 @@ public class Spieler implements Comparable {
 
         Zeigekarte information;
 
-        Spieler getarnterSpieler = NormalNight.getarnterSpieler;
+        Spieler getarnterSpieler = MissVerona.getarnterSpieler;
 
         if (this.equals(getarnterSpieler) || requester.equals(getarnterSpieler)) {
             return new Tarnumhang_BonusrollenType();
@@ -142,7 +144,7 @@ public class Spieler implements Comparable {
             information = hauptrollenFraktion;
         }
 
-        if (this.equals(NormalNight.gefälschterSpieler)) {
+        if (this.equals(LadyAleera.gefälschterSpieler)) {
             return FraktionsInfo.getWrongInformation(information);
         } else {
             return information;
