@@ -51,4 +51,10 @@ public class GrafVladimir extends Hauptrolle {
             verschleierterSpieler = chosenSpieler;
         }
     }
+
+    @Override
+    public void beginNight() {
+        super.beginNight();
+        verschleierterSpieler = null;
+    }
 }

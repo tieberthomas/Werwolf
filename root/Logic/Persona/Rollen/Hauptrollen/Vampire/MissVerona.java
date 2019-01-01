@@ -51,4 +51,10 @@ public class MissVerona extends Hauptrolle {
             getarnterSpieler = chosenSpieler;
         }
     }
+
+    @Override
+    public void beginNight() {
+        super.beginNight();
+        getarnterSpieler = null;
+    }
 }

@@ -346,10 +346,6 @@ public class NormalNight extends Thread {
         Torte.torte = false;
         letzteTorteGut = Torte.gut;
         Torte.gut = false;
-
-        GrafVladimir.verschleierterSpieler = null;
-        LadyAleera.gefälschterSpieler = null;
-        MissVerona.getarnterSpieler = null;
         torteSpieler = null;
 
         Henker.pagecounter = 0;

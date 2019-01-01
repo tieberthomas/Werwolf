@@ -51,4 +51,10 @@ public class LadyAleera extends Hauptrolle {
             gefälschterSpieler = chosenSpieler;
         }
     }
+
+    @Override
+    public void beginNight() {
+        super.beginNight();
+        gefälschterSpieler = null;
+    }
 }
