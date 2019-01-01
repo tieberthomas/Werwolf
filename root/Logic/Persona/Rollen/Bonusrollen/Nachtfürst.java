@@ -75,7 +75,7 @@ public class Nachtfürst extends Bonusrolle {
         numbers.add("3");
         numbers.add("4");
         numbers.add("5"); //TODO 5 genügt?
-        return new FrontendObject(FrontendObjectType.DROPDOWN_LIST, new DropdownOptions(numbers, KEIN_OPFER));
+        return new DropdownFrontendObject(FrontendObjectType.DROPDOWN_LIST, new DropdownOptions(numbers, KEIN_OPFER));
     }
 
     @Override

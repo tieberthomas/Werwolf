@@ -1,7 +1,9 @@
 package root.Logic.Persona.Rollen.Hauptrollen.Bürger;
 
+import root.Controller.FrontendObject.DropdownFrontendObject;
 import root.Controller.FrontendObject.FrontendObject;
 import root.Controller.FrontendObject.FrontendObjectType;
+import root.Controller.FrontendObject.ListFrontendObject;
 import root.Frontend.Utils.DropdownOptions;
 import root.Logic.Game;
 import root.Logic.KillLogic.Selbstmord;
@@ -58,7 +60,7 @@ public class Irrlicht extends Hauptrolle {
 
     @Override
     public FrontendObject getFrontendObject() {
-        return new FrontendObject(FrontendObjectType.IRRLICHT_DROPDOWN, new DropdownOptions(Game.game.getLichterStrings()));
+        return new DropdownFrontendObject(FrontendObjectType.IRRLICHT_DROPDOWN, new DropdownOptions(Game.game.getLichterStrings()));
     }
 
     public static FrontendObject processFlackerndeIrrlichter(List<String> flackerndeIrrlichter) {
@@ -70,9 +72,9 @@ public class Irrlicht extends Hauptrolle {
             String randomIrrlicht = getRandomUnseenIrrlichtSpieler(einzigesFlackerndesIrrlicht);
 
             if (randomIrrlicht != null) {
-                return new FrontendObject(SECOND_STATEMENT_TITLE, randomIrrlicht);
+                return new ListFrontendObject(SECOND_STATEMENT_TITLE, randomIrrlicht);
             } else {
-                return new FrontendObject(SECOND_STATEMENT_TITLE, LAST_IRRLICHT_MESSAGE);
+                return new ListFrontendObject(SECOND_STATEMENT_TITLE, LAST_IRRLICHT_MESSAGE);
             }
         } else if (numberFlackerndeIrrlichter == numberIrrlichterInGame && numberIrrlichterInGame != 0) {
             Spieler spieler = getRandomIrrlichtToDie();

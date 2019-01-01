@@ -1,5 +1,6 @@
 package root.Logic.Persona.Fraktionen;
 
+import root.Controller.FrontendObject.DropdownFrontendObject;
 import root.Controller.FrontendObject.FrontendObjectType;
 import root.Controller.FrontendObject.FrontendObject;
 import root.Frontend.Utils.DropdownOptions;
@@ -85,7 +86,7 @@ public class SchattenpriesterFraktion extends Fraktion {
 
     @Override
     public FrontendObject getFrontendObject() {
-        return new FrontendObject(FrontendObjectType.DROPDOWN_LIST, new DropdownOptions(getRessurectableOpfer(), DropdownConstants.EMPTY));
+        return new DropdownFrontendObject(FrontendObjectType.DROPDOWN_LIST, new DropdownOptions(getRessurectableOpfer(), DropdownConstants.EMPTY));
     }
 
     private List<String> getRessurectableOpfer() {

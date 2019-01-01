@@ -1,5 +1,6 @@
 package root.Logic.Persona.Rollen.Hauptrollen.Überläufer;
 
+import root.Controller.FrontendObject.DropdownFrontendObject;
 import root.Controller.FrontendObject.FrontendObjectType;
 import root.Controller.FrontendObject.FrontendObject;
 import root.Frontend.Utils.DropdownOptions;
@@ -168,7 +169,7 @@ public class Henker extends Hauptrolle {
             case 0:
                 return Game.game.getSpielerFrontendObject(this);
             case 1:
-                FrontendObject fraktionsAuswahl = new FrontendObject(FrontendObjectType.DROPDOWN_LIST, FRAKTION_TITLE, new DropdownOptions(Fraktion.getLivingFraktionStrings()));
+                FrontendObject fraktionsAuswahl = new DropdownFrontendObject(FrontendObjectType.DROPDOWN_LIST, FRAKTION_TITLE, new DropdownOptions(Fraktion.getLivingFraktionStrings()));
                 fraktionsAuswahl.hatZurückButton = true;
                 return fraktionsAuswahl;
             case 2:
@@ -178,7 +179,7 @@ public class Henker extends Hauptrolle {
                         map(hauptrolle -> hauptrolle.name).
                         distinct().
                         collect(Collectors.toList());
-                FrontendObject hauptrollenAuswahl = new FrontendObject(FrontendObjectType.DROPDOWN_LIST, HAUPTROLLEN_TITLE, new DropdownOptions(hauptrollenStrings));
+                FrontendObject hauptrollenAuswahl = new DropdownFrontendObject(FrontendObjectType.DROPDOWN_LIST, HAUPTROLLEN_TITLE, new DropdownOptions(hauptrollenStrings));
                 hauptrollenAuswahl.hatZurückButton = true;
                 return hauptrollenAuswahl;
             case 3:
@@ -186,7 +187,7 @@ public class Henker extends Hauptrolle {
                 List<String> bonusrollenTypeStrings = bonusrollenTypes.stream().
                         map(type -> type.name).
                         collect(Collectors.toList());
-                FrontendObject bonusrollenTypAuswahl = new FrontendObject(FrontendObjectType.DROPDOWN_LIST, BONUSROLLENTYP_TITLE, new DropdownOptions(bonusrollenTypeStrings));
+                FrontendObject bonusrollenTypAuswahl = new DropdownFrontendObject(FrontendObjectType.DROPDOWN_LIST, BONUSROLLENTYP_TITLE, new DropdownOptions(bonusrollenTypeStrings));
                 bonusrollenTypAuswahl.hatZurückButton = true;
                 return bonusrollenTypAuswahl;
             case 4:
@@ -201,7 +202,7 @@ public class Henker extends Hauptrolle {
                         .map(bonusrolle -> bonusrolle.name)
                         .distinct()
                         .collect(Collectors.toList());
-                FrontendObject bonusrollenAuswahl = new FrontendObject(FrontendObjectType.DROPDOWN_LIST, BONUSROLLEN_TITLE, new DropdownOptions(bonusrollenStrings));
+                FrontendObject bonusrollenAuswahl = new DropdownFrontendObject(FrontendObjectType.DROPDOWN_LIST, BONUSROLLEN_TITLE, new DropdownOptions(bonusrollenStrings));
                 bonusrollenAuswahl.hatZurückButton = true;
                 return bonusrollenAuswahl;
             case 5:

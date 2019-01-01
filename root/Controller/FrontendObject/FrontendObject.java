@@ -4,7 +4,6 @@ import root.Frontend.Utils.DropdownOptions;
 import root.Logic.Persona.Rollen.Constants.SchnüfflerInformation;
 import root.Logic.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class FrontendObject {
@@ -26,27 +25,6 @@ public class FrontendObject {
     public FrontendObject(String title) {
         this.typeOfContent = FrontendObjectType.TITLE;
         this.title = title;
-    }
-
-    public FrontendObject(String title, String listString) {
-        this.typeOfContent = FrontendObjectType.LIST;
-        this.title = title;
-        displayedStrings = new ArrayList<>();
-        displayedStrings.add(listString);
-    }
-
-    public FrontendObject(FrontendObjectType typeOfContent, String title, List<String> strings) {
-        this(typeOfContent, strings);
-        this.title = title;
-    }
-
-    public FrontendObject(FrontendObjectType typeOfContent, List<String> strings) {
-        this.typeOfContent = typeOfContent;
-        if (typeOfContent.isDropdown()) {
-            dropdownOptions = (DropdownOptions) strings;
-        } else {
-            displayedStrings = strings;
-        }
     }
 
     public FrontendObject(FrontendObjectType typeOfContent, String imagePath) {
