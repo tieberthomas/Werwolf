@@ -20,12 +20,4 @@ public class FrontendObject {
     public FrontendObject() {
         this.typeOfContent = FrontendObjectType.SKIP;
     }
-
-    public FrontendObject(String title, String imagePath1, String imagePath2, List<String> displayedStrings) {
-        this.title = title;
-        this.imagePath = imagePath1;
-        this.imagePath2 = imagePath2;
-        this.displayedStrings = displayedStrings;
-        typeOfContent = FrontendObjectType.TWO_IMAGES;
-    }
 }

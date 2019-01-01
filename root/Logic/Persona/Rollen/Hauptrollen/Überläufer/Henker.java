@@ -1,9 +1,6 @@
 package root.Logic.Persona.Rollen.Hauptrollen.Überläufer;
 
-import root.Controller.FrontendObject.DropdownFrontendObject;
-import root.Controller.FrontendObject.FrontendObjectType;
-import root.Controller.FrontendObject.FrontendObject;
-import root.Controller.FrontendObject.ImageFrontendObject;
+import root.Controller.FrontendObject.*;
 import root.Frontend.Utils.DropdownOptions;
 import root.Logic.Game;
 import root.Logic.KillLogic.AbsoluteKill;
@@ -128,7 +125,7 @@ public class Henker extends Hauptrolle {
                     henkerSpieler.geschützt = true;
                     AbsoluteKill.execute(besucht, henkerSpieler);
 
-                    return new FrontendObject(SUCCESSFUL_KILL_TITLE, new Tötend().imagePath, new Geschützt().imagePath, new ArrayList<>());
+                    return new TwoImageFrontendObject(SUCCESSFUL_KILL_TITLE, new Tötend().imagePath, new Geschützt().imagePath, new ArrayList<>());
             }
         }
 
@@ -210,7 +207,7 @@ public class Henker extends Hauptrolle {
                 List<String> namenDerRollen = new ArrayList<>();
                 namenDerRollen.add(chosenHauptrolle.name);
                 namenDerRollen.add(chosenBonusrolle.name);
-                FrontendObject auswahlBestätigung = new FrontendObject(besucht.name, chosenHauptrolle.imagePath, chosenBonusrolle.imagePath, namenDerRollen);
+                FrontendObject auswahlBestätigung = new TwoImageFrontendObject(besucht.name, chosenHauptrolle.imagePath, chosenBonusrolle.imagePath, namenDerRollen);
                 auswahlBestätigung.hatZurückButton = true;
                 return auswahlBestätigung;
             default:
