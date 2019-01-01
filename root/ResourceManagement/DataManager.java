@@ -1,13 +1,15 @@
 package root.ResourceManagement;
 
 import root.Logic.Game;
+import root.Logic.Persona.Bonusrolle;
+import root.Logic.Persona.Hauptrolle;
 import root.Logic.Spieler;
 import root.Utils.ListHelper;
 
 import java.util.List;
 
 public class DataManager {
-    FileManager fileManager;
+    private FileManager fileManager;
 
     public DataManager() {
         this.fileManager = new FileManager();
@@ -17,45 +19,65 @@ public class DataManager {
     public void loadLastComposition() {
         CompositionDto composition = fileManager.readComposition(ResourcePath.LAST_GAME_COMPOSITION_FILE);
         if (composition != null) {
-            evaluateComposition(composition);
+            processComposition(composition);
+            System.out.println("Composition was loaded successfully.");
         } else {
-            System.out.println("no composition from last game could be found");
+            System.out.println("No composition from last game could be found.");
         }
     }
 
     public void loadLastGame() {
         GameDto lastGame = fileManager.readGame(ResourcePath.LAST_GAME_FILE);
         if (lastGame != null) {
-            evaluateSpieler(lastGame.spieler);
-            evaluateComposition(lastGame.compositionDto, false);
+            processSpieler(lastGame.spieler);
+            processComposition(lastGame.compositionDto, false);
+            System.out.println("Game was saved loeaded.");
         } else {
-            System.out.println("no last game could be found");
+            System.out.println("No last game could be found.");
         }
     }
 
-    private void evaluateComposition(CompositionDto composition) {
-        evaluateComposition(composition, true);
+    private void processComposition(CompositionDto composition) {
+        processComposition(composition, true);
     }
 
-    private void evaluateComposition(CompositionDto composition, boolean evaluateSpieler) {
-        if (evaluateSpieler) {
-            for (String spielerName : composition.spieler) {
-                Game.game.spieler.add(new Spieler(spielerName));
-            }
+    private void processComposition(CompositionDto composition, boolean processSpielers) {
+        if (processSpielers) {
+            processSpielers(composition.spieler);
         }
-
-        for (String hauptRollenName : composition.hauptrollen) {
-            Game.game.hauptrollenInGame.add(Game.game.findHauptrollePerName(hauptRollenName));
-        }
-
-        for (String bonusRollenName : composition.bonusrollen) {
-            Game.game.bonusrollenInGame.add(Game.game.findBonusrollePerName(bonusRollenName));
-        }
+        processHauptrollen(composition.hauptrollen);
+        processBonusrollen(composition.bonusrollen);
 
         Game.game.spielerSpecified = ListHelper.cloneList(Game.game.spieler);
     }
 
-    private void evaluateSpieler(List<SpielerDto> spieler) {
+    private void processSpielers(List<String> spieler) {
+        for (String spielerName : spieler) {
+            Game.game.spieler.add(new Spieler(spielerName));
+        }
+    }
+
+    private void processHauptrollen(List<String> hauptrollen) {
+        for (String hauptRollenName : hauptrollen) {
+            Hauptrolle hauptrolle = Game.game.findHauptrollePerName(hauptRollenName);
+            if (hauptrolle == null) {
+                hauptrolle = Hauptrolle.getDefaultHauptrolle();
+            }
+            Game.game.hauptrollenInGame.add(hauptrolle);
+        }
+    }
+
+    private void processBonusrollen(List<String> bonusrollen) {
+        for (String bonusRollenName : bonusrollen) {
+            Bonusrolle bonusrolle = Game.game.findBonusrollePerName(bonusRollenName);
+            if (bonusrolle == null) {
+                bonusrolle = Bonusrolle.DEFAULT_BONUSROLLE;
+            }
+            Game.game.bonusrollenInGame.add(bonusrolle);
+        }
+    }
+
+    private void processSpieler(List<SpielerDto> spieler) {
         for (SpielerDto currentSpieler : spieler) {
             Spieler newSpieler = new Spieler(currentSpieler.name, currentSpieler.hauptrolle, currentSpieler.bonusrolle);
             Game.game.hauptrollenInGame.add(newSpieler.hauptrolle);
@@ -64,12 +86,24 @@ public class DataManager {
     }
 
     public void writeComposition() {
-        fileManager.writeComposition(ResourcePath.LAST_GAME_COMPOSITION_FILE, Game.game.getLivingSpielerStrings(),
+        boolean successfull = fileManager.writeComposition(ResourcePath.LAST_GAME_COMPOSITION_FILE, Game.game.getLivingSpielerStrings(),
                 Game.game.getHauptrolleInGameNames(), Game.game.getBonusrolleInGameNames());
+
+        if (successfull) {
+            System.out.println("Composition was saved successfully.");
+        } else {
+            System.out.println("Composition could not be saved.");
+        }
     }
 
     public void writeGame() {
-        fileManager.writeGame(ResourcePath.LAST_GAME_FILE, Game.game.getLivingSpieler(),
+        boolean successfull = fileManager.writeGame(ResourcePath.LAST_GAME_FILE, Game.game.getLivingSpieler(),
                 Game.game.getHauptrollenUnspecifiedStrings(), Game.game.getBonusrollenUnspecifiedStrings());
+
+        if (successfull) {
+            System.out.println("Game was saved successfully.");
+        } else {
+            System.out.println("Game could not be saved.");
+        }
     }
 }

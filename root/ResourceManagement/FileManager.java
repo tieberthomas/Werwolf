@@ -82,7 +82,7 @@ public class FileManager {
 
             return gameDto;
         } catch (IOException e) {
-            System.out.println("Something went wrong while reading the game file");
+            System.out.println("Something went wrong while reading the game file.");
             return null;
         }
     }
@@ -107,7 +107,7 @@ public class FileManager {
 
             writer.flush();
         } catch (IOException e) {
-            System.out.println("Something went wrong while writing the game file");
+            System.out.println("Something went wrong while writing the game file.");
             return false;
         }
 
