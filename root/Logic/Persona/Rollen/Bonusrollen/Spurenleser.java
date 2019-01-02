@@ -1,7 +1,6 @@
 package root.Logic.Persona.Rollen.Bonusrollen;
 
 import root.Controller.FrontendObject.FrontendObject;
-import root.Controller.FrontendObject.FrontendObjectType;
 import root.Controller.FrontendObject.ImageFrontendObject;
 import root.Controller.FrontendObject.ListFrontendObject;
 import root.Logic.Game;
@@ -60,7 +59,7 @@ public class Spurenleser extends Bonusrolle {
                 return new ImageFrontendObject(new Tarnumhang_BonusrollenType());
             }
 
-            FrontendObject info = new ListFrontendObject(FrontendObjectType.LIST, getBesuchteSpielerStrings(chosenSpieler));
+            FrontendObject info = new ListFrontendObject(getBesuchteSpielerStrings(chosenSpieler));
             info.title = INFO_TITLE + chosenSpieler.name;
 
             return info;

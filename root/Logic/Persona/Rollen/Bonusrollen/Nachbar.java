@@ -1,7 +1,6 @@
 package root.Logic.Persona.Rollen.Bonusrollen;
 
 import root.Controller.FrontendObject.FrontendObject;
-import root.Controller.FrontendObject.FrontendObjectType;
 import root.Controller.FrontendObject.ImageFrontendObject;
 import root.Controller.FrontendObject.ListFrontendObject;
 import root.Logic.Game;
@@ -61,7 +60,7 @@ public class Nachbar extends Bonusrolle {
             }
 
             Spieler nachbarSpieler = Game.game.findSpielerPerRolle(Nachbar.ID);
-            FrontendObject info = new ListFrontendObject(FrontendObjectType.LIST, getBesucherStrings(chosenSpieler, nachbarSpieler));
+            FrontendObject info = new ListFrontendObject(getBesucherStrings(chosenSpieler, nachbarSpieler));
             info.title = INFO_TITLE + chosenSpieler.name;
 
             return info;
