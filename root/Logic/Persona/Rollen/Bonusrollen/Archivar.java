@@ -1,6 +1,5 @@
 package root.Logic.Persona.Rollen.Bonusrollen;
 
-import root.Controller.FrontendObject.FrontendObjectType;
 import root.Controller.FrontendObject.FrontendObject;
 import root.Controller.FrontendObject.ImageFrontendObject;
 import root.Logic.Game;
@@ -52,7 +51,7 @@ public class Archivar extends Bonusrolle {
 
             BonusrollenType chosenSpielerType = chosenSpieler.getBonusrollenTypeInfo(archivarSpieler);
 
-            return new ImageFrontendObject(FrontendObjectType.IMAGE, chosenSpielerType.title, chosenSpielerType.imagePath);
+            return new ImageFrontendObject(chosenSpielerType.title, chosenSpielerType.imagePath);
         }
 
         return new FrontendObject();

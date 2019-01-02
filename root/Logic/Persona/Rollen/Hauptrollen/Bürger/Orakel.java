@@ -1,8 +1,8 @@
 package root.Logic.Persona.Rollen.Hauptrollen.Bürger;
 
-import root.Controller.FrontendObject.FrontendObjectType;
+import root.Controller.FrontendObject.CardFrontendObject;
 import root.Controller.FrontendObject.FrontendObject;
-import root.Controller.FrontendObject.ImageFrontendObject;
+import root.Controller.FrontendObject.FrontendObjectType;
 import root.Controller.FrontendObject.ListFrontendObject;
 import root.Logic.Game;
 import root.Logic.Persona.Bonusrolle;
@@ -57,7 +57,7 @@ public class Orakel extends Hauptrolle {
         Bonusrolle randomBonusrolle = getRandomUnseenBonusrolle();
 
         if (randomBonusrolle != null) {
-            return new ImageFrontendObject(FrontendObjectType.CARD, randomBonusrolle.imagePath);
+            return new CardFrontendObject(randomBonusrolle.imagePath);
         } else {
             seenEverything = true;
             return allSeenBonusrollen();

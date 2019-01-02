@@ -1,8 +1,7 @@
 package root.Logic.Persona.Rollen.Bonusrollen;
 
-import root.Controller.FrontendObject.FrontendObjectType;
+import root.Controller.FrontendObject.CardFrontendObject;
 import root.Controller.FrontendObject.FrontendObject;
-import root.Controller.FrontendObject.ImageFrontendObject;
 import root.Logic.Game;
 import root.Logic.Persona.Bonusrolle;
 import root.Logic.Persona.Rollen.Constants.BonusrollenType.Aktiv;
@@ -77,7 +76,7 @@ public class Dieb extends Bonusrolle {
     @Override
     public FrontendObject getInfo() {
         if (besucht != null) {
-            return new ImageFrontendObject(FrontendObjectType.CARD, besucht.bonusrolle.imagePath);
+            return new CardFrontendObject(besucht.bonusrolle.imagePath);
         }
 
         return new FrontendObject();
