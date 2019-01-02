@@ -42,12 +42,14 @@ public class Day extends Thread {
     private void day() {
         lock = new Object();
         synchronized (lock) {
+            FrontendControl.lock = lock;
+
             TimeUpdater.time = 0;
 
             FrontendControl.erzählerDefaultDayPage();
             FrontendControl.spielerDayPage();
 
-            waitForAnswer();
+            FrontendControl.waitForAnswer();
 
             while (umbringenButton) {
                 umbringenButton = false;
@@ -56,7 +58,7 @@ public class Day extends Thread {
                 FrontendControl.erzählerDefaultDayPage();
                 FrontendControl.spielerDayPage();
 
-                waitForAnswer();
+                FrontendControl.waitForAnswer();
             }
 
             Spieler chosenSpieler = Game.game.findSpieler(FrontendControl.erzählerFrame.chosenOption1);
@@ -68,7 +70,7 @@ public class Day extends Thread {
 
                     FrontendControl.announceOpferPage(chosenSpieler, ImagePath.REINE_SEELE_KARTE);
 
-                    waitForAnswer();
+                    FrontendControl.waitForAnswer();
                 } else {
                     killSpielerCheckLiebespaar(chosenSpieler);
                     checkPriester(chosenSpieler);
@@ -136,7 +138,7 @@ public class Day extends Thread {
         Winner winner = Game.game.checkVictory();
 
         if (winner != Winner.NO_WINNER) {
-            showEndScreenPage(winner);
+            FrontendControl.showEndScreenPage(winner);
         }
     }
 
@@ -153,21 +155,14 @@ public class Day extends Thread {
         Spieler liebespartner = Game.game.liebespaar.getSpielerToDie();
         if (liebespartner != null) {
             JButtonStyler.disableButton(FrontendControl.erzählerFrame.umbringenJButton);
-            waitForAnswer();
+            FrontendControl.waitForAnswer();
             System.out.println(liebespartner.name + " sieht dass sein Liebespaartner " + spieler.name + " gestorben ist und begeht Suizid.");
             killSpieler(liebespartner);
         }
 
-        waitForAnswer();
+        FrontendControl.waitForAnswer();
 
         checkVictory();
-    }
-
-    private void showEndScreenPage(Winner winner) {
-        FrontendControl.erzählerEndScreenPage(winner);
-        FrontendControl.spielerEndScreenPage(winner);
-
-        waitForAnswer();
     }
 
     public void bürgen(Spieler priesterSpieler, Spieler gebürgterSpieler) {
@@ -178,13 +173,5 @@ public class Day extends Thread {
     public void verurteilen(Spieler richterinSpieler, Spieler verurteilterSpieler) {
         richterin = richterinSpieler;
         this.verurteilterSpieler = verurteilterSpieler;
-    }
-
-    private static void waitForAnswer() {
-        try {
-            lock.wait();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 }
