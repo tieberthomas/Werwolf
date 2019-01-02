@@ -5,7 +5,6 @@ public enum FrontendObjectType {
     TITLE,
     DROPDOWN,
     DROPDOWN_LIST,
-    DROPDOWN_SEPARATED_LIST,
     DROPDOWN_IMAGE,
     IRRLICHT_DROPDOWN,
     LIST,

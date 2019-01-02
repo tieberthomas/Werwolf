@@ -49,10 +49,6 @@ public abstract class FrontendControl {
                         showDropdownList(statement, frontendObject.title, frontendObject.dropdownOptions, frontendObject.hatZurückButton);
                         return erzählerFrame.chosenOption1;
 
-                    case DROPDOWN_SEPARATED_LIST:
-                        showDropdownSeperatedList(statement, frontendObject.title, frontendObject.dropdownOptions, frontendObject.displayedStrings, frontendObject.hatZurückButton);
-                        return erzählerFrame.chosenOption1;
-
                     case DROPDOWN_IMAGE:
                         showDropdownShowImage(statement, frontendObject.title, frontendObject.dropdownOptions, frontendObject.imagePath);
                         return erzählerFrame.chosenOption1;
@@ -191,7 +187,6 @@ public abstract class FrontendControl {
         switch (frontendObject.typeOfContent) {
             case DROPDOWN:
             case DROPDOWN_LIST:
-            case DROPDOWN_SEPARATED_LIST:
             case DROPDOWN_IMAGE:
                 erzählerDropdownPage(statement, getEmptyDropdownOptions(), aufgebraucht.imagePath);
                 break;
@@ -220,7 +215,6 @@ public abstract class FrontendControl {
         switch (frontendObject.typeOfContent) {
             case DROPDOWN:
             case DROPDOWN_LIST:
-            case DROPDOWN_SEPARATED_LIST:
             case DROPDOWN_IMAGE:
                 erzählerDropdownPage(statement, getEmptyDropdownOptions(), deaktiviert.imagePath);
                 break;
@@ -249,7 +243,6 @@ public abstract class FrontendControl {
         switch (frontendObject.typeOfContent) {
             case DROPDOWN:
             case DROPDOWN_LIST:
-            case DROPDOWN_SEPARATED_LIST:
             case DROPDOWN_IMAGE:
                 erzählerDropdownPage(statement, getEmptyDropdownOptions(), tot.imagePath);
                 break;
@@ -277,7 +270,6 @@ public abstract class FrontendControl {
         switch (frontendObject.typeOfContent) {
             case DROPDOWN:
             case DROPDOWN_LIST:
-            case DROPDOWN_SEPARATED_LIST:
             case DROPDOWN_IMAGE:
                 erzählerDropdownPage(statement, getEmptyDropdownOptions(), ausDemSpiel.imagePath);
                 spielerDropdownPage(statement.title, 1);
@@ -323,13 +315,6 @@ public abstract class FrontendControl {
     public static void showDropdownList(Statement statement, String title, DropdownOptions dropdownOptions, boolean hatZurückButton) {
         erzählerDropdownPage(statement, dropdownOptions, hatZurückButton);
         spielerDropdownListPage(title, dropdownOptions);
-
-        waitForAnswer();
-    }
-
-    public static void showDropdownSeperatedList(Statement statement, String title, DropdownOptions dropdownStrings, List<String> listStrings, boolean hatZurückButton) {
-        erzählerDropdownPage(statement, dropdownStrings, hatZurückButton);
-        spielerDropdownListPage(title, listStrings);
 
         waitForAnswer();
     }
