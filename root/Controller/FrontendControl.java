@@ -304,6 +304,13 @@ public abstract class FrontendControl {
         waitForAnswer();
     }
 
+    public static void showDropdown(Statement statement, DropdownOptions dropdownOptions1, DropdownOptions dropdownOptions2) {
+        erzählerDropdownPage(statement, dropdownOptions1, dropdownOptions2);
+        spielerDropdownPage(statement.title, 2);
+
+        waitForAnswer();
+    }
+
     public static void showDropdownList(Statement statement, String title, DropdownOptions dropdownOptions, boolean hatZurückButton) {
         erzählerDropdownPage(statement, dropdownOptions, hatZurückButton);
         spielerDropdownListPage(title, dropdownOptions);
@@ -359,6 +366,17 @@ public abstract class FrontendControl {
 
     public static void showListShowImage(Statement statement, String title, List<String> strings, String spielerImagePath, String erzählerImagePath) {
         erzählerListPage(statement, strings, erzählerImagePath);
+        spielerIconPicturePage(title, spielerImagePath);
+
+        waitForAnswer();
+    }
+
+    public static void showListShowImage(Statement statement, List<String> strings, String spielerImagePath) {
+        showListShowImage(statement, statement.title, strings, spielerImagePath);
+    }
+
+    public static void showListShowImage(Statement statement, String title, List<String> strings, String spielerImagePath) {
+        erzählerListPage(statement, strings);
         spielerIconPicturePage(title, spielerImagePath);
 
         waitForAnswer();

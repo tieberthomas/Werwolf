@@ -1,7 +1,6 @@
 package root.Logic.Phases;
 
 import root.Controller.FrontendControl;
-import root.Frontend.Utils.DropdownOptions;
 import root.Logic.Game;
 import root.Logic.Liebespaar;
 import root.Logic.Persona.Bonusrolle;
@@ -35,6 +34,8 @@ public class SetupNight extends Thread {
     public void run() {
         lock = new Object();
         synchronized (lock) {
+            FrontendControl.lock = lock;
+
             Bonusrolle newBonusrolle;
             String cardToDisplay;
             String imagePath;
@@ -64,7 +65,7 @@ public class SetupNight extends Thread {
                             swappedRoles.add(bonusrolle);
                             title = NEUE_KARTE_TITLE;
                         }
-                        showCard(statement, title, cardToDisplay);
+                        FrontendControl.showCard(statement, title, cardToDisplay);
                         if (Rolle.rolleLebend(rolle.id)) {
                             bonusrolle.tauschen(newBonusrolle);
                         }
@@ -74,7 +75,7 @@ public class SetupNight extends Thread {
                     } else {
                         switch (statement.id) {
                             case IndieStatements.LIEBESPAAR_ID:
-                                showDropdown(statement, Liebespaar.getDropdownOptions(), Liebespaar.getDropdownOptions());
+                                FrontendControl.showDropdown(statement, Liebespaar.getDropdownOptions(), Liebespaar.getDropdownOptions());
 
                                 //TODO chosen options sollten direkt über frontendcontrol accessed werden
                                 Game.game.liebespaar = new Liebespaar(FrontendControl.erzählerFrame.chosenOption1, FrontendControl.erzählerFrame.chosenOption2);
@@ -94,22 +95,22 @@ public class SetupNight extends Thread {
                                     FrontendControl.erzählerListPage(statement, liebespaarStrings);
                                     FrontendControl.spielerIconPicturePage(statement.title, imagePath);
 
-                                    waitForAnswer();
+                                    FrontendControl.waitForAnswer();
                                 }
                                 break;
 
                             case Henker.SETUP_NIGHT_STATEMENT_ID:
                                 Henker.fakeRolle = getRandomStillAvailableBürgerRolle();
-                                showCard(statement, statement.title, Henker.fakeRolle.imagePath);
+                                FrontendControl.showCard(statement, statement.title, Henker.fakeRolle.imagePath);
                                 break;
 
                             case Wolfsmensch.SETUP_NIGHT_STATEMENT_ID:
                                 Hauptrolle hauptrolle = getRandomStillAvailableBürgerRolle();
-                                showCard(statement, statement.title, hauptrolle.imagePath);
+                                FrontendControl.showCard(statement, statement.title, hauptrolle.imagePath);
                                 break;
 
                             default:
-                                showTitle(statement);
+                                FrontendControl.showTitle(statement);
                                 break;
                         }
                     }
@@ -164,52 +165,7 @@ public class SetupNight extends Thread {
 
         String fraktionsLogoImagePath = fraktion.imagePath;
 
-        showListShowImage(statement, fraktionMembers, fraktionsLogoImagePath);
-    }
-
-    private void showTitle(Statement statement) {
-        showTitle(statement, statement.title);
-    }
-
-    private void showTitle(Statement statement, String title) {
-        FrontendControl.erzählerDefaultNightPage(statement);
-        FrontendControl.spielerTitlePage(title);
-
-        waitForAnswer();
-    }
-
-    private void showDropdown(Statement statement, DropdownOptions dropdownOptions1, DropdownOptions dropdownOptions2) {
-        FrontendControl.erzählerDropdownPage(statement, dropdownOptions1, dropdownOptions2);
-        FrontendControl.spielerDropdownPage(statement.title, 2);
-
-        waitForAnswer();
-    }
-
-    private void showCard(Statement statement, String title, String imagePath) {
-        FrontendControl.erzählerCardPicturePage(statement, title, imagePath);
-        FrontendControl.spielerCardPicturePage(title, imagePath);
-
-        waitForAnswer();
-    }
-
-    private void showListShowImage(Statement statement, List<String> strings, String spielerImagePath) {
-        showListShowImage(statement, statement.title, strings, spielerImagePath);
-    }
-
-    private void showListShowImage(Statement statement, String title, List<String> strings, String spielerImagePath) {
-        FrontendControl.erzählerListPage(statement, strings);
-        FrontendControl.spielerIconPicturePage(title, spielerImagePath);
-
-        waitForAnswer();
-    }
-
-    private void waitForAnswer() {
-        FrontendControl.refreshÜbersichtsFrame();
-        try {
-            lock.wait();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        FrontendControl.showListShowImage(statement, fraktionMembers, fraktionsLogoImagePath);
     }
 
     private Hauptrolle getRandomStillAvailableBürgerRolle() {
