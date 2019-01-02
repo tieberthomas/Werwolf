@@ -69,10 +69,6 @@ public abstract class FrontendControl {
                         showCard(statement, frontendObject.title, frontendObject.imagePath);
                         break;
 
-                    case LIST_IMAGE:
-                        showListShowImage(statement, frontendObject.title, frontendObject.displayedStrings, frontendObject.imagePath);
-                        break;
-
                     case SCHNÜFFLER_INFO:
                         showSchnüfflerInfo(statement, frontendObject.informationen);
                         break;
@@ -192,7 +188,6 @@ public abstract class FrontendControl {
                 break;
 
             case LIST:
-            case LIST_IMAGE:
                 erzählerListPage(statement, getEmptyStringList(), aufgebraucht.imagePath);
                 break;
 
@@ -220,7 +215,6 @@ public abstract class FrontendControl {
                 break;
 
             case LIST:
-            case LIST_IMAGE:
                 erzählerListPage(statement, getEmptyStringList(), deaktiviert.imagePath);
                 break;
 
@@ -247,7 +241,6 @@ public abstract class FrontendControl {
                 erzählerDropdownPage(statement, getEmptyDropdownOptions(), tot.imagePath);
                 break;
             case LIST:
-            case LIST_IMAGE:
                 erzählerListPage(statement, getEmptyStringList(), tot.imagePath);
                 break;
 
@@ -276,7 +269,6 @@ public abstract class FrontendControl {
                 break;
 
             case LIST:
-            case LIST_IMAGE:
                 erzählerListPage(statement, getEmptyStringList(), ausDemSpiel.imagePath);
                 spielerListPage(statement.title, getEmptyStringList());
                 break;
@@ -361,21 +353,8 @@ public abstract class FrontendControl {
         waitForAnswer();
     }
 
-    public static void showListShowImage(Statement statement, String string, String spielerImagePath) {
-        List<String> list = new ArrayList<>();
-        list.add(string);
-        showListShowImage(statement, statement.title, list, spielerImagePath);
-    }
-
     public static void showListShowImage(Statement statement, List<String> strings, String spielerImagePath, String erzählerImagePath) {
         showListShowImage(statement, statement.title, strings, spielerImagePath, erzählerImagePath);
-    }
-
-    public static void showListShowImage(Statement statement, String title, List<String> strings, String spielerImagePath) {
-        erzählerListPage(statement, strings);
-        spielerIconPicturePage(title, spielerImagePath);
-
-        waitForAnswer();
     }
 
     public static void showListShowImage(Statement statement, String title, List<String> strings, String spielerImagePath, String erzählerImagePath) {

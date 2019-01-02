@@ -11,7 +11,6 @@ public enum FrontendObjectType {
     LIST_WITH_NOTE,
     IMAGE,
     CARD,
-    LIST_IMAGE,
     SCHNÜFFLER_INFO,
     TWO_IMAGES
 }
