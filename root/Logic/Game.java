@@ -465,10 +465,24 @@ public class Game {
                 .collect(Collectors.toList());
     }
 
-    public List<Spieler> getIrrlichter() {
+    public List<Spieler> getLichter() {
         List<Spieler> livingSpieler = getLivingSpieler();
         return livingSpieler.stream()
                 .filter(spieler -> spieler.hauptrolle.equals(Irrlicht.ID) || spieler.bonusrolle.equals(DunklesLicht.ID))
+                .collect(Collectors.toList());
+    }
+
+    public List<String> getLichterStrings() {
+        return getLichter().stream()
+                .map(spieler -> spieler.name)
+                .distinct()
+                .collect(Collectors.toList());
+    }
+
+    public List<Spieler> getIrrlichter() {
+        List<Spieler> livingSpieler = getLivingSpieler();
+        return livingSpieler.stream()
+                .filter(spieler -> spieler.hauptrolle.equals(Irrlicht.ID))
                 .collect(Collectors.toList());
     }
 
