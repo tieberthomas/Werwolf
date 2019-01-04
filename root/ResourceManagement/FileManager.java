@@ -7,15 +7,16 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FileManager {
+class FileManager {
     void createFolderInAppdata() {
-        File theDir = new File(ResourcePath.SAVE_FILE_PATH);
+        File werwolfDir = new File(ResourcePath.SAVE_FILE_PATH);
 
-        if (!theDir.exists()) {
+        if (!werwolfDir.exists()) {
             try {
-                theDir.mkdir();
+                werwolfDir.mkdir();
             } catch (SecurityException se) {
                 System.out.println("Program does not have the permission to create a folder in Appdata.");
+                System.out.println("Program will maybe not able to save or load games.");
             }
         }
     }
