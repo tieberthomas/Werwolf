@@ -18,6 +18,7 @@ import root.Logic.Persona.Rollen.Hauptrollen.Vampire.GrafVladimir;
 import root.Logic.Phases.Statement.Statement;
 import root.Logic.Phases.Winner;
 import root.Logic.Spieler;
+import root.ResourceManagement.SoundManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -464,6 +465,7 @@ public abstract class FrontendControl {
     }
 
     public static void spielerAnnounceOpferPage(Spieler spieler) {
+        SoundManager.playCannon();
         String hauptRolleImagePath = spieler.hauptrolle.imagePath;
         String bonusRolleImagePath = spieler.bonusrolle.imagePath;
         if (GrafVladimir.verschleierterSpieler != null) {
