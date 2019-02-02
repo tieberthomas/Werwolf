@@ -70,9 +70,10 @@ public class SpielerFrame extends MyFrame {
         buildScreenFromPage(SpielerListPageFactory.generateListPage("Bonusrollen", bonusrolesInGame));
     }
 
-    public void refreshSecondarySpecifySetupPage() {
-        List<String> hauptrollen = new ArrayList<>();
+    public void refreshSpecifySetupPage() {
+        List<String> hauptrollen = new ArrayList<>(); //notwendig damit nicht die originalliste manipuliert wird
         hauptrollen.addAll(Game.game.getHauptrolleInGameNames());
+        Hauptrolle.sortByFraktion(hauptrollen);
 
         List<String> bonusrollen = new ArrayList<>();
         bonusrollen.addAll(Game.game.getBonusrolleInGameNames());

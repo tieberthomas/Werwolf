@@ -129,7 +129,7 @@ public class SpecifyPage extends RefreshedPage {
         Collections.sort(Game.game.spielerSpecified);
         pageRefresher.refreshPage();
         if (spielerFrame != null) {
-            spielerFrame.refreshSecondarySpecifySetupPage();
+            spielerFrame.refreshSpecifySetupPage();
         }
     }
 

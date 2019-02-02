@@ -184,7 +184,7 @@ public abstract class SpielerPageElementFactory {
         return generateColumnCenteredLabel(label, predecessorY, spaceToPredecessorY, numberOfColumns, indexOfColumn, defaultTextSize);
     }
 
-    public static PageElement generateColumnCenteredLabel(JLabel label, Predecessor predecessorY, int spaceToPredecessorY, int numberOfColumns, int indexOfColumn, int size) {
+    static PageElement generateColumnCenteredLabel(JLabel label, Predecessor predecessorY, int spaceToPredecessorY, int numberOfColumns, int indexOfColumn, int size) {
         label = formatLabel(label, size);
 
         int jLabelWidth = getSpielerFrameWidth() / numberOfColumns;
