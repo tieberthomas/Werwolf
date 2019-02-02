@@ -22,7 +22,7 @@ public class Schamanin extends Hauptrolle {
     public static final String STATEMENT_ID = ID;
     public static final String STATEMENT_TITLE = "Mitspieler schützen";
     public static final String STATEMENT_BESCHREIBUNG = "Schamanin erwacht und entscheidet ob sie einen Spieler schützen möchte";
-    public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
+    public static final StatementType STATEMENT_TYPE = StatementType.PERSONA_CHOOSE_ONE;
 
     public Schamanin() {
         this.id = ID;

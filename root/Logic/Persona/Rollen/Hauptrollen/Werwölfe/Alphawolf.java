@@ -21,7 +21,7 @@ public class Alphawolf extends Hauptrolle {
     public static final String STATEMENT_ID = ID;
     public static final String STATEMENT_TITLE = CHOSE_OPFER_TITLE;
     public static final String STATEMENT_BESCHREIBUNG = "Alphawolf erwacht und wählt ein Opfer aus";
-    public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
+    public static final StatementType STATEMENT_TYPE = StatementType.PERSONA_CHOOSE_ONE;
 
     public Alphawolf() {
         this.id = ID;

@@ -20,7 +20,7 @@ public class Prostituierte extends Bonusrolle {
     public static final String STATEMENT_ID = ID;
     public static final String STATEMENT_TITLE = "Bett legen";
     public static final String STATEMENT_BESCHREIBUNG = "Prostituierte legt sich zu einem Mitspieler ins Bett";
-    public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
+    public static final StatementType STATEMENT_TYPE = StatementType.PERSONA_CHOOSE_ONE;
 
     public static Spieler host;
 

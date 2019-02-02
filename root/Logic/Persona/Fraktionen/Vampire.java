@@ -26,12 +26,12 @@ public class Vampire extends Fraktion {
     public static final String STATEMENT_ID = ID;
     public static final String STATEMENT_TITLE = CHOSE_OPFER_TITLE;
     public static final String STATEMENT_BESCHREIBUNG = "Die Vampire erwachen und wählen ein Opfer aus";
-    public static final StatementType STATEMENT_TYPE = StatementType.FRAKTION_CHOOSE_ONE;
+    public static final StatementType STATEMENT_TYPE = StatementType.PERSONA_CHOOSE_ONE;
 
     public static final String SETUP_NIGHT_STATEMENT_ID = "Setup_Night_Vampire";
     public static final String SETUP_NIGHT_STATEMENT_TITLE = "Vampire";
     public static final String SETUP_NIGHT_STATEMENT_BESCHREIBUNG = "Die Vampire erwachen und sehen einander";
-    public static final StatementType SETUP_NIGHT_STATEMENT_TYPE = StatementType.FRAKTION_SPECAL;
+    public static final StatementType SETUP_NIGHT_STATEMENT_TYPE = StatementType.PERSONA_SPECAL;
 
     public Vampire() {
         this.id = ID;

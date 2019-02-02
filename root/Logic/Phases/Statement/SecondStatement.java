@@ -2,7 +2,7 @@ package root.Logic.Phases.Statement;
 
 import root.Logic.Persona.Fraktion;
 import root.Logic.Persona.Rolle;
-import root.Logic.Phases.Statement.StatementDependency.StatementDependencyRolle;
+import root.Logic.Phases.Statement.StatementDependency.StatementDependencyPersona;
 import root.Logic.Phases.Statement.StatementDependency.StatementDependencyStatement;
 
 public class SecondStatement extends Statement {
@@ -11,7 +11,7 @@ public class SecondStatement extends Statement {
         this.title = rolle.secondStatementTitle;
         this.beschreibung = rolle.secondStatementBeschreibung;
         this.type = rolle.secondStatementType;
-        this.dependency = new StatementDependencyRolle(rolle);
+        this.dependency = new StatementDependencyPersona(rolle);
     }
 
     public SecondStatement(Rolle rolle, Statement dependency) {

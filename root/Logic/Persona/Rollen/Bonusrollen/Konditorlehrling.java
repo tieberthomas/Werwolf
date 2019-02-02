@@ -21,7 +21,7 @@ public class Konditorlehrling extends Bonusrolle {
     public static final String STATEMENT_ID = ID;
     public static final String STATEMENT_TITLE = "Tortenstück";
     public static final String STATEMENT_BESCHREIBUNG = "Konditorlehrling erwacht, wählt einen Spielerund gibt ihm ein gutes oder schlechtes Tortenstück";
-    public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
+    public static final StatementType STATEMENT_TYPE = StatementType.PERSONA_SPECAL;
 
     public Konditorlehrling() {
         this.id = ID;

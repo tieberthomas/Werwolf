@@ -22,12 +22,12 @@ public class Dieb extends Bonusrolle {
     public static final String STATEMENT_ID = ID;
     public static final String STATEMENT_TITLE = "Bonusrolle stehlen";
     public static final String STATEMENT_BESCHREIBUNG = "Dieb erwacht und entscheidet, ob er jemandes Bonusrolle stehlen möchte";
-    public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
+    public static final StatementType STATEMENT_TYPE = StatementType.PERSONA_CHOOSE_ONE;
 
     public static final String NEUE_BONUSROLLE = "Dieb_Neue_Bonusrolle";
     public static final String SECOND_STATEMENT_TITLE = "Neue Bonusrolle";
     public static final String SECOND_STATEMENT_BESCHREIBUNG = "Der Bestohlene erwacht und erhält eine neue Bonusrolle";
-    public static final StatementType SECOND_STATEMENT_TYPE = StatementType.ROLLE_INFO;
+    public static final StatementType SECOND_STATEMENT_TYPE = StatementType.PERSONA_INFO;
 
     public Dieb() {
         this.id = ID;

@@ -3,10 +3,7 @@ package root.Logic.Phases;
 import root.Controller.FrontendControl;
 import root.Logic.Game;
 import root.Logic.Liebespaar;
-import root.Logic.Persona.Bonusrolle;
-import root.Logic.Persona.Fraktion;
-import root.Logic.Persona.Hauptrolle;
-import root.Logic.Persona.Rolle;
+import root.Logic.Persona.*;
 import root.Logic.Persona.Rollen.Constants.BonusrollenType.Passiv;
 import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Dorfbewohner;
 import root.Logic.Persona.Rollen.Hauptrollen.Werwölfe.Wolfsmensch;
@@ -15,8 +12,7 @@ import root.Logic.Phases.NightBuilding.SetupNightStatementBuilder;
 import root.Logic.Phases.Statement.Constants.IndieStatements;
 import root.Logic.Phases.Statement.Constants.StatementState;
 import root.Logic.Phases.Statement.Statement;
-import root.Logic.Phases.Statement.StatementDependency.StatementDependencyFraktion;
-import root.Logic.Phases.Statement.StatementDependency.StatementDependencyRolle;
+import root.Logic.Phases.Statement.StatementDependency.StatementDependencyPersona;
 import root.Logic.Spieler;
 import root.Utils.Rand;
 
@@ -49,13 +45,13 @@ public class SetupNight extends Thread {
 
                 if (statement.state != StatementState.INVISIBLE_NOT_IN_GAME) {
                     setSpielerAwake(statement);
-                    Rolle rolle = null;
-                    if (statement.dependency instanceof StatementDependencyRolle) {
-                        rolle = ((StatementDependencyRolle) statement.dependency).rolle;
+                    Persona persona = null;
+                    if (statement.dependency instanceof StatementDependencyPersona) {
+                        persona = ((StatementDependencyPersona) statement.dependency).persona;
                     }
 
-                    if (rolle instanceof Bonusrolle && ((Bonusrolle) rolle).type.equals(new Passiv())) { //TODO nicht schön es soll ein "tauschen" flag geben
-                        Bonusrolle bonusrolle = ((Bonusrolle) rolle);
+                    if (persona instanceof Bonusrolle && ((Bonusrolle) persona).type.equals(new Passiv())) { //TODO nicht schön es soll ein "tauschen" flag geben
+                        Bonusrolle bonusrolle = ((Bonusrolle) persona);
                         newBonusrolle = bonusrolle.getTauschErgebnis();
                         cardToDisplay = newBonusrolle.imagePath;
                         String title;
@@ -66,11 +62,11 @@ public class SetupNight extends Thread {
                             title = NEUE_KARTE_TITLE;
                         }
                         FrontendControl.showCard(statement, title, cardToDisplay);
-                        if (Rolle.rolleLebend(rolle.id)) {
+                        if (Rolle.rolleLebend(persona.id)) {
                             bonusrolle.tauschen(newBonusrolle);
                         }
-                    } else if (statement.dependency instanceof StatementDependencyFraktion) {
-                        Fraktion fraktion = ((StatementDependencyFraktion) statement.dependency).fraktion;
+                    } else if (persona instanceof Fraktion) {
+                        Fraktion fraktion = (Fraktion) persona;
                         showFraktionMembers(statement, fraktion);
                     } else {
                         switch (statement.id) {
@@ -149,14 +145,15 @@ public class SetupNight extends Thread {
         }
     }
 
-    private void setSpielerAwake(Statement statement) {
+    private void setSpielerAwake(Statement statement) { //TODO copyed code!
         spielerAwake.clear();
-        if (statement.dependency instanceof StatementDependencyFraktion) {
-            StatementDependencyFraktion statementDependencyFraktion = (StatementDependencyFraktion) statement.dependency;
-            spielerAwake.addAll(Fraktion.getFraktionsMembers(statementDependencyFraktion.fraktion.id));
-        } else if (statement.dependency instanceof StatementDependencyRolle) {
-            StatementDependencyRolle statementDependencyRolle = (StatementDependencyRolle) statement.dependency;
-            spielerAwake.add(Game.game.findSpielerPerRolle(statementDependencyRolle.rolle.id));
+        if (statement.dependency instanceof StatementDependencyPersona) {
+            StatementDependencyPersona statementDependencyPersona = (StatementDependencyPersona) statement.dependency;
+            if (statementDependencyPersona.persona instanceof Fraktion) {
+                spielerAwake.addAll(Fraktion.getFraktionsMembers(statementDependencyPersona.persona.id));
+            } else if (statementDependencyPersona.persona instanceof Rolle) {
+                spielerAwake.add(Game.game.findSpielerPerRolle(statementDependencyPersona.persona.id));
+            }
         }
     }
 

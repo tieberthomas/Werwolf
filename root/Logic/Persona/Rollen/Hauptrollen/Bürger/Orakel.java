@@ -27,7 +27,7 @@ public class Orakel extends Hauptrolle {
     public static final String STATEMENT_TITLE = "Bonusrolle";
     private static final String LIST_TITLE = "Bonusrollen";
     public static final String STATEMENT_BESCHREIBUNG = "Orakel erwacht und lässt sich vom Erzähler die Bonusrollenkarte eines zufälligen Bürgers zeigen";
-    public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_INFO;
+    public static final StatementType STATEMENT_TYPE = StatementType.PERSONA_INFO;
 
     private static final String note = "Du hast die Bonusrollen von allen Bürgern gesehen, du erwachst jetzt nicht mehr.";
 

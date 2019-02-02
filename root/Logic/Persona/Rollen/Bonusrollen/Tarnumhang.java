@@ -28,7 +28,7 @@ public class Tarnumhang extends Bonusrolle {
     public static final String STATEMENT_ID = ID;
     public static final String STATEMENT_TITLE = "Träger eines Umhangs";
     public static final String STATEMENT_BESCHREIBUNG = "Träger des Tarnumhangs erwacht und erfährt einen Mitspieler, bei dem ein Umhhang liegt";
-    public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_INFO;
+    public static final StatementType STATEMENT_TYPE = StatementType.PERSONA_INFO;
 
     private static final String KEINE_UMHÄNGE = "Es sind keine Umhangträger mehr im Spiel";
 

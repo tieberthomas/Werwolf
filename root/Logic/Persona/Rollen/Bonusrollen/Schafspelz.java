@@ -25,7 +25,7 @@ public class Schafspelz extends Bonusrolle {
     public static final String SETUP_NIGHT_STATEMENT_ID = ID;
     public static final String SETUP_NIGHT_STATEMENT_TITLE = NEUE_KARTE_TITLE; //TODO wird nicht verwendet, auch nicht in anderen tauschrollen
     public static final String SETUP_NIGHT_STATEMENT_BESCHREIBUNG = "Träger des Schafspelzes erwacht und tauscht ggf. seine Karte aus";
-    public static final StatementType SETUP_NIGHT_STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
+    public static final StatementType SETUP_NIGHT_STATEMENT_TYPE = StatementType.PERSONA_SPECAL;
 
     public Schafspelz() {
         this.id = ID;

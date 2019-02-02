@@ -99,26 +99,27 @@ public class Rolle extends Persona {
         return false;
     }
 
-    public static StatementState getState(Rolle rolle) {
+    @Override
+    public StatementState getState() {
         Spieler spieler;
 
-        if (!rolleContainedInNight(rolle.id)) {
+        if (!rolleContainedInNight(this.id)) {
             return StatementState.INVISIBLE_NOT_IN_GAME;
         }
 
-        if (rolle.equals(Konditor.ID) && !NormalNight.gibtEsTorte()) {
+        if (this.equals(Konditor.ID) && !NormalNight.gibtEsTorte()) {
             return StatementState.INVISIBLE_NOT_IN_GAME;
         }
 
-        if (rolle.equals(Konditorlehrling.ID) && NormalNight.gibtEsTorte()) {
+        if (this.equals(Konditorlehrling.ID) && NormalNight.gibtEsTorte()) {
             return StatementState.INVISIBLE_NOT_IN_GAME;
         }
 
-        if (Irrlicht.ID.equals(rolle.id)) {
+        if (this.equals(Irrlicht.ID)) {
             return StatementState.NORMAL;
         }
 
-        spieler = Game.game.findSpielerPerRolle(rolle.id);
+        spieler = Game.game.findSpielerPerRolle(this.id);
         if (spieler == null) {
             return StatementState.NOT_IN_GAME;
         }
@@ -132,7 +133,7 @@ public class Rolle extends Persona {
         if (!spieler.aktiv) {
             return StatementState.DEAKTIV;
         }
-        if (rolle.abilityCharges <= 0) {
+        if (this.abilityCharges <= 0) {
             return StatementState.AUFGEBRAUCHT;
         }
         return StatementState.NORMAL;

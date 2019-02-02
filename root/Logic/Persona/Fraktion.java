@@ -122,17 +122,18 @@ public class Fraktion extends Persona {
         return false;
     }
 
-    public static StatementState getState(Fraktion fraktion) { //TODO merge methods
-        if (!fraktionContainedInNight(fraktion.id)) {
+    @Override
+    public StatementState getState() { //TODO merge methods
+        if (!fraktionContainedInNight(this.id)) {
             return StatementState.INVISIBLE_NOT_IN_GAME;
         }
-        if (!fraktionLebend(fraktion.id)) {
+        if (!fraktionLebend(this.id)) {
             return StatementState.NOT_IN_GAME;
         }
-        if (fraktionOpfer(fraktion.id)) {
+        if (fraktionOpfer(this.id)) {
             return StatementState.DEAD;
         }
-        if (!fraktionAktiv(fraktion.id)) {
+        if (!fraktionAktiv(this.id)) {
             return StatementState.DEAKTIV;
         }
         return StatementState.NORMAL;

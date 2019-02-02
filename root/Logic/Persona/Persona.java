@@ -1,6 +1,7 @@
 package root.Logic.Persona;
 
 import root.Controller.FrontendObject.FrontendObject;
+import root.Logic.Phases.Statement.Constants.StatementState;
 import root.Logic.Phases.Statement.Constants.StatementType;
 import root.Logic.Spieler;
 import root.ResourceManagement.ImagePath;
@@ -28,6 +29,10 @@ public class Persona {
     public String setupNightStatementTitle = "";
     public String setupNightStatementBeschreibung = "";
     public StatementType setupNightStatementType = StatementType.EMPTY_STATEMENT;
+
+    public StatementState getState() {
+        return StatementState.NORMAL;
+    }
 
     public FrontendObject getFrontendObject() {
         return new FrontendObject();

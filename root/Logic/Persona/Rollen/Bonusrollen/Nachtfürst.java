@@ -33,12 +33,12 @@ public class Nachtfürst extends Bonusrolle {
     public static final String SCHÄTZEN_ID = ID;
     public static final String STATEMENT_TITLE = "Anzahl der toten Opfer";
     public static final String STATEMENT_BESCHREIBUNG = "Nachtfürst erwacht und schätzt, wieviele Opfer es in der Nacht geben wird";
-    public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
+    public static final StatementType STATEMENT_TYPE = StatementType.PERSONA_CHOOSE_ONE;
 
     public static final String TÖTEN_ID = "Nachtfürst_Kill";
     public static final String SECOND_STATEMENT_TITLE = CHOSE_OPFER_TITLE;
     public static final String SECOND_STATEMENT_BESCHREIBUNG = "Nachtfürst erwacht und tötet einen Spieler wenn er letzte Nacht richtig lag"; //TODO er ist ja schon wach, wording ändern
-    public static final StatementType SECOND_STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
+    public static final StatementType SECOND_STATEMENT_TYPE = StatementType.PERSONA_SPECAL;
 
     public static final String KEIN_OPFER = "Kein Opfer";
     public static final String NICHT_GESCHÜTZT = "Nicht geschützt";

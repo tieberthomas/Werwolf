@@ -24,7 +24,7 @@ public class Medium extends Bonusrolle {
     public static final String STATEMENT_ID = ID;
     public static final String STATEMENT_TITLE = "Bonusrolle";
     public static final String STATEMENT_BESCHREIBUNG = "Medium erwacht und erfährt eine zufällige Bonusrolle, die nicht im Spiel ist";
-    public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_INFO;
+    public static final StatementType STATEMENT_TYPE = StatementType.PERSONA_INFO;
 
     private static final String NO_BONUSROLES_OUT_OF_GAME = "Es sind alle Bonusrollen im Spiel";
 

@@ -8,12 +8,9 @@ import root.Logic.KillLogic.Angriff;
 import root.Logic.KillLogic.Opfer;
 import root.Logic.KillLogic.Selbstmord;
 import root.Logic.Liebespaar;
-import root.Logic.Persona.Bonusrolle;
-import root.Logic.Persona.Fraktion;
+import root.Logic.Persona.*;
 import root.Logic.Persona.Fraktionen.SchattenpriesterFraktion;
 import root.Logic.Persona.Fraktionen.Werwölfe;
-import root.Logic.Persona.Hauptrolle;
-import root.Logic.Persona.Rolle;
 import root.Logic.Persona.Rollen.Bonusrollen.*;
 import root.Logic.Persona.Rollen.Constants.BonusrollenType.Tarnumhang_BonusrollenType;
 import root.Logic.Persona.Rollen.Constants.Zeigekarten.Torten_Zeigekarte;
@@ -28,8 +25,7 @@ import root.Logic.Phases.Statement.Constants.ProgramStatements;
 import root.Logic.Phases.Statement.Constants.StatementState;
 import root.Logic.Phases.Statement.Statement;
 import root.Logic.Phases.Statement.StatementDependency.StatementDependency;
-import root.Logic.Phases.Statement.StatementDependency.StatementDependencyFraktion;
-import root.Logic.Phases.Statement.StatementDependency.StatementDependencyRolle;
+import root.Logic.Phases.Statement.StatementDependency.StatementDependencyPersona;
 import root.Logic.Phases.Statement.StatementDependency.StatementDependencyStatement;
 import root.Logic.Spieler;
 import root.Logic.Torte;
@@ -60,8 +56,7 @@ public class NormalNight extends Thread {
             String chosenOptionLastStatement = null;
             Spieler chosenSpieler;
 
-            Rolle rolle = null;
-            Fraktion fraktion = null;
+            Persona persona = null;
 
             String erzählerInfoIconImagePath;
 
@@ -84,11 +79,8 @@ public class NormalNight extends Thread {
                         dependency = ((StatementDependencyStatement) dependency).statement.dependency;
                     }
 
-                    if (dependency instanceof StatementDependencyRolle) {
-                        rolle = ((StatementDependencyRolle) dependency).rolle;
-                    }
-                    if (dependency instanceof StatementDependencyFraktion) {
-                        fraktion = ((StatementDependencyFraktion) dependency).fraktion;
+                    if (dependency instanceof StatementDependencyPersona) {
+                        persona = ((StatementDependencyPersona) dependency).persona;
                     }
 
                     switch (statement.type) {
@@ -96,28 +88,22 @@ public class NormalNight extends Thread {
                             FrontendControl.showTitle(statement);
                             break;
 
-                        case ROLLE_CHOOSE_ONE:
-                            dropdownOptions = rolle.getFrontendObject();
+                        case PERSONA_CHOOSE_ONE:
+                            dropdownOptions = persona.getFrontendObject();
                             chosenOption = FrontendControl.showFrontendObject(statement, dropdownOptions);
-                            rolle.processChosenOption(chosenOption);
+                            persona.processChosenOption(chosenOption);
                             break;
 
-                        case ROLLE_CHOOSE_ONE_INFO:
-                            dropdownOptions = rolle.getFrontendObject();
+                        case PERSONA_CHOOSE_ONE_INFO:
+                            dropdownOptions = persona.getFrontendObject();
                             chosenOption = FrontendControl.showFrontendObject(statement, dropdownOptions);
-                            info = rolle.processChosenOptionGetInfo(chosenOption);
+                            info = persona.processChosenOptionGetInfo(chosenOption);
                             FrontendControl.showFrontendObject(statement, info);
                             break;
 
-                        case ROLLE_INFO:
-                            info = rolle.getInfo();
+                        case PERSONA_INFO:
+                            info = persona.getInfo();
                             FrontendControl.showFrontendObject(statement, info);
-                            break;
-
-                        case FRAKTION_CHOOSE_ONE:
-                            dropdownOptions = fraktion.getFrontendObject();
-                            chosenOption = FrontendControl.showFrontendObject(statement, dropdownOptions);
-                            fraktion.processChosenOption(chosenOption);
                             break;
                     }
 
@@ -133,9 +119,11 @@ public class NormalNight extends Thread {
                             break;
 
                         case Henker.STATEMENT_ID:
-                            dropdownOptions = rolle.getFrontendObject();
+                            dropdownOptions = persona.getFrontendObject();
                             chosenOption = FrontendControl.showFrontendObject(statement, dropdownOptions);
-                            rolle.processChosenOption(chosenOption);
+                            persona.processChosenOption(chosenOption);
+
+                            Henker henker = ((Henker) persona);
 
                             while (Henker.pagecounter < Henker.numberOfPages) {
                                 if (FrontendControl.erzählerFrame.next) {
@@ -145,8 +133,7 @@ public class NormalNight extends Thread {
                                 }
                             }
 
-                            if (rolle.besucht != null) {
-                                Henker henker = ((Henker) rolle);
+                            if (henker.besucht != null) {
                                 info = henker.processChosenOptionsGetInfo(Henker.chosenHauptrolle.name, Henker.chosenBonusrolle.name);
                                 FrontendControl.showFrontendObject(statement, info);
                             }
@@ -172,14 +159,14 @@ public class NormalNight extends Thread {
                             break;
 
                         case Nachtfürst.TÖTEN_ID:
-                            Nachtfürst nachtfürst = (Nachtfürst) rolle;
+                            Nachtfürst nachtfürst = (Nachtfürst) persona;
                             dropdownOptions = nachtfürst.getSecondFrontendObject();
                             chosenOption = FrontendControl.showFrontendObject(statement, dropdownOptions);
                             nachtfürst.processSecondChosenOption(chosenOption);
                             break;
 
                         case Irrlicht.STATEMENT_ID:
-                            dropdownOptions = rolle.getFrontendObject();
+                            dropdownOptions = persona.getFrontendObject();
                             FrontendControl.showFrontendObject(statement, dropdownOptions);
                             break;
 
@@ -189,7 +176,7 @@ public class NormalNight extends Thread {
                             break;
 
                         case Analytiker.STATEMENT_ID:
-                            Analytiker analytiker = (Analytiker) rolle;
+                            Analytiker analytiker = (Analytiker) persona;
 
                             DropdownOptions analytikerDropdownOptions = analytiker.getDropdownOptions();
                             FrontendControl.showDropdownPage(statement, analytikerDropdownOptions, analytikerDropdownOptions);
@@ -211,9 +198,9 @@ public class NormalNight extends Thread {
                             if (gibtEsTorte()) {
                                 Torte.torte = true;
 
-                                dropdownOptions = rolle.getFrontendObject();
+                                dropdownOptions = persona.getFrontendObject();
                                 chosenOption = FrontendControl.showKonditorDropdownPage(statement, dropdownOptions);
-                                rolle.processChosenOption(chosenOption);
+                                persona.processChosenOption(chosenOption);
 
                                 Torte.gut = chosenOption.equals(Konditor.GUT);
                             }
@@ -221,7 +208,7 @@ public class NormalNight extends Thread {
 
                         case Konditorlehrling.STATEMENT_ID:
                             if (!gibtEsTorte()) {
-                                Konditorlehrling konditorlehrling = (Konditorlehrling) rolle;
+                                Konditorlehrling konditorlehrling = (Konditorlehrling) persona;
 
                                 DropdownOptions dropdownOptionsSpieler = konditorlehrling.getDropdownOptionsSpieler();
                                 DropdownOptions dropdownOptionsTorte = Konditor.getTortenOptions();
@@ -358,12 +345,13 @@ public class NormalNight extends Thread {
 
     private void setSpielerAwake(Statement statement) {
         spielerAwake.clear();
-        if (statement.dependency instanceof StatementDependencyFraktion) {
-            StatementDependencyFraktion statementDependencyFraktion = (StatementDependencyFraktion) statement.dependency;
-            spielerAwake.addAll(Fraktion.getFraktionsMembers(statementDependencyFraktion.fraktion.id));
-        } else if (statement.dependency instanceof StatementDependencyRolle) {
-            StatementDependencyRolle statementDependencyRolle = (StatementDependencyRolle) statement.dependency;
-            spielerAwake.add(Game.game.findSpielerPerRolle(statementDependencyRolle.rolle.id));
+        if (statement.dependency instanceof StatementDependencyPersona) {
+            StatementDependencyPersona statementDependencyPersona = (StatementDependencyPersona) statement.dependency;
+            if (statementDependencyPersona.persona instanceof Fraktion) {
+                spielerAwake.addAll(Fraktion.getFraktionsMembers(statementDependencyPersona.persona.id));
+            } else if (statementDependencyPersona.persona instanceof Rolle) {
+                spielerAwake.add(Game.game.findSpielerPerRolle(statementDependencyPersona.persona.id));
+            }
         }
     }
 

@@ -18,7 +18,7 @@ public class LadyAleera extends Hauptrolle {
     public static final String STATEMENT_ID = ID;
     public static final String STATEMENT_TITLE = "Information fälschen";
     public static final String STATEMENT_BESCHREIBUNG = "Lady Aleera erwacht und fälscht die Identität eines Spielers";
-    public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
+    public static final StatementType STATEMENT_TYPE = StatementType.PERSONA_CHOOSE_ONE;
 
     public static Spieler gefälschterSpieler;
 

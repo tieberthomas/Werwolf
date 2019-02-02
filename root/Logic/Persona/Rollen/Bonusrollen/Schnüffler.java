@@ -28,7 +28,7 @@ public class Schnüffler extends Bonusrolle {
     public static final String STATEMENT_ID = ID;
     public static final String STATEMENT_TITLE = "Spieler wählen";
     public static final String STATEMENT_BESCHREIBUNG = "Schnüffler erwacht und lässt sich Auskunft über einen Mitspieler geben";
-    public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE_INFO;
+    public static final StatementType STATEMENT_TYPE = StatementType.PERSONA_CHOOSE_ONE_INFO;
 
     public static int MAX_ANZAHL_AN_INFORMATIONEN = 4;
 

@@ -25,7 +25,7 @@ public class Vampirumhang extends Bonusrolle {
     public static final String SETUP_NIGHT_STATEMENT_ID = ID;
     public static final String SETUP_NIGHT_STATEMENT_TITLE = NEUE_KARTE_TITLE;
     public static final String SETUP_NIGHT_STATEMENT_BESCHREIBUNG = "Träger des Vampirumhangs erwacht und tauscht ggf. seine Karte aus";
-    public static final StatementType SETUP_NIGHT_STATEMENT_TYPE = StatementType.ROLLE_SPECAL;
+    public static final StatementType SETUP_NIGHT_STATEMENT_TYPE = StatementType.PERSONA_SPECAL;
 
     public boolean schutzAktiv = true;
 

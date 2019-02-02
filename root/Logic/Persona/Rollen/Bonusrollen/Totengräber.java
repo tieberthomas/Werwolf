@@ -25,7 +25,7 @@ public class Totengräber extends Bonusrolle {
     public static final String STATEMENT_ID = ID;
     public static final String STATEMENT_TITLE = "Karte tauschen";
     public static final String STATEMENT_BESCHREIBUNG = "Totengräber erwacht und entscheidet, ob er seine Bonusrollenkarte tauschen möchte";
-    public static final StatementType STATEMENT_TYPE = StatementType.ROLLE_CHOOSE_ONE;
+    public static final StatementType STATEMENT_TYPE = StatementType.PERSONA_CHOOSE_ONE;
 
     public Totengräber() {
         this.id = ID;
