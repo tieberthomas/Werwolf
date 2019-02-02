@@ -392,7 +392,11 @@ public class NormalNight extends Thread {
     }
 
     private int getAnzahlOpferDerNacht() {
-        return opferDerNacht.size();
+        if (opferDerNacht == null) {
+            return 0;
+        } else {
+            return opferDerNacht.size();
+        }
     }
 
     private void killOpfer() {
