@@ -3,6 +3,7 @@ package root.Frontend.Frame;
 import root.Frontend.Factories.SpielerListPageFactory;
 import root.Frontend.Factories.SpielerPageElementFactory;
 import root.Frontend.Factories.SpielerPageFactory;
+import root.Frontend.Factories.SpielerSchnüfflerPageFactory;
 import root.Frontend.Page.Page;
 import root.Frontend.Utils.TimeUpdater;
 import root.Logic.Game;
@@ -33,6 +34,7 @@ public class SpielerFrame extends MyFrame {
 
         SpielerPageFactory.spielerFrame = this;
         SpielerListPageFactory.spielerFrame = this;
+        SpielerSchnüfflerPageFactory.spielerFrame = this;
         SpielerPageElementFactory.spielerFrame = this;
 
         comboBox1Label = new JLabel("");

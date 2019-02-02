@@ -3,6 +3,7 @@ package root.Controller;
 import root.Controller.FrontendObject.FrontendObject;
 import root.Frontend.Factories.SpielerListPageFactory;
 import root.Frontend.Factories.SpielerPageFactory;
+import root.Frontend.Factories.SpielerSchnüfflerPageFactory;
 import root.Frontend.Frame.ErzählerFrame;
 import root.Frontend.Frame.SpielerFrame;
 import root.Frontend.Frame.SpielerFrameMode;
@@ -12,7 +13,6 @@ import root.Frontend.Utils.DropdownOptions;
 import root.Frontend.Utils.PageRefresher.InteractivePages.IrrlichtPage;
 import root.Frontend.Utils.PageRefresher.InteractivePages.TortenPage;
 import root.Logic.Game;
-import root.Logic.Persona.Rollen.Bonusrollen.Schnüffler;
 import root.Logic.Persona.Rollen.Constants.RawInformation;
 import root.Logic.Persona.Rollen.Constants.SchnüfflerInformation;
 import root.Logic.Persona.Rollen.Constants.Zeigekarten.*;
@@ -601,10 +601,10 @@ public abstract class FrontendControl {
         spielerFrame.buildScreenFromPage(nightPage);
     }
 
-    public static void spielerSchnüfflerInfoPage(List<SchnüfflerInformation> informationen) {
+    private static void spielerSchnüfflerInfoPage(List<SchnüfflerInformation> informationen) {
         List<RawInformation> rawInformationen = convertToRawInformation(informationen);
 
-        Page nightPage = SpielerPageFactory.generateSchnüfflerInformationPage(rawInformationen, Schnüffler.MAX_ANZAHL_AN_INFORMATIONEN);
+        Page nightPage = SpielerSchnüfflerPageFactory.generateSchnüfflerInformationPage(rawInformationen);
         spielerFrame.buildScreenFromPage(nightPage);
     }
 
