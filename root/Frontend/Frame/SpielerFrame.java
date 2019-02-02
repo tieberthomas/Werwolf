@@ -1,5 +1,6 @@
 package root.Frontend.Frame;
 
+import root.Frontend.Factories.SpielerListPageFactory;
 import root.Frontend.Factories.SpielerPageElementFactory;
 import root.Frontend.Factories.SpielerPageFactory;
 import root.Frontend.Page.Page;
@@ -31,6 +32,7 @@ public class SpielerFrame extends MyFrame {
         WINDOW_TITLE = "Spieler Fenster";
 
         SpielerPageFactory.spielerFrame = this;
+        SpielerListPageFactory.spielerFrame = this;
         SpielerPageElementFactory.spielerFrame = this;
 
         comboBox1Label = new JLabel("");
@@ -55,15 +57,15 @@ public class SpielerFrame extends MyFrame {
     }
 
     public void refreshPlayerSetupPage(List<String> playersInGame) {
-        buildScreenFromPage(SpielerPageFactory.generateListPage("Spieler", playersInGame));
+        buildScreenFromPage(SpielerListPageFactory.generateListPage("Spieler", playersInGame));
     }
 
     public void refreshHauptrolleSetupPage(List<String> mainrolesInGame) {
-        buildScreenFromPage(SpielerPageFactory.generateListPage("Hauptrollen", mainrolesInGame));
+        buildScreenFromPage(SpielerListPageFactory.generateListPage("Hauptrollen", mainrolesInGame));
     }
 
     public void refreshBonusrolleSetupPage(List<String> bonusrolesInGame) {
-        buildScreenFromPage(SpielerPageFactory.generateListPage("Bonusrollen", bonusrolesInGame));
+        buildScreenFromPage(SpielerListPageFactory.generateListPage("Bonusrollen", bonusrolesInGame));
     }
 
     public void refreshSecondarySpecifySetupPage() {
@@ -72,7 +74,7 @@ public class SpielerFrame extends MyFrame {
 
         List<String> bonusrollen = new ArrayList<>();
         bonusrollen.addAll(Game.game.getBonusrolleInGameNames());
-        buildScreenFromPage(SpielerPageFactory.generateDoubleListPage(hauptrollen, bonusrollen, "Hauptrollen", "Bonusrollen"));
+        buildScreenFromPage(SpielerListPageFactory.generateDoubleListPage(hauptrollen, bonusrollen, "Hauptrollen", "Bonusrollen"));
     }
 
     public void generateDayPage() {

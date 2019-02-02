@@ -1,6 +1,7 @@
 package root.Controller;
 
 import root.Controller.FrontendObject.FrontendObject;
+import root.Frontend.Factories.SpielerListPageFactory;
 import root.Frontend.Factories.SpielerPageFactory;
 import root.Frontend.Frame.ErzählerFrame;
 import root.Frontend.Frame.SpielerFrame;
@@ -562,12 +563,12 @@ public abstract class FrontendControl {
     }
 
     public static void spielerListPage(String title, List<String> strings) {
-        Page nightPage = SpielerPageFactory.generateListPage(title, strings);
+        Page nightPage = SpielerListPageFactory.generateListPage(title, strings);
         spielerFrame.buildScreenFromPage(nightPage);
     }
 
     public static void spielerListPageWithNote(String title, List<String> strings, String note) {
-        Page nightPage = SpielerPageFactory.generateListPageWithNote(title, strings, note);
+        Page nightPage = SpielerListPageFactory.generateListPageWithNote(title, strings, note);
         spielerFrame.buildScreenFromPage(nightPage);
     }
 
