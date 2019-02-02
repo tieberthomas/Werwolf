@@ -4,6 +4,8 @@ import root.Frontend.Frame.MyFrame;
 import root.Frontend.Frame.SpielerFrame;
 import root.Frontend.Page.PageElement;
 import root.Frontend.Page.Predecessor;
+import root.Logic.Game;
+import root.Logic.Persona.Hauptrolle;
 import root.Logic.Persona.Rollen.Constants.RawInformation;
 import root.ResourceManagement.ImagePath;
 
@@ -252,7 +254,19 @@ public abstract class SpielerPageElementFactory {
         return clockLabel;
     }
 
-    public static JLabel formatLabel(JLabel label, int size) {
+    static void mainroleMarkup(JLabel label) {
+        String hauptrollenName = label.getText();
+
+        Hauptrolle hauptrolle = Game.game.findHauptrollePerName(hauptrollenName);
+
+        if(hauptrolle!=null) {
+            Color color = hauptrolle.getColor();
+            label.setBackground(color);
+            label.setOpaque(true);
+        }
+    }
+
+    private static JLabel formatLabel(JLabel label, int size) {
         label.setHorizontalAlignment(SwingConstants.CENTER);
         label.setFont(new Font("Arial", Font.PLAIN, size));
 

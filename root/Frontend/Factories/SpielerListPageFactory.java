@@ -18,7 +18,7 @@ public abstract class SpielerListPageFactory {
 
         PageElement titleLabel = SpielerPageElementFactory.generateTitleLabel(title);
         Page page = generateListPage(stringsToDisplay, 1, 0, titleLabel.height,
-                noteHeight, SpielerPageFactory.DEFAULT_BIG_TEXT_SIZE);
+                noteHeight, SpielerPageFactory.DEFAULT_BIG_TEXT_SIZE, false);
         PageElement noteLabel = SpielerPageElementFactory.generateNoteLabel(note, noteHeight, 50);
 
         page.add(titleLabel);
@@ -72,11 +72,11 @@ public abstract class SpielerListPageFactory {
     }
 
     private static Page generateListPage(List<String> stringsToDisplay, int numberOfColumns, int indexOfColumn, int offsetAbove) {
-        return generateListPage(stringsToDisplay, numberOfColumns, indexOfColumn, offsetAbove, 0, SpielerPageElementFactory.defaultTextSize);
+        return generateListPage(stringsToDisplay, numberOfColumns, indexOfColumn, offsetAbove, 0, SpielerPageElementFactory.defaultTextSize, false);
     }
 
     private static Page generateListPage(List<String> stringsToDisplay, int numberOfColumns, int indexOfColumn, int offsetAbove,
-                                         int offsetBelow, int textSize) {
+                                         int offsetBelow, int textSize, boolean mainRoleMarkup) {
         Page listPage = new Page(0, 10);
         List<String> realStringsToDisplay = new ArrayList<>(stringsToDisplay);
         realStringsToDisplay.remove("");
@@ -94,13 +94,21 @@ public abstract class SpielerListPageFactory {
             }
 
             PageElement label;
-            label = SpielerPageElementFactory.generateColumnCenteredLabel(new JLabel(realStringsToDisplay.get(0)), null, startpoint, numberOfColumns, indexOfColumn, textSize);
+            JLabel jLabel = new JLabel(realStringsToDisplay.get(0));
+            if (mainRoleMarkup) {
+                SpielerPageElementFactory.mainroleMarkup(jLabel);
+            }
+            label = SpielerPageElementFactory.generateColumnCenteredLabel(jLabel, null, startpoint, numberOfColumns, indexOfColumn, textSize);
             listPage.add(label);
 
             int i = 0;
             for (String string : realStringsToDisplay) {
                 if (i != 0) {
-                    label = SpielerPageElementFactory.generateColumnCenteredLabel(new JLabel(string), label, spacingBetweenStrings, numberOfColumns, indexOfColumn, textSize);
+                    jLabel = new JLabel(string);
+                    if (mainRoleMarkup) {
+                        SpielerPageElementFactory.mainroleMarkup(jLabel);
+                    }
+                    label = SpielerPageElementFactory.generateColumnCenteredLabel(jLabel, label, spacingBetweenStrings, numberOfColumns, indexOfColumn, textSize);
                     listPage.add(label);
                 }
 
@@ -176,8 +184,8 @@ public abstract class SpielerListPageFactory {
             int start2 = Math.round(dividingPoint2 * i);
             int end2 = Math.round(dividingPoint2 * (i + 1));
 
-            Page pageToAdd = generateListPage(new ArrayList<>(stringsToDisplay.subList(start1, end1)), numberOfColumnsPerList * 2, i, offsetAbove, offsetBelow, textSize);
-            Page pageToAdd2 = generateListPage(new ArrayList<>(stringsToDisplay2.subList(start2, end2)), numberOfColumnsPerList * 2, i + numberOfColumnsPerList, offsetAbove, offsetBelow, textSize);
+            Page pageToAdd = generateListPage(new ArrayList<>(stringsToDisplay.subList(start1, end1)), numberOfColumnsPerList * 2, i, offsetAbove, offsetBelow, textSize, true);
+            Page pageToAdd2 = generateListPage(new ArrayList<>(stringsToDisplay2.subList(start2, end2)), numberOfColumnsPerList * 2, i + numberOfColumnsPerList, offsetAbove, offsetBelow, textSize, true);
 
             for (PageElement element : pageToAdd.pageElements) {
                 listPage.add(element);

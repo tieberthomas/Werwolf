@@ -312,6 +312,14 @@ public class Game {
                 .collect(Collectors.toList());
     }
 
+    public List<String> getHauptrollenInGameSortedByFraktion() {
+        List<String> hauptrollen = new ArrayList<>(); //notwendig damit nicht die originalliste manipuliert wird
+        hauptrollen.addAll(Game.game.getHauptrolleInGameNames());
+        Hauptrolle.sortByFraktion(hauptrollen);
+
+        return hauptrollen;
+    }
+
     public List<String> getPossibleInGameHauptrolleNames() {
         List<String> hauptrollenInGame = getHauptrolleInGameNames();
 

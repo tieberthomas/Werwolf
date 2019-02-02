@@ -13,7 +13,6 @@ import root.Logic.Phases.PhaseManager;
 import root.Logic.Phases.PhaseMode;
 
 import javax.swing.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public class SpielerFrame extends MyFrame {
@@ -71,13 +70,7 @@ public class SpielerFrame extends MyFrame {
     }
 
     public void refreshSpecifySetupPage() {
-        List<String> hauptrollen = new ArrayList<>(); //notwendig damit nicht die originalliste manipuliert wird
-        hauptrollen.addAll(Game.game.getHauptrolleInGameNames());
-        Hauptrolle.sortByFraktion(hauptrollen);
-
-        List<String> bonusrollen = new ArrayList<>();
-        bonusrollen.addAll(Game.game.getBonusrolleInGameNames());
-        buildScreenFromPage(SpielerListPageFactory.generateDoubleListPage(hauptrollen, bonusrollen, "Hauptrollen", "Bonusrollen"));
+        buildScreenFromPage(SpielerListPageFactory.generateDoubleListPage(Game.game.getHauptrollenInGameSortedByFraktion(), Game.game.getBonusrolleInGameNames(), "Hauptrollen", "Bonusrollen"));
     }
 
     public void generateDayPage() {
@@ -88,7 +81,7 @@ public class SpielerFrame extends MyFrame {
             freibierDay = true;
         }
 
-        currentPage = SpielerPageFactory.generateDayPage(Game.game.getPossibleInGameHauptrolleNames(), Game.game.getPossibleInGameBonusrolleNames(), freibierDay);
+        currentPage = SpielerPageFactory.generateDayPage(Game.game.getHauptrollenInGameSortedByFraktion(), Game.game.getPossibleInGameBonusrolleNames(), freibierDay);
         buildScreenFromPage(currentPage);
     }
 
