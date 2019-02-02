@@ -31,7 +31,7 @@ public class DataManager {
         if (lastGame != null) {
             processSpieler(lastGame.spieler);
             processComposition(lastGame.compositionDto, false);
-            System.out.println("Game was saved loeaded.");
+            System.out.println("Game was loaded successfully.");
         } else {
             System.out.println("No last game could be found.");
         }
