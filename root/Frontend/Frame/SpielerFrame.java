@@ -15,10 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SpielerFrame extends MyFrame {
-    private ErzählerFrame erzählerFrame;
-    public SpielerPageFactory pageFactory;
-    public SpielerPageElementFactory pageElementFactory;
-
     public JLabel comboBox1Label;
     public JLabel comboBox2Label;
     public JLabel comboBox3Label;
@@ -33,10 +29,9 @@ public class SpielerFrame extends MyFrame {
 
     public SpielerFrame(ErzählerFrame erzählerFrame) {
         WINDOW_TITLE = "Spieler Fenster";
-        this.erzählerFrame = erzählerFrame;
 
-        pageFactory = new SpielerPageFactory(this);
-        pageElementFactory = new SpielerPageElementFactory(this);
+        SpielerPageFactory.spielerFrame = this;
+        SpielerPageElementFactory.spielerFrame = this;
 
         comboBox1Label = new JLabel("");
         comboBox2Label = new JLabel("");
@@ -56,19 +51,19 @@ public class SpielerFrame extends MyFrame {
 
     private void generateAllPages() {
         blankPage = new Page();
-        dropDownPage = pageFactory.generateDropdownPage("", 1);
+        dropDownPage = SpielerPageFactory.generateDropdownPage("", 1);
     }
 
     public void refreshPlayerSetupPage(List<String> playersInGame) {
-        buildScreenFromPage(pageFactory.generateListPage("Spieler", playersInGame));
+        buildScreenFromPage(SpielerPageFactory.generateListPage("Spieler", playersInGame));
     }
 
     public void refreshHauptrolleSetupPage(List<String> mainrolesInGame) {
-        buildScreenFromPage(pageFactory.generateListPage("Hauptrollen", mainrolesInGame));
+        buildScreenFromPage(SpielerPageFactory.generateListPage("Hauptrollen", mainrolesInGame));
     }
 
     public void refreshBonusrolleSetupPage(List<String> bonusrolesInGame) {
-        buildScreenFromPage(pageFactory.generateListPage("Bonusrollen", bonusrolesInGame));
+        buildScreenFromPage(SpielerPageFactory.generateListPage("Bonusrollen", bonusrolesInGame));
     }
 
     public void refreshSecondarySpecifySetupPage() {
@@ -77,7 +72,7 @@ public class SpielerFrame extends MyFrame {
 
         List<String> bonusrollen = new ArrayList<>();
         bonusrollen.addAll(Game.game.getBonusrolleInGameNames());
-        buildScreenFromPage(pageFactory.generateDoubleListPage(hauptrollen, bonusrollen, "Hauptrollen", "Bonusrollen"));
+        buildScreenFromPage(SpielerPageFactory.generateDoubleListPage(hauptrollen, bonusrollen, "Hauptrollen", "Bonusrollen"));
     }
 
     public void generateDayPage() {
@@ -88,7 +83,7 @@ public class SpielerFrame extends MyFrame {
             freibierDay = true;
         }
 
-        currentPage = pageFactory.generateDayPage(Game.game.getPossibleInGameHauptrolleNames(), Game.game.getPossibleInGameBonusrolleNames(), freibierDay);
+        currentPage = SpielerPageFactory.generateDayPage(Game.game.getPossibleInGameHauptrolleNames(), Game.game.getPossibleInGameBonusrolleNames(), freibierDay);
         buildScreenFromPage(currentPage);
     }
 
@@ -100,11 +95,11 @@ public class SpielerFrame extends MyFrame {
         } else if (mode == SpielerFrameMode.dropDownImage) {
             Hauptrolle hauptrolle = Game.game.findHauptrollePerName(newText);
             String imagePath = hauptrolle.imagePath;
-            Page imagePage = pageFactory.generateStaticImagePage(title, imagePath);
+            Page imagePage = SpielerPageFactory.generateStaticImagePage(title, imagePath);
             buildScreenFromPage(imagePage);
             mode = SpielerFrameMode.dropDownImage;
         } else if (mode == SpielerFrameMode.freibierPage || mode == SpielerFrameMode.listMirrorPage) {
-            Page dropDownPage = pageFactory.generateDropdownPage(title, 1);
+            Page dropDownPage = SpielerPageFactory.generateDropdownPage(title, 1);
             buildScreenFromPage(dropDownPage);
             comboBox1Label.setText(newText);
             mode = SpielerFrameMode.dropDownText;

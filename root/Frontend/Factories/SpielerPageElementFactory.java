@@ -12,24 +12,20 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SpielerPageElementFactory {
+public abstract class SpielerPageElementFactory {
     public static final int defaultTextSize = 36;
     public static final int defaultTitleSize = 48;
 
-    private SpielerFrame spielerFrame;
+    public static SpielerFrame spielerFrame;
 
-    public SpielerPageElementFactory(SpielerFrame spielerFrame) {
-        this.spielerFrame = spielerFrame;
-    }
-
-    public PageElement generateBierImage(Corner corner, int heigth) {
+    public static PageElement generateBierImage(Corner corner, int heigth) {
         int xSpace = 10;
         int ySpace = 20;
 
         return generateCornerImage(ImagePath.FREIBIER, corner, heigth, xSpace, ySpace);
     }
 
-    public PageElement generateCornerImage(String imagePath, Corner corner, int height, int xSpace, int ySpace) {
+    public static PageElement generateCornerImage(String imagePath, Corner corner, int height, int xSpace, int ySpace) {
         PageElement pageImage = generateFixedHeightPageImage(imagePath, height);
 
         Point point = generateCornerCoordinates(pageImage.width, height, xSpace, ySpace, corner);
@@ -39,7 +35,7 @@ public class SpielerPageElementFactory {
         return pageImage;
     }
 
-    private Point generateCornerCoordinates(int width, int heigth, int xSpace, int ySpace, Corner corner) {
+    private static Point generateCornerCoordinates(int width, int heigth, int xSpace, int ySpace, Corner corner) {
         Point startpoint = generateCornerStarpoint(corner);
         int xOffsetDirection = corner.xDirection;
         int yOffsetDirection = corner.yDirection;
@@ -53,14 +49,14 @@ public class SpielerPageElementFactory {
         return new Point(xCoord, yCoord);
     }
 
-    private Point generateCornerStarpoint(Corner corner) {
+    private static Point generateCornerStarpoint(Corner corner) {
         int x = corner.xDirection == Direction.POSITIVE.modificatior ? 0 : getSpielerFrameWidth();
         int y = corner.yDirection == Direction.POSITIVE.modificatior ? 0 : getSpielerFrameHeight();
 
         return new Point(x, y);
     }
 
-    private PageElement generateFixedHeightPageImage(String imagePath, int height) {
+    private static PageElement generateFixedHeightPageImage(String imagePath, int height) {
         JLabel bierJLabel = generateFixedHeightImage(imagePath, height);
 
         int imageWidth = bierJLabel.getIcon().getIconWidth();
@@ -70,7 +66,7 @@ public class SpielerPageElementFactory {
     }
 
 
-    public PageElement generateHorizontallyCenteredImageLabel(String imagePath, Predecessor predecessorY) {
+    public static PageElement generateHorizontallyCenteredImageLabel(String imagePath, Predecessor predecessorY) {
         JLabel imageJLabel = new JLabel();
 
         ImageIcon iconLogo = new ImageIcon(imagePath);
@@ -90,7 +86,7 @@ public class SpielerPageElementFactory {
         return imageLabel;
     }
 
-    public PageElement generateFullCenteredImageLabel(String imagePath) {
+    public static PageElement generateFullCenteredImageLabel(String imagePath) {
         JLabel imageJLabel = new JLabel();
 
         ImageIcon iconLogo = new ImageIcon(imagePath);
@@ -110,7 +106,7 @@ public class SpielerPageElementFactory {
         return imageLabel;
     }
 
-    public PageElement generateLeftCenteredImageLabel(String imagePath, Predecessor predecessorY) {
+    public static PageElement generateLeftCenteredImageLabel(String imagePath, Predecessor predecessorY) {
         JLabel imageJLabel = new JLabel();
 
         ImageIcon iconLogo = new ImageIcon(imagePath);
@@ -129,7 +125,7 @@ public class SpielerPageElementFactory {
         return imageLabel;
     }
 
-    public PageElement generateImageLabel(String imagePath, Predecessor predecessorX, Predecessor predecessorY) {
+    public static PageElement generateImageLabel(String imagePath, Predecessor predecessorX, Predecessor predecessorY) {
         JLabel imageJLabel = new JLabel();
 
         ImageIcon iconLogo = new ImageIcon(imagePath);
@@ -144,7 +140,7 @@ public class SpielerPageElementFactory {
         return imageLabel;
     }
 
-    public JLabel generateIcon(String imagePath) {
+    public static JLabel generateIcon(String imagePath) {
         JLabel imageJLabel = new JLabel();
 
         ImageIcon iconLogo = new ImageIcon(imagePath);
@@ -153,15 +149,15 @@ public class SpielerPageElementFactory {
         return imageJLabel;
     }
 
-    public PageElement generateCenteredLabel(JLabel label, Predecessor predecessorY) {
+    public static PageElement generateCenteredLabel(JLabel label, Predecessor predecessorY) {
         return generateCenteredLabel(label, predecessorY, 100);
     }
 
-    public PageElement generateCenteredLabel(String text, Predecessor predecessorY) {
+    public static PageElement generateCenteredLabel(String text, Predecessor predecessorY) {
         return generateCenteredLabel(new JLabel(text), predecessorY, 100);
     }
 
-    public PageElement generateCenteredLabel(JLabel label, Predecessor predecessorY, int spaceToPredecessorY) {
+    public static PageElement generateCenteredLabel(JLabel label, Predecessor predecessorY, int spaceToPredecessorY) {
         label = generateBigJLabel(label);
 
         int imageJLabelWidth = getSpielerFrameWidth();
@@ -176,7 +172,7 @@ public class SpielerPageElementFactory {
         return centeredLabel;
     }
 
-    public PageElement generateNoteLabel(String note, int height, int spaceFromTheSide) {
+    public static PageElement generateNoteLabel(String note, int height, int spaceFromTheSide) {
         int width = spielerFrame.getWidth() - spaceFromTheSide * 2;
         int spaceFromTop = spielerFrame.getHeight() - height - MyFrame.yOffset - 20;
 
@@ -184,11 +180,11 @@ public class SpielerPageElementFactory {
         return new PageElement(generateBigJLabel(HTMLnote), width, height, null, null, spaceFromTheSide, spaceFromTop);
     }
 
-    public PageElement generateColumnCenteredLabel(JLabel label, Predecessor predecessorY, int spaceToPredecessorY, int numberOfColumns, int indexOfColumn) {
+    public static PageElement generateColumnCenteredLabel(JLabel label, Predecessor predecessorY, int spaceToPredecessorY, int numberOfColumns, int indexOfColumn) {
         return generateColumnCenteredLabel(label, predecessorY, spaceToPredecessorY, numberOfColumns, indexOfColumn, defaultTextSize);
     }
 
-    public PageElement generateColumnCenteredLabel(JLabel label, Predecessor predecessorY, int spaceToPredecessorY, int numberOfColumns, int indexOfColumn, int size) {
+    public static PageElement generateColumnCenteredLabel(JLabel label, Predecessor predecessorY, int spaceToPredecessorY, int numberOfColumns, int indexOfColumn, int size) {
         label = formatLabel(label, size);
 
         int jLabelWidth = getSpielerFrameWidth() / numberOfColumns;
@@ -204,7 +200,7 @@ public class SpielerPageElementFactory {
         return centeredLabel;
     }
 
-    public PageElement generateColumnCenteredComponent(JComponent component, Predecessor predecessorY, int spaceToPredecessorY, int numberOfColumns, int indexOfColumn) {
+    public static PageElement generateColumnCenteredComponent(JComponent component, Predecessor predecessorY, int spaceToPredecessorY, int numberOfColumns, int indexOfColumn) {
         int componentWidth = (int) component.getPreferredSize().getWidth();
         int componentHeight = (int) component.getPreferredSize().getHeight();
 
@@ -218,15 +214,15 @@ public class SpielerPageElementFactory {
         return centeredElement;
     }
 
-    public PageElement generateTitleLabel(String title) {
+    public static PageElement generateTitleLabel(String title) {
         return generateColumnTitleLabel(title, 1, 0);
     }
 
-    public PageElement generateColumnTitleLabel(String title, int numberOfColumns, int indexOfColumn) {
+    public static PageElement generateColumnTitleLabel(String title, int numberOfColumns, int indexOfColumn) {
         return generateColumnTitleLabel(title, numberOfColumns, indexOfColumn, defaultTitleSize);
     }
 
-    public PageElement generateColumnTitleLabel(String title, int numberOfColumns, int indexOfColumn, int spaceToUse) {
+    public static PageElement generateColumnTitleLabel(String title, int numberOfColumns, int indexOfColumn, int spaceToUse) {
         JLabel titleJLabel = generateTitleJLabel(title);
 
         int numberOfPlayersLabelWidth = getSpielerFrameWidth();
@@ -242,7 +238,7 @@ public class SpielerPageElementFactory {
         return titleLabel;
     }
 
-    public PageElement generateClockLabel(JLabel label, int spaceToUse) {
+    public static PageElement generateClockLabel(JLabel label, int spaceToUse) {
         JLabel clockJLabel = formatLabel(label, 100);
 
         int clockLabelWidth = getSpielerFrameWidth();
@@ -256,34 +252,34 @@ public class SpielerPageElementFactory {
         return clockLabel;
     }
 
-    public JLabel formatLabel(JLabel label, int size) {
+    public static JLabel formatLabel(JLabel label, int size) {
         label.setHorizontalAlignment(SwingConstants.CENTER);
         label.setFont(new Font("Arial", Font.PLAIN, size));
 
         return label;
     }
 
-    public JLabel generateBigJLabel(String text) {
+    public static JLabel generateBigJLabel(String text) {
         JLabel label = new JLabel(text);
 
         return formatLabel(label, defaultTextSize);
     }
 
-    public JLabel generateBigJLabel(JLabel label) {
+    public static JLabel generateBigJLabel(JLabel label) {
         return formatLabel(label, defaultTextSize);
     }
 
-    public JLabel generateTitleJLabel(String text) {
+    public static JLabel generateTitleJLabel(String text) {
         JLabel label = new JLabel(text);
 
         return formatLabel(label, defaultTitleSize);
     }
 
-    public JLabel generateTitleJLabel(JLabel label) {
+    public static JLabel generateTitleJLabel(JLabel label) {
         return formatLabel(label, defaultTitleSize);
     }
 
-    public JLabel generateFixedHeightImage(String imagepath, int wantedHeight) {
+    public static JLabel generateFixedHeightImage(String imagepath, int wantedHeight) {
         JLabel iconJLabel = new JLabel();
 
         ImageIcon iconLogo = new ImageIcon(imagepath);
@@ -299,7 +295,7 @@ public class SpielerPageElementFactory {
         return iconJLabel;
     }
 
-    private void scaleImage(ImageIcon imageIcon, int width, int height) {
+    private static void scaleImage(ImageIcon imageIcon, int width, int height) {
         Image img = imageIcon.getImage();
         if (img != null) {
             Image newimg = img.getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
@@ -307,7 +303,7 @@ public class SpielerPageElementFactory {
         }
     }
 
-    public List<JComponent> generateFixedSizedImages(RawInformation rawInformation, int width, int height) {
+    public static List<JComponent> generateFixedSizedImages(RawInformation rawInformation, int width, int height) {
         List<JComponent> images = new ArrayList<>();
 
         for (String imagepath : rawInformation.imagePaths) {
@@ -317,7 +313,7 @@ public class SpielerPageElementFactory {
         return images;
     }
 
-    public JLabel generateFixedSizeImage(String imagepath, int wantedWidth, int wantedHeight) {
+    public static JLabel generateFixedSizeImage(String imagepath, int wantedWidth, int wantedHeight) {
         JLabel iconJLabel = new JLabel();
 
         ImageIcon iconLogo = new ImageIcon(imagepath);
@@ -346,7 +342,7 @@ public class SpielerPageElementFactory {
         return iconJLabel;
     }
 
-    private double getVerkleinerungsFaktor(int iconWidth, int iconHeight, int wantedWidth, int wantedHeight) {
+    private static double getVerkleinerungsFaktor(int iconWidth, int iconHeight, int wantedWidth, int wantedHeight) {
         int bigNumber = 100;
         double verkleinerungsFaktorWidth = bigNumber;
         if (iconWidth > wantedWidth) {
@@ -361,7 +357,7 @@ public class SpielerPageElementFactory {
         return getSmallerNumber(verkleinerungsFaktorWidth, verkleinerungsFaktorHeight);
     }
 
-    private double getSmallerNumber(double number1, double number2) {
+    private static double getSmallerNumber(double number1, double number2) {
         if (number1 < number2) {
             return number1;
         } else {
@@ -369,25 +365,25 @@ public class SpielerPageElementFactory {
         }
     }
 
-    public int getJLabelStandardHeight() {
+    public static int getJLabelStandardHeight() {
         JLabel jLabel = new JLabel("test");
         jLabel = generateBigJLabel(jLabel);
 
         return (int) jLabel.getPreferredSize().getHeight();
     }
 
-    public int getJLabelHeight(int size) {
+    public static int getJLabelHeight(int size) {
         JLabel jLabel = new JLabel("test");
         jLabel = formatLabel(jLabel, size);
 
         return (int) jLabel.getPreferredSize().getHeight();
     }
 
-    private int getSpielerFrameWidth() {
+    private static int getSpielerFrameWidth() {
         return spielerFrame.frameJpanel.getWidth();
     }
 
-    private int getSpielerFrameHeight() {
+    private static int getSpielerFrameHeight() {
         return spielerFrame.frameJpanel.getHeight();
     }
 }

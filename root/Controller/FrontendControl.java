@@ -1,6 +1,7 @@
 package root.Controller;
 
 import root.Controller.FrontendObject.FrontendObject;
+import root.Frontend.Factories.SpielerPageFactory;
 import root.Frontend.Frame.ErzählerFrame;
 import root.Frontend.Frame.SpielerFrame;
 import root.Frontend.Frame.SpielerFrameMode;
@@ -415,7 +416,7 @@ public abstract class FrontendControl {
     }
 
     public static void spielerTitlePage(String title) {
-        Page nightPage = spielerFrame.pageFactory.generateTitlePage(title);
+        Page nightPage = SpielerPageFactory.generateTitlePage(title);
         spielerFrame.buildScreenFromPage(nightPage);
     }
 
@@ -479,17 +480,17 @@ public abstract class FrontendControl {
     }
 
     public static void spielerTwoImagePage(String title, String imagePath1, String imagePath2) {
-        Page dayPage = spielerFrame.pageFactory.generateTwoImagePage(title, imagePath1, imagePath2);
+        Page dayPage = SpielerPageFactory.generateTwoImagePage(title, imagePath1, imagePath2);
         spielerFrame.buildScreenFromPage(dayPage);
     }
 
     public static void erzählerEndScreenPage(Winner winner) {
-        Page nightPage = spielerFrame.pageFactory.generateEndScreenPage(winner);
+        Page nightPage = SpielerPageFactory.generateEndScreenPage(winner);
         erzählerFrame.buildScreenFromPage(nightPage);
     }
 
     public static void spielerEndScreenPage(Winner winner) {
-        Page nightPage = spielerFrame.pageFactory.generateEndScreenPage(winner);
+        Page nightPage = SpielerPageFactory.generateEndScreenPage(winner);
         spielerFrame.buildScreenFromPage(nightPage);
     }
 
@@ -518,17 +519,17 @@ public abstract class FrontendControl {
     }
 
     public static void spielerDropdownPage(String title, int numberOfDropdowns) {
-        spielerFrame.dropDownPage = spielerFrame.pageFactory.generateDropdownPage(title, numberOfDropdowns);
+        spielerFrame.dropDownPage = SpielerPageFactory.generateDropdownPage(title, numberOfDropdowns);
         spielerFrame.buildScreenFromPage(spielerFrame.dropDownPage);
     }
 
     public static void spielerDropdownListPage(String title, List<String> dropdownOptions) {
-        spielerFrame.dropDownPage = spielerFrame.pageFactory.generateListMirrorPage(title, dropdownOptions);
+        spielerFrame.dropDownPage = SpielerPageFactory.generateListMirrorPage(title, dropdownOptions);
         spielerFrame.buildScreenFromPage(spielerFrame.dropDownPage);
     }
 
     public static void spielerDropdownMirrorImagePage(String title, String imagepath) {
-        spielerFrame.dropDownPage = spielerFrame.pageFactory.generateDropdownMirrorImagePage(title, imagepath);
+        spielerFrame.dropDownPage = SpielerPageFactory.generateDropdownMirrorImagePage(title, imagepath);
         spielerFrame.buildScreenFromPage(spielerFrame.dropDownPage);
     }
 
@@ -561,12 +562,12 @@ public abstract class FrontendControl {
     }
 
     public static void spielerListPage(String title, List<String> strings) {
-        Page nightPage = spielerFrame.pageFactory.generateListPage(title, strings);
+        Page nightPage = SpielerPageFactory.generateListPage(title, strings);
         spielerFrame.buildScreenFromPage(nightPage);
     }
 
     public static void spielerListPageWithNote(String title, List<String> strings, String note) {
-        Page nightPage = spielerFrame.pageFactory.generateListPageWithNote(title, strings, note);
+        Page nightPage = SpielerPageFactory.generateListPageWithNote(title, strings, note);
         spielerFrame.buildScreenFromPage(nightPage);
     }
 
@@ -580,12 +581,12 @@ public abstract class FrontendControl {
     }
 
     public static void spielerIconPicturePage(String title, String imagePath) {
-        Page nightPage = spielerFrame.pageFactory.generateStaticImagePage(title, imagePath, true);
+        Page nightPage = SpielerPageFactory.generateStaticImagePage(title, imagePath, true);
         spielerFrame.buildScreenFromPage(nightPage);
     }
 
     public static void showZeigekarteOnSpielerScreen(Zeigekarte zeigekarte) {
-        Page nightPage = spielerFrame.pageFactory.generateStaticImagePage(zeigekarte.title, zeigekarte.imagePath, true);
+        Page nightPage = SpielerPageFactory.generateStaticImagePage(zeigekarte.title, zeigekarte.imagePath, true);
         spielerFrame.buildScreenFromPage(nightPage);
     }
 
@@ -595,14 +596,14 @@ public abstract class FrontendControl {
     }
 
     public static void spielerCardPicturePage(String title, String imagePath) {
-        Page nightPage = spielerFrame.pageFactory.generateStaticImagePage(title, imagePath, false);
+        Page nightPage = SpielerPageFactory.generateStaticImagePage(title, imagePath, false);
         spielerFrame.buildScreenFromPage(nightPage);
     }
 
     public static void spielerSchnüfflerInfoPage(List<SchnüfflerInformation> informationen) {
         List<RawInformation> rawInformationen = convertToRawInformation(informationen);
 
-        Page nightPage = spielerFrame.pageFactory.generateSchnüfflerInformationPage(rawInformationen, Schnüffler.MAX_ANZAHL_AN_INFORMATIONEN);
+        Page nightPage = SpielerPageFactory.generateSchnüfflerInformationPage(rawInformationen, Schnüffler.MAX_ANZAHL_AN_INFORMATIONEN);
         spielerFrame.buildScreenFromPage(nightPage);
     }
 

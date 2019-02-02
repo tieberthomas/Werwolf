@@ -17,35 +17,29 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SpielerPageFactory {
-    private SpielerFrame spielerFrame;
-    private SpielerPageElementFactory pageElementFactory;
+public abstract class SpielerPageFactory {
+    public static SpielerFrame spielerFrame;
 
-    private static int defaultBigTextSize = 36;
+    private static int DEFAULT_BIG_TEXT_SIZE = 36;
 
-    public SpielerPageFactory(SpielerFrame frame) {
-        spielerFrame = frame;
-        pageElementFactory = new SpielerPageElementFactory(spielerFrame);
-    }
-
-    public Page generateStaticImagePage(String title, String imagePath) {
+    public static Page generateStaticImagePage(String title, String imagePath) {
         return generateStaticImagePage(title, imagePath, false);
     }
 
-    public Page generateStaticImagePage(String title, String imagePath, boolean fullCentered) {
+    public static Page generateStaticImagePage(String title, String imagePath, boolean fullCentered) {
         spielerFrame.mode = SpielerFrameMode.staticImage;
 
         return generateImagePage(title, imagePath, fullCentered);
     }
 
-    private Page generateImagePage(String title, String imagePath, boolean fullCentered) {
+    private static Page generateImagePage(String title, String imagePath, boolean fullCentered) {
         spielerFrame.title = title;
-        PageElement titleLabel = pageElementFactory.generateTitleLabel(title);
+        PageElement titleLabel = SpielerPageElementFactory.generateTitleLabel(title);
         PageElement imageLabel;
         if (fullCentered) {
-            imageLabel = pageElementFactory.generateFullCenteredImageLabel(imagePath);
+            imageLabel = SpielerPageElementFactory.generateFullCenteredImageLabel(imagePath);
         } else {
-            imageLabel = pageElementFactory.generateHorizontallyCenteredImageLabel(imagePath, titleLabel);
+            imageLabel = SpielerPageElementFactory.generateHorizontallyCenteredImageLabel(imagePath, titleLabel);
         }
 
         Page imagePage = new Page(0, 10);
@@ -56,16 +50,16 @@ public class SpielerPageFactory {
         return imagePage;
     }
 
-    public Page generateEndScreenPage(String firstLine, String imagePath, String secondLine) {
+    public static Page generateEndScreenPage(String firstLine, String imagePath, String secondLine) {
         spielerFrame.title = "";
         spielerFrame.mode = SpielerFrameMode.staticImage;
 
-        PageElement imageLabel = spielerFrame.pageElementFactory.generateFullCenteredImageLabel(imagePath);
-        JLabel secondeLineJLabel = pageElementFactory.generateBigJLabel(secondLine);
-        PageElement secondLineLabel = pageElementFactory.generateCenteredLabel(secondeLineJLabel, imageLabel, 20);
-        JLabel firstLineJLabel = pageElementFactory.generateBigJLabel(firstLine);
+        PageElement imageLabel = SpielerPageElementFactory.generateFullCenteredImageLabel(imagePath);
+        JLabel secondeLineJLabel = SpielerPageElementFactory.generateBigJLabel(secondLine);
+        PageElement secondLineLabel = SpielerPageElementFactory.generateCenteredLabel(secondeLineJLabel, imageLabel, 20);
+        JLabel firstLineJLabel = SpielerPageElementFactory.generateBigJLabel(firstLine);
         int ySpaceToPredecessor = (imageLabel.height + 20 + secondLineLabel.height) * (-1);
-        PageElement firstLineLabel = pageElementFactory.generateCenteredLabel(firstLineJLabel, imageLabel, ySpaceToPredecessor);
+        PageElement firstLineLabel = SpielerPageElementFactory.generateCenteredLabel(firstLineJLabel, imageLabel, ySpaceToPredecessor);
 
         Page endScreenPage = new Page(0, 10);
 
@@ -76,7 +70,7 @@ public class SpielerPageFactory {
         return endScreenPage;
     }
 
-    public Page generateEndScreenPage(Winner winner) {
+    public static Page generateEndScreenPage(Winner winner) {
         Page endScreenPage = null;
 
         switch (winner) {
@@ -97,29 +91,29 @@ public class SpielerPageFactory {
         return endScreenPage;
     }
 
-    public Page generateDeadPage() {
+    public static Page generateDeadPage() {
         Tot tot = new Tot();
         return generateStaticImagePage(tot.title, tot.imagePath, true);
     }
 
-    public Page generateDayPage(List<String> hauptrollen, List<String> bonusrollen, boolean freibier) {
+    public static Page generateDayPage(List<String> hauptrollen, List<String> bonusrollen, boolean freibier) {
         int titleSpace = 80;
         int clockSpace = 150;
         Page listPage = generateDoubleListPage(hauptrollen, bonusrollen, titleSpace, clockSpace - 30);
 
-        PageElement title1Element = pageElementFactory.generateColumnTitleLabel("Hauptrollen", 2, 0, titleSpace);
-        PageElement title2Element = pageElementFactory.generateColumnTitleLabel("Bonusrollen", 2, 1, titleSpace);
+        PageElement title1Element = SpielerPageElementFactory.generateColumnTitleLabel("Hauptrollen", 2, 0, titleSpace);
+        PageElement title2Element = SpielerPageElementFactory.generateColumnTitleLabel("Bonusrollen", 2, 1, titleSpace);
 
         spielerFrame.clockLabel = new JLabel();
-        PageElement counterLabel = pageElementFactory.generateClockLabel(spielerFrame.clockLabel, clockSpace);
+        PageElement counterLabel = SpielerPageElementFactory.generateClockLabel(spielerFrame.clockLabel, clockSpace);
 
         listPage.add(title1Element);
         listPage.add(title2Element);
         listPage.add(counterLabel);
 
         if (freibier) { //TODO implementieren dass nurnoch eines angezeigt wird nach erstem kill (?)
-            PageElement freibierWatermarkRight = pageElementFactory.generateBierImage(Corner.LOWERRIGHT, clockSpace);
-            PageElement freibierWatermarkLeft = pageElementFactory.generateBierImage(Corner.LOWERLEFT, clockSpace);
+            PageElement freibierWatermarkRight = SpielerPageElementFactory.generateBierImage(Corner.LOWERRIGHT, clockSpace);
+            PageElement freibierWatermarkLeft = SpielerPageElementFactory.generateBierImage(Corner.LOWERLEFT, clockSpace);
 
             listPage.add(freibierWatermarkRight);
             listPage.add(freibierWatermarkLeft);
@@ -128,11 +122,11 @@ public class SpielerPageFactory {
         return listPage;
     }
 
-    public Page generateDropdownPage(String title, int numberOfDropdowns) {
+    public static Page generateDropdownPage(String title, int numberOfDropdowns) {
         spielerFrame.title = title;
         spielerFrame.mode = SpielerFrameMode.dropDownText;
 
-        PageElement titleLabel = pageElementFactory.generateTitleLabel(title);
+        PageElement titleLabel = SpielerPageElementFactory.generateTitleLabel(title);
 
         Page dropdownPage = new Page(0, 10);
 
@@ -144,7 +138,7 @@ public class SpielerPageFactory {
 
         int frameOffset = MyFrame.yOffset;
         int titleHeight = titleLabel.height;
-        int stringHeight = pageElementFactory.getJLabelStandardHeight();
+        int stringHeight = SpielerPageElementFactory.getJLabelStandardHeight();
         int spaceToUse = spielerFrame.frameJpanel.getHeight() - frameOffset - titleHeight - stringHeight;
         int spacePerString;
         int startpoint;
@@ -153,30 +147,30 @@ public class SpielerPageFactory {
             case 1:
                 spacePerString = spaceToUse;
                 startpoint = titleHeight + (spacePerString / 2) - (stringHeight / 2);
-                centeredLabel1 = pageElementFactory.generateCenteredLabel(spielerFrame.comboBox1Label, titleLabel, startpoint);
+                centeredLabel1 = SpielerPageElementFactory.generateCenteredLabel(spielerFrame.comboBox1Label, titleLabel, startpoint);
                 dropdownPage.add(centeredLabel1);
                 break;
             case 2:
                 spacePerString = spaceToUse / 2;
                 startpoint = titleHeight + (spacePerString / 2) - (stringHeight / 2);
 
-                centeredLabel1 = pageElementFactory.generateCenteredLabel(spielerFrame.comboBox1Label, titleLabel, startpoint);
+                centeredLabel1 = SpielerPageElementFactory.generateCenteredLabel(spielerFrame.comboBox1Label, titleLabel, startpoint);
                 dropdownPage.add(centeredLabel1);
 
-                centeredLabel2 = pageElementFactory.generateCenteredLabel(spielerFrame.comboBox2Label, centeredLabel1, spacePerString);
+                centeredLabel2 = SpielerPageElementFactory.generateCenteredLabel(spielerFrame.comboBox2Label, centeredLabel1, spacePerString);
                 dropdownPage.add(centeredLabel2);
                 break;
             case 3:
                 spacePerString = spaceToUse / 3;
                 startpoint = titleHeight + (spacePerString / 2) - (stringHeight / 2);
 
-                centeredLabel1 = pageElementFactory.generateCenteredLabel(spielerFrame.comboBox1Label, titleLabel, startpoint);
+                centeredLabel1 = SpielerPageElementFactory.generateCenteredLabel(spielerFrame.comboBox1Label, titleLabel, startpoint);
                 dropdownPage.add(centeredLabel1);
 
-                centeredLabel2 = pageElementFactory.generateCenteredLabel(spielerFrame.comboBox2Label, centeredLabel1, spacePerString);
+                centeredLabel2 = SpielerPageElementFactory.generateCenteredLabel(spielerFrame.comboBox2Label, centeredLabel1, spacePerString);
                 dropdownPage.add(centeredLabel2);
 
-                centeredLabel3 = pageElementFactory.generateCenteredLabel(spielerFrame.comboBox3Label, centeredLabel2, spacePerString);
+                centeredLabel3 = SpielerPageElementFactory.generateCenteredLabel(spielerFrame.comboBox3Label, centeredLabel2, spacePerString);
                 dropdownPage.add(centeredLabel3);
                 break;
         }
@@ -188,13 +182,13 @@ public class SpielerPageFactory {
         return dropdownPage;
     }
 
-    public Page generateMirrorImagePage(String title, String imagePath1, String imagePath2) {
+    public static Page generateMirrorImagePage(String title, String imagePath1, String imagePath2) {
         spielerFrame.title = title;
         spielerFrame.mode = SpielerFrameMode.dropDownImage;
 
-        PageElement titleLabel = pageElementFactory.generateTitleLabel(title);
-        PageElement imageLabel1 = spielerFrame.pageElementFactory.generateLeftCenteredImageLabel(imagePath1, titleLabel);
-        PageElement imageLabel2 = spielerFrame.pageElementFactory.generateImageLabel(imagePath2, imageLabel1, titleLabel);
+        PageElement titleLabel = SpielerPageElementFactory.generateTitleLabel(title);
+        PageElement imageLabel1 = SpielerPageElementFactory.generateLeftCenteredImageLabel(imagePath1, titleLabel);
+        PageElement imageLabel2 = SpielerPageElementFactory.generateImageLabel(imagePath2, imageLabel1, titleLabel);
 
 
         Page imagePage = new Page(0, 10);
@@ -206,12 +200,12 @@ public class SpielerPageFactory {
         return imagePage;
     }
 
-    public Page generateTwoImagePage(String title, String imagePath1, String imagePath2) {
+    public static Page generateTwoImagePage(String title, String imagePath1, String imagePath2) {
         spielerFrame.title = title;
 
-        PageElement titleLabel = pageElementFactory.generateTitleLabel(title);
-        PageElement imageLabel1 = spielerFrame.pageElementFactory.generateLeftCenteredImageLabel(imagePath1, titleLabel);
-        PageElement imageLabel2 = spielerFrame.pageElementFactory.generateImageLabel(imagePath2, imageLabel1, titleLabel);
+        PageElement titleLabel = SpielerPageElementFactory.generateTitleLabel(title);
+        PageElement imageLabel1 = SpielerPageElementFactory.generateLeftCenteredImageLabel(imagePath1, titleLabel);
+        PageElement imageLabel2 = SpielerPageElementFactory.generateImageLabel(imagePath2, imageLabel1, titleLabel);
 
         imageLabel1.setCoordX(imageLabel1.coordX - 10);
         imageLabel2.setCoordX(imageLabel2.coordX + 10);
@@ -226,13 +220,13 @@ public class SpielerPageFactory {
         return imagePage;
     }
 
-    public Page generateListPageWithNote(String title, List<String> stringsToDisplay, String note) {
+    public static Page generateListPageWithNote(String title, List<String> stringsToDisplay, String note) {
         int noteHeight = 120;
 
-        PageElement titleLabel = pageElementFactory.generateTitleLabel(title);
+        PageElement titleLabel = SpielerPageElementFactory.generateTitleLabel(title);
         Page page = generateListPage(stringsToDisplay, 1, 0, titleLabel.height,
-                noteHeight, defaultBigTextSize);
-        PageElement noteLabel = pageElementFactory.generateNoteLabel(note, noteHeight, 50);
+                noteHeight, DEFAULT_BIG_TEXT_SIZE);
+        PageElement noteLabel = SpielerPageElementFactory.generateNoteLabel(note, noteHeight, 50);
 
         page.add(titleLabel);
         page.add(noteLabel);
@@ -240,7 +234,7 @@ public class SpielerPageFactory {
         return page;
     }
 
-    public Page generateListMirrorPage(String title, List<String> stringsToDisplay) {
+    public static Page generateListMirrorPage(String title, List<String> stringsToDisplay) {
         Page listPage = generateListPage(title, stringsToDisplay);
 
         spielerFrame.mode = SpielerFrameMode.listMirrorPage;
@@ -248,30 +242,30 @@ public class SpielerPageFactory {
         return listPage;
     }
 
-    public Page generateTitlePage(String title) {
+    public static Page generateTitlePage(String title) {
         spielerFrame.title = title;
         spielerFrame.mode = SpielerFrameMode.titlePage;
 
         Page titlePage = new Page(0, 10);
 
-        PageElement titleLabel = pageElementFactory.generateTitleLabel(title);
+        PageElement titleLabel = SpielerPageElementFactory.generateTitleLabel(title);
         titlePage.add(titleLabel);
 
         return titlePage;
     }
 
-    public Page generateTitlePage() {
+    public static Page generateTitlePage() {
         return generateTitlePage(spielerFrame.title);
     }
 
-    public Page generateDoubleListPage(List<String> stringsToDisplay1, List<String> stringsToDisplay2, String title1, String title2) {
+    public static Page generateDoubleListPage(List<String> stringsToDisplay1, List<String> stringsToDisplay2, String title1, String title2) {
         int titleSpace = 80;
         stringsToDisplay1.sort(String.CASE_INSENSITIVE_ORDER);
         stringsToDisplay2.sort(String.CASE_INSENSITIVE_ORDER);
         Page listPage = generateDoubleListPage(stringsToDisplay1, stringsToDisplay2, titleSpace, 0);
 
-        PageElement title1Element = pageElementFactory.generateColumnTitleLabel(title1, 2, 0, titleSpace);
-        PageElement title2Element = pageElementFactory.generateColumnTitleLabel(title2, 2, 1, titleSpace);
+        PageElement title1Element = SpielerPageElementFactory.generateColumnTitleLabel(title1, 2, 0, titleSpace);
+        PageElement title2Element = SpielerPageElementFactory.generateColumnTitleLabel(title2, 2, 1, titleSpace);
 
         listPage.add(title1Element);
         listPage.add(title2Element);
@@ -279,7 +273,7 @@ public class SpielerPageFactory {
         return listPage;
     }
 
-    public Page generateDoubleListPage(List<String> stringsToDisplay1, List<String> stringsToDisplay2, int offsetAbove, int offsetBelow) {
+    public static Page generateDoubleListPage(List<String> stringsToDisplay1, List<String> stringsToDisplay2, int offsetAbove, int offsetBelow) {
         List<String> realStringsToDisplay1 = new ArrayList<>(stringsToDisplay1);
         realStringsToDisplay1.remove("");
         realStringsToDisplay1.sort(String.CASE_INSENSITIVE_ORDER);
@@ -292,7 +286,7 @@ public class SpielerPageFactory {
         return generateListPage(realStringsToDisplay1, realStringsToDisplay2, columns, offsetAbove, offsetBelow);
     }
 
-    private int getNumberOfColumns(List<String> realStringsToDisplay1, List<String> realStringsToDisplay2) {
+    private static int getNumberOfColumns(List<String> realStringsToDisplay1, List<String> realStringsToDisplay2) {
         int maxLinesPerColumnBig = 12;
         int maxLinesPerColumnSmall = 10;
         int maxLinesPerColumn = maxLinesPerColumnBig;
@@ -312,12 +306,12 @@ public class SpielerPageFactory {
         }
     }
 
-    public Page generateListPage(String title, List<String> stringsToDisplay) {
+    public static Page generateListPage(String title, List<String> stringsToDisplay) {
         stringsToDisplay.sort(String.CASE_INSENSITIVE_ORDER);
         List<String> realStringsToDisplay = new ArrayList<>(stringsToDisplay);
         realStringsToDisplay.remove("");
 
-        PageElement titleLabel = pageElementFactory.generateTitleLabel(title);
+        PageElement titleLabel = SpielerPageElementFactory.generateTitleLabel(title);
 
         int titleHeight = titleLabel.height;
         int numberOfColumns = getNumberOfColumns(realStringsToDisplay.size());
@@ -328,7 +322,7 @@ public class SpielerPageFactory {
         return listPage;
     }
 
-    private int getNumberOfColumns(int numberOfStrings) {
+    private static int getNumberOfColumns(int numberOfStrings) {
         if (numberOfStrings < 8) {
             return 1;
         } else if (numberOfStrings < 16) {
@@ -338,7 +332,7 @@ public class SpielerPageFactory {
         }
     }
 
-    public Page generateListPage(List<String> stringsToDisplay, int numberOfColumns, int titleHeight) {
+    public static Page generateListPage(List<String> stringsToDisplay, int numberOfColumns, int titleHeight) {
         Page listPage = new Page(0, 10);
         stringsToDisplay.sort(String.CASE_INSENSITIVE_ORDER);
         float dividingPoint = ((float) stringsToDisplay.size()) / numberOfColumns;
@@ -357,11 +351,11 @@ public class SpielerPageFactory {
         return listPage;
     }
 
-    public Page generateListPage(List<String> stringsToDisplay, List<String> stringsToDisplay2, int numberOfColumnsPerList) {
+    public static Page generateListPage(List<String> stringsToDisplay, List<String> stringsToDisplay2, int numberOfColumnsPerList) {
         return generateListPage(stringsToDisplay, stringsToDisplay2, numberOfColumnsPerList, 0, 0);
     }
 
-    public Page generateListPage(List<String> stringsToDisplay, List<String> stringsToDisplay2, int numberOfColumnsPerList, int offsetAbove, int offsetBelow) {
+    public static Page generateListPage(List<String> stringsToDisplay, List<String> stringsToDisplay2, int numberOfColumnsPerList, int offsetAbove, int offsetBelow) {
         Page listPage = new Page(5, 10);
         stringsToDisplay.sort(String.CASE_INSENSITIVE_ORDER);
         float dividingPoint1 = ((float) stringsToDisplay.size()) / numberOfColumnsPerList;
@@ -398,11 +392,11 @@ public class SpielerPageFactory {
         return listPage;
     }
 
-    public Page generateListPage(List<String> stringsToDisplay, int numberOfColumns, int indexOfColumn, int offsetAbove) {
+    public static Page generateListPage(List<String> stringsToDisplay, int numberOfColumns, int indexOfColumn, int offsetAbove) {
         return generateListPage(stringsToDisplay, numberOfColumns, indexOfColumn, offsetAbove, 0, SpielerPageElementFactory.defaultTextSize);
     }
 
-    private Page generateListPage(List<String> stringsToDisplay, int numberOfColumns, int indexOfColumn, int offsetAbove,
+    private static Page generateListPage(List<String> stringsToDisplay, int numberOfColumns, int indexOfColumn, int offsetAbove,
                                   int offsetBelow, int textSize) {
         Page listPage = new Page(0, 10);
         List<String> realStringsToDisplay = new ArrayList<>(stringsToDisplay);
@@ -411,7 +405,7 @@ public class SpielerPageFactory {
 
         if (realStringsToDisplay.size() > 0) {
             int frameOffset = MyFrame.yOffset;
-            int stringHeight = pageElementFactory.getJLabelHeight(textSize);
+            int stringHeight = SpielerPageElementFactory.getJLabelHeight(textSize);
             int spaceToUse = spielerFrame.frameJpanel.getHeight() - frameOffset - offsetAbove - offsetBelow;
             int spacePerString = spaceToUse / realStringsToDisplay.size();
             int spacingBetweenStrings = spacePerString - stringHeight;
@@ -422,13 +416,13 @@ public class SpielerPageFactory {
             }
 
             PageElement label;
-            label = pageElementFactory.generateColumnCenteredLabel(new JLabel(realStringsToDisplay.get(0)), null, startpoint, numberOfColumns, indexOfColumn, textSize);
+            label = SpielerPageElementFactory.generateColumnCenteredLabel(new JLabel(realStringsToDisplay.get(0)), null, startpoint, numberOfColumns, indexOfColumn, textSize);
             listPage.add(label);
 
             int i = 0;
             for (String string : realStringsToDisplay) {
                 if (i != 0) {
-                    label = pageElementFactory.generateColumnCenteredLabel(new JLabel(string), label, spacingBetweenStrings, numberOfColumns, indexOfColumn, textSize);
+                    label = SpielerPageElementFactory.generateColumnCenteredLabel(new JLabel(string), label, spacingBetweenStrings, numberOfColumns, indexOfColumn, textSize);
                     listPage.add(label);
                 }
 
@@ -439,7 +433,7 @@ public class SpielerPageFactory {
         return listPage;
     }
 
-    public List<PageElement> generateColumnElements(List<JComponent> elementsToDisplay, int numberOfColumns, int indexOfColumn, int offsetAbove, int offsetBelow) {
+    public static List<PageElement> generateColumnElements(List<JComponent> elementsToDisplay, int numberOfColumns, int indexOfColumn, int offsetAbove, int offsetBelow) {
         Page listPage = new Page(0, 10);
 
         if (elementsToDisplay.size() > 0) {
@@ -468,7 +462,7 @@ public class SpielerPageFactory {
                     isFirstElement = false;
                 }
 
-                label = pageElementFactory.generateColumnCenteredComponent(component, label, spaceToKeepFromLastBox, numberOfColumns, indexOfColumn);
+                label = SpielerPageElementFactory.generateColumnCenteredComponent(component, label, spaceToKeepFromLastBox, numberOfColumns, indexOfColumn);
                 listPage.add(label);
             }
         }
@@ -476,13 +470,13 @@ public class SpielerPageFactory {
         return listPage.pageElements;
     }
 
-    public Page generateSchnüfflerInformationPage(List<RawInformation> informationen, int maxColumns) {
+    public static Page generateSchnüfflerInformationPage(List<RawInformation> informationen, int maxColumns) {
         Page listPage = new Page(0, 10);
 
         int columns = informationen.size();
         int indexOfColumn = 0;
         for (RawInformation information : informationen) {
-            PageElement spielerTitle = pageElementFactory.generateColumnCenteredLabel(new JLabel(information.spieler), null, 0, columns, indexOfColumn);
+            PageElement spielerTitle = SpielerPageElementFactory.generateColumnCenteredLabel(new JLabel(information.spieler), null, 0, columns, indexOfColumn);
             listPage.add(spielerTitle);
             int offsetAbove = spielerTitle.height;
             List<PageElement> columnToAdd = generateSchnüfflerInformationsColumn(information, maxColumns, columns, indexOfColumn, offsetAbove);
@@ -498,22 +492,22 @@ public class SpielerPageFactory {
         return listPage;
     }
 
-    private List<PageElement> generateSchnüfflerInformationsColumn(RawInformation rawInformation, int maxColumns, int numberOfColumns, int indexOfColumn, int offsetAbove) {
+    private static List<PageElement> generateSchnüfflerInformationsColumn(RawInformation rawInformation, int maxColumns, int numberOfColumns, int indexOfColumn, int offsetAbove) {
         List<JComponent> elementsToDisplay = new ArrayList<>();
         if (rawInformation.isTarnumhang) {
-            elementsToDisplay.add(pageElementFactory.generateIcon(new Tarnumhang_BonusrollenType().imagePath));
+            elementsToDisplay.add(SpielerPageElementFactory.generateIcon(new Tarnumhang_BonusrollenType().imagePath));
         } else {
             int frameOffset = MyFrame.yOffset;
             int spaceToUse = spielerFrame.frameJpanel.getHeight() - frameOffset - offsetAbove;
             int columnHeight = spaceToUse / rawInformation.imagePaths.size();
             int columnWidth = (int) ((double) spielerFrame.frameJpanel.getWidth()) / numberOfColumns;
-            elementsToDisplay = pageElementFactory.generateFixedSizedImages(rawInformation, columnWidth, columnHeight);
+            elementsToDisplay = SpielerPageElementFactory.generateFixedSizedImages(rawInformation, columnWidth, columnHeight);
         }
 
         return generateColumnElements(elementsToDisplay, numberOfColumns, indexOfColumn, offsetAbove, 0);
     }
 
-    public Page generateDropdownMirrorImagePage(String title, String imagepath) {
+    public static Page generateDropdownMirrorImagePage(String title, String imagepath) {
         Page listPage = generateImagePage(title, imagepath, true);
 
         spielerFrame.mode = SpielerFrameMode.listMirrorPage;
