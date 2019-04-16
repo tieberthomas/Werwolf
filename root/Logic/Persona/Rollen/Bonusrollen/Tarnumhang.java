@@ -83,7 +83,7 @@ public class Tarnumhang extends Bonusrolle {
         List<String> allTräger = new ArrayList<>();
 
         for (Spieler spieler : Game.game.spieler) {
-            if (umhänge.contains(spieler.bonusrolle.id)) {
+            if (spieler.lebend && umhänge.contains(spieler.bonusrolle.id)) {
                 allTräger.add(spieler.name);
             }
         }
