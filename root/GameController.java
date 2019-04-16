@@ -6,7 +6,7 @@ import root.Frontend.Frame.GameMode;
 import root.Frontend.Frame.SpielerFrame;
 import root.Frontend.Frame.ÜbersichtsFrame;
 import root.Frontend.Page.Page;
-import root.Frontend.Utils.PageRefresher.Models.LoadMode;
+import root.Frontend.Utils.PageRefresherFramework.Models.LoadMode;
 import root.Logic.Game;
 import root.Logic.Phases.*;
 import root.ResourceManagement.DataManager;

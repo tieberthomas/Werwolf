@@ -142,7 +142,7 @@ public class NormalNight extends Thread {
                         case SchattenpriesterFraktion.NEUER_SCHATTENPRIESTER:
                             chosenSpieler = Game.game.findSpieler(chosenOptionLastStatement);
                             List<String> neueSchattenpriester = new ArrayList<>();
-                            erzählerInfoIconImagePath = ""; //TODO causes problem "1 Image could not be found at location: "
+                            erzählerInfoIconImagePath = "";
                             if (chosenSpieler != null) {
                                 String neuerSchattenpriester = chosenSpieler.name;
                                 neueSchattenpriester.add(neuerSchattenpriester);

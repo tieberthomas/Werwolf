@@ -6,7 +6,7 @@ import root.Frontend.Page.PageElement;
 import root.Frontend.Page.PageTable;
 import root.Frontend.Utils.DropdownOptions;
 import root.Frontend.Utils.JButtonStyler;
-import root.Frontend.Utils.PageRefresher.InteractivePages.InteractiveElementsDtos.*;
+import root.Frontend.InteractivePages.InteractiveElementsDtos.*;
 import root.Logic.Phases.Day;
 import root.Logic.Phases.NormalNight;
 import root.Logic.Phases.SetupNight;

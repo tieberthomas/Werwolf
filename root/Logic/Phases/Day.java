@@ -49,6 +49,8 @@ public class Day extends Thread {
             FrontendControl.erzählerDefaultDayPage();
             FrontendControl.spielerDayPage();
 
+            System.out.println(PhaseManager.nightCount + ". Tag beginnt!");
+
             FrontendControl.waitForAnswer();
 
             while (umbringenButton) {
