@@ -5,7 +5,7 @@ import root.Frontend.Factories.SpielerPageElementFactory;
 import root.Frontend.Factories.SpielerPageFactory;
 import root.Frontend.Factories.SpielerSchnüfflerPageFactory;
 import root.Frontend.Page.Page;
-import root.Frontend.Utils.TimeUpdater;
+import root.Frontend.Utils.TimeController;
 import root.Logic.Game;
 import root.Logic.Persona.Hauptrolle;
 import root.Logic.Phases.Day;
@@ -40,8 +40,8 @@ public class SpielerFrame extends MyFrame {
         comboBox2Label = new JLabel("");
         comboBox3Label = new JLabel("");
         clockLabel = new JLabel();
-        TimeUpdater.spielerframe = this;
-        TimeUpdater.startTimeUpdateThread();
+        TimeController.spielerframe = this;
+        TimeController.startTimeUpdateThread();
 
         frameJpanel = generateDefaultPanel();
 

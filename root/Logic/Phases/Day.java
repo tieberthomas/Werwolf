@@ -2,7 +2,7 @@ package root.Logic.Phases;
 
 import root.Controller.FrontendControl;
 import root.Frontend.Utils.JButtonStyler;
-import root.Frontend.Utils.TimeUpdater;
+import root.Frontend.Utils.TimeController;
 import root.Logic.Game;
 import root.Logic.Persona.Fraktion;
 import root.Logic.Persona.Fraktionen.Bürger;
@@ -44,7 +44,7 @@ public class Day extends Thread {
         synchronized (lock) {
             FrontendControl.lock = lock;
 
-            TimeUpdater.time = 0;
+            TimeController.reset();
 
             FrontendControl.erzählerDefaultDayPage();
             FrontendControl.spielerDayPage();
