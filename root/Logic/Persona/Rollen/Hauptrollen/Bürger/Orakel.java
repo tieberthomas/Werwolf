@@ -97,8 +97,11 @@ public class Orakel extends Hauptrolle {
     }
 
     private FrontendObject allSeenBonusrollen() {
-        Bonusrolle orakelSpielerBonusrolle = Game.game.findSpielerPerRolle(ID).bonusrolle;
-        geseheneBonusrollen.remove(orakelSpielerBonusrolle.name);
+        Spieler orakelSpieler = Game.game.findSpielerPerRolle(ID);
+        if(orakelSpieler!=null) {
+            Bonusrolle orakelSpielerBonusrolle = orakelSpieler.bonusrolle;
+            geseheneBonusrollen.remove(orakelSpielerBonusrolle.name);
+        }
         return new ListWithNoteFrontendObject(LIST_TITLE, note, geseheneBonusrollen);
     }
 }
