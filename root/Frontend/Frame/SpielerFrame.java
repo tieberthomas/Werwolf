@@ -39,6 +39,7 @@ public class SpielerFrame extends MyFrame {
         comboBox1Label = new JLabel("");
         comboBox2Label = new JLabel("");
         comboBox3Label = new JLabel("");
+
         clockLabel = new JLabel();
         TimeController.spielerframe = this;
         TimeController.startTimeUpdateThread();
