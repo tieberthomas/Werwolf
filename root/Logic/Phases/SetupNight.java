@@ -14,6 +14,7 @@ import root.Logic.Phases.Statement.Constants.StatementState;
 import root.Logic.Phases.Statement.Statement;
 import root.Logic.Phases.Statement.StatementDependency.StatementDependencyPersona;
 import root.Logic.Spieler;
+import root.ResourceManagement.SoundManager;
 import root.Utils.Rand;
 
 import java.util.ArrayList;
@@ -48,6 +49,16 @@ public class SetupNight extends Thread {
                     Persona persona = null;
                     if (statement.dependency instanceof StatementDependencyPersona) {
                         persona = ((StatementDependencyPersona) statement.dependency).persona;
+                    }
+
+                    switch (statement.id) {
+                        case IndieStatements.ALLE_SCHLAFEN_EIN_ID:
+                            SoundManager.playFallAsleep();
+                            break;
+
+                        case IndieStatements.ALLE_WACHEN_AUF_ID:
+                            SoundManager.playWakeUp();
+                            break;
                     }
 
                     if (persona instanceof Bonusrolle && ((Bonusrolle) persona).type.equals(new Passiv())) { //TODO nicht schön es soll ein "tauschen" flag geben
