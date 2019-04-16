@@ -13,6 +13,14 @@ public class SoundManager {
         playSound(SoundPath.CANNON_PATH);
     }
 
+    public static void playFallAsleep() {
+        playSound(SoundPath.FALL_ASLEEP_PATH);
+    }
+
+    public static void playWakeUp() {
+        playSound(SoundPath.WAKE_UP_PATH);
+    }
+
     private static void playSound(String path) {
         Media hit = new Media(new File(path).toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(hit);

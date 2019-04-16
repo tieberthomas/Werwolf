@@ -29,6 +29,7 @@ import root.Logic.Phases.Statement.StatementDependency.StatementDependencyPerson
 import root.Logic.Phases.Statement.StatementDependency.StatementDependencyStatement;
 import root.Logic.Spieler;
 import root.Logic.Torte;
+import root.ResourceManagement.SoundManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,6 +82,16 @@ public class NormalNight extends Thread {
 
                     if (dependency instanceof StatementDependencyPersona) {
                         persona = ((StatementDependencyPersona) dependency).persona;
+                    }
+
+                    switch (statement.id) {
+                        case IndieStatements.ALLE_SCHLAFEN_EIN_ID:
+                            SoundManager.playFallAsleep();
+                            break;
+
+                        case IndieStatements.ALLE_WACHEN_AUF_ID:
+                            SoundManager.playWakeUp();
+                            break;
                     }
 
                     switch (statement.type) {
