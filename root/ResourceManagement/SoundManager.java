@@ -7,6 +7,8 @@ import javafx.scene.media.MediaPlayer;
 import java.io.File;
 
 public class SoundManager {
+    //TODO programm darf nicht abstürzen bei fehlerhafen sound file
+
     public static final JFXPanel fxPanel = new JFXPanel();
 
     public static void playCannon() {
