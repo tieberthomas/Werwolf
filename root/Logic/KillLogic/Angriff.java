@@ -6,6 +6,7 @@ import root.Logic.Persona.Fraktionen.Vampire;
 import root.Logic.Persona.Fraktionen.Werwölfe;
 import root.Logic.Persona.Rolle;
 import root.Logic.Persona.Rollen.Bonusrollen.Prostituierte;
+import root.Logic.Persona.Rollen.Bonusrollen.Tarnumhang;
 import root.Logic.Persona.Rollen.Bonusrollen.Vampirumhang;
 import root.Logic.Persona.Rollen.Bonusrollen.Wolfspelz;
 import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Schamanin;
@@ -109,17 +110,24 @@ public class Angriff {
             if (opfer.geschützt) {
                 return false;
             }
+            if (opfer.bonusrolle.equals(Tarnumhang.ID)) {
+                Tarnumhang tarnumhang = (Tarnumhang) opfer.bonusrolle;
+                if (tarnumhang.schutzAktiv) {
+                    tarnumhang.consumeSchutz();
+                    return false;
+                }
+            }
             if (opfer.bonusrolle.equals(Wolfspelz.ID) && täterFraktion.equals(Werwölfe.ID)) {
                 Wolfspelz wolfspelz = (Wolfspelz) opfer.bonusrolle;
                 if (wolfspelz.schutzAktiv) {
-                    wolfspelz.consumeSchutzIfNecessary();
+                    wolfspelz.consumeSchutz();
                     return false;
                 }
             }
             if (opfer.bonusrolle.equals(Vampirumhang.ID) && täterFraktion.equals(Vampire.ID)) {
                 Vampirumhang vampirumhang = (Vampirumhang) opfer.bonusrolle;
                 if (vampirumhang.schutzAktiv) {
-                    vampirumhang.consumeSchutzIfNecessary();
+                    vampirumhang.consumeSchutz();
                     return false;
                 }
             }

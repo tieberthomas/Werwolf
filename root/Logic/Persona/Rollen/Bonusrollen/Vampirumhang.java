@@ -73,9 +73,7 @@ public class Vampirumhang extends Bonusrolle {
         return new VampireZeigekarte();
     }
 
-    public void consumeSchutzIfNecessary() {
-        if (Game.game.onlyOneToetendeFraktion()) {
-            schutzAktiv = false;
-        }
+    public void consumeSchutz() {
+        schutzAktiv = false;
     }
 }

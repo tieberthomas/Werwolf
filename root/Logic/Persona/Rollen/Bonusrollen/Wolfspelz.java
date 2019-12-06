@@ -73,9 +73,7 @@ public class Wolfspelz extends Bonusrolle {
         return new WerwölfeZeigekarte();
     }
 
-    public void consumeSchutzIfNecessary() { //TODO make überklasse for wolfspelz and vampirumhang
-        if (Game.game.onlyOneToetendeFraktion()) {
-            schutzAktiv = false;
-        }
+    public void consumeSchutz() { //TODO make überklasse for wolfspelz and vampirumhang
+        schutzAktiv = false;
     }
 }

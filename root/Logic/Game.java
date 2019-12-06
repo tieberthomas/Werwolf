@@ -31,7 +31,6 @@ import root.Utils.ListHelper;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Game {
@@ -217,10 +216,6 @@ public class Game {
 
             if (bonusrolle.equals(Schnüffler.ID)) {
                 ((Schnüffler) bonusrolle).informationen = new ArrayList<>();
-            }
-
-            if (bonusrolle.equals(Tarnumhang.ID)) {
-                ((Tarnumhang) bonusrolle).seenSpieler = new ArrayList<>();
             }
 
             if (hauptrolle.equals(Schattenmensch.ID)) {
@@ -501,21 +496,6 @@ public class Game {
                 .map(spieler -> spieler.name)
                 .distinct()
                 .collect(Collectors.toList());
-    }
-
-    public boolean onlyOneToetendeFraktion() {
-        Map<String, Long> counters = amStartZugeteilteHauptrollen.stream()
-                .collect(Collectors.groupingBy(hauptrolle -> hauptrolle.fraktion.id, Collectors.counting()));
-
-        int numberOfToetendeFraktion = 0;
-
-        for (Map.Entry<String, Long> entry : counters.entrySet()) {
-            if (Fraktion.findFraktion(entry.getKey()).toetend) {
-                numberOfToetendeFraktion++;
-            }
-        }
-
-        return numberOfToetendeFraktion == 1;
     }
 
     public Spieler findSpieler(Hauptrolle hauptrolle) {
