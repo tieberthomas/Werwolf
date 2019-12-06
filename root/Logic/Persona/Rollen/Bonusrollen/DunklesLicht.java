@@ -16,10 +16,16 @@ public class DunklesLicht extends Bonusrolle {
 
     public List<String> geseheneIrrlichter = new ArrayList<>();
 
+    public boolean schutzAktiv = true;
+
     public DunklesLicht() {
         this.id = ID;
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
         this.type = TYPE;
+    }
+
+    public void consumeSchutz() {
+        schutzAktiv = false;
     }
 }

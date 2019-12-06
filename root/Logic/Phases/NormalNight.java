@@ -126,7 +126,7 @@ public class NormalNight extends Thread {
                             break;
 
                         case ProgramStatements.SCHÜTZE_ID:
-                            setSchütze();
+                            setNachtfürstSchutz();
                             break;
 
                         case Henker.STATEMENT_ID:
@@ -322,16 +322,6 @@ public class NormalNight extends Thread {
                 statement.refreshState();
             }
         }
-    }
-
-    private void setSchütze() {
-        for (Spieler currentSpieler : Game.game.spieler) {
-            if (currentSpieler.bonusrolle.equals(DunklesLicht.ID)) {
-                currentSpieler.geschützt = true;
-            }
-        }
-
-        setNachtfürstSchutz();
     }
 
     private void setNachtfürstSchutz() {

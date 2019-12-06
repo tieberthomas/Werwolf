@@ -5,10 +5,7 @@ import root.Logic.Persona.Fraktion;
 import root.Logic.Persona.Fraktionen.Vampire;
 import root.Logic.Persona.Fraktionen.Werwölfe;
 import root.Logic.Persona.Rolle;
-import root.Logic.Persona.Rollen.Bonusrollen.Prostituierte;
-import root.Logic.Persona.Rollen.Bonusrollen.Tarnumhang;
-import root.Logic.Persona.Rollen.Bonusrollen.Vampirumhang;
-import root.Logic.Persona.Rollen.Bonusrollen.Wolfspelz;
+import root.Logic.Persona.Rollen.Bonusrollen.*;
 import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Schamanin;
 import root.Logic.Phases.NormalNight;
 import root.Logic.Spieler;
@@ -109,6 +106,14 @@ public class Angriff {
         if (defendable) {
             if (opfer.geschützt) {
                 return false;
+            }
+            //TODO make framework for one-time-Schutz
+            if (opfer.bonusrolle.equals(DunklesLicht.ID)) {
+                DunklesLicht dunklesLicht = (DunklesLicht) opfer.bonusrolle;
+                if (dunklesLicht.schutzAktiv) {
+                    dunklesLicht.consumeSchutz();
+                    return false;
+                }
             }
             if (opfer.bonusrolle.equals(Tarnumhang.ID)) {
                 Tarnumhang tarnumhang = (Tarnumhang) opfer.bonusrolle;
