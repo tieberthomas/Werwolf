@@ -141,7 +141,6 @@ public class Game {
     private void generateAllAvailableBonusrollen() {
         bonusrollen.add(new Analytiker());
         bonusrollen.add(new Archivar());
-        bonusrollen.add(new Dieb());
         bonusrollen.add(new DunklesLicht());
         bonusrollen.add(new Engel());
         bonusrollen.add(new Gefängniswärter());

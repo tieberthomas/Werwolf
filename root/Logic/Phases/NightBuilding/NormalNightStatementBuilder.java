@@ -39,8 +39,6 @@ public class NormalNightStatementBuilder {
         if (Game.game.mitteBonusrollen.size() > 0) {
             addStatementRolle(Totengräber.ID);
         }
-        addStatementRolle(Dieb.ID);
-        addSecondStatementRolle(Dieb.ID);
 
         addStatementRolle(Gefängniswärter.ID);
 

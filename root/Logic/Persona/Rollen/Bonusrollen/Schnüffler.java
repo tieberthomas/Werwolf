@@ -32,7 +32,7 @@ public class Schnüffler extends Bonusrolle {
 
     public static int MAX_ANZAHL_AN_INFORMATIONEN = 4;
 
-    public List<SchnüfflerInformation> informationen = new ArrayList<>(); //TODO wenn dieb schnüffler nimmt dann neu anlegen
+    public List<SchnüfflerInformation> informationen = new ArrayList<>();
 
     public Schnüffler() {
         this.id = ID;

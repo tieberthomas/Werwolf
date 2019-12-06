@@ -65,7 +65,6 @@ public class ImagePath {
 
     public static String ANALYTIKER_KARTE = BONUSROLLEN_PATH + "Analytiker" + IMAGE_FILE_EXTENSION;
     public static String ARCHIVAR_KARTE = BONUSROLLEN_PATH + "Archivar" + IMAGE_FILE_EXTENSION;
-    public static String DIEB_KARTE = BONUSROLLEN_PATH + "Dieb" + IMAGE_FILE_EXTENSION;
     public static String DUNKLES_LICHT_KARTE = BONUSROLLEN_PATH + "Dunkles_Licht" + IMAGE_FILE_EXTENSION;
     public static String ENGEL_KARTE = BONUSROLLEN_PATH + "Engel" + IMAGE_FILE_EXTENSION;
     public static String GEFÄNGNISWÄRTER_KARTE = BONUSROLLEN_PATH + "Gefängniswärter" + IMAGE_FILE_EXTENSION;
