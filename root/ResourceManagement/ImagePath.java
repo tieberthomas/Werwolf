@@ -49,7 +49,6 @@ public class ImagePath {
     public static String SCHAMANIN_KARTE = BÜRGER_PATH + "Schamanin" + IMAGE_FILE_EXTENSION;
     public static String SCHATTENMENSCH_KARTE = BÜRGER_PATH + "Schattenmensch" + IMAGE_FILE_EXTENSION;
     public static String SEHERIN_KARTE = BÜRGER_PATH + "Seherin" + IMAGE_FILE_EXTENSION;
-    public static String SPÄHER_KARTE = BÜRGER_PATH + "Späher" + IMAGE_FILE_EXTENSION;
     public static String WIRT_KARTE = BÜRGER_PATH + "Wirt" + IMAGE_FILE_EXTENSION;
 
     public static String SCHATTENPRIESTER_KARTE = SCHATTENPRIESTER_PATH + "Schattenpriester" + IMAGE_FILE_EXTENSION;
@@ -87,6 +86,7 @@ public class ImagePath {
     public static String SCHNÜFFLER_KARTE = BONUSROLLEN_PATH + "Schnüffler" + IMAGE_FILE_EXTENSION;
     public static String SCHUTZENGEL_KARTE = BONUSROLLEN_PATH + "Schutzengel" + IMAGE_FILE_EXTENSION;
     public static String SPURENLESER_KARTE = BONUSROLLEN_PATH + "Spurenleser" + IMAGE_FILE_EXTENSION;
+    public static String SPÄHER_KARTE = BONUSROLLEN_PATH + "Späher" + IMAGE_FILE_EXTENSION;
     public static String TARNUMHANG_KARTE = BONUSROLLEN_PATH + "Tarnumhang" + IMAGE_FILE_EXTENSION;
     public static String TOTENGRÄBER_KARTE = BONUSROLLEN_PATH + "Totengräber" + IMAGE_FILE_EXTENSION;
     public static String VAMPIRUMHANG_KARTE = BONUSROLLEN_PATH + "Vampirumhang" + IMAGE_FILE_EXTENSION;
