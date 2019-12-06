@@ -123,7 +123,6 @@ public class Game {
     private void generateAllAvailableHauptrollen() {
         hauptrollen.add(new Dorfbewohner());
         hauptrollen.add(new Irrlicht());
-        hauptrollen.add(new Orakel());
         hauptrollen.add(new Riese());
         hauptrollen.add(new Schamanin());
         hauptrollen.add(new Schattenmensch());

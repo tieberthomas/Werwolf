@@ -98,9 +98,6 @@ public class NormalNightStatementBuilder {
         addStatementRolle(Tarnumhang.ID);
         addStatementRolle(Seherin.ID);
         addStatementRolle(Späher.ID);
-        if (!Orakel.seenEverything) {
-            addStatementRolle(Orakel.ID);
-        }
         addStatementRolle(Medium.ID);
 
         addStatementRolle(GrafVladimir.ID);

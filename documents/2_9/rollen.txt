@@ -1,6 +1,5 @@
 Dorfbewohner
 Irrlicht
-Orakel
 Riese
 Schamanin
 Schattenmensch
