@@ -42,13 +42,8 @@ public class PhaseManager extends Thread {
     }
 
     private void day() {
-        if (Game.game.freibier) {
-            GameController.mode = GameMode.FREIBIER_DAY;
-            phaseMode = PhaseMode.FREIBIER_DAY;
-        } else {
-            GameController.mode = GameMode.DAY;
-            phaseMode = PhaseMode.DAY;
-        }
+        GameController.mode = GameMode.DAY;
+        phaseMode = PhaseMode.DAY;
         Day day = new Day();
         Game.game.day = day;
         day.start();
@@ -58,8 +53,6 @@ public class PhaseManager extends Thread {
     public static GameMode parsePhaseMode() { //TODO automapper?
         if (phaseMode == PhaseMode.DAY) {
             return GameMode.DAY;
-        } else if (phaseMode == PhaseMode.FREIBIER_DAY) {
-            return GameMode.FREIBIER_DAY;
         } else if (phaseMode == PhaseMode.SETUP_NIGHT) {
             return GameMode.SETUP_NIGHT;
         } else if (phaseMode == PhaseMode.NORMAL_NIGHT) {

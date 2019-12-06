@@ -5,5 +5,4 @@ public enum GameMode {
     SETUP_NIGHT,
     NORMAL_NIGHT,
     DAY,
-    FREIBIER_DAY
 }

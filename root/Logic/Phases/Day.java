@@ -24,17 +24,11 @@ public class Day extends Thread {
 
     @Override
     public void run() {
-        //TODO michael fragen ob bürgen/verurteilen am zweiten freibiertag erhalten bleiben soll
         priester = null;
         gebürgterSpieler = null;
         verurteilterSpieler = null;
 
         day();
-
-        if (Game.game.freibier) {
-            day();
-            Game.game.freibier = false;
-        }
 
         PhaseManager.nextPhase();
     }

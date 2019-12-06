@@ -9,8 +9,6 @@ import root.Frontend.Utils.TimeController;
 import root.Logic.Game;
 import root.Logic.Persona.Hauptrolle;
 import root.Logic.Phases.Day;
-import root.Logic.Phases.PhaseManager;
-import root.Logic.Phases.PhaseMode;
 
 import javax.swing.*;
 import java.util.List;
@@ -75,14 +73,9 @@ public class SpielerFrame extends MyFrame {
     }
 
     public void generateDayPage() {
-        boolean freibierDay = false;
         title = Day.dayTitle;
-        if (PhaseManager.phaseMode == PhaseMode.FREIBIER_DAY) {
-            mode = SpielerFrameMode.freibierPage;
-            freibierDay = true;
-        }
 
-        currentPage = SpielerPageFactory.generateDayPage(Game.game.getHauptrollenInGameSortedByFraktion(), Game.game.getPossibleInGameBonusrolleNames(), freibierDay);
+        currentPage = SpielerPageFactory.generateDayPage(Game.game.getHauptrollenInGameSortedByFraktion(), Game.game.getPossibleInGameBonusrolleNames());
         buildScreenFromPage(currentPage);
     }
 
@@ -97,7 +90,7 @@ public class SpielerFrame extends MyFrame {
             Page imagePage = SpielerPageFactory.generateStaticImagePage(title, imagePath);
             buildScreenFromPage(imagePage);
             mode = SpielerFrameMode.dropDownImage;
-        } else if (mode == SpielerFrameMode.freibierPage || mode == SpielerFrameMode.listMirrorPage) {
+        } else if (mode == SpielerFrameMode.listMirrorPage) {
             Page dropDownPage = SpielerPageFactory.generateDropdownPage(title, 1);
             buildScreenFromPage(dropDownPage);
             comboBox1Label.setText(newText);

@@ -92,7 +92,7 @@ public abstract class SpielerPageFactory {
         return generateStaticImagePage(tot.title, tot.imagePath, true);
     }
 
-    public static Page generateDayPage(List<String> hauptrollen, List<String> bonusrollen, boolean freibier) {
+    public static Page generateDayPage(List<String> hauptrollen, List<String> bonusrollen) {
         int titleSpace = 80;
         int clockSpace = 150;
         Page listPage = SpielerListPageFactory.generateDoubleListPage(hauptrollen, bonusrollen, titleSpace, clockSpace - 30);
@@ -106,14 +106,6 @@ public abstract class SpielerPageFactory {
         listPage.add(title1Element);
         listPage.add(title2Element);
         listPage.add(counterLabel);
-
-        if (freibier) { //TODO implementieren dass nurnoch eines angezeigt wird nach erstem kill (?)
-            PageElement freibierWatermarkRight = SpielerPageElementFactory.generateBierImage(Corner.LOWERRIGHT, clockSpace);
-            PageElement freibierWatermarkLeft = SpielerPageElementFactory.generateBierImage(Corner.LOWERLEFT, clockSpace);
-
-            listPage.add(freibierWatermarkRight);
-            listPage.add(freibierWatermarkLeft);
-        }
 
         return listPage;
     }

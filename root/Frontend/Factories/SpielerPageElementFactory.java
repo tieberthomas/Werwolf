@@ -7,7 +7,6 @@ import root.Frontend.Page.Predecessor;
 import root.Logic.Game;
 import root.Logic.Persona.Hauptrolle;
 import root.Logic.Persona.Rollen.Constants.RawInformation;
-import root.ResourceManagement.ImagePath;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,13 +18,6 @@ public abstract class SpielerPageElementFactory {
     public static final int defaultTitleSize = 48;
 
     public static SpielerFrame spielerFrame;
-
-    public static PageElement generateBierImage(Corner corner, int heigth) {
-        int xSpace = 10;
-        int ySpace = 20;
-
-        return generateCornerImage(ImagePath.FREIBIER, corner, heigth, xSpace, ySpace);
-    }
 
     public static PageElement generateCornerImage(String imagePath, Corner corner, int height, int xSpace, int ySpace) {
         PageElement pageImage = generateFixedHeightPageImage(imagePath, height);

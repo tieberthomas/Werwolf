@@ -70,7 +70,7 @@ public class GameController {
         übersichtsFrame = new ÜbersichtsFrame(erzählerFrame.frameJpanel.getHeight() + ÜbersichtsFrame.spaceFromErzählerFrame);
 
         FrontendControl.spielerFrame = spielerFrame;
-        if (PhaseManager.phaseMode == PhaseMode.DAY || PhaseManager.phaseMode == PhaseMode.FREIBIER_DAY) {
+        if (PhaseManager.phaseMode == PhaseMode.DAY) {
             spielerFrame.generateDayPage();
         } else if (PhaseManager.phaseMode == PhaseMode.NORMAL_NIGHT || PhaseManager.phaseMode == PhaseMode.SETUP_NIGHT) {
             spielerFrame.buildScreenFromPage(savePage);
@@ -84,7 +84,7 @@ public class GameController {
                 synchronized (SetupNight.lock) {
                     SetupNight.lock.notify();
                 }
-            } else if (mode == GameMode.DAY || mode == GameMode.FREIBIER_DAY) {
+            } else if (mode == GameMode.DAY) {
                 synchronized (Day.lock) {
                     Day.lock.notify();
                 }

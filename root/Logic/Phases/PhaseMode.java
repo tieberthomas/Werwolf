@@ -5,5 +5,4 @@ public enum PhaseMode {
     SETUP_NIGHT,
     NORMAL_NIGHT,
     DAY,
-    FREIBIER_DAY
 }

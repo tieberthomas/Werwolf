@@ -36,10 +36,6 @@ public class NormalNightStatementBuilder {
             Schattenmensch.transform(); //TODO program statement
         }
 
-        if (PhaseManager.nightCount != 1 && Wirt.freibierCharges > 0) {
-            addStatementRolle(Wirt.ID);
-        }
-
         if (Game.game.mitteBonusrollen.size() > 0) {
             addStatementRolle(Totengräber.ID);
         }

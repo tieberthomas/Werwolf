@@ -38,8 +38,6 @@ public class Game {
 
     public Day day;
 
-    public boolean freibier = false;
-
     public Liebespaar liebespaar;
 
     public List<Spieler> spieler;
@@ -127,7 +125,6 @@ public class Game {
         hauptrollen.add(new Schamanin());
         hauptrollen.add(new Schattenmensch());
         hauptrollen.add(new Seherin());
-        hauptrollen.add(new Wirt());
         hauptrollen.add(new Schattenpriester());
         hauptrollen.add(new GrafVladimir());
         hauptrollen.add(new LadyAleera());

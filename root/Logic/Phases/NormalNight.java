@@ -15,7 +15,6 @@ import root.Logic.Persona.Rollen.Bonusrollen.*;
 import root.Logic.Persona.Rollen.Constants.BonusrollenType.Tarnumhang_BonusrollenType;
 import root.Logic.Persona.Rollen.Constants.Zeigekarten.Torten_Zeigekarte;
 import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Irrlicht;
-import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Wirt;
 import root.Logic.Persona.Rollen.Hauptrollen.Schattenpriester.Schattenpriester;
 import root.Logic.Persona.Rollen.Hauptrollen.Werwölfe.Blutwolf;
 import root.Logic.Persona.Rollen.Hauptrollen.Überläufer.Henker;
@@ -119,12 +118,6 @@ public class NormalNight extends Thread {
                     }
 
                     switch (statement.id) {
-                        case Wirt.STATEMENT_ID:
-                            if (Wirt.JA.equals(chosenOption)) {
-                                Game.game.freibier = true;
-                            }
-                            break;
-
                         case ProgramStatements.SCHÜTZE_ID:
                             setNachtfürstSchutz();
                             break;
@@ -267,10 +260,6 @@ public class NormalNight extends Thread {
                     }
 
                     chosenOptionLastStatement = chosenOption;
-
-                    if (Game.game.freibier) {
-                        break;
-                    }
                 }
 
                 statement.alreadyOver = true;
