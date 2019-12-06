@@ -128,7 +128,6 @@ public class Game {
         hauptrollen.add(new Schamanin());
         hauptrollen.add(new Schattenmensch());
         hauptrollen.add(new Seherin());
-        hauptrollen.add(new Späher());
         hauptrollen.add(new Wirt());
         hauptrollen.add(new Schattenpriester());
         hauptrollen.add(new GrafVladimir());
@@ -164,6 +163,7 @@ public class Game {
         bonusrollen.add(new Schnüffler());
         bonusrollen.add(new Schutzengel());
         bonusrollen.add(new Spurenleser());
+        bonusrollen.add(new Späher());
         bonusrollen.add(new Tarnumhang());
         bonusrollen.add(new Totengräber());
         bonusrollen.add(new Vampirumhang());

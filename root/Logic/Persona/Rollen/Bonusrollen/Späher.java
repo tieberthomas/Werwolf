@@ -1,33 +1,39 @@
-package root.Logic.Persona.Rollen.Hauptrollen.Bürger;
+package root.Logic.Persona.Rollen.Bonusrollen;
 
 import root.Controller.FrontendObject.FrontendObject;
 import root.Controller.FrontendObject.ImageFrontendObject;
+import root.Controller.FrontendObject.ListFrontendObject;
 import root.Logic.Game;
-import root.Logic.Persona.Fraktion;
-import root.Logic.Persona.Fraktionen.Bürger;
-import root.Logic.Persona.Hauptrolle;
+import root.Logic.Persona.Bonusrolle;
+import root.Logic.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
+import root.Logic.Persona.Rollen.Constants.BonusrollenType.Informativ;
+import root.Logic.Persona.Rollen.Constants.BonusrollenType.Tarnumhang_BonusrollenType;
 import root.Logic.Persona.Rollen.Constants.Zeigekarten.Tötend;
 import root.Logic.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Logic.Phases.Statement.Constants.StatementType;
 import root.Logic.Spieler;
 import root.ResourceManagement.ImagePath;
 
-public class Späher extends Hauptrolle {
+public class Späher extends Bonusrolle {
     public static final String ID = "ID_Späher";
     public static final String NAME = "Späher";
     public static final String IMAGE_PATH = ImagePath.SPÄHER_KARTE;
-    public static final Fraktion FRAKTION = new Bürger();
+    public static final BonusrollenType TYPE = new Informativ();
 
     public static final String STATEMENT_ID = ID;
     public static final String STATEMENT_TITLE = "Spieler wählen";
     public static final String STATEMENT_BESCHREIBUNG = "Späher erwacht und lässt sich Auskunft über einen Mitspieler geben";
     public static final StatementType STATEMENT_TYPE = StatementType.PERSONA_CHOOSE_ONE_INFO;
 
+    public static final String INFO_TITLE = " ist";
+    public static final String TÖTEND_OR_GESCHÜTZT = "tötend oder geschützt";
+    public static final String NEGATIVE_MESSAGE = "weder tötend noch geschützt";
+
     public Späher() {
         this.id = ID;
         this.name = NAME;
         this.imagePath = IMAGE_PATH;
-        this.fraktion = FRAKTION;
+        this.type = TYPE;
 
         this.statementID = STATEMENT_ID;
         this.statementTitle = STATEMENT_TITLE;
@@ -53,11 +59,15 @@ public class Späher extends Hauptrolle {
 
             Zeigekarte info = chosenSpieler.isTötendInfo(späherSpieler);
 
-            if (info instanceof Tötend) {
-                abilityCharges--;
+            if (info instanceof Tarnumhang_BonusrollenType) {
+                return new ImageFrontendObject(info);
             }
 
-            return new ImageFrontendObject(info);
+            if (info instanceof Tötend || chosenSpieler.geschützt) {
+                return new ListFrontendObject(chosenSpieler.name + INFO_TITLE, TÖTEND_OR_GESCHÜTZT);
+            } else {
+                return new ListFrontendObject(chosenSpieler.name + INFO_TITLE, NEGATIVE_MESSAGE);
+            }
         }
 
         return new FrontendObject();
