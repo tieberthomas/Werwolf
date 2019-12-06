@@ -45,6 +45,6 @@ Medium erwacht und erfährt eine zufällige Bonusrolle, die nicht im Spiel ist
 Graf Vladimir erwacht und verschleiert die Identität eines Spielers
 Nachbar erwacht, wählt einen Spieler und erfährt wer diesen Spieler besucht hat
 Konditor erwacht und entscheidet sich ob es eine gute oder schlechte Torte gibt
-Konditorlehrling erwacht, wählt einen Spielerund gibt ihm ein gutes oder schlechtes Tortenstück
+Konditorlehrling erwacht, wählt einen Spieler und gibt ihm ein gutes oder schlechtes Tortenstück
 Alle wachen auf
 Alle Opfer inklusive Liebespaaropfer werden bekannt gegeben
