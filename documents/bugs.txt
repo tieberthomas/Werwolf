@@ -1,1 +1,2 @@
-zurzeit sind keine Bugs bekannt
+Schatten funktioniern beim zuteilen nicht richtig
+Sound wird manchmal abgeschnitten
