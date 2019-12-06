@@ -32,8 +32,6 @@ public class Irrlicht extends Hauptrolle {
     public static final String SECOND_STATEMENT_BESCHREIBUNG = "Das angetippte Licht erwacht und erfährt ein anderes Irrlicht";
     public static final StatementType SECOND_STATEMENT_TYPE = StatementType.PERSONA_SPECAL;
 
-    private static final String LAST_IRRLICHT_MESSAGE = "Du bist das letzte Irrlicht";
-
     public List<String> geseheneIrrlichter = new ArrayList<>();
 
     public Irrlicht() {
@@ -64,18 +62,17 @@ public class Irrlicht extends Hauptrolle {
         int numberIrrlichterInGame = Game.game.getLichterStrings().size();
         int numberFlackerndeIrrlichter = flackerndeIrrlichter.size();
 
-        if (numberFlackerndeIrrlichter == 1) {
-            Spieler einzigesFlackerndesIrrlicht = Game.game.findSpieler(flackerndeIrrlichter.get(0));
-            String randomIrrlicht = getRandomUnseenIrrlichtSpieler(einzigesFlackerndesIrrlicht);
+        if (numberIrrlichterInGame >= 2)
+        {
+            if (numberFlackerndeIrrlichter == 1) {
+                Spieler einzigesFlackerndesIrrlicht = Game.game.findSpieler(flackerndeIrrlichter.get(0));
+                String randomIrrlicht = getRandomUnseenIrrlichtSpieler(einzigesFlackerndesIrrlicht);
 
-            if (randomIrrlicht != null) {
                 return new ListFrontendObject(SECOND_STATEMENT_TITLE, randomIrrlicht);
-            } else {
-                return new ListFrontendObject(SECOND_STATEMENT_TITLE, LAST_IRRLICHT_MESSAGE);
+            } else if (numberFlackerndeIrrlichter == numberIrrlichterInGame) {
+                Spieler spieler = getRandomIrrlichtToDie();
+                Selbstmord.execute(spieler);
             }
-        } else if (numberFlackerndeIrrlichter == numberIrrlichterInGame && numberIrrlichterInGame != 0) {
-            Spieler spieler = getRandomIrrlichtToDie();
-            Selbstmord.execute(spieler);
         }
 
         return new TitleFrontendObject(SECOND_STATEMENT_TITLE);
