@@ -5,7 +5,6 @@ Riese
 Schamanin
 Schattenmensch
 Seherin
-Späher
 Wirt
 
 Alphawolf
@@ -29,7 +28,7 @@ Archivar
 Medium
 Nachbar
 Schnüffler
-Spurenleser
+Späher
 Tarnumhang
 
 Dieb

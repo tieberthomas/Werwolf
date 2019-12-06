@@ -85,7 +85,6 @@ public class ImagePath {
     public static String SCHATTENKUTTE_KARTE = BONUSROLLEN_PATH + "Schattenkutte" + IMAGE_FILE_EXTENSION;
     public static String SCHNÜFFLER_KARTE = BONUSROLLEN_PATH + "Schnüffler" + IMAGE_FILE_EXTENSION;
     public static String SCHUTZENGEL_KARTE = BONUSROLLEN_PATH + "Schutzengel" + IMAGE_FILE_EXTENSION;
-    public static String SPURENLESER_KARTE = BONUSROLLEN_PATH + "Spurenleser" + IMAGE_FILE_EXTENSION;
     public static String SPÄHER_KARTE = BONUSROLLEN_PATH + "Späher" + IMAGE_FILE_EXTENSION;
     public static String TARNUMHANG_KARTE = BONUSROLLEN_PATH + "Tarnumhang" + IMAGE_FILE_EXTENSION;
     public static String TOTENGRÄBER_KARTE = BONUSROLLEN_PATH + "Totengräber" + IMAGE_FILE_EXTENSION;

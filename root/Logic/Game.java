@@ -162,7 +162,6 @@ public class Game {
         bonusrollen.add(new Schattenkutte());
         bonusrollen.add(new Schnüffler());
         bonusrollen.add(new Schutzengel());
-        bonusrollen.add(new Spurenleser());
         bonusrollen.add(new Späher());
         bonusrollen.add(new Tarnumhang());
         bonusrollen.add(new Totengräber());
