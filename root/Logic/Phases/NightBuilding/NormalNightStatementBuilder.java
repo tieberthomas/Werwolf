@@ -6,8 +6,24 @@ import root.Logic.Persona.Fraktionen.SchattenpriesterFraktion;
 import root.Logic.Persona.Fraktionen.Vampire;
 import root.Logic.Persona.Fraktionen.Werwölfe;
 import root.Logic.Persona.Rolle;
-import root.Logic.Persona.Rollen.Bonusrollen.*;
-import root.Logic.Persona.Rollen.Hauptrollen.Bürger.*;
+import root.Logic.Persona.Rollen.Bonusrollen.Analytiker;
+import root.Logic.Persona.Rollen.Bonusrollen.Archivar;
+import root.Logic.Persona.Rollen.Bonusrollen.Gefängniswärter;
+import root.Logic.Persona.Rollen.Bonusrollen.Konditor;
+import root.Logic.Persona.Rollen.Bonusrollen.Konditorlehrling;
+import root.Logic.Persona.Rollen.Bonusrollen.Medium;
+import root.Logic.Persona.Rollen.Bonusrollen.Nachbar;
+import root.Logic.Persona.Rollen.Bonusrollen.Nachtfürst;
+import root.Logic.Persona.Rollen.Bonusrollen.Prostituierte;
+import root.Logic.Persona.Rollen.Bonusrollen.Schnüffler;
+import root.Logic.Persona.Rollen.Bonusrollen.Späher;
+import root.Logic.Persona.Rollen.Bonusrollen.Tarnumhang;
+import root.Logic.Persona.Rollen.Bonusrollen.Totengräber;
+import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Irrlicht;
+import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Riese;
+import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Schamanin;
+import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Schattenmensch;
+import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Seherin;
 import root.Logic.Persona.Rollen.Hauptrollen.Vampire.GrafVladimir;
 import root.Logic.Persona.Rollen.Hauptrollen.Vampire.LadyAleera;
 import root.Logic.Persona.Rollen.Hauptrollen.Vampire.MissVerona;
@@ -68,7 +84,7 @@ public class NormalNightStatementBuilder {
         }
         addStatementRolle(Riese.ID);
         addStatementFraktion(Werwölfe.ID);
-        if (PhaseManager.nightCount % 3 == 0) {
+        if (PhaseManager.isVollmondNacht()) {
             addStatementRolle(Alphawolf.ID);
         }
         if (Wölfin.stateKilling) {

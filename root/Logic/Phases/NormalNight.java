@@ -11,7 +11,6 @@ import root.Logic.Liebespaar;
 import root.Logic.Persona.Bonusrolle;
 import root.Logic.Persona.Fraktion;
 import root.Logic.Persona.Fraktionen.SchattenpriesterFraktion;
-import root.Logic.Persona.Fraktionen.Werwölfe;
 import root.Logic.Persona.Hauptrolle;
 import root.Logic.Persona.Persona;
 import root.Logic.Persona.Rolle;
@@ -24,7 +23,6 @@ import root.Logic.Persona.Rollen.Constants.BonusrollenType.Tarnumhang_Bonusrolle
 import root.Logic.Persona.Rollen.Constants.Zeigekarten.Torten_Zeigekarte;
 import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Irrlicht;
 import root.Logic.Persona.Rollen.Hauptrollen.Schattenpriester.Schattenpriester;
-import root.Logic.Persona.Rollen.Hauptrollen.Werwölfe.Blutwolf;
 import root.Logic.Persona.Rollen.Hauptrollen.Überläufer.Henker;
 import root.Logic.Phases.NightBuilding.NormalNightStatementBuilder;
 import root.Logic.Phases.Statement.Constants.IndieStatements;
@@ -390,15 +388,6 @@ public class NormalNight extends Thread {
 
     private void killOpfer() {
         for (Opfer currentOpfer : opfer) {
-            if (Rolle.rolleLebend(Blutwolf.ID)) {
-                if (currentOpfer.täterFraktion != null && currentOpfer.täterFraktion.equals(Werwölfe.ID)) {
-                    Blutwolf.deadStacks++;
-                    if (Blutwolf.deadStacks >= 2) {
-                        Blutwolf.deadly = true;
-                    }
-                }
-            }
-
             Game.game.killSpieler(currentOpfer.spieler);
         }
     }

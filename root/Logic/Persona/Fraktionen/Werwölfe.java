@@ -69,10 +69,6 @@ public class Werwölfe extends Fraktion {
         return new DropdownImageFrontendObject(dropdownOptions, imagePath);
     }
 
-    public static boolean blutWolfIsAktiv() {
-        return Rolle.rolleLebend(Blutwolf.ID) && Rolle.rolleAktiv(Blutwolf.ID) && Blutwolf.deadly;
-    }
-
     @Override
     public void processChosenOption(String chosenOption) {
         Spieler chosenSpieler = Game.game.findSpieler(chosenOption);
@@ -81,6 +77,22 @@ public class Werwölfe extends Fraktion {
                 BlutwolfKill.execute(chosenSpieler, this);
             } else {
                 NormalKill.execute(chosenSpieler, this);
+            }
+        }
+    }
+
+    public static boolean blutWolfIsAktiv() {
+        return Rolle.rolleLebend(Blutwolf.ID) && Rolle.rolleAktiv(Blutwolf.ID) && Blutwolf.deadly;
+    }
+
+    @Override
+    public void beginNight() {
+        if (Rolle.rolleLebend(Blutwolf.ID)) {
+            for (Spieler spieler : Game.game.spieler) {
+                if (!spieler.lebend && spieler.equals(Blutwolf.markedPlayer)) {
+                    Blutwolf.deadly = true;
+                    System.out.println("Blutwolf hat den markierten Spieler eliminiert und ist nun schutzbrechend.");
+                }
             }
         }
     }

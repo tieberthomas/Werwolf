@@ -9,6 +9,7 @@ import root.Logic.Persona.Rollen.Bonusrollen.Schafspelz;
 import root.Logic.Persona.Rollen.Bonusrollen.Engel;
 import root.Logic.Persona.Rollen.Bonusrollen.Vampirumhang;
 import root.Logic.Persona.Rollen.Bonusrollen.Wolfspelz;
+import root.Logic.Persona.Rollen.Hauptrollen.Werwölfe.Blutwolf;
 import root.Logic.Persona.Rollen.Hauptrollen.Werwölfe.Wolfsmensch;
 import root.Logic.Persona.Rollen.Hauptrollen.Überläufer.Henker;
 import root.Logic.Phases.Statement.Constants.IndieStatements;
@@ -39,6 +40,8 @@ public class SetupNightStatementBuilder {
         addStatementFraktion(Vampire.ID);
         addStatementFraktion(SchattenpriesterFraktion.ID);
         addStatementRolle(Henker.ID);
+
+        addStatementRolle(Blutwolf.ID);
 
         statements.add(IndieStatements.getAlleWachenAufStatement());
 

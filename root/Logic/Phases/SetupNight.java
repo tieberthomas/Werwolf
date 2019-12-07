@@ -1,11 +1,17 @@
 package root.Logic.Phases;
 
 import root.Controller.FrontendControl;
+import root.Controller.FrontendObject.FrontendObject;
 import root.Logic.Game;
 import root.Logic.Liebespaar;
-import root.Logic.Persona.*;
+import root.Logic.Persona.Bonusrolle;
+import root.Logic.Persona.Fraktion;
+import root.Logic.Persona.Hauptrolle;
+import root.Logic.Persona.Persona;
+import root.Logic.Persona.Rolle;
 import root.Logic.Persona.Rollen.Constants.BonusrollenType.Passiv;
 import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Dorfbewohner;
+import root.Logic.Persona.Rollen.Hauptrollen.Werwölfe.Blutwolf;
 import root.Logic.Persona.Rollen.Hauptrollen.Werwölfe.Wolfsmensch;
 import root.Logic.Persona.Rollen.Hauptrollen.Überläufer.Henker;
 import root.Logic.Phases.NightBuilding.SetupNightStatementBuilder;
@@ -114,6 +120,12 @@ public class SetupNight extends Thread {
                             case Wolfsmensch.SETUP_NIGHT_STATEMENT_ID:
                                 Hauptrolle hauptrolle = getRandomStillAvailableBürgerRolle();
                                 FrontendControl.showCard(statement, statement.title, hauptrolle.imagePath);
+                                break;
+
+                            case Blutwolf.SETUP_NIGHT_STATEMENT_ID:
+                                FrontendObject dropdownOptions = persona.getFrontendObject();
+                                String chosenOption = FrontendControl.showFrontendObject(statement, dropdownOptions);
+                                persona.processChosenOption(chosenOption);
                                 break;
 
                             default:
