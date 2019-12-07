@@ -2,13 +2,14 @@ package root.Logic.Persona.Rollen.Bonusrollen;
 
 import root.Controller.FrontendObject.FrontendObject;
 import root.Controller.FrontendObject.ImageFrontendObject;
-import root.Controller.FrontendObject.ListFrontendObject;
 import root.Logic.Game;
 import root.Logic.Persona.Bonusrolle;
 import root.Logic.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Logic.Persona.Rollen.Constants.BonusrollenType.Informativ;
 import root.Logic.Persona.Rollen.Constants.BonusrollenType.Tarnumhang_BonusrollenType;
+import root.Logic.Persona.Rollen.Constants.Zeigekarten.Nicht_Tötend;
 import root.Logic.Persona.Rollen.Constants.Zeigekarten.Tötend;
+import root.Logic.Persona.Rollen.Constants.Zeigekarten.Tötend_Geschützt;
 import root.Logic.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Logic.Phases.Statement.Constants.StatementType;
 import root.Logic.Spieler;
@@ -64,9 +65,9 @@ public class Späher extends Bonusrolle {
             }
 
             if (info instanceof Tötend || isSpielerGeschützt(chosenSpieler)) {
-                return new ListFrontendObject(chosenSpieler.name + INFO_TITLE, TÖTEND_OR_GESCHÜTZT);
+                return new ImageFrontendObject(chosenSpieler.name, new Tötend_Geschützt().imagePath);
             } else {
-                return new ListFrontendObject(chosenSpieler.name + INFO_TITLE, NEGATIVE_MESSAGE);
+                return new ImageFrontendObject(chosenSpieler.name, new Nicht_Tötend().imagePath);
             }
         }
 
