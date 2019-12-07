@@ -18,7 +18,6 @@ public class ImagePath {
     public static String AUFGEBRAUCHT = ICON_PATH + "Aufgebraucht" + IMAGE_FILE_EXTENSION;
     public static String AUS_DEM_SPIEL = ICON_PATH + "Aus_dem_Spiel" + IMAGE_FILE_EXTENSION;
     public static String BLUTMOND = ICON_PATH + "Blutmond" + IMAGE_FILE_EXTENSION;
-    public static String VOLLMOND = ICON_PATH + "Vollmond" + IMAGE_FILE_EXTENSION;
     public static String DEAKTIVIERT = ICON_PATH + "Deaktiviert" + IMAGE_FILE_EXTENSION;
     public static String GESCHÜTZT = ICON_PATH + "Geschützt" + IMAGE_FILE_EXTENSION;
     public static String GUTE_TORTE = ICON_PATH + "Gute_Torte" + IMAGE_FILE_EXTENSION;
@@ -32,7 +31,8 @@ public class ImagePath {
     public static String TORTE_ICON = ICON_PATH + "Torte" + IMAGE_FILE_EXTENSION;
     public static String TOT = ICON_PATH + "Tot" + IMAGE_FILE_EXTENSION;
     public static String TÖTEND = ICON_PATH + "Tötend" + IMAGE_FILE_EXTENSION;
-    public static String VERSTUMMT = ICON_PATH + "Verstummt" + IMAGE_FILE_EXTENSION;
+    public static String TÖTEND_ODER_GESCHÜTZT = ICON_PATH + "Tötend_oder_Geschützt" + IMAGE_FILE_EXTENSION;
+    public static String VOLLMOND = ICON_PATH + "Vollmond" + IMAGE_FILE_EXTENSION;
 
     public static String TORTE = CARD_PATH + "Torte" + IMAGE_FILE_EXTENSION;
 
