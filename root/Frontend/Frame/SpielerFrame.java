@@ -9,6 +9,7 @@ import root.Frontend.Utils.TimeController;
 import root.Logic.Game;
 import root.Logic.Persona.Hauptrolle;
 import root.Logic.Phases.Day;
+import root.Logic.Phases.PhaseManager;
 
 import javax.swing.*;
 import java.util.List;
@@ -75,7 +76,11 @@ public class SpielerFrame extends MyFrame {
     public void generateDayPage() {
         title = Day.dayTitle;
 
-        currentPage = SpielerPageFactory.generateDayPage(Game.game.getHauptrollenInGameSortedByFraktion(), Game.game.getPossibleInGameBonusrolleNames());
+        if (PhaseManager.isVollmondNacht()) {
+            currentPage = SpielerPageFactory.generateDayPage(Game.game.getHauptrollenInGameSortedByFraktion(), Game.game.getPossibleInGameBonusrolleNames(), true);
+        } else {
+            currentPage = SpielerPageFactory.generateDayPage(Game.game.getHauptrollenInGameSortedByFraktion(), Game.game.getPossibleInGameBonusrolleNames(), false);
+        }
         buildScreenFromPage(currentPage);
     }
 

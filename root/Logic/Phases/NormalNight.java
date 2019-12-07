@@ -283,7 +283,7 @@ public class NormalNight extends Thread {
 
     private void beginNight() {
         setDefaultPlayerStates();
-        vollmondNacht = isVollmondNacht();
+        vollmondNacht = PhaseManager.isVollmondNacht();
 
         for (Fraktion fraktion : Fraktion.getFraktionen()) {
             fraktion.beginNight();
@@ -314,10 +314,6 @@ public class NormalNight extends Thread {
         Torte.beginNight();
 
         Henker.pagecounter = 0;
-    }
-
-    private boolean isVollmondNacht() {
-        return PhaseManager.nightCount % 3 == 0;
     }
 
     private void refreshStatementStates() {
