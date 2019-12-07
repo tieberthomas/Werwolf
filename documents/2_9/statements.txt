@@ -25,6 +25,7 @@ Lichter entscheiden sich, ob sie flackern möchten
 Das angetippte Licht erwacht und erfährt ein anderes Irrlicht
 Schamanin erwacht und entscheidet ob sie einen Spieler schützen möchte
 Prostituierte legt sich zu einem Mitspieler ins Bett
+Späher erwacht und lässt sich Auskunft über einen Mitspieler geben
 Henker erwacht und versucht die Rollen eines Mitspielers zu erraten
 Riese erwacht und entscheidet sich ob einen Mitspieler töten möchte
 Die Werwölfe erwachen und die Wölfe wählen ein Opfer aus
@@ -40,7 +41,6 @@ Analytiker erwacht und wählt zwei Spieler, der Erzähler sagt ihm ob diese in d
 Archivar erwacht und lässt sich Auskunft über die Bonusrolle eines Mitspielers geben
 Schnüffler erwacht und lässt sich Auskunft über einen Mitspieler geben
 Seherin erwacht und lässt sich Auskunft über die Fraktion eines Mitspielers geben
-Späher erwacht und lässt sich Auskunft über einen Mitspieler geben
 Medium erwacht und erfährt eine zufällige Bonusrolle, die nicht im Spiel ist
 Graf Vladimir erwacht und verschleiert die Identität eines Spielers
 Nachbar erwacht, wählt einen Spieler und erfährt wer diesen Spieler besucht hat
