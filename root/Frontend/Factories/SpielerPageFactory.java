@@ -7,6 +7,7 @@ import root.Frontend.Page.Page;
 import root.Frontend.Page.PageElement;
 import root.Logic.Liebespaar;
 import root.Logic.Persona.Fraktion;
+import root.Logic.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.Vollmond;
 import root.Logic.Persona.Rollen.Constants.Zeigekarten.Tot;
 import root.Logic.Phases.Winner;
 
@@ -92,7 +93,7 @@ public abstract class SpielerPageFactory {
         return generateStaticImagePage(tot.title, tot.imagePath, true);
     }
 
-    public static Page generateDayPage(List<String> hauptrollen, List<String> bonusrollen) {
+    public static Page generateDayPage(List<String> hauptrollen, List<String> bonusrollen, boolean nextNightIsVollmondNacht) {
         int titleSpace = 80;
         int clockSpace = 150;
         Page listPage = SpielerListPageFactory.generateDoubleListPage(hauptrollen, bonusrollen, titleSpace, clockSpace - 30);
@@ -105,6 +106,10 @@ public abstract class SpielerPageFactory {
 
         listPage.add(title1Element);
         listPage.add(title2Element);
+        if (nextNightIsVollmondNacht) {
+            PageElement vollmondImage = SpielerPageElementFactory.generateVollmondImage(new Vollmond().imagePath, 100);
+            listPage.add(vollmondImage);
+        }
         listPage.add(counterLabel);
 
         return listPage;

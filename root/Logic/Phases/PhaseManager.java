@@ -76,4 +76,8 @@ public class PhaseManager extends Thread {
             lock.notify();
         }
     }
+
+    public static boolean isVollmondNacht() {
+        return nightCount != 0 && nightCount % 3 == 0;
+    }
 }

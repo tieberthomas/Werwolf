@@ -251,7 +251,7 @@ public abstract class SpielerPageElementFactory {
 
         Hauptrolle hauptrolle = Game.game.findHauptrollePerName(hauptrollenName);
 
-        if(hauptrolle!=null) {
+        if (hauptrolle != null) {
             Color color = hauptrolle.getColor();
             label.setBackground(color);
             label.setOpaque(true);
@@ -391,5 +391,14 @@ public abstract class SpielerPageElementFactory {
 
     private static int getSpielerFrameHeight() {
         return spielerFrame.frameJpanel.getHeight();
+    }
+
+    public static PageElement generateVollmondImage(String imagePath, int height) { //TODO pass position via parameters
+        JLabel vollmondLabel = generateFixedHeightImage(imagePath, height);
+
+        int imageWidth = vollmondLabel.getIcon().getIconWidth();
+        int imageHeight = vollmondLabel.getIcon().getIconHeight();
+
+        return new PageElement(vollmondLabel, imageWidth, imageHeight, null, null, getSpielerFrameWidth() - 140, getSpielerFrameHeight() - 130); //TODO make math generic
     }
 }
