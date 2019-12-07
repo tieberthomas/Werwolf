@@ -118,8 +118,8 @@ public class SetupNight extends Thread {
                                 break;
 
                             case Wolfsmensch.SETUP_NIGHT_STATEMENT_ID:
-                                Hauptrolle hauptrolle = getRandomStillAvailableBürgerRolle();
-                                FrontendControl.showCard(statement, statement.title, hauptrolle.imagePath);
+                                Wolfsmensch.fakeRolle = getRandomStillAvailableBürgerRolle();
+                                FrontendControl.showCard(statement, statement.title, Wolfsmensch.fakeRolle.imagePath);
                                 break;
 
                             case Blutwolf.SETUP_NIGHT_STATEMENT_ID:

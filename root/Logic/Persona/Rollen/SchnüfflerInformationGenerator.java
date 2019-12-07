@@ -14,6 +14,7 @@ import root.Logic.Persona.Rollen.Constants.InformationsCluster.TötendInfo;
 import root.Logic.Persona.Rollen.Constants.SchnüfflerInformation;
 import root.Logic.Persona.Rollen.Constants.Zeigekarten.SpäherZeigekarte;
 import root.Logic.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
+import root.Logic.Persona.Rollen.Hauptrollen.Werwölfe.Wolfsmensch;
 import root.Logic.Persona.Rollen.Hauptrollen.Überläufer.Henker;
 import root.Logic.Spieler;
 
@@ -86,7 +87,7 @@ public class SchnüfflerInformationGenerator {
 
     private Fraktion generateFraktionInformation(boolean correctInformation) {
         Fraktion spielerFraktion = spieler.hauptrolle.fraktion;
-        if (spieler.hauptrolle.equals(Henker.ID)) {
+        if (spieler.hauptrolle.equals(Henker.ID) || spieler.hauptrolle.equals(Wolfsmensch.ID)) {
             spielerFraktion = new Bürger();
         }
 
@@ -116,7 +117,7 @@ public class SchnüfflerInformationGenerator {
 
     private SpäherZeigekarte generateTötendInformation(boolean correctInformation) {
         Zeigekarte isKilling = SpäherZeigekarte.getZeigekarte(spieler.hauptrolle.killing);
-        if (spieler.hauptrolle.equals(Henker.ID)) {
+        if (spieler.hauptrolle.equals(Henker.ID) || spieler.hauptrolle.equals(Wolfsmensch.ID)) {
             isKilling = spieler.hauptrolle.isTötendInfo(spieler);
         }
 
