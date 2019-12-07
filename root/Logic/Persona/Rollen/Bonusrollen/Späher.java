@@ -63,7 +63,7 @@ public class Späher extends Bonusrolle {
                 return new ImageFrontendObject(info);
             }
 
-            if (info instanceof Tötend || chosenSpieler.geschützt) {
+            if (info instanceof Tötend || isSpielerGeschützt(chosenSpieler)) {
                 return new ListFrontendObject(chosenSpieler.name + INFO_TITLE, TÖTEND_OR_GESCHÜTZT);
             } else {
                 return new ListFrontendObject(chosenSpieler.name + INFO_TITLE, NEGATIVE_MESSAGE);
@@ -71,5 +71,23 @@ public class Späher extends Bonusrolle {
         }
 
         return new FrontendObject();
+    }
+
+    private boolean isSpielerGeschützt(Spieler chosenSpieler) {
+        //TODO make framework for one-time-Schutz
+        if (chosenSpieler.bonusrolle.equals(DunklesLicht.ID) && ((DunklesLicht) chosenSpieler.bonusrolle).schutzAktiv) {
+            return true;
+        }
+        if (chosenSpieler.bonusrolle.equals(Tarnumhang.ID) && ((Tarnumhang) chosenSpieler.bonusrolle).schutzAktiv) {
+            return true;
+        }
+        if (chosenSpieler.bonusrolle.equals(Wolfspelz.ID) && ((Wolfspelz) chosenSpieler.bonusrolle).schutzAktiv) {
+            return true;
+        }
+        if (chosenSpieler.bonusrolle.equals(Vampirumhang.ID) && ((Vampirumhang) chosenSpieler.bonusrolle).schutzAktiv) {
+            return true;
+        }
+
+        return chosenSpieler.geschützt;
     }
 }
