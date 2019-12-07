@@ -8,6 +8,7 @@ import root.Logic.Persona.Fraktion;
 import root.Logic.Persona.Fraktionen.Bürger;
 import root.Logic.Persona.Hauptrolle;
 import root.Logic.Persona.Rollen.Bonusrollen.DunklesLicht;
+import root.Logic.Phases.NormalNight;
 import root.Logic.Phases.Statement.Constants.StatementType;
 import root.Logic.Spieler;
 import root.ResourceManagement.ImagePath;
@@ -61,6 +62,15 @@ public class Irrlicht extends Hauptrolle {
     public static FrontendObject processFlackerndeIrrlichter(List<String> flackerndeIrrlichter) {
         int numberIrrlichterInGame = Game.game.getLichterStrings().size();
         int numberFlackerndeIrrlichter = flackerndeIrrlichter.size();
+
+        if (NormalNight.vollmondNacht) {
+            for (String flackerndesIrrlicht : flackerndeIrrlichter) {
+                Spieler irrlichtSpieler = Game.game.findSpieler(flackerndesIrrlicht);
+                if (irrlichtSpieler != null) {
+                    irrlichtSpieler.geschützt = true;
+                }
+            }
+        }
 
         if (numberIrrlichterInGame >= 2)
         {
