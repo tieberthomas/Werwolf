@@ -197,10 +197,11 @@ public class NormalNight extends Thread {
                             Spieler chosenSpieler2 = Game.game.findSpieler(FrontendControl.erzählerFrame.chosenOption2);
 
                             if (chosenSpieler1 != null && chosenSpieler2 != null) {
-                                if (analytiker.showTarnumhang(chosenSpieler1, chosenSpieler2)) {
+                                String answer = analytiker.analysiere(chosenSpieler1, chosenSpieler2);
+
+                                if (answer.equals(Analytiker.TARNUMHANG)) {
                                     FrontendControl.showZeigekarte(statement, new Tarnumhang_BonusrollenType());
                                 } else {
-                                    String answer = analytiker.analysiere(chosenSpieler1, chosenSpieler2);
                                     FrontendControl.showList(statement, answer);
                                 }
                             }

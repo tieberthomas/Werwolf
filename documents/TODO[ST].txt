@@ -1,4 +1,5 @@
 ST:
+isTötendInfo "@Override"
 Tod file Löschen
 Torte icon?
 

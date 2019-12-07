@@ -13,7 +13,6 @@ import root.Logic.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Dorfbewohner;
 import root.Logic.Persona.Rollen.Hauptrollen.Vampire.LadyAleera;
 import root.Logic.Persona.Rollen.Hauptrollen.Vampire.MissVerona;
-import root.Logic.Phases.NormalNight;
 
 import java.awt.*;
 
@@ -126,7 +125,7 @@ public class Spieler implements Comparable {
         return hauptrolle.fraktion;
     }
 
-    public Zeigekarte getFraktionInfo(Spieler requester) {
+    public Zeigekarte getFraktionInfo(Spieler requester) { //TODO handle Analytiker differently
         Zeigekarte hauptrollenFraktion = hauptrolle.getFraktionInfo();
         Zeigekarte bonunsrollenFraktion = bonusrolle.getFraktionInfo();
 

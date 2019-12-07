@@ -4,12 +4,11 @@ import root.Frontend.Utils.DropdownOptions;
 import root.Logic.Game;
 import root.Logic.Liebespaar;
 import root.Logic.Persona.Bonusrolle;
-import root.Logic.Persona.Fraktionen.Bürger;
 import root.Logic.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Logic.Persona.Rollen.Constants.BonusrollenType.Informativ;
+import root.Logic.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Logic.Persona.Rollen.Hauptrollen.Vampire.LadyAleera;
 import root.Logic.Persona.Rollen.Hauptrollen.Vampire.MissVerona;
-import root.Logic.Persona.Rollen.Hauptrollen.Überläufer.Henker;
 import root.Logic.Phases.Statement.Constants.StatementType;
 import root.Logic.Spieler;
 import root.ResourceManagement.ImagePath;
@@ -27,8 +26,9 @@ public class Analytiker extends Bonusrolle {
     public static final String STATEMENT_BESCHREIBUNG = "Analytiker erwacht und wählt zwei Spieler, der Erzähler sagt ihm ob diese in derselben Fraktion sind";
     public static final StatementType STATEMENT_TYPE = StatementType.PERSONA_SPECAL;
 
-    private static final String GLEICH = "gleich";
-    private static final String UNGLEICH = "ungleich";
+    public static final String GLEICH = "gleich";
+    public static final String UNGLEICH = "ungleich";
+    public static final String TARNUMHANG = "tarnumhang";
 
     public Spieler besuchtAnalysieren = null;
 
@@ -51,29 +51,36 @@ public class Analytiker extends Bonusrolle {
         return Game.game.getSpielerDropdownOptions(this);
     }
 
-    public boolean showTarnumhang(Spieler spieler1, Spieler spieler2) {
-        Spieler getarnterSpieler = MissVerona.getarnterSpieler;
-        Spieler analytikerSpieler = Game.game.findSpielerPerRolle(this.id);
-        return showTarnumhang(this, spieler1) || showTarnumhang(this, spieler2) ||
-                analytikerSpieler.equals(getarnterSpieler) ||
-                spieler1.equals(getarnterSpieler) || spieler2.equals(getarnterSpieler);
-    }
-
     public String analysiere(Spieler spieler1, Spieler spieler2) {
         besucht = spieler1;
         besuchtAnalysieren = spieler2;
-        String name1 = spieler1.name;
-        String name2 = spieler2.name;
 
-        String fraktion1 = spieler1.hauptrolle.fraktion.id;
-        String fraktion2 = spieler2.hauptrolle.fraktion.id;
+        Spieler analytikerSpieler = Game.game.findSpielerPerRolle(this.id);
+        Spieler getarnterSpieler = MissVerona.getarnterSpieler;
 
-        if (spieler1.hauptrolle.equals(Henker.ID)) {
-            fraktion1 = Bürger.ID;
+        if (showTarnumhang(this, spieler1) || showTarnumhang(this, spieler2) ||
+                analytikerSpieler.equals(getarnterSpieler) ||
+                spieler1.equals(getarnterSpieler) || spieler2.equals(getarnterSpieler)) {
+            return TARNUMHANG;
         }
 
-        if (spieler2.hauptrolle.equals(Henker.ID)) {
-            fraktion2 = Bürger.ID;
+        Zeigekarte fraktion1;
+        Zeigekarte fraktion2;
+
+        Zeigekarte hauptrollenFraktion1 = spieler1.hauptrolle.getFraktionInfo();
+        Zeigekarte bonunsrollenFraktion1 = spieler1.bonusrolle.getFraktionInfo();
+        Zeigekarte hauptrollenFraktion2 = spieler2.hauptrolle.getFraktionInfo();
+        Zeigekarte bonunsrollenFraktion2 = spieler2.bonusrolle.getFraktionInfo();
+
+        if (bonunsrollenFraktion1 != null) {
+            fraktion1 = bonunsrollenFraktion1;
+        } else {
+            fraktion1 = hauptrollenFraktion1;
+        }
+        if (bonunsrollenFraktion2 != null) {
+            fraktion2 = bonunsrollenFraktion2;
+        } else {
+            fraktion2 = hauptrollenFraktion2;
         }
 
         String information;
@@ -86,8 +93,8 @@ public class Analytiker extends Bonusrolle {
                 String liebespartner1 = liebespaar.spieler1.name;
                 String liebespartner2 = liebespaar.spieler2.name;
 
-                if (Objects.equals(name1, liebespartner1) && Objects.equals(name2, liebespartner2) ||
-                        Objects.equals(name2, liebespartner1) && Objects.equals(name1, liebespartner2)) {
+                if (Objects.equals(spieler1.name, liebespartner1) && Objects.equals(spieler2.name, liebespartner2) ||
+                        Objects.equals(spieler2.name, liebespartner1) && Objects.equals(spieler1.name, liebespartner2)) {
                     information = GLEICH;
                 } else {
                     information = UNGLEICH;
@@ -96,8 +103,6 @@ public class Analytiker extends Bonusrolle {
                 information = UNGLEICH;
             }
         }
-
-        Spieler analytikerSpieler = Game.game.findSpielerPerRolle(this.id);
 
         if (analytikerSpieler != null && (spieler1.equals(LadyAleera.gefälschterSpieler) || spieler2.equals(LadyAleera.gefälschterSpieler))) {
             return getWrongInformation(information);
