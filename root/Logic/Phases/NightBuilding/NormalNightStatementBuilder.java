@@ -54,6 +54,7 @@ public class NormalNightStatementBuilder {
         statements.add(ProgramStatements.getSchützeStatement());
 
         addStatementRolle(Prostituierte.ID);
+        addStatementRolle(Späher.ID);
 
         //TODO move nacht addstatement speziallogik into rollen/fraktionen
         //TODO addstatementRolle sollte nicht immer statements mitbekommen, statements sollte eine public klassenvariable sein.
@@ -91,7 +92,6 @@ public class NormalNightStatementBuilder {
         addStatementRolle(Schnüffler.ID);
         addStatementRolle(Tarnumhang.ID);
         addStatementRolle(Seherin.ID);
-        addStatementRolle(Späher.ID);
         addStatementRolle(Medium.ID);
 
         addStatementRolle(GrafVladimir.ID);

@@ -25,7 +25,7 @@ Lichter entscheiden sich, ob sie flackern möchten
 Das angetippte Licht erwacht und erfährt ein anderes Irrlicht
 Schamanin erwacht und entscheidet ob sie einen Spieler schützen möchte
 Prostituierte legt sich zu einem Mitspieler ins Bett
-Späher erwacht und lässt sich Auskunft über einen Mitspieler geben
+Späher erwacht und lässt sich Auskunft über einen Spieler geben
 Henker erwacht und versucht die Rollen eines Mitspielers zu erraten
 Riese erwacht und entscheidet sich ob einen Mitspieler töten möchte
 Die Werwölfe erwachen und die Wölfe wählen ein Opfer aus
