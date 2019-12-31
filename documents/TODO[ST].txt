@@ -1,4 +1,5 @@
 ST:
+kill "boolean vollmondNacht"
 isTötendInfo "@Override"
 Tod file Löschen
 Torte icon?

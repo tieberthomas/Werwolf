@@ -45,6 +45,9 @@ public class SchattenpriesterFraktion extends Fraktion {
 
     public static Spieler spielerToChangeCards = null; //used for Schattenmensch
 
+    public static boolean resurrectPossible = false;
+    public static boolean resurrectResigned = false;
+
     public SchattenpriesterFraktion() {
         this.id = ID;
         this.name = NAME;
@@ -71,6 +74,9 @@ public class SchattenpriesterFraktion extends Fraktion {
     @Override
     public void processChosenOption(String chosenOption) {
         Spieler chosenSpieler = Game.game.findSpieler(chosenOption);
+
+        resurrectResigned = resurrectPossible && chosenSpieler == null;
+
         if (chosenSpieler != null) {
             Opfer.removeOpfer(chosenSpieler);
 
@@ -85,7 +91,11 @@ public class SchattenpriesterFraktion extends Fraktion {
 
     @Override
     public FrontendObject getFrontendObject() {
-        return new DropdownListFrontendObject(new DropdownOptions(getRessurectableOpfer(), DropdownConstants.EMPTY));
+        List<String> ressurectableOpfer = getRessurectableOpfer();
+
+        resurrectPossible = ressurectableOpfer.size() > 0;
+
+        return new DropdownListFrontendObject(new DropdownOptions(ressurectableOpfer, DropdownConstants.EMPTY));
     }
 
     private List<String> getRessurectableOpfer() {
