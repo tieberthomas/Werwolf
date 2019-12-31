@@ -55,8 +55,8 @@ public class TimeController {
     }
 
     private static void startNight() {
-        GameController.continueThreads();
         stopCounting();
+        GameController.continueThreads();
     }
 
     public static void stopCounting() {

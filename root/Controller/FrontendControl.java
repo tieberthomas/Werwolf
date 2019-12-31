@@ -432,6 +432,7 @@ public abstract class FrontendControl {
 
     public static void erzählerDefaultDayPage() {
         Page dayPage = erzählerFrame.pageFactory.generateDayPage(Game.game.getSpielerDropdownOptions(true));
+        erzählerFrame.chosenOption1 = "";
         erzählerFrame.buildScreenFromPage(dayPage);
     }
 
