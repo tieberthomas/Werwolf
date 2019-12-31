@@ -94,9 +94,7 @@ public class SchattenpriesterFraktion extends Fraktion {
         for (Opfer currentOpfer : NormalNight.opfer) {
             Spieler opferSpieler = currentOpfer.spieler;
             if (opferSpieler != null) {
-                Fraktion fraktionDesOpfers = opferSpieler.hauptrolle.fraktion;
-                if (opferSpieler.bonusrolle.equals(Schattenkutte.ID) ||
-                        (opferSpieler.ressurectable && !fraktionDesOpfers.equals(SchattenpriesterFraktion.ID))) {
+                if (isResurrectableForSchattenpriester(opferSpieler)) {
                     if (!dropdownStrings.contains(opferSpieler.name)) {
                         dropdownStrings.add(opferSpieler.name);
                     }
@@ -105,5 +103,11 @@ public class SchattenpriesterFraktion extends Fraktion {
         }
 
         return dropdownStrings;
+    }
+
+    private boolean isResurrectableForSchattenpriester(Spieler opferSpieler) {
+        Fraktion fraktionDesOpfers = opferSpieler.hauptrolle.fraktion;
+        return opferSpieler.ressurectable && (!fraktionDesOpfers.equals(SchattenpriesterFraktion.ID) ||
+                opferSpieler.bonusrolle.equals(Schattenkutte.ID));
     }
 }
