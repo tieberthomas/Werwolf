@@ -9,9 +9,9 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class TimeController {
-    private static final int deadLine = 20; //minutes
+    private static final int deadLine = 17; //minutes
     private static int currentDeadLine = deadLine; //minutes
-    private static final int countdownStart = 18; //minutes
+    private static final int countdownStart = 14; //minutes
     private static int deadLineSeconds = currentDeadLine * 60;
     private static final int countdownStartSeconds = countdownStart * 60;
 
@@ -22,7 +22,7 @@ public class TimeController {
     private static int time = 0;
     private static String timestring = "00:00";
 
-    private static boolean dayMode = false;
+    public static boolean dayMode = false;
 
     public static void reset() {
         time = 0;

@@ -3,6 +3,7 @@ package root.Logic.Phases;
 import root.Controller.FrontendControl;
 import root.Frontend.Factories.ErzählerPageFactory;
 import root.Frontend.Frame.GameMode;
+import root.Frontend.Utils.TimeController;
 import root.GameController;
 import root.Logic.Game;
 
@@ -35,6 +36,7 @@ public class PhaseManager extends Thread {
 
     private void night() {
         GameController.mode = GameMode.NORMAL_NIGHT;
+        TimeController.dayMode = false; //TODO: schönere lösung dafür finden
         phaseMode = PhaseMode.NORMAL_NIGHT;
         NormalNight normalNight = new NormalNight();
         normalNight.start();
@@ -50,7 +52,7 @@ public class PhaseManager extends Thread {
         waitForAnswer();
     }
 
-    public static GameMode parsePhaseMode() { //TODO automapper?
+    public static GameMode parsePhaseMode() { //TODO automapper? oder eigene statische mapper kalsse
         if (phaseMode == PhaseMode.DAY) {
             return GameMode.DAY;
         } else if (phaseMode == PhaseMode.SETUP_NIGHT) {
