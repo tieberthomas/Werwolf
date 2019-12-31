@@ -38,7 +38,7 @@ public class Day extends Thread {
         synchronized (lock) {
             FrontendControl.lock = lock;
 
-            TimeController.reset();
+            TimeController.resetTimerAndStartCounting();
 
             FrontendControl.erzählerDefaultDayPage();
             FrontendControl.spielerDayPage();

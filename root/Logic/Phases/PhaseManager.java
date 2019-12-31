@@ -36,7 +36,7 @@ public class PhaseManager extends Thread {
 
     private void night() {
         GameController.mode = GameMode.NORMAL_NIGHT;
-        TimeController.dayMode = false; //TODO: schönere lösung dafür finden
+        TimeController.stopCounting();
         phaseMode = PhaseMode.NORMAL_NIGHT;
         NormalNight normalNight = new NormalNight();
         normalNight.start();
