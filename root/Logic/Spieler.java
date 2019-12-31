@@ -3,6 +3,7 @@ package root.Logic;
 import root.Logic.Persona.Bonusrolle;
 import root.Logic.Persona.Fraktion;
 import root.Logic.Persona.Hauptrolle;
+import root.Logic.Persona.Rollen.Bonusrollen.Analytiker;
 import root.Logic.Persona.Rollen.Bonusrollen.Schatten;
 import root.Logic.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Logic.Persona.Rollen.Constants.BonusrollenType.Tarnumhang_BonusrollenType;
@@ -125,7 +126,7 @@ public class Spieler implements Comparable {
         return hauptrolle.fraktion;
     }
 
-    public Zeigekarte getFraktionInfo(Spieler requester) { //TODO handle Analytiker differently
+    public Zeigekarte getFraktionInfo(Spieler requester) {
         Zeigekarte hauptrollenFraktion = hauptrolle.getFraktionInfo();
         Zeigekarte bonunsrollenFraktion = bonusrolle.getFraktionInfo();
 
@@ -143,7 +144,7 @@ public class Spieler implements Comparable {
             information = hauptrollenFraktion;
         }
 
-        if (this.equals(LadyAleera.gefälschterSpieler)) {
+        if (this.equals(LadyAleera.gefälschterSpieler) && !requester.bonusrolle.equals(Analytiker.ID)) {
             return FraktionsInfo.getWrongInformation(information);
         } else {
             return information;

@@ -8,7 +8,6 @@ import root.Logic.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Logic.Persona.Rollen.Constants.BonusrollenType.Informativ;
 import root.Logic.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Logic.Persona.Rollen.Hauptrollen.Vampire.LadyAleera;
-import root.Logic.Persona.Rollen.Hauptrollen.Vampire.MissVerona;
 import root.Logic.Phases.Statement.Constants.StatementType;
 import root.Logic.Spieler;
 import root.ResourceManagement.ImagePath;
@@ -56,36 +55,13 @@ public class Analytiker extends Bonusrolle {
         besuchtAnalysieren = spieler2;
 
         Spieler analytikerSpieler = Game.game.findSpielerPerRolle(this.id);
-        Spieler getarnterSpieler = MissVerona.getarnterSpieler;
 
-        if (showTarnumhang(this, spieler1) || showTarnumhang(this, spieler2) ||
-                analytikerSpieler.equals(getarnterSpieler) ||
-                spieler1.equals(getarnterSpieler) || spieler2.equals(getarnterSpieler)) {
-            return TARNUMHANG;
-        }
-
-        Zeigekarte fraktion1;
-        Zeigekarte fraktion2;
-
-        Zeigekarte hauptrollenFraktion1 = spieler1.hauptrolle.getFraktionInfo();
-        Zeigekarte bonunsrollenFraktion1 = spieler1.bonusrolle.getFraktionInfo();
-        Zeigekarte hauptrollenFraktion2 = spieler2.hauptrolle.getFraktionInfo();
-        Zeigekarte bonunsrollenFraktion2 = spieler2.bonusrolle.getFraktionInfo();
-
-        if (bonunsrollenFraktion1 != null) {
-            fraktion1 = bonunsrollenFraktion1;
-        } else {
-            fraktion1 = hauptrollenFraktion1;
-        }
-        if (bonunsrollenFraktion2 != null) {
-            fraktion2 = bonunsrollenFraktion2;
-        } else {
-            fraktion2 = hauptrollenFraktion2;
-        }
+        Zeigekarte fraktion1 = spieler1.getFraktionInfo(analytikerSpieler);
+        Zeigekarte fraktion2 = spieler2.getFraktionInfo(analytikerSpieler);
 
         String information;
 
-        if (Objects.equals(fraktion1, fraktion2)) {
+        if (fraktion1.name.equals(fraktion2.name)) {
             information = GLEICH;
         } else {
             Liebespaar liebespaar = Game.game.liebespaar;
