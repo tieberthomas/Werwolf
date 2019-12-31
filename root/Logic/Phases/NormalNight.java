@@ -127,6 +127,7 @@ public class NormalNight extends Thread {
 
                     switch (statement.id) {
                         case ProgramStatements.SCHÜTZE_ID:
+                            setSchattenpriesterSchutz();
                             setNachtfürstSchutz();
                             break;
 
@@ -299,7 +300,7 @@ public class NormalNight extends Thread {
         angriffe = new ArrayList<>();
         opfer = new ArrayList<>();
 
-        for (Spieler currentSpieler : Game.game.spieler) {
+        for (Spieler currentSpieler : Game.game.spieler) { //TODO move to Schütze statement?
             Hauptrolle hauptrolleSpieler = currentSpieler.hauptrolle;
 
             if (hauptrolleSpieler.equals(Schattenpriester.ID)) {
@@ -338,6 +339,14 @@ public class NormalNight extends Thread {
         }
     }
 
+    private void setSchattenpriesterSchutz() {
+        if (SchattenpriesterFraktion.resurrectResigned) {
+            List<Spieler> schattenpriesterList = Fraktion.getFraktionsMembers(SchattenpriesterFraktion.ID);
+            schattenpriesterList.forEach(spieler -> spieler.geschützt = true);
+
+            SchattenpriesterFraktion.resurrectResigned = false;
+        }
+    }
     private void setOpfer() {
         checkLiebespaar();
         killOpfer();
