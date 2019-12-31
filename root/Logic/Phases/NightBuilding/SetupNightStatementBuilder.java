@@ -13,6 +13,7 @@ import root.Logic.Persona.Rollen.Hauptrollen.Werwölfe.Blutwolf;
 import root.Logic.Persona.Rollen.Hauptrollen.Werwölfe.Wolfsmensch;
 import root.Logic.Persona.Rollen.Hauptrollen.Überläufer.Henker;
 import root.Logic.Phases.Statement.Constants.IndieStatements;
+import root.Logic.Phases.Statement.SecondStatement;
 import root.Logic.Phases.Statement.SetupNightStatement;
 import root.Logic.Phases.Statement.Statement;
 
@@ -42,6 +43,7 @@ public class SetupNightStatementBuilder {
         addStatementRolle(Henker.ID);
 
         addStatementRolle(Blutwolf.ID);
+        addSecondStatementRolle(Blutwolf.ID);
 
         statements.add(IndieStatements.getAlleWachenAufStatement());
 
@@ -51,6 +53,17 @@ public class SetupNightStatementBuilder {
     private static void addStatementRolle(String rolleID) {
         Rolle rolle = Rolle.findRolle(rolleID);
         Statement statement = new SetupNightStatement(rolle);
+        statements.add(statement);
+    }
+
+    private static void addSecondStatementRolle(String rolleID) { //TODO Resolve conflict (Rollen can't have Second Statement in both nights)
+        Rolle rolle = Rolle.findRolle(rolleID);
+
+        Statement firstStatement = statements.stream()
+                .filter(s -> s.id.equals(rolle.setupNightStatementID))
+                .findAny().orElse(null);
+
+        Statement statement = new SecondStatement(rolle, firstStatement);
         statements.add(statement);
     }
 

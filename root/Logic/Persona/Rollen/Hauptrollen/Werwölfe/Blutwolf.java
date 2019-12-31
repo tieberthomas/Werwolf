@@ -23,6 +23,11 @@ public class Blutwolf extends Hauptrolle {
     public static final String SETUP_NIGHT_STATEMENT_BESCHREIBUNG = "Blutwolf erwacht und markiert sein Ziel";
     public static final StatementType SETUP_NIGHT_STATEMENT_TYPE = StatementType.PERSONA_CHOOSE_ONE;
 
+    public static final String SECOND_STATEMENT_ID = "Blutwolf2";
+    public static final String SECOND_STATEMENT_TITLE = "Du bist das Ziel";
+    public static final String SECOND_STATEMENT_BESCHREIBUNG = "Der gewählte Spieler erwacht und sieht dass er das Zeil des Blutwolfs ist";
+    public static final StatementType SECOND_STATEMENT_TYPE = StatementType.SHOW_TITLE;
+
     public Blutwolf() {
         this.id = ID;
         this.name = NAME;
@@ -34,6 +39,11 @@ public class Blutwolf extends Hauptrolle {
         this.setupNightStatementTitle = SETUP_NIGHT_STATEMENT_TITLE;
         this.setupNightStatementBeschreibung = SETUP_NIGHT_STATEMENT_BESCHREIBUNG;
         this.setupNightStatementType = SETUP_NIGHT_STATEMENT_TYPE;
+
+        this.secondStatementID = SECOND_STATEMENT_ID;
+        this.secondStatementTitle = SECOND_STATEMENT_TITLE;
+        this.secondStatementBeschreibung = SECOND_STATEMENT_BESCHREIBUNG;
+        this.secondStatementType = SECOND_STATEMENT_TYPE;
     }
 
     public FrontendObject getFrontendObject() {
