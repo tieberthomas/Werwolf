@@ -52,6 +52,5 @@ public class Blutwolf extends Hauptrolle {
 
     public void processChosenOption(String chosenOption) {
         markedPlayer = Game.game.findSpieler(chosenOption);
-        System.out.println(markedPlayer.name + " wurde vom Blutwolf markiert");
     }
 }

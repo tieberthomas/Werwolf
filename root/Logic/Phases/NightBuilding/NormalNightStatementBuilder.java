@@ -12,6 +12,7 @@ import root.Logic.Persona.Rollen.Hauptrollen.Vampire.GrafVladimir;
 import root.Logic.Persona.Rollen.Hauptrollen.Vampire.LadyAleera;
 import root.Logic.Persona.Rollen.Hauptrollen.Vampire.MissVerona;
 import root.Logic.Persona.Rollen.Hauptrollen.Werwölfe.Alphawolf;
+import root.Logic.Persona.Rollen.Hauptrollen.Werwölfe.Wolfsmensch;
 import root.Logic.Persona.Rollen.Hauptrollen.Werwölfe.Wölfin;
 import root.Logic.Persona.Rollen.Hauptrollen.Überläufer.Henker;
 import root.Logic.Persona.Rollen.Hauptrollen.Überläufer.Überläufer;
@@ -67,6 +68,9 @@ public class NormalNightStatementBuilder {
             addStatementRolle(Henker.ID);
         }
         addStatementRolle(Riese.ID);
+        if (PhaseManager.isVollmondNacht()) {
+            addStatementRolle(Wolfsmensch.ID);
+        }
         addStatementFraktion(Werwölfe.ID);
         if (PhaseManager.isVollmondNacht()) {
             addStatementRolle(Alphawolf.ID);
