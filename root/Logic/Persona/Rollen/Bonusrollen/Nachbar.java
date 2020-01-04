@@ -55,7 +55,7 @@ public class Nachbar extends Bonusrolle {
         if (chosenSpieler != null) {
             besucht = chosenSpieler;
 
-            if (showTarnumhang(this, chosenSpieler)) {
+            if (showTarnumhang(chosenSpieler)) {
                 return new ImageFrontendObject(new Tarnumhang_BonusrollenType());
             }
 

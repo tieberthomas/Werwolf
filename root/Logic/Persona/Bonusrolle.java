@@ -2,16 +2,12 @@ package root.Logic.Persona;
 
 import root.Frontend.Frame.MyFrame;
 import root.Logic.Game;
-import root.Logic.Persona.Fraktionen.Bürger;
 import root.Logic.Persona.Rollen.Bonusrollen.Schatten;
 import root.Logic.Persona.Rollen.Bonusrollen.Tarnumhang;
 import root.Logic.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Logic.Persona.Rollen.Constants.BonusrollenType.Passiv;
 import root.Logic.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
-import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Schamanin;
 import root.Logic.Persona.Rollen.Hauptrollen.Vampire.MissVerona;
-import root.Logic.Persona.Rollen.Hauptrollen.Werwölfe.Wolfsmensch;
-import root.Logic.Persona.Rollen.Hauptrollen.Überläufer.Henker;
 import root.Logic.Spieler;
 
 import java.awt.*;
@@ -48,24 +44,14 @@ public class Bonusrolle extends Rolle {
         return this;
     }
 
-    public boolean showTarnumhang(Bonusrolle requester, Spieler spieler) {
+    public boolean showTarnumhang(Spieler spieler) {
         Spieler getarnterSpieler = MissVerona.getarnterSpieler;
         Spieler requesterSpieler = Game.game.findSpielerPerRolle(this.id);
-        return spieler != null && (spieler.bonusrolle.equals(Tarnumhang.ID) ||
-                (spielerIsSchamanin(spieler) && thisRolleIsNotBuerger(requester))) ||
-                requesterSpieler.equals(getarnterSpieler) || spieler.equals(getarnterSpieler);
-    }
-
-    private boolean spielerIsSchamanin(Spieler spieler) {
-        return spieler.hauptrolle.equals(Schamanin.ID)
-                || (spieler.hauptrolle.equals(Henker.ID) && Henker.fakeRolle.equals(Schamanin.ID))
-                || (spieler.hauptrolle.equals(Wolfsmensch.ID) && Wolfsmensch.fakeRolle.equals(Schamanin.ID));
-    }
-
-    private boolean thisRolleIsNotBuerger(Bonusrolle requester) {
-        Spieler spieler = Game.game.findSpielerPerRolle(requester.id);
-
-        return !spieler.hauptrolle.fraktion.equals(new Bürger());
+        if (spieler != null) {
+            return spieler.bonusrolle.equals(Tarnumhang.ID) ||
+                    requesterSpieler.equals(getarnterSpieler) || spieler.equals(getarnterSpieler);
+        }
+        return false;
     }
 
     public BonusrollenType getBonusrollenTypeInfo() {
