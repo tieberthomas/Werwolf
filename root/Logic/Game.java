@@ -201,6 +201,13 @@ public class Game {
                 mitteBonusrollen.add(bonusrolle); //TODO methode auslagern?
             }
 
+            if (spieler.equals(Blutwolf.markedPlayer)) {
+                Blutwolf.deadly = true;
+                System.out.println("Blutwolf hat den markierten Spieler eliminiert und ist nun schutzbrechend.");
+
+                //TODO add statement
+            }
+
             if (Rolle.rolleLebend(Wölfin.ID) && hauptrolle.fraktion.equals(Werwölfe.ID)) {
                 Wölfin.stateKilling = true;
             }

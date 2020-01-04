@@ -43,7 +43,7 @@ public class SetupNightStatementBuilder {
         addStatementRolle(Henker.ID);
 
         addStatementRolle(Blutwolf.ID);
-        addSecondStatementRolle(Blutwolf.ID);
+        addSecondStatementRolle(Blutwolf.ID); //TODO blaue rahmen
 
         statements.add(IndieStatements.getAlleWachenAufStatement());
 
