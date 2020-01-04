@@ -19,6 +19,7 @@ import root.Logic.Persona.Rollen.Hauptrollen.Überläufer.Überläufer;
 import root.Logic.Phases.PhaseManager;
 import root.Logic.Phases.Statement.Constants.IndieStatements;
 import root.Logic.Phases.Statement.Constants.ProgramStatements;
+import root.Logic.Phases.Statement.DynamicStatement;
 import root.Logic.Phases.Statement.SecondStatement;
 import root.Logic.Phases.Statement.Statement;
 import root.Logic.Spieler;
@@ -136,6 +137,12 @@ public class NormalNightStatementBuilder {
             statement = new SecondStatement(rolle);
         }
 
+        statements.add(statement);
+    }
+
+    private static void addDynamicStatementRolle(String rolleID) {
+        Rolle rolle = Rolle.findRolle(rolleID);
+        Statement statement = new DynamicStatement(rolle);
         statements.add(statement);
     }
 

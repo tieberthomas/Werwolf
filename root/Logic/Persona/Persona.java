@@ -30,7 +30,16 @@ public class Persona {
     public String setupNightStatementBeschreibung = "";
     public StatementType setupNightStatementType = StatementType.EMPTY_STATEMENT;
 
+    public String dynamicStatementID = "";
+    public String dynamicStatementTitle = "";
+    public String dynamicStatementBeschreibung = "";
+    public StatementType dynamicStatementType = StatementType.EMPTY_STATEMENT;
+
     public StatementState getState() {
+        return StatementState.NORMAL;
+    }
+
+    public StatementState getDynamicState() {
         return StatementState.NORMAL;
     }
 
