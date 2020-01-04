@@ -308,8 +308,6 @@ public class NormalNight extends Thread {
         }
 
         Torte.beginNight();
-
-        Henker.pagecounter = 0; //TODO move to henker.beginnight
     }
 
     private void refreshStatementStates() {

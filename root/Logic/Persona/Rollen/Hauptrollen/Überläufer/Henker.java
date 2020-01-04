@@ -1,6 +1,9 @@
 package root.Logic.Persona.Rollen.Hauptrollen.Überläufer;
 
-import root.Controller.FrontendObject.*;
+import root.Controller.FrontendObject.DropdownListFrontendObject;
+import root.Controller.FrontendObject.FrontendObject;
+import root.Controller.FrontendObject.ImageFrontendObject;
+import root.Controller.FrontendObject.TwoImageFrontendObject;
 import root.Frontend.Utils.DropdownOptions;
 import root.Logic.Game;
 import root.Logic.KillLogic.AbsoluteKill;
@@ -11,8 +14,8 @@ import root.Logic.Persona.Fraktionen.SchattenpriesterFraktion;
 import root.Logic.Persona.Fraktionen.ÜberläuferFraktion;
 import root.Logic.Persona.Hauptrolle;
 import root.Logic.Persona.Rollen.Bonusrollen.DunklesLicht;
-import root.Logic.Persona.Rollen.Bonusrollen.Schutzengel;
 import root.Logic.Persona.Rollen.Bonusrollen.Schatten;
+import root.Logic.Persona.Rollen.Bonusrollen.Schutzengel;
 import root.Logic.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Logic.Persona.Rollen.Constants.InformationsCluster.BonusrollenInfo;
 import root.Logic.Persona.Rollen.Constants.Zeigekarten.Geschützt;
@@ -170,7 +173,7 @@ public class Henker extends Hauptrolle {
                 FrontendObject fraktionsAuswahl = new DropdownListFrontendObject(FRAKTION_TITLE, new DropdownOptions(Fraktion.getLivingFraktionStrings()));
                 fraktionsAuswahl.hatZurückButton = true;
                 return fraktionsAuswahl;
-            case 2:
+            case 2: //TODO think about removing henker from the list
                 List<Hauptrolle> hauptrollen = ListHelper.cloneList(Game.game.hauptrollenInGame);
                 List<String> hauptrollenStrings = hauptrollen.stream().
                         filter(hauptrolle -> hauptrolle.fraktion.equals(chosenFraktion)).
@@ -224,5 +227,10 @@ public class Henker extends Hauptrolle {
     @Override
     public Zeigekarte getFraktionInfo() {
         return fakeRolle.getFraktionInfo();
+    }
+
+    @Override
+    public void beginNight() {
+        pagecounter = 0;
     }
 }
