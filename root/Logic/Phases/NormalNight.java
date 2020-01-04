@@ -37,8 +37,6 @@ public class NormalNight extends Thread {
     public static List<Statement> statements;
     public static Object lock;
 
-    public static boolean vollmondNacht = false;
-
     public static List<Angriff> angriffe = new ArrayList<>();
     public static List<Opfer> opfer = new ArrayList<>();
     public List<String> opferDerNacht;
@@ -282,7 +280,6 @@ public class NormalNight extends Thread {
 
     private void beginNight() {
         setDefaultPlayerStates();
-        vollmondNacht = PhaseManager.isVollmondNacht();
 
         for (Fraktion fraktion : Fraktion.getFraktionen()) {
             fraktion.beginNight();

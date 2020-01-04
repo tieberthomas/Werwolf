@@ -37,7 +37,7 @@ public class SchnüfflerInformationGenerator {
 
     public SchnüfflerInformation generateInformation() {
         Bonusrolle schnüffler = Game.game.findSpielerPerRolle(Schnüffler.ID).bonusrolle;
-        if (schnüffler.showTarnumhang(schnüffler, spieler)) {
+        if (schnüffler.showTarnumhang(spieler)) {
             return new SchnüfflerInformation(spieler.name);
         }
 

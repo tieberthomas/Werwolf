@@ -216,10 +216,12 @@ public class Henker extends Hauptrolle {
         }
     }
 
+    @Override
     public Zeigekarte isTötendInfo(Spieler requester) {
         return fakeRolle.isTötendInfo(requester);
     }
 
+    @Override
     public Zeigekarte getFraktionInfo() {
         return fakeRolle.getFraktionInfo();
     }

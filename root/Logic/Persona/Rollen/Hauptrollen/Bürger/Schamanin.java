@@ -5,10 +5,6 @@ import root.Logic.Game;
 import root.Logic.Persona.Fraktion;
 import root.Logic.Persona.Fraktionen.Bürger;
 import root.Logic.Persona.Hauptrolle;
-import root.Logic.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
-import root.Logic.Persona.Rollen.Constants.BonusrollenType.Tarnumhang_BonusrollenType;
-import root.Logic.Persona.Rollen.Constants.Zeigekarten.SpäherZeigekarte;
-import root.Logic.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
 import root.Logic.Phases.Statement.Constants.StatementType;
 import root.Logic.Spieler;
 import root.ResourceManagement.ImagePath;
@@ -53,26 +49,5 @@ public class Schamanin extends Hauptrolle {
             chosenSpieler.geschützt = true;
             abilityCharges--;
         }
-    }
-
-    @Override
-    public BonusrollenType getBonusrollenTypeInfo(Spieler requester) {
-        if (thisRolleIsNotBuerger(requester)) {
-            return new Tarnumhang_BonusrollenType();
-        }
-
-        return null;
-    }
-
-    public Zeigekarte isTötendInfo(Spieler requester) {
-        if (thisRolleIsNotBuerger(requester)) {
-            return new Tarnumhang_BonusrollenType();
-        }
-
-        return SpäherZeigekarte.getZeigekarte(killing);
-    }
-
-    private boolean thisRolleIsNotBuerger(Spieler requester) {
-        return requester != null && !requester.hauptrolle.fraktion.equals(new Bürger());
     }
 }
