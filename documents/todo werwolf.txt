@@ -3,9 +3,11 @@ StatementType ROLLE_CHOOSE_SPIELER
 new Rolle vermeiden: immer von Liste in Game holen
 
 task:
+fix sounds -> sounds werden manchmal abgeschnitten
 wenn dieb karten stiehlt wie z.B. schnüffler oder tarnumhang, dann müssen arraylists der letzten nächte zurückgesetzt werden
 
 CherryOnTop:
+bei tot und deaktiviert page darunter hinschreiben: du bist diese nacht gestorben/deaktiviert worden
 Statements farblich markieren nach status
 seher bamboozlekarten dem erzähler zeigen während der seher aktion damit dieser nicht verwirrt ist
 bei übersichtspage rahmen von mehreren personen anzeigen (die nicht die ganze fraktion sind)
@@ -15,7 +17,7 @@ getInstance (findSpielerOrDead) in game
 is tötend in werwolffraktion generischer machen
 rahmen am übersichtsframe richtig anzeigen
 Dunkles Licht bekommt wenn es keine Irrlichter mehr gibt "du bist das letzte Irrlicht" -> "es gibt keine Irrlichter mehr"
-Trote soll am Screan angezeigt werden, ob sie gut oder schlecht ist
+Torte soll am Screan angezeigt werden, ob sie gut oder schlecht ist
 
 zuviel arbeit fürs erste:
 nach jeder nacht und tag persistierung

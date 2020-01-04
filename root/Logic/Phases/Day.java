@@ -39,6 +39,7 @@ public class Day extends Thread {
             FrontendControl.lock = lock;
 
             TimeController.resetTimerAndStartCounting();
+            Schattenmensch.resetReineSeeleFlag();
 
             FrontendControl.erzählerDefaultDayPage();
             FrontendControl.spielerDayPage();
@@ -83,6 +84,8 @@ public class Day extends Thread {
     }
 
     private void handleInvincibility(Spieler chosenSpieler) {
+        Schattenmensch.reineSeelWasPresentLastDay = true;
+
         if (isGebürgterSpieler(chosenSpieler)) {
             System.out.println("Der Priester " + priester.name + " hat " + chosenSpieler.name + " gerettet.");
         }

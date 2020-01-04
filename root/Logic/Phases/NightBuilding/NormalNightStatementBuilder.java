@@ -33,8 +33,9 @@ public class NormalNightStatementBuilder {
         statements = new ArrayList<>();
 
         statements.add(IndieStatements.getAlleSchlafenEinStatement());
-        if (Schattenmensch.shallBeTransformed) {
-            Schattenmensch.transform(); //TODO program statement
+
+        if(Schattenmensch.addStatement()) {
+            addStatementRolle(Schattenmensch.ID); //TODO generalize the addstatment concept to account for that case
         }
 
         if (Game.game.mitteBonusrollen.size() > 0) {

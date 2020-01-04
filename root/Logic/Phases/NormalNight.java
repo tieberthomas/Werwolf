@@ -8,20 +8,13 @@ import root.Logic.KillLogic.Angriff;
 import root.Logic.KillLogic.Opfer;
 import root.Logic.KillLogic.Selbstmord;
 import root.Logic.Liebespaar;
-import root.Logic.Persona.Bonusrolle;
-import root.Logic.Persona.Fraktion;
+import root.Logic.Persona.*;
 import root.Logic.Persona.Fraktionen.SchattenpriesterFraktion;
-import root.Logic.Persona.Hauptrolle;
-import root.Logic.Persona.Persona;
-import root.Logic.Persona.Rolle;
-import root.Logic.Persona.Rollen.Bonusrollen.Analytiker;
-import root.Logic.Persona.Rollen.Bonusrollen.Konditor;
-import root.Logic.Persona.Rollen.Bonusrollen.Konditorlehrling;
-import root.Logic.Persona.Rollen.Bonusrollen.Nachtfürst;
-import root.Logic.Persona.Rollen.Bonusrollen.Schattenkutte;
+import root.Logic.Persona.Rollen.Bonusrollen.*;
 import root.Logic.Persona.Rollen.Constants.BonusrollenType.Tarnumhang_BonusrollenType;
 import root.Logic.Persona.Rollen.Constants.Zeigekarten.Torten_Zeigekarte;
 import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Irrlicht;
+import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Schattenmensch;
 import root.Logic.Persona.Rollen.Hauptrollen.Schattenpriester.Schattenpriester;
 import root.Logic.Persona.Rollen.Hauptrollen.Überläufer.Henker;
 import root.Logic.Phases.NightBuilding.NormalNightStatementBuilder;
@@ -126,6 +119,12 @@ public class NormalNight extends Thread {
                     }
 
                     switch (statement.id) {
+                        case Schattenmensch.STATEMENT_ID:
+                            FrontendObject frontendObject = persona.getFrontendObject();
+                            Schattenmensch.transformIfShallBeTransformed();
+                            FrontendControl.showFrontendObject(statement, frontendObject);
+                            break;
+
                         case ProgramStatements.SCHÜTZE_ID:
                             setSchattenpriesterSchutz();
                             setNachtfürstSchutz();
@@ -347,6 +346,7 @@ public class NormalNight extends Thread {
             SchattenpriesterFraktion.resurrectResigned = false;
         }
     }
+
     private void setOpfer() {
         checkLiebespaar();
         killOpfer();
