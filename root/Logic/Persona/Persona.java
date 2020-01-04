@@ -63,4 +63,7 @@ public class Persona {
 
     public void beginNight() {
     }
+
+    public void cleanUpAfterNight() {
+    }
 }

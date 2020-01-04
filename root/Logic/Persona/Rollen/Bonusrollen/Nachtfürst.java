@@ -1,6 +1,9 @@
 package root.Logic.Persona.Rollen.Bonusrollen;
 
-import root.Controller.FrontendObject.*;
+import root.Controller.FrontendObject.DropdownFrontendObject;
+import root.Controller.FrontendObject.DropdownListFrontendObject;
+import root.Controller.FrontendObject.FrontendObject;
+import root.Controller.FrontendObject.ImageFrontendObject;
 import root.Frontend.Utils.DropdownOptions;
 import root.Logic.Game;
 import root.Logic.KillLogic.NormalKill;
@@ -15,6 +18,7 @@ import root.Logic.Persona.Rollen.Constants.DropdownConstants;
 import root.Logic.Persona.Rollen.Constants.Zeigekarten.Geschützt;
 import root.Logic.Persona.Rollen.Constants.Zeigekarten.Nicht_Tötend;
 import root.Logic.Persona.Rollen.Hauptrollen.Überläufer.Henker;
+import root.Logic.Phases.NormalNight;
 import root.Logic.Phases.Statement.Constants.StatementType;
 import root.Logic.Spieler;
 import root.ResourceManagement.ImagePath;
@@ -114,7 +118,7 @@ public class Nachtfürst extends Bonusrolle {
         }
     }
 
-    public boolean isTötendeFraktion() {
+    public boolean isTötendeFraktion() { //TODO hier die Henker frattion überprüfung ändern
         Spieler nachtfürstSpieler = Game.game.findSpielerPerRolle(id);
 
         if (nachtfürstSpieler != null) {
@@ -126,11 +130,13 @@ public class Nachtfürst extends Bonusrolle {
         }
     }
 
-    public void checkGuess(int anzahlOpferDerNacht) {
-        if (tipp == null) {
-            guessedRight = false;
-        } else {
-            guessedRight = (anzahlOpferDerNacht == tipp);
-        }
+    private void checkGuess(int anzahlOpferDerNacht) {
+        guessedRight = tipp != null && (anzahlOpferDerNacht == tipp);
+    }
+
+    public void cleanUpAfterNight() {
+        int anzahlOpferDerNacht = NormalNight.getAnzahlOpferDerNacht();
+        checkGuess(anzahlOpferDerNacht);
+        tipp = null;
     }
 }

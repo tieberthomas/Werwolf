@@ -39,7 +39,7 @@ public class NormalNight extends Thread {
 
     public static List<Angriff> angriffe = new ArrayList<>();
     public static List<Opfer> opfer = new ArrayList<>();
-    public List<String> opferDerNacht;
+    public static List<String> opferDerNacht;
 
     public static List<Spieler> spielerAwake = new ArrayList<>();
 
@@ -309,7 +309,7 @@ public class NormalNight extends Thread {
 
         Torte.beginNight();
 
-        Henker.pagecounter = 0;
+        Henker.pagecounter = 0; //TODO move to henker.beginnight
     }
 
     private void refreshStatementStates() {
@@ -320,7 +320,7 @@ public class NormalNight extends Thread {
         }
     }
 
-    private void setNachtfürstSchutz() {
+    private void setNachtfürstSchutz() { //TODO find a way to move out of night
         Rolle rolle = Rolle.findRolle(Nachtfürst.ID);
 
         if (rolle != null) {
@@ -362,7 +362,14 @@ public class NormalNight extends Thread {
     }
 
     private void cleanUpNight() {
-        checkNachtfürstGuess();
+        for (Hauptrolle hauptrolle : Game.game.hauptrollenInGame) {
+            hauptrolle.cleanUpAfterNight();
+        }
+
+        for (Bonusrolle bonusrolle : Game.game.bonusrollenInGame) {
+            bonusrolle.cleanUpAfterNight();
+        }
+
         setDefaultPlayerStates();
     }
 
@@ -374,18 +381,7 @@ public class NormalNight extends Thread {
         }
     }
 
-    private void checkNachtfürstGuess() {
-        Rolle rolle = Rolle.findRolle(Nachtfürst.ID);
-
-        if (rolle != null) {
-            Nachtfürst nachtfürst = (Nachtfürst) rolle;
-
-            int anzahlOpferDerNacht = getAnzahlOpferDerNacht();
-            nachtfürst.checkGuess(anzahlOpferDerNacht);
-        }
-    }
-
-    private int getAnzahlOpferDerNacht() {
+    public static int getAnzahlOpferDerNacht() {
         if (opferDerNacht == null) {
             return 0;
         } else {

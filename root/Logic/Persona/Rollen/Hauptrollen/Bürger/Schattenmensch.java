@@ -67,7 +67,7 @@ public class Schattenmensch extends Hauptrolle {
                 SchattenpriesterFraktion.spielerToChangeCards = schattenmenschSpieler;
             }
 
-            shallBeTransformed = false; //TODO move into cleanup after death
+            shallBeTransformed = false;
         }
     }
 

@@ -34,7 +34,7 @@ public class NormalNightStatementBuilder {
 
         statements.add(IndieStatements.getAlleSchlafenEinStatement());
 
-        if(Schattenmensch.addStatement()) {
+        if (Schattenmensch.addStatement()) {
             addStatementRolle(Schattenmensch.ID); //TODO generalize the addstatment concept to account for that case
         }
 
@@ -59,7 +59,6 @@ public class NormalNightStatementBuilder {
         addStatementRolle(Späher.ID);
 
         //TODO move nacht addstatement speziallogik into rollen/fraktionen
-        //TODO addstatementRolle sollte nicht immer statements mitbekommen, statements sollte eine public klassenvariable sein.
         if (PhaseManager.nightCount == 1) {
             Spieler henkerSpieler = Game.game.findSpielerPerRolle(Henker.ID);
             if (henkerSpieler != null) {
