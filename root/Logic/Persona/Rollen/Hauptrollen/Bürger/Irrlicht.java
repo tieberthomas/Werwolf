@@ -1,6 +1,9 @@
 package root.Logic.Persona.Rollen.Hauptrollen.Bürger;
 
-import root.Controller.FrontendObject.*;
+import root.Controller.FrontendObject.FrontendObject;
+import root.Controller.FrontendObject.IrrlichtDropdownFrontendObject;
+import root.Controller.FrontendObject.ListFrontendObject;
+import root.Controller.FrontendObject.TitleFrontendObject;
 import root.Frontend.Utils.DropdownOptions;
 import root.Logic.Game;
 import root.Logic.KillLogic.Selbstmord;
@@ -8,7 +11,7 @@ import root.Logic.Persona.Fraktion;
 import root.Logic.Persona.Fraktionen.Bürger;
 import root.Logic.Persona.Hauptrolle;
 import root.Logic.Persona.Rollen.Bonusrollen.DunklesLicht;
-import root.Logic.Phases.NormalNight;
+import root.Logic.Phases.PhaseManager;
 import root.Logic.Phases.Statement.Constants.StatementType;
 import root.Logic.Spieler;
 import root.ResourceManagement.ImagePath;
@@ -63,7 +66,7 @@ public class Irrlicht extends Hauptrolle {
         int numberIrrlichterInGame = Game.game.getLichterStrings().size();
         int numberFlackerndeIrrlichter = flackerndeIrrlichter.size();
 
-        if (NormalNight.vollmondNacht) {
+        if (PhaseManager.isVollmondNacht()) {
             for (String flackerndesIrrlicht : flackerndeIrrlichter) {
                 Spieler irrlichtSpieler = Game.game.findSpieler(flackerndesIrrlicht);
                 if (irrlichtSpieler != null) {
