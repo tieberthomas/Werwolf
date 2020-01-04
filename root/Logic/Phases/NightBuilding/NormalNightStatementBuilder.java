@@ -12,6 +12,7 @@ import root.Logic.Persona.Rollen.Hauptrollen.Vampire.GrafVladimir;
 import root.Logic.Persona.Rollen.Hauptrollen.Vampire.LadyAleera;
 import root.Logic.Persona.Rollen.Hauptrollen.Vampire.MissVerona;
 import root.Logic.Persona.Rollen.Hauptrollen.Werwölfe.Alphawolf;
+import root.Logic.Persona.Rollen.Hauptrollen.Werwölfe.Blutwolf;
 import root.Logic.Persona.Rollen.Hauptrollen.Werwölfe.Wolfsmensch;
 import root.Logic.Persona.Rollen.Hauptrollen.Werwölfe.Wölfin;
 import root.Logic.Persona.Rollen.Hauptrollen.Überläufer.Henker;
@@ -107,6 +108,7 @@ public class NormalNightStatementBuilder {
 
         statements.add(IndieStatements.getAlleWachenAufStatement());
         statements.add(IndieStatements.getOpferStatement());
+        addDynamicStatementRolle(Blutwolf.ID);
 
         statements.add(ProgramStatements.getTortenStatement());
 
