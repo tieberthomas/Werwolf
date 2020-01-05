@@ -97,7 +97,6 @@ public class NormalNightStatementBuilder {
         addStatementRolle(Archivar.ID);
         addStatementRolle(Schnüffler.ID);
         addStatementRolle(Seherin.ID);
-        addStatementRolle(Medium.ID);
 
         addStatementRolle(GrafVladimir.ID);
 

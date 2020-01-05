@@ -147,7 +147,6 @@ public class Game {
         //Imitator
         bonusrollen.add(new Konditor());
         bonusrollen.add(new Konditorlehrling());
-        bonusrollen.add(new Medium());
         bonusrollen.add(new Nachbar());
         bonusrollen.add(new Nachtfürst());
         bonusrollen.add(new Prostituierte());

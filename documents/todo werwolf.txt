@@ -4,7 +4,6 @@ wenn schnüffler niemanden wählen kann, soll er trotzdem info bekommen, gewähl
 überläufer in henker fraktion umbenennen und icon ändern + ganze henkerfraktion tötend für nachtfürst
 Wenn Wolfsmensch der Letzte Wolf ist, wird den Wölfen "Tot" angezeigt
 blutmond anzeige
-Medium Rexen
 
 fix sounds -> sounds werden manchmal abgeschnitten
 wenn dieb karten stiehlt wie z.B. schnüffler oder tarnumhang, dann müssen arraylists der letzten nächte zurückgesetzt werden

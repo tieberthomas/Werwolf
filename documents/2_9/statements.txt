@@ -41,7 +41,6 @@ Analytiker erwacht und wählt zwei Spieler, der Erzähler sagt ihm ob diese in d
 Archivar erwacht und lässt sich Auskunft über die Bonusrolle eines Mitspielers geben
 Schnüffler erwacht und lässt sich Auskunft über einen Mitspieler geben
 Seherin erwacht und lässt sich Auskunft über die Fraktion eines Mitspielers geben
-Medium erwacht und erfährt eine zufällige Bonusrolle, die nicht im Spiel ist
 Graf Vladimir erwacht und verschleiert die Identität eines Spielers
 Nachbar erwacht, wählt einen Spieler und erfährt wer diesen Spieler besucht hat
 Konditor erwacht und entscheidet sich ob es eine gute oder schlechte Torte gibt
