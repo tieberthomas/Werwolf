@@ -134,6 +134,7 @@ public class Nachtfürst extends Bonusrolle {
         guessedRight = tipp != null && (anzahlOpferDerNacht == tipp);
     }
 
+    @Override
     public void cleanUpAfterNight() {
         int anzahlOpferDerNacht = NormalNight.getAnzahlOpferDerNacht();
         checkGuess(anzahlOpferDerNacht);

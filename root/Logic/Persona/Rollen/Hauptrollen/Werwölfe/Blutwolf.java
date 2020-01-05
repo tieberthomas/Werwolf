@@ -17,6 +17,7 @@ public class Blutwolf extends Hauptrolle {
     public static final String IMAGE_PATH = ImagePath.BLUTWOLF_KARTE;
     public static final Fraktion FRAKTION = new Werwölfe();
     public static Spieler markedPlayer = null;
+    public static boolean markedPlayerJustDied = false;
     public static boolean deadly = false;
 
     public static final String SETUP_NIGHT_STATEMENT_ID = ID;
@@ -67,7 +68,16 @@ public class Blutwolf extends Hauptrolle {
 
     @Override
     public StatementState getDynamicState() {
-        //TODO
-        return StatementState.INVISIBLE_NOT_IN_GAME;
+        if (markedPlayerJustDied) {
+            return StatementState.NORMAL;
+        } else {
+            return StatementState.INVISIBLE_NOT_IN_GAME;
+        }
     }
+
+    @Override
+    public void cleanUpAfterNight() {
+        markedPlayerJustDied = false;
+    }
+
 }

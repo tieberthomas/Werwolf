@@ -202,10 +202,9 @@ public class Game {
             }
 
             if (spieler.equals(Blutwolf.markedPlayer)) {
+                Blutwolf.markedPlayerJustDied = true;
                 Blutwolf.deadly = true;
                 System.out.println("Blutwolf hat den markierten Spieler eliminiert und ist nun schutzbrechend.");
-
-                //TODO activate statement
             }
 
             if (Rolle.rolleLebend(Wölfin.ID) && hauptrolle.fraktion.equals(Werwölfe.ID)) {
