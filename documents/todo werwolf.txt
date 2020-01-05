@@ -1,6 +1,5 @@
 tasks:
 blutwolf ziel war unter den opfern statement
-1. nacht angriff konsumieren
 wenn schnüffler niemanden wählen kann, soll er trotzdem info bekommen, gewählte sollen nacht für nacht verfliegen, damit er wieder erneut wählen kann
 überläufer in henker fraktion umbenennen und icon ändern + ganze henkerfraktion tötend für nachtfürst
 Wenn Wolfsmensch der Letzte Wolf ist, wird den Wölfen "Tot" angezeigt

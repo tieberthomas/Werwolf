@@ -104,9 +104,6 @@ public class Angriff {
 
     private boolean killIsSuccessfull() {
         if (defendable) {
-            if (opfer.geschützt) {
-                return false;
-            }
             //TODO make framework for one-time-Schutz
             if (opfer.bonusrolle.equals(DunklesLicht.ID)) {
                 DunklesLicht dunklesLicht = (DunklesLicht) opfer.bonusrolle;
@@ -115,6 +112,7 @@ public class Angriff {
                     return false;
                 }
             }
+
             if (opfer.bonusrolle.equals(Tarnumhang.ID)) {
                 Tarnumhang tarnumhang = (Tarnumhang) opfer.bonusrolle;
                 if (tarnumhang.schutzAktiv) {
@@ -122,6 +120,7 @@ public class Angriff {
                     return false;
                 }
             }
+
             if (opfer.bonusrolle.equals(Wolfspelz.ID) && täterFraktion.equals(Werwölfe.ID)) {
                 Wolfspelz wolfspelz = (Wolfspelz) opfer.bonusrolle;
                 if (wolfspelz.schutzAktiv) {
@@ -129,12 +128,17 @@ public class Angriff {
                     return false;
                 }
             }
+
             if (opfer.bonusrolle.equals(Vampirumhang.ID) && täterFraktion.equals(Vampire.ID)) {
                 Vampirumhang vampirumhang = (Vampirumhang) opfer.bonusrolle;
                 if (vampirumhang.schutzAktiv) {
                     vampirumhang.consumeSchutz();
                     return false;
                 }
+            }
+
+            if (opfer.geschützt) {
+                return false;
             }
         }
 
