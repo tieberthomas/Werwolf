@@ -20,11 +20,9 @@ Statements farblich markieren nach status
 seher bamboozlekarten dem erzähler zeigen während der seher aktion damit dieser nicht verwirrt ist
 bei übersichtspage rahmen von mehreren personen anzeigen (die nicht die ganze fraktion sind)
 showDeaktivPages und showTotPages schön zusammenfassen zu einer Methode die eine Zeigekarte kriegt
-aufgebraucht page interaktiv gestalten
 getInstance (findSpielerOrDead) in game
 is tötend in werwolffraktion generischer machen
 rahmen am übersichtsframe richtig anzeigen
-Dunkles Licht bekommt wenn es keine Irrlichter mehr gibt "du bist das letzte Irrlicht" -> "es gibt keine Irrlichter mehr"
 Torte soll am Screen angezeigt werden, ob sie gut oder schlecht ist
 vll. feinschmecker in das torten framework einklinken
 
