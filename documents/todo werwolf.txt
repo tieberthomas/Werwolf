@@ -25,7 +25,8 @@ getInstance (findSpielerOrDead) in game
 is tötend in werwolffraktion generischer machen
 rahmen am übersichtsframe richtig anzeigen
 Dunkles Licht bekommt wenn es keine Irrlichter mehr gibt "du bist das letzte Irrlicht" -> "es gibt keine Irrlichter mehr"
-Torte soll am Screan angezeigt werden, ob sie gut oder schlecht ist
+Torte soll am Screen angezeigt werden, ob sie gut oder schlecht ist
+vll. feinschmecker in das torten framework einklinken
 
 zuviel arbeit fürs erste:
 nach jeder nacht und tag persistierung

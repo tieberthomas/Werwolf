@@ -5,7 +5,7 @@ import root.ResourceManagement.ImagePath;
 public class Deaktiviert extends Zeigekarte {
     public Deaktiviert() {
         this.name = "Deaktiviert";
-        this.title = "Deaktiviert";
+        this.title = "Du bist deaktiviert";
         this.imagePath = ImagePath.DEAKTIVIERT;
     }
 }
