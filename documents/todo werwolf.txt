@@ -15,7 +15,6 @@ StatementType ROLLE_CHOOSE_SPIELER
 new Rolle vermeiden: immer von Liste in Game holen
 
 CherryOnTop:
-bei tot und deaktiviert page darunter hinschreiben: du bist diese nacht gestorben/deaktiviert worden
 Statements farblich markieren nach status
 seher bamboozlekarten dem erzähler zeigen während der seher aktion damit dieser nicht verwirrt ist
 bei übersichtspage rahmen von mehreren personen anzeigen (die nicht die ganze fraktion sind)
@@ -25,6 +24,7 @@ is tötend in werwolffraktion generischer machen
 rahmen am übersichtsframe richtig anzeigen
 Torte soll am Screen angezeigt werden, ob sie gut oder schlecht ist
 vll. feinschmecker in das torten framework einklinken
+bei einem irrlicht das flackert ist für den erzähler nicht klar, welches Irrlicht er aufwecken muss
 
 zuviel arbeit fürs erste:
 nach jeder nacht und tag persistierung
