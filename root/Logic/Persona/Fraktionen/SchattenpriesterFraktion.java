@@ -93,7 +93,7 @@ public class SchattenpriesterFraktion extends Fraktion {
     public FrontendObject getFrontendObject() {
         List<String> ressurectableOpfer = getRessurectableOpfer();
 
-        resurrectPossible = ressurectableOpfer.size() > 0;
+        resurrectPossible = isResurrectPossible(ressurectableOpfer); //TODO find prettier place for this
 
         return new DropdownListFrontendObject(new DropdownOptions(ressurectableOpfer, DropdownConstants.EMPTY));
     }
@@ -113,6 +113,10 @@ public class SchattenpriesterFraktion extends Fraktion {
         }
 
         return dropdownStrings;
+    }
+
+    private boolean isResurrectPossible(List<String> ressurectableOpfer) {
+        return Fraktion.fraktionAktiv(ID) && ressurectableOpfer.size() > 0;
     }
 
     private boolean isResurrectableForSchattenpriester(Spieler opferSpieler) {
