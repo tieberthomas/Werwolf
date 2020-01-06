@@ -31,7 +31,7 @@ public class Blutwolf extends Hauptrolle {
     public static final StatementType SECOND_STATEMENT_TYPE = StatementType.SHOW_TITLE;
 
     public static final String DYNAMIC_STATEMENT_ID = "Blutwolf_Dynamic";
-    public static final String DYNAMIC_STATEMENT_TITLE = "Das Ziel des Blutwolfs war unter denn Opfern";
+    public static final String DYNAMIC_STATEMENT_TITLE = "Ziel des Blutwolfs war unter denn Opfern";
     public static final String DYNAMIC_STATEMENT_BESCHREIBUNG = "Das Ziel des Blutwolfs war unter denn Opfern";
     public static final StatementType DYNAMIC_STATEMENT_TYPE = StatementType.SHOW_TITLE;
 
