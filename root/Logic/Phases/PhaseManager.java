@@ -52,18 +52,6 @@ public class PhaseManager extends Thread {
         waitForAnswer();
     }
 
-    public static GameMode parsePhaseMode() { //TODO automapper? oder eigene statische mapper kalsse
-        if (phaseMode == PhaseMode.DAY) {
-            return GameMode.DAY;
-        } else if (phaseMode == PhaseMode.SETUP_NIGHT) {
-            return GameMode.SETUP_NIGHT;
-        } else if (phaseMode == PhaseMode.NORMAL_NIGHT) {
-            return GameMode.NORMAL_NIGHT;
-        } else {
-            return GameMode.SETUP;
-        }
-    }
-
     public void waitForAnswer() {
         FrontendControl.refreshÜbersichtsFrame();
         try {
