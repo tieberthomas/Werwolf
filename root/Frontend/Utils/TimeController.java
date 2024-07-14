@@ -2,6 +2,7 @@ package root.Frontend.Utils;
 
 import root.Frontend.Frame.SpielerFrame;
 import root.GameController;
+import root.Logic.Phases.PhaseManager;
 
 import java.awt.*;
 import java.util.concurrent.Executors;
@@ -23,7 +24,11 @@ public class TimeController {
     private static boolean isCounting = false;
 
     public static void resetTimerAndStartCounting() {
-        time = getDiscussionTimeInSeconds();
+        if (PhaseManager.nightCount <= 1) {
+            time = getDiscussionTimeInSeconds() / 2;
+        } else {
+            time = getDiscussionTimeInSeconds();
+        }
         isCounting = true;
     }
 
