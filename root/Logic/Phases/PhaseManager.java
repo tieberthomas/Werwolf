@@ -72,6 +72,6 @@ public class PhaseManager extends Thread {
     }
 
     public static int getDaysUntilFullMoon() {
-        return nightCount % 3;
+        return 2 - (nightCount - 1) % 3;
     }
 }

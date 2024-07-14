@@ -393,12 +393,12 @@ public abstract class SpielerPageElementFactory {
         return spielerFrame.frameJpanel.getHeight();
     }
 
-    public static PageElement generateVollmondImage(String imagePath, int height) { //TODO pass position via parameters
-        JLabel vollmondLabel = generateFixedHeightImage(imagePath, height);
+    public static PageElement generateFullMoonImage(String imagePath, int height) { //TODO pass position via parameters
+        JLabel fullMoonImage = generateFixedHeightImage(imagePath, height);
 
-        int imageWidth = vollmondLabel.getIcon().getIconWidth();
-        int imageHeight = vollmondLabel.getIcon().getIconHeight();
+        int imageWidth = fullMoonImage.getIcon().getIconWidth();
+        int imageHeight = fullMoonImage.getIcon().getIconHeight();
 
-        return new PageElement(vollmondLabel, imageWidth, imageHeight, null, null, getSpielerFrameWidth() - 140, getSpielerFrameHeight() - 130); //TODO make math generic
+        return new PageElement(fullMoonImage, imageWidth, imageHeight, null, null, getSpielerFrameWidth() - 140, getSpielerFrameHeight() - 130); //TODO make math generic
     }
 }

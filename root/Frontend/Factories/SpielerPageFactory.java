@@ -7,12 +7,13 @@ import root.Frontend.Page.Page;
 import root.Frontend.Page.PageElement;
 import root.Logic.Liebespaar;
 import root.Logic.Persona.Fraktion;
-import root.Logic.Persona.Rollen.Constants.Zeigekarten.FraktionsZeigekarten.Vollmond;
 import root.Logic.Persona.Rollen.Constants.Zeigekarten.Tot;
 import root.Logic.Phases.Winner;
 
 import javax.swing.*;
 import java.util.List;
+
+import static root.Utils.MoonImageUtil.getMoonImagePath;
 
 public abstract class SpielerPageFactory {
     public static SpielerFrame spielerFrame;
@@ -96,20 +97,20 @@ public abstract class SpielerPageFactory {
     public static Page generateDayPage(List<String> hauptrollen, List<String> bonusrollen, int daysUntilFullMoon) {
         int titleSpace = 80;
         int clockSpace = 150;
+
         Page listPage = SpielerListPageFactory.generateDoubleListPage(hauptrollen, bonusrollen, titleSpace, clockSpace - 30);
 
         PageElement title1Element = SpielerPageElementFactory.generateColumnTitleLabel("Hauptrollen", 2, 0, titleSpace);
+        listPage.add(title1Element);
+
         PageElement title2Element = SpielerPageElementFactory.generateColumnTitleLabel("Bonusrollen", 2, 1, titleSpace);
+        listPage.add(title2Element);
+
+        PageElement fullMoonImage = SpielerPageElementFactory.generateFullMoonImage(getMoonImagePath(daysUntilFullMoon), 100);
+        listPage.add(fullMoonImage);
 
         spielerFrame.clockLabel = new JLabel();
         PageElement counterLabel = SpielerPageElementFactory.generateClockLabel(spielerFrame.clockLabel, clockSpace);
-
-        listPage.add(title1Element);
-        listPage.add(title2Element);
-        if (daysUntilFullMoon == 0) {
-            PageElement vollmondImage = SpielerPageElementFactory.generateVollmondImage(new Vollmond().imagePath, 100);
-            listPage.add(vollmondImage);
-        }
         listPage.add(counterLabel);
 
         return listPage;
@@ -183,7 +184,6 @@ public abstract class SpielerPageFactory {
         PageElement imageLabel1 = SpielerPageElementFactory.generateLeftCenteredImageLabel(imagePath1, titleLabel);
         PageElement imageLabel2 = SpielerPageElementFactory.generateImageLabel(imagePath2, imageLabel1, titleLabel);
 
-
         Page imagePage = new Page(0, 10);
 
         imagePage.add(titleLabel);
@@ -202,7 +202,6 @@ public abstract class SpielerPageFactory {
 
         imageLabel1.setCoordX(imageLabel1.coordX - 10);
         imageLabel2.setCoordX(imageLabel2.coordX + 10);
-
 
         Page imagePage = new Page(0, 10);
 

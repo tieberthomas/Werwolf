@@ -32,7 +32,9 @@ public class ImagePath {
     public static String TOT = ICON_PATH + "Tot" + IMAGE_FILE_EXTENSION;
     public static String TÖTEND = ICON_PATH + "Tötend" + IMAGE_FILE_EXTENSION;
     public static String TÖTEND_ODER_GESCHÜTZT = ICON_PATH + "Tötend_oder_Geschützt" + IMAGE_FILE_EXTENSION;
-    public static String VOLLMOND = ICON_PATH + "Vollmond" + IMAGE_FILE_EXTENSION;
+    public static String NEW_MOON = ICON_PATH + "Neumond" + IMAGE_FILE_EXTENSION;
+    public static String HALF_MOON = ICON_PATH + "Halbmond" + IMAGE_FILE_EXTENSION;
+    public static String FULL_MOON = ICON_PATH + "Vollmond" + IMAGE_FILE_EXTENSION;
 
     public static String TORTE = CARD_PATH + "Torte" + IMAGE_FILE_EXTENSION;
 
