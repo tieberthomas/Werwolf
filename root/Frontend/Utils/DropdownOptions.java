@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class DropdownOptions extends ArrayList {
+public class DropdownOptions extends ArrayList<String> {
     private String defaultOption;
 
     public DropdownOptions(List<String> strings) {

@@ -15,11 +15,7 @@ import root.Frontend.Utils.DropdownOptions;
 import root.Logic.Game;
 import root.Logic.Persona.Rollen.Constants.RawInformation;
 import root.Logic.Persona.Rollen.Constants.SchnüfflerInformation;
-import root.Logic.Persona.Rollen.Constants.Zeigekarten.Aufgebraucht;
-import root.Logic.Persona.Rollen.Constants.Zeigekarten.AusDemSpiel;
-import root.Logic.Persona.Rollen.Constants.Zeigekarten.Deaktiviert;
-import root.Logic.Persona.Rollen.Constants.Zeigekarten.Tot;
-import root.Logic.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
+import root.Logic.Persona.Rollen.Constants.Zeigekarten.*;
 import root.Logic.Persona.Rollen.Hauptrollen.Vampire.GrafVladimir;
 import root.Logic.Phases.Statement.Statement;
 import root.Logic.Phases.Winner;
@@ -28,6 +24,8 @@ import root.ResourceManagement.SoundManager;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public abstract class FrontendControl {
     public static ErzählerFrame erzählerFrame;
@@ -54,6 +52,10 @@ public abstract class FrontendControl {
 
                     case DROPDOWN_LIST:
                         showDropdownList(statement, frontendObject.title, frontendObject.dropdownOptions, frontendObject.hatZurückButton);
+                        return erzählerFrame.chosenOption1;
+
+                    case NUMBERED_DROPDOWN_LIST:
+                        showNumberedDropdownList(statement, frontendObject.title, frontendObject.dropdownOptions, frontendObject.hatZurückButton);
                         return erzählerFrame.chosenOption1;
 
                     case DROPDOWN_IMAGE:
@@ -190,6 +192,7 @@ public abstract class FrontendControl {
         switch (frontendObject.typeOfContent) {
             case DROPDOWN:
             case DROPDOWN_LIST:
+            case NUMBERED_DROPDOWN_LIST:
             case DROPDOWN_IMAGE:
                 erzählerDropdownPage(statement, getEmptyDropdownOptions(), aufgebraucht.imagePath);
                 break;
@@ -217,6 +220,7 @@ public abstract class FrontendControl {
         switch (frontendObject.typeOfContent) {
             case DROPDOWN:
             case DROPDOWN_LIST:
+            case NUMBERED_DROPDOWN_LIST:
             case DROPDOWN_IMAGE:
                 erzählerDropdownPage(statement, getEmptyDropdownOptions(), deaktiviert.imagePath);
                 break;
@@ -244,6 +248,7 @@ public abstract class FrontendControl {
         switch (frontendObject.typeOfContent) {
             case DROPDOWN:
             case DROPDOWN_LIST:
+            case NUMBERED_DROPDOWN_LIST:
             case DROPDOWN_IMAGE:
                 erzählerDropdownPage(statement, getEmptyDropdownOptions(), tot.imagePath);
                 break;
@@ -270,6 +275,7 @@ public abstract class FrontendControl {
         switch (frontendObject.typeOfContent) {
             case DROPDOWN:
             case DROPDOWN_LIST:
+            case NUMBERED_DROPDOWN_LIST:
             case DROPDOWN_IMAGE:
                 erzählerDropdownPage(statement, getEmptyDropdownOptions(), ausDemSpiel.imagePath);
                 spielerDropdownPage(statement.title, 1);
@@ -321,6 +327,18 @@ public abstract class FrontendControl {
     public static void showDropdownList(Statement statement, String title, DropdownOptions dropdownOptions, boolean hatZurückButton) {
         erzählerDropdownPage(statement, dropdownOptions, hatZurückButton);
         spielerDropdownListPage(title, dropdownOptions);
+
+        waitForAnswer();
+    }
+
+    public static void showNumberedDropdownList(Statement statement, String title, DropdownOptions dropdownOptions, boolean hatZurückButton) {
+        List<String> numberedDropdownStrings = IntStream.range(0, dropdownOptions.size())
+                .mapToObj(i -> (i + 1) + ": " + dropdownOptions.get(i))
+                .collect(Collectors.toList());
+        DropdownOptions numberedDropdownOptions = new DropdownOptions(numberedDropdownStrings);
+
+        erzählerDropdownPage(statement, numberedDropdownOptions, hatZurückButton);
+        spielerDropdownListPage(title, numberedDropdownOptions);
 
         waitForAnswer();
     }

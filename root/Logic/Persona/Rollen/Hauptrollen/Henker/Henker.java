@@ -1,8 +1,8 @@
 package root.Logic.Persona.Rollen.Hauptrollen.Henker;
 
-import root.Controller.FrontendObject.DropdownListFrontendObject;
 import root.Controller.FrontendObject.FrontendObject;
 import root.Controller.FrontendObject.ImageFrontendObject;
+import root.Controller.FrontendObject.NumberedDropdownListFrontendObject;
 import root.Controller.FrontendObject.TwoImageFrontendObject;
 import root.Frontend.Utils.DropdownOptions;
 import root.Logic.Game;
@@ -10,8 +10,8 @@ import root.Logic.KillLogic.AbsoluteKill;
 import root.Logic.KillLogic.Selbstmord;
 import root.Logic.Persona.Bonusrolle;
 import root.Logic.Persona.Fraktion;
-import root.Logic.Persona.Fraktionen.SchattenpriesterFraktion;
 import root.Logic.Persona.Fraktionen.HenkerFraktion;
+import root.Logic.Persona.Fraktionen.SchattenpriesterFraktion;
 import root.Logic.Persona.Hauptrolle;
 import root.Logic.Persona.Rollen.Bonusrollen.DunklesLicht;
 import root.Logic.Persona.Rollen.Bonusrollen.Engel;
@@ -145,20 +145,33 @@ public class Henker extends Hauptrolle {
                 besucht = chosenSpieler;
                 break;
             case 2:
-                chosenFraktion = Fraktion.findFraktionPerName(chosenOption);
+                chosenFraktion = Fraktion.findFraktionPerName(extract(chosenOption));
                 break;
             case 3:
-                chosenHauptrolle = Game.game.findHauptrollePerName(chosenOption);
+                chosenHauptrolle = Game.game.findHauptrollePerName(extract(chosenOption));
                 break;
             case 4:
-                chosenBonusrollenType = BonusrollenType.getBonusrollenType(chosenOption);
+                chosenBonusrollenType = BonusrollenType.getBonusrollenType(extract(chosenOption));
                 break;
             case 5:
-                chosenBonusrolle = Game.game.findBonusrollePerName(chosenOption);
+                chosenBonusrolle = Game.game.findBonusrollePerName(extract(chosenOption));
                 break;
         }
 
         return getPage();
+    }
+
+    private String extract(String chosenOption) {
+        if (chosenOption == null || chosenOption.isEmpty()) {
+            return chosenOption;
+        }
+
+        String[] parts = chosenOption.split(": ");
+        if (parts.length < 2) {
+            return chosenOption;
+        }
+
+        return parts[1];
     }
 
     public FrontendObject getPage() {
@@ -171,7 +184,7 @@ public class Henker extends Hauptrolle {
             case 0:
                 return Game.game.getSpielerFrontendObject(this);
             case 1:
-                FrontendObject fraktionsAuswahl = new DropdownListFrontendObject(FRAKTION_TITLE, new DropdownOptions(Fraktion.getLivingFraktionStrings()));
+                FrontendObject fraktionsAuswahl = new NumberedDropdownListFrontendObject(FRAKTION_TITLE, new DropdownOptions(Fraktion.getLivingFraktionStrings()));
                 fraktionsAuswahl.hatZurückButton = true;
                 return fraktionsAuswahl;
             case 2: //TODO think about removing henker from the list
@@ -181,7 +194,7 @@ public class Henker extends Hauptrolle {
                         map(hauptrolle -> hauptrolle.name).
                         distinct().
                         collect(Collectors.toList());
-                FrontendObject hauptrollenAuswahl = new DropdownListFrontendObject(HAUPTROLLEN_TITLE, new DropdownOptions(hauptrollenStrings));
+                FrontendObject hauptrollenAuswahl = new NumberedDropdownListFrontendObject(HAUPTROLLEN_TITLE, new DropdownOptions(hauptrollenStrings));
                 hauptrollenAuswahl.hatZurückButton = true;
                 return hauptrollenAuswahl;
             case 3:
@@ -189,7 +202,7 @@ public class Henker extends Hauptrolle {
                 List<String> bonusrollenTypeStrings = bonusrollenTypes.stream().
                         map(type -> type.name).
                         collect(Collectors.toList());
-                FrontendObject bonusrollenTypAuswahl = new DropdownListFrontendObject(BONUSROLLENTYP_TITLE, new DropdownOptions(bonusrollenTypeStrings));
+                FrontendObject bonusrollenTypAuswahl = new NumberedDropdownListFrontendObject(BONUSROLLENTYP_TITLE, new DropdownOptions(bonusrollenTypeStrings));
                 bonusrollenTypAuswahl.hatZurückButton = true;
                 return bonusrollenTypAuswahl;
             case 4:
@@ -205,7 +218,7 @@ public class Henker extends Hauptrolle {
                         .map(bonusrolle -> bonusrolle.name)
                         .distinct()
                         .collect(Collectors.toList());
-                FrontendObject bonusrollenAuswahl = new DropdownListFrontendObject(BONUSROLLEN_TITLE, new DropdownOptions(bonusrollenStrings));
+                FrontendObject bonusrollenAuswahl = new NumberedDropdownListFrontendObject(BONUSROLLEN_TITLE, new DropdownOptions(bonusrollenStrings));
                 bonusrollenAuswahl.hatZurückButton = true;
                 return bonusrollenAuswahl;
             case 5:
