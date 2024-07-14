@@ -75,12 +75,7 @@ public class SpielerFrame extends MyFrame {
 
     public void generateDayPage() {
         title = Day.dayTitle;
-
-        if (PhaseManager.isVollmondNacht()) {
-            currentPage = SpielerPageFactory.generateDayPage(Game.game.getHauptrollenInGameSortedByFraktion(), Game.game.getPossibleInGameBonusrolleNames(), true);
-        } else {
-            currentPage = SpielerPageFactory.generateDayPage(Game.game.getHauptrollenInGameSortedByFraktion(), Game.game.getPossibleInGameBonusrolleNames(), false);
-        }
+        currentPage = SpielerPageFactory.generateDayPage(Game.game.getHauptrollenInGameSortedByFraktion(), Game.game.getPossibleInGameBonusrolleNames(), PhaseManager.getDaysUntilFullMoon());
         buildScreenFromPage(currentPage);
     }
 

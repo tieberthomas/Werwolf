@@ -79,7 +79,11 @@ public class PhaseManager extends Thread {
         }
     }
 
-    public static boolean isVollmondNacht() {
-        return nightCount != 0 && nightCount % 3 == 0;
+    public static boolean isFullMoonNight() {
+        return getDaysUntilFullMoon() == 0;
+    }
+
+    public static int getDaysUntilFullMoon() {
+        return nightCount % 3;
     }
 }

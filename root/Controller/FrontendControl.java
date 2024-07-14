@@ -472,7 +472,7 @@ public abstract class FrontendControl {
     }
 
     public static void spielerAnnounceOpferPage(Spieler spieler) {
-        SoundManager.playCannon();
+        SoundManager.playPlayerDeath();
         String hauptRolleImagePath = spieler.hauptrolle.imagePath;
         String bonusRolleImagePath = spieler.bonusrolle.imagePath;
         if (GrafVladimir.verschleierterSpieler != null) {

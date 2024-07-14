@@ -1,23 +1,21 @@
 package root.ResourceManagement;
 
-import root.Logic.Phases.PhaseManager;
-
 import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
 
 public class SoundManager {
 
-    public static void playCannon() {
+    public static void playPlayerDeath() {
         playSound(SoundPath.CANNON_PATH);
     }
 
     public static void playFallAsleep() {
-        if (PhaseManager.isVollmondNacht()) {
-            playSound(SoundPath.FALL_ASLEEP_VOLLMOND_PATH);
-        } else {
-            playSound(SoundPath.FALL_ASLEEP_PATH);
-        }
+        playSound(SoundPath.FALL_ASLEEP_PATH);
+    }
+
+    public static void playFallAsleepFullMoon() {
+        playSound(SoundPath.FALL_ASLEEP_VOLLMOND_PATH);
     }
 
     public static void playWakeUp() {

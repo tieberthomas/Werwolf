@@ -66,7 +66,7 @@ public class Irrlicht extends Hauptrolle {
         int numberIrrlichterInGame = Game.game.getLichterStrings().size();
         int numberFlackerndeIrrlichter = flackerndeIrrlichter.size();
 
-        if (PhaseManager.isVollmondNacht()) {
+        if (PhaseManager.isFullMoonNight()) {
             for (String flackerndesIrrlicht : flackerndeIrrlichter) {
                 Spieler irrlichtSpieler = Game.game.findSpieler(flackerndesIrrlicht);
                 if (irrlichtSpieler != null) {

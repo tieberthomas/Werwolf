@@ -84,7 +84,11 @@ public class NormalNight extends Thread {
 
                     switch (statement.id) {
                         case IndieStatements.ALLE_SCHLAFEN_EIN_ID:
-                            SoundManager.playFallAsleep();
+                            if (PhaseManager.isFullMoonNight()) {
+                                SoundManager.playFallAsleepFullMoon();
+                            } else {
+                                SoundManager.playFallAsleep();
+                            }
                             break;
 
                         case IndieStatements.ALLE_WACHEN_AUF_ID:

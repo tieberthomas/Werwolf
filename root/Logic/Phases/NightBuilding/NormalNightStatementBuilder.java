@@ -70,11 +70,11 @@ public class NormalNightStatementBuilder {
             addStatementRolle(Henker.ID);
         }
         addStatementRolle(Riese.ID);
-        if (PhaseManager.isVollmondNacht()) {
+        if (PhaseManager.isFullMoonNight()) {
             addStatementRolle(Wolfsmensch.ID);
         }
         addStatementFraktion(Werwölfe.ID);
-        if (PhaseManager.isVollmondNacht()) {
+        if (PhaseManager.isFullMoonNight()) {
             addStatementRolle(Alphawolf.ID);
         }
         if (Wölfin.stateKilling) {

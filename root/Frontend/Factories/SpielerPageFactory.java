@@ -93,7 +93,7 @@ public abstract class SpielerPageFactory {
         return generateStaticImagePage(tot.title, tot.imagePath, true);
     }
 
-    public static Page generateDayPage(List<String> hauptrollen, List<String> bonusrollen, boolean nextNightIsVollmondNacht) {
+    public static Page generateDayPage(List<String> hauptrollen, List<String> bonusrollen, int daysUntilFullMoon) {
         int titleSpace = 80;
         int clockSpace = 150;
         Page listPage = SpielerListPageFactory.generateDoubleListPage(hauptrollen, bonusrollen, titleSpace, clockSpace - 30);
@@ -106,7 +106,7 @@ public abstract class SpielerPageFactory {
 
         listPage.add(title1Element);
         listPage.add(title2Element);
-        if (nextNightIsVollmondNacht) {
+        if (daysUntilFullMoon == 0) {
             PageElement vollmondImage = SpielerPageElementFactory.generateVollmondImage(new Vollmond().imagePath, 100);
             listPage.add(vollmondImage);
         }
