@@ -17,7 +17,7 @@ import root.Logic.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
 import root.Logic.Persona.Rollen.Constants.DropdownConstants;
 import root.Logic.Persona.Rollen.Constants.Zeigekarten.Geschützt;
 import root.Logic.Persona.Rollen.Constants.Zeigekarten.Nicht_Tötend;
-import root.Logic.Persona.Rollen.Hauptrollen.Überläufer.Henker;
+import root.Logic.Persona.Rollen.Hauptrollen.Henker.Henker;
 import root.Logic.Phases.NormalNight;
 import root.Logic.Phases.Statement.Constants.StatementType;
 import root.Logic.Spieler;

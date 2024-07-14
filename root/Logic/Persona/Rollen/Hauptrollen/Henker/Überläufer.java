@@ -1,11 +1,11 @@
-package root.Logic.Persona.Rollen.Hauptrollen.Überläufer;
+package root.Logic.Persona.Rollen.Hauptrollen.Henker;
 
 import root.Controller.FrontendObject.DropdownListFrontendObject;
 import root.Controller.FrontendObject.FrontendObject;
 import root.Frontend.Utils.DropdownOptions;
 import root.Logic.Game;
 import root.Logic.Persona.Fraktion;
-import root.Logic.Persona.Fraktionen.ÜberläuferFraktion;
+import root.Logic.Persona.Fraktionen.HenkerFraktion;
 import root.Logic.Persona.Hauptrolle;
 import root.Logic.Persona.Rollen.Constants.DropdownConstants;
 import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Dorfbewohner;
@@ -17,7 +17,7 @@ public class Überläufer extends Hauptrolle {
     public static final String ID = "ID_Überläufer";
     public static final String NAME = "Überläufer";
     public static final String IMAGE_PATH = ImagePath.ÜBERLÄUFER_KARTE;
-    public static final Fraktion FRAKTION = new ÜberläuferFraktion();
+    public static final Fraktion FRAKTION = new HenkerFraktion();
 
     public static final String STATEMENT_ID = ID;
     public static final String STATEMENT_TITLE = "Karte tauschen";

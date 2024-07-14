@@ -1,4 +1,4 @@
-package root.Logic.Persona.Rollen.Hauptrollen.Überläufer;
+package root.Logic.Persona.Rollen.Hauptrollen.Henker;
 
 import root.Controller.FrontendObject.DropdownListFrontendObject;
 import root.Controller.FrontendObject.FrontendObject;
@@ -11,7 +11,7 @@ import root.Logic.KillLogic.Selbstmord;
 import root.Logic.Persona.Bonusrolle;
 import root.Logic.Persona.Fraktion;
 import root.Logic.Persona.Fraktionen.SchattenpriesterFraktion;
-import root.Logic.Persona.Fraktionen.ÜberläuferFraktion;
+import root.Logic.Persona.Fraktionen.HenkerFraktion;
 import root.Logic.Persona.Hauptrolle;
 import root.Logic.Persona.Rollen.Bonusrollen.DunklesLicht;
 import root.Logic.Persona.Rollen.Bonusrollen.Schatten;
@@ -36,7 +36,7 @@ public class Henker extends Hauptrolle {
     public static final String ID = "ID_Henker";
     public static final String NAME = "Henker";
     public static final String IMAGE_PATH = ImagePath.HENKER_KARTE;
-    public static final Fraktion FRAKTION = new ÜberläuferFraktion();
+    public static final Fraktion FRAKTION = new HenkerFraktion();
 
     public static final String STATEMENT_ID = ID;
     public static final String SUCCESSFUL_KILL_TITLE = "Erfolgreiche Hängung";

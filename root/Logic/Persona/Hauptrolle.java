@@ -47,7 +47,7 @@ public class Hauptrolle extends Rolle {
         List<String> werwölfe = new ArrayList<>();
         List<String> vampire = new ArrayList<>();
         List<String> schattenpriester = new ArrayList<>();
-        List<String> überläufer = new ArrayList<>();
+        List<String> henker = new ArrayList<>();
 
         for (String hauptrollenName : hauptrollen) {
             Hauptrolle hauptrolle = Game.game.findHauptrollePerName(hauptrollenName);
@@ -69,8 +69,8 @@ public class Hauptrolle extends Rolle {
                     schattenpriester.add(hauptrollenName);
                     break;
 
-                case ÜberläuferFraktion.ID:
-                    überläufer.add(hauptrollenName);
+                case HenkerFraktion.ID:
+                    henker.add(hauptrollenName);
                     break;
 
                 default:
@@ -82,7 +82,7 @@ public class Hauptrolle extends Rolle {
         werwölfe.sort(String.CASE_INSENSITIVE_ORDER);
         vampire.sort(String.CASE_INSENSITIVE_ORDER);
         schattenpriester.sort(String.CASE_INSENSITIVE_ORDER);
-        überläufer.sort(String.CASE_INSENSITIVE_ORDER);
+        henker.sort(String.CASE_INSENSITIVE_ORDER);
 
         hauptrollen.clear();
 
@@ -90,6 +90,6 @@ public class Hauptrolle extends Rolle {
         hauptrollen.addAll(werwölfe);
         hauptrollen.addAll(vampire);
         hauptrollen.addAll(schattenpriester);
-        hauptrollen.addAll(überläufer);
+        hauptrollen.addAll(henker);
     }
 }

@@ -15,8 +15,8 @@ import root.Logic.Persona.Rollen.Constants.BonusrollenType.Tarnumhang_Bonusrolle
 import root.Logic.Persona.Rollen.Constants.Zeigekarten.Torten_Zeigekarte;
 import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Irrlicht;
 import root.Logic.Persona.Rollen.Hauptrollen.Bürger.Schattenmensch;
+import root.Logic.Persona.Rollen.Hauptrollen.Henker.Henker;
 import root.Logic.Persona.Rollen.Hauptrollen.Schattenpriester.Schattenpriester;
-import root.Logic.Persona.Rollen.Hauptrollen.Überläufer.Henker;
 import root.Logic.Phases.NightBuilding.NormalNightStatementBuilder;
 import root.Logic.Phases.Statement.Constants.IndieStatements;
 import root.Logic.Phases.Statement.Constants.ProgramStatements;

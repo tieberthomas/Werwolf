@@ -14,8 +14,8 @@ import root.Logic.Persona.Rollen.Constants.InformationsCluster.TötendInfo;
 import root.Logic.Persona.Rollen.Constants.SchnüfflerInformation;
 import root.Logic.Persona.Rollen.Constants.Zeigekarten.SpäherZeigekarte;
 import root.Logic.Persona.Rollen.Constants.Zeigekarten.Zeigekarte;
+import root.Logic.Persona.Rollen.Hauptrollen.Henker.Henker;
 import root.Logic.Persona.Rollen.Hauptrollen.Werwölfe.Wolfsmensch;
-import root.Logic.Persona.Rollen.Hauptrollen.Überläufer.Henker;
 import root.Logic.Spieler;
 
 import java.util.ArrayList;
