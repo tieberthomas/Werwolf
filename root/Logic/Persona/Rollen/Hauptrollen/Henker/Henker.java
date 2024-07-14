@@ -14,6 +14,7 @@ import root.Logic.Persona.Fraktionen.SchattenpriesterFraktion;
 import root.Logic.Persona.Fraktionen.HenkerFraktion;
 import root.Logic.Persona.Hauptrolle;
 import root.Logic.Persona.Rollen.Bonusrollen.DunklesLicht;
+import root.Logic.Persona.Rollen.Bonusrollen.Engel;
 import root.Logic.Persona.Rollen.Bonusrollen.Schatten;
 import root.Logic.Persona.Rollen.Bonusrollen.Schutzengel;
 import root.Logic.Persona.Rollen.Constants.BonusrollenType.BonusrollenType;
@@ -200,6 +201,7 @@ public class Henker extends Hauptrolle {
                 bonusrollen.add(new Schutzengel());
                 List<String> bonusrollenStrings = bonusrollen.stream()
                         .filter(bonusrolle -> bonusrolle.type.equals(chosenBonusrollenType))
+                        .filter(bonusrolle -> !(bonusrolle instanceof Engel))
                         .map(bonusrolle -> bonusrolle.name)
                         .distinct()
                         .collect(Collectors.toList());

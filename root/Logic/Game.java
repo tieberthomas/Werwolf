@@ -50,7 +50,6 @@ public class Game {
     public List<Hauptrolle> mitteHauptrollen = new ArrayList<>();
     public List<Bonusrolle> mitteBonusrollen = new ArrayList<>();
     public List<Hauptrolle> stillAvailableHauptrollen = new ArrayList<>();
-    public List<Bonusrolle> stillAvailableBonusrollen = new ArrayList<>();
     public List<Spieler> spielerSpecified;
 
     public Game() {
@@ -78,7 +77,7 @@ public class Game {
         phaseManager.start();
         generateAmStartZugeteilteHauptrollen();
         generateAmStartZugeteilteBonusrollen();
-        generateStillAvailableRollen();
+        generateStillAvailableHauptrollen();
     }
 
     private void generateAmStartZugeteilteHauptrollen() {
@@ -93,11 +92,6 @@ public class Game {
         spieler.forEach(spieler -> amStartZugeteilteBonusrollen.add(spieler.bonusrolle));
     }
 
-    private void generateStillAvailableRollen() {
-        generateStillAvailableHauptrollen();
-        generateStillAvailableBonusrollen();
-    }
-
     private void generateStillAvailableHauptrollen() {
         stillAvailableHauptrollen = new ArrayList<>();
 
@@ -105,16 +99,6 @@ public class Game {
 
         for (Spieler spieler : spieler) {
             stillAvailableHauptrollen.remove(spieler.hauptrolle);
-        }
-    }
-
-    private void generateStillAvailableBonusrollen() {
-        stillAvailableBonusrollen = new ArrayList<>();
-
-        stillAvailableBonusrollen.addAll(bonusrollenInGame);
-
-        for (Spieler spieler : spieler) {
-            stillAvailableBonusrollen.remove(spieler.bonusrolle);
         }
     }
 
@@ -313,24 +297,8 @@ public class Game {
         return hauptrollen;
     }
 
-    public List<String> getPossibleInGameHauptrolleNames() {
-        List<String> hauptrollenInGame = getHauptrolleInGameNames();
-
-        for (Hauptrolle hauptrolle : mitteHauptrollen) {
-            if (!hauptrolle.equals(Schattenpriester.ID)) {
-                hauptrollenInGame.remove(hauptrolle.name);
-            }
-        }
-
-        return hauptrollenInGame;
-    }
-
-    public List<Hauptrolle> getStillAvailableHauptrollen() { //TODO remove?
-        return stillAvailableHauptrollen;
-    }
-
     public List<Hauptrolle> getStillAvailableBürger() {
-        return getStillAvailableHauptrollen().stream()
+        return stillAvailableHauptrollen.stream()
                 .filter(hauptrolle -> hauptrolle.fraktion.equals(Bürger.ID))
                 .collect(Collectors.toList());
     }
@@ -345,12 +313,6 @@ public class Game {
         return hauptrollen.stream()
                 .filter(rolle -> rolle.name.equals(rolleName))
                 .findAny().orElse(null);
-    }
-
-    public int numberOfOccurencesOfHauptrolleInGame(Hauptrolle hauptrolle) {
-        return (int) hauptrollenInGame.stream()
-                .filter(rolle -> rolle.equals(hauptrolle))
-                .count();
     }
 
     public List<String> getBonusrollenButtonNames() {
@@ -382,10 +344,6 @@ public class Game {
         return bonusrolleInGameNames;
     }
 
-    public List<Bonusrolle> getStillAvailableBonusrollen() {
-        return stillAvailableBonusrollen;
-    }
-
     public Bonusrolle findBonusrolle(String rolleID) {
         return bonusrollen.stream()
                 .filter(rolle -> rolle.equals(rolleID))
@@ -396,12 +354,6 @@ public class Game {
         return bonusrollen.stream()
                 .filter(rolle -> rolle.name.equals(rolleName))
                 .findAny().orElse(null);
-    }
-
-    public int numberOfOccurencesOfBonusrolleInGame(Bonusrolle bonusrolle) {
-        return (int) bonusrollenInGame.stream()
-                .filter(rolle -> rolle.equals(bonusrolle))
-                .count();
     }
 
     public List<Spieler> getSpielerUnspecified() {
@@ -422,12 +374,6 @@ public class Game {
                 .collect(Collectors.toList());
     }
 
-    public List<String> getHauptrollenSpecifiedIDs() {
-        return spielerSpecified.stream()
-                .map(spieler -> spieler.hauptrolle.id)
-                .collect(Collectors.toList());
-    }
-
     public List<Hauptrolle> getHauptrollenUnspecified() {
         List<Hauptrolle> hauptrollenUnspecified = ListHelper.cloneList(hauptrollenInGame);
 
@@ -445,12 +391,6 @@ public class Game {
     public List<Bonusrolle> getBonusrollenSpecified() {
         return spielerSpecified.stream()
                 .map(spieler -> spieler.bonusrolle)
-                .collect(Collectors.toList());
-    }
-
-    public List<String> getBonusrolleSpecifiedIDs() {
-        return spielerSpecified.stream()
-                .map(spieler -> spieler.bonusrolle.id)
                 .collect(Collectors.toList());
     }
 

@@ -58,18 +58,6 @@ public class Rolle extends Persona {
         return null;
     }
 
-    public static int numberOfOccurencesOfRolleInGame(Rolle rolle) {
-        Hauptrolle wantedHauptrolle = Game.game.findHauptrolle(rolle.id);
-        if (wantedHauptrolle != null)
-            return Game.game.numberOfOccurencesOfHauptrolleInGame(wantedHauptrolle);
-
-        Bonusrolle wantedBonusrolle = Game.game.findBonusrolle(rolle.id);
-        if (wantedBonusrolle != null)
-            return Game.game.numberOfOccurencesOfBonusrolleInGame(wantedBonusrolle);
-
-        return 0;
-    }
-
     public static boolean rolleLebend(String rolleID) {
         for (Spieler currentSpieler : Game.game.spieler) {
             if (currentSpieler.hauptrolle.equals(rolleID) && currentSpieler.lebend) {
