@@ -26,6 +26,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
     private MainrolePage mainrolePage;
     private BonusrolePage bonusrolePage;
     private SpecifyPage specifyPage;
+    private DiscussionTimeChooserPage discussionTimeChooserPage;
 
     public InteractivePage currentInteractivePage;
 
@@ -69,11 +70,13 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         mainrolePage = new MainrolePage();
         bonusrolePage = new BonusrolePage();
         specifyPage = new SpecifyPage();
+        discussionTimeChooserPage = new DiscussionTimeChooserPage();
         interactivePages.add(startPage);
         interactivePages.add(playerSetupPage);
         interactivePages.add(mainrolePage);
         interactivePages.add(bonusrolePage);
         interactivePages.add(specifyPage);
+        interactivePages.add(discussionTimeChooserPage);
         startPage.generatePage();
     }
 
@@ -94,6 +97,7 @@ public class ErzählerFrame extends MyFrame implements ActionListener {
         bonusrolePage.setupPageRefresher();
         specifyPage.generatePage();
         specifyPage.setupPageRefresher();
+        discussionTimeChooserPage.generatePage();
     }
 
     public void nextPage() {

@@ -1,12 +1,12 @@
 package root.Frontend.Factories;
 
 import root.Frontend.Frame.ErzählerFrame;
+import root.Frontend.InteractivePages.InteractiveElementsDtos.*;
 import root.Frontend.Page.Page;
 import root.Frontend.Page.PageElement;
 import root.Frontend.Page.PageTable;
 import root.Frontend.Utils.DropdownOptions;
 import root.Frontend.Utils.JButtonStyler;
-import root.Frontend.InteractivePages.InteractiveElementsDtos.*;
 import root.Logic.Phases.Day;
 import root.Logic.Phases.NormalNight;
 import root.Logic.Phases.SetupNight;
@@ -171,7 +171,6 @@ public class ErzählerPageFactory {
                 tableElementHeight, nameLabelWidth + hauptrolleLabelWidth + bonusrolleLabelWidth, spaceBetween,
                 0, spaceBetween);
 
-
         pageElements.playerLabelTable = pageElementFactory.generatePageTable(pageElements.playerLabelTable, titleLabel, playerHeading, columns, nameLabelWidth,
                 tableElementHeight, deleteButtonWidth + hauptrolleLabelWidth + bonusrolleLabelWidth, spaceBetween,
                 deleteButtonWidth + spaceBetween, spaceBetween);
@@ -212,7 +211,22 @@ public class ErzählerPageFactory {
         playerSpecifyPage.add(pageElements.bonusroleLabelTable);
         playerSpecifyPage.add(goNextButton);
         playerSpecifyPage.add(goBackButton);
+    }
 
+    public void generateDiscussionTimeChooserPage(Page discussionTimeChooserPage, DiscussionTimeChooserPageElementsDto discussionTimeChooserPageElementsDto) {
+        PageElement discussionTimeLabel = pageElementFactory.generateLabel(null, "Tag Länge in Minuten");
+
+        PageElement discussionTimeLengthTextField = pageElementFactory.generateAddPlayerTxtField(discussionTimeChooserPageElementsDto.discussionTimeLengthTextField, discussionTimeLabel);
+
+        PageElement goBackButton = pageElementFactory.generateLowestButton(discussionTimeChooserPageElementsDto.back, "Zurück", false);
+        PageElement goNextButton = pageElementFactory.generateLowestButton(discussionTimeChooserPageElementsDto.next);
+
+        discussionTimeChooserPage.clearPage();
+
+        discussionTimeChooserPage.add(discussionTimeLabel);
+        discussionTimeChooserPage.add(discussionTimeLengthTextField);
+        discussionTimeChooserPage.add(goBackButton);
+        discussionTimeChooserPage.add(goNextButton);
     }
 
     public Page generateDefaultNightPage(Page nightPage, Statement statement) {

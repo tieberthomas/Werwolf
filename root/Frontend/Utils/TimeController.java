@@ -12,18 +12,18 @@ public class TimeController {
     public static SpielerFrame spielerframe;
     private static boolean timeThreadStarted = false;
 
-    private static final int deadLineMinutes = 17;
-    private static int deadLineSeconds = deadLineMinutes * 60;
+    public static int discussionTimeMinutes = 17;
 
     private static final int colorChangeMinutes = 3;
     private static final int colorChangeSeconds = colorChangeMinutes * 60;
-    private static Color urgentColor = Color.RED;
+    private static final Color urgentColor = Color.RED;
 
-    private static int time = deadLineSeconds;
+    private static int time = getDiscussionTimeInSeconds();
+
     private static boolean isCounting = false;
 
     public static void resetTimerAndStartCounting() {
-        time = deadLineSeconds;
+        time = getDiscussionTimeInSeconds();
         isCounting = true;
     }
 
@@ -42,7 +42,7 @@ public class TimeController {
         if (isCounting) {
             time--;
 
-            if (deadLineExceeded()) {
+            if (isDeadLineExceeded()) {
                 startNight();
             } else {
                 updateTimeString();
@@ -50,7 +50,11 @@ public class TimeController {
         }
     }
 
-    private static boolean deadLineExceeded() {
+    private static int getDiscussionTimeInSeconds() {
+        return discussionTimeMinutes * 60;
+    }
+
+    private static boolean isDeadLineExceeded() {
         return time < 0;
     }
 
@@ -67,7 +71,7 @@ public class TimeController {
         if (spielerframe != null && spielerframe.clockLabel != null) {
             String timestring = generateTimeString(time);
             spielerframe.clockLabel.setText(timestring);
-            if (countDownIsNearTheEnd()) {
+            if (isCountDownNearTheEnd()) {
                 spielerframe.clockLabel.setForeground(urgentColor);
             }
         }
@@ -94,7 +98,7 @@ public class TimeController {
         return fourthDigit + "" + thirdDigit + ":" + secondDigit + "" + firstDigit;
     }
 
-    private static boolean countDownIsNearTheEnd() {
+    private static boolean isCountDownNearTheEnd() {
         return time <= colorChangeSeconds;
     }
 }

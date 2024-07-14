@@ -1,13 +1,12 @@
 package root.Frontend.InteractivePages;
 
-import root.Frontend.Page.PageTable;
 import root.Frontend.InteractivePages.InteractiveElementsDtos.SpecifyPageElementsDto;
+import root.Frontend.Page.PageTable;
 import root.Frontend.Utils.PageRefresherFramework.Models.Combobox;
 import root.Frontend.Utils.PageRefresherFramework.Models.DeleteButtonTable;
 import root.Frontend.Utils.PageRefresherFramework.Models.LabelTable;
 import root.Frontend.Utils.PageRefresherFramework.Models.RefreshedPage;
 import root.Frontend.Utils.PageRefresherFramework.PageRefresher;
-import root.GameController;
 import root.Logic.Game;
 import root.Logic.Persona.Bonusrolle;
 import root.Logic.Persona.Hauptrolle;
@@ -56,8 +55,7 @@ public class SpecifyPage extends RefreshedPage {
     public void processActionEvent(ActionEvent ae) {
         if (next.equals(ae.getSource())) {
             if (allPlayersSpecified()) {
-                erzählerFrame.currentInteractivePage = null;
-                GameController.startGame();
+                erzählerFrame.nextPage();
             } else {
                 specifyPlayer();
             }

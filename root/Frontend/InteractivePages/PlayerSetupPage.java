@@ -41,8 +41,8 @@ public class PlayerSetupPage extends RefreshedPage {
 
     @Override
     public void generatePage() {
-        int numberOfplayers = Game.game.spieler.size();
-        pageFactory.generatePlayerSetupPage(page, interactiveElementsDto, numberOfplayers);
+        int numberOfPlayers = Game.game.spieler.size();
+        pageFactory.generatePlayerSetupPage(page, interactiveElementsDto, numberOfPlayers);
     }
 
     @Override
@@ -52,7 +52,7 @@ public class PlayerSetupPage extends RefreshedPage {
         } else if (back.equals(ae.getSource())) {
             erzählerFrame.prevPage();
         } else if (addPlayerButton.equals(ae.getSource()) || addPlayerTxtField.equals(ae.getSource())) {
-            if (!addPlayerTxtField.getText().equals("") && !Game.game.spielerExists(addPlayerTxtField.getText())) {
+            if (!addPlayerTxtField.getText().isEmpty() && !Game.game.spielerExists(addPlayerTxtField.getText())) {
                 addPlayer();
             }
         } else if (deleteButtons.contains(ae.getSource())) {

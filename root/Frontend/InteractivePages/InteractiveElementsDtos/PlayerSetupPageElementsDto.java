@@ -23,4 +23,5 @@ public class PlayerSetupPageElementsDto {
         this.next = next;
         this.back = back;
     }
+
 }
