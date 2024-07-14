@@ -1,16 +1,12 @@
 package root.ResourceManagement;
 
-import javafx.embed.swing.JFXPanel;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import root.Logic.Phases.PhaseManager;
 
+import javax.sound.sampled.*;
 import java.io.File;
+import java.io.IOException;
 
 public class SoundManager {
-    //TODO programm darf nicht abstürzen bei fehlerhafen sound file
-
-    public static final JFXPanel fxPanel = new JFXPanel(); // TODO testen ob das noch gebraucht wird
 
     public static void playCannon() {
         playSound(SoundPath.CANNON_PATH);
@@ -29,8 +25,17 @@ public class SoundManager {
     }
 
     private static void playSound(String path) {
-        Media hit = new Media(new File(path).toURI().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(hit);
-        mediaPlayer.play();
+        File file = new File(path);
+
+        try {
+            AudioInputStream audioIn = AudioSystem.getAudioInputStream(file);
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioIn);
+            clip.start();
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            System.out.println(e.getMessage());
+            System.out.println("could not play sound at path: " + path);
+        }
     }
+
 }
