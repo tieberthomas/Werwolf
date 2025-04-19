@@ -308,6 +308,14 @@ public class NormalNight extends Thread {
                     currentSpieler.geschützt = true;
                     ((Schattenpriester) hauptrolleSpieler).neuster = false;
                 }
+                if (PhaseManager.nightCount == 1) {
+                    currentSpieler.geschützt = true;
+                }
+            }
+            if (hauptrolleSpieler.equals(Henker.ID)) {
+                if (PhaseManager.nightCount == 1) {
+                    currentSpieler.geschützt = true;
+                }
             }
         }
 

@@ -23,7 +23,6 @@ import root.Logic.Phases.Statement.Constants.ProgramStatements;
 import root.Logic.Phases.Statement.DynamicStatement;
 import root.Logic.Phases.Statement.SecondStatement;
 import root.Logic.Phases.Statement.Statement;
-import root.Logic.Spieler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,12 +60,7 @@ public class NormalNightStatementBuilder {
         addStatementRolle(Späher.ID);
 
         //TODO move nacht addstatement speziallogik into rollen/fraktionen
-        if (PhaseManager.nightCount == 1) {
-            Spieler henkerSpieler = Game.game.findSpielerPerRolle(Henker.ID);
-            if (henkerSpieler != null) {
-                henkerSpieler.geschützt = true;
-            }
-        } else {
+        if (PhaseManager.nightCount != 1) {
             addStatementRolle(Henker.ID);
         }
         addStatementRolle(Riese.ID);
